@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: argon-v2-desk
+  group: argon-v2-writer      # the farm and the desk take turns, so they never save over each other
   cancel-in-progress: false
 
 jobs:
@@ -37,6 +37,13 @@ jobs:
         run: |
           git config user.name "argon-bot"
           git config user.email "argon-bot@users.noreply.github.com"
-          git add data/desk_calls.jsonl data/agent_memory data/futures data/kronos.json || true
-          git commit -m "desk: $(date -u +%H:%M)" || echo "nothing new"
-          git pull --rebase && git push
+          for p in data/desk_calls.jsonl data/agent_memory data/futures data/kronos.json; do [ -e "$p" ] && git add -A "$p"; done
+          if git diff --cached --quiet; then echo "nothing new to save"; exit 0; fi
+          git commit -m "desk: $(date -u +%H:%M)"
+          git stash --include-untracked >/dev/null 2>&1 || true      # leftovers must not block catching up
+          for i in 1 2 3 4 5 6; do
+            if git pull --rebase -X theirs origin main && git push origin HEAD:main; then echo "saved"; exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            echo "someone else saved first, catching up and retrying ($i)"; sleep $((i*15))
+          done
+          exit 1

@@ -3,3 +3,6 @@ __pycache__/
 .DS_Store
 vendor/
 engine/fast.so
+# rebuilt from the .part1/.part2 halves on each run
+data/histdata/NSXUSD_2024.zip
+data/histdata/SPXUSD_2024.zip
