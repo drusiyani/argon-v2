@@ -4,6 +4,18 @@ ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 and pull the latest full month of 1-minute HistData for the long backtest."""
 import json,urllib.request,urllib.parse,datetime as dt,re,time,glob
 UA={'User-Agent':'Mozilla/5.0'}
+def join_parts():
+    """Big history files are stored in the repo as .part1/.part2 halves (GitHub upload limits); join them back once."""
+    import glob
+    for p1 in glob.glob(os.path.join(ROOT,'data','histdata','*.zip.part1')):
+        out=p1[:-len('.part1')]
+        if os.path.exists(out): continue
+        parts=sorted(glob.glob(out+'.part*'),key=lambda x:int(x.rsplit('part',1)[1]))
+        with open(out,'wb') as f:
+            for q in parts: f.write(open(q,'rb').read())
+        print('joined',os.path.basename(out),'from',len(parts),'parts')
+join_parts()
+
 def get(url,data=None,ref=None):
     h=dict(UA); 
     if ref: h['Referer']=ref
