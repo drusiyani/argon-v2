@@ -1,0 +1,70 @@
+// ================= OVERVIEW
+const KC={pool_formed:'--blue',sweep:'--gold',manip_leg:'--red',smt:'--cyan',swing:'--grey',structure_break:'--ink',mss_failed:'--red',inducement:'--muted',fvg_formed:'--purple',fvg_inverted:'--purple',ob_formed:'--violet',ob_mitigated:'--violet',ob_invalidated:'--violet',session_open:'--grey',fire:'--up',ob_entry:'--up',refusal:'--down',outcome:'--gold'};
+const VOCAB={
+ 'LEVELS AND TRAPS':{pool_formed:'A high or low where lots of traders have probably left stop orders. Big players like to push price into these levels to fill their own orders. Includes yesterday\'s high and low, last week\'s, and the Asia and London session ranges.',
+  sweep:'Price pokes just past a key level, then comes back. That quick poke-and-return is the "trap" the strategy looks for. If price pushes through and stays there instead, it\'s a breakout, and the strategy doesn\'t trade it.',
+  manip_leg:'The single big candle that did the poking. Logged separately because a strong push is a clue the move was deliberate.',
+  smt:'The Nasdaq and S&P 500 usually move together (gold and silver too). If one makes a new high and the other doesn\'t, they disagree, which is a hint the move is fake. This is called SMT.'},
+ 'TREND':{swing:'The turning points on the chart: higher highs and higher lows mean an uptrend, lower highs and lower lows mean a downtrend. Only marked once they\'re confirmed, so nothing uses information from the future.',
+  structure_break:'Price closes past the last turning point. If that\'s with the trend, the trend continued. If it\'s against it, the trend flipped. A flip with one big candle is the strongest signal.',
+  mss_failed:'A trend flip that reversed within 15 minutes. A false alarm.',
+  inducement:'An obvious high or low inside a new move that traders put stops behind. The strategy expects it to be taken out before price carries on.'},
+ 'ZONES':{fvg_formed:'When price moves so fast it leaves a gap between candles. Price often comes back to fill it, so it\'s used as an entry point.',
+  fvg_inverted:'Price closed straight through the gap, so it no longer counts.',
+  ob_formed:'The last candle in the opposite direction before a big move. Price often returns here, so it\'s another entry point.',
+  ob_mitigated:'Price came back to the order block.',
+  ob_invalidated:'Price closed straight through the order block, so it no longer counts.'},
+ 'TIMES':{session_open:'When the Asia (8pm), London (2am) and New York (9:30am) markets open, New York time. The strategy only trades in two windows: London 2–5am and New York 8:30–11:30am.'},
+ 'DECISIONS':{fire:'The main strategy took a trade because all its checks passed. One trade per market at a time.',
+  ob_entry:'The second strategy took a trade: price came back to a fresh order block while the hourly trend agreed.',
+  refusal:'A possible trade the rules said no to, with the reason. Skipped trades are still played out in the background, so we can see whether each rule is actually helping.',
+  outcome:'How a trade ended: hit its target, hit its stop, or closed at 3:55pm. Results are in R (times the amount risked).'}};
+function renderOverview(){
+  const cnt=k=>{let c=0;const ki=KI[k];for(let i=0;i<E.n;i++)if(E.k[i]===ki)c++;return c};
+  const fs=stats(FIRED),ob=stats(OBB),orb=stats(ORBT);
+  const tiles=[[DAYS.length,'Days of data',`${DAYS[0]} to ${DAYS.at(-1)}`],[4,'Markets','Nasdaq, S&P 500, Dow, Russell'],[E.n.toLocaleString(),'Things logged','every level, gap and trend change'],
+   [FIRED.length,'★ Main trades','all checks passed',1],[OBB.length,'Order-block trades','second strategy'],[cnt('refusal').toLocaleString(),'Trades skipped','each with a reason'],[cnt('outcome'),'Results','wins, losses, day-end exits'],[DAYS.length,'Daily notes','written automatically']];
+  $('#tiles').innerHTML=tiles.map(([n,l,s,g])=>`<div class="tile"><div class="n${g?' g':''}">${n}</div><div class="l">${l}</div><div class="s">${s}</div></div>`).join('');
+
+  const row=(lab,s,extra='')=>`<tr><td>${lab}</td><td class="r">${s.n}</td><td class="r">${s.w}</td><td class="r">${s.n?Math.round(100*s.wr)+'%':'–'}</td><td class="r ${cls(s.g)}">${fmtR(s.g)}</td><td class="r ${cls(s.net)}">${fmtR(s.net)}</td><td class="r">${s.n?fmtR(s.avg):'–'}</td><td class="r">${s.n?fmtR(s.best):'–'}</td><td class="r">${s.n?fmtR(s.worst):'–'}</td>${extra}</tr>`;
+  $('#outbook').innerHTML=`<tr><th>strategy</th><th class="r">trades</th><th class="r">won</th><th class="r">win %</th><th class="r">total</th><th class="r">after costs</th><th class="r">per trade</th><th class="r">best</th><th class="r">worst</th></tr>`+row('★ Main strategy',fs)+row('Order-block strategy',ob)+
+   INSTS.slice(0,3).map(s=>row(`<span class="dim">main · ${s}</span>`,stats(FIRED.filter(t=>t.inst===s)))).join('')+INSTS.slice(0,3).map(s=>row(`<span class="dim">order block · ${s}</span>`,stats(OBB.filter(t=>t.inst===s)))).join('');
+  const steps=[['1','not a good enough level'],['2','a breakout, not a trap'],['B','against the day\'s direction'],['3','the markets agreed (no SMT)'],['4','no clear trend flip'],['5','price never came back to the entry'],['R','broke the risk rules'],['P','already in a trade']];
+  $('#refbook').innerHTML=`<tr><th>skipped because</th><th class="r">skipped</th><th class="r">played out</th><th class="r">would have won</th><th class="r">result</th><th>so the rule…</th></tr>`+steps.map(([k,l])=>{const all=TR.filter(t=>t.route==='chain'&&!t.fired&&t.failed[0]===k),w=all.filter(t=>t.walked),s=stats(w);
+    const v=w.length<5?'<span class="dim">too few to tell</span>':s.g<0?`<span class="pos">saved ${(-s.g).toFixed(1)}R</span>`:`<span class="neg">cost ${s.g.toFixed(1)}R</span>`;
+    return `<tr><td>${l}</td><td class="r">${all.length}</td><td class="r">${w.length}</td><td class="r">${s.w}</td><td class="r ${cls(s.g)}">${fmtR(s.g)}</td><td>${v}</td></tr>`}).join('');
+  const G=['A++','A+','A','B','C'];const walked=TR.filter(t=>t.route==='chain'&&t.walked);
+  $('#gradebook').innerHTML=`<tr><th>grade</th><th class="r">taken</th><th class="r">taken result</th><th class="r">all played out</th><th class="r">win %</th><th class="r">total</th><th class="r">per trade</th></tr>`+G.map(g=>{const f=stats(FIRED.filter(t=>t.grade===g)),a=stats(walked.filter(t=>t.grade===g));
+    return `<tr><td class="gold">${'★'.repeat(5-G.indexOf(g))} ${g}</td><td class="r">${f.n}</td><td class="r ${cls(f.g)}">${f.n?fmtR(f.g):'–'}</td><td class="r">${a.n}</td><td class="r">${a.n?Math.round(100*a.wr)+'%':'–'}</td><td class="r ${cls(a.g)}">${a.n?fmtR(a.g):'–'}</td><td class="r">${a.n?fmtR(a.avg):'–'}</td></tr>`}).join('');
+  const pct=r=>(r*0.5>=0?'+':'')+(r*0.5).toFixed(2)+'%';
+  const dleft=Math.max(0,Math.ceil((Date.UTC(2027,0,1)-Date.now())/864e5));
+  $('#count').textContent=dleft?`goes live in ${dleft} day${dleft>1?'s':''}`:'live';
+  $('#chips1').innerHTML=`<span><i></i>Running</span><span><i class="g"></i>${D.bt.sessions}-day backtest</span><span><i></i>Prices up to ${dlab(DAYS.at(-1))}</span><span><i></i>Risk rules on</span><span><i class="g"></i>Rules re-picked monthly</span><span><i class="off"></i>Kronos not linked yet</span><span><i class="off"></i>rules v${D.rules}</span>`;
+  $('#banner').innerHTML=`<b>Not live yet.</b> The rules are now tested on ${D.bt.sessions} days of prices and re-picked every month from what worked over the previous 6 months. So far that beats keeping the rules fixed, but neither strategy has shown a reliable profit yet. The rules lock on 24 December and <b>Argon v2 goes live on 1 January 2027</b> only if it passes the checks below.`;
+  $('#mkts').innerHTML=INSTS.filter(s=>BARS[s]).map(s=>{const B=BARS[s]['5m'],n=B.n,last=B.c[n-1];let j=n-1;while(j>0&&B.sd[j]===B.sd[n-1])j--;const prev=B.c[j],ch=(last-prev)/prev*100;return `<div class="mkt"><div class="a">${INAME[s]}<span>${s==='YM'?'CBOT':'CME'}</span></div><div class="p">${px(last,s)}</div><div class="c ${cls(ch)}">${ch>=0?'+':''}${ch.toFixed(2)}%</div></div>`}).join('');
+  const bots=[{nm:'Main strategy',bt:D.bt.sum.adaptive,g:fs.g,n:fs.n,w:fs.w,d:'Waits for price to poke past an important high or low and snap back, then trades the reversal once the trend clearly flips. This month: '+rl(D.lab.v03)+'.',f:`rules v${D.rules} · graded A++ to C`},
+   {nm:'Order-block strategy',bt:D.bt.sum.adaptive_ob,g:ob.g,n:ob.n,w:ob.w,d:'Buys or sells the first time price comes back to a zone where a big move started, as long as the hourly trend agrees. This month: '+rl(D.lab.v03ob)+'.',f:'second strategy · same risk rules'},
+   {nm:'Opening range',bt:D.orb?{R:D.orb.markets.both.adaptive.R,n:D.orb.markets.both.adaptive.n}:null,g:orb.g,n:orb.n,w:orb.w,d:'From published research (Zarattini & Aziz). If the first minutes of the US session go up it buys, if they go down it sells, with the stop on the other side and a big target. Nasdaq and S&P only for now.',f:'third strategy · settings re-picked monthly'},
+   {nm:'Kronos indices bot',g:null,n:0,w:0,d:'The AI forecasting bot from Argon v1. Once its trade history is connected, it will race here from the same start date.',f:'not linked yet'}];
+  const ranked=bots.filter(b=>b.g!=null).sort((a,b)=>b.g-a.g);
+  $('#bots').innerHTML=bots.map(b=>`<div class="bot"><div class="top"><span class="nm">${b.nm}</span><span class="rk">${b.g==null?'–':(ranked.indexOf(b)+1)+' of '+ranked.length+' in the race'}</span></div><div class="n ${b.g==null?'dim':cls(b.g)}">${b.g==null?'–':pct(b.g)}</div><div class="dim mono" style="font-size:12px">${b.g==null?'':`${b.n} trades · ${b.w} won · ${fmtR(b.g)} gross`}</div><p>${b.d}</p>${b.bt?`<div class="dim mono" style="font-size:12px;margin-top:8px">${D.bt.sessions}-day test, adjusting monthly: <b class="${cls(b.bt.R)}">${fmtR(b.bt.R)}</b> over ${b.bt.n} trades</div>`:''}<div class="ft"><span>${b.f}</span><span>0.5% risk per trade</span></div></div>`).join('');
+  const crit=[['The main strategy makes money after costs on new days only (from 13 October), over at least 20 trades.'],['Its worst losing streak never costs more than 10R (5% of the account).'],['A-grade setups do better than B and C setups. If they don\'t, the grades mean nothing.'],['It beats the Kronos bot over the same days.'],['Every result can be checked from saved price data, with no peeking at the future.']];
+  $('#crit').innerHTML=crit.map(([c])=>`<li>${c}<span class="st">not started yet: needs the daily price saving set up</span></li>`).join('');
+  const p=r=>(r*0.5>=0?'+':'')+(r*0.5).toFixed(1)+'%';const LT=D.bt.sum.adaptive;
+  $('#hero').innerHTML=`<div class="h"><div class="n ${cls(fs.g)}">${p(fs.g)}</div><div class="l">Main strategy</div><div class="s">${fs.n} trades · last ${DAYS.length} days</div></div>
+   <div class="h"><div class="n ${cls(ob.g)}">${p(ob.g)}</div><div class="l">Order-block strategy</div><div class="s">${ob.n} trades · last ${DAYS.length} days</div></div>
+   <div class="h"><div class="n ${cls(orb.g)}">${p(orb.g)}</div><div class="l">Opening range</div><div class="s">${orb.n} trades · last ${DAYS.length} days</div></div>
+   <div class="h"><div class="n ${cls(LT.R)}">${p(LT.R)}</div><div class="l">Long test</div><div class="s">main strategy, ${LT.months} months it hadn't seen</div></div>`;
+  const rec=[...FIRED,...OBB,...ORBT,...TR.filter(t=>t.route==='feed')].filter(t=>t.walked).sort((a,b)=>b.fill_t-a.fill_t).slice(0,8);const NMS={NQ:'Nasdaq',ES:'S&P 500',YM:'Dow',RTY:'Russell 2000'};
+  $('#recent').innerHTML=rec.length?rec.map(t=>`<div class="trow" data-i="${t.idx}" tabindex="0"><span class="tag2 ${t.side==='long'?'buy':'sell'}">${t.side==='long'?'BUY':'SELL'}</span><span class="w">${NMS[t.inst]} · ${t.route==='ob'?'order-block':t.route==='feed'?'desk setup':t.route==='orb'?'opening range':'main'}<small>${dlab(t.sd)} · ${hhmm(t.fill_t)} New York · ${t.status==='win'?'hit target':t.status==='loss'?'hit stop':'closed at end of day'}</small></span><span class="r ${cls(t.R)}">${p(t.R)}</span></div>`).join(''):'<div class="dim">No trades yet.</div>';
+  $$('#recent .trow').forEach(r=>{const go=()=>{const t=TR[+r.dataset.i];gotoChart(t.inst,t.sd,t.fill_t,{type:'trade',ref:t.idx})};r.onclick=go;r.onkeydown=e=>{if(e.key==='Enter')go()}});
+  // coverage
+  const cc={};let mx=1;for(let i=0;i<E.n;i++){const key=INSTS[E.inst[i]]+'|'+E.sd[i];cc[key]=(cc[key]||0)+1}for(const v of Object.values(cc))mx=Math.max(mx,v);
+  let h=`<div class="covgrid" style="grid-template-columns:auto repeat(${DAYS.length},16px)"><span></span>`+DAYS.map((d,i)=>`<span class="covlab" style="padding:0;font-size:9.5px">${i===0||d.slice(5,7)!==DAYS[i-1].slice(5,7)?d.slice(5,7)+'/'+d.slice(8):''}</span>`).join('');
+  for(const s of D.insts){h+=`<span class="covlab">${s}</span>`+DAYS.map(d=>{const v=cc[s+'|'+d]||0,a=v/mx;const bg=a===0?'var(--line2)':`color-mix(in srgb, var(--gold) ${Math.round(25+75*a)}%, var(--bg))`;
+    const fd=FIRED.filter(t=>t.inst===s&&t.sd===d).length;return `<button type="button" class="cell" style="background:${bg}${fd?';outline:1px solid var(--up)':''}" title="${s} ${d}: ${v} events${fd?`, ${fd} fire${fd>1?'s':''}`:''}" data-s="${s}" data-d="${d}"></button>`}).join('')}
+  $('#cov').innerHTML=h+'</div>';$$('#cov .cell').forEach(b=>b.onclick=()=>gotoChart(b.dataset.s,b.dataset.d));
+  // vocab
+  let v='';for(const[g,ks]of Object.entries(VOCAB)){v+=`<div class="vgroup">${g}</div><div class="vgrid">`+Object.entries(ks).map(([k,d])=>`<div><div class="vk"><span class="dotk" style="background:var(${KC[k]})"></span>${FN[k]}<span class="c">${cnt(k).toLocaleString()} logged</span></div><div class="vd">${esc(d)}</div></div>`).join('')+'</div>';
+    if(g==='TREND')v+=`<div class="callout">NO PEEKING AT THE FUTURE. Everything is checked only once a candle has finished, so the site never uses information a real trader wouldn't have had yet. An early version broke this rule by using the hourly trend before the hour was over. It showed a +20.7R profit. Fixed, the same strategy shows ${fmtR(ob.g)}. Catching mistakes like that is the whole point of this site.</div>`}
+  $('#vocab').innerHTML=v}

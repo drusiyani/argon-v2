@@ -1,0 +1,14 @@
+filters:
+  and:
+    - file.inFolder("Questions")
+    - 'file.name != "Questions"'
+properties:
+  answer:
+    displayName: Current answer
+views:
+  - type: table
+    name: What the brain thinks
+    order:
+      - file.name
+      - answer
+      - updated

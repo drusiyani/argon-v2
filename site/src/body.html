@@ -1,0 +1,111 @@
+<body>
+<div id="progress" aria-hidden="true"></div>
+<header>
+  <div class="hb">
+    <a class="brand" href="#" aria-label="Argon v2 home"><svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><circle cx="16" cy="16" r="10" fill="none" stroke="currentColor" stroke-width="4"/><path d="M9.5 22.5 22.5 9.5" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg><b>Argon</b><em>v2</em></a>
+    <nav role="tablist" aria-label="Sections">
+      <button role="tab" data-tab="overview" aria-selected="true">Overview</button>
+      <button role="tab" data-tab="chart" aria-selected="false">Chart</button>
+      <button role="tab" data-tab="studies" aria-selected="false">Studies</button>
+      <button role="tab" data-tab="events" aria-selected="false" class="adv">Events</button>
+      <button role="tab" data-tab="lab" aria-selected="false">Lab</button>
+    </nav>
+    <div class="hstat"><span><span class="dot"></span><span id="ver"></span></span><span class="x">read-only</span><span class="x" id="count"></span><button class="tbtn" id="modeBtn" type="button">Advanced</button><button class="tbtn" id="themeBtn" type="button">Light</button></div>
+  </div>
+</header>
+<main>
+<section id="overview" class="fade"><div class="ahero" id="ahero"><div class="k"><svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><circle cx="16" cy="16" r="10" fill="none" stroke="currentColor" stroke-width="4"/><path d="M9.5 22.5 22.5 9.5" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>Can an AI trade?</div><div class="t">Argon</div><div class="stats" id="aheroStats"></div><div class="cue">SCROLL</div></div><div class="page">
+  <div class="eyebrow">Research only · no real money</div>
+  <h1>The answer so far</h1>
+  <div class="answer" id="answer"></div>
+  <div class="card simple-only"><div class="ct"><h2>How it's tested</h2><span class="sub">the research method, in four steps</span></div><div class="method" id="method"></div></div>
+  <h2 class="adv" style="font:500 21px var(--serif);margin:26px 0 8px">What this site does</h2>
+  <p class="lede adv">Argon v2 tests a trading strategy built around one idea: big players push price past obvious highs and lows to trigger other traders' stop orders, then reverse. It trades the same markets as Argon v1's Kronos indices bot (Nasdaq, S&amp;P 500, Dow and Russell 2000 futures). The site replays real prices and records every time the strategy would have bought, sold or stayed out, and why. Nothing trades for real. The goal is to find out, before it goes live on 1 January, whether the strategy actually works.</p>
+  <div class="chips1 adv" id="chips1"></div>
+  <div class="banner" id="banner"></div>
+  <div class="hero adv" id="hero"></div>
+  <div class="tiles adv" id="tiles"></div>
+  <div class="mkts adv" id="mkts"></div>
+  <div class="card"><div class="ct"><h2>The desk</h2><span class="sub">four AI agents, each with its own brain, judging every setup the rules find</span></div><div id="desk"></div></div>
+  <div class="card simple-only"><div class="ct"><h2>Latest trades</h2><span class="sub">tap one to see it on the chart</span></div><div class="tlist" id="recent"></div></div>
+  <div class="card"><div class="ct"><h2>The race</h2><span class="sub">each strategy risks 0.5% of the account per trade on the same price data</span></div><div class="bots" id="bots"></div></div>
+  <div class="card"><div class="ct"><h2>Success criteria</h2><span class="sub">decided in advance, checked on 31 December</span></div><ul class="crit md" id="crit"></ul></div>
+  <div class="card adv"><div class="ct"><h2>Results so far</h2><span class="sub">How each strategy has done. <b>R</b> means "times the risk": +2R is winning twice what you risked, −1R is losing what you risked.</span></div><div class="scroll"><table id="outbook"></table></div>
+    <div class="ct" style="margin-top:18px"><h2>Skipped trades</h2><span class="sub">trades the rules said no to, played out anyway, to see if each rule is helping</span></div><div class="scroll"><table id="refbook"></table></div>
+    <div class="ct" style="margin-top:18px"><h2>Do grades work?</h2><span class="sub">every setup gets a grade before we know the result. Do better grades actually win more?</span></div><div class="scroll"><table id="gradebook"></table></div>
+  </div>
+  
+  <div class="card adv"><div class="ct"><h2>Days covered</h2><span class="sub">how much happened each day. Brighter means busier. Tap a square to open that day's chart</span></div><div class="cov" id="cov"></div>
+    <div class="note-s" style="margin-top:8px">fewer <span class="dotk" style="background:var(--line)"></span><span class="dotk" style="background:var(--gold2)"></span><span class="dotk" style="background:var(--gold)"></span> more events</div></div>
+  <div class="card adv"><div class="ct"><h2>What the site looks for</h2><span class="sub">every kind of thing the site looks for, in plain English</span></div><div id="vocab"></div></div>
+</div></section>
+
+<section id="chart" hidden>
+  <div class="tb">
+    <label for="cInst">Inst</label><select id="cInst"></select>
+    <label for="cDay">Day</label><button class="nbtn" id="cPrev" type="button" aria-label="Previous day">‹</button><select id="cDay"></select><button class="nbtn" id="cNext" type="button" aria-label="Next day">›</button>
+    <label>TF</label><span id="cTF"></span>
+    <span class="seg" id="cView"><button type="button" class="chip" data-v="argon" aria-pressed="true">Argon view</button><button type="button" class="chip" data-v="tv" aria-pressed="false">TradingView view</button></span><a class="tvlink" id="tvLink" target="_blank" rel="noopener">check on TradingView ↗</a>
+    <span class="tbstats adv" id="cStats"></span>
+    <span class="hint adv" id="cHint"></span>
+  </div>
+  <div class="cwrap">
+    <div class="cmain"><div id="ohlc"></div><canvas id="cv" aria-label="Price chart. Tap anything to have it explained."></canvas><div id="tv" hidden aria-label="TradingView candle chart"></div></div>
+    <aside class="side">
+      <div class="sh">Explainer <span>tap anything on the chart</span></div>
+      <div id="insp"><div class="empty">Tap anything on the chart. You'll see what it is, and for a trade: why it was taken, how it played out, and how similar trades have done.</div></div>
+      <div class="adv"><div class="sh">Layers</div>
+      <div class="lmode"><button class="chip" id="mDeclutter" type="button" aria-pressed="true">simple</button><button class="chip" id="mEverything" type="button" aria-pressed="false">show everything</button></div>
+      <div class="layers" id="layers"></div>
+      <div class="sh" style="margin-top:14px">Timeframes</div>
+      <div class="tfchips" id="tfchips"></div>
+      <div class="note-s">Tap to cycle each timeframe: ● shown, ○ faded, × hidden.</div></div>
+    </aside>
+  </div>
+</section>
+
+<section id="studies" hidden>
+  <div class="vault">
+    <div class="tree" id="tree"></div>
+    <div class="notepane" id="notepane"></div>
+    <aside class="rail" id="rail"></aside>
+  </div>
+</section>
+
+<section id="lab" hidden><div class="page">
+  <div class="eyebrow">Strategy lab · tested on years of prices, adjusted every month</div>
+  <h1>Does adjusting the rules every month help?</h1>
+  <p class="lede" id="btLede"></p>
+  <div class="card simple-only" id="labSimple"></div>
+  <div class="card" id="labOrb"></div>
+  <div class="card" id="labMist"></div>
+  <div class="funnel adv" id="btTiles"></div>
+  <div class="card"><div class="ct"><h2>Fixed rules vs adjusting every month</h2><span class="sub">running total in R, only on months the settings weren't picked from</span></div><div id="btChart"></div><div class="scroll adv" style="margin-top:12px"><table id="btSum"></table></div></div>
+  <div class="card"><div class="ct"><h2>This month's rules</h2><span class="sub">picked from the last 6 months, used until the next monthly check</span></div><div id="btNow"></div></div>
+  <div class="card adv"><div class="ct"><h2>Month by month</h2><span class="sub">which settings were in use, and what they made that month</span></div><div class="scroll"><table id="btMonths"></table></div></div>
+  <div class="card adv"><div class="ct"><h2>How far back should it look?</h2><span class="sub">same test, different lookbacks. Months from <span id="btCommon"></span> on, so they're comparable</span></div><div class="scroll"><table id="btMeta"></table></div><p class="plain" id="btMetaNote"></p></div>
+  <div class="card adv"><div class="ct"><h2>Which settings help</h2><span class="sub">average per trade across every version using that setting (50+ trades)</span></div><div class="imp" id="btImp"></div><div class="note-s" style="margin-top:10px">Over the whole period, including the months used for picking. Clues, not proof.</div></div>
+  <div class="card adv"><div class="ct"><h2>Where the old rules lost</h2><span class="sub">fixed v0.2 rules, whole period</span></div><div class="scroll"><table id="btWhere"></table></div></div>
+  <details class="card adv"><summary class="ct" style="cursor:pointer;list-style:none"><h2>Earlier test: real futures, last 50 days</h2><span class="sub">the 13 October lab · tap to open</span></summary>
+    <p class="lede" id="labLede" style="margin-top:10px"></p>
+    <div class="funnel" id="funnel"></div>
+    <h3 style="margin:16px 0 6px">The tests</h3><ul class="md" id="gate"></ul>
+    <h3 style="margin:16px 0 6px">Best versions</h3><div class="scroll"><table id="finals"></table></div>
+    <h3 style="margin:16px 0 6px">Which settings help</h3><div class="imp" id="imp"></div>
+    <h3 style="margin:16px 0 6px">Order-block strategy, every version</h3><div class="scroll"><table id="obvars"></table></div>
+  </details>
+  <div class="card adv"><div class="ct"><h2>Lessons</h2><span class="sub">what Claude learned, also saved in the notes</span></div><div class="md" id="lessons"></div></div>
+</div></section>
+
+<section id="events" hidden><div class="page" style="max-width:1300px">
+  <div class="eyebrow">Event log · everything the site spotted, newest first</div>
+  <div class="efil" id="efil1"></div>
+  <div class="efil" id="efil2"></div>
+  <div class="count" id="ecount"></div>
+  <div id="elist"></div>
+  <button class="nbtn" id="emore" type="button" style="margin-top:12px">Show 200 more</button>
+</div></section>
+</main>
+<div class="disclaimer">Argon is a school research project. Everything here is paper trading: no real money is ever traded. Backtest results are hypothetical, were found by testing many versions on past prices, and don't predict future returns. Nothing on this site is financial advice.<span class="credits">Built with Claude by Dru Siyani · prices: Yahoo Finance, HistData, Databento · forecasts: Kronos-small · charts: TradingView Lightweight Charts · notes: Obsidian</span></div>
+<button id="totop" type="button" aria-label="Back to top">↑</button>
+<script id="data" type="application/json">__DATA__</script>

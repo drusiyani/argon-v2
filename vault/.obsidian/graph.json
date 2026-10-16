@@ -1,0 +1,68 @@
+{
+ "colorGroups": [
+  {
+   "query": "path:Days",
+   "color": {
+    "a": 1,
+    "rgb": 15119690
+   }
+  },
+  {
+   "query": "path:Trades",
+   "color": {
+    "a": 1,
+    "rgb": 4177791
+   }
+  },
+  {
+   "query": "path:Markets",
+   "color": {
+    "a": 1,
+    "rgb": 6000111
+   }
+  },
+  {
+   "query": "path:Levels",
+   "color": {
+    "a": 1,
+    "rgb": 9405641
+   }
+  },
+  {
+   "query": "path:Questions",
+   "color": {
+    "a": 1,
+    "rgb": 16095806
+   }
+  },
+  {
+   "query": "path:Agents",
+   "color": {
+    "a": 1,
+    "rgb": 14970840
+   }
+  },
+  {
+   "query": "path:Months",
+   "color": {
+    "a": 1,
+    "rgb": 10254894
+   }
+  },
+  {
+   "query": "path:Ideas",
+   "color": {
+    "a": 1,
+    "rgb": 5227481
+   }
+  },
+  {
+   "query": "path:Rules",
+   "color": {
+    "a": 1,
+    "rgb": 15525592
+   }
+  }
+ ],
+ "showOrphans": true
+}

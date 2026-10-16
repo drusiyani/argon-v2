@@ -1,0 +1,219 @@
+{
+ "facts": {
+  "market:NQ": {
+   "ny_flip_rate": 0.12360612360612361,
+   "london_flip_rate": 0.11606714628297363,
+   "ny_R": 0.175207100591716,
+   "london_R": 0.10767634854771783,
+   "back_rate": 0.6727583019270426
+  },
+  "market:ES": {
+   "ny_flip_rate": 0.1272659316015698,
+   "london_flip_rate": 0.10128055878928988,
+   "ny_R": -0.20046439628482973,
+   "london_R": -0.059312169312169316,
+   "back_rate": 0.7115668338742992
+  },
+  "market:GC": {
+   "ny_flip_rate": 0.09033521985198084,
+   "london_flip_rate": 0.10299272040981397,
+   "ny_R": -0.2672820512820513,
+   "london_R": -0.07,
+   "back_rate": 0.7047788812494695
+  },
+  "level:15m highs": {
+   "flip_rate": 0.10684725357411588,
+   "back_rate": 0.6572700296735905,
+   "avg_R": -0.10407894736842105
+  },
+  "level:15m lows": {
+   "flip_rate": 0.1032258064516129,
+   "back_rate": 0.6742387626872886,
+   "avg_R": -0.1591891891891892
+  },
+  "level:1h highs": {
+   "flip_rate": 0.11512415349887133,
+   "back_rate": 0.638328530259366,
+   "avg_R": -0.3626086956521739
+  },
+  "level:1h lows": {
+   "flip_rate": 0.07643312101910828,
+   "back_rate": 0.6624472573839663,
+   "avg_R": 0.39217391304347826
+  },
+  "level:5m highs": {
+   "flip_rate": 0.12355848434925865,
+   "back_rate": 0.634108122225124,
+   "avg_R": -0.02873134328358209
+  },
+  "level:5m lows": {
+   "flip_rate": 0.12053396152336082,
+   "back_rate": 0.6715001318217769,
+   "avg_R": -0.009799999999999998
+  },
+  "level:Asia high": {
+   "flip_rate": 0.11549295774647887,
+   "back_rate": 0.7015810276679841,
+   "avg_R": 0.32263157894736844
+  },
+  "level:Asia low": {
+   "flip_rate": 0.09788359788359788,
+   "back_rate": 0.7213740458015268,
+   "avg_R": 0.6128571428571429
+  },
+  "level:Equal highs": {
+   "flip_rate": 0.13530252501191042,
+   "back_rate": 0.71957490572506,
+   "avg_R": -0.023399999999999997
+  },
+  "level:Equal lows": {
+   "flip_rate": 0.11216977046340407,
+   "back_rate": 0.7419665809768637,
+   "avg_R": 0.078014440433213
+  },
+  "level:Last week's high": {
+   "flip_rate": 0.18181818181818182,
+   "back_rate": 0.616822429906542,
+   "avg_R": 0.6749999999999999
+  },
+  "level:Last week's low": {
+   "flip_rate": 0.020833333333333332,
+   "back_rate": 0.64,
+   "avg_R": 0
+  },
+  "level:London high": {
+   "flip_rate": 0.11842105263157894,
+   "back_rate": 0.6666666666666666,
+   "avg_R": 0.22454545454545452
+  },
+  "level:London low": {
+   "flip_rate": 0.13013698630136986,
+   "back_rate": 0.7448979591836735,
+   "avg_R": 0.14
+  },
+  "level:Yesterday's high": {
+   "flip_rate": 0.1206896551724138,
+   "back_rate": 0.628158844765343,
+   "avg_R": -0.24375000000000002
+  },
+  "level:Yesterday's low": {
+   "flip_rate": 0.08029197080291971,
+   "back_rate": 0.6227272727272727,
+   "avg_R": -0.19333333333333333
+  },
+  "session:London": {
+   "flip_rate": 0.10856467808623745,
+   "avg_R": 0.03427906976744186
+  },
+  "session:NY": {
+   "flip_rate": 0.12544634467205412,
+   "avg_R": -0.00836611195158851
+  }
+ },
+ "history": {
+  "market:NQ": [
+   "2026-10-13: New York result per trade moved from +0.09R to +0.18R",
+   "2026-10-13: London result per trade moved from -0.05R to +0.11R"
+  ],
+  "market:ES": [
+   "2026-10-13: London result per trade moved from -0.26R to -0.06R"
+  ],
+  "market:GC": [],
+  "level:15m highs": [],
+  "level:15m lows": [
+   "2026-10-13: result per trade moved from -0.10R to -0.21R"
+  ],
+  "level:1h highs": [
+   "2026-10-13: result per trade moved from -0.29R to -0.20R",
+   "2026-10-13: result per trade moved from -0.20R to -0.36R"
+  ],
+  "level:1h lows": [
+   "2026-10-13: result per trade moved from +0.07R to +0.39R"
+  ],
+  "level:5m highs": [
+   "2026-10-13: result per trade moved from -0.28R to -0.20R",
+   "2026-10-13: result per trade moved from -0.20R to -0.03R"
+  ],
+  "level:5m lows": [
+   "2026-10-13: result per trade moved from -0.08R to -0.01R"
+  ],
+  "level:Asia high": [
+   "2026-10-13: result per trade moved from -0.36R to -0.45R",
+   "2026-10-13: result per trade moved from -0.45R to +0.32R"
+  ],
+  "level:Asia low": [
+   "2026-10-13: result per trade moved from -0.22R to -0.11R",
+   "2026-10-13: result per trade moved from -0.11R to +0.61R"
+  ],
+  "level:Equal highs": [
+   "2026-10-13: result per trade moved from -0.12R to -0.02R"
+  ],
+  "level:Equal lows": [
+   "2026-10-13: result per trade moved from -0.12R to -0.06R",
+   "2026-10-13: result per trade moved from -0.06R to +0.08R"
+  ],
+  "level:Last week's high": [
+   "2026-10-13: result per trade moved from -0.05R to +1.95R",
+   "2026-10-13: result per trade moved from +1.95R to +0.67R"
+  ],
+  "level:Last week's low": [],
+  "level:London high": [
+   "2026-10-13: result per trade moved from -0.17R to -0.11R",
+   "2026-10-13: result per trade moved from -0.11R to +0.22R"
+  ],
+  "level:London low": [
+   "2026-10-13: result per trade moved from +0.22R to +0.41R",
+   "2026-10-13: result per trade moved from +0.41R to +0.14R"
+  ],
+  "level:Yesterday's high": [
+   "2026-10-13: result per trade moved from +0.16R to -0.05R",
+   "2026-10-13: result per trade moved from -0.05R to -0.24R"
+  ],
+  "level:Yesterday's low": [
+   "2026-10-13: result per trade moved from -0.23R to -0.09R",
+   "2026-10-13: result per trade moved from -0.09R to -0.19R"
+  ],
+  "session:London": [
+   "2026-10-13: result per trade moved from -0.15R to +0.03R"
+  ],
+  "session:NY": [
+   "2026-10-13: result per trade moved from -0.07R to -0.01R"
+  ],
+  "q:smt": [],
+  "q:ny": [],
+  "q:daily": [],
+  "q:h1": [],
+  "q:big": [
+   "2026-10-13: answer changed from \"unclear, the difference is small\" to \"yes\""
+  ],
+  "q:gold": [],
+  "q:edge": [
+   "2026-10-13: answer changed from \"not yet\" to \"yes, the main strategy\""
+  ],
+  "q:nqes": []
+ },
+ "growth": [
+  {
+   "date": "2026-10-13",
+   "notes": 256,
+   "words": 98074,
+   "new": 0
+  },
+  {
+   "date": "2026-10-15",
+   "notes": 258,
+   "words": 99732,
+   "new": 0
+  }
+ ],
+ "answers": {
+  "smt": "unclear, the difference is small",
+  "ny": "unclear, the difference is small",
+  "daily": "no",
+  "h1": "yes",
+  "big": "yes",
+  "gold": "no",
+  "edge": "yes, the main strategy",
+  "nqes": "yes"
+ }
+}

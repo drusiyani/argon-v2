@@ -1,0 +1,51 @@
+filters:
+  and:
+    - file.inFolder("Trades")
+properties:
+  r:
+    displayName: "Result (R)"
+  market_name:
+    displayName: Market
+views:
+  - type: table
+    name: All trades
+    groupBy:
+      property: strategy
+      direction: ASC
+    order:
+      - file.name
+      - date
+      - market_name
+      - direction
+      - session
+      - grade
+      - r
+    summaries:
+      r: Sum
+  - type: table
+    name: Losses to learn from
+    filters:
+      and:
+        - 'r < 0'
+    order:
+      - file.name
+      - date
+      - market_name
+      - strategy
+      - grade
+      - r
+    summaries:
+      r: Sum
+  - type: table
+    name: Winners
+    filters:
+      and:
+        - 'r > 0'
+    order:
+      - file.name
+      - date
+      - market_name
+      - strategy
+      - r
+    summaries:
+      r: Average
