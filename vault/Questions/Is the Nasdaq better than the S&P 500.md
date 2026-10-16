@@ -1,7 +1,7 @@
 ---
 type: question
-updated: 2026-10-15
-built_from: 711 days of prices (2024-01-02 to 2026-10-01)
+updated: 2026-10-16
+built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
 answer: "yes"
 ---
 # Is the Nasdaq better than the S&P 500
@@ -10,11 +10,11 @@ answer: "yes"
 
 **Current answer:** yes
 
-Nasdaq: +0.15R a trade (579 trades). S&P 500: -0.15R a trade (512 trades).
+Nasdaq: -0.05R a trade (1223 trades). S&P 500: -0.16R a trade (1034 trades).
 
 ## How the answer has changed
 
-- 2026-10-15: first answer.
+- 2026-10-16: first answer.
 
 All questions: [[Questions]].
 

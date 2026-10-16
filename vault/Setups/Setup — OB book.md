@@ -1,43 +1,40 @@
 ---
 type: setup
-examples: 22
-taken: 22
+examples: 19
+taken: 19
 ---
 # Setup — OB book
 
 > [!info]
-> Roughly break-even. No clear edge yet.
+> Making money so far. Needs more examples before trusting it.
 
 | | how many | won | total | per trade |
 |---|---|---|---|---|
-| trades | 22 | 27% | -0.63R | -0.03R |
+| trades | 19 | 26% | +4.38R | +0.23R |
 
-By market: Nasdaq 0 (0.00R), S&P 500 22 (-0.63R), the Dow 0 (0.00R), the Russell 2000 0 (0.00R).
+By market: Nasdaq 19 (+4.38R), S&P 500 0 (0.00R), the Dow 0 (0.00R), the Russell 2000 0 (0.00R).
 
 ## Trades taken
 
-- [[ES 2026-08-05 buy 0225 order block]] +2.43R
-- [[ES 2026-08-06 sell 0225 order block]] -1.00R
-- [[ES 2026-08-11 buy 0230 order block]] +2.28R
-- [[ES 2026-08-20 buy 0430 order block]] -1.00R
-- [[ES 2026-08-21 buy 0300 order block]] +3.63R
-- [[ES 2026-08-25 buy 0210 order block]] +2.07R
-- [[ES 2026-08-26 buy 0250 order block]] -1.00R
-- [[ES 2026-08-27 sell 0425 order block]] +2.84R
-- [[ES 2026-09-03 sell 0205 order block]] -1.00R
-- [[ES 2026-09-04 buy 0235 order block]] -1.00R
-- [[ES 2026-09-09 buy 0210 order block]] -1.00R
-- [[ES 2026-09-10 buy 0325 order block]] -1.00R
-- [[ES 2026-09-14 sell 0200 order block]] -1.00R
-- [[ES 2026-09-14 sell 0345 order block]] -1.00R
-- [[ES 2026-09-17 sell 0225 order block]] -1.00R
-- [[ES 2026-09-22 buy 0200 order block]] -1.00R
-- [[ES 2026-09-28 sell 0235 order block]] +2.12R
-- [[ES 2026-09-30 buy 0455 order block]] -1.00R
-- [[ES 2026-10-05 buy 0230 order block]] -1.00R
-- [[ES 2026-10-05 buy 0430 order block]] -1.00R
-- [[ES 2026-10-06 buy 0445 order block]] -1.00R
-- [[ES 2026-10-09 sell 0235 order block]] -1.00R
+- [[NQ 2026-08-19 buy 0945 order block]] -1.00R
+- [[NQ 2026-08-21 buy 0920 order block]] -1.00R
+- [[NQ 2026-08-26 sell 0930 order block]] -1.00R
+- [[NQ 2026-08-26 sell 0940 order block]] -1.00R
+- [[NQ 2026-08-28 buy 0835 order block]] +2.81R
+- [[NQ 2026-09-04 buy 0830 order block]] -1.00R
+- [[NQ 2026-09-08 buy 0930 order block]] -1.00R
+- [[NQ 2026-09-11 buy 0830 order block]] -1.00R
+- [[NQ 2026-09-14 sell 0945 order block]] -1.00R
+- [[NQ 2026-09-23 sell 0930 order block]] +4.06R
+- [[NQ 2026-09-24 sell 0935 order block]] -1.00R
+- [[NQ 2026-09-25 buy 0930 order block]] +5.03R
+- [[NQ 2026-09-28 buy 0935 order block]] -1.00R
+- [[NQ 2026-09-28 buy 0940 order block]] -1.00R
+- [[NQ 2026-09-29 sell 0955 order block]] +2.07R
+- [[NQ 2026-10-08 sell 0905 order block]] -1.00R
+- [[NQ 2026-10-09 buy 0840 order block]] -1.00R
+- [[NQ 2026-10-09 buy 0945 order block]] +4.41R
+- [[NQ 2026-10-14 buy 0830 order block]] -1.00R
 
 Part of [[The order-block strategy]]. Compared with every other setup in the [[Edge report]].
 

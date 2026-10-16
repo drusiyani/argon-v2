@@ -1,7 +1,7 @@
 ---
 type: questions
-updated: 2026-10-15
-built_from: 711 days of prices (2024-01-02 to 2026-10-01)
+updated: 2026-10-16
+built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
 ---
 # Questions
 
@@ -11,9 +11,9 @@ The questions the brain keeps asking itself. Every run it re-checks each one aga
 |---|---|
 | [[Does SMT help]] | unclear, the difference is small |
 | [[Is New York better than London]] | unclear, the difference is small |
-| [[Does trading with yesterday help]] | no |
-| [[Does the hourly trend help]] | yes |
-| [[Do big levels beat small ones]] | yes |
+| [[Does trading with yesterday help]] | yes |
+| [[Does the hourly trend help]] | unclear, the difference is small |
+| [[Do big levels beat small ones]] | unclear, the difference is small |
 | [[Is the Nasdaq better than the S&P 500]] | yes |
 | [[Is there an edge yet]] | yes, the main strategy |
 

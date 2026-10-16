@@ -1,7 +1,7 @@
 ---
 type: agent
-updated: 2026-10-15
-built_from: 711 days of prices (2024-01-02 to 2026-10-01)
+updated: 2026-10-16
+built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
 ---
 # Chief
 

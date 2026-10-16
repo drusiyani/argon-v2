@@ -1,7 +1,7 @@
 ---
 type: question
-updated: 2026-10-15
-built_from: 711 days of prices (2024-01-02 to 2026-10-01)
+updated: 2026-10-16
+built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
 answer: "yes, the main strategy"
 ---
 # Is there an edge yet
@@ -10,7 +10,7 @@ answer: "yes, the main strategy"
 
 **Current answer:** yes, the main strategy
 
-Main: +16.75R over 124 trades. Order-block: -4.73R over 399 trades. Over 27 test months.
+Main: +17.56R over 371 trades. Order-block: -12.65R over 913 trades. Over 63 test months.
 
 ## How the answer has changed
 

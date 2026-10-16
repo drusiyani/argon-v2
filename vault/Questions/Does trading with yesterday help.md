@@ -1,20 +1,20 @@
 ---
 type: question
-updated: 2026-10-15
-built_from: 711 days of prices (2024-01-02 to 2026-10-01)
-answer: "no"
+updated: 2026-10-16
+built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
+answer: "yes"
 ---
 # Does trading with yesterday help
 
 **Question:** Do trades in the same direction as yesterday do better?
 
-**Current answer:** no
+**Current answer:** yes
 
-Same way as yesterday: -0.06R a trade (531 trades). Against it: +0.08R a trade (560 trades).
+Same way as yesterday: -0.04R a trade (2352 trades). Against it: -0.15R a trade (2354 trades).
 
 ## How the answer has changed
 
-- 2026-10-15: first answer.
+- 2026-10-16: answer changed from "no" to "yes"
 
 All questions: [[Questions]].
 

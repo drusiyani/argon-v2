@@ -1,31 +1,31 @@
 ---
 type: level
-updated: 2026-10-15
-built_from: 711 days of prices (2024-01-02 to 2026-10-01)
+updated: 2026-10-16
+built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
 ---
 # London high
 
-Only 11 trades so far, so nothing solid yet about trading sweeps of london high.
+So far trading sweeps of london high has lost money: -0.23R a trade over 58 trades.
 
 ## Everywhere
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| London high | 342 | 67% | 12% | 11 | 45% | +0.22R |
+| London high | 1452 | 66% | 12% | 58 | 29% | -0.23R |
 
 ## By market
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| [[Nasdaq]] | 172 | 67% | 9% | 4 | 75% | +1.20R |
-| [[S&P 500]] | 170 | 66% | 15% | 7 | 29% | -0.33R |
+| [[Nasdaq]] | 364 | 66% | 12% | 15 | 27% | -0.20R |
+| [[S&P 500]] | 347 | 65% | 12% | 10 | 0% | -1.00R |
 
 ## By session
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
 | [[London (session)]] | 0 | – | – | 0 | – | – |
-| [[New York (session)]] | 342 | 67% | 12% | 11 | 45% | +0.22R |
+| [[New York (session)]] | 1452 | 66% | 12% | 58 | 29% | -0.23R |
 
 Columns: how many times price poked past it, how often it came back (a sweep, not a breakout), how often the trend then clearly flipped, and what a simple trade (enter at the order block, target 2× the risk) would have done. [[What R means]].
 
@@ -33,6 +33,7 @@ Columns: how many times price poked past it, how often it came back (a sweep, no
 
 - 2026-10-13: result per trade moved from -0.17R to -0.11R
 - 2026-10-13: result per trade moved from -0.11R to +0.22R
+- 2026-10-16: result per trade moved from +0.22R to -0.23R
 
 Part of [[Key levels]]. Swept levels are explained in [[Sweep]].
 

@@ -1,31 +1,31 @@
 ---
 type: level
-updated: 2026-10-15
-built_from: 711 days of prices (2024-01-02 to 2026-10-01)
+updated: 2026-10-16
+built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
 ---
 # London low
 
-Only 21 trades so far, so nothing solid yet about trading sweeps of london low.
+So far trading sweeps of london low has been worth trading: +0.14R a trade over 84 trades. Worth watching to see if it lasts.
 
 ## Everywhere
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| London low | 392 | 74% | 13% | 21 | 43% | +0.14R |
+| London low | 1690 | 69% | 12% | 84 | 45% | +0.14R |
 
 ## By market
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| [[Nasdaq]] | 206 | 68% | 13% | 11 | 45% | +0.13R |
-| [[S&P 500]] | 186 | 82% | 13% | 10 | 40% | +0.15R |
+| [[Nasdaq]] | 452 | 68% | 13% | 25 | 40% | +0.06R |
+| [[S&P 500]] | 396 | 74% | 8% | 16 | 50% | +0.29R |
 
 ## By session
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
 | [[London (session)]] | 0 | – | – | 0 | – | – |
-| [[New York (session)]] | 392 | 74% | 13% | 21 | 43% | +0.14R |
+| [[New York (session)]] | 1690 | 69% | 12% | 84 | 45% | +0.14R |
 
 Columns: how many times price poked past it, how often it came back (a sweep, not a breakout), how often the trend then clearly flipped, and what a simple trade (enter at the order block, target 2× the risk) would have done. [[What R means]].
 
@@ -33,6 +33,7 @@ Columns: how many times price poked past it, how often it came back (a sweep, no
 
 - 2026-10-13: result per trade moved from +0.22R to +0.41R
 - 2026-10-13: result per trade moved from +0.41R to +0.14R
+- 2026-10-16: came-back rate moved from 74% to 69%
 
 Part of [[Key levels]]. Swept levels are explained in [[Sweep]].
 

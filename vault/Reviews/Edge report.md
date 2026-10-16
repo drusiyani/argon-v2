@@ -5,53 +5,53 @@ written_by: the site, automatically
 # Edge report
 
 > [!info]
-> Worked out automatically from 143 possible trades for the main strategy (taken and skipped) and 22 order-block trades. A group needs at least 8 trades to show up. Nothing here is proven yet; it shows where to look.
+> Worked out automatically from 155 possible trades for the main strategy (taken and skipped) and 19 order-block trades. A group needs at least 8 trades to show up. Nothing here is proven yet; it shows where to look.
 
 ## The two strategies
 
-- [[The main strategy]]: 10 trades, -4.00R, won 20%
-- [[The order-block strategy]]: 22 trades, -0.63R, won 27%
+- [[The main strategy]]: 15 trades, +3.00R, won 40%
+- [[The order-block strategy]]: 19 trades, +4.38R, won 26%
 
 ## Doing best
 
 | looking at | group | trades | won | per trade | total |
 |---|---|---|---|---|---|
-| time | 04:00 | 20 | 70% | +1.10R | +22.00R |
-| sweep | breakout | 14 | 57% | +0.64R | +9.03R |
-| direction | sells | 61 | 46% | +0.55R | +33.82R |
-| session | London | 68 | 49% | +0.46R | +31.00R |
-| level | Asia high or low | 9 | 44% | +0.41R | +3.68R |
-| day | Wed | 22 | 45% | +0.37R | +8.05R |
+| time | 04:00 | 17 | 59% | +0.76R | +13.00R |
+| sweep | breakout | 15 | 53% | +0.54R | +8.03R |
+| direction | sells | 59 | 42% | +0.41R | +24.21R |
+| session | London | 71 | 44% | +0.31R | +22.00R |
+| time | 03:00 | 21 | 43% | +0.29R | +6.00R |
+| level | Asia high or low | 8 | 38% | +0.21R | +1.68R |
 
 ## Losing the most
 
 | looking at | group | trades | won | per trade | total |
 |---|---|---|---|---|---|
 | time | 08:00 | 8 | 0% | -1.00R | -8.00R |
-| session | NY | 75 | 11% | -0.54R | -40.74R |
-| time | 09:00 | 63 | 11% | -0.54R | -33.79R |
-| direction | buys | 82 | 16% | -0.53R | -43.56R |
-| level | 15m high or low | 15 | 13% | -0.51R | -7.64R |
-| day | Thu | 56 | 16% | -0.34R | -19.20R |
+| level | 15m high or low | 17 | 12% | -0.57R | -9.64R |
+| session | NY | 84 | 12% | -0.55R | -46.35R |
+| time | 09:00 | 73 | 12% | -0.53R | -38.40R |
+| direction | buys | 96 | 17% | -0.51R | -48.56R |
+| hourly trend | disagreed | 55 | 18% | -0.45R | -24.95R |
 
 ## Is each check helping?
 
-- An important level to target: skipped 9 trades that would have made +3.00R. So this check cost money.
-- Price swept it and came back: skipped 0 trades that would have made 0.00R. Too few to tell.
-- Matches the day's direction: skipped 0 trades that would have made 0.00R. Too few to tell.
+- An important level to target: skipped 32 trades that would have made +1.00R. So this check cost money.
+- Price swept it and came back: skipped 6 trades that would have made +6.00R. So this check cost money.
+- Matches the day's direction: skipped 15 trades that would have made +6.00R. So this check cost money.
 - The other market disagreed (SMT): skipped 0 trades that would have made 0.00R. Too few to tell.
 - The trend clearly flipped: skipped 0 trades that would have made 0.00R. Too few to tell.
 - Price came back to the entry: skipped 0 trades that would have made 0.00R. Too few to tell.
 
 ## Things that don't add up
 
-- The [[SMT]] check is earning its place: +0.18R a trade with it (50 trades) vs -0.45R without (47).
-- The "important level" check holds up: important levels -0.06R a trade (107) vs minor ones -0.08R (36).
-- **The [[Grades]] don't work yet.** A+ and A++ setups made -0.25R a trade (20), B and C made -0.17R (78). Better grades should win more, and they don't.
+- The [[SMT]] check is earning its place: +0.05R a trade with it (51 trades) vs -0.43R without (51).
+- The "important level" check holds up: important levels -0.12R a trade (111) vs minor ones -0.25R (44).
+- The [[Grades]] work: A+ and A++ -0.15R a trade (24) vs B and C -0.21R (84).
 
 ## What's missing
 
-- 10 trades is far too few. Anything under about 100 could flip either way.
+- 15 trades is far too few. Anything under about 100 could flip either way.
 - Everything uses 5-minute candles. 2-minute data starts 2026-09-08.
 - Big news releases aren't filtered, fees are estimated, and entries assume a perfect fill.
 - Rules: [[Rulebook v0.8]].

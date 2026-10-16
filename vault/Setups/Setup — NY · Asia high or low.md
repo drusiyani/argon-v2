@@ -1,6 +1,6 @@
 ---
 type: setup
-examples: 2
+examples: 3
 taken: 0
 ---
 # Setup — NY · Asia high or low
@@ -10,10 +10,10 @@ taken: 0
 
 | | how many | won | total | per trade |
 |---|---|---|---|---|
-| all examples | 2 | 0% | -1.32R | -0.66R |
+| all examples | 3 | 0% | -2.32R | -0.77R |
 | actually taken | 0 | – | 0.00R | – |
 
-By market: Nasdaq 0 (0.00R), S&P 500 1 (-1.00R), the Dow 1 (-0.32R), the Russell 2000 0 (0.00R).
+By market: Nasdaq 0 (0.00R), S&P 500 1 (-1.00R), the Dow 1 (-0.32R), the Russell 2000 1 (-1.00R).
 
 ## Trades taken
 

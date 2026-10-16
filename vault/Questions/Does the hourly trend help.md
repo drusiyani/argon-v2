@@ -1,20 +1,20 @@
 ---
 type: question
-updated: 2026-10-15
-built_from: 711 days of prices (2024-01-02 to 2026-10-01)
-answer: "yes"
+updated: 2026-10-16
+built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
+answer: "unclear, the difference is small"
 ---
 # Does the hourly trend help
 
 **Question:** Do trades that agree with the hourly trend do better?
 
-**Current answer:** yes
+**Current answer:** unclear, the difference is small
 
-With the hourly trend: +0.12R a trade (529 trades). Against it: -0.09R a trade (562 trades).
+With the hourly trend: -0.06R a trade (2442 trades). Against it: -0.13R a trade (2264 trades).
 
 ## How the answer has changed
 
-- 2026-10-15: first answer.
+- 2026-10-16: answer changed from "yes" to "unclear, the difference is small"
 
 All questions: [[Questions]].
 

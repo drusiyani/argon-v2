@@ -1,20 +1,21 @@
 ---
 type: question
-updated: 2026-10-15
-built_from: 711 days of prices (2024-01-02 to 2026-10-01)
-answer: "yes"
+updated: 2026-10-16
+built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
+answer: "unclear, the difference is small"
 ---
 # Do big levels beat small ones
 
 **Question:** Do sweeps of the big [[Session levels|session levels]] do better than sweeps of small 5-minute highs and lows?
 
-**Current answer:** yes
+**Current answer:** unclear, the difference is small
 
-Session levels: +0.21R a trade (84 trades). 5-minute highs and lows: -0.02R a trade (284 trades).
+Session levels: -0.06R a trade (396 trades). 5-minute highs and lows: -0.06R a trade (1169 trades).
 
 ## How the answer has changed
 
 - 2026-10-13: answer changed from "unclear, the difference is small" to "yes"
+- 2026-10-16: answer changed from "yes" to "unclear, the difference is small"
 
 All questions: [[Questions]].
 
