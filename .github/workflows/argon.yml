@@ -20,7 +20,7 @@ concurrency:
 jobs:
   farm:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 300   # the first backfill on years of real futures can take a while
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
