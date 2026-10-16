@@ -321,7 +321,8 @@ def walk(s,side,entry,stop,target,fill_i):
         if exit_ is not None and k-exit_['k']>36:
             exit_.update(mfe=mfe,mae=mae); return exit_
     b=bars[-1]; r=(b['c']-entry)*d/risk
-    return exit_ or dict(kind='time',R=r,t=b['t'],px=b['c'],mfe=mfe,mae=mae,k=len(bars)-1)
+    if exit_ is not None: exit_.update(mfe=mfe,mae=mae); return exit_     # data ran out (e.g. today's session still going)
+    return dict(kind='time',R=r,t=b['t'],px=b['c'],mfe=mfe,mae=mae,k=len(bars)-1)
 def nearest_target(s,sd,side,entry,risk,t):
     cands=[]
     for p in POOLS[s]:

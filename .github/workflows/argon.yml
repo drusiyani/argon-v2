@@ -28,10 +28,15 @@ jobs:
           python-version: "3.12"
       - name: Work out the mode
         id: mode
+        env:
+          HAS_DATABENTO: ${{ secrets.DATABENTO_API_KEY != '' }}
         run: |
           MODE="${{ github.event.inputs.mode || 'daily' }}"
           if [ "${{ github.event.schedule }}" = "0 6 2 * *" ]; then MODE=monthly; fi
           if [ ! -f data/bt_out.json ]; then MODE=backfill; fi
+          # first run after the Databento key is added: download the real futures history and redo every test on it
+          if [ "$HAS_DATABENTO" = "true" ] && [ -z "$(ls data/databento/*.csv.gz 2>/dev/null)" ]; then MODE=backfill; fi
+          echo "Running in $MODE mode"
           echo "mode=$MODE" >> "$GITHUB_OUTPUT"
       - name: Save today's tape (and 1-minute history when needed)
         run: python engine/fetch_data.py ${{ steps.mode.outputs.mode }}
