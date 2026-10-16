@@ -1,0 +1,42 @@
+name: Argon v2 desk (live AI agents)
+
+on:
+  schedule:
+    - cron: "*/15 6-16 * * 1-5"   # every 15 minutes across the London and New York sessions (UTC); the script checks the exact window
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: argon-v2-desk
+  cancel-in-progress: false
+
+jobs:
+  desk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Latest prices
+        run: python engine/fetch_data.py
+      - name: Kronos-small forecasts the next hour (free CPU)
+        run: |
+          pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          pip install --quiet pandas huggingface_hub einops safetensors tqdm
+          [ -d vendor/Kronos ] || git clone --depth 1 https://github.com/shiyu-coder/Kronos.git vendor/Kronos
+          python engine/kronos.py || echo "Kronos skipped this run"
+      - name: The desk looks at fresh setups
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python engine/agents.py
+      - name: Commit
+        run: |
+          git config user.name "argon-bot"
+          git config user.email "argon-bot@users.noreply.github.com"
+          git add data/desk_calls.jsonl data/agent_memory data/futures data/kronos.json || true
+          git commit -m "desk: $(date -u +%H:%M)" || echo "nothing new"
+          git pull --rebase && git push

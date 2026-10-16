@@ -1,0 +1,71 @@
+name: Argon v2 farm
+
+on:
+  schedule:
+    - cron: "30 22 * * 1-5"   # every weekday after the US close: save tape, run the farm, rebuild the site
+    - cron: "0 6 2 * *"       # 2nd of each month: add last month's 1-minute data and re-pick the rules
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "daily, monthly or backfill"
+        default: "daily"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: argon-v2
+  cancel-in-progress: false
+
+jobs:
+  farm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Work out the mode
+        id: mode
+        run: |
+          MODE="${{ github.event.inputs.mode || 'daily' }}"
+          if [ "${{ github.event.schedule }}" = "0 6 2 * *" ]; then MODE=monthly; fi
+          if [ ! -f data/bt_out.json ]; then MODE=backfill; fi
+          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+      - name: Save today's tape (and 1-minute history when needed)
+        run: python engine/fetch_data.py ${{ steps.mode.outputs.mode }}
+      - name: Real futures history from Databento (only if the secret is set)
+        if: steps.mode.outputs.mode != 'daily'
+        env:
+          DATABENTO_API_KEY: ${{ secrets.DATABENTO_API_KEY }}
+        run: python engine/fetch_databento.py ${{ steps.mode.outputs.mode == 'monthly' && 'monthly' || '' }}
+      - name: Long backtest and monthly re-pick
+        if: steps.mode.outputs.mode != 'daily'
+        run: |
+          python engine/lab.py
+          python engine/extra.py
+          python engine/dump_setups.py
+          python engine/mistakes.py
+      - name: Run the farm
+        run: python engine/farm.py
+      - name: Build the site
+        run: python engine/build_site.py
+      - name: Grow the brain (Obsidian vault)
+        run: |
+          pip install playwright==1.47.0
+          python -m playwright install --with-deps chromium
+          python engine/brain.py
+      - name: Claude's weekly reflection (Fridays, only if the API key secret is set)
+        if: github.event.schedule == '30 22 * * 1-5'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ "$(date -u +%u)" = "5" ]; then python engine/reflect.py; python engine/agents_reflect.py; fi
+      - name: Commit
+        run: |
+          git config user.name "argon-bot"
+          git config user.email "argon-bot@users.noreply.github.com"
+          git add -A data docs vault
+          git commit -m "farm: ${{ steps.mode.outputs.mode }} run $(date -u +%Y-%m-%d)" || echo "nothing new"
+          git push
