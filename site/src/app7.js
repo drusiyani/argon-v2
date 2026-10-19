@@ -14,7 +14,7 @@ function renderBT(){const B=D.bt,S=B.sum,M=B.months,oos=new Set(M.slice(B.look))
   $('#btLede').textContent=`To get a bigger sample, the strategies were run on ${B.sessions} days of prices, from ${B.range[0]} to ${B.range[1]}, with every trade checked minute by minute. Every month, Claude re-picked the settings that did best over the previous ${B.look} months, then used them for the next month only. That's tested honestly: each month's result comes from settings chosen before that month started.`;
   {const a=S.adaptive,p=r=>(r*0.5>=0?'+':'')+(r*0.5).toFixed(1)+'%';const yrs=(a.months/12).toFixed(1);
    $('#labSimple').innerHTML=`<div class="ct"><h2>Is it working?</h2></div><div class="hero" style="margin:4px 0 10px"><div class="h"><div class="n ${cls(a.R)}">${p(a.R)}</div><div class="l">over ${yrs} years it hadn't seen</div><div class="s">${a.n} trades · won ${Math.round(100*a.wr)}%${a.sharpe!=null?` · Sharpe ${a.sharpe}`:''}</div></div><div class="h"><div class="n neg">${p(a.dd)}</div><div class="l">worst drop along the way</div><div class="s">the biggest fall from a high point</div></div><div class="h"><div class="n">${a.months_up}/${a.months}</div><div class="l">months that made money</div><div class="s">the rules are re-picked every month</div></div></div><p class="plain" style="color:var(--ink)"><b>Not yet.</b> ${a.R>0?'It makes a little money on days it has never seen, but less than its worst drop, and it could still be luck.':'It loses money on days it has never seen.'} The real test is the forward test before launch, plus years of real futures data it has never seen. Tap <b>Advanced</b> at the top to see all the workings.</p>`}
-  renderScout();renderFan();
+  renderEquity();renderScout();renderFan();
   if(D.mistakes){const M=D.mistakes,T=M.test;const worst=M.book.filter(b=>b.avg_with<b.avg_without).slice(0,5);
    $('#labMist').innerHTML=`<div class="ct"><h2>Learning from its mistakes</h2><span class="sub">every losing setup since 2024, tagged with what was wrong before it was taken</span></div>
     <div class="hero" style="margin:4px 0 10px"><div class="h"><div class="n ${cls(T.all.R)}">${fmtR(T.all.R)}</div><div class="l">taking every setup</div><div class="s">${T.months} months it hadn't seen</div></div><div class="h"><div class="n ${cls(T.learned.R)}">${fmtR(T.learned.R)}</div><div class="l">after learning from its mistakes</div><div class="s">avoid rules learned only from earlier months</div></div></div>
@@ -236,6 +236,44 @@ $('.brand').addEventListener('click',e=>{e.preventDefault();openTab('overview')}
  new MutationObserver(()=>moveInd(true)).observe(nav,{attributes:true,subtree:true,attributeFilter:['aria-selected']});
  addEventListener('resize',()=>moveInd(false));
  const place2=()=>{place();requestAnimationFrame(()=>moveInd(false))};place2();mq.addEventListener('change',place2)}
+// ================= STRATEGY RESULTS PANEL (equity curve, like a quant dashboard)
+let EQSEL=null;
+function eqStrategies(){const B=D.bt,look=B.look,L=[];
+  const ad=B.adaptive.filter((r,k)=>k>=look);L.push({id:'main',name:'Main strategy',sub:'London · re-picked monthly',m:ad.map(r=>r.month),R:ad.map(r=>r.R),n:ad.map(r=>r.n),w:ad.map(r=>r.w)});
+  if(D.orb)for(const[mk,nm]of[['NQ','Opening range · Nasdaq'],['ES','Opening range · S&P 500'],['both','Opening range · both']]){const O=D.orb.markets[mk];if(!O)continue;
+    if(O.series)L.push({id:'orb'+mk,name:nm,sub:'trend filter allowed · re-picked monthly',m:O.series.map(x=>x[0]),R:O.series.map(x=>x[1]),n:O.series.map(x=>x[2]),w:O.series.map(x=>x[3])});
+    else{let pv=0;const c=O.curve||[];L.push({id:'orb'+mk,name:nm,sub:'re-picked monthly',m:c.map(x=>x[0]),R:c.map(([m,v])=>{const d=v-pv;pv=v;return +d.toFixed(2)}),n:null,w:null,ntot:O.adaptive.n})}}
+  (D.scout?D.scout.ideas:[]).filter(x=>x.curve&&x.result&&x.result.summary).forEach((x,k)=>L.push({id:'sc'+k,name:x.recipe.name,sub:(x.seed?'scout example':'scouted idea')+' · '+x.verdict,m:x.curve.map(c=>c[0]),R:x.curve.map(c=>c[1]),n:null,w:null,ntot:x.result.summary.n}));
+  const hm=B.months.slice(look),hs=B.hind.slice(look);L.push({id:'hind',name:'Hindsight best',sub:'not possible live: picked after seeing the results',m:hm,R:hs,n:null,w:null,ntot:B.sum.hind.n,warn:1});
+  return L.map(st=>Object.assign(st,eqStats(st)))}
+function eqStats(st){const R=st.R,N=R.length;let eq=0,pk=0,dd=0;const cum=R.map(x=>(eq+=x,pk=Math.max(pk,eq),dd=Math.min(dd,eq-pk),eq));
+  const mu=R.reduce((a,b)=>a+b,0)/(N||1),sd=Math.sqrt(R.reduce((a,b)=>a+(b-mu)**2,0)/Math.max(1,N-1));const sharpe=sd>0?mu/sd*Math.sqrt(12):0;
+  const n=st.n?st.n.reduce((a,b)=>a+b,0):st.ntot||0,w=st.w?st.w.reduce((a,b)=>a+b,0):null;const tot=eq,exp=n?tot/n:0,wr=w!=null&&n?w/n:null;
+  const avgWin=wr?(exp+(1-wr))/wr:null;   // losses are about -1R (the stop), so the average win follows from win rate and expectancy
+  return {cum,tot,dd,sharpe,ntr:n,wr,exp,avgWin}}
+function sparkSVG(cum,pos){const W=240,H=26,mx=Math.max(0,...cum),mn=Math.min(0,...cum),X=i=>i*(W-2)/Math.max(1,cum.length-1)+1,Y=v=>2+(mx-v)*(H-4)/((mx-mn)||1);
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><line x1="0" x2="${W}" y1="${Y(0)}" y2="${Y(0)}" stroke="var(--line)" stroke-dasharray="2 3"/><polyline fill="none" stroke="${pos?'var(--up)':'var(--down)'}" stroke-width="1.6" points="${cum.map((v,i)=>X(i).toFixed(1)+','+Y(v).toFixed(1)).join(' ')}"/></svg>`}
+function renderEquity(){const el=$('#labEquity');if(!el||!D.bt||!D.bt.adaptive)return;const L=eqStrategies();
+  if(!EQSEL||!L.find(s=>s.id===EQSEL))EQSEL=[...L].filter(s=>!s.warn).sort((a,b)=>b.sharpe-a.sharpe)[0].id;const S=L.find(s=>s.id===EQSEL);
+  const usd=r=>(r<0?'−':'+')+'$'+Math.abs(Math.round(r*500)).toLocaleString('en-US');
+  const kp=(k,v,c,cl='')=>`<div class="kpi"><div class="k">${k}</div><div class="v ${cl}">${v}</div><div class="c">${c}</div></div>`;
+  const kpis=kp('Win rate',S.wr!=null?(100*S.wr).toFixed(1)+'%':'–','share of trades that made money')+kp('Avg win : loss',S.avgWin!=null?'1 : '+S.avgWin.toFixed(2):'–','losses taken as the 1R stop')
+   +kp('Expectancy',S.ntr?usd(S.exp):'–',S.ntr?`${fmtR(S.exp)} per trade, after costs`:'per trade',cls(S.exp))+kp('Trades',S.ntr.toLocaleString(),`over ${S.R.length} months`)
+   +kp('Max drawdown',usd(S.dd),`${S.dd.toFixed(1)}R from a high point`,'neg')+kp('Sharpe',S.sharpe.toFixed(2),S.sharpe>=1?'strong':S.sharpe>=0.5?'decent':S.sharpe>0?'weak':'losing',S.sharpe>=0.5?'pos':S.sharpe<0?'neg':'');
+  const W=900,H=280,bal=S.cum.map(v=>100000+v*500),mx=Math.max(100000,...bal),mn=Math.min(100000,...bal),pad=(mx-mn)*0.08||1000,top=mx+pad,bot=mn-pad;
+  const X=i=>44+i*(W-56)/Math.max(1,bal.length-1),Y=v=>10+(top-v)*(H-36)/(top-bot);const up=bal[bal.length-1]>=100000,col=up?'#3FBF7F':'#D9584A';
+  const ticks=[];for(let k=0;k<5;k++){const v=bot+(top-bot)*k/4;ticks.push(`<line x1="44" x2="${W-8}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line2)"/><text x="40" y="${Y(v)+4}" text-anchor="end" font-family="var(--mono)" font-size="10.5" fill="var(--faint)">$${Math.round(v/1000)}k</text>`)}
+  const yrs=[];S.m.forEach((m,i)=>{if(m.endsWith('-01')||i===0)yrs.push(`<text x="${X(i)}" y="${H-6}" font-family="var(--mono)" font-size="10.5" fill="var(--faint)" text-anchor="${i===0?'start':'middle'}">${m.slice(0,4)}</text>`)});
+  const line=bal.map((v,i)=>`${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' ');
+  const chart=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block" role="img" aria-label="Equity curve"><defs><linearGradient id="eqg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity=".32"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></linearGradient></defs>${ticks.join('')}
+   <line x1="44" x2="${W-8}" y1="${Y(100000)}" y2="${Y(100000)}" stroke="var(--muted)" stroke-dasharray="3 4" stroke-opacity=".6"/>
+   <polygon points="${X(0)},${Y(bot)} ${line} ${X(bal.length-1)},${Y(bot)}" fill="url(#eqg)"/><polyline points="${line}" fill="none" stroke="${col}" stroke-width="2.2"/>
+   <circle cx="${X(bal.length-1)}" cy="${Y(bal[bal.length-1])}" r="4" fill="${col}"/>${yrs.join('')}</svg>`;
+  el.innerHTML=`<div class="ct"><h2>Strategy results</h2><span class="sub">every strategy on 5 years of real futures, only on months its settings weren't picked from</span></div>
+   <div class="eqp"><div class="eql">${L.map(s=>`<button type="button" class="eqs" data-eq="${s.id}" aria-pressed="${s.id===EQSEL}"><span class="nm">${esc(s.name)}</span><span class="sh ${s.sharpe>=0.5?'g':s.sharpe<0?'r':'n'}">${s.sharpe.toFixed(2)}<small>SHARPE</small></span><span class="sb">${esc(s.sub)}</span>${sparkSVG(s.cum,s.tot>=0)}</button>`).join('')}</div>
+    <div><div class="kpis">${kpis}</div><div class="eqc"><div class="hd"><span><b>Equity curve</b> · ${esc(S.name)} · $100,000 paper account, 0.5% risk a trade</span><span class="${up?'pos':'neg'}" style="font-size:13px;letter-spacing:0">$${Math.round(bal[bal.length-1]).toLocaleString('en-US')}</span></div>${chart}</div>
+    ${S.warn?'<p class="plain neg" style="margin-top:8px">This is the single best version over the whole period, picked after seeing the results. Nobody could have traded it live; it is here to show how misleading a "best backtest" can be.</p>':''}</div></div>`;
+  $$('#labEquity .eqs').forEach(b=>b.onclick=()=>{EQSEL=b.dataset.eq;renderEquity()})}
 // ================= RESEARCH SCOUT and the FAN CHART
 function renderScout(){const S=D.scout,el=$('#labScout');if(!el)return;
   const ideas=S?[...S.ideas].reverse():[];const badge=v=>{const c=/promising/.test(v||'')?'pos':/rejected|couldn/.test(v||'')?'neg':'dim';return `<span class="tag2 ${c==='pos'?'buy':c==='neg'?'sell':''}" style="white-space:normal">${esc(v||'pending')}</span>`};

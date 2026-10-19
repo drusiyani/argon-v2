@@ -115,14 +115,15 @@ def keyname(k): return {'orm':k[1],'stop':k[2],'target':k[3],'filter':k[4]}
 SUMMARY={'source':'Zarattini & Aziz, "Can Day Trading Really Be Profitable?" (SSRN 4416622)','months':len(MONTHS)-6,'markets':{}}
 for mk in ('NQ','ES','both'):
     src=['NQ','ES'] if mk=='both' else [mk]
-    mon={k:collections.defaultdict(float) for k in allkeys}; cnt={k:collections.defaultdict(int) for k in allkeys}
+    mon={k:collections.defaultdict(float) for k in allkeys}; cnt={k:collections.defaultdict(int) for k in allkeys}; wins={k:collections.defaultdict(int) for k in allkeys}
     for k in allkeys:
         for ss in src:
-            for r in OUT[ss].get(k,[]): mon[k][r[0]]+=net(r,ss); cnt[k][r[0]]+=1
-    tot=n=0; eq=pk=dd=0; up=0; curve=[]
+            for r in OUT[ss].get(k,[]):
+                x=net(r,ss); mon[k][r[0]]+=x; cnt[k][r[0]]+=1; wins[k][r[0]]+=x>0
+    tot=n=0; eq=pk=dd=0; up=0; curve=[]; series=[]
     for i,m in enumerate(MONTHS[6:],6):
         prev=MONTHS[i-6:i]; best=max(allkeys,key=lambda k:sum(mon[k][p] for p in prev))
-        tot+=mon[best][m]; n+=cnt[best][m]; eq+=mon[best][m]; pk=max(pk,eq); dd=min(dd,eq-pk); up+=mon[best][m]>0; curve.append([m,round(eq,2)])
+        tot+=mon[best][m]; n+=cnt[best][m]; eq+=mon[best][m]; pk=max(pk,eq); dd=min(dd,eq-pk); up+=mon[best][m]>0; curve.append([m,round(eq,2)]); series.append([m,round(mon[best][m],2),cnt[best][m],wins[best][m]])
     now=max(allkeys,key=lambda k:sum(mon[k][p] for p in MONTHS[-6:]))
     pub=('orb',5,'candle','10R','none'); pr=[(r[0],net(r,ss)) for ss in src for r in OUT[ss].get(pub,[]) if r[0] in MONTHS[6:]]
     mr=[]; pv=0
@@ -133,6 +134,6 @@ for mk in ('NQ','ES','both'):
         t=0; c=[]
         for m in MONTHS[6:]: t+=mon[k][m]; c.append(round(t,1))
         fan.append(c)
-    SUMMARY['markets'][mk]=dict(sharpe=round(_mu/_sd*12**.5,2) if _sd>0 else 0.0,fan=fan,adaptive=dict(n=n,R=round(tot,1),dd=round(dd,1),up=up),published=summ(pr),now=keyname(now),now_last6=round(sum(mon[now][p] for p in MONTHS[-6:]),1),curve=curve)
+    SUMMARY['markets'][mk]=dict(series=series,sharpe=round(_mu/_sd*12**.5,2) if _sd>0 else 0.0,fan=fan,adaptive=dict(n=n,R=round(tot,1),dd=round(dd,1),up=up),published=summ(pr),now=keyname(now),now_last6=round(sum(mon[now][p] for p in MONTHS[-6:]),1),curve=curve)
 json.dump(SUMMARY,open(os.path.join(ROOT,'data','orb_out.json'),'w'))
 print('ORB now:',{mk:SUMMARY['markets'][mk]['now'] for mk in SUMMARY['markets']})
