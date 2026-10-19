@@ -80,7 +80,7 @@ function drawTV(){if(C.view2!=='tv'||$('#chart').hidden||!window.LightweightChar
   const snap=t=>{const j=bsearch(B.t,t);return j<0?B.t[0]:B.t[j]};const mk=[];
   for(const i of dayEvents(0)){const kk=E.k[i];if(kk===KI.sweep){const x=E.x[i];if(x[3]===2||!x[4]||(TFN[E.tf[i]]==='5m'&&x[2]!==2))continue;mk.push({time:snap(E.t[i]),position:x[1]?'aboveBar':'belowBar',color:k.gold,shape:x[1]?'arrowDown':'arrowUp',text:x[6]?'sweep+SMT':'sweep'})}}
   const trs=TR.filter(t=>t.inst===C.inst&&t.sd===C.day&&t.walked&&t.fired);
-  for(const t of trs){const buy=t.side==='long';mk.push({time:snap(t.fill_t),position:buy?'belowBar':'aboveBar',color:t.route==='ob'?k.violet:k.up,shape:buy?'arrowUp':'arrowDown',text:`${t.route==='ob'?'OB ':'★ '}${buy?'BUY':'SELL'} ${fmtR(t.R)}`});mk.push({time:snap(t.exit_t),position:buy?'aboveBar':'belowBar',color:t.R>0?k.up:k.down,shape:'square',text:'exit'})}
+  for(const t of trs){const buy=t.side==='long';mk.push({time:snap(t.fill_t),position:buy?'belowBar':'aboveBar',color:t.route==='ob'?k.violet:k.up,shape:buy?'arrowUp':'arrowDown',text:`${t.route==='ob'?'OB ':''}${buy?'BUY':'SELL'} ${fmtR(t.R)}`});mk.push({time:snap(t.exit_t),position:buy?'aboveBar':'belowBar',color:t.R>0?k.up:k.down,shape:'square',text:'exit'})}
   mk.sort((a,b)=>a.time-b.time);ser.setMarkers(mk);
   const sel=C.sel&&C.sel.type==='trade'?TR[C.sel.ref]:null;if(sel&&sel.inst===C.inst&&sel.sd===C.day&&sel.entry!=null){ser.createPriceLine({price:sel.entry,color:css('--ink'),lineWidth:1,title:'entry'});ser.createPriceLine({price:sel.stop,color:k.down,lineWidth:1,title:'stop'});ser.createPriceLine({price:sel.target,color:k.up,lineWidth:1,title:'target'})}
   chart.timeScale().fitContent();
@@ -196,7 +196,7 @@ const RVSEL='.ahero~.page h1,.lede,.banner,.chips1,.hero .h,.mkt,.card,.tile,.bo
 const rvIO=new IntersectionObserver(es=>{for(const e of es){if(!e.isIntersecting)continue;const el=e.target;el.classList.add('in');rvIO.unobserve(el);countIn(el);growIn(el);drawIn(el)}},{rootMargin:'0px 0px -8% 0px',threshold:.08});
 function animateIn(scope){if(!scope)return;const els=[...scope.querySelectorAll(RVSEL)].filter(el=>!el.dataset.rv);
   const groups=new Map();els.forEach(el=>{el.dataset.rv=1;const p=el.parentElement;const i=groups.get(p)||0;groups.set(p,i+1);el.style.setProperty('--d',Math.min(i,8)*0.07+'s');
-    if(STILL){el.classList.add('in');return}el.classList.add('rv');
+    el.classList.add('in');countIn(el);return;
     el.querySelectorAll('.gbar i,.dcard .bar i').forEach(b=>{if(!b.dataset.w){b.dataset.w=b.style.width;b.style.width='0%'}});
     el.querySelectorAll('svg polyline,svg path').forEach(pth=>{const st=pth.getAttribute('stroke');if(!st||st==='none'||pth.closest('.gi,.glogo,.e,.mk,.brand,.k'))return;try{const L=pth.getTotalLength();if(L<60)return;pth.style.strokeDasharray=L;pth.style.strokeDashoffset=L;pth.classList.add('drawline')}catch(e){}});
     rvIO.observe(el)})}
@@ -210,10 +210,10 @@ function countIn(el){const nodes=[...el.querySelectorAll(NUMSEL)];if(el.matches&
     requestAnimationFrame(f)}}
 // the hero: big numbers, then it drifts up and fades as you scroll, like a product page
 function portfolio(){const B=D.bt;const ms=B.months.slice(B.look);const main={};B.adaptive.forEach(r=>main[r.month]=r.R);const o={};let pv=0;(D.orb?D.orb.markets.NQ.curve:[]).forEach(([m,v])=>{o[m]=v-pv;pv=v});
-  let eq=1,pk=1,dd=0;const xs=ms.filter(m=>m in o);for(const m of xs){eq*=1+((main[m]||0)+o[m])*0.01;pk=Math.max(pk,eq);dd=Math.min(dd,eq/pk-1)}const cagr=xs.length?Math.pow(eq,12/xs.length)-1:0;
+  let eq=1,pk=1,dd=0;const xs=ms.filter(m=>m in o);for(const m of xs){eq*=1+((main[m]||0)+o[m])*0.005;pk=Math.max(pk,eq);dd=Math.min(dd,eq/pk-1)}const cagr=xs.length?Math.pow(eq,12/xs.length)-1:0;
   return {cagr:(cagr>=0?'+':'')+Math.round(cagr*100)+'%',dd:Math.round(dd*100)+'%'}}
 function renderAnswer(){const P=portfolio();const O=D.orb&&D.orb.markets.NQ;const T=D.mistakes&&D.mistakes.test;const toLive=Math.max(0,Math.ceil((Date.UTC(2027,0,1)-Date.now())/864e5));
-  $('#answer').innerHTML=`<div><div class="q">Can simple rules trade?</div><div class="a">Maybe, on paper.<small>The best mix (main + opening range) made about ${P.cagr} a year in a backtest at 1% risk, with a worst drop of ${P.dd}.<span class="hyp">Hypothetical: found by testing many versions on past prices. Not proven.</span></small></div></div>
+  $('#answer').innerHTML=`<div><div class="q">Can simple rules trade?</div><div class="a">Maybe, on paper.<small>The portfolio (main strategy + opening range on the Nasdaq) made about ${P.cagr} a year on 5 years of real futures at 0.5% risk a trade, with a worst drop of ${P.dd} and a Sharpe ratio near 1.<span class="hyp">Hypothetical: found by testing many versions on past prices. Not proven.</span></small></div></div>
    <div><div class="q">Can an AI trade?</div><div class="a">Not tested yet.<small>The AI desk only judges trades live, from 1 January, because an AI has already read about the past. Until then there is no AI result, only rules.</small></div></div>
    <div><div class="q">What would prove it?</div><div class="a">${toLive} days of watching, then real data.<small>The forward test from 13 October, plus years of real futures prices the strategies have never seen. If it fails either, the answer is no.</small></div></div>`;
   $('#method').innerHTML=[['Find setups with fixed rules','Two strategies scan the Nasdaq, S&P 500, Dow and Russell 2000 for trades, the same markets as Argon v1\'s Kronos bot.'],['Let four AI agents decide','From 1 January, a desk of four AI agents (each with its own memory) says take or skip on every setup.'],['Play every setup out anyway','Taken or skipped, every setup is followed to its result, so the AI\'s choices can be scored against simply taking them all.'],['Compare against the alternatives','The AI desk is compared with the rules on their own, with Kronos, and with just holding an index fund. Same markets, same days, same 0.5% risk.']].map(([t,p])=>`<div><span><b>${t}</b><p>${p}</p></span></div>`).join('')}
@@ -228,7 +228,6 @@ $('.brand').addEventListener('click',e=>{e.preventDefault();openTab('overview')}
 {const pb=$('#progress'),tt=$('#totop');let tick=false;
  addEventListener('scroll',()=>{if(tick)return;tick=true;requestAnimationFrame(()=>{tick=false;const h=document.documentElement,max=h.scrollHeight-h.clientHeight;pb.style.width=(max>0?100*h.scrollTop/max:0)+'%';tt.classList.toggle('on',h.scrollTop>innerHeight*1.4)})},{passive:true});
  tt.onclick=()=>scrollTo({top:0,behavior:STILL?'auto':'smooth'});
- document.addEventListener('pointermove',e=>{const el=e.target.closest&&e.target.closest('.card,.gcard,.bot,.tile,.hero .h,.mkt,.fstep,.answer>div');if(!el)return;const r=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-r.left)+'px');el.style.setProperty('--my',(e.clientY-r.top)+'px');el.classList.add('spot')},{passive:true});
  const nav=document.querySelector('nav'),home=nav.parentElement,mq=matchMedia('(max-width:700px)');
  const place=()=>{if(mq.matches){if(!nav.classList.contains('bottomnav')){document.body.appendChild(nav);nav.classList.add('bottomnav');document.body.classList.add('hasbottom')}}else if(nav.classList.contains('bottomnav')){home.appendChild(nav);nav.classList.remove('bottomnav');document.body.classList.remove('hasbottom')}};
  const ind=document.createElement('span');ind.className='lgind';ind.setAttribute('aria-hidden','true');
@@ -240,7 +239,9 @@ $('.brand').addEventListener('click',e=>{e.preventDefault();openTab('overview')}
 let EQSEL=null;
 function eqStrategies(){const B=D.bt,look=B.look,L=[];
   const ad=B.adaptive.filter((r,k)=>k>=look);L.push({id:'main',name:'Main strategy',sub:'London · re-picked monthly',m:ad.map(r=>r.month),R:ad.map(r=>r.R),n:ad.map(r=>r.n),w:ad.map(r=>r.w)});
-  if(D.orb)for(const[mk,nm]of[['NQ','Opening range · Nasdaq'],['ES','Opening range · S&P 500'],['both','Opening range · both']]){const O=D.orb.markets[mk];if(!O)continue;
+  if(D.orb&&D.orb.markets.NQ&&D.orb.markets.NQ.series){const o={};D.orb.markets.NQ.series.forEach(x=>o[x[0]]=x);const pm=ad.map(r=>r.month).filter(m=>o[m]);
+    L.unshift({id:'port',name:'Portfolio',sub:'main + opening range Nasdaq · 0.5% risk each',m:pm,R:pm.map(m=>+((ad.find(r=>r.month===m).R)+o[m][1]).toFixed(2)),n:pm.map(m=>ad.find(r=>r.month===m).n+o[m][2]),w:pm.map(m=>(ad.find(r=>r.month===m).w||0)+o[m][3])})}
+  if(D.orb)for(const[mk,nm]of[['NQ','Opening range · Nasdaq']]){const O=D.orb.markets[mk];if(!O)continue;
     if(O.series)L.push({id:'orb'+mk,name:nm,sub:'trend filter allowed · re-picked monthly',m:O.series.map(x=>x[0]),R:O.series.map(x=>x[1]),n:O.series.map(x=>x[2]),w:O.series.map(x=>x[3])});
     else{let pv=0;const c=O.curve||[];L.push({id:'orb'+mk,name:nm,sub:'re-picked monthly',m:c.map(x=>x[0]),R:c.map(([m,v])=>{const d=v-pv;pv=v;return +d.toFixed(2)}),n:null,w:null,ntot:O.adaptive.n})}}
   (D.scout?D.scout.ideas:[]).filter(x=>x.curve&&x.result&&x.result.summary).forEach((x,k)=>L.push({id:'sc'+k,name:x.recipe.name,sub:(x.seed?'scout example':'scouted idea')+' · '+x.verdict,m:x.curve.map(c=>c[0]),R:x.curve.map(c=>c[1]),n:null,w:null,ntot:x.result.summary.n}));

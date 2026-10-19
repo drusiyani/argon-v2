@@ -533,7 +533,7 @@ for dk,vals in DIALS.items():
         xs=[L['tune']['avg'] for L in LAB if L['route']=='chain' and L['rules'][dk]==v and L['tune']['n']>=10]
         IMP[dk][v]=(round(sum(xs)/len(xs),3),len(xs)) if xs else (None,0)
 BT=json.load(open(os.path.join(ROOT,'data','bt_out.json')))
-V03=dict(BT['now']['chain']['rules'],risk=True,name='v0.9') if BT['now']['chain'] else dict(BASE,risk=True,name='v0.4')
+V03=dict(BT['now']['chain']['rules'],risk=True,name='v0.10') if BT['now']['chain'] else dict(BASE,risk=True,name='v0.4')
 V03OB=dict(BT['now']['ob']['rules'],risk=True) if BT['now']['ob'] else dict(markets='all',windows='both',risk=True)
 print('variants',len(LAB),'stage1',len(cand),'passed',[(L['route'],L['rules'],L['tune'],L['sealed'],L['mc']) for L in passed])
 print('finalists',[(L['route'],L['rules'],L['tune']['net'],L['sealed'],L.get('mc'),L['status']) for L in finalists])
@@ -598,7 +598,7 @@ print('desk feed setups',nfeed,'busy rival trades',nbusy)
 _op=os.path.join(ROOT,'data','orb_out.json'); ORB=json.load(open(_op)) if os.path.exists(_op) else None
 ORBCOST={'NQ':0.75,'ES':0.5,'YM':3.0,'RTY':0.3}
 norb=0
-ORB_MARKETS=('NQ','ES')   # the only two with years of history behind them; the Dow and Russell wait for the Databento test
+ORB_MARKETS=('NQ',)   # v0.10: Nasdaq only (the S&P version was too weak on 5 years of real futures)
 for s in ORB_MARKETS:
     pick=(ORB['markets'].get(s) or ORB['markets']['both'])['now'] if ORB else {'orm':5,'stop':'candle','target':'10R'}
     bars=BARS[s]['5m']; rth={}
@@ -646,7 +646,7 @@ top=sorted([L for L in LAB if L['route']=='chain'],key=lambda L:-L['tune']['avg'
 LABOUT=dict(gate=GATE,risk=RISK,tune_end=TUNE_END,half=HALF,dials=DIALS,n_variants=len(LAB),n_stage1=len(cand),
   baseline=lab_row(BASEL,True),stage1=[lab_row(L,True) for L in cand],finalists=[lab_row(L,True) for L in finalists],top=[lab_row(L) for L in top],ob=[lab_row(L,True) for L in LAB if L['route']=='ob'],
   live_chain=lab_row(LIVE_CHAIN,True) if LIVE_CHAIN else None,live_ob=lab_row(LIVE_OB,True) if LIVE_OB else None,importance=IMP,v03=V03,v03ob=V03OB)
-RULES_VERSION='0.9'; SIG=hashlib.sha1(('argon-v2-rules-0.9-'+json.dumps(V03,sort_keys=True)).encode()).hexdigest()[:8]
+RULES_VERSION='0.10'; SIG=hashlib.sha1(('argon-v2-rules-0.10-'+json.dumps(V03,sort_keys=True)).encode()).hexdigest()[:8]
 
 # ---------------- pack (compact, positional)
 K={k:i for i,k in enumerate(KINDS)}; II={s:i for i,s in enumerate(INSTS)}; TFI={'5m':0,'15m':1,'1h':2,'session':3}

@@ -2,7 +2,7 @@
 const C={inst:'NQ',day:DAYS.at(-1),tf:'5m',mode:'declutter',view:null,sel:null,hover:-1,tfvis:{'5m':'bright','15m':'bright','1h':'bright'}};
 const LAYERS=[
  ['pools','key levels (highs and lows)','--blue',1,1],['levels','yesterday, last week, Asia and London levels','--gold2',1,1],['sweeps','levels swept','--gold',1,1],['manip','big push candles','--red',0,1],
- ['smt','markets disagree (SMT)','--cyan',1,1],['idm','bait levels','--muted',0,1],['trades','★★ trades taken','--up',1,1],['seen','○ trades skipped','--up',1,1],
+ ['smt','markets disagree (SMT)','--cyan',1,1],['idm','bait levels','--muted',0,1],['trades','trades taken','--up',1,1],['seen','○ trades skipped','--up',1,1],
  ['obbook','order-block trades','--violet',1,1],['swings','highs and lows (HH, HL, LH, LL)','--grey',0,1],['breaks','trend breaks','--ink',1,1],['mssf','failed trend breaks','--red',0,1],
  ['ob','order blocks','--violet',1,1],['fvg','price gaps (FVG)','--purple',0,1],['sess','session opens','--grey',1,1]];
 const LON={};LAYERS.forEach(l=>LON[l[0]]=l[3]===1);
@@ -79,7 +79,7 @@ function draw(){if($('#chart').hidden)return;if(typeof tvLinkUpdate==='function'
     ctx.strokeStyle=css(isOB?'--violet':'--up');ctx.lineWidth=fired?1.2:1;if(!fired)ctx.setLineDash([3,3]);ctx.globalAlpha=fired?1:.6;ctx.strokeRect(x0,Math.min(yt,ys),x1-x0,Math.abs(yt-ys));ctx.setLineDash([]);
     ctx.strokeStyle=css('--ink');ctx.beginPath();ctx.moveTo(x0,ye);ctx.lineTo(x1,ye);ctx.stroke();ctx.globalAlpha=1;
     ctx.font=(fired?'600 ':'')+'10.5px '+css('--mono');ctx.fillStyle=t.R>0?css('--up'):t.R<0?css('--down'):css('--muted');
-    const lab=(t.route==='feed'?'◇ desk setup · ':t.route==='busy'?'busy · ':t.route==='orb'?'ORB ':fired?(isOB?'OB ':'★★ '):'○ skipped · ')+(t.side==='short'?'SELL':'BUY')+(isOB?'':' · '+t.grade)+' · '+fmtR(t.R);ctx.fillText(lab,x0+3,Math.min(yt,ys,ye)-5);
+    const lab=(t.route==='feed'?'◇ desk setup · ':t.route==='busy'?'busy · ':t.route==='orb'?'ORB ':fired?(isOB?'OB ':''):'○ skipped · ')+(t.side==='short'?'SELL':'BUY')+(isOB?'':' · '+t.grade)+' · '+fmtR(t.R);ctx.fillText(lab,x0+3,Math.min(yt,ys,ye)-5);
     hit(fired?8:6,x0,Math.min(yt,ys),x1,Math.max(yt,ys),'trade',t.idx)}
   // candles
   const up=css('--up'),dn=css('--down');for(let i=Math.max(0,Math.floor(v.i0));i<Math.min(B.n,Math.ceil(v.i1));i++){const x=X(i),c_=B.c[i]>=B.o[i]?up:dn;ctx.strokeStyle=c_;ctx.fillStyle=c_;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,Y(B.h[i]));ctx.lineTo(x,Y(B.l[i]));ctx.stroke();const y1=Y(Math.max(B.o[i],B.c[i])),y2=Y(Math.min(B.o[i],B.c[i]));ctx.fillRect(x-Math.max(.5,bw*.33),y1,Math.max(1,bw*.66),Math.max(1,y2-y1))}
