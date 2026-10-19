@@ -48,7 +48,7 @@ jobs:
       - name: Long backtest and monthly re-pick
         if: steps.mode.outputs.mode != 'daily'
         run: |
-          python engine/lab.py
+          LAB_WINDOWS=london python engine/lab.py   # v0.9: the main strategy trades the London session only
           python engine/extra.py
           python engine/dump_setups.py
           python engine/mistakes.py

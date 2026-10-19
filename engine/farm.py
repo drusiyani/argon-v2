@@ -533,7 +533,7 @@ for dk,vals in DIALS.items():
         xs=[L['tune']['avg'] for L in LAB if L['route']=='chain' and L['rules'][dk]==v and L['tune']['n']>=10]
         IMP[dk][v]=(round(sum(xs)/len(xs),3),len(xs)) if xs else (None,0)
 BT=json.load(open(os.path.join(ROOT,'data','bt_out.json')))
-V03=dict(BT['now']['chain']['rules'],risk=True,name='v0.8') if BT['now']['chain'] else dict(BASE,risk=True,name='v0.4')
+V03=dict(BT['now']['chain']['rules'],risk=True,name='v0.9') if BT['now']['chain'] else dict(BASE,risk=True,name='v0.4')
 V03OB=dict(BT['now']['ob']['rules'],risk=True) if BT['now']['ob'] else dict(markets='all',windows='both',risk=True)
 print('variants',len(LAB),'stage1',len(cand),'passed',[(L['route'],L['rules'],L['tune'],L['sealed'],L['mc']) for L in passed])
 print('finalists',[(L['route'],L['rules'],L['tune']['net'],L['sealed'],L.get('mc'),L['status']) for L in finalists])
@@ -565,7 +565,8 @@ for x in recs:
         ev(t=rec['exit_t'],inst=s,tf='5m',kind='outcome',p=rec['exit'],trade=rec['id'],R=rec['R'],res=rec['status'])
     elif 'M' not in fail and 'W' not in fail:
         ev(t=sw['t'],inst=s,tf='5m',kind='refusal',p=p['p'],trade=rec['id'],step=fail[0],why=(steps.get(fail[0],[0,STEPNAMES.get(fail[0],'')])[1]))
-for x in apply_ob(V03OB,with_records=True):
+ENABLE_OB=False   # v0.9: the order-block strategy was dropped (lost money on 5 years of real futures)
+for x in (apply_ob(V03OB,with_records=True) if ENABLE_OB else []):
     c=x['c']; s=c['s']; w=c['w']
     if 'M' in x['fail'] or c['win'] is None: continue
     steps={'trend':[1 if c['h1'] else 0,f"hourly trend {'up' if c['htf']==1 else 'down' if c['htf']==-1 else 'flat'}"],'window':[1 if 'W' not in x['fail'] else 0,f"price came back at {dt.datetime.fromtimestamp(c['t'],NY):%H:%M}, {c['win']} session"],'R':[0 if 'R' in x['fail'] else 1,f"target worth {c['rr']:.1f}× the risk"]}
@@ -610,6 +611,9 @@ for s in ORB_MARKETS:
         first=[bars[i] for i in idx[:k]]; o,c=first[0]['o'],first[-1]['c']; h=max(x['h'] for x in first); l=min(x['l'] for x in first)
         if h<=l or abs(c-o)<0.05*(h-l): continue
         side=1 if c>o else -1; eb=bars[idx[k]]; entry=eb['o']
+        if pick.get('filter')=='trend20':   # only trade with the 20-day trend
+            prevc=[bars[rth[x][-1]]['c'] for x in dates[max(0,di-20):di]]
+            if len(prevc)<20 or (side==1)!=(prevc[-1]>sum(prevc)/len(prevc)): continue
         if pick['stop']=='candle': stop=l if side==1 else h
         else:
             prev=[rng[x] for x in dates[max(0,di-14):di]]
@@ -630,7 +634,7 @@ for s in ORB_MARKETS:
         TRADES.append(dict(id=f"{s}-{d}-O{len(TRADES):04d}",route='orb',inst=s,sd=str(d),win='NY',side='long' if side==1 else 'short',pool='opening range',pool_tf=f"{pick['orm']}m",pool_kind='orb',sweep_t=bars[idx[0]]['t'],
             entry=round(entry,4),stop=round(stop,4),target=round(target if target is not None else entry+side*10*risk,4),tname='10× the risk' if target is not None else 'the close',zone='orb',fill_t=eb['t'],exit_t=ex[2],exit=round(ex[1],4),
             R=Rr,Rnet=Rr,status=ex[0] if not (ex[0]=='time' and Rr>0) else 'time',mfe=round(mfe,2),mae=round(max(-1,mae),2),bars=0,fired=True,failed=[],dow=bars[idx[0]]['dow'],hour=9,score=50,grade='B',bias=None,smt=None,
-            steps={'range':[1,f"the first {pick['orm']} minutes of the US session went {'up' if side==1 else 'down'}"],'stop':[1,('stop at the other side of the opening range' if pick['stop']=='candle' else 'stop a tenth of a normal day\'s range away')],'R':[1,f"cost of trading taken off: {ORBCOST[s]} points"]}))
+            steps={'range':[1,f"the first {pick['orm']} minutes of the US session went {'up' if side==1 else 'down'}"+(', with the 20-day trend' if pick.get('filter')=='trend20' else '')],'stop':[1,('stop at the other side of the opening range' if pick['stop']=='candle' else 'stop a tenth of a normal day\'s range away')],'R':[1,f"cost of trading taken off: {ORBCOST[s]} points"]}))
         norb+=1
 print('opening-range trades',norb)
 # lab export
@@ -642,7 +646,7 @@ top=sorted([L for L in LAB if L['route']=='chain'],key=lambda L:-L['tune']['avg'
 LABOUT=dict(gate=GATE,risk=RISK,tune_end=TUNE_END,half=HALF,dials=DIALS,n_variants=len(LAB),n_stage1=len(cand),
   baseline=lab_row(BASEL,True),stage1=[lab_row(L,True) for L in cand],finalists=[lab_row(L,True) for L in finalists],top=[lab_row(L) for L in top],ob=[lab_row(L,True) for L in LAB if L['route']=='ob'],
   live_chain=lab_row(LIVE_CHAIN,True) if LIVE_CHAIN else None,live_ob=lab_row(LIVE_OB,True) if LIVE_OB else None,importance=IMP,v03=V03,v03ob=V03OB)
-RULES_VERSION='0.8'; SIG=hashlib.sha1(('argon-v2-rules-0.8-'+json.dumps(V03,sort_keys=True)).encode()).hexdigest()[:8]
+RULES_VERSION='0.9'; SIG=hashlib.sha1(('argon-v2-rules-0.9-'+json.dumps(V03,sort_keys=True)).encode()).hexdigest()[:8]
 
 # ---------------- pack (compact, positional)
 K={k:i for i,k in enumerate(KINDS)}; II={s:i for i,s in enumerate(INSTS)}; TFI={'5m':0,'15m':1,'1h':2,'session':3}

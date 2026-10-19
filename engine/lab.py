@@ -79,6 +79,7 @@ def run_ob(r):
     return out
 MONTHS=sorted(set(c['month'] for c in CANDS))
 DIALS=dict(entry=['fvg_first','ob_first'],windows=['both','ny','london','ny_open'],bias=['none','h1','pd','daily'],smt=['required','optional'],pool=['quality','session','eq','htf'],markets=['all','nq','es'],target=['pool','2R'],manage=['none'],sweep=['any','instant'],first=['no','yes'],news=['keep','skip'],minstop=['any','half_atr'])
+if os.environ.get('LAB_WINDOWS'): DIALS['windows']=os.environ['LAB_WINDOWS'].split(',')   # e.g. london only
 VARS=[]
 for combo in itertools.product(*DIALS.values()):
     r=dict(zip(DIALS.keys(),combo)); tr=run(r)
@@ -93,6 +94,7 @@ for combo in itertools.product(['all','nq','es'],['both','ny','london','ny_open'
 print('variants',len(VARS),round(time.time()-T0))
 BASE=dict(entry='fvg_first',windows='both',bias='none',smt='required',pool='quality',markets='all',target='pool',manage='none',sweep='any',first='no',news='keep',minstop='any')
 OBBASE=dict(markets='all',windows='both',manage='none')
+if os.environ.get('LAB_WINDOWS'): BASE['windows']=DIALS['windows'][0]   # the comparison uses the same sessions
 def find(route,r): return next(V for V in VARS if V['route']==route and V['rules']==r)
 LOOK=6; MIN_N=30
 def agg(V,ms):
@@ -168,10 +170,10 @@ OUT=dict(range=[str(days[0]),str(days[-1])],sessions=len(days),months=MONTHS,loo
  base_by_market=brk(baseV,lambda c:c['s']),base_by_session=brk(baseV,lambda c:c['sw']['win']),base_by_side=brk(baseV,lambda c:c['side']),
  source=('Databento: real CME futures 1-minute candles (NQ, ES, YM, RTY), front month rolled by volume' if SOURCE=='databento' else 'HistData.com 1-minute CFD prices (Nasdaq, S&P 500)')+', turned into 5-minute candles')
 try:
-    PREV=json.load(open(os.path.join(ROOT,'data','bt_out.json')))
+    PREV=json.load(open((os.environ.get('LAB_OUT') or os.path.join(ROOT,'data','bt_out.json'))))
     OUT['prev_now']=PREV.get('now'); OUT['prev_sum']=PREV.get('sum')
 except Exception: pass
-json.dump(OUT,open(os.path.join(ROOT,'data','bt_out.json'),'w'))
+json.dump(OUT,open((os.environ.get('LAB_OUT') or os.path.join(ROOT,'data','bt_out.json')),'w'))
 print('done',round(time.time()-T0))
 # ---- meta test: how far back to look, and whether to stick with the current rules unless clearly beaten
 def adaptive2(route,base,look,hyst):
@@ -202,7 +204,7 @@ for look in (6,):
             META.append(dict(route=route,look=look,hyst=hy,changes=ch,**summ(rows)))
 for x in META: print(x)
 OUT['meta']=META; OUT['common_from']=COMMON[0]
-json.dump(OUT,open(os.path.join(ROOT,'data','bt_out.json'),'w'))
+json.dump(OUT,open((os.environ.get('LAB_OUT') or os.path.join(ROOT,'data','bt_out.json')),'w'))
 # ---- raw findings for the brain (vault): every window sweep and every day, compact
 rows=[]
 for c in CS:

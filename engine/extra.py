@@ -34,6 +34,8 @@ for s in ('NQ','ES'):
         if len(r)<300 or r[0][0]!=570: continue
         month=dt.date.fromordinal(dt.date(1970,1,1).toordinal()+k).strftime('%Y-%m')
         atr=sum(rng[x] for x in keys[max(0,idx-14):idx])/max(1,min(14,idx)) if idx else None
+        closes=[D[x][-1][4] for x in keys[max(0,idx-20):idx] if D[x]]
+        trend_up=(D[keys[idx-1]][-1][4]>sum(closes)/len(closes)) if len(closes)>=20 else None   # yesterday's close vs the 20-day average
         for orm in (5,15,30):
             first=[x for x in r if x[0]<570+orm]; rest_i=len(first)
             if rest_i>=len(r): continue
@@ -50,7 +52,9 @@ for s in ('NQ','ES'):
                 for tgt in ('10R','close'):
                     target=entry+side*10*risk if tgt=='10R' else None
                     pnl=walk(r,rest_i,side,entry,stop,target)
-                    res[('orb',orm,stopk,tgt)].append((month,pnl/risk,risk))
+                    for filt in ('none','trend20'):
+                        if filt=='trend20' and (trend_up is None or (side==1)!=trend_up): continue   # only trade with the 20-day trend
+                        res[('orb',orm,stopk,tgt,filt)].append((month,pnl/risk,risk))
         # noise-band momentum: dropped after the first test (it lost money on the Nasdaq)
         if False:
             op=r[0][1]; prevc=D[keys[idx-1]][-1][4]
@@ -103,11 +107,11 @@ for mk in ('NQ','ES','both'):
         prev=MONTHS[i-6:i]; best=max(allkeys,key=lambda k:sum(mon[k][p] for p in prev))
         tot+=mon[best][m]; n+=cnt[best][m]; picks.append(best); eq+=mon[best][m]; pk=max(pk,eq); dd=min(dd,eq-pk); up+=mon[best][m]>0
     print(f'ORB re-picked monthly, {mk}: {n} trades {tot:+.1f}R on {len(MONTHS)-6} unseen months, worst drop {dd:.1f}R, {up} months up, settings changed {sum(1 for a,b in zip(picks,picks[1:]) if a!=b)} times')
-    pub=('orb',5,'candle','10R'); pr=[r for ss in src for r in OUT[ss].get(pub,[]) if r[0] in MONTHS[6:]]
+    pub=('orb',5,'candle','10R','none'); pr=[r for ss in src for r in OUT[ss].get(pub,[]) if r[0] in MONTHS[6:]]
     print(f'   published rule unchanged, same months: {len(pr)} trades {sum(net(r,ss) for ss in src for r in OUT[ss].get(pub,[]) if r[0] in MONTHS[6:]):+.1f}R')
 
 # ---- what the site and the farm need
-def keyname(k): return {'orm':k[1],'stop':k[2],'target':k[3]}
+def keyname(k): return {'orm':k[1],'stop':k[2],'target':k[3],'filter':k[4]}
 SUMMARY={'source':'Zarattini & Aziz, "Can Day Trading Really Be Profitable?" (SSRN 4416622)','months':len(MONTHS)-6,'markets':{}}
 for mk in ('NQ','ES','both'):
     src=['NQ','ES'] if mk=='both' else [mk]
@@ -120,7 +124,7 @@ for mk in ('NQ','ES','both'):
         prev=MONTHS[i-6:i]; best=max(allkeys,key=lambda k:sum(mon[k][p] for p in prev))
         tot+=mon[best][m]; n+=cnt[best][m]; eq+=mon[best][m]; pk=max(pk,eq); dd=min(dd,eq-pk); up+=mon[best][m]>0; curve.append([m,round(eq,2)])
     now=max(allkeys,key=lambda k:sum(mon[k][p] for p in MONTHS[-6:]))
-    pub=('orb',5,'candle','10R'); pr=[(r[0],net(r,ss)) for ss in src for r in OUT[ss].get(pub,[]) if r[0] in MONTHS[6:]]
+    pub=('orb',5,'candle','10R','none'); pr=[(r[0],net(r,ss)) for ss in src for r in OUT[ss].get(pub,[]) if r[0] in MONTHS[6:]]
     SUMMARY['markets'][mk]=dict(adaptive=dict(n=n,R=round(tot,1),dd=round(dd,1),up=up),published=summ(pr),now=keyname(now),now_last6=round(sum(mon[now][p] for p in MONTHS[-6:]),1),curve=curve)
 json.dump(SUMMARY,open(os.path.join(ROOT,'data','orb_out.json'),'w'))
 print('ORB now:',{mk:SUMMARY['markets'][mk]['now'] for mk in SUMMARY['markets']})
