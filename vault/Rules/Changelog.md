@@ -15,13 +15,13 @@ type: changelog
 - Added a third strategy from published research: the opening-range breakout (Zarattini & Aziz, SSRN 4416622), with real futures trading costs and settings re-picked monthly. Nasdaq and S&P only for now.
 - Tested ICT's Silver Bullet hours and Judas swing on the sweep strategy. Neither went in.
 
-## v0.7 · 2026-10-18
+## v0.7 · 2026-10-19
 
 - **Fixed a clock bug** in the long backtest: the free history is New York time with daylight saving, and it had been read as fixed winter time, shifting every session by an hour for most of each year. All long-test results before this are wrong.
 - With the fix, the main strategy adjusting monthly made +40.79R on 63 unseen months. Not yet proven: see [[Lessons]].
 - Now trading the same four markets as Kronos indices.
 
-## v0.4 · 2026-10-18
+## v0.4 · 2026-10-19
 
 - Tested on 1487 days of prices (2021-01-04 to 2026-10-01) instead of 50.
 - New way of adjusting: every month, re-pick the settings that did best over the previous 6 months. Over 63 test months this beat fixed rules for both strategies, but neither made a reliable profit. See [[Lessons]].
