@@ -1,19 +1,19 @@
 ---
 type: setup
-examples: 19
+examples: 18
 taken: 0
 ---
 # Setup — London · 5m high or low
 
 > [!info]
-> Roughly break-even. No clear edge yet.
+> Losing money. A candidate to drop or tighten.
 
 | | how many | won | total | per trade |
 |---|---|---|---|---|
-| all examples | 19 | 32% | -1.00R | -0.05R |
+| all examples | 18 | 28% | -3.00R | -0.17R |
 | actually taken | 0 | – | 0.00R | – |
 
-By market: Nasdaq 4 (-1.00R), S&P 500 7 (+5.00R), the Dow 7 (-7.00R), the Russell 2000 1 (+2.00R).
+By market: Nasdaq 5 (-2.00R), S&P 500 6 (+6.00R), the Dow 7 (-7.00R), the Russell 2000 0 (0.00R).
 
 ## Trades taken
 

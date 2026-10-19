@@ -9,7 +9,7 @@ written_by: the site, automatically
 
 ## The two strategies
 
-- [[The main strategy]]: 16 trades, +5.00R, won 44%
+- [[The main strategy]]: 15 trades, +3.00R, won 40%
 - [[The order-block strategy]]: 0 trades, 0.00R, won 0%
 
 ## Doing best
@@ -17,41 +17,41 @@ written_by: the site, automatically
 | looking at | group | trades | won | per trade | total |
 |---|---|---|---|---|---|
 | time | 04:00 | 17 | 59% | +0.76R | +13.00R |
-| sweep | breakout | 15 | 53% | +0.54R | +8.03R |
-| direction | sells | 60 | 43% | +0.44R | +26.21R |
-| session | London | 71 | 44% | +0.31R | +22.00R |
+| direction | sells | 63 | 44% | +0.39R | +24.68R |
 | time | 03:00 | 21 | 43% | +0.29R | +6.00R |
-| level | Asia high or low | 8 | 38% | +0.21R | +1.68R |
+| session | London | 66 | 42% | +0.27R | +18.00R |
+| day | Mon | 25 | 48% | +0.26R | +6.47R |
+| sweep | breakout | 16 | 44% | +0.25R | +4.03R |
 
 ## Losing the most
 
 | looking at | group | trades | won | per trade | total |
 |---|---|---|---|---|---|
 | time | 08:00 | 8 | 0% | -1.00R | -8.00R |
-| level | 15m high or low | 17 | 12% | -0.57R | -9.64R |
-| session | NY | 85 | 13% | -0.52R | -44.35R |
-| direction | buys | 96 | 17% | -0.51R | -48.56R |
-| time | 09:00 | 74 | 14% | -0.49R | -36.40R |
-| hourly trend | disagreed | 56 | 20% | -0.41R | -22.95R |
+| day | Thu | 44 | 11% | -0.50R | -21.81R |
+| direction | buys | 93 | 18% | -0.48R | -44.35R |
+| level | 15m high or low | 17 | 18% | -0.46R | -7.85R |
+| session | NY | 90 | 19% | -0.42R | -37.67R |
+| day | Tue | 20 | 20% | -0.40R | -8.00R |
 
 ## Is each check helping?
 
-- An important level to target: skipped 31 trades that would have made -1.00R. So this check saved money.
-- Price swept it and came back: skipped 6 trades that would have made +6.00R. So this check cost money.
-- Matches the day's direction: skipped 15 trades that would have made +6.00R. So this check cost money.
+- An important level to target: skipped 28 trades that would have made -4.00R. So this check saved money.
+- Price swept it and came back: skipped 5 trades that would have made +4.00R. So this check cost money.
+- Matches the day's direction: skipped 15 trades that would have made +9.00R. So this check cost money.
 - The other market disagreed (SMT): skipped 0 trades that would have made 0.00R. Too few to tell.
 - The trend clearly flipped: skipped 0 trades that would have made 0.00R. Too few to tell.
 - Price came back to the entry: skipped 0 trades that would have made 0.00R. Too few to tell.
 
 ## Things that don't add up
 
-- The [[SMT]] check is earning its place: +0.09R a trade with it (52 trades) vs -0.43R without (51).
-- The "important level" check holds up: important levels -0.10R a trade (112) vs minor ones -0.25R (44).
-- The [[Grades]] work: A+ and A++ -0.06R a trade (25) vs B and C -0.19R (85).
+- The [[SMT]] check is earning its place: +0.15R a trade with it (54 trades) vs -0.40R without (48).
+- The "important level" check holds up: important levels -0.07R a trade (111) vs minor ones -0.26R (45).
+- The [[Grades]] work: A+ and A++ +0.02R a trade (28) vs B and C -0.22R (81).
 
 ## What's missing
 
-- 16 trades is far too few. Anything under about 100 could flip either way.
+- 15 trades is far too few. Anything under about 100 could flip either way.
 - Everything uses 5-minute candles. 2-minute data starts 2026-09-08.
 - Big news releases aren't filtered, fees are estimated, and entries assume a perfect fill.
 - Rules: [[Rulebook v0.10]].
