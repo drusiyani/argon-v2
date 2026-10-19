@@ -3,24 +3,31 @@ type: changelog
 ---
 # Changelog
 
+## v0.9
+
+- Tested on 5 years of real CME futures (Databento, 2021–2026, all four markets). The main strategy passed the exam set in advance on 2021–2023.
+- **Main strategy now trades the London session only.** New York lost money over the 5 years; London-only was positive in both 2021–23 and 2024–26. Chosen after looking at that data, so the forward test has to confirm it.
+- **Opening range can now use a 20-day trend filter** (only trade the way the market's been going). The monthly re-pick currently chooses it for both markets.
+- **The order-block strategy was dropped.** It lost money overall on real futures, with a worst drop of about −70R.
+
 ## v0.8
 
 - Added a third strategy from published research: the opening-range breakout (Zarattini & Aziz, SSRN 4416622), with real futures trading costs and settings re-picked monthly. Nasdaq and S&P only for now.
 - Tested ICT's Silver Bullet hours and Judas swing on the sweep strategy. Neither went in.
 
-## v0.7 · 2026-10-16
+## v0.7 · 2026-10-18
 
 - **Fixed a clock bug** in the long backtest: the free history is New York time with daylight saving, and it had been read as fixed winter time, shifting every session by an hour for most of each year. All long-test results before this are wrong.
-- With the fix, the main strategy adjusting monthly made +17.56R on 63 unseen months. Not yet proven: see [[Lessons]].
+- With the fix, the main strategy adjusting monthly made +40.79R on 63 unseen months. Not yet proven: see [[Lessons]].
 - Now trading the same four markets as Kronos indices.
 
-## v0.4 · 2026-10-16
+## v0.4 · 2026-10-18
 
 - Tested on 1487 days of prices (2021-01-04 to 2026-10-01) instead of 50.
 - New way of adjusting: every month, re-pick the settings that did best over the previous 6 months. Over 63 test months this beat fixed rules for both strategies, but neither made a reliable profit. See [[Lessons]].
 - New settings Claude can use: "same direction as yesterday", "New York first 90 minutes only", "gold only".
 - Every trade is now played out on 1-minute candles, so the order of stop and target hits is exact. A new setting, "move the stop to entry at +1R", was tested and not picked.
-- This month's rules are in [[Rulebook v0.8]].
+- This month's rules are in [[Rulebook v0.9]].
 
 ## v0.3 · 13 October 2026
 

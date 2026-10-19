@@ -1,6 +1,6 @@
 ---
 type: agent
-updated: 2026-10-16
+updated: 2026-10-19
 built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
 ---
 # Sceptic

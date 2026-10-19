@@ -1,6 +1,6 @@
 ---
 type: question
-updated: 2026-10-16
+updated: 2026-10-19
 built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
 answer: "unclear, the difference is small"
 ---
@@ -14,7 +14,7 @@ With SMT: -0.05R a trade (1451 trades). Without: -0.11R a trade (3255 trades).
 
 ## How the answer has changed
 
-- 2026-10-16: first answer.
+- 2026-10-19: first answer.
 
 All questions: [[Questions]].
 

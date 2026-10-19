@@ -1,6 +1,6 @@
 ---
 type: question
-updated: 2026-10-16
+updated: 2026-10-19
 built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
 answer: "yes, the main strategy"
 ---
@@ -10,7 +10,7 @@ answer: "yes, the main strategy"
 
 **Current answer:** yes, the main strategy
 
-Main: +17.56R over 371 trades. Order-block: -12.65R over 913 trades. Over 63 test months.
+Main: +40.79R over 415 trades. Order-block: -12.65R over 913 trades. Over 63 test months.
 
 ## How the answer has changed
 
