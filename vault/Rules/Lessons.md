@@ -12,7 +12,7 @@ What Claude learned from testing on 1487 days of prices (2021-01-04 to 2026-10-0
 3. **Hindsight is a trap.** The single best version over the whole period made +58.10R on the test months. You can only find it after the fact. Picked month by month, nothing came close.
 4. **There's no magic lookback.** Looking back 3, 6, 9 or 12 months gave anything from -0.01R to +14.97R for the main strategy and -40.83R to -32.57R for the order-block one. No setting is reliably good, so we stay with 6 months, which was chosen before testing. Picking the best one now would just be overfitting again.
 5. **Where the old rules lost most:** the Russell 2000 (-15.58R over 96 trades) and the London session (+25.73R).
-6. **This month's rules (v0.9)** come from the last 6 months. Main strategy: +19.50R over 30 trades. Order-block strategy: +11.80R over 61 trades. Expect them to change again next month.
+6. **This month's rules (v0.10)** come from the last 6 months. Main strategy: +19.50R over 30 trades. Order-block strategy: +11.80R over 61 trades. Expect them to change again next month.
 7. **A clock bug was hiding the result.** The free history is stamped in New York time with daylight saving, but it had been read as winter time, so for about 8 months of every year everything was an hour late: the New York window was really testing 7:30 to 10:30am. Fixed, the main strategy adjusting monthly went from losing to +40.79R over 415 trades on months it wasn't tuned on. That's encouraging, but it's roughly a 1 in 7 chance a strategy with no edge would look this good by luck, so it still needs the unseen 2021 to 2023 futures and the forward test before launch.
 8. **Moving the stop to entry once a trade is +1R didn't help** in earlier tests, so it's switched off.
 9. **Now trading the same markets as Kronos indices:** the Nasdaq, S&P 500, Dow and Russell 2000. Only the Nasdaq and S&P 500 have years of history for the long test; the Dow and Russell are only judged on the recent futures data until more is saved.
@@ -21,7 +21,7 @@ What Claude learned from testing on 1487 days of prices (2021-01-04 to 2026-10-0
 12. **Learning from mistakes cut the losses but didn't create an edge.** Tagging every losing setup and avoiding the mistakes that kept costing money took "take every setup" from -296.70R to -175.00R on months it hadn't seen. A first version of this looked like +98R, because it used losses that hadn't finished yet. Fixed, it's honest.
 13. **Bottom line: no proven edge yet.** The forward test in November, on days nobody has seen, is what decides whether this goes live.
 
-Changes are logged in the [[Changelog]]. Current rules: [[Rulebook v0.9]].
+Changes are logged in the [[Changelog]]. Current rules: [[Rulebook v0.10]].
 
 %% my notes below. Argon never changes anything under this line %%
 ## My notes

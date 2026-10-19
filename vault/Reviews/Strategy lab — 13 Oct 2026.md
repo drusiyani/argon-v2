@@ -11,7 +11,7 @@ passed: 0
 
 ## Result
 
-1,305 versions tried → 12 made money in both practice halves → 5 best picked → 0 passed the exam. So Rulebook v0.9 keeps the same rules, plus the risk rules from Argon v1.
+1,305 versions tried → 12 made money in both practice halves → 5 best picked → 0 passed the exam. So Rulebook v0.10 keeps the same rules, plus the risk rules from Argon v1.
 
 ## The five best
 
@@ -24,7 +24,7 @@ passed: 0
 | entry fvg_first, windows both, bias pd, smt optional, pool any, markets all, target pool | +14.66R (26 trades) | -10.17R (15) | -8.4R | failed |
 | old rules (v0.2) | +0.61R (14) | -3.12R (12) | – | for comparison |
 
-Why, in plain English: [[Lessons]]. Current rules: [[Rulebook v0.9]].
+Why, in plain English: [[Lessons]]. Current rules: [[Rulebook v0.10]].
 
 %% my notes below. Argon never changes anything under this line %%
 ## My notes

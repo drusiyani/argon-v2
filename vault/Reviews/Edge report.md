@@ -54,7 +54,7 @@ written_by: the site, automatically
 - 16 trades is far too few. Anything under about 100 could flip either way.
 - Everything uses 5-minute candles. 2-minute data starts 2026-09-08.
 - Big news releases aren't filtered, fees are estimated, and entries assume a perfect fill.
-- Rules: [[Rulebook v0.9]].
+- Rules: [[Rulebook v0.10]].
 
 %% my notes below. Argon never changes anything under this line %%
 ## My notes

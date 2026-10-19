@@ -3,6 +3,13 @@ type: changelog
 ---
 # Changelog
 
+## v0.10
+
+- **The portfolio is now the main strategy plus the opening range on the Nasdaq**, 0.5% risk each. On 5 years of real futures: Sharpe 0.98 (better than either alone, because they barely move together), about +20% a year, worst drop about −40%.
+- **The S&P opening range was dropped.** Sharpe 0.33; adding it lowered the portfolio's Sharpe from 0.98 to 0.84.
+- **Volatility-scaled sizing was tested and rejected.** Risking less after wild months lowered the Sharpe (0.98 to 0.92) and made the worst drop deeper.
+- Cleaned up the design: no gradient text, no glow, no animated borders, no fade-ins, no cursor glow, no badges above headings.
+
 ## v0.9
 
 - Tested on 5 years of real CME futures (Databento, 2021–2026, all four markets). The main strategy passed the exam set in advance on 2021–2023.
@@ -27,7 +34,7 @@ type: changelog
 - New way of adjusting: every month, re-pick the settings that did best over the previous 6 months. Over 63 test months this beat fixed rules for both strategies, but neither made a reliable profit. See [[Lessons]].
 - New settings Claude can use: "same direction as yesterday", "New York first 90 minutes only", "gold only".
 - Every trade is now played out on 1-minute candles, so the order of stop and target hits is exact. A new setting, "move the stop to entry at +1R", was tested and not picked.
-- This month's rules are in [[Rulebook v0.9]].
+- This month's rules are in [[Rulebook v0.10]].
 
 ## v0.3 · 13 October 2026
 
