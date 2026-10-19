@@ -61,12 +61,13 @@ jobs:
           pip install playwright==1.47.0
           python -m playwright install --with-deps chromium
           python engine/brain.py
-      - name: Claude's weekly reflection (Fridays, only if the API key secret is set)
+      - name: Claude's weekly reflection and the research scout (Fridays, only if the API key secret is set)
         if: github.event.schedule == '30 22 * * 1-5'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
-          if [ "$(date -u +%u)" = "5" ]; then python engine/reflect.py; python engine/agents_reflect.py; fi
+          if [ "$(date -u +%u)" = "5" ]; then python engine/reflect.py; python engine/agents_reflect.py; python engine/scout.py || echo "scout skipped"; fi
       - name: Keep a safety copy of the Databento download (so a failed save never costs credit twice)
         if: steps.mode.outputs.mode != 'daily'
         uses: actions/upload-artifact@v4

@@ -729,7 +729,8 @@ elif os.environ.get('KRONOS_URL'):
     try: KRON=json.loads(urllib.request.urlopen(os.environ['KRONOS_URL'],timeout=20).read())
     except Exception: KRON=None
 _mp=os.path.join(ROOT,'data','mistakes.json'); MIST=json.load(open(_mp)) if os.path.exists(_mp) else None
-out=dict(mistakes=MIST,kronos=KRON,orb=ORB,desk=DESK,bt=BT,lab=LABOUT,sig=SIG,rules=RULES_VERSION,days=[str(d) for d in days],kinds=KINDS,insts=INSTS,names=NAMES,tick=TICK,events=packed,trades=TR,chart=chart,levels=lv,generated=dt.datetime.now(NY).strftime('%Y-%m-%d %H:%M'),two_min_from=str(B2['NQ'][0]['sd']))
+_sp=os.path.join(ROOT,'data','scout.json'); SCOUT=json.load(open(_sp)) if os.path.exists(_sp) else None
+out=dict(scout=SCOUT,mistakes=MIST,kronos=KRON,orb=ORB,desk=DESK,bt=BT,lab=LABOUT,sig=SIG,rules=RULES_VERSION,days=[str(d) for d in days],kinds=KINDS,insts=INSTS,names=NAMES,tick=TICK,events=packed,trades=TR,chart=chart,levels=lv,generated=dt.datetime.now(NY).strftime('%Y-%m-%d %H:%M'),two_min_from=str(B2['NQ'][0]['sd']))
 json.dump(out,open(os.path.join(ROOT,'data','farm.json'),'w'),separators=(',',':'))
 c=collections.Counter(e['kind'] for e in EV)
 print(len(days),'days',len(EV),'events',c)

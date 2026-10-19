@@ -125,6 +125,14 @@ for mk in ('NQ','ES','both'):
         tot+=mon[best][m]; n+=cnt[best][m]; eq+=mon[best][m]; pk=max(pk,eq); dd=min(dd,eq-pk); up+=mon[best][m]>0; curve.append([m,round(eq,2)])
     now=max(allkeys,key=lambda k:sum(mon[k][p] for p in MONTHS[-6:]))
     pub=('orb',5,'candle','10R','none'); pr=[(r[0],net(r,ss)) for ss in src for r in OUT[ss].get(pub,[]) if r[0] in MONTHS[6:]]
-    SUMMARY['markets'][mk]=dict(adaptive=dict(n=n,R=round(tot,1),dd=round(dd,1),up=up),published=summ(pr),now=keyname(now),now_last6=round(sum(mon[now][p] for p in MONTHS[-6:]),1),curve=curve)
+    mr=[]; pv=0
+    for _m,_v in curve: mr.append(_v-pv); pv=_v
+    _mu=sum(mr)/len(mr) if mr else 0; _sd=(sum((x-_mu)**2 for x in mr)/(len(mr)-1))**.5 if len(mr)>2 else 0
+    fan=[]
+    for k in allkeys:
+        t=0; c=[]
+        for m in MONTHS[6:]: t+=mon[k][m]; c.append(round(t,1))
+        fan.append(c)
+    SUMMARY['markets'][mk]=dict(sharpe=round(_mu/_sd*12**.5,2) if _sd>0 else 0.0,fan=fan,adaptive=dict(n=n,R=round(tot,1),dd=round(dd,1),up=up),published=summ(pr),now=keyname(now),now_last6=round(sum(mon[now][p] for p in MONTHS[-6:]),1),curve=curve)
 json.dump(SUMMARY,open(os.path.join(ROOT,'data','orb_out.json'),'w'))
 print('ORB now:',{mk:SUMMARY['markets'][mk]['now'] for mk in SUMMARY['markets']})

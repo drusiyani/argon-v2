@@ -6,7 +6,7 @@ Rules it follows:
   * "Living" notes (markets, levels, sessions, questions) are re-measured from all the data every run,
     and when a finding moves, the change is written into that note's history.
 """
-import os,json,re,shutil,datetime as dt,collections,subprocess,sys
+import os, re,json,re,shutil,datetime as dt,collections,subprocess,sys
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 VAULT=os.path.join(ROOT,'vault'); STATE=os.path.join(VAULT,'.argon','state.json')
 MARK='%% my notes below. Argon never changes anything under this line %%'
@@ -244,6 +244,24 @@ gp=os.path.join(VAULT,'.obsidian','graph.json')
 if not os.path.exists(gp):
     rgb=lambda h:int(h.lstrip('#'),16)
     json.dump({"colorGroups":[{"query":f"path:{p}","color":{"a":1,"rgb":rgb(c)}} for p,c in (("Days","#E6B54A"),("Trades","#3FBF7F"),("Markets","#5B8DEF"),("Levels","#8F84C9"),("Questions","#F59A3E"),("Agents","#E46FD8"),("Months","#9C7A2E"),("Ideas","#4FC3D9"),("Rules","#ECE6D8"))],"showOrphans":True},open(gp,'w'),indent=1)
+# ---- research scout: an idea card for every idea it tested, and an inbox for Dru's own ideas
+_sc=os.path.join(ROOT,'data','scout.json')
+if os.path.exists(_sc):
+    SC=json.load(open(_sc)); idx=[]
+    for x in SC.get('ideas',[]):
+        nm=re.sub(r'[\\/:*?"<>|#^\[\]]','',(x.get('recipe') or {}).get('name') or x.get('idea','Idea'))[:60].strip() or 'Idea'
+        title=f"{x['date']} {nm}"; r=x.get('result') or {}; s_=r.get('summary')
+        body=note_head('scouted-idea')+f"# {nm}\n\n**Verdict:** {x.get('verdict','pending')}\n\n**Idea:** {x.get('idea','')}\n\n**Source:** "+(f"[{x['source']['title']}]({x['source']['url']})" if str(x['source'].get('url','')).startswith('http') else x['source'].get('title',''))+"\n\n"
+        if s_: body+=f"## Test on 5 years of real futures\n\n{s_['n']} trades, {R(s_['R'])}, worst drop {s_['dd']}R, Sharpe {s_['sharpe']} (random entries: {r['random_sharpe']['median']}). First half {R(s_['first_half'])}, second half {R(s_['second_half'])}.\n\n"+'\n'.join(f"- {'✅' if ok else '❌'} {c}" for c,ok in r.get('checks',[]))+"\n\n"
+        if r.get('problems'): body+="## Rejected by the critic before testing\n\n"+'\n'.join('- '+p for p in r['problems'])+"\n\n"
+        if x.get('review'): body+=f"## The critic's review\n\n> [!quote]\n> {x['review']}\n\n"
+        if x.get('recipe'): body+="## The recipe\n\n```json\n"+json.dumps(x['recipe'],indent=1)+"\n```\n"
+        write('Ideas/Scout',title,body); idx.append(f"- [[{title}]] · {x.get('verdict','pending')}")
+    write('Ideas','Research scout',note_head('scout')+"# Research scout\n\nEvery Friday a Claude scout reads new trading research, a recipe builder turns the best ideas into testable rules, and the critic tests them on 5 years of real futures. Drop your own ideas into [[Inbox]] as bullet points under the my-notes line and the scout will read them too.\n\n"+'\n'.join(reversed(idx)))
+_ib=os.path.join(VAULT,'Ideas','Inbox.md')
+if not os.path.exists(_ib):
+    os.makedirs(os.path.dirname(_ib),exist_ok=True)
+    open(_ib,'w').write("---\ntype: inbox\n---\n# Inbox\n\nWrite trading ideas here, one bullet each, under the line below. Every Friday the [[Research scout]] reads them, turns the best into a recipe and tests it.\n\n%% my notes below — Argon never edits anything under this line %%\n\n")
 # ---- home
 notes=sum(len([f for f in fs if f.endswith('.md')]) for _,_,fs in os.walk(VAULT))
 words=sum(len(open(os.path.join(dp,f)).read().split()) for dp,_,fs in os.walk(VAULT) for f in fs if f.endswith('.md'))

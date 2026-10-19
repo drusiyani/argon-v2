@@ -127,7 +127,9 @@ hind=max([V for V in VARS if V['route']=='chain'],key=lambda V:agg(V,MONTHS)[1])
 def summ(rows):
     n=sum(r['n'] for r in rows); R_=sum(r['R'] for r in rows); w=sum(r['w'] for r in rows); eq=pk=dd=0
     for r in rows: eq+=r['R']; pk=max(pk,eq); dd=min(dd,eq-pk)
-    return dict(n=n,R=round(R_,2),wr=round(w/n,3) if n else 0,dd=round(dd,2),months_up=sum(1 for r in rows if r['R']>0),months=len(rows))
+    mr=[r['R'] for r in rows]; mu=sum(mr)/len(mr) if mr else 0; sd=(sum((x-mu)**2 for x in mr)/(len(mr)-1))**.5 if len(mr)>2 else 0
+    sh=round(mu/sd*12**.5,2) if sd>0 else 0.0      # Sharpe ratio: average month / how much months vary, per year
+    return dict(n=n,R=round(R_,2),wr=round(w/n,3) if n else 0,dd=round(dd,2),months_up=sum(1 for r in rows if r['R']>0),months=len(rows),sharpe=sh)
 def summV(V,ms): return summ([dict(n=V['mon'].get(m,(0,0,0))[0],R=V['mon'].get(m,(0,0,0))[1],w=V['mon'].get(m,(0,0,0))[2]) for m in ms])
 adO=[r for r in AD if r['month'] in OOS]; adobO=[r for r in ADOB if r['month'] in OOS]
 print('adaptive chain OOS',summ(adO)); print('baseline chain OOS',summV(baseV,OOS)); print('hindsight',hind['rules'],summV(hind,MONTHS))
@@ -161,7 +163,14 @@ def brk(V,fn):
     return {k:[v[0],round(v[1],2),round(v[2]/v[0],3)] for k,v in d.items()}
 allchain=[V for V in VARS if V['route']=='chain']
 yrs=sorted(set(m[:4] for m in MONTHS))
-OUT=dict(range=[str(days[0]),str(days[-1])],sessions=len(days),months=MONTHS,look=LOOK,min_n=MIN_N,n_variants=len(VARS),n_cands=len(CANDS),n_obc=len(OBC),
+import random as _rnd
+_pool=[V for V in VARS if V['route']=='chain' and agg(V,OOS)[0]>=MIN_N]; _rnd.Random(1).shuffle(_pool)
+def _cum(V):
+    t=0; out=[]
+    for m in OOS: t+=V['mon'].get(m,(0,0,0))[1]; out.append(round(t,1))
+    return out
+FAN=dict(months=OOS,curves=[_cum(V) for V in _pool[:150]],n_total=len(_pool))   # every faint line on the site's fan chart is one version
+OUT=dict(fan=FAN,range=[str(days[0]),str(days[-1])],sessions=len(days),months=MONTHS,look=LOOK,min_n=MIN_N,n_variants=len(VARS),n_cands=len(CANDS),n_obc=len(OBC),
  adaptive=AD,adaptive_ob=ADOB,base=series(baseV),base_ob=series(obV),hind=series(hind),hind_rules=hind['rules'],
  sum=dict(adaptive=summ(adO),base=summV(baseV,OOS),hind=summV(hind,OOS),adaptive_ob=summ(adobO),base_ob=summV(obV,OOS)),
  by_year={y:dict(adaptive=summ([r for r in adO if r['month'][:4]==y]),base=summV(baseV,[m for m in OOS if m[:4]==y])) for y in yrs},
