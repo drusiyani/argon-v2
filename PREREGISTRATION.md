@@ -48,3 +48,9 @@ treated as ideas to test, not as evidence.
 ## Freeze record
 
 - **Frozen at commit** `cdefedc2715294c25842c50fedc0548ce6cc4ae2` (20 October 2026). The rules, costs, prompts and model versions above are the ones in that commit. GitHub's history shows its timestamp and that nothing above this section has changed since.
+
+## Amendment 1 (20 October 2026)
+
+- The freeze is **lifted** at Dru's request, so changes can still be made. Every change from now is logged in the changelog.
+- Before the AI experiment starts, the rules will be **frozen again** with a new freeze record here. The evaluation window (1 January to 31 March 2027), the tests and the N ≥ 100 rule above stay exactly as written.
+- The forward test only counts from the date of the new freeze.
