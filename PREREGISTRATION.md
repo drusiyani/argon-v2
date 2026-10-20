@@ -43,3 +43,8 @@ any later change has to be a new, dated section at the bottom, and the original 
 
 The desk is scored on its **decisions** only. The agents' written reasons and weekly lessons are recorded as text and
 treated as ideas to test, not as evidence.
+
+
+## Freeze record
+
+- **Frozen at commit** `cdefedc2715294c25842c50fedc0548ce6cc4ae2` (20 October 2026). The rules, costs, prompts and model versions above are the ones in that commit. GitHub's history shows its timestamp and that nothing above this section has changed since.
