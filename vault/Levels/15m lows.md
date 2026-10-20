@@ -1,31 +1,31 @@
 ---
 type: level
-updated: 2026-10-19
+updated: 2026-10-20
 built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
 ---
 # 15m lows
 
-So far trading sweeps of 15m lows is roughly break-even (-0.05R a trade over 293 trades).
+So far trading sweeps of 15m lows has lost money: -0.15R a trade over 248 trades.
 
 ## Everywhere
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| 15m lows | 8948 | 65% | 10% | 293 | 37% | -0.05R |
+| 15m lows | 8221 | 66% | 10% | 248 | 34% | -0.15R |
 
 ## By market
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| [[Nasdaq]] | 2315 | 66% | 9% | 68 | 40% | +0.08R |
-| [[S&P 500]] | 2122 | 64% | 9% | 58 | 33% | -0.18R |
+| [[Nasdaq]] | 2133 | 66% | 9% | 61 | 39% | +0.06R |
+| [[S&P 500]] | 1915 | 65% | 8% | 46 | 28% | -0.30R |
 
 ## By session
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| [[London (session)]] | 3809 | 64% | 9% | 88 | 26% | -0.27R |
-| [[New York (session)]] | 5139 | 66% | 12% | 205 | 41% | +0.04R |
+| [[London (session)]] | 3809 | 64% | 9% | 81 | 22% | -0.50R |
+| [[New York (session)]] | 4412 | 67% | 12% | 167 | 40% | +0.02R |
 
 Columns: how many times price poked past it, how often it came back (a sweep, not a breakout), how often the trend then clearly flipped, and what a simple trade (enter at the order block, target 2× the risk) would have done. [[What R means]].
 
@@ -33,6 +33,7 @@ Columns: how many times price poked past it, how often it came back (a sweep, no
 
 - 2026-10-13: result per trade moved from -0.10R to -0.21R
 - 2026-10-16: result per trade moved from -0.16R to -0.05R
+- 2026-10-20: result per trade moved from -0.05R to -0.15R
 
 Part of [[Key levels]]. Swept levels are explained in [[Sweep]].
 

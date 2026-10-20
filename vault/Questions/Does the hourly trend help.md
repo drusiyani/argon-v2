@@ -1,6 +1,6 @@
 ---
 type: question
-updated: 2026-10-19
+updated: 2026-10-20
 built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
 answer: "unclear, the difference is small"
 ---
@@ -10,7 +10,7 @@ answer: "unclear, the difference is small"
 
 **Current answer:** unclear, the difference is small
 
-With the hourly trend: -0.06R a trade (2442 trades). Against it: -0.13R a trade (2264 trades).
+With the hourly trend: -0.14R a trade (2180 trades). Against it: -0.22R a trade (2090 trades).
 
 ## How the answer has changed
 

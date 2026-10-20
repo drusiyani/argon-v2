@@ -1,6 +1,6 @@
 ---
 type: question
-updated: 2026-10-19
+updated: 2026-10-20
 built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
 answer: "yes"
 ---
@@ -10,7 +10,7 @@ answer: "yes"
 
 **Current answer:** yes
 
-Same way as yesterday: -0.04R a trade (2352 trades). Against it: -0.15R a trade (2354 trades).
+Same way as yesterday: -0.10R a trade (2152 trades). Against it: -0.26R a trade (2118 trades).
 
 ## How the answer has changed
 

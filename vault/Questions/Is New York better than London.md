@@ -1,20 +1,20 @@
 ---
 type: question
-updated: 2026-10-19
+updated: 2026-10-20
 built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
-answer: "unclear, the difference is small"
+answer: "yes"
 ---
 # Is New York better than London
 
 **Question:** Is the [[New York (session)|New York session]] better to trade than [[London (session)|London]]?
 
-**Current answer:** unclear, the difference is small
+**Current answer:** yes
 
-New York: -0.07R a trade (2871 trades). London: -0.12R a trade (1835 trades).
+New York: -0.11R a trade (2475 trades). London: -0.27R a trade (1795 trades).
 
 ## How the answer has changed
 
-- 2026-10-19: first answer.
+- 2026-10-20: answer changed from "unclear, the difference is small" to "yes"
 
 All questions: [[Questions]].
 

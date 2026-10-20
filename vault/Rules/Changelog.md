@@ -3,6 +3,14 @@ type: changelog
 ---
 # Changelog
 
+## v1.0: frozen, stress-tested (20 Oct 2026)
+
+- **Rules frozen** for the forward test and the AI experiment. See the pre-registration.
+- **Stress test** after a harsh outside review: limit orders now need price to trade a full tick through; stops slip (3 ticks in the first 15 minutes); real per-market costs on every trade; no trading on contract roll days; no new trades 8:25–8:40; flat before 2pm on Fed days.
+- **Result: the main strategy's edge disappeared** (from +40.8R to −16.3R) and it failed the 2021–23 exam it had passed. The opening range on the Nasdaq held up (Sharpe 0.68 vs 0.02 for random entries), but the portfolio's Sharpe fell to 0.52 and buy-and-hold Nasdaq did better.
+- **Deflated Sharpe:** after allowing for ~33,000 versions tried, the chance the portfolio's edge is real is about 0.3%. Most of the earlier edge was generous fills plus the luck of many tries.
+- Added data checks (the 9:30 open must line up), confidence ranges, Sortino, buy-and-hold and random-entry benchmarks, and whole micro contracts.
+
 ## v0.10
 
 - **The portfolio is now the main strategy plus the opening range on the Nasdaq**, 0.5% risk each. On 5 years of real futures: Sharpe 0.98 (better than either alone, because they barely move together), about +20% a year, worst drop about −40%.
@@ -22,23 +30,23 @@ type: changelog
 - Added a third strategy from published research: the opening-range breakout (Zarattini & Aziz, SSRN 4416622), with real futures trading costs and settings re-picked monthly. Nasdaq and S&P only for now.
 - Tested ICT's Silver Bullet hours and Judas swing on the sweep strategy. Neither went in.
 
-## v0.7 · 2026-10-19
+## v0.7 · 2026-10-20
 
 - **Fixed a clock bug** in the long backtest: the free history is New York time with daylight saving, and it had been read as fixed winter time, shifting every session by an hour for most of each year. All long-test results before this are wrong.
-- With the fix, the main strategy adjusting monthly made +40.79R on 63 unseen months. Not yet proven: see [[Lessons]].
+- With the fix, the main strategy adjusting monthly made -16.31R on 63 unseen months. Not yet proven: see [[Lessons]].
 - Now trading the same four markets as Kronos indices.
 
-## v0.4 · 2026-10-19
+## v0.4 · 2026-10-20
 
 - Tested on 1487 days of prices (2021-01-04 to 2026-10-01) instead of 50.
 - New way of adjusting: every month, re-pick the settings that did best over the previous 6 months. Over 63 test months this beat fixed rules for both strategies, but neither made a reliable profit. See [[Lessons]].
 - New settings Claude can use: "same direction as yesterday", "New York first 90 minutes only", "gold only".
 - Every trade is now played out on 1-minute candles, so the order of stop and target hits is exact. A new setting, "move the stop to entry at +1R", was tested and not picked.
-- This month's rules are in [[Rulebook v0.10]].
+- This month's rules are in [[Rulebook v1.0]].
 
 ## v0.3 · 13 October 2026
 
-- The rules became settings that Claude can adjust. This week's [[Strategy lab — 13 Oct 2026|lab]] tried 1,305 versions; 10 passed the first test; the 5 best all failed on unseen days. **Nothing changed.**
+- The rules became settings that Claude can adjust. This week's [[Strategy lab — 13 Oct 2026|lab]] tried 1,305 versions; 12 passed the first test; the 5 best all failed on unseen days. **Nothing changed.**
 - Added Argon v1's risk rules.
 - Added a "day's direction" check, and a bad luck / bad reasoning verdict on losing trades.
 - See [[Lessons]].

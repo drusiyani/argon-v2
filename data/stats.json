@@ -1,0 +1,157 @@
+{
+ "months": [
+  "2021-07",
+  "2026-09",
+  63
+ ],
+ "strategies": {
+  "Portfolio": {
+   "sharpe": 0.52,
+   "sortino": 0.95,
+   "cagr": 10.1,
+   "max_dd": -51.5,
+   "sharpe_ci": [
+    -0.55,
+    1.39
+   ],
+   "cagr_ci": [
+    -12.8,
+    35.9
+   ],
+   "dd_median": -34.7,
+   "dd_bad": -58.8,
+   "p_losing": 0.175,
+   "deflated_lab": {
+    "dsr": 0.018,
+    "sr0_annual": 1.41,
+    "trials": 2296
+   },
+   "deflated_project": {
+    "dsr": 0.003,
+    "sr0_annual": 1.67,
+    "trials": 33000
+   }
+  },
+  "Main strategy": {
+   "sharpe": -0.19,
+   "sortino": -0.3,
+   "cagr": -1.9,
+   "max_dd": -32.9,
+   "sharpe_ci": [
+    -1.56,
+    0.7
+   ],
+   "cagr_ci": [
+    -9.9,
+    6.4
+   ],
+   "dd_median": -25.3,
+   "dd_bad": -41.8,
+   "p_losing": 0.729,
+   "deflated_lab": {
+    "dsr": 0.0,
+    "sr0_annual": 1.41,
+    "trials": 2296
+   },
+   "deflated_project": {
+    "dsr": 0.0,
+    "sr0_annual": 1.67,
+    "trials": 33000
+   }
+  },
+  "Opening range Nasdaq": {
+   "sharpe": 0.68,
+   "sortino": 1.29,
+   "cagr": 12.5,
+   "max_dd": -37.8,
+   "sharpe_ci": [
+    -0.31,
+    1.52
+   ],
+   "cagr_ci": [
+    -7.3,
+    35.1
+   ],
+   "dd_median": -27.0,
+   "dd_bad": -47.7,
+   "p_losing": 0.087,
+   "deflated_lab": {
+    "dsr": 0.038,
+    "sr0_annual": 1.41,
+    "trials": 2296
+   },
+   "deflated_project": {
+    "dsr": 0.008,
+    "sr0_annual": 1.67,
+    "trials": 33000
+   }
+  }
+ },
+ "orb_trade_mean": {
+  "mean": 0.132,
+  "ci": [
+   -0.037,
+   0.311
+  ],
+  "days": 1095,
+  "trades": 1095
+ },
+ "orb_micro": {
+  "R": 128.9,
+  "sharpe": 0.63,
+  "skipped": 1,
+  "note": "$100,000 account, 0.5% risk, rounded down to whole MNQ contracts"
+ },
+ "buy_and_hold": {
+  "NQ": {
+   "sharpe": 0.8,
+   "cagr": 15.3,
+   "max_dd": -32.5
+  },
+  "ES": {
+   "sharpe": 0.81,
+   "cagr": 11.8,
+   "max_dd": -24.4
+  }
+ },
+ "random_entries": {
+  "NQ": {
+   "R": 3.6,
+   "sharpe": 0.02
+  },
+  "ES": {
+   "R": -75.0,
+   "sharpe": -0.27
+  }
+ },
+ "risk_levels": [
+  {
+   "risk": 0.25,
+   "cagr": 5.6,
+   "dd": -29.8,
+   "dd_bad": -35.0,
+   "p_halved": 0.002
+  },
+  {
+   "risk": 0.5,
+   "cagr": 10.1,
+   "dd": -51.5,
+   "dd_bad": -58.9,
+   "p_halved": 0.135
+  },
+  {
+   "risk": 1.0,
+   "cagr": 15.3,
+   "dd": -78.1,
+   "dd_bad": -85.6,
+   "p_halved": 0.739
+  },
+  {
+   "risk": 2.0,
+   "cagr": 9.7,
+   "dd": -96.5,
+   "dd_bad": -99.0,
+   "p_halved": 0.994
+  }
+ ]
+}

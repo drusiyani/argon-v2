@@ -1,6 +1,6 @@
 ---
 type: question
-updated: 2026-10-19
+updated: 2026-10-20
 built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
 answer: "yes"
 ---
@@ -10,11 +10,11 @@ answer: "yes"
 
 **Current answer:** yes
 
-Nasdaq: -0.05R a trade (1223 trades). S&P 500: -0.16R a trade (1034 trades).
+Nasdaq: -0.07R a trade (1115 trades). S&P 500: -0.29R a trade (910 trades).
 
 ## How the answer has changed
 
-- 2026-10-19: first answer.
+- 2026-10-20: first answer.
 
 All questions: [[Questions]].
 

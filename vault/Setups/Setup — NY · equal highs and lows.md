@@ -10,10 +10,10 @@ taken: 0
 
 | | how many | won | total | per trade |
 |---|---|---|---|---|
-| all examples | 37 | 22% | -11.66R | -0.32R |
+| all examples | 37 | 19% | -15.01R | -0.41R |
 | actually taken | 0 | – | 0.00R | – |
 
-By market: Nasdaq 6 (-6.00R), S&P 500 7 (-4.90R), the Dow 9 (+6.45R), the Russell 2000 15 (-7.21R).
+By market: Nasdaq 6 (-6.00R), S&P 500 7 (-7.00R), the Dow 9 (+6.45R), the Russell 2000 15 (-8.46R).
 
 ## Trades taken
 

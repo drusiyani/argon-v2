@@ -1,0 +1,34 @@
+{
+ "markets": {
+  "NQ": {
+   "open_aligned": 0.998,
+   "sessions": 1482,
+   "duplicates": 30103,
+   "roll_days": 23,
+   "ok": true
+  },
+  "ES": {
+   "open_aligned": 0.996,
+   "sessions": 1482,
+   "duplicates": 30110,
+   "roll_days": 23,
+   "ok": true
+  },
+  "YM": {
+   "open_aligned": 0.995,
+   "sessions": 1482,
+   "duplicates": 28895,
+   "roll_days": 23,
+   "ok": true
+  },
+  "RTY": {
+   "open_aligned": 0.999,
+   "sessions": 1482,
+   "duplicates": 29091,
+   "roll_days": 23,
+   "ok": true
+  }
+ },
+ "ok": true,
+ "checked": "2026-10-20 07:26Z"
+}
