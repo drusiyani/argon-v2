@@ -84,12 +84,12 @@ VARS=[]
 for combo in itertools.product(*DIALS.values()):
     r=dict(zip(DIALS.keys(),combo)); tr=run(r)
     mon=collections.defaultdict(lambda:[0,0.0,0]); 
-    for m,Rr,sd,c in tr: x=mon[m]; x[0]+=1; x[1]+=Rr-0.05; x[2]+=1 if Rr>0 else 0
+    for m,Rr,sd,c in tr: x=mon[m]; x[0]+=1; x[1]+=Rr; x[2]+=1 if Rr>0 else 0
     VARS.append(dict(route='chain',rules=r,mon={m:tuple(v) for m,v in mon.items()},trades=tr))
 for combo in itertools.product(['all','nq','es'],['both','ny','london','ny_open'],['none','be1']):
     r=dict(markets=combo[0],windows=combo[1],manage=combo[2]); tr=run_ob(r)
     mon=collections.defaultdict(lambda:[0,0.0,0])
-    for m,Rr,sd,c in tr: x=mon[m]; x[0]+=1; x[1]+=Rr-0.05; x[2]+=1 if Rr>0 else 0
+    for m,Rr,sd,c in tr: x=mon[m]; x[0]+=1; x[1]+=Rr; x[2]+=1 if Rr>0 else 0
     VARS.append(dict(route='ob',rules=r,mon={m:tuple(v) for m,v in mon.items()},trades=tr))
 print('variants',len(VARS),round(time.time()-T0))
 BASE=dict(entry='fvg_first',windows='both',bias='none',smt='required',pool='quality',markets='all',target='pool',manage='none',sweep='any',first='no',news='keep',minstop='any')
@@ -159,7 +159,7 @@ for dk,vals in DIALS.items():
 def brk(V,fn):
     d=collections.defaultdict(lambda:[0,0.0,0])
     for m,Rr,sd,c in V['trades']:
-        k=fn(c); x=d[k]; x[0]+=1; x[1]+=Rr-0.05; x[2]+=Rr>0
+        k=fn(c); x=d[k]; x[0]+=1; x[1]+=Rr; x[2]+=Rr>0
     return {k:[v[0],round(v[1],2),round(v[2]/v[0],3)] for k,v in d.items()}
 allchain=[V for V in VARS if V['route']=='chain']
 yrs=sorted(set(m[:4] for m in MONTHS))
@@ -169,8 +169,14 @@ def _cum(V):
     t=0; out=[]
     for m in OOS: t+=V['mon'].get(m,(0,0,0))[1]; out.append(round(t,1))
     return out
-FAN=dict(months=OOS,curves=[_cum(V) for V in _pool[:150]],n_total=len(_pool))   # every faint line on the site's fan chart is one version
-OUT=dict(fan=FAN,range=[str(days[0]),str(days[-1])],sessions=len(days),months=MONTHS,look=LOOK,min_n=MIN_N,n_variants=len(VARS),n_cands=len(CANDS),n_obc=len(OBC),
+FAN=dict(months=OOS,curves=[_cum(V) for V in _pool[:150]],n_total=len(_pool))
+def _msr(V):   # monthly Sharpe of one version over the unseen months (for the deflated Sharpe ratio)
+    xs=[V['mon'].get(m,(0,0,0))[1] for m in OOS]; mu=sum(xs)/len(xs); sd=(sum((x-mu)**2 for x in xs)/(len(xs)-1))**.5
+    return mu/sd if sd>0 else 0.0
+_srs=[_msr(V) for V in _pool]; _mu=sum(_srs)/len(_srs) if _srs else 0
+TRIALS=dict(n_lab=len(_srs),sr_mean=round(_mu,4),sr_var=round(sum((x-_mu)**2 for x in _srs)/max(1,len(_srs)-1),6),
+            n_project=33000,note='n_project: every version tried across all of Argon v2 rounds (logged in the Lab history), the honest count for the deflated Sharpe')   # every faint line on the site's fan chart is one version
+OUT=dict(trials=TRIALS,fan=FAN,range=[str(days[0]),str(days[-1])],sessions=len(days),months=MONTHS,look=LOOK,min_n=MIN_N,n_variants=len(VARS),n_cands=len(CANDS),n_obc=len(OBC),
  adaptive=AD,adaptive_ob=ADOB,base=series(baseV),base_ob=series(obV),hind=series(hind),hind_rules=hind['rules'],
  sum=dict(adaptive=summ(adO),base=summV(baseV,OOS),hind=summV(hind,OOS),adaptive_ob=summ(adobO),base_ob=summV(obV,OOS)),
  by_year={y:dict(adaptive=summ([r for r in adO if r['month'][:4]==y]),base=summV(baseV,[m for m in OOS if m[:4]==y])) for y in yrs},

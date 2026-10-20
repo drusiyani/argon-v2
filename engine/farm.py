@@ -533,7 +533,7 @@ for dk,vals in DIALS.items():
         xs=[L['tune']['avg'] for L in LAB if L['route']=='chain' and L['rules'][dk]==v and L['tune']['n']>=10]
         IMP[dk][v]=(round(sum(xs)/len(xs),3),len(xs)) if xs else (None,0)
 BT=json.load(open(os.path.join(ROOT,'data','bt_out.json')))
-V03=dict(BT['now']['chain']['rules'],risk=True,name='v0.10') if BT['now']['chain'] else dict(BASE,risk=True,name='v0.4')
+V03=dict(BT['now']['chain']['rules'],risk=True,name='v1.0 frozen') if BT['now']['chain'] else dict(BASE,risk=True,name='v0.4')
 V03OB=dict(BT['now']['ob']['rules'],risk=True) if BT['now']['ob'] else dict(markets='all',windows='both',risk=True)
 print('variants',len(LAB),'stage1',len(cand),'passed',[(L['route'],L['rules'],L['tune'],L['sealed'],L['mc']) for L in passed])
 print('finalists',[(L['route'],L['rules'],L['tune']['net'],L['sealed'],L.get('mc'),L['status']) for L in finalists])
@@ -646,7 +646,7 @@ top=sorted([L for L in LAB if L['route']=='chain'],key=lambda L:-L['tune']['avg'
 LABOUT=dict(gate=GATE,risk=RISK,tune_end=TUNE_END,half=HALF,dials=DIALS,n_variants=len(LAB),n_stage1=len(cand),
   baseline=lab_row(BASEL,True),stage1=[lab_row(L,True) for L in cand],finalists=[lab_row(L,True) for L in finalists],top=[lab_row(L) for L in top],ob=[lab_row(L,True) for L in LAB if L['route']=='ob'],
   live_chain=lab_row(LIVE_CHAIN,True) if LIVE_CHAIN else None,live_ob=lab_row(LIVE_OB,True) if LIVE_OB else None,importance=IMP,v03=V03,v03ob=V03OB)
-RULES_VERSION='0.10'; SIG=hashlib.sha1(('argon-v2-rules-0.10-'+json.dumps(V03,sort_keys=True)).encode()).hexdigest()[:8]
+RULES_VERSION='1.0'; SIG=hashlib.sha1(('argon-v2-rules-1.0-'+json.dumps(V03,sort_keys=True)).encode()).hexdigest()[:8]
 
 # ---------------- pack (compact, positional)
 K={k:i for i,k in enumerate(KINDS)}; II={s:i for i,s in enumerate(INSTS)}; TFI={'5m':0,'15m':1,'1h':2,'session':3}
@@ -730,7 +730,10 @@ elif os.environ.get('KRONOS_URL'):
     except Exception: KRON=None
 _mp=os.path.join(ROOT,'data','mistakes.json'); MIST=json.load(open(_mp)) if os.path.exists(_mp) else None
 _sp=os.path.join(ROOT,'data','scout.json'); SCOUT=json.load(open(_sp)) if os.path.exists(_sp) else None
-out=dict(scout=SCOUT,mistakes=MIST,kronos=KRON,orb=ORB,desk=DESK,bt=BT,lab=LABOUT,sig=SIG,rules=RULES_VERSION,days=[str(d) for d in days],kinds=KINDS,insts=INSTS,names=NAMES,tick=TICK,events=packed,trades=TR,chart=chart,levels=lv,generated=dt.datetime.now(NY).strftime('%Y-%m-%d %H:%M'),two_min_from=str(B2['NQ'][0]['sd']))
+def _j(n):
+    p=os.path.join(ROOT,'data',n); return json.load(open(p)) if os.path.exists(p) else None
+_pr=os.path.join(ROOT,'PREREGISTRATION.md')
+out=dict(stats=_j('stats.json'),checks=_j('checks.json'),prereg=open(_pr).read() if os.path.exists(_pr) else None,scout=SCOUT,mistakes=MIST,kronos=KRON,orb=ORB,desk=DESK,bt=BT,lab=LABOUT,sig=SIG,rules=RULES_VERSION,days=[str(d) for d in days],kinds=KINDS,insts=INSTS,names=NAMES,tick=TICK,events=packed,trades=TR,chart=chart,levels=lv,generated=dt.datetime.now(NY).strftime('%Y-%m-%d %H:%M'),two_min_from=str(B2['NQ'][0]['sd']))
 json.dump(out,open(os.path.join(ROOT,'data','farm.json'),'w'),separators=(',',':'))
 c=collections.Counter(e['kind'] for e in EV)
 print(len(days),'days',len(EV),'events',c)

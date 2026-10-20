@@ -48,10 +48,12 @@ jobs:
       - name: Long backtest and monthly re-pick
         if: steps.mode.outputs.mode != 'daily'
         run: |
+          python engine/checks.py   # stops the run if the data's clock is wrong
           LAB_WINDOWS=london python engine/lab.py   # v0.9: the main strategy trades the London session only
           python engine/extra.py
           python engine/dump_setups.py
           python engine/mistakes.py
+          python engine/stats.py
       - name: Run the farm
         run: python engine/farm.py
       - name: Build the site

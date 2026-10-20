@@ -35,7 +35,7 @@ def _load_cpp():
             subprocess.run(['g++','-O3','-shared','-fPIC','-o',so,src],check=True,capture_output=True)
         lib=ctypes.CDLL(so); f=lib.walk1m; f.restype=ctypes.c_int; global _LIB; _LIB=lib
         D=ctypes.POINTER(ctypes.c_double); I=ctypes.POINTER(ctypes.c_int)
-        f.argtypes=[D,D,D,D,D,I,ctypes.c_int,I,I,ctypes.c_int,ctypes.c_int,ctypes.c_double,ctypes.c_int,ctypes.c_int,ctypes.c_double,ctypes.c_double,ctypes.c_double,D]
+        f.argtypes=[D,D,D,D,D,I,ctypes.c_int,I,I,ctypes.c_int,ctypes.c_int,ctypes.c_double,ctypes.c_int,ctypes.c_int,ctypes.c_double,ctypes.c_double,ctypes.c_double,ctypes.c_double,ctypes.c_int,ctypes.c_int,ctypes.c_int,ctypes.c_int,D]
         _CPP=f
     except Exception as e: print('C++ walker not available, using Python:',e); _CPP=False
     return _CPP
@@ -101,6 +101,9 @@ def load_hd_py(sym):
         if d.weekday()==5 or (d.weekday()==4 and d.hour>=17) or (d.weekday()==6 and d.hour<18): continue
         out.append(dict(t=k,sd=sess_date(d),m=d.hour*60+d.minute,dow=d.weekday(),o=o,h=h,l=l,c=c,v=0))
     return out
+ROLL_DAYS={}
+COSTPTS={'NQ':0.75,'ES':0.5,'YM':3.0,'RTY':0.3}   # one tick of slippage each way plus commission, per full contract, in index points
+STOP_SLIP_TICKS=(1,3)   # extra ticks a stop slips: normally, and in the first 15 minutes of the US session
 def load_db(sym):
     """Real CME futures from Databento (if downloaded): CSV with ts_event, open, high, low, close, volume."""
     import gzip,csv,calendar,time
@@ -108,9 +111,9 @@ def load_db(sym):
     for f in sorted(glob.glob(os.path.join(ROOT,'data','databento',f'{sym}_*.csv.gz'))):
         for r in csv.DictReader(io.TextIOWrapper(gzip.open(f))):
             ts=calendar.timegm(time.strptime(r['ts_event'][:19],'%Y-%m-%dT%H:%M:%S'))
-            o,h,l,c=float(r['open']),float(r['high']),float(r['low']),float(r['close']); v=float(r.get('volume') or 0)
+            o,h,l,c=float(r['open']),float(r['high']),float(r['low']),float(r['close']); v=float(r.get('volume') or 0); iid=r.get('instrument_id','')
             m1.append((ts,o,h,l,c)); k=ts//300*300; x=rows.get(k)
-            if x is None: rows[k]=[o,h,l,c,v]
+            if x is None: rows[k]=[o,h,l,c,v,iid]
             else:
                 if h>x[1]: x[1]=h
                 if l<x[2]: x[2]=l
@@ -119,9 +122,14 @@ def load_db(sym):
     m1=sorted(set(m1)); M1[sym]=tuple(array('d',[x[i] for x in m1]) for i in range(5))
     out=[]
     for k in sorted(rows):
-        o,h,l,c,v=rows[k]; d=dt.datetime.fromtimestamp(k,NY)
+        o,h,l,c,v,iid=rows[k]; d=dt.datetime.fromtimestamp(k,NY)
         if d.weekday()==5 or (d.weekday()==4 and d.hour>=17) or (d.weekday()==6 and d.hour<18): continue
-        out.append(dict(t=k,sd=sess_date(d),m=d.hour*60+d.minute,dow=d.weekday(),o=o,h=h,l=l,c=c,v=v))
+        out.append(dict(t=k,sd=sess_date(d),m=d.hour*60+d.minute,dow=d.weekday(),o=o,h=h,l=l,c=c,v=v,iid=iid))
+    # roll days: the session where the continuous contract switches to the next expiry. Yesterday's levels belong to the old contract, so no trading.
+    prev=None; ROLL_DAYS[sym]=set()
+    for b in out:
+        if prev is not None and b['iid']!=prev['iid'] and b['sd']!=prev['sd']: ROLL_DAYS[sym].add(str(b['sd']))
+        prev=b
     return out
 # Databento futures if we have them (all four Kronos markets), otherwise the free HistData CFDs (Nasdaq and S&P only)
 SOURCE='databento' if all(glob.glob(os.path.join(ROOT,'data','databento',f'{s}_*.csv.gz')) for s in ('NQ','ES','YM','RTY')) else 'histdata'
@@ -449,7 +457,7 @@ def walk1m(s,side,entry,stop,target,fill_k5):
     # find the fill minute inside the 5m bar
     jf=j
     while jf<len(T) and T[jf]<t0+300:
-        if (H[jf]>=entry if d==-1 else L[jf]<=entry): break
+        if (H[jf]>=entry+TICK[s] if d==-1 else L[jf]<=entry-TICK[s]): break   # a limit fills only if price trades a full tick through it
         jf+=1
     if jf>=len(T) or T[jf]>=t0+300: jf=j
     res={}; st={'none':stop,'be1':stop}; mfe=0.0; mae=0.0; first=True
@@ -466,7 +474,8 @@ def walk1m(s,side,entry,stop,target,fill_k5):
             if m in res: continue
             sp=st[m]
             if (adv>=sp) if d==-1 else (adv<=sp):
-                res[m]=dict(kind='loss' if sp==stop else 'scratch',R=(sp-entry)*d/risk,t=int(T[i]),px=sp,k=kk); continue
+                slip=STOP_SLIP_TICKS[1] if smin(9*60+30)<=smin(b['m'])<smin(9*60+45) else STOP_SLIP_TICKS[0]; px_=sp-d*slip*TICK[s]   # stops fill worse than their price
+                res[m]=dict(kind='loss' if sp==stop else 'scratch',R=(px_-entry)*d/risk,t=int(T[i]),px=px_,k=kk); continue
             if not first and ((fav<=target) if d==-1 else (fav>=target)):
                 res[m]=dict(kind='win',R=abs(target-entry)/risk,t=int(T[i]),px=target,k=kk)
         if 'none' not in res: mae=min(mae,(adv-entry)*d/risk)
@@ -482,7 +491,7 @@ def walk1m_cpp(s,side,entry,stop,tgt,fill_k5):
     f=_CPP if _CPP is not None else _load_cpp()
     if not f: return walk1m(s,side,entry,stop,tgt,fill_k5)
     cd=_cpp_inputs(s); b=BARS[s]['5m'][fill_k5]; out=(ctypes.c_double*12)()
-    rc=f(*cd['args'],float(b['t']),cd['sdi'][b['sd']],-1 if side=='short' else 1,float(entry),float(stop),float(tgt),out)
+    rc=f(*cd['args'],float(b['t']),cd['sdi'][b['sd']],-1 if side=='short' else 1,float(entry),float(stop),float(tgt),float(TICK[s]),smin(9*60+30),smin(9*60+45),STOP_SLIP_TICKS[0],STOP_SLIP_TICKS[1],out)
     if rc!=0: return walk1m(s,side,entry,stop,tgt,fill_k5)
     mk=lambda o: dict(kind=KINDS_W[int(out[o])],R=out[o+1],t=int(out[o+2]),px=out[o+3],k=int(out[o+4]))
     w=mk(0); w['mfe']=out[10]; w['mae']=out[11]; w['be']=mk(5); return w
@@ -524,11 +533,12 @@ def simulate(s,sw,m,d,side,z,tmode):
         bk=bars[k]
         if bk['sd']!=sw['sd']: break
         if ((bk['l']<=tgt) if d==-1 else (bk['h']>=tgt)): status='missed'; break
-        if ((bk['h']>=entry) if d==-1 else (bk['l']<=entry)): fill=k; break
+        if ((bk['h']>=entry+TICK[s]) if d==-1 else (bk['l']<=entry-TICK[s])): fill=k; break
     sim=dict(zone=z['kind'],entry=entry,stop=round(stop,4),target=round(tgt,4),tname=tname,risk=risk,rr=abs(tgt-entry)/risk,ext=ext,status=status,fill=fill)
     if fill is not None:
         w=walk1m_cpp(s,side,entry,stop,tgt,fill)
-        sim.update(status=w['kind'],R=round(w['R'],2),fill_t=bars[fill]['t'],exit_t=w['t'],exit=round(w['px'],4),mfe=round(w['mfe'],2),mae=round(w['mae'],2),bars=w['k']-fill+1,exit_k=w['k'],fill_bars=fill-m['i'],R_be=round(w['be']['R'],2),exit_k_be=w['be']['k'])
+        cst=COSTPTS[s]/risk   # real trading costs, in R
+        sim.update(status=w['kind'],R=round(w['R']-cst,2),fill_t=bars[fill]['t'],exit_t=w['t'],exit=round(w['px'],4),mfe=round(w['mfe'],2),mae=round(w['mae'],2),bars=w['k']-fill+1,exit_k=w['k'],fill_bars=fill-m['i'],R_be=round(w['be']['R']-cst,2),exit_k_be=w['be']['k'])
     return sim
 BRKT={s:[o['t'] for o in BRK[s]['5m']] for s in TRADED}
 Z5={s:sorted([z for z in ZONES[s] if z['tf']=='5m'],key=lambda z:z['t']) for s in TRADED}; Z5T={s:[z['t'] for z in Z5[s]] for s in TRADED}
@@ -537,6 +547,8 @@ for s in TRADED:
     bars=BARS[s]['5m']; A=ATR[s]['5m']; brk5=BRK[s]['5m']
     for sw in SWEEPS[s]:
         if sw['win'] is None: continue
+        if str(sw['sd']) in ROLL_DAYS.get(s,()): continue          # contract roll day
+        if 505<=bars[sw['i']]['m']<520: continue                   # 8:25-8:40 New York: data releases, no new trades
         p=sw['pool']; side='short' if p['typ']=='H' else 'long'; d=-1 if side=='short' else 1
         st={}
         st['1']=[(p['tf']!='5m' or p['kind']=='eq'),lvl_name(p)+('' if (p['tf']!='5m' or p['kind']=='eq') else ': only a minor level')]

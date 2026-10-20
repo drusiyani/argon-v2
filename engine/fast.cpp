@@ -14,14 +14,15 @@ extern "C" {
 // kind: 0 = closed at the flat, 1 = stopped, 2 = scratched at entry, 3 = hit target
 int walk1m(const double* T, const double* O, const double* H, const double* L, const double* C, const int* K5, int n,
            const int* SD5, const int* SMIN5, int nbars, int eod_smin,
-           double t0, int fill_sd, int d, double entry, double stop, double target, double* out) {
+           double t0, int fill_sd, int d, double entry, double stop, double target,
+           double tick, int open_lo, int open_hi, int slip_norm, int slip_open, double* out) {
     if (n <= 0) return -1;
     const double risk = std::fabs(entry - stop);
     if (risk <= 0) return -2;
     int j = int(std::lower_bound(T, T + n, t0) - T);
     int jf = j;
     while (jf < n && T[jf] < t0 + 300) {
-        if (d == -1 ? H[jf] >= entry : L[jf] <= entry) break;
+        if (d == -1 ? H[jf] >= entry + tick : L[jf] <= entry - tick) break;   // a full tick through
         jf++;
     }
     if (jf >= n || T[jf] >= t0 + 300) jf = j;
@@ -45,7 +46,8 @@ int walk1m(const double* T, const double* O, const double* H, const double* L, c
         for (int m = 0; m < 2; m++) {
             if (done[m]) continue;
             double sp = st[m];
-            if (d == -1 ? adv >= sp : adv <= sp) { set(m, sp == stop ? 1 : 2, (sp - entry) * d / risk, T[i], sp, kk); continue; }
+            if (d == -1 ? adv >= sp : adv <= sp) { int slip = (SMIN5[kk] >= open_lo && SMIN5[kk] < open_hi) ? slip_open : slip_norm; double px = sp - d * slip * tick;
+                set(m, sp == stop ? 1 : 2, (px - entry) * d / risk, T[i], px, kk); continue; }
             if (!first && (d == -1 ? fav <= target : fav >= target)) set(m, 3, std::fabs(target - entry) / risk, T[i], target, kk);
         }
         if (!done[0]) mae = std::min(mae, (adv - entry) * d / risk);
