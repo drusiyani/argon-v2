@@ -1,19 +1,19 @@
 ---
 type: setup
-examples: 20
+examples: 23
 taken: 0
 ---
 # Setup — London · 5m high or low
 
 > [!info]
-> Roughly break-even. No clear edge yet.
+> Making money so far. Needs more examples before trusting it.
 
 | | how many | won | total | per trade |
 |---|---|---|---|---|
-| all examples | 20 | 35% | +1.00R | +0.05R |
+| all examples | 23 | 39% | +4.00R | +0.17R |
 | actually taken | 0 | – | 0.00R | – |
 
-By market: Nasdaq 4 (-1.00R), S&P 500 7 (+5.00R), the Dow 8 (-5.00R), the Russell 2000 1 (+2.00R).
+By market: Nasdaq 6 (0.00R), S&P 500 7 (+5.00R), the Dow 10 (-1.00R), the Russell 2000 0 (0.00R).
 
 ## Trades taken
 
