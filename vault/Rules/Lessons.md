@@ -1,7 +1,7 @@
 ---
 type: lessons
 written_by: Claude
-updated: 2026-10-22
+updated: 2026-10-26
 ---
 # Lessons
 
