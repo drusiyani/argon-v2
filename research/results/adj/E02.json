@@ -1,0 +1,42 @@
+{
+ "id": "E02",
+ "name": "No stop (time exit only)",
+ "kind": "strat",
+ "target": "expiry",
+ "kw": {
+  "nostop": true
+ },
+ "normal": {
+  "sharpe": 1.382,
+  "R": 235.31,
+  "years": {
+   "2021": 23.78,
+   "2022": 68.12,
+   "2023": 72.47,
+   "2024": 70.94
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.123,
+  "R": 185.85,
+  "years": {
+   "2021": 16.53,
+   "2022": 52.95,
+   "2023": 59.25,
+   "2024": 57.13
+  },
+  "trades": 2103
+ },
+ "nearby": [],
+ "dsharpe": -0.03,
+ "dsharpe_double": -0.031,
+ "years_better": 2,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

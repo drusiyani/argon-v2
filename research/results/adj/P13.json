@@ -1,0 +1,71 @@
+{
+ "id": "P13",
+ "name": "Risk parity: weight = 1/stdev of last 12 months",
+ "kind": "port",
+ "target": "parity",
+ "kw": {
+  "look": 12
+ },
+ "normal": {
+  "sharpe": 1.668,
+  "R": 171.17,
+  "years": {
+   "2021": 22.78,
+   "2022": 59.57,
+   "2023": 49.39,
+   "2024": 39.43
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.442,
+  "R": 141.65,
+  "years": {
+   "2021": 15.53,
+   "2022": 49.48,
+   "2023": 44.21,
+   "2024": 32.43
+  },
+  "trades": 2103
+ },
+ "nearby": [
+  {
+   "kw": {
+    "look": 9
+   },
+   "sharpe": 1.58,
+   "R": 168.74,
+   "years": {
+    "2021": 21.25,
+    "2022": 59.09,
+    "2023": 51.59,
+    "2024": 36.82
+   },
+   "trades": 2122
+  },
+  {
+   "kw": {
+    "look": 15
+   },
+   "sharpe": 1.582,
+   "R": 163.97,
+   "years": {
+    "2021": 22.78,
+    "2022": 55.02,
+    "2023": 49.1,
+    "2024": 37.06
+   },
+   "trades": 2122
+  }
+ ],
+ "dsharpe": 0.256,
+ "dsharpe_double": 0.288,
+ "years_better": 0,
+ "checks": {
+  "sharpe": true,
+  "years": false,
+  "double_costs": true,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

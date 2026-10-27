@@ -1,0 +1,42 @@
+{
+ "id": "A13",
+ "name": "Concretum pullback: wait for one opposite 1-min candle (max 15 min)",
+ "kind": "strat",
+ "target": "atrband",
+ "kw": {
+  "concretum": true
+ },
+ "normal": {
+  "sharpe": 1.429,
+  "R": 242.04,
+  "years": {
+   "2021": 24.57,
+   "2022": 68.88,
+   "2023": 69.42,
+   "2024": 79.17
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.17,
+  "R": 192.56,
+  "years": {
+   "2021": 17.3,
+   "2022": 53.71,
+   "2023": 56.2,
+   "2024": 65.35
+  },
+  "trades": 2103
+ },
+ "nearby": [],
+ "dsharpe": 0.017,
+ "dsharpe_double": 0.016,
+ "years_better": 3,
+ "checks": {
+  "sharpe": false,
+  "years": true,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

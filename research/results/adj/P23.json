@@ -1,0 +1,42 @@
+{
+ "id": "P23",
+ "name": "Ensemble: half ATR band / noise band trades against the day's QuantLab side",
+ "kind": "port",
+ "target": "against",
+ "kw": {
+  "mode": "half"
+ },
+ "normal": {
+  "sharpe": 1.327,
+  "R": 224.65,
+  "years": {
+   "2021": 20.63,
+   "2022": 65.32,
+   "2023": 63.44,
+   "2024": 75.26
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.071,
+  "R": 178.21,
+  "years": {
+   "2021": 13.6,
+   "2022": 52.5,
+   "2023": 50.72,
+   "2024": 61.39
+  },
+  "trades": 2103
+ },
+ "nearby": [],
+ "dsharpe": -0.085,
+ "dsharpe_double": -0.083,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

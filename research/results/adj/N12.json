@@ -1,0 +1,71 @@
+{
+ "id": "N12",
+ "name": "Noise band flat 15:00",
+ "kind": "strat",
+ "target": "noiseband",
+ "kw": {
+  "te": 900
+ },
+ "normal": {
+  "sharpe": 1.327,
+  "R": 224.42,
+  "years": {
+   "2021": 28.36,
+   "2022": 51.89,
+   "2023": 60.71,
+   "2024": 83.46
+  },
+  "trades": 2023
+ },
+ "double": {
+  "sharpe": 1.091,
+  "R": 184.36,
+  "years": {
+   "2021": 21.17,
+   "2022": 44.32,
+   "2023": 47.44,
+   "2024": 71.43
+  },
+  "trades": 2012
+ },
+ "nearby": [
+  {
+   "kw": {
+    "te": 870
+   },
+   "sharpe": 1.387,
+   "R": 232.99,
+   "years": {
+    "2021": 33.42,
+    "2022": 50.56,
+    "2023": 63.39,
+    "2024": 85.62
+   },
+   "trades": 1988
+  },
+  {
+   "kw": {
+    "te": 930
+   },
+   "sharpe": 1.486,
+   "R": 254.34,
+   "years": {
+    "2021": 27.54,
+    "2022": 60.35,
+    "2023": 75.68,
+    "2024": 90.77
+   },
+   "trades": 2111
+  }
+ ],
+ "dsharpe": -0.085,
+ "dsharpe_double": -0.063,
+ "years_better": 2,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

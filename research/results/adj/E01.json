@@ -1,0 +1,71 @@
+{
+ "id": "E01",
+ "name": "Wider stop: first-minute range + 0.5x ATR",
+ "kind": "strat",
+ "target": "expiry",
+ "kw": {
+  "stopk": 0.5
+ },
+ "normal": {
+  "sharpe": 1.381,
+  "R": 232.19,
+  "years": {
+   "2021": 21.92,
+   "2022": 63.64,
+   "2023": 69.17,
+   "2024": 77.47
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.123,
+  "R": 183.3,
+  "years": {
+   "2021": 14.77,
+   "2022": 48.58,
+   "2023": 56.14,
+   "2024": 63.82
+  },
+  "trades": 2103
+ },
+ "nearby": [
+  {
+   "kw": {
+    "stopk": 0.4
+   },
+   "sharpe": 1.397,
+   "R": 236.21,
+   "years": {
+    "2021": 22.56,
+    "2022": 65.43,
+    "2023": 70.06,
+    "2024": 78.15
+   },
+   "trades": 2122
+  },
+  {
+   "kw": {
+    "stopk": 0.6
+   },
+   "sharpe": 1.375,
+   "R": 230.46,
+   "years": {
+    "2021": 22.1,
+    "2022": 62.84,
+    "2023": 68.54,
+    "2024": 76.99
+   },
+   "trades": 2122
+  }
+ ],
+ "dsharpe": -0.031,
+ "dsharpe_double": -0.031,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

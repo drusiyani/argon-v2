@@ -1,0 +1,71 @@
+{
+ "id": "A03",
+ "name": "Stop to breakeven after +1R",
+ "kind": "strat",
+ "target": "atrband",
+ "kw": {
+  "be": 1.0
+ },
+ "normal": {
+  "sharpe": 1.419,
+  "R": 241.41,
+  "years": {
+   "2021": 22.73,
+   "2022": 68.44,
+   "2023": 71.24,
+   "2024": 78.99
+  },
+  "trades": 2128
+ },
+ "double": {
+  "sharpe": 1.161,
+  "R": 191.92,
+  "years": {
+   "2021": 15.48,
+   "2022": 53.26,
+   "2023": 58.01,
+   "2024": 65.17
+  },
+  "trades": 2109
+ },
+ "nearby": [
+  {
+   "kw": {
+    "be": 0.75
+   },
+   "sharpe": 1.421,
+   "R": 242.36,
+   "years": {
+    "2021": 24.26,
+    "2022": 68.44,
+    "2023": 70.77,
+    "2024": 78.89
+   },
+   "trades": 2138
+  },
+  {
+   "kw": {
+    "be": 1.25
+   },
+   "sharpe": 1.416,
+   "R": 241.12,
+   "years": {
+    "2021": 22.78,
+    "2022": 68.45,
+    "2023": 70.81,
+    "2024": 79.07
+   },
+   "trades": 2123
+  }
+ ],
+ "dsharpe": 0.007,
+ "dsharpe_double": 0.007,
+ "years_better": 2,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

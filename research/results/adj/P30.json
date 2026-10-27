@@ -1,0 +1,77 @@
+{
+ "id": "P30",
+ "name": "ATR band 1.5x weight",
+ "kind": "port",
+ "target": "weights",
+ "kw": {
+  "w": {
+   "atrband": 1.5
+  }
+ },
+ "normal": {
+  "sharpe": 1.467,
+  "R": 258.85,
+  "years": {
+   "2021": 23.74,
+   "2022": 76.1,
+   "2023": 76.37,
+   "2024": 82.65
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.212,
+  "R": 207.99,
+  "years": {
+   "2021": 16.19,
+   "2022": 60.6,
+   "2023": 62.71,
+   "2024": 68.49
+  },
+  "trades": 2103
+ },
+ "nearby": [
+  {
+   "kw": {
+    "w": {
+     "atrband": 1.25
+    }
+   },
+   "sharpe": 1.441,
+   "R": 249.67,
+   "years": {
+    "2021": 23.26,
+    "2022": 72.27,
+    "2023": 73.59,
+    "2024": 80.55
+   },
+   "trades": 2122
+  },
+  {
+   "kw": {
+    "w": {
+     "atrband": 1.75
+    }
+   },
+   "sharpe": 1.491,
+   "R": 268.03,
+   "years": {
+    "2021": 24.22,
+    "2022": 79.92,
+    "2023": 79.14,
+    "2024": 84.76
+   },
+   "trades": 2122
+  }
+ ],
+ "dsharpe": 0.055,
+ "dsharpe_double": 0.058,
+ "years_better": 4,
+ "checks": {
+  "sharpe": false,
+  "years": true,
+  "double_costs": true,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

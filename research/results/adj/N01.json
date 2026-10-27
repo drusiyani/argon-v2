@@ -1,0 +1,46 @@
+{
+ "id": "N01",
+ "name": "Decisions every 15, 30 or 60 min (adds 15)",
+ "kind": "strat",
+ "target": "noiseband",
+ "kw": {
+  "freqs": [
+   15,
+   30,
+   60
+  ]
+ },
+ "normal": {
+  "sharpe": 1.374,
+  "R": 239.17,
+  "years": {
+   "2021": 22.78,
+   "2022": 67.56,
+   "2023": 64.08,
+   "2024": 84.76
+  },
+  "trades": 2170
+ },
+ "double": {
+  "sharpe": 1.079,
+  "R": 184.45,
+  "years": {
+   "2021": 15.53,
+   "2022": 52.31,
+   "2023": 50.67,
+   "2024": 65.95
+  },
+  "trades": 2158
+ },
+ "nearby": [],
+ "dsharpe": -0.038,
+ "dsharpe_double": -0.075,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

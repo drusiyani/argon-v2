@@ -1,0 +1,42 @@
+{
+ "id": "Q21",
+ "name": "Use a 10-minute first candle (9:30-9:40), enter 9:40",
+ "kind": "strat",
+ "target": "quantlab",
+ "kw": {
+  "first": 10
+ },
+ "normal": {
+  "sharpe": 1.165,
+  "R": 188.02,
+  "years": {
+   "2021": 39.33,
+   "2022": 60.89,
+   "2023": 36.83,
+   "2024": 50.98
+  },
+  "trades": 2121
+ },
+ "double": {
+  "sharpe": 0.93,
+  "R": 147.19,
+  "years": {
+   "2021": 33.58,
+   "2022": 50.68,
+   "2023": 24.05,
+   "2024": 38.89
+  },
+  "trades": 2102
+ },
+ "nearby": [],
+ "dsharpe": -0.247,
+ "dsharpe_double": -0.224,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

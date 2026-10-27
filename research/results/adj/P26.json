@@ -1,0 +1,44 @@
+{
+ "id": "P26",
+ "name": "Drop the ES expiry leg",
+ "kind": "port",
+ "target": "weights",
+ "kw": {
+  "w": {
+   "expiry_ES": 0.0
+  }
+ },
+ "normal": {
+  "sharpe": 1.386,
+  "R": 231.01,
+  "years": {
+   "2021": 21.88,
+   "2022": 64.08,
+   "2023": 66.76,
+   "2024": 78.29
+  },
+  "trades": 2081
+ },
+ "double": {
+  "sharpe": 1.128,
+  "R": 182.59,
+  "years": {
+   "2021": 14.83,
+   "2022": 49.11,
+   "2023": 53.89,
+   "2024": 64.77
+  },
+  "trades": 2062
+ },
+ "nearby": [],
+ "dsharpe": -0.026,
+ "dsharpe_double": -0.026,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

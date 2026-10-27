@@ -1,0 +1,42 @@
+{
+ "id": "P31",
+ "name": "Skip the first Friday of each month (jobs report) for every strategy",
+ "kind": "port",
+ "target": "skipdays",
+ "kw": {
+  "rule": "first_friday"
+ },
+ "normal": {
+  "sharpe": 1.419,
+  "R": 238.63,
+  "years": {
+   "2021": 27.31,
+   "2022": 77.8,
+   "2023": 63.25,
+   "2024": 70.26
+  },
+  "trades": 2019
+ },
+ "double": {
+  "sharpe": 1.178,
+  "R": 192.22,
+  "years": {
+   "2021": 20.38,
+   "2022": 62.34,
+   "2023": 50.55,
+   "2024": 58.94
+  },
+  "trades": 2001
+ },
+ "nearby": [],
+ "dsharpe": 0.007,
+ "dsharpe_double": 0.024,
+ "years_better": 2,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

@@ -1,0 +1,71 @@
+{
+ "id": "P33",
+ "name": "Max 4 trades per day across the portfolio",
+ "kind": "port",
+ "target": "maxday",
+ "kw": {
+  "k": 4
+ },
+ "normal": {
+  "sharpe": 1.348,
+  "R": 229.31,
+  "years": {
+   "2021": 21.48,
+   "2022": 66.63,
+   "2023": 66.57,
+   "2024": 74.64
+  },
+  "trades": 2065
+ },
+ "double": {
+  "sharpe": 1.091,
+  "R": 180.33,
+  "years": {
+   "2021": 14.26,
+   "2022": 52.14,
+   "2023": 53.43,
+   "2024": 60.49
+  },
+  "trades": 2049
+ },
+ "nearby": [
+  {
+   "kw": {
+    "k": 3
+   },
+   "sharpe": 1.277,
+   "R": 220.43,
+   "years": {
+    "2021": 21.89,
+    "2022": 64.68,
+    "2023": 58.61,
+    "2024": 75.24
+   },
+   "trades": 1921
+  },
+  {
+   "kw": {
+    "k": 5
+   },
+   "sharpe": 1.401,
+   "R": 238.54,
+   "years": {
+    "2021": 22.78,
+    "2022": 67.74,
+    "2023": 70.43,
+    "2024": 77.59
+   },
+   "trades": 2111
+  }
+ ],
+ "dsharpe": -0.064,
+ "dsharpe_double": -0.063,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

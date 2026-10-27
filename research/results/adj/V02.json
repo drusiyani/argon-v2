@@ -1,0 +1,42 @@
+{
+ "id": "V02",
+ "name": "QuantLab: skip long trades on expiry Fridays (expiry is known in advance)",
+ "kind": "port",
+ "target": "qlexpiry",
+ "kw": {
+  "mode": "skip_long"
+ },
+ "normal": {
+  "sharpe": 1.442,
+  "R": 246.63,
+  "years": {
+   "2021": 26.04,
+   "2022": 67.75,
+   "2023": 74.22,
+   "2024": 78.62
+  },
+  "trades": 2105
+ },
+ "double": {
+  "sharpe": 1.189,
+  "R": 197.7,
+  "years": {
+   "2021": 18.92,
+   "2022": 52.75,
+   "2023": 61.15,
+   "2024": 64.88
+  },
+  "trades": 2086
+ },
+ "nearby": [],
+ "dsharpe": 0.03,
+ "dsharpe_double": 0.035,
+ "years_better": 3,
+ "checks": {
+  "sharpe": false,
+  "years": true,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

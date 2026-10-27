@@ -1,0 +1,42 @@
+{
+ "id": "P32",
+ "name": "Skip FOMC days entirely for every strategy",
+ "kind": "port",
+ "target": "skipdays",
+ "kw": {
+  "rule": "fomc"
+ },
+ "normal": {
+  "sharpe": 1.484,
+  "R": 244.99,
+  "years": {
+   "2021": 24.25,
+   "2022": 72.92,
+   "2023": 75.68,
+   "2024": 72.14
+  },
+  "trades": 2065
+ },
+ "double": {
+  "sharpe": 1.228,
+  "R": 195.83,
+  "years": {
+   "2021": 17.19,
+   "2022": 57.96,
+   "2023": 62.82,
+   "2024": 57.86
+  },
+  "trades": 2048
+ },
+ "nearby": [],
+ "dsharpe": 0.072,
+ "dsharpe_double": 0.074,
+ "years_better": 3,
+ "checks": {
+  "sharpe": false,
+  "years": true,
+  "double_costs": true,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

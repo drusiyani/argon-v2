@@ -1,0 +1,77 @@
+{
+ "id": "P27",
+ "name": "Expiry leg 1.5x weight",
+ "kind": "port",
+ "target": "weights",
+ "kw": {
+  "w": {
+   "expiry": 1.5
+  }
+ },
+ "normal": {
+  "sharpe": 1.436,
+  "R": 250.44,
+  "years": {
+   "2021": 23.5,
+   "2022": 73.64,
+   "2023": 73.75,
+   "2024": 79.56
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.18,
+  "R": 200.28,
+  "years": {
+   "2021": 16.12,
+   "2022": 58.33,
+   "2023": 60.29,
+   "2024": 65.55
+  },
+  "trades": 2103
+ },
+ "nearby": [
+  {
+   "kw": {
+    "w": {
+     "expiry": 1.25
+    }
+   },
+   "sharpe": 1.425,
+   "R": 245.47,
+   "years": {
+    "2021": 23.14,
+    "2022": 71.05,
+    "2023": 72.28,
+    "2024": 79.0
+   },
+   "trades": 2122
+  },
+  {
+   "kw": {
+    "w": {
+     "expiry": 2.0
+    }
+   },
+   "sharpe": 1.454,
+   "R": 260.39,
+   "years": {
+    "2021": 24.22,
+    "2022": 78.83,
+    "2023": 76.68,
+    "2024": 80.66
+   },
+   "trades": 2122
+  }
+ ],
+ "dsharpe": 0.024,
+ "dsharpe_double": 0.026,
+ "years_better": 4,
+ "checks": {
+  "sharpe": false,
+  "years": true,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

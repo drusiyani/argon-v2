@@ -1,0 +1,42 @@
+{
+ "id": "N14",
+ "name": "Noise band skips FOMC days",
+ "kind": "strat",
+ "target": "noiseband",
+ "kw": {
+  "skip_fomc": true
+ },
+ "normal": {
+  "sharpe": 1.386,
+  "R": 229.66,
+  "years": {
+   "2021": 21.13,
+   "2022": 62.7,
+   "2023": 71.84,
+   "2024": 73.99
+  },
+  "trades": 2093
+ },
+ "double": {
+  "sharpe": 1.125,
+  "R": 186.93,
+  "years": {
+   "2021": 13.9,
+   "2022": 52.61,
+   "2023": 58.68,
+   "2024": 61.74
+  },
+  "trades": 2093
+ },
+ "nearby": [],
+ "dsharpe": -0.026,
+ "dsharpe_double": -0.029,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

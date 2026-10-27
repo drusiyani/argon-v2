@@ -1,0 +1,71 @@
+{
+ "id": "Q03",
+ "name": "Pullback limit entry 0.25x first-candle range (by 10:00)",
+ "kind": "strat",
+ "target": "quantlab",
+ "kw": {
+  "pullback": 0.25
+ },
+ "normal": {
+  "sharpe": 0.554,
+  "R": 71.25,
+  "years": {
+   "2021": 4.04,
+   "2022": 32.54,
+   "2023": 23.35,
+   "2024": 11.31
+  },
+  "trades": 1898
+ },
+ "double": {
+  "sharpe": 0.253,
+  "R": 32.61,
+  "years": {
+   "2021": 3.02,
+   "2022": 20.57,
+   "2023": 7.85,
+   "2024": 1.17
+  },
+  "trades": 1882
+ },
+ "nearby": [
+  {
+   "kw": {
+    "pullback": 0.15
+   },
+   "sharpe": 0.765,
+   "R": 126.21,
+   "years": {
+    "2021": -5.22,
+    "2022": 34.41,
+    "2023": 63.13,
+    "2024": 33.89
+   },
+   "trades": 1992
+  },
+  {
+   "kw": {
+    "pullback": 0.35
+   },
+   "sharpe": 0.384,
+   "R": 49.6,
+   "years": {
+    "2021": 4.31,
+    "2022": 29.26,
+    "2023": -10.82,
+    "2024": 26.85
+   },
+   "trades": 1828
+  }
+ ],
+ "dsharpe": -0.858,
+ "dsharpe_double": -0.901,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

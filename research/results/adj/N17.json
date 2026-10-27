@@ -1,0 +1,71 @@
+{
+ "id": "N17",
+ "name": "Walk-forward lookback 3 months",
+ "kind": "strat",
+ "target": "noiseband",
+ "kw": {
+  "_look": 3
+ },
+ "normal": {
+  "sharpe": 1.405,
+  "R": 237.7,
+  "years": {
+   "2021": 19.55,
+   "2022": 66.58,
+   "2023": 72.4,
+   "2024": 79.17
+  },
+  "trades": 2121
+ },
+ "double": {
+  "sharpe": 1.161,
+  "R": 196.41,
+  "years": {
+   "2021": 12.13,
+   "2022": 56.27,
+   "2023": 59.23,
+   "2024": 68.78
+  },
+  "trades": 2105
+ },
+ "nearby": [
+  {
+   "kw": {
+    "_look": 2
+   },
+   "sharpe": 1.358,
+   "R": 226.55,
+   "years": {
+    "2021": 19.55,
+    "2022": 60.69,
+    "2023": 71.07,
+    "2024": 75.24
+   },
+   "trades": 2084
+  },
+  {
+   "kw": {
+    "_look": 4
+   },
+   "sharpe": 1.374,
+   "R": 238.53,
+   "years": {
+    "2021": 22.42,
+    "2022": 67.29,
+    "2023": 70.53,
+    "2024": 78.29
+   },
+   "trades": 2112
+  }
+ ],
+ "dsharpe": -0.007,
+ "dsharpe_double": 0.007,
+ "years_better": 2,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

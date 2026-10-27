@@ -1,0 +1,71 @@
+{
+ "id": "P15",
+ "name": "Weight by trailing 12-month Sharpe (negative = 0)",
+ "kind": "port",
+ "target": "sharpew",
+ "kw": {
+  "look": 12
+ },
+ "normal": {
+  "sharpe": 1.234,
+  "R": 174.54,
+  "years": {
+   "2021": 22.78,
+   "2022": 42.06,
+   "2023": 40.14,
+   "2024": 69.56
+  },
+  "trades": 2063
+ },
+ "double": {
+  "sharpe": 0.992,
+  "R": 116.4,
+  "years": {
+   "2021": 15.53,
+   "2022": 25.82,
+   "2023": 30.34,
+   "2024": 44.72
+  },
+  "trades": 1960
+ },
+ "nearby": [
+  {
+   "kw": {
+    "look": 9
+   },
+   "sharpe": 1.36,
+   "R": 170.27,
+   "years": {
+    "2021": 17.27,
+    "2022": 57.15,
+    "2023": 46.34,
+    "2024": 49.51
+   },
+   "trades": 1905
+  },
+  {
+   "kw": {
+    "look": 15
+   },
+   "sharpe": 1.351,
+   "R": 193.6,
+   "years": {
+    "2021": 22.78,
+    "2022": 50.69,
+    "2023": 45.12,
+    "2024": 75.02
+   },
+   "trades": 2122
+  }
+ ],
+ "dsharpe": -0.178,
+ "dsharpe_double": -0.162,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

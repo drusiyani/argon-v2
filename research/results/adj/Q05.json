@@ -1,0 +1,42 @@
+{
+ "id": "Q05",
+ "name": "Concretum pullback: wait for one opposite 5-min bar, then enter (by 10:30)",
+ "kind": "strat",
+ "target": "quantlab",
+ "kw": {
+  "concretum": true
+ },
+ "normal": {
+  "sharpe": 0.553,
+  "R": 110.53,
+  "years": {
+   "2021": 16.3,
+   "2022": 21.96,
+   "2023": -1.14,
+   "2024": 73.4
+  },
+  "trades": 2083
+ },
+ "double": {
+  "sharpe": 0.252,
+  "R": 49.49,
+  "years": {
+   "2021": 9.05,
+   "2022": 4.71,
+   "2023": -19.88,
+   "2024": 55.6
+  },
+  "trades": 2064
+ },
+ "nearby": [],
+ "dsharpe": -0.859,
+ "dsharpe_double": -0.902,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

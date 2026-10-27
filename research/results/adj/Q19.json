@@ -1,0 +1,42 @@
+{
+ "id": "Q19",
+ "name": "Walk-forward picks by Sharpe instead of total R",
+ "kind": "strat",
+ "target": "quantlab",
+ "kw": {
+  "_pick": "sharpe"
+ },
+ "normal": {
+  "sharpe": 1.363,
+  "R": 215.3,
+  "years": {
+   "2021": 11.23,
+   "2022": 83.98,
+   "2023": 62.15,
+   "2024": 57.94
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.067,
+  "R": 164.69,
+  "years": {
+   "2021": -0.96,
+   "2022": 65.9,
+   "2023": 55.62,
+   "2024": 44.13
+  },
+  "trades": 2103
+ },
+ "nearby": [],
+ "dsharpe": -0.049,
+ "dsharpe_double": -0.087,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

@@ -1,0 +1,42 @@
+{
+ "id": "A15",
+ "name": "ATR band skips FOMC days",
+ "kind": "strat",
+ "target": "atrband",
+ "kw": {
+  "skip_fomc": true
+ },
+ "normal": {
+  "sharpe": 1.42,
+  "R": 242.22,
+  "years": {
+   "2021": 23.24,
+   "2022": 69.7,
+   "2023": 70.81,
+   "2024": 78.47
+  },
+  "trades": 2116
+ },
+ "double": {
+  "sharpe": 1.162,
+  "R": 192.79,
+  "years": {
+   "2021": 15.99,
+   "2022": 54.54,
+   "2023": 57.59,
+   "2024": 64.67
+  },
+  "trades": 2097
+ },
+ "nearby": [],
+ "dsharpe": 0.008,
+ "dsharpe_double": 0.008,
+ "years_better": 3,
+ "checks": {
+  "sharpe": false,
+  "years": true,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

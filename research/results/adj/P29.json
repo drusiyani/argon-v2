@@ -1,0 +1,77 @@
+{
+ "id": "P29",
+ "name": "Noise band 1.5x weight",
+ "kind": "port",
+ "target": "weights",
+ "kw": {
+  "w": {
+   "noiseband": 1.5
+  }
+ },
+ "normal": {
+  "sharpe": 1.437,
+  "R": 263.28,
+  "years": {
+   "2021": 24.67,
+   "2022": 75.22,
+   "2023": 81.31,
+   "2024": 82.06
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.182,
+  "R": 207.59,
+  "years": {
+   "2021": 17.09,
+   "2022": 56.8,
+   "2023": 67.06,
+   "2024": 66.64
+  },
+  "trades": 2103
+ },
+ "nearby": [
+  {
+   "kw": {
+    "w": {
+     "noiseband": 1.25
+    }
+   },
+   "sharpe": 1.427,
+   "R": 251.88,
+   "years": {
+    "2021": 23.73,
+    "2022": 71.84,
+    "2023": 76.06,
+    "2024": 80.26
+   },
+   "trades": 2122
+  },
+  {
+   "kw": {
+    "w": {
+     "noiseband": 1.75
+    }
+   },
+   "sharpe": 1.444,
+   "R": 274.67,
+   "years": {
+    "2021": 25.62,
+    "2022": 78.61,
+    "2023": 86.57,
+    "2024": 83.87
+   },
+   "trades": 2122
+  }
+ ],
+ "dsharpe": 0.025,
+ "dsharpe_double": 0.028,
+ "years_better": 4,
+ "checks": {
+  "sharpe": false,
+  "years": true,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

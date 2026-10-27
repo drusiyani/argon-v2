@@ -1,0 +1,71 @@
+{
+ "id": "Q25",
+ "name": "QuantLab flat 15:50 (was 15:55)",
+ "kind": "strat",
+ "target": "quantlab",
+ "kw": {
+  "flat": 950
+ },
+ "normal": {
+  "sharpe": 1.414,
+  "R": 240.75,
+  "years": {
+   "2021": 22.78,
+   "2022": 68.17,
+   "2023": 70.81,
+   "2024": 78.99
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.156,
+  "R": 191.29,
+  "years": {
+   "2021": 15.53,
+   "2022": 53.0,
+   "2023": 57.59,
+   "2024": 65.18
+  },
+  "trades": 2103
+ },
+ "nearby": [
+  {
+   "kw": {
+    "flat": 945
+   },
+   "sharpe": 1.418,
+   "R": 241.49,
+   "years": {
+    "2021": 22.78,
+    "2022": 68.23,
+    "2023": 70.81,
+    "2024": 79.66
+   },
+   "trades": 2122
+  },
+  {
+   "kw": {
+    "flat": 953
+   },
+   "sharpe": 1.414,
+   "R": 241.26,
+   "years": {
+    "2021": 22.78,
+    "2022": 68.86,
+    "2023": 70.81,
+    "2024": 78.81
+   },
+   "trades": 2122
+  }
+ ],
+ "dsharpe": 0.002,
+ "dsharpe_double": 0.002,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

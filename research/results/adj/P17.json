@@ -1,0 +1,71 @@
+{
+ "id": "P17",
+ "name": "Kill switch: strategy off while its last 6 months are negative",
+ "kind": "port",
+ "target": "kill",
+ "kw": {
+  "look": 6
+ },
+ "normal": {
+  "sharpe": 1.338,
+  "R": 184.02,
+  "years": {
+   "2021": 2.41,
+   "2022": 53.22,
+   "2023": 87.04,
+   "2024": 41.35
+  },
+  "trades": 1714
+ },
+ "double": {
+  "sharpe": 0.874,
+  "R": 104.11,
+  "years": {
+   "2021": -2.09,
+   "2022": 14.66,
+   "2023": 57.36,
+   "2024": 34.18
+  },
+  "trades": 1643
+ },
+ "nearby": [
+  {
+   "kw": {
+    "look": 4
+   },
+   "sharpe": 0.86,
+   "R": 106.7,
+   "years": {
+    "2021": 1.43,
+    "2022": 33.6,
+    "2023": 36.92,
+    "2024": 34.75
+   },
+   "trades": 1548
+  },
+  {
+   "kw": {
+    "look": 9
+   },
+   "sharpe": 1.336,
+   "R": 186.87,
+   "years": {
+    "2021": 18.83,
+    "2022": 64.77,
+    "2023": 45.21,
+    "2024": 58.06
+   },
+   "trades": 1905
+  }
+ ],
+ "dsharpe": -0.074,
+ "dsharpe_double": -0.28,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

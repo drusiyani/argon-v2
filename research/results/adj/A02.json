@@ -1,0 +1,71 @@
+{
+ "id": "A02",
+ "name": "Trailing stop 1.0x daily ATR",
+ "kind": "strat",
+ "target": "atrband",
+ "kw": {
+  "trail": 1.0
+ },
+ "normal": {
+  "sharpe": 1.413,
+  "R": 240.86,
+  "years": {
+   "2021": 23.11,
+   "2022": 67.84,
+   "2023": 70.59,
+   "2024": 79.31
+  },
+  "trades": 2124
+ },
+ "double": {
+  "sharpe": 1.155,
+  "R": 191.39,
+  "years": {
+   "2021": 15.86,
+   "2022": 52.67,
+   "2023": 57.37,
+   "2024": 65.49
+  },
+  "trades": 2105
+ },
+ "nearby": [
+  {
+   "kw": {
+    "trail": 0.8
+   },
+   "sharpe": 1.418,
+   "R": 241.82,
+   "years": {
+    "2021": 24.06,
+    "2022": 68.37,
+    "2023": 69.75,
+    "2024": 79.63
+   },
+   "trades": 2131
+  },
+  {
+   "kw": {
+    "trail": 1.2
+   },
+   "sharpe": 1.414,
+   "R": 240.9,
+   "years": {
+    "2021": 22.78,
+    "2022": 68.58,
+    "2023": 70.81,
+    "2024": 78.72
+   },
+   "trades": 2123
+  }
+ ],
+ "dsharpe": 0.001,
+ "dsharpe_double": 0.001,
+ "years_better": 2,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

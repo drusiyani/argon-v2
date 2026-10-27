@@ -1,0 +1,42 @@
+{
+ "id": "A12",
+ "name": "Stop 0.25x ATR from entry",
+ "kind": "strat",
+ "target": "atrband",
+ "kw": {
+  "stopmode": "atr25"
+ },
+ "normal": {
+  "sharpe": 1.433,
+  "R": 270.32,
+  "years": {
+   "2021": 17.23,
+   "2022": 88.55,
+   "2023": 81.31,
+   "2024": 83.23
+  },
+  "trades": 2250
+ },
+ "double": {
+  "sharpe": 1.175,
+  "R": 215.59,
+  "years": {
+   "2021": 8.68,
+   "2022": 72.32,
+   "2023": 66.55,
+   "2024": 68.03
+  },
+  "trades": 2231
+ },
+ "nearby": [],
+ "dsharpe": 0.021,
+ "dsharpe_double": 0.021,
+ "years_better": 3,
+ "checks": {
+  "sharpe": false,
+  "years": true,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

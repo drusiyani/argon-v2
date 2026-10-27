@@ -1,0 +1,42 @@
+{
+ "id": "P03",
+ "name": "Half size a new NQ trade if an opposite NQ position is open",
+ "kind": "port",
+ "target": "opposite",
+ "kw": {
+  "mode": "half"
+ },
+ "normal": {
+  "sharpe": 1.43,
+  "R": 243.87,
+  "years": {
+   "2021": 24.41,
+   "2022": 68.4,
+   "2023": 72.52,
+   "2024": 78.53
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.175,
+  "R": 194.68,
+  "years": {
+   "2021": 17.22,
+   "2022": 53.32,
+   "2023": 59.38,
+   "2024": 64.76
+  },
+  "trades": 2103
+ },
+ "nearby": [],
+ "dsharpe": 0.018,
+ "dsharpe_double": 0.021,
+ "years_better": 3,
+ "checks": {
+  "sharpe": false,
+  "years": true,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

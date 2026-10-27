@@ -1,0 +1,74 @@
+{
+ "id": "P07",
+ "name": "Daily loss limit -2R counting open risk (worst case incl. open trades)",
+ "kind": "port",
+ "target": "losslimit",
+ "kw": {
+  "L": 2.0,
+  "openrisk": true
+ },
+ "normal": {
+  "sharpe": 1.0,
+  "R": 142.61,
+  "years": {
+   "2021": 15.82,
+   "2022": 40.62,
+   "2023": 37.31,
+   "2024": 48.85
+  },
+  "trades": 1399
+ },
+ "double": {
+  "sharpe": 0.749,
+  "R": 106.66,
+  "years": {
+   "2021": 9.76,
+   "2022": 32.74,
+   "2023": 26.15,
+   "2024": 38.02
+  },
+  "trades": 1393
+ },
+ "nearby": [
+  {
+   "kw": {
+    "L": 2.5,
+    "openrisk": true
+   },
+   "sharpe": 1.129,
+   "R": 167.55,
+   "years": {
+    "2021": 15.75,
+    "2022": 49.17,
+    "2023": 47.55,
+    "2024": 55.08
+   },
+   "trades": 1721
+  },
+  {
+   "kw": {
+    "L": 3.0,
+    "openrisk": true
+   },
+   "sharpe": 1.346,
+   "R": 223.94,
+   "years": {
+    "2021": 23.2,
+    "2022": 65.93,
+    "2023": 57.48,
+    "2024": 77.34
+   },
+   "trades": 1892
+  }
+ ],
+ "dsharpe": -0.412,
+ "dsharpe_double": -0.405,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

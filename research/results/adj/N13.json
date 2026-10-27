@@ -1,0 +1,42 @@
+{
+ "id": "N13",
+ "name": "Noise band flat 13:55 on FOMC days (like the others)",
+ "kind": "strat",
+ "target": "noiseband",
+ "kw": {
+  "fomc_flat": true
+ },
+ "normal": {
+  "sharpe": 1.355,
+  "R": 226.05,
+  "years": {
+   "2021": 21.2,
+   "2022": 62.42,
+   "2023": 69.83,
+   "2024": 72.6
+  },
+  "trades": 2104
+ },
+ "double": {
+  "sharpe": 1.103,
+  "R": 180.66,
+  "years": {
+   "2021": 13.96,
+   "2022": 52.29,
+   "2023": 56.63,
+   "2024": 57.77
+  },
+  "trades": 2090
+ },
+ "nearby": [],
+ "dsharpe": -0.057,
+ "dsharpe_double": -0.051,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

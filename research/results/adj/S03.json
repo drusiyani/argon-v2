@@ -1,0 +1,12 @@
+{
+ "id": "S03",
+ "name": "Risk 1.0% per trade",
+ "kind": "size",
+ "report": {
+  "risk": 1.0,
+  "a_year": 76.5,
+  "worst_drop": -29.5,
+  "halving_chance": 3.2
+ },
+ "verdict": "reported"
+}

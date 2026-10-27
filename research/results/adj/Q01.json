@@ -1,0 +1,57 @@
+{
+ "id": "Q01",
+ "name": "Enter one 5-min bar later (9:40)",
+ "kind": "strat",
+ "target": "quantlab",
+ "kw": {
+  "delay": 1
+ },
+ "normal": {
+  "sharpe": 0.8,
+  "R": 137.48,
+  "years": {
+   "2021": 20.39,
+   "2022": 40.84,
+   "2023": 33.85,
+   "2024": 42.39
+  },
+  "trades": 2092
+ },
+ "double": {
+  "sharpe": 0.555,
+  "R": 92.22,
+  "years": {
+   "2021": 13.14,
+   "2022": 25.72,
+   "2023": 21.96,
+   "2024": 31.41
+  },
+  "trades": 2078
+ },
+ "nearby": [
+  {
+   "kw": {
+    "delay": 2
+   },
+   "sharpe": 1.085,
+   "R": 190.08,
+   "years": {
+    "2021": -4.39,
+    "2022": 61.94,
+    "2023": 46.82,
+    "2024": 85.72
+   },
+   "trades": 2097
+  }
+ ],
+ "dsharpe": -0.612,
+ "dsharpe_double": -0.599,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

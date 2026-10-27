@@ -1,0 +1,42 @@
+{
+ "id": "E05",
+ "name": "Quarterly expiries only",
+ "kind": "strat",
+ "target": "expiry",
+ "kw": {
+  "quarterly": true
+ },
+ "normal": {
+  "sharpe": 1.363,
+  "R": 226.45,
+  "years": {
+   "2021": 22.74,
+   "2022": 58.97,
+   "2023": 69.54,
+   "2024": 75.19
+  },
+  "trades": 2068
+ },
+ "double": {
+  "sharpe": 1.105,
+  "R": 177.94,
+  "years": {
+   "2021": 15.68,
+   "2022": 43.98,
+   "2023": 56.63,
+   "2024": 61.65
+  },
+  "trades": 2049
+ },
+ "nearby": [],
+ "dsharpe": -0.049,
+ "dsharpe_double": -0.049,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

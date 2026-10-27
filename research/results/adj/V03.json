@@ -1,0 +1,42 @@
+{
+ "id": "V03",
+ "name": "QuantLab: half size on expiry Fridays",
+ "kind": "port",
+ "target": "qlexpiry",
+ "kw": {
+  "mode": "half"
+ },
+ "normal": {
+  "sharpe": 1.407,
+  "R": 234.98,
+  "years": {
+   "2021": 21.9,
+   "2022": 69.46,
+   "2023": 70.12,
+   "2024": 73.49
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.149,
+  "R": 186.3,
+  "years": {
+   "2021": 14.78,
+   "2022": 54.42,
+   "2023": 57.12,
+   "2024": 59.99
+  },
+  "trades": 2103
+ },
+ "nearby": [],
+ "dsharpe": -0.005,
+ "dsharpe_double": -0.005,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

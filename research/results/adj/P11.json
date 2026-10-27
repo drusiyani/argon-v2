@@ -1,0 +1,74 @@
+{
+ "id": "P11",
+ "name": "Total open-risk cap 2R (shrink new trade to fit, min 0.25)",
+ "kind": "port",
+ "target": "riskcap",
+ "kw": {
+  "cap": 2.0,
+  "scale": true
+ },
+ "normal": {
+  "sharpe": 1.284,
+  "R": 195.04,
+  "years": {
+   "2021": 11.81,
+   "2022": 62.75,
+   "2023": 62.06,
+   "2024": 58.42
+  },
+  "trades": 1972
+ },
+ "double": {
+  "sharpe": 1.023,
+  "R": 154.09,
+  "years": {
+   "2021": 4.95,
+   "2022": 51.33,
+   "2023": 49.51,
+   "2024": 48.3
+  },
+  "trades": 1954
+ },
+ "nearby": [
+  {
+   "kw": {
+    "cap": 1.5,
+    "scale": true
+   },
+   "sharpe": 1.266,
+   "R": 178.48,
+   "years": {
+    "2021": 13.33,
+    "2022": 50.6,
+    "2023": 55.78,
+    "2024": 58.76
+   },
+   "trades": 1972
+  },
+  {
+   "kw": {
+    "cap": 2.5,
+    "scale": true
+   },
+   "sharpe": 1.352,
+   "R": 214.97,
+   "years": {
+    "2021": 16.22,
+    "2022": 65.9,
+    "2023": 64.86,
+    "2024": 67.99
+   },
+   "trades": 2110
+  }
+ ],
+ "dsharpe": -0.128,
+ "dsharpe_double": -0.131,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

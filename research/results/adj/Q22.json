@@ -1,0 +1,44 @@
+{
+ "id": "Q22",
+ "name": "Candle stops only (3 variants)",
+ "kind": "strat",
+ "target": "quantlab",
+ "kw": {
+  "stops": [
+   "candle"
+  ]
+ },
+ "normal": {
+  "sharpe": 1.187,
+  "R": 173.45,
+  "years": {
+   "2021": 1.85,
+   "2022": 58.71,
+   "2023": 62.55,
+   "2024": 50.35
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 0.882,
+  "R": 124.22,
+  "years": {
+   "2021": -3.88,
+   "2022": 42.65,
+   "2023": 48.63,
+   "2024": 36.82
+  },
+  "trades": 2103
+ },
+ "nearby": [],
+ "dsharpe": -0.225,
+ "dsharpe_double": -0.272,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

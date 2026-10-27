@@ -1,0 +1,57 @@
+{
+ "id": "Q20",
+ "name": "EMA exit needs 2 closes across",
+ "kind": "strat",
+ "target": "quantlab",
+ "kw": {
+  "confirm": 2
+ },
+ "normal": {
+  "sharpe": 1.532,
+  "R": 260.68,
+  "years": {
+   "2021": 18.12,
+   "2022": 88.05,
+   "2023": 70.81,
+   "2024": 83.7
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.276,
+  "R": 211.28,
+  "years": {
+   "2021": 10.87,
+   "2022": 72.94,
+   "2023": 57.59,
+   "2024": 69.89
+  },
+  "trades": 2103
+ },
+ "nearby": [
+  {
+   "kw": {
+    "confirm": 3
+   },
+   "sharpe": 1.421,
+   "R": 248.77,
+   "years": {
+    "2021": 19.07,
+    "2022": 74.75,
+    "2023": 70.81,
+    "2024": 84.14
+   },
+   "trades": 2122
+  }
+ ],
+ "dsharpe": 0.12,
+ "dsharpe_double": 0.122,
+ "years_better": 2,
+ "checks": {
+  "sharpe": true,
+  "years": false,
+  "double_costs": true,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

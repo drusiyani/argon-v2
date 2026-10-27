@@ -1,0 +1,40 @@
+{
+ "id": "P01",
+ "name": "Net same-minute opposite orders (cost saving only)",
+ "kind": "port",
+ "target": "netcost",
+ "kw": {},
+ "normal": {
+  "sharpe": 1.454,
+  "R": 247.03,
+  "years": {
+   "2021": 23.43,
+   "2022": 70.67,
+   "2023": 71.38,
+   "2024": 81.56
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.24,
+  "R": 204.12,
+  "years": {
+   "2021": 16.83,
+   "2022": 57.71,
+   "2023": 58.72,
+   "2024": 70.86
+  },
+  "trades": 2103
+ },
+ "nearby": [],
+ "dsharpe": 0.042,
+ "dsharpe_double": 0.086,
+ "years_better": 4,
+ "checks": {
+  "sharpe": false,
+  "years": true,
+  "double_costs": true,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

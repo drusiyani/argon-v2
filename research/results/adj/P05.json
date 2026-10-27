@@ -1,0 +1,71 @@
+{
+ "id": "P05",
+ "name": "Exact-time daily loss limit -1.5R (realised)",
+ "kind": "port",
+ "target": "losslimit",
+ "kw": {
+  "L": 1.5
+ },
+ "normal": {
+  "sharpe": 1.291,
+  "R": 223.58,
+  "years": {
+   "2021": 24.07,
+   "2022": 64.41,
+   "2023": 63.07,
+   "2024": 72.02
+  },
+  "trades": 2051
+ },
+ "double": {
+  "sharpe": 1.048,
+  "R": 176.08,
+  "years": {
+   "2021": 16.89,
+   "2022": 49.94,
+   "2023": 50.02,
+   "2024": 59.23
+  },
+  "trades": 2032
+ },
+ "nearby": [
+  {
+   "kw": {
+    "L": 1.0
+   },
+   "sharpe": 1.175,
+   "R": 194.49,
+   "years": {
+    "2021": 25.43,
+    "2022": 52.53,
+    "2023": 48.87,
+    "2024": 67.66
+   },
+   "trades": 1597
+  },
+  {
+   "kw": {
+    "L": 2.0
+   },
+   "sharpe": 1.304,
+   "R": 225.86,
+   "years": {
+    "2021": 22.96,
+    "2022": 64.96,
+    "2023": 64.96,
+    "2024": 72.97
+   },
+   "trades": 2079
+  }
+ ],
+ "dsharpe": -0.121,
+ "dsharpe_double": -0.106,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

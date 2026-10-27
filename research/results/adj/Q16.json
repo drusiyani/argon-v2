@@ -1,0 +1,71 @@
+{
+ "id": "Q16",
+ "name": "Stop to breakeven after +2R",
+ "kind": "strat",
+ "target": "quantlab",
+ "kw": {
+  "be": 2.0
+ },
+ "normal": {
+  "sharpe": 1.203,
+  "R": 182.77,
+  "years": {
+   "2021": 33.28,
+   "2022": 63.32,
+   "2023": 54.3,
+   "2024": 31.86
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 0.899,
+  "R": 133.77,
+  "years": {
+   "2021": 26.03,
+   "2022": 48.15,
+   "2023": 41.08,
+   "2024": 18.52
+  },
+  "trades": 2103
+ },
+ "nearby": [
+  {
+   "kw": {
+    "be": 1.5
+   },
+   "sharpe": 1.369,
+   "R": 201.53,
+   "years": {
+    "2021": 34.31,
+    "2022": 65.82,
+    "2023": 75.49,
+    "2024": 25.91
+   },
+   "trades": 2122
+  },
+  {
+   "kw": {
+    "be": 2.5
+   },
+   "sharpe": 1.251,
+   "R": 193.64,
+   "years": {
+    "2021": 31.13,
+    "2022": 65.83,
+    "2023": 51.65,
+    "2024": 45.02
+   },
+   "trades": 2122
+  }
+ ],
+ "dsharpe": -0.209,
+ "dsharpe_double": -0.255,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

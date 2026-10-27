@@ -1,0 +1,71 @@
+{
+ "id": "P24",
+ "name": "Max 2 open same-direction NQ trades",
+ "kind": "port",
+ "target": "stack",
+ "kw": {
+  "k": 2
+ },
+ "normal": {
+  "sharpe": 1.303,
+  "R": 203.41,
+  "years": {
+   "2021": 14.26,
+   "2022": 57.18,
+   "2023": 63.08,
+   "2024": 68.9
+  },
+  "trades": 2030
+ },
+ "double": {
+  "sharpe": 1.039,
+  "R": 160.77,
+  "years": {
+   "2021": 7.13,
+   "2022": 45.45,
+   "2023": 50.05,
+   "2024": 58.15
+  },
+  "trades": 2012
+ },
+ "nearby": [
+  {
+   "kw": {
+    "k": 1
+   },
+   "sharpe": 1.241,
+   "R": 166.16,
+   "years": {
+    "2021": 12.52,
+    "2022": 44.35,
+    "2023": 50.17,
+    "2024": 59.11
+   },
+   "trades": 1578
+  },
+  {
+   "kw": {
+    "k": 3
+   },
+   "sharpe": 1.408,
+   "R": 238.56,
+   "years": {
+    "2021": 21.66,
+    "2022": 68.45,
+    "2023": 68.85,
+    "2024": 79.6
+   },
+   "trades": 2118
+  }
+ ],
+ "dsharpe": -0.109,
+ "dsharpe_double": -0.115,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

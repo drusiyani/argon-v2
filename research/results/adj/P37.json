@@ -1,0 +1,122 @@
+{
+ "id": "P37",
+ "name": "Priority trio: netting + risk parity 6m + loss limit -2R",
+ "kind": "port",
+ "target": "chain",
+ "kw": {
+  "steps": [
+   [
+    "parity",
+    {
+     "look": 6
+    }
+   ],
+   [
+    "losslimit",
+    {
+     "L": 2.0
+    }
+   ],
+   [
+    "netcost",
+    {}
+   ]
+  ]
+ },
+ "normal": {
+  "sharpe": 1.299,
+  "R": 136.92,
+  "years": {
+   "2021": 14.98,
+   "2022": 56.18,
+   "2023": 39.49,
+   "2024": 26.27
+  },
+  "trades": 2097
+ },
+ "double": {
+  "sharpe": 1.137,
+  "R": 114.75,
+  "years": {
+   "2021": 9.47,
+   "2022": 50.15,
+   "2023": 33.47,
+   "2024": 21.67
+  },
+  "trades": 2081
+ },
+ "nearby": [
+  {
+   "kw": {
+    "steps": [
+     [
+      "parity",
+      {
+       "look": 4
+      }
+     ],
+     [
+      "losslimit",
+      {
+       "L": 1.5
+      }
+     ],
+     [
+      "netcost",
+      {}
+     ]
+    ]
+   },
+   "sharpe": 1.263,
+   "R": 132.55,
+   "years": {
+    "2021": 15.35,
+    "2022": 61.21,
+    "2023": 34.77,
+    "2024": 21.22
+   },
+   "trades": 2083
+  },
+  {
+   "kw": {
+    "steps": [
+     [
+      "parity",
+      {
+       "look": 9
+      }
+     ],
+     [
+      "losslimit",
+      {
+       "L": 2.5
+      }
+     ],
+     [
+      "netcost",
+      {}
+     ]
+    ]
+   },
+   "sharpe": 1.422,
+   "R": 154.87,
+   "years": {
+    "2021": 20.06,
+    "2022": 57.88,
+    "2023": 46.95,
+    "2024": 29.97
+   },
+   "trades": 2103
+  }
+ ],
+ "dsharpe": -0.113,
+ "dsharpe_double": -0.017,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

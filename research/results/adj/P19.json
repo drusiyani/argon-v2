@@ -1,0 +1,71 @@
+{
+ "id": "P19",
+ "name": "Weekly loss limit -5R",
+ "kind": "port",
+ "target": "weeklimit",
+ "kw": {
+  "L": 5.0
+ },
+ "normal": {
+  "sharpe": 1.224,
+  "R": 216.95,
+  "years": {
+   "2021": 17.64,
+   "2022": 49.46,
+   "2023": 68.78,
+   "2024": 81.07
+  },
+  "trades": 2012
+ },
+ "double": {
+  "sharpe": 0.992,
+  "R": 170.11,
+  "years": {
+   "2021": 11.41,
+   "2022": 37.89,
+   "2023": 55.71,
+   "2024": 65.11
+  },
+  "trades": 1987
+ },
+ "nearby": [
+  {
+   "kw": {
+    "L": 4.0
+   },
+   "sharpe": 1.259,
+   "R": 222.88,
+   "years": {
+    "2021": 19.61,
+    "2022": 48.03,
+    "2023": 70.7,
+    "2024": 84.55
+   },
+   "trades": 1919
+  },
+  {
+   "kw": {
+    "L": 6.0
+   },
+   "sharpe": 1.288,
+   "R": 226.21,
+   "years": {
+    "2021": 15.86,
+    "2022": 60.36,
+    "2023": 71.01,
+    "2024": 78.97
+   },
+   "trades": 2056
+  }
+ ],
+ "dsharpe": -0.188,
+ "dsharpe_double": -0.162,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

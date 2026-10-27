@@ -1,0 +1,71 @@
+{
+ "id": "A14",
+ "name": "Check every 10 minutes (was 15)",
+ "kind": "strat",
+ "target": "atrband",
+ "kw": {
+  "step": 10
+ },
+ "normal": {
+  "sharpe": 1.44,
+  "R": 245.55,
+  "years": {
+   "2021": 23.87,
+   "2022": 72.71,
+   "2023": 72.68,
+   "2024": 76.28
+  },
+  "trades": 2139
+ },
+ "double": {
+  "sharpe": 1.183,
+  "R": 195.94,
+  "years": {
+   "2021": 16.56,
+   "2022": 57.51,
+   "2023": 59.43,
+   "2024": 62.44
+  },
+  "trades": 2120
+ },
+ "nearby": [
+  {
+   "kw": {
+    "step": 5
+   },
+   "sharpe": 1.469,
+   "R": 248.76,
+   "years": {
+    "2021": 24.78,
+    "2022": 71.84,
+    "2023": 74.66,
+    "2024": 77.47
+   },
+   "trades": 2170
+  },
+  {
+   "kw": {
+    "step": 12
+   },
+   "sharpe": 1.47,
+   "R": 245.49,
+   "years": {
+    "2021": 27.31,
+    "2022": 68.03,
+    "2023": 72.8,
+    "2024": 77.35
+   },
+   "trades": 2134
+  }
+ ],
+ "dsharpe": 0.028,
+ "dsharpe_double": 0.029,
+ "years_better": 3,
+ "checks": {
+  "sharpe": false,
+  "years": true,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

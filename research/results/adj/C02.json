@@ -1,0 +1,86 @@
+{
+ "id": "C02",
+ "name": "No new entries after 15:00 anywhere",
+ "kind": "multi",
+ "target": null,
+ "kw": {
+  "noiseband": {
+   "cutoff": 900
+  },
+  "atrband": {
+   "cutoff": 900
+  }
+ },
+ "normal": {
+  "sharpe": 1.387,
+  "R": 232.49,
+  "years": {
+   "2021": 22.6,
+   "2022": 62.63,
+   "2023": 68.57,
+   "2024": 78.69
+  },
+  "trades": 2036
+ },
+ "double": {
+  "sharpe": 1.134,
+  "R": 191.47,
+  "years": {
+   "2021": 15.46,
+   "2022": 52.71,
+   "2023": 55.52,
+   "2024": 67.78
+  },
+  "trades": 2025
+ },
+ "nearby": [
+  {
+   "kw": {
+    "noiseband": {
+     "cutoff": 870
+    },
+    "atrband": {
+     "cutoff": 870
+    }
+   },
+   "sharpe": 1.374,
+   "R": 225.8,
+   "years": {
+    "2021": 22.13,
+    "2022": 60.9,
+    "2023": 65.58,
+    "2024": 77.2
+   },
+   "trades": 1964
+  },
+  {
+   "kw": {
+    "noiseband": {
+     "cutoff": 915
+    },
+    "atrband": {
+     "cutoff": 915
+    }
+   },
+   "sharpe": 1.384,
+   "R": 231.59,
+   "years": {
+    "2021": 22.44,
+    "2022": 61.78,
+    "2023": 68.61,
+    "2024": 78.76
+   },
+   "trades": 2054
+  }
+ ],
+ "dsharpe": -0.025,
+ "dsharpe_double": -0.02,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

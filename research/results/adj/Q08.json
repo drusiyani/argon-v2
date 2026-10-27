@@ -1,0 +1,81 @@
+{
+ "id": "Q08",
+ "name": "Chandelier set 2 / 2.5 / 3",
+ "kind": "strat",
+ "target": "quantlab",
+ "kw": {
+  "chands": [
+   2,
+   2.5,
+   3
+  ]
+ },
+ "normal": {
+  "sharpe": 1.345,
+  "R": 219.91,
+  "years": {
+   "2021": 22.78,
+   "2022": 68.46,
+   "2023": 66.62,
+   "2024": 62.05
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.084,
+  "R": 171.64,
+  "years": {
+   "2021": 15.53,
+   "2022": 54.49,
+   "2023": 53.39,
+   "2024": 48.24
+  },
+  "trades": 2103
+ },
+ "nearby": [
+  {
+   "kw": {
+    "chands": [
+     2,
+     2.5
+    ]
+   },
+   "sharpe": 1.32,
+   "R": 206.21,
+   "years": {
+    "2021": 28.62,
+    "2022": 61.12,
+    "2023": 66.62,
+    "2024": 49.85
+   },
+   "trades": 2122
+  },
+  {
+   "kw": {
+    "chands": [
+     2.5,
+     3
+    ]
+   },
+   "sharpe": 1.334,
+   "R": 275.34,
+   "years": {
+    "2021": 22.78,
+    "2022": 61.95,
+    "2023": 128.56,
+    "2024": 62.05
+   },
+   "trades": 2122
+  }
+ ],
+ "dsharpe": -0.067,
+ "dsharpe_double": -0.07,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

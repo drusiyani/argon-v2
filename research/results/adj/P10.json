@@ -1,0 +1,71 @@
+{
+ "id": "P10",
+ "name": "Total open-risk cap 3R (skip)",
+ "kind": "port",
+ "target": "riskcap",
+ "kw": {
+  "cap": 3.0
+ },
+ "normal": {
+  "sharpe": 1.395,
+  "R": 234.9,
+  "years": {
+   "2021": 20.63,
+   "2022": 69.04,
+   "2023": 67.67,
+   "2024": 77.56
+  },
+  "trades": 2110
+ },
+ "double": {
+  "sharpe": 1.134,
+  "R": 185.54,
+  "years": {
+   "2021": 13.4,
+   "2022": 53.89,
+   "2023": 54.47,
+   "2024": 63.79
+  },
+  "trades": 2091
+ },
+ "nearby": [
+  {
+   "kw": {
+    "cap": 2.5
+   },
+   "sharpe": 1.284,
+   "R": 195.04,
+   "years": {
+    "2021": 11.81,
+    "2022": 62.75,
+    "2023": 62.06,
+    "2024": 58.42
+   },
+   "trades": 1972
+  },
+  {
+   "kw": {
+    "cap": 3.5
+   },
+   "sharpe": 1.395,
+   "R": 234.9,
+   "years": {
+    "2021": 20.63,
+    "2022": 69.04,
+    "2023": 67.67,
+    "2024": 77.56
+   },
+   "trades": 2110
+  }
+ ],
+ "dsharpe": -0.017,
+ "dsharpe_double": -0.02,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

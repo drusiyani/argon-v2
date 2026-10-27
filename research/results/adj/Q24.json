@@ -1,0 +1,42 @@
+{
+ "id": "Q24",
+ "name": "QuantLab skips FOMC days",
+ "kind": "strat",
+ "target": "quantlab",
+ "kw": {
+  "skip_fomc": true
+ },
+ "normal": {
+  "sharpe": 1.515,
+  "R": 253.55,
+  "years": {
+   "2021": 31.28,
+   "2022": 72.18,
+   "2023": 74.69,
+   "2024": 75.4
+  },
+  "trades": 2094
+ },
+ "double": {
+  "sharpe": 1.262,
+  "R": 205.09,
+  "years": {
+   "2021": 24.19,
+   "2022": 57.18,
+   "2023": 61.76,
+   "2024": 61.96
+  },
+  "trades": 2075
+ },
+ "nearby": [],
+ "dsharpe": 0.103,
+ "dsharpe_double": 0.108,
+ "years_better": 3,
+ "checks": {
+  "sharpe": true,
+  "years": true,
+  "double_costs": true,
+  "nearby": true
+ },
+ "verdict": "PASS"
+}

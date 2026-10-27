@@ -1,0 +1,44 @@
+{
+ "id": "N02",
+ "name": "Decisions every 30 min only",
+ "kind": "strat",
+ "target": "noiseband",
+ "kw": {
+  "freqs": [
+   30
+  ]
+ },
+ "normal": {
+  "sharpe": 1.406,
+  "R": 237.25,
+  "years": {
+   "2021": 15.8,
+   "2022": 68.86,
+   "2023": 74.81,
+   "2024": 77.78
+  },
+  "trades": 2181
+ },
+ "double": {
+  "sharpe": 1.159,
+  "R": 190.83,
+  "years": {
+   "2021": 8.37,
+   "2022": 55.14,
+   "2023": 61.44,
+   "2024": 65.87
+  },
+  "trades": 2162
+ },
+ "nearby": [],
+ "dsharpe": -0.006,
+ "dsharpe_double": 0.005,
+ "years_better": 2,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

@@ -1,0 +1,77 @@
+{
+ "id": "P28",
+ "name": "QuantLab 0.75x weight",
+ "kind": "port",
+ "target": "weights",
+ "kw": {
+  "w": {
+   "quantlab": 0.75
+  }
+ },
+ "normal": {
+  "sharpe": 1.481,
+  "R": 205.91,
+  "years": {
+   "2021": 18.87,
+   "2022": 61.14,
+   "2023": 62.6,
+   "2024": 63.3
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.228,
+  "R": 164.66,
+  "years": {
+   "2021": 13.05,
+   "2022": 47.91,
+   "2023": 51.84,
+   "2024": 51.86
+  },
+  "trades": 2103
+ },
+ "nearby": [
+  {
+   "kw": {
+    "w": {
+     "quantlab": 0.6
+    }
+   },
+   "sharpe": 1.531,
+   "R": 185.17,
+   "years": {
+    "2021": 16.52,
+    "2022": 56.75,
+    "2023": 57.68,
+    "2024": 54.21
+   },
+   "trades": 2122
+  },
+  {
+   "kw": {
+    "w": {
+     "quantlab": 0.9
+    }
+   },
+   "sharpe": 1.438,
+   "R": 226.66,
+   "years": {
+    "2021": 21.22,
+    "2022": 65.53,
+    "2023": 67.53,
+    "2024": 72.39
+   },
+   "trades": 2122
+  }
+ ],
+ "dsharpe": 0.069,
+ "dsharpe_double": 0.074,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": true,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

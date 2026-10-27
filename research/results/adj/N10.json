@@ -1,0 +1,71 @@
+{
+ "id": "N10",
+ "name": "Trailing stop 1.0 band-widths, checked every minute",
+ "kind": "strat",
+ "target": "noiseband",
+ "kw": {
+  "trail": 1.0
+ },
+ "normal": {
+  "sharpe": 1.43,
+  "R": 234.35,
+  "years": {
+   "2021": 19.06,
+   "2022": 69.54,
+   "2023": 67.75,
+   "2024": 78.0
+  },
+  "trades": 2194
+ },
+ "double": {
+  "sharpe": 1.149,
+  "R": 188.5,
+  "years": {
+   "2021": 11.7,
+   "2022": 56.38,
+   "2023": 53.85,
+   "2024": 66.57
+  },
+  "trades": 2154
+ },
+ "nearby": [
+  {
+   "kw": {
+    "trail": 0.75
+   },
+   "sharpe": 1.516,
+   "R": 242.02,
+   "years": {
+    "2021": 18.79,
+    "2022": 69.93,
+    "2023": 70.31,
+    "2024": 82.99
+   },
+   "trades": 2447
+  },
+  {
+   "kw": {
+    "trail": 1.25
+   },
+   "sharpe": 1.452,
+   "R": 241.53,
+   "years": {
+    "2021": 19.82,
+    "2022": 71.2,
+    "2023": 72.72,
+    "2024": 77.79
+   },
+   "trades": 2202
+  }
+ ],
+ "dsharpe": 0.018,
+ "dsharpe_double": -0.005,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

@@ -1,0 +1,71 @@
+{
+ "id": "A04",
+ "name": "Take half off at +1.5R",
+ "kind": "strat",
+ "target": "atrband",
+ "kw": {
+  "partial": 1.5
+ },
+ "normal": {
+  "sharpe": 1.415,
+  "R": 239.59,
+  "years": {
+   "2021": 24.07,
+   "2022": 66.78,
+   "2023": 70.19,
+   "2024": 78.55
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.156,
+  "R": 190.13,
+  "years": {
+   "2021": 16.81,
+   "2022": 51.61,
+   "2023": 56.97,
+   "2024": 64.74
+  },
+  "trades": 2103
+ },
+ "nearby": [
+  {
+   "kw": {
+    "partial": 1.25
+   },
+   "sharpe": 1.415,
+   "R": 238.58,
+   "years": {
+    "2021": 24.0,
+    "2022": 65.84,
+    "2023": 69.61,
+    "2024": 79.13
+   },
+   "trades": 2122
+  },
+  {
+   "kw": {
+    "partial": 1.75
+   },
+   "sharpe": 1.418,
+   "R": 240.44,
+   "years": {
+    "2021": 24.0,
+    "2022": 66.99,
+    "2023": 70.03,
+    "2024": 79.41
+   },
+   "trades": 2122
+  }
+ ],
+ "dsharpe": 0.003,
+ "dsharpe_double": 0.002,
+ "years_better": 2,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

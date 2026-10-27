@@ -1,0 +1,71 @@
+{
+ "id": "P18",
+ "name": "Drawdown control: half size while portfolio is >15R below its peak",
+ "kind": "port",
+ "target": "ddctl",
+ "kw": {
+  "dd": 15.0
+ },
+ "normal": {
+  "sharpe": 1.23,
+  "R": 184.61,
+  "years": {
+   "2021": 22.78,
+   "2022": 60.64,
+   "2023": 51.7,
+   "2024": 49.5
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.115,
+  "R": 159.06,
+  "years": {
+   "2021": 15.53,
+   "2022": 46.97,
+   "2023": 40.15,
+   "2024": 56.42
+  },
+  "trades": 2103
+ },
+ "nearby": [
+  {
+   "kw": {
+    "dd": 10.0
+   },
+   "sharpe": 1.349,
+   "R": 193.35,
+   "years": {
+    "2021": 18.0,
+    "2022": 52.04,
+    "2023": 57.22,
+    "2024": 66.09
+   },
+   "trades": 2122
+  },
+  {
+   "kw": {
+    "dd": 20.0
+   },
+   "sharpe": 1.295,
+   "R": 205.17,
+   "years": {
+    "2021": 22.78,
+    "2022": 68.45,
+    "2023": 70.09,
+    "2024": 43.86
+   },
+   "trades": 2122
+  }
+ ],
+ "dsharpe": -0.182,
+ "dsharpe_double": -0.039,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

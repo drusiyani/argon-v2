@@ -1,0 +1,42 @@
+{
+ "id": "P02",
+ "name": "Skip a new NQ trade if an opposite NQ position is open",
+ "kind": "port",
+ "target": "opposite",
+ "kw": {
+  "mode": "skip"
+ },
+ "normal": {
+  "sharpe": 1.447,
+  "R": 247.24,
+  "years": {
+   "2021": 26.04,
+   "2022": 68.35,
+   "2023": 74.23,
+   "2024": 78.62
+  },
+  "trades": 2103
+ },
+ "double": {
+  "sharpe": 1.194,
+  "R": 198.33,
+  "years": {
+   "2021": 18.92,
+   "2022": 53.36,
+   "2023": 61.17,
+   "2024": 64.88
+  },
+  "trades": 2084
+ },
+ "nearby": [],
+ "dsharpe": 0.035,
+ "dsharpe_double": 0.04,
+ "years_better": 3,
+ "checks": {
+  "sharpe": false,
+  "years": true,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

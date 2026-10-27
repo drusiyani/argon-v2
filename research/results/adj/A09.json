@@ -1,0 +1,71 @@
+{
+ "id": "A09",
+ "name": "No new entries after 12:00",
+ "kind": "strat",
+ "target": "atrband",
+ "kw": {
+  "cutoff": 720
+ },
+ "normal": {
+  "sharpe": 1.323,
+  "R": 227.55,
+  "years": {
+   "2021": 22.9,
+   "2022": 63.77,
+   "2023": 67.64,
+   "2024": 73.25
+  },
+  "trades": 1931
+ },
+ "double": {
+  "sharpe": 1.073,
+  "R": 179.1,
+  "years": {
+   "2021": 15.8,
+   "2022": 48.9,
+   "2023": 54.74,
+   "2024": 59.66
+  },
+  "trades": 1912
+ },
+ "nearby": [
+  {
+   "kw": {
+    "cutoff": 690
+   },
+   "sharpe": 1.301,
+   "R": 223.38,
+   "years": {
+    "2021": 22.6,
+    "2022": 61.1,
+    "2023": 67.19,
+    "2024": 72.49
+   },
+   "trades": 1887
+  },
+  {
+   "kw": {
+    "cutoff": 750
+   },
+   "sharpe": 1.309,
+   "R": 223.17,
+   "years": {
+    "2021": 21.13,
+    "2022": 61.35,
+    "2023": 68.18,
+    "2024": 72.51
+   },
+   "trades": 1962
+  }
+ ],
+ "dsharpe": -0.089,
+ "dsharpe_double": -0.081,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

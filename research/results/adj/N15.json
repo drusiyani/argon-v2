@@ -1,0 +1,42 @@
+{
+ "id": "N15",
+ "name": "Walk-forward picks by Sharpe",
+ "kind": "strat",
+ "target": "noiseband",
+ "kw": {
+  "_pick": "sharpe"
+ },
+ "normal": {
+  "sharpe": 1.368,
+  "R": 229.46,
+  "years": {
+   "2021": 22.45,
+   "2022": 64.13,
+   "2023": 71.42,
+   "2024": 71.47
+  },
+  "trades": 2066
+ },
+ "double": {
+  "sharpe": 1.092,
+  "R": 183.96,
+  "years": {
+   "2021": 15.18,
+   "2022": 51.05,
+   "2023": 58.14,
+   "2024": 59.59
+  },
+  "trades": 2062
+ },
+ "nearby": [],
+ "dsharpe": -0.044,
+ "dsharpe_double": -0.062,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

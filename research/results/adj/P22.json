@@ -1,0 +1,42 @@
+{
+ "id": "P22",
+ "name": "Ensemble: skip ATR band / noise band trades against the day's QuantLab side",
+ "kind": "port",
+ "target": "against",
+ "kw": {
+  "mode": "skip"
+ },
+ "normal": {
+  "sharpe": 1.222,
+  "R": 208.81,
+  "years": {
+   "2021": 18.47,
+   "2022": 62.2,
+   "2023": 56.06,
+   "2024": 72.08
+  },
+  "trades": 1719
+ },
+ "double": {
+  "sharpe": 0.976,
+  "R": 165.38,
+  "years": {
+   "2021": 11.68,
+   "2022": 51.72,
+   "2023": 43.85,
+   "2024": 58.14
+  },
+  "trades": 1712
+ },
+ "nearby": [],
+ "dsharpe": -0.19,
+ "dsharpe_double": -0.178,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

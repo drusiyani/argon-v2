@@ -1,0 +1,95 @@
+{
+ "id": "C01",
+ "name": "Everything flat 15:50 (was 15:55)",
+ "kind": "multi",
+ "target": null,
+ "kw": {
+  "quantlab": {
+   "flat": 950
+  },
+  "noiseband": {
+   "flat": 950
+  },
+  "atrband": {
+   "flat": 950
+  }
+ },
+ "normal": {
+  "sharpe": 1.378,
+  "R": 230.19,
+  "years": {
+   "2021": 27.52,
+   "2022": 59.29,
+   "2023": 69.39,
+   "2024": 73.98
+  },
+  "trades": 2116
+ },
+ "double": {
+  "sharpe": 1.135,
+  "R": 188.0,
+  "years": {
+   "2021": 20.26,
+   "2022": 49.21,
+   "2023": 56.17,
+   "2024": 62.36
+  },
+  "trades": 2108
+ },
+ "nearby": [
+  {
+   "kw": {
+    "quantlab": {
+     "flat": 945
+    },
+    "noiseband": {
+     "flat": 945
+    },
+    "atrband": {
+     "flat": 945
+    }
+   },
+   "sharpe": 1.475,
+   "R": 256.56,
+   "years": {
+    "2021": 25.3,
+    "2022": 55.08,
+    "2023": 80.4,
+    "2024": 95.78
+   },
+   "trades": 2105
+  },
+  {
+   "kw": {
+    "quantlab": {
+     "flat": 953
+    },
+    "noiseband": {
+     "flat": 953
+    },
+    "atrband": {
+     "flat": 953
+    }
+   },
+   "sharpe": 1.454,
+   "R": 247.56,
+   "years": {
+    "2021": 26.6,
+    "2022": 68.68,
+    "2023": 69.86,
+    "2024": 82.42
+   },
+   "trades": 2125
+  }
+ ],
+ "dsharpe": -0.034,
+ "dsharpe_double": -0.019,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

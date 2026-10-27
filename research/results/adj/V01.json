@@ -1,0 +1,42 @@
+{
+ "id": "V01",
+ "name": "Noise band + ATR band: max 1 open same-direction trade between them",
+ "kind": "port",
+ "target": "pairstack",
+ "kw": {
+  "k": 1
+ },
+ "normal": {
+  "sharpe": 1.352,
+  "R": 208.78,
+  "years": {
+   "2021": 20.93,
+   "2022": 48.87,
+   "2023": 58.17,
+   "2024": 80.82
+  },
+  "trades": 1717
+ },
+ "double": {
+  "sharpe": 1.087,
+  "R": 166.72,
+  "years": {
+   "2021": 14.17,
+   "2022": 38.59,
+   "2023": 45.92,
+   "2024": 68.04
+  },
+  "trades": 1709
+ },
+ "nearby": [],
+ "dsharpe": -0.06,
+ "dsharpe_double": -0.067,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

@@ -1,0 +1,44 @@
+{
+ "id": "Q23",
+ "name": "ATR stops only (3 variants)",
+ "kind": "strat",
+ "target": "quantlab",
+ "kw": {
+  "stops": [
+   "atr"
+  ]
+ },
+ "normal": {
+  "sharpe": 1.256,
+  "R": 212.75,
+  "years": {
+   "2021": 22.78,
+   "2022": 63.25,
+   "2023": 64.54,
+   "2024": 62.17
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.002,
+  "R": 165.12,
+  "years": {
+   "2021": 15.53,
+   "2022": 49.18,
+   "2023": 51.23,
+   "2024": 49.18
+  },
+  "trades": 2103
+ },
+ "nearby": [],
+ "dsharpe": -0.156,
+ "dsharpe_double": -0.152,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

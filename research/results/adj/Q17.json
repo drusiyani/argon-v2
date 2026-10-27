@@ -1,0 +1,71 @@
+{
+ "id": "Q17",
+ "name": "Walk-forward lookback 3 months (was 6)",
+ "kind": "strat",
+ "target": "quantlab",
+ "kw": {
+  "_look": 3
+ },
+ "normal": {
+  "sharpe": 1.117,
+  "R": 183.22,
+  "years": {
+   "2021": 10.3,
+   "2022": 60.15,
+   "2023": 44.87,
+   "2024": 67.89
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 0.899,
+  "R": 146.43,
+  "years": {
+   "2021": 3.04,
+   "2022": 45.1,
+   "2023": 31.75,
+   "2024": 66.54
+  },
+  "trades": 2103
+ },
+ "nearby": [
+  {
+   "kw": {
+    "_look": 2
+   },
+   "sharpe": 1.092,
+   "R": 174.15,
+   "years": {
+    "2021": 8.6,
+    "2022": 63.11,
+    "2023": 44.08,
+    "2024": 58.36
+   },
+   "trades": 2122
+  },
+  {
+   "kw": {
+    "_look": 4
+   },
+   "sharpe": 1.147,
+   "R": 191.76,
+   "years": {
+    "2021": 8.28,
+    "2022": 52.35,
+    "2023": 51.94,
+    "2024": 79.19
+   },
+   "trades": 2122
+  }
+ ],
+ "dsharpe": -0.295,
+ "dsharpe_double": -0.255,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

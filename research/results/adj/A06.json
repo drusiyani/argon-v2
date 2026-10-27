@@ -1,0 +1,42 @@
+{
+ "id": "A06",
+ "name": "One entry per day (no re-entry)",
+ "kind": "strat",
+ "target": "atrband",
+ "kw": {
+  "maxent": 1
+ },
+ "normal": {
+  "sharpe": 1.397,
+  "R": 239.63,
+  "years": {
+   "2021": 21.69,
+   "2022": 70.55,
+   "2023": 69.59,
+   "2024": 77.8
+  },
+  "trades": 2106
+ },
+ "double": {
+  "sharpe": 1.141,
+  "R": 190.26,
+  "years": {
+   "2021": 14.48,
+   "2022": 55.41,
+   "2023": 56.39,
+   "2024": 63.99
+  },
+  "trades": 2087
+ },
+ "nearby": [],
+ "dsharpe": -0.015,
+ "dsharpe_double": -0.013,
+ "years_better": 1,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

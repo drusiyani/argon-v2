@@ -1,0 +1,77 @@
+{
+ "id": "P14",
+ "name": "Risk parity 6 months, weights capped 0.5-2",
+ "kind": "port",
+ "target": "parity",
+ "kw": {
+  "look": 6,
+  "lo": 0.5,
+  "hi": 2.0
+ },
+ "normal": {
+  "sharpe": 1.572,
+  "R": 188.36,
+  "years": {
+   "2021": 17.19,
+   "2022": 61.91,
+   "2023": 57.67,
+   "2024": 51.59
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.334,
+  "R": 156.07,
+  "years": {
+   "2021": 10.81,
+   "2022": 53.42,
+   "2023": 48.74,
+   "2024": 43.1
+  },
+  "trades": 2103
+ },
+ "nearby": [
+  {
+   "kw": {
+    "look": 6,
+    "lo": 0.67,
+    "hi": 1.5
+   },
+   "sharpe": 1.567,
+   "R": 211.59,
+   "years": {
+    "2021": 19.71,
+    "2022": 65.43,
+    "2023": 64.01,
+    "2024": 62.44
+   },
+   "trades": 2122
+  },
+  {
+   "kw": {
+    "look": 6,
+    "lo": 0.33,
+    "hi": 3.0
+   },
+   "sharpe": 1.55,
+   "R": 166.84,
+   "years": {
+    "2021": 16.24,
+    "2022": 57.04,
+    "2023": 50.72,
+    "2024": 42.84
+   },
+   "trades": 2122
+  }
+ ],
+ "dsharpe": 0.16,
+ "dsharpe_double": 0.18,
+ "years_better": 0,
+ "checks": {
+  "sharpe": true,
+  "years": false,
+  "double_costs": true,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

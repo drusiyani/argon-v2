@@ -1,0 +1,71 @@
+{
+ "id": "P21",
+ "name": "Ensemble: 1.5x ATR band / noise band trades that agree with the day's QuantLab side",
+ "kind": "port",
+ "target": "agree",
+ "kw": {
+  "boost": 1.5
+ },
+ "normal": {
+  "sharpe": 1.418,
+  "R": 265.8,
+  "years": {
+   "2021": 23.48,
+   "2022": 79.74,
+   "2023": 79.49,
+   "2024": 83.09
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 1.164,
+  "R": 211.73,
+  "years": {
+   "2021": 15.83,
+   "2022": 63.34,
+   "2023": 65.31,
+   "2024": 67.24
+  },
+  "trades": 2103
+ },
+ "nearby": [
+  {
+   "kw": {
+    "boost": 1.25
+   },
+   "sharpe": 1.418,
+   "R": 253.14,
+   "years": {
+    "2021": 23.13,
+    "2022": 74.1,
+    "2023": 75.15,
+    "2024": 80.77
+   },
+   "trades": 2122
+  },
+  {
+   "kw": {
+    "boost": 1.75
+   },
+   "sharpe": 1.414,
+   "R": 278.45,
+   "years": {
+    "2021": 23.83,
+    "2022": 85.39,
+    "2023": 83.83,
+    "2024": 85.4
+   },
+   "trades": 2122
+  }
+ ],
+ "dsharpe": 0.006,
+ "dsharpe_double": 0.01,
+ "years_better": 4,
+ "checks": {
+  "sharpe": false,
+  "years": true,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

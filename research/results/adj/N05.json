@@ -1,0 +1,44 @@
+{
+ "id": "N05",
+ "name": "VWAP stop only",
+ "kind": "strat",
+ "target": "noiseband",
+ "kw": {
+  "stops": [
+   "vwap"
+  ]
+ },
+ "normal": {
+  "sharpe": 1.425,
+  "R": 242.93,
+  "years": {
+   "2021": 22.62,
+   "2022": 68.69,
+   "2023": 71.54,
+   "2024": 80.09
+  },
+  "trades": 2144
+ },
+ "double": {
+  "sharpe": 1.168,
+  "R": 193.47,
+  "years": {
+   "2021": 15.34,
+   "2022": 53.44,
+   "2023": 58.25,
+   "2024": 66.44
+  },
+  "trades": 2128
+ },
+ "nearby": [],
+ "dsharpe": 0.013,
+ "dsharpe_double": 0.014,
+ "years_better": 3,
+ "checks": {
+  "sharpe": false,
+  "years": true,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

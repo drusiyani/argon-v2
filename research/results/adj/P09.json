@@ -1,0 +1,71 @@
+{
+ "id": "P09",
+ "name": "Total open-risk cap 2R (skip trades that would exceed it)",
+ "kind": "port",
+ "target": "riskcap",
+ "kw": {
+  "cap": 2.0
+ },
+ "normal": {
+  "sharpe": 1.284,
+  "R": 195.04,
+  "years": {
+   "2021": 11.81,
+   "2022": 62.75,
+   "2023": 62.06,
+   "2024": 58.42
+  },
+  "trades": 1972
+ },
+ "double": {
+  "sharpe": 1.023,
+  "R": 154.09,
+  "years": {
+   "2021": 4.95,
+   "2022": 51.33,
+   "2023": 49.51,
+   "2024": 48.3
+  },
+  "trades": 1954
+ },
+ "nearby": [
+  {
+   "kw": {
+    "cap": 1.5
+   },
+   "sharpe": 1.235,
+   "R": 161.92,
+   "years": {
+    "2021": 14.85,
+    "2022": 38.46,
+    "2023": 49.51,
+    "2024": 59.1
+   },
+   "trades": 1518
+  },
+  {
+   "kw": {
+    "cap": 2.5
+   },
+   "sharpe": 1.284,
+   "R": 195.04,
+   "years": {
+    "2021": 11.81,
+    "2022": 62.75,
+    "2023": 62.06,
+    "2024": 58.42
+   },
+   "trades": 1972
+  }
+ ],
+ "dsharpe": -0.128,
+ "dsharpe_double": -0.131,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

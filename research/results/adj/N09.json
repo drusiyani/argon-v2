@@ -1,0 +1,42 @@
+{
+ "id": "N09",
+ "name": "Need two decisions in a row outside the band",
+ "kind": "strat",
+ "target": "noiseband",
+ "kw": {
+  "confirm": true
+ },
+ "normal": {
+  "sharpe": 1.303,
+  "R": 208.83,
+  "years": {
+   "2021": 10.1,
+   "2022": 72.44,
+   "2023": 47.68,
+   "2024": 78.62
+  },
+  "trades": 1896
+ },
+ "double": {
+  "sharpe": 1.035,
+  "R": 165.32,
+  "years": {
+   "2021": 3.0,
+   "2022": 63.02,
+   "2023": 32.25,
+   "2024": 67.04
+  },
+  "trades": 1886
+ },
+ "nearby": [],
+ "dsharpe": -0.109,
+ "dsharpe_double": -0.119,
+ "years_better": 2,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

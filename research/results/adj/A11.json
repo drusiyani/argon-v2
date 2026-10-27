@@ -1,0 +1,42 @@
+{
+ "id": "A11",
+ "name": "Stop halfway between open and band",
+ "kind": "strat",
+ "target": "atrband",
+ "kw": {
+  "stopmode": "mid"
+ },
+ "normal": {
+  "sharpe": 1.422,
+  "R": 260.46,
+  "years": {
+   "2021": 22.74,
+   "2022": 80.93,
+   "2023": 72.35,
+   "2024": 84.45
+  },
+  "trades": 2184
+ },
+ "double": {
+  "sharpe": 1.168,
+  "R": 208.07,
+  "years": {
+   "2021": 14.87,
+   "2022": 65.14,
+   "2023": 58.15,
+   "2024": 69.9
+  },
+  "trades": 2165
+ },
+ "nearby": [],
+ "dsharpe": 0.01,
+ "dsharpe_double": 0.014,
+ "years_better": 3,
+ "checks": {
+  "sharpe": false,
+  "years": true,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}

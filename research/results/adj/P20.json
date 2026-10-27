@@ -1,0 +1,71 @@
+{
+ "id": "P20",
+ "name": "Half size after 3 losing days in a row",
+ "kind": "port",
+ "target": "streak",
+ "kw": {
+  "n": 3
+ },
+ "normal": {
+  "sharpe": 1.283,
+  "R": 186.25,
+  "years": {
+   "2021": 11.48,
+   "2022": 46.9,
+   "2023": 57.23,
+   "2024": 70.64
+  },
+  "trades": 2122
+ },
+ "double": {
+  "sharpe": 0.898,
+  "R": 118.16,
+  "years": {
+   "2021": 4.6,
+   "2022": 32.74,
+   "2023": 41.79,
+   "2024": 39.04
+  },
+  "trades": 2103
+ },
+ "nearby": [
+  {
+   "kw": {
+    "n": 2
+   },
+   "sharpe": 1.196,
+   "R": 170.5,
+   "years": {
+    "2021": 9.03,
+    "2022": 50.58,
+    "2023": 43.65,
+    "2024": 67.24
+   },
+   "trades": 2122
+  },
+  {
+   "kw": {
+    "n": 4
+   },
+   "sharpe": 1.507,
+   "R": 224.62,
+   "years": {
+    "2021": 13.56,
+    "2022": 63.64,
+    "2023": 67.39,
+    "2024": 80.04
+   },
+   "trades": 2122
+  }
+ ],
+ "dsharpe": -0.129,
+ "dsharpe_double": -0.256,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

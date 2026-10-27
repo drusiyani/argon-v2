@@ -1,0 +1,110 @@
+{
+ "id": "P36",
+ "name": "Combo: loss limit -2R + risk parity 6m",
+ "kind": "port",
+ "target": "chain",
+ "kw": {
+  "steps": [
+   [
+    "parity",
+    {
+     "look": 6
+    }
+   ],
+   [
+    "losslimit",
+    {
+     "L": 2.0
+    }
+   ]
+  ]
+ },
+ "normal": {
+  "sharpe": 1.273,
+  "R": 134.55,
+  "years": {
+   "2021": 14.57,
+   "2022": 55.61,
+   "2023": 39.37,
+   "2024": 25.0
+  },
+  "trades": 2097
+ },
+ "double": {
+  "sharpe": 1.085,
+  "R": 110.09,
+  "years": {
+   "2021": 8.66,
+   "2022": 49.08,
+   "2023": 33.22,
+   "2024": 19.12
+  },
+  "trades": 2081
+ },
+ "nearby": [
+  {
+   "kw": {
+    "steps": [
+     [
+      "parity",
+      {
+       "look": 4
+      }
+     ],
+     [
+      "losslimit",
+      {
+       "L": 1.5
+      }
+     ]
+    ]
+   },
+   "sharpe": 1.221,
+   "R": 128.68,
+   "years": {
+    "2021": 14.96,
+    "2022": 59.02,
+    "2023": 34.65,
+    "2024": 20.05
+   },
+   "trades": 2083
+  },
+  {
+   "kw": {
+    "steps": [
+     [
+      "parity",
+      {
+       "look": 9
+      }
+     ],
+     [
+      "losslimit",
+      {
+       "L": 2.5
+      }
+     ]
+    ]
+   },
+   "sharpe": 1.397,
+   "R": 152.48,
+   "years": {
+    "2021": 19.59,
+    "2022": 57.26,
+    "2023": 46.81,
+    "2024": 28.82
+   },
+   "trades": 2103
+  }
+ ],
+ "dsharpe": -0.139,
+ "dsharpe_double": -0.069,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": false
+ },
+ "verdict": "fail"
+}

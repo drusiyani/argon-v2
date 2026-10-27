@@ -1,0 +1,42 @@
+{
+ "id": "E03",
+ "name": "Only after a gap up",
+ "kind": "strat",
+ "target": "expiry",
+ "kw": {
+  "cond": true
+ },
+ "normal": {
+  "sharpe": 1.368,
+  "R": 229.06,
+  "years": {
+   "2021": 21.98,
+   "2022": 66.95,
+   "2023": 65.65,
+   "2024": 74.49
+  },
+  "trades": 2073
+ },
+ "double": {
+  "sharpe": 1.11,
+  "R": 180.41,
+  "years": {
+   "2021": 14.83,
+   "2022": 51.95,
+   "2023": 52.69,
+   "2024": 60.94
+  },
+  "trades": 2054
+ },
+ "nearby": [],
+ "dsharpe": -0.044,
+ "dsharpe_double": -0.044,
+ "years_better": 0,
+ "checks": {
+  "sharpe": false,
+  "years": false,
+  "double_costs": false,
+  "nearby": true
+ },
+ "verdict": "fail"
+}
