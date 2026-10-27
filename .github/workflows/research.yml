@@ -1,0 +1,47 @@
+name: Argon v2 research (adjustment test)
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "test (Jul 2021-Dec 2024 only) or lockbox (opens 2025-2026 ONCE for the survivors)"
+        default: "test"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: argon-v2-writer      # same queue as the farm and the desk, so nobody saves over anybody
+  cancel-in-progress: false
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run the adjustments (results saved after every test)
+        run: |
+          if [ "${{ github.event.inputs.mode }}" = "lockbox" ]; then
+            ARGON_LOCKBOX=open python research/run_all.py lockbox
+          else
+            python research/run_all.py
+          fi
+      - name: Commit results
+        if: always()          # even after a timeout or crash, keep whatever finished
+        run: |
+          git config user.name "argon-bot"
+          git config user.email "argon-bot@users.noreply.github.com"
+          git add -A research/results
+          if git diff --cached --quiet; then echo "nothing new to save"; exit 0; fi
+          git commit -m "research: ${{ github.event.inputs.mode || 'test' }} results $(date -u +%Y-%m-%d)"
+          git stash --include-untracked >/dev/null 2>&1 || true
+          for i in 1 2 3 4 5 6; do
+            if git pull --rebase -X theirs origin main && git push origin HEAD:main; then echo "saved"; exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            echo "someone else saved first, catching up and retrying ($i)"; sleep $((i*15))
+          done
+          exit 1
