@@ -1,5 +1,6 @@
 <script>
 "use strict";
+const RISK=0.75;   // % of the account risked per trade (1R). Change it here only; the text below says 0.75% to match.
 const D=JSON.parse(document.getElementById('data').textContent);
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

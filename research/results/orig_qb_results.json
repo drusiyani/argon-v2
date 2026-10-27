@@ -1,0 +1,74 @@
+{
+ "NQ": {
+  "name": "NQ their rule, re-picked monthly",
+  "trades": 1355,
+  "R": 176.7,
+  "sharpe": 0.83,
+  "max_dd": -34.9,
+  "win": 27.8,
+  "profit_factor": 1.2,
+  "first_half": 71.1,
+  "second_half": 105.6,
+  "cagr_at_0_5pct": 15.9
+ },
+ "NQ_random": {
+  "name": "NQ random direction, same moments",
+  "trades": 1354,
+  "R": 51.4,
+  "sharpe": 0.2,
+  "max_dd": -64.2,
+  "win": 26.4,
+  "profit_factor": 1.06,
+  "first_half": 11.5,
+  "second_half": 39.9,
+  "cagr_at_0_5pct": 2.2
+ },
+ "NQ_literal": {
+  "name": "NQ literal version (candle stop, EMA trail), fixed",
+  "trades": 1355,
+  "R": 102.3,
+  "sharpe": 0.43,
+  "max_dd": -30.3,
+  "win": 29.8,
+  "profit_factor": 1.13,
+  "first_half": 96.7,
+  "second_half": 5.7,
+  "cagr_at_0_5pct": 7.8
+ },
+ "ES": {
+  "name": "ES their rule, re-picked monthly",
+  "trades": 1355,
+  "R": -328.1,
+  "sharpe": -1.74,
+  "max_dd": -328.1,
+  "win": 21.8,
+  "profit_factor": 0.71,
+  "first_half": -163.0,
+  "second_half": -165.0,
+  "cagr_at_0_5pct": -28.3
+ },
+ "ES_random": {
+  "name": "ES random direction, same moments",
+  "trades": 1355,
+  "R": -382.8,
+  "sharpe": -2.04,
+  "max_dd": -396.2,
+  "win": 21.6,
+  "profit_factor": 0.66,
+  "first_half": -137.8,
+  "second_half": -245.0,
+  "cagr_at_0_5pct": -32.0
+ },
+ "ES_literal": {
+  "name": "ES literal version (candle stop, EMA trail), fixed",
+  "trades": 1355,
+  "R": -371.8,
+  "sharpe": -2.35,
+  "max_dd": -371.8,
+  "win": 23.3,
+  "profit_factor": 0.64,
+  "first_half": -173.0,
+  "second_half": -198.8,
+  "cagr_at_0_5pct": -31.0
+ }
+}

@@ -24,11 +24,12 @@ def sharpe(x): mu=st.mean(x); sd=st.stdev(x); return mu/sd*12**.5 if sd>0 else 0
 def sortino(x):
     mu=st.mean(x); dn=[min(0,v) for v in x]; dd=(sum(v*v for v in dn)/len(dn))**.5
     return mu/dd*12**.5 if dd>0 else 0.0
+RISK=0.75   # % of the account per 1R (was 0.5 until 27 Oct 2026); site/src/app1.js has the same constant
 def grow(x,risk):   # compounded, risk % of the account per 1R
     eq=1;pk=1;dd=0
     for v in x: eq*=max(0.0,1+v*risk/100); pk=max(pk,eq); dd=min(dd,eq/pk-1)
     return eq,dd
-def cagr(x,risk=0.5): eq,_=grow(x,risk); return (eq**(12/len(x))-1)*100 if eq>0 else -100.0
+def cagr(x,risk=RISK): eq,_=grow(x,risk); return (eq**(12/len(x))-1)*100 if eq>0 else -100.0
 def block_boot(x,n=5000,block=3,seed=7):
     rg=random.Random(seed); out=[]
     for _ in range(n):
@@ -38,8 +39,8 @@ def block_boot(x,n=5000,block=3,seed=7):
     return out
 def pct(a,q): a=sorted(a); return a[min(len(a)-1,max(0,int(q*len(a))))]
 def summary(x):
-    B=block_boot(x); shs=[sharpe(y) for y in B]; cg=[cagr(y) for y in B]; dds=[grow(y,0.5)[1]*100 for y in B]
-    return dict(sharpe=round(sharpe(x),2),sortino=round(sortino(x),2),cagr=round(cagr(x),1),max_dd=round(grow(x,0.5)[1]*100,1),
+    B=block_boot(x); shs=[sharpe(y) for y in B]; cg=[cagr(y) for y in B]; dds=[grow(y,RISK)[1]*100 for y in B]
+    return dict(sharpe=round(sharpe(x),2),sortino=round(sortino(x),2),cagr=round(cagr(x),1),max_dd=round(grow(x,RISK)[1]*100,1),
                 sharpe_ci=[round(pct(shs,.025),2),round(pct(shs,.975),2)],cagr_ci=[round(pct(cg,.025),1),round(pct(cg,.975),1)],
                 dd_median=round(pct(dds,.5),1),dd_bad=round(pct(dds,.05),1),p_losing=round(sum(1 for s in shs if s<=0)/len(shs),3))
 def deflated(x,n_trials,sr_var):
@@ -67,11 +68,11 @@ if T:
     # whole micro contracts: MNQ is $2 a point; costs per micro: 2 ticks of slippage (0.5 pt) + $1.24 commission (0.62 pt)
     mm=collections.defaultdict(float); skipped=0
     for d,r,risk in T:
-        n=int(500//(risk*2))
+        n=int(1000*RISK//(risk*2))
         if n<1: skipped+=1; continue
-        gross=r*risk+0.75; mm[d[:7]]+=n*2*(gross-1.12)/500
+        gross=r*risk+0.75; mm[d[:7]]+=n*2*(gross-1.12)/(1000*RISK)
     xs=[mm.get(m,0) for m in OOS]
-    OUT['orb_micro']=dict(R=round(sum(xs),1),sharpe=round(sharpe(xs),2),skipped=skipped,note='$100,000 account, 0.5% risk, rounded down to whole MNQ contracts')
+    OUT['orb_micro']=dict(R=round(sum(xs),1),sharpe=round(sharpe(xs),2),skipped=skipped,note='$100,000 account, '+str(RISK)+'% risk, rounded down to whole MNQ contracts')
 # benchmarks: buy and hold, and random entries
 bh={}
 for s,cl in (orb.get('bh') or {}).items():

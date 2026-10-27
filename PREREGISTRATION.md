@@ -54,3 +54,19 @@ treated as ideas to test, not as evidence.
 - The freeze is **lifted** at Dru's request, so changes can still be made. Every change from now is logged in the changelog.
 - Before the AI experiment starts, the rules will be **frozen again** with a new freeze record here. The evaluation window (1 January to 31 March 2027), the tests and the N ≥ 100 rule above stay exactly as written.
 - The forward test only counts from the date of the new freeze.
+
+## Amendment 2 (27 October 2026)
+
+- **Risk per trade is now 0.75%** of the account (was 0.5%). One constant: `RISK` in `site/src/app1.js` and `engine/stats.py`.
+- **New portfolio planned** (replacing the old main strategy + opening range): QuantLab first-candle/EMA rule, noise band,
+  ATR band (all Nasdaq NQ) and the options-expiry reversal (NQ + ES). It goes into the engine only after the
+  100-adjustment test below.
+- **Honest limit on what the backtest can prove.** The four base strategies *and their settings* were chosen after seeing
+  the whole history, including 2025–2026. So the 2025–2026 lockbox in `research/` only tests the **adjustments**
+  (netting, sizing, loss limits, exits and so on), not the base portfolio. The only clean test of the base portfolio is
+  the live paper trading from 1 January 2027.
+- **Adjustment test, rules fixed in advance:** the list is in `research/ADJUSTMENTS.md`, committed before any test ran
+  (the commit time proves it). Tested on Jul 2021–Dec 2024 only. Pass bars: combo Sharpe +0.10 over the baseline, better
+  than the baseline in at least 3 of the 4 years, still better at double costs, and nearby settings also better. Survivors
+  are opened on 2025–2026 **once**. Fail = out, no retries.
+- Data fix: September 2026 minutes were duplicated in one loader (two overlapping files). Fixed, see `research/README.md`.
