@@ -1,7 +1,7 @@
 """Argon v2 portfolio (pre-registration Amendment 3): the four strategies that survived, as one book.
 
   QuantLab (NQ, skips FOMC days)  +  noise band (NQ)  +  ATR band (NQ)  +  options-expiry reversal (NQ + ES)
-  0.75% of the account per trade, each strategy 1R per trade, no daily loss limit (it failed with exact timing).
+  1% of the account per trade (0.75% until 28 Oct 2026), each strategy 1R per trade, no daily loss limit (it failed with exact timing).
 
 Also runs the SHADOW strategy: the same book with 12-month risk-parity weights (P13). It is pre-registered here to be
 judged on live paper results only, and it never changes the main book.
@@ -14,7 +14,7 @@ os.environ['ARGON_FULL'] = '1'          # the lockbox has been opened once alrea
 sys.path.insert(0, os.path.join(ROOT, 'research'))
 import common as c
 
-CONFIG = dict(risk_pct=0.75, start_usd=100000, daily_loss_limit=None, amendment=3,
+CONFIG = dict(risk_pct=1.0, start_usd=100000, daily_loss_limit=None, amendment=3,
               strategies=dict(quantlab=dict(skip_fomc=True), noiseband={}, atrband={}, expiry={}),
               shadow=dict(name='risk parity (12-month)', look=12, judged_on='live paper results from 1 Jan 2027 only'),
               freeze='2026-12-31T23:59:00Z')

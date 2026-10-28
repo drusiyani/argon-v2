@@ -24,7 +24,7 @@ def sharpe(x): mu=st.mean(x); sd=st.stdev(x); return mu/sd*12**.5 if sd>0 else 0
 def sortino(x):
     mu=st.mean(x); dn=[min(0,v) for v in x]; dd=(sum(v*v for v in dn)/len(dn))**.5
     return mu/dd*12**.5 if dd>0 else 0.0
-RISK=0.75   # % of the account per 1R (was 0.5 until 27 Oct 2026); site/src/app1.js has the same constant
+RISK=1.0    # % of the account per 1R (0.5 until 27 Oct 2026, 0.75 until 28 Oct 2026); site/src/app1.js has the same constant
 def grow(x,risk):   # compounded, risk % of the account per 1R
     eq=1;pk=1;dd=0
     for v in x: eq*=max(0.0,1+v*risk/100); pk=max(pk,eq); dd=min(dd,eq/pk-1)

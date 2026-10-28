@@ -102,3 +102,8 @@ treated as ideas to test, not as evidence.
   double costs 1.01 → 0.98. 11 QuantLab and 9 ATR-band trades removed. The noise band has its own loader and was unaffected.
 - This is a code fix to match an already-stated rule, not a tuning change. Round 1's lockbox verdict for Q24 was computed before
   the fix and is not re-run (one shot means one shot); round 2 uses the fixed code for both the baseline and every adjustment.
+
+### Amendment 3d (28 October 2026): risk 1% per trade
+- Risk per trade is now **1%** (was 0.75%), by Dru's choice, before the 31 Dec freeze. One constant: `RISK` in
+  `site/src/app1.js` and `engine/stats.py`, `risk_pct` in `engine/portfolio.py`. Sharpe in R is unchanged; size of swings is not.
+- Full history at 1% (with the roll-day fix): $100k → **$1.13M**, about +59% a year, worst drop **−32%**, 2026 −7.1%; double costs $680k.
