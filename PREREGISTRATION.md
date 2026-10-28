@@ -115,3 +115,10 @@ treated as ideas to test, not as evidence.
   10% of 1R.** This is in-sample (every year has now been seen); the clean test is live from 1 Jan 2027.
 - No variation made 2011-2017 profitable (best −0.54). The book is a bet that the post-2018 regime continues.
 - New book, Jul 2021 - Sep 2026 at 1%: see data/portfolio.json. Risk-parity shadow continues on the new book.
+
+### Amendment 3f (28 October 2026): keep QuantLab (Dru's choice, V4)
+- Dru chose **V4: all four strategies + the 10%-of-1R cost rule** over the selection rule's pick V5 (drop QuantLab), after
+  seeing both. Logged openly as a hindsight choice: V4 made more in both eras (2011-20: $92.7k vs $74.6k from $100k; 2021-26:
+  $1.19M vs $282k at 1%) but with bigger drops (−70%/−32% vs −65%/−24%). QuantLab's gains are concentrated in a few big-news
+  months (2024: +61R of its +77R came in July and November).
+- The desk page (docs/desk.html) is embedded in the site as a preview with sample data.

@@ -1,8 +1,9 @@
 """Argon v2 portfolio (pre-registration Amendment 3): the four strategies that survived, as one book.
 
-  noise band (NQ)  +  ATR band (NQ)  +  options-expiry reversal (NQ + ES), skipping any trade whose cost is over 10% of 1R
-  (Amendment 3e, 28 Oct 2026: QuantLab dropped after it showed no edge before costs on 2011-2020; picked by a rule fixed in
-  advance in research/variations.py. Was: QuantLab + the three.)
+  QuantLab (NQ, skips FOMC days) + noise band (NQ) + ATR band (NQ) + options-expiry reversal (NQ + ES),
+  skipping any trade whose cost is over 10% of 1R (variation V4).
+  Amendment 3f, 28 Oct 2026: Dru chose V4 over the rule's pick V5 (drop QuantLab), knowingly and in hindsight: more profit in
+  both eras, bigger drawdowns, and QuantLab's gains are concentrated in a few big-news months.
   1% of the account per trade (0.75% until 28 Oct 2026), each strategy 1R per trade, no daily loss limit (it failed with exact timing).
 
 Also runs the SHADOW strategy: the same book with 12-month risk-parity weights (P13). It is pre-registered here to be
@@ -17,13 +18,14 @@ sys.path.insert(0, os.path.join(ROOT, 'research'))
 import common as c
 
 CONFIG = dict(risk_pct=1.0, start_usd=100000, daily_loss_limit=None, amendment=3,
-              strategies=dict(noiseband={}, atrband={}, expiry={}), cost_cap_R=0.10, dropped=dict(quantlab='Amendment 3e: no edge before costs on 2011-2020'),
+              strategies=dict(quantlab=dict(skip_fomc=True), noiseband={}, atrband={}, expiry={}), cost_cap_R=0.10, variation='V4 (Amendment 3f)',
               shadow=dict(name='risk parity (12-month)', look=12, judged_on='live paper results from 1 Jan 2027 only'),
               freeze='2026-12-31T23:59:00Z')
-GROUPS = ('noiseband', 'atrband', 'expiry')
+GROUPS = ('quantlab', 'noiseband', 'atrband', 'expiry')
 
 def book(cx=1.0):
     kw = CONFIG['strategies']; out = []
+    out += c.walkforward(c.quantlab('NQ', **kw['quantlab']), cx)
     out += c.walkforward(c.noiseband('NQ', **kw['noiseband']), cx)
     out += c.atrband('NQ', **kw['atrband'])
     out += c.opex('NQ', **kw['expiry']) + c.opex('ES', **kw['expiry'])
@@ -69,8 +71,6 @@ if __name__ == '__main__':
                killed=killed, window=[months[0], months[-1]], main=main, double_costs={k: dbl[k] for k in ('sharpe', 'R', 'final', 'a_year', 'worst_drop')},
                shadow={k: shadow[k] for k in ('sharpe', 'R', 'final', 'a_year', 'worst_drop', 'equity', 'years')}, shadow_weights_latest=W.get(months[-1]),
                trades_by_strategy=dict(by), recent_trades=recent,
-               honesty=['Most of this history is in-sample: the strategies and their settings were picked by looking at it.',
-                        'Only Jan 2025 - Sep 2026 tested the final adjustment out of sample (Sharpe about 0.65 there).',
-                        'Expect live results closer to 2025-26 than 2022-24.'])
+               honesty=["Most of this history is in-sample: the strategies and their settings were picked by looking at it.", "On 2011-2020, ten years never used to build it, this book lost money: about -7% over the decade at 1% risk, with a -70% drop during 2011-2017. It only works in the more volatile markets since 2018.", "So it is a bet that today's market regime continues. Expect live results well below the backtest."])
     json.dump(out, open(os.path.join(ROOT, 'data', 'portfolio.json'), 'w'), indent=1)
     print('portfolio', main['sharpe'], main['final'], 'shadow', shadow['sharpe'], shadow['final'], 'killed' if killed else '')
