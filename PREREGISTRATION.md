@@ -87,3 +87,9 @@ treated as ideas to test, not as evidence.
   2026 −6.0%. Out of sample (2025-01 to 2026-09) Sharpe ≈ 0.65.
 - Still to do before 1 Jan: feed this book's live signals (from the daily tape) into the desk so the agents judge these setups
   instead of the old main strategy's.
+
+### Amendment 3b (28 October 2026): round 2 + a second lockbox
+- 17 adjustments and their nearby settings registered in `research/ADJUSTMENTS2.md` **before any round-2 test code exists**,
+  after a 5-member council review. Tested on Jul 2021 - Sep 2026, then the survivors **and the base book** are opened once on
+  a never-seen 2011-2020 lockbox (`data/lockbox2010/`, bought 28 Oct 2026, $26.17, checked on timestamps only).
+- If the base book fails on 2011-2020, nothing changes: it still goes live on 1 Jan 2027 and the result is published.
