@@ -1,6 +1,8 @@
 """Argon v2 portfolio (pre-registration Amendment 3): the four strategies that survived, as one book.
 
-  QuantLab (NQ, skips FOMC days)  +  noise band (NQ)  +  ATR band (NQ)  +  options-expiry reversal (NQ + ES)
+  noise band (NQ)  +  ATR band (NQ)  +  options-expiry reversal (NQ + ES), skipping any trade whose cost is over 10% of 1R
+  (Amendment 3e, 28 Oct 2026: QuantLab dropped after it showed no edge before costs on 2011-2020; picked by a rule fixed in
+  advance in research/variations.py. Was: QuantLab + the three.)
   1% of the account per trade (0.75% until 28 Oct 2026), each strategy 1R per trade, no daily loss limit (it failed with exact timing).
 
 Also runs the SHADOW strategy: the same book with 12-month risk-parity weights (P13). It is pre-registered here to be
@@ -15,17 +17,17 @@ sys.path.insert(0, os.path.join(ROOT, 'research'))
 import common as c
 
 CONFIG = dict(risk_pct=1.0, start_usd=100000, daily_loss_limit=None, amendment=3,
-              strategies=dict(quantlab=dict(skip_fomc=True), noiseband={}, atrband={}, expiry={}),
+              strategies=dict(noiseband={}, atrband={}, expiry={}), cost_cap_R=0.10, dropped=dict(quantlab='Amendment 3e: no edge before costs on 2011-2020'),
               shadow=dict(name='risk parity (12-month)', look=12, judged_on='live paper results from 1 Jan 2027 only'),
               freeze='2026-12-31T23:59:00Z')
-GROUPS = ('quantlab', 'noiseband', 'atrband', 'expiry')
+GROUPS = ('noiseband', 'atrband', 'expiry')
 
 def book(cx=1.0):
     kw = CONFIG['strategies']; out = []
-    out += c.walkforward(c.quantlab('NQ', **kw['quantlab']), cx)
     out += c.walkforward(c.noiseband('NQ', **kw['noiseband']), cx)
     out += c.atrband('NQ', **kw['atrband'])
     out += c.opex('NQ', **kw['expiry']) + c.opex('ES', **kw['expiry'])
+    out = [t for t in out if t['cost'] <= CONFIG['cost_cap_R']]      # cost known at entry: skip trades where costs eat over 10% of 1R
     for t in out: t['w'] = 1.0
     return sorted(out, key=lambda t: (t['date'], t['entry_min']))
 

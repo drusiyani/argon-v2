@@ -107,3 +107,11 @@ treated as ideas to test, not as evidence.
 - Risk per trade is now **1%** (was 0.75%), by Dru's choice, before the 31 Dec freeze. One constant: `RISK` in
   `site/src/app1.js` and `engine/stats.py`, `risk_pct` in `engine/portfolio.py`. Sharpe in R is unchanged; size of swings is not.
 - Full history at 1% (with the roll-day fix): $100k → **$1.13M**, about +59% a year, worst drop **−32%**, 2026 −7.1%; double costs $680k.
+
+### Amendment 3e (28 October 2026): QuantLab dropped, cost rule added
+- After lockbox 2, 8 structural variations were compared on all eras (2011-17, 2018-20, 2021-26) with a selection rule
+  committed **before** running (`research/variations.py`, results `research/results/VARIATIONS.md`): highest worst-era Sharpe,
+  double-cost Sharpe at least the base's, ties to the simpler one. Picked **V5: drop QuantLab + skip any trade whose cost is over
+  10% of 1R.** This is in-sample (every year has now been seen); the clean test is live from 1 Jan 2027.
+- No variation made 2011-2017 profitable (best −0.54). The book is a bet that the post-2018 regime continues.
+- New book, Jul 2021 - Sep 2026 at 1%: see data/portfolio.json. Risk-parity shadow continues on the new book.
