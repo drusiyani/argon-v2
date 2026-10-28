@@ -70,3 +70,20 @@ treated as ideas to test, not as evidence.
   than the baseline in at least 3 of the 4 years, still better at double costs, and nearby settings also better. Survivors
   are opened on 2025–2026 **once**. Fail = out, no retries.
 - Data fix: September 2026 minutes were duplicated in one loader (two overlapping files). Fixed, see `research/README.md`.
+
+## Amendment 3 (28 October 2026): the v2 book, fixed before going live
+
+- **The book:** QuantLab (NQ, *skips FOMC days*, the one adjustment that survived the lockbox), noise band (NQ), ATR band (NQ),
+  options-expiry reversal (NQ + ES). 1R per trade each, **0.75%** of the account per trade. Code: `engine/portfolio.py`,
+  logic in `research/common.py` (the exact tested code).
+- **No daily loss limit.** With exact trade timing every version made results worse (`research/results/SUMMARY.md`).
+- **Kill switch:** creating `data/KILL` stops new trades and the site shows the book as stopped. Emergency use only.
+- **Shadow strategy, pre-registered now:** the same book with 12-month risk-parity weights. It runs alongside on paper and
+  **never** changes the main book. Judged only on live paper results: after 12 months it replaces the main weighting only if its
+  live Sharpe is higher *and* its live worst drop is no worse.
+- **Freeze:** these rules freeze at **31 Dec 2026 23:59 UTC**. After that, nothing about the book changes until the
+  12-month review, apart from the kill switch.
+- Full-history backtest (mostly in-sample, read the honesty notes): $100k → $740,805, Sharpe 1.19, worst drop −26.5%,
+  2026 −6.0%. Out of sample (2025-01 to 2026-09) Sharpe ≈ 0.65.
+- Still to do before 1 Jan: feed this book's live signals (from the daily tape) into the desk so the agents judge these setups
+  instead of the old main strategy's.

@@ -56,6 +56,8 @@ jobs:
           python engine/stats.py
       - name: Run the farm
         run: python engine/farm.py
+      - name: Portfolio v2 (4 strategies + risk-parity shadow)
+        run: python engine/portfolio.py || echo "portfolio skipped"
       - name: Build the site
         run: python engine/build_site.py
       - name: Grow the brain (Obsidian vault)
