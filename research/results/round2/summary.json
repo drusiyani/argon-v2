@@ -1,0 +1,10 @@
+{
+ "baseline": 1.157,
+ "baseline_double": 0.975,
+ "tested": 17,
+ "survivors": [
+  "R01",
+  "R03"
+ ],
+ "errors": []
+}
