@@ -1,0 +1,48 @@
+{
+ "window": [
+  "2025-01",
+  "2026-09"
+ ],
+ "baseline": {
+  "sharpe": 0.517,
+  "R": 52.54,
+  "years": {
+   "2025": 57.05,
+   "2026": -4.51
+  },
+  "trades": 978
+ },
+ "baseline_double": {
+  "sharpe": 0.452,
+  "R": 45.5,
+  "years": {
+   "2025": 48.63,
+   "2026": -3.13
+  },
+  "trades": 970
+ },
+ "results": {
+  "Q24": {
+   "name": "QuantLab skips FOMC days",
+   "normal": {
+    "sharpe": 0.648,
+    "R": 64.83,
+    "years": {
+     "2025": 63.43,
+     "2026": 1.4
+    },
+    "trades": 964
+   },
+   "double": {
+    "sharpe": 0.587,
+    "R": 58.12,
+    "years": {
+     "2025": 55.22,
+     "2026": 2.9
+    },
+    "trades": 956
+   },
+   "verdict": "KEEP"
+  }
+ }
+}
