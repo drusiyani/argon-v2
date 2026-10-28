@@ -1,6 +1,6 @@
 ---
 type: scouted-idea
-updated: 2026-10-26
+updated: 2026-10-28
 built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
 ---
 # Ten-o-clock momentum

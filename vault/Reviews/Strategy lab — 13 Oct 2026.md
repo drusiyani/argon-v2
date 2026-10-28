@@ -11,18 +11,18 @@ passed: 0
 
 ## Result
 
-1,305 versions tried → 10 made money in both practice halves → 5 best picked → 0 passed the exam. So Rulebook v1.0 keeps the same rules, plus the risk rules from Argon v1.
+1,305 versions tried → 12 made money in both practice halves → 5 best picked → 0 passed the exam. So Rulebook v1.0 keeps the same rules, plus the risk rules from Argon v1.
 
 ## The five best
 
 | settings | practice | exam | worst drop | result |
 |---|---|---|---|---|
-| entry ob_first, windows both, bias pd, smt optional, pool any, markets all, target pool | +17.62R (25 trades) | -9.43R (26) | -7.35R | failed |
-| entry ob_only, windows both, bias pd, smt optional, pool any, markets all, target pool | +17.62R (25 trades) | -11.46R (25) | -7.46R | failed |
-| entry fvg_first, windows both, bias pd, smt optional, pool any, markets all, target pool | +12.61R (25 trades) | -11.84R (25) | -8.4R | failed |
-| entry ob_first, windows both, bias pd, smt optional, pool any, markets all, target 3R | +9.89R (23 trades) | -5.37R (29) | -8.4R | failed |
-| entry ob_only, windows both, bias pd, smt optional, pool any, markets all, target 3R | +9.89R (23 trades) | -6.45R (28) | -8.4R | failed |
-| old rules (v0.2) | +0.61R (14) | -4.48R (17) | – | for comparison |
+| entry ob_first, windows both, bias pd, smt optional, pool any, markets all, target pool | +19.68R (26 trades) | -8.31R (27) | -7.35R | failed |
+| entry ob_only, windows both, bias pd, smt optional, pool any, markets all, target pool | +19.68R (26 trades) | -8.31R (27) | -7.35R | failed |
+| entry ob_first, windows both, bias pd, smt optional, pool any, markets all, target 3R | +13.92R (23 trades) | -3.83R (30) | -7.35R | failed |
+| entry ob_only, windows both, bias pd, smt optional, pool any, markets all, target 3R | +13.92R (23 trades) | -3.83R (30) | -7.35R | failed |
+| entry fvg_first, windows both, bias pd, smt optional, pool any, markets all, target pool | +14.64R (26 trades) | -10.72R (26) | -8.4R | failed |
+| old rules (v0.2) | +0.61R (14) | -4.85R (19) | – | for comparison |
 
 Why, in plain English: [[Lessons]]. Current rules: [[Rulebook v1.0]].
 
