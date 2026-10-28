@@ -93,3 +93,12 @@ treated as ideas to test, not as evidence.
   after a 5-member council review. Tested on Jul 2021 - Sep 2026, then the survivors **and the base book** are opened once on
   a never-seen 2011-2020 lockbox (`data/lockbox2010/`, bought 28 Oct 2026, $26.17, checked on timestamps only).
 - If the base book fails on 2011-2020, nothing changes: it still goes live on 1 Jan 2027 and the result is published.
+
+### Amendment 3c (28 October 2026): roll-day bug fixed
+- The engine's roll-day list was always **empty**: Databento switches contracts at 8pm New York, which belongs to the next
+  session, and the engine only counted a switch between two sessions. So QuantLab and the ATR band never skipped roll days,
+  despite the stated rule. Fixed in `research/common.py` (every contract switch marks its session).
+- Effect on the v2 book (full history): Sharpe 1.19 → **1.16**, $100k → **$689k** (was $741k), worst drop −26.5% → −24.4%,
+  double costs 1.01 → 0.98. 11 QuantLab and 9 ATR-band trades removed. The noise band has its own loader and was unaffected.
+- This is a code fix to match an already-stated rule, not a tuning change. Round 1's lockbox verdict for Q24 was computed before
+  the fix and is not re-run (one shot means one shot); round 2 uses the fixed code for both the baseline and every adjustment.

@@ -9,8 +9,12 @@ LOCKBOX: by default nothing from 2025-01-01 onward is even simulated. Only ARGON
 survivors are opened) or ARGON_FULL=1 (only used to re-check the already-published base numbers) lifts it."""
 import os, sys, gzip, csv, glob, collections, datetime as dt, statistics as stt, random
 ROOT = os.environ.get('ARGON_ROOT', os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.insert(0, ROOT + '/engine')
-from calendar_us import FOMC, FOMC_EXIT_MIN
+sys.path.insert(0, ROOT + '/engine'); sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from calendar_us import FOMC as _FOMC_LIVE, FOMC_EXIT_MIN
+import calendar_hist as _CH
+FOMC = set(_FOMC_LIVE) | set(_CH.FOMC_HIST)          # 2010-2020 decision days for the second lockbox (no overlap with 2021+)
+def fexit(d): return _CH.exit_min(d) if d in _CH.FOMC_HIST else FOMC_EXIT_MIN
+DATA = os.environ.get('ARGON_DATA', 'databento')       # 'lockbox2010' only inside the one-time lockbox run
 from zoneinfo import ZoneInfo
 NY = ZoneInfo('America/New_York')
 COST = {'NQ': 0.75, 'ES': 0.5}; SL = {'NQ': 0.25, 'ES': 0.25}
@@ -24,8 +28,14 @@ _G = None
 def m1():
     global _G
     if _G is None:
-        src = open(ROOT + '/engine/backtest_core.py').read().split('# ---------------- swings & structure per tf')[0]
-        g = {'__file__': ROOT + '/engine/x.py'}; exec(src, g); _G = g
+        full = open(ROOT + '/engine/backtest_core.py').read()
+        if DATA == 'databento':
+            src = full.split('# ---------------- swings & structure per tf')[0]
+            g = {'__file__': ROOT + '/engine/x.py'}; exec(src, g)
+        else:   # the engine's own load_db, reading the lockbox folder instead (NQ + ES only)
+            src = full.split('# Databento futures if we have them')[0].replace("'data','databento'", "'data','" + DATA + "'")
+            g = {'__file__': ROOT + '/engine/x.py'}; exec(src, g); g['B5'] = {x: g['load_db'](x) for x in ('NQ', 'ES')}
+        _G = g
     return _G['M1'], _G['ROLL_DAYS']
 _P = {}
 def prep(s):
@@ -40,7 +50,22 @@ def prep(s):
         if od not in iso: x = dt.date.fromordinal(od); iso[od] = (x.isoformat(), x.weekday())
         days[i], wd[i] = iso[od]
     _P[s] = (T, O, H, L, C, n, mins, days, wd); return _P[s]
-def roll(s): return m1()[1].get(s, ())
+_ROLL = {}
+def roll(s):
+    """Sessions where the continuous contract switches to the next expiry (skipped by QuantLab and the ATR band).
+    FIX 28 Oct 2026: the engine's ROLL_DAYS was always empty, because Databento switches contracts at 8pm New York, which belongs
+    to the NEXT session, and the engine only counted a switch BETWEEN two sessions. Here every switch marks its session."""
+    if s not in _ROLL:
+        g = m1() and _G; bars = g['B5'][s] if 'B5' in g and s in g.get('B5', {}) else g['load_db'](s)
+        _ROLL[s] = {str(b['sd']) for a, b in zip(bars, bars[1:]) if a['iid'] != b['iid']}
+    return _ROLL[s]
+_BAD = {}
+def bad_days(s):
+    """Data rule (round 2): sessions with 301-350 of the 390 regular minutes (missing more than 10%). Half days (<=300) are skipped anyway."""
+    if s not in _BAD:
+        T, O, H, L, C, n, mins, days, wd = prep(s); cnt = collections.Counter(days[i] for i in range(n) if 570 <= mins[i] < 960)
+        _BAD[s] = {d for d, k in cnt.items() if 300 < k < 351}
+    return _BAD[s]
 _D = {}
 def daily(s):
     """Regular-session daily bars + ATR(14) (true range) from the 14 PREVIOUS days (no lookahead)."""
@@ -104,7 +129,7 @@ def ql_variants(chands=(2, 3), stops=('candle', 'atr')):
     return [(st, tr) for st in stops for tr in ('ema',) + tuple(f'ch{k}' for k in chands)]
 
 def quantlab(s='NQ', ema=12, chands=(2, 3), stops=('candle', 'atr'), stop_atr=0.10, delay=0, pullback=None, concretum=False,
-             te=None, partial=None, be=None, confirm=1, first=5, skip_fomc=False, flat=955):
+             te=None, partial=None, be=None, confirm=1, first=5, skip_fomc=False, flat=955, limit_ticks=None, gap_atr=None):
     P = prep(s); T, O, H, L, C, n, mins, days, wd = P; b5, EMA, atr5, datr = bars5(s, ema); TK = SL[s]
     V = ql_variants(chands, stops); out = []; R = roll(s)
     first_bars = [j for j, b in enumerate(b5) if mins[b[1]] == 570]
@@ -113,7 +138,11 @@ def quantlab(s='NQ', ema=12, chands=(2, 3), stops=('candle', 'atr'), stop_atr=0.
         if not allowed(d): break
         if d in R or not datr.get(d) or j + 1 >= len(b5) or mins[b5[j + 1][1]] != 575: continue
         if skip_fomc and d in FOMC: continue
-        exit_m = FOMC_EXIT_MIN if d in FOMC else flat
+        if d in bad_days(s): continue
+        if gap_atr is not None:
+            Dd, dld, atrd = daily(s); k0 = dld.index(d) if d in Dd else -1
+            if k0 < 1 or d not in atrd or abs(Dd[d]['o'] - Dd[dld[k0 - 1]]['c']) > gap_atr * atrd[d]: continue
+        exit_m = fexit(d) if d in FOMC else flat
         if te: exit_m = min(exit_m, te)
         sig_j = j; hi, lo = b[4], b[5]
         if first == 10:     # 9:30-9:40 candle instead
@@ -123,6 +152,12 @@ def quantlab(s='NQ', ema=12, chands=(2, 3), stops=('candle', 'atr'), stop_atr=0.
         ej = sig_j + 1 + delay                  # 5-min bar whose open we buy
         if ej >= len(b5) or days[b5[ej][1]] != d: continue
         entry_i = b5[ej][1]; entry = O[entry_i] + side * 2 * TK; start_j = ej; start_i = entry_i
+        if limit_ticks is not None:     # limit at the open (+/- ticks); fills only if the minute trades 1 tick through, else market next minute + 2 ticks
+            lim = O[entry_i] + side * limit_ticks * TK
+            if (L[entry_i] <= lim - TK) if side == 1 else (H[entry_i] >= lim + TK): entry = lim
+            else:
+                if entry_i + 1 >= n or days[entry_i + 1] != d: continue
+                start_i = entry_i + 1; entry = O[start_i] + side * 2 * TK
         if pullback is not None:                # limit order back towards the first candle, must trade 1 tick through, by 10:00
             lim = O[entry_i] - side * pullback * (hi - lo); f = None
             for i in range(entry_i, n):
@@ -176,7 +211,7 @@ _NB = {}
 def nb_load(s):
     if s in _NB: return _NB[s]
     days = collections.defaultdict(dict); off = {}; iid = {}
-    for f in sorted(glob.glob(f'{ROOT}/data/databento/{s}_*.csv.gz')):
+    for f in sorted(glob.glob(f'{ROOT}/data/{DATA}/{s}_*.csv.gz')):
         with gzip.open(f, 'rt') as fh:
             r = csv.reader(fh); h = next(r); iv = h.index('volume'); ii = h.index('instrument_id')
             for row in r:
@@ -198,10 +233,11 @@ def noiseband(s='NQ', look=14, freqs=(30, 60), mults=(1.0, 1.5), stops=('band', 
         if not allowed(d): break
         if i < 21 or d in RL: continue
         if skip_fomc and d in FOMC: continue
+        if d in bad_days(s): continue
         rows = D[d]; pc = D[K[i - 1]][-1][4]; op = rows[0][1]
         fl = flat
         if te: fl = min(fl, te)
-        if fomc_flat and d in FOMC: fl = min(fl, FOMC_EXIT_MIN)
+        if fomc_flat and d in FOMC: fl = min(fl, fexit(d))
         sig_by_m = collections.defaultdict(list)
         for k in K[i - look:i]:
             r = D[k]; o = r[0][1]
@@ -240,8 +276,9 @@ def atrband(s='NQ', mult=0.5, step=15, trail=None, be=None, partial=None, maxent
         if not allowed(d): break
         if d not in atr or d in R: continue
         if skip_fomc and d in FOMC: continue
+        if d in bad_days(s): continue
         r = D[d]['r']; op = D[d]['o']; up = op + mult * atr[d]; dn = op - mult * atr[d]
-        ex = FOMC_EXIT_MIN if d in FOMC else flat
+        ex = fexit(d) if d in FOMC else flat
         if te: ex = min(ex, te)
         k = 0; cnt = 0
         while k < len(r):
@@ -266,7 +303,7 @@ def atrband(s='NQ', mult=0.5, step=15, trail=None, be=None, partial=None, maxent
     return out
 
 # ---------------------------------------------------------------- 4. Options-expiry reversal (third Friday, short 9:31 -> 12:00)
-def opex(s='NQ', em=571, xm=720, stopk=0.25, nostop=False, cond=False, placebo=False, quarterly=False, skip_fomc_week=False):
+def opex(s='NQ', em=571, xm=720, stopk=0.25, nostop=False, cond=False, placebo=False, quarterly=False, skip_fomc_week=False, limit_ticks=None):
     P = prep(s); T, O, H, L, C, n, mins, days, wd = P; D, dl, atr = daily(s); out = []
     for k, d in enumerate(dl):
         if not allowed(d): break
@@ -278,7 +315,13 @@ def opex(s='NQ', em=571, xm=720, stopk=0.25, nostop=False, cond=False, placebo=F
         if cond and not D[d]['o'] > D[dl[k - 1]]['c']: continue
         sess = [i for i in i0 if mins[i] <= xm]
         if len(sess) < (100 if xm - em >= 100 else 30): continue
-        entry = O[sess[0]] - SL[s]; risk = (H[r[0]] - L[r[0]]) + stopk * atr[d]; stop = entry + (1e9 if nostop else risk)
+        if d in bad_days(s): continue
+        entry = O[sess[0]] - SL[s]
+        if limit_ticks is not None:     # short limit at the 9:31 open (+/- ticks); fills only if traded 1 tick through, else market 9:32 + 1 tick
+            lim = O[sess[0]] - limit_ticks * SL[s]
+            if H[sess[0]] >= lim + SL[s]: entry = lim
+            else: sess = sess[1:]; entry = O[sess[0]] - SL[s]
+        risk = (H[r[0]] - L[r[0]]) + stopk * atr[d]; stop = entry + (1e9 if nostop else risk)
         pnl, x = walkx(P, s, sess, -1, entry, stop, risk)
         out.append(trade('expiry', s, d, 0, -1, mins[sess[0]], mins[x], risk, pnl))
     return out
@@ -289,7 +332,7 @@ def months_between(a, b):
     while f'{y:04d}-{m:02d}' <= b: out.append(f'{y:04d}-{m:02d}'); m += 1; y += m > 12; m = (m - 1) % 12 + 1
     return out
 
-def walkforward(trades, cx=1.0, look=6, pick='sum'):
+def walkforward(trades, cx=1.0, look=6, pick='sum', topk=1, fallback=None):
     """Monthly re-pick: for each month use the variant with the best result over the previous `look` months
     (months = every month that has any trade, as in the originals). Returns only the chosen variant's trades."""
     if not trades: return []
@@ -301,7 +344,11 @@ def walkforward(trades, cx=1.0, look=6, pick='sum'):
         if pick == 'sum': return sum(xs)
         sd = stt.pstdev(xs); return stt.mean(xs) / sd if sd > 0 else 0
     for i, m in enumerate(months[look:], look):
-        prev = months[i - look:i]; b = max(vs, key=lambda v: score(v, prev)); out += mlist[b][m]
+        prev = months[i - look:i]
+        if topk == 1 and fallback is None: b = max(vs, key=lambda v: score(v, prev)); out += mlist[b][m]; continue
+        ranked = sorted(vs, key=lambda v: -score(v, prev))[:topk]
+        if fallback is not None and sum(mon[ranked[0]][p] for p in prev) <= 0: ranked = [fallback]
+        for b in ranked: out += [dict(t, w=t.get('w', 1.0) / len(ranked)) for t in mlist[b][m]]
     return out
 
 def sharpe(x):
