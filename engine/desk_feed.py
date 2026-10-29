@@ -27,8 +27,20 @@ ds=None; sp=os.path.join(ROOT,'data','daytype_score.json')
 if os.path.exists(sp):
     try: x=json.load(open(sp)); ds=dict(scored_days=x['scored_days'],arms=x['arms'],verdict=x['verdict'],brier=x['ai_trend_brier'])
     except Exception: pass
+book=None; pp=os.path.join(ROOT,'data','portfolio.json')
+if os.path.exists(pp):
+    try:
+        P=json.load(open(pp)); m=P['main']
+        book=dict(final=m['final'],a_year=m['a_year'],sharpe=m['sharpe'],worst_drop=m['worst_drop'],risk_pct=P['config']['risk_pct'],window=P['window'],killed=P.get('killed'),
+                  live_start='2027-01-01',strategies=list(P['config']['strategies']),cost_cap_R=P['config'].get('cost_cap_R'))
+    except Exception: pass
+kron=None; kp=os.path.join(ROOT,'data','kronos.json')
+if os.path.exists(kp):
+    try: kron={k:dict(direction=v.get('direction'),confidence=v.get('confidence'),horizon=v.get('horizon'),updated=v.get('updated')) for k,v in json.load(open(kp)).items() if isinstance(v,dict)}
+    except Exception: pass
+now=dt.datetime.now(dt.timezone.utc); beat=now.replace(minute=(now.minute//15)*15,second=0,microsecond=0).strftime('%Y-%m-%d %H:%M UTC')   # heartbeat, 15-min steps
 feed=dict(source="Argon's original strategy (liquidity sweep → structure shift → fair value gap), NQ/ES/YM/RTY. The v2 book is not connected to the desk yet.",
-          score=score,calls=rows[::-1],daytype=dt_call,daytype_score=ds)
+          score=score,calls=rows[::-1],daytype=dt_call,daytype_score=ds,book=book,kronos=kron,checked=beat)
 old=json.load(open(OUT)) if os.path.exists(OUT) else None
 if not old or {k:v for k,v in old.items() if k!='updated'}!=feed:
     feed['updated']=dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%d %H:%M UTC'); json.dump(feed,open(OUT,'w'),indent=1); print('desk feed updated:',len(rows),'calls')

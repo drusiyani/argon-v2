@@ -9,6 +9,71 @@
  },
  "calls": [],
  "daytype": null,
- "daytype_score": null,
- "updated": "2026-10-29 01:00 UTC"
+ "daytype_score": {
+  "scored_days": 0,
+  "arms": {
+   "1x": {
+    "R": 0,
+    "sharpe": null
+   },
+   "dumb rule": {
+    "R": 0,
+    "sharpe": null
+   },
+   "AI": {
+    "R": 0,
+    "sharpe": null
+   }
+  },
+  "verdict": "collecting data",
+  "brier": null
+ },
+ "book": {
+  "final": 1189919,
+  "a_year": 60.3,
+  "sharpe": 1.18,
+  "worst_drop": -32.2,
+  "risk_pct": 1.0,
+  "window": [
+   "2021-07",
+   "2026-09"
+  ],
+  "killed": false,
+  "live_start": "2027-01-01",
+  "strategies": [
+   "quantlab",
+   "noiseband",
+   "atrband",
+   "expiry"
+  ],
+  "cost_cap_R": 0.1
+ },
+ "kronos": {
+  "NQ": {
+   "direction": "up",
+   "confidence": 0.6,
+   "horizon": "1h",
+   "updated": "2026-10-28T18:33Z"
+  },
+  "ES": {
+   "direction": "down",
+   "confidence": 0.6,
+   "horizon": "1h",
+   "updated": "2026-10-28T18:33Z"
+  },
+  "YM": {
+   "direction": "down",
+   "confidence": 0.6,
+   "horizon": "1h",
+   "updated": "2026-10-28T18:33Z"
+  },
+  "RTY": {
+   "direction": "up",
+   "confidence": 0.6,
+   "horizon": "1h",
+   "updated": "2026-10-28T18:33Z"
+  }
+ },
+ "checked": "2026-10-29 11:15 UTC",
+ "updated": "2026-10-29 11:29 UTC"
 }

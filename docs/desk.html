@@ -49,7 +49,7 @@ body{background:var(--bg);color:var(--ink);font:13px/1.5 Geist,system-ui,sans-se
 <div class="top">
  <div class="brand"><svg viewBox="0 0 32 32"><path d="M5 15a11 11 0 0 1 22 0v13l-3.7-2.6L19.6 28 16 25.4 12.4 28l-3.7-2.6L5 28z" fill="#F4F1EA"/><ellipse cx="12" cy="14" rx="2.3" ry="3.1" fill="#0b0b0b"/><ellipse cx="20" cy="14" rx="2.3" ry="3.1" fill="#0b0b0b"/></svg>Argon<span class="sl">/</span><span class="pj">desk</span></div>
  <span class="badge" id="badge"><i></i>Preview · sample data</span><a href="./" target="_top" style="pointer-events:auto;color:var(--quiet);font-size:12px;text-decoration:none;border:1px solid var(--line);border-radius:99px;padding:2px 10px">← back to Argon</a>
- <div class="pill"><span id="val">$100,000.00</span><span class="d" id="dv">+$0.00</span><small id="pillnote">sample account</small></div>
+ <div class="pill"><span id="val">$100,000.00</span><span class="d" id="dv"></span><small id="pillnote">paper account · trading starts 1 Jan 2027</small></div>
  <div class="clock" id="clock"></div>
 </div>
 <div class="zoom"><button id="zo" aria-label="Zoom out">−</button><button id="zi" aria-label="Zoom in">+</button><button id="fit" style="font-size:12px">Fit</button></div>
@@ -88,15 +88,15 @@ const ROOMS=[
 const R={};for(const r of ROOMS){const s=r.sz||4.4;r.u0=r.i*6.2-s/2;r.v0=r.j*6.2-s/2;r.s=s;R[r.id]=r}
 // who works where (local coords inside the room, 0..size)
 const AG=[
- {id:'TAPE',room:'data',x:1.1,y:1.2,kind:'rack',st:'Databento 1-min feed'},{id:'CRAWLER',room:'data',bot:'Crawler',x:3.0,y:1.5,st:'Reading newswires'},{id:'NEWS',room:'data',x:1.4,y:3.2,kind:'rack',st:'Calendar: FOMC, CPI'},
- {id:'SCOUT',room:'intake',bot:'Scout',x:1.5,y:1.5,st:'Scanning 4 strategies'},{id:'FILTER',room:'intake',bot:'Filter',x:3.1,y:3.0,st:'Moderating sources'},
+ {id:'TAPE',room:'data',x:1.1,y:1.2,kind:'rack',st:'Live 5-min prices'},{id:'CRAWLER',room:'data',bot:'Crawler',x:3.0,y:1.5,st:'Not built yet'},{id:'NEWS',room:'data',x:1.4,y:3.2,kind:'rack',st:'Headlines for the morning call'},
+ {id:'SCOUT',room:'intake',bot:'Scout',x:1.5,y:1.5,st:'Watching for fresh setups'},{id:'FILTER',room:'intake',bot:'Filter',x:3.1,y:3.0,st:'Not built yet'},
  {id:'ROUTER',room:'hub',x:2.2,y:2.2,kind:'core',st:'Routing'},{id:'CLOCK',room:'hub',x:3.3,y:1.2,kind:'rack',st:'Supervisor loop'},{id:'KILL',room:'hub',x:1.2,y:3.3,kind:'rack',red:1,st:'Armed'},
- {id:'SCEPTIC',room:'analysis',bot:'Sceptic',x:1.5,y:1.6,st:'Waiting for proposals'},{id:'KRONOS',room:'analysis',x:3.2,y:3.0,kind:'rack',st:'Forecast ready'},
+ {id:'SCEPTIC',room:'analysis',bot:'Sceptic',x:1.5,y:1.6,st:'Waiting for proposals'},{id:'KRONOS',room:'analysis',x:3.2,y:3.0,kind:'rack',st:'Next-hour forecast'},
  {id:'RISK',room:'review',bot:'Risk',x:1.5,y:1.6,st:'Cost rule: max 10% of 1R'},{id:'SIZE',room:'review',bot:'Size',x:3.1,y:3.0,st:'1% per trade'},
- {id:'CHIEF',room:'decision',bot:'Chief',x:2.2,y:2.0,big:1,st:'Waiting for proposals'},
- {id:'FILLS',room:'execution',bot:'Fills',x:1.6,y:1.6,st:'Paper broker idle'},{id:'BROKER',room:'execution',x:3.2,y:3.1,kind:'rack',st:'Costs + slippage on'},
+ {id:'CHIEF',room:'decision',bot:'Chief',x:2.2,y:2.0,big:1,st:'Waiting for a fresh setup'},
+ {id:'FILLS',room:'execution',bot:'Fills',x:1.6,y:1.6,st:'Paper trading starts 1 Jan'},{id:'BROKER',room:'execution',x:3.2,y:3.1,kind:'rack',st:'Costs + slippage on'},
  {id:'MEMORY',room:'learning',x:1.1,y:1.3,kind:'rack',st:'Recording events'},{id:'LESSONS',room:'learning',x:3.0,y:1.3,kind:'rack',st:'Next: daily wrap'},{id:'LEDGER',room:'learning',x:2.0,y:3.2,kind:'rack',st:'Decisions logged'},
- {id:'BOOK',room:'positions',x:2.2,y:2.2,kind:'rack',st:'0 open'},
+ {id:'BOOK',room:'positions',x:2.2,y:2.2,kind:'rack',st:'0 open · starts 1 Jan'},
  {id:'YOU',room:'you',x:1.2,y:1.2,kind:'you',st:'Watching'}];
 const A={};for(const a of AG){a.u=R[a.room].u0+a.x;a.v=R[a.room].v0+a.y;a.work=0;A[a.id]=a}
 // corridors between neighbouring rooms (room ids); drawn along the grid axes
@@ -210,6 +210,8 @@ function syncSheet(){document.documentElement.style.setProperty('--sheet',sheet.
 const body=document.getElementById('body');
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
  if(b.dataset.t==='log'){document.getElementById('sht').firstChild.textContent='COMMS LOG';body.replaceChildren(logEl)}
+ else if(LIVE&&!(LIVE.calls||[]).length){document.getElementById('sht').firstChild.textContent='BOOK';const d=document.createElement('div'),b=LIVE.book||{};
+  d.innerHTML=`<div class="kv"><div><span>PAPER ACCOUNT</span><b>$100,000</b></div><div><span>RISK PER TRADE</span><b>${b.risk_pct||1}%</b></div></div><p class="note">No trades yet: paper trading starts 1 January 2027. No desk calls yet either.</p><p class="note">Backtest ${b.window?b.window.join(' to '):''}: $100k to $${(b.final||0).toLocaleString('en-US')}, Sharpe ${b.sharpe}, worst drop ${b.worst_drop}%. Mostly in-sample; on 2011-2020 it lost money.</p>`;body.replaceChildren(d)}
  else if(LIVE){document.getElementById('sht').firstChild.textContent='CALLS';const d=document.createElement('div');
   d.innerHTML=(LIVE.calls||[]).slice(0,20).map(c=>`<div class="tr"><span>${c.when.slice(5)} · ${c.inst} · ${(c.chief.view||'?')}</span><span style="color:${c.R==null?'var(--quiet)':c.R>=0?'var(--up)':'var(--down)'}">${c.R==null?'open':(c.R>=0?'+':'')+(+c.R).toFixed(2)+'R'}</span><span class="q"></span></div>`).join('')+`<p class="note"></p>`;
   d.querySelectorAll('.q').forEach((q,i)=>q.textContent=LIVE.calls[i].setup);d.querySelector('.note').textContent='Setups from: '+LIVE.source;body.replaceChildren(d)}
@@ -220,7 +222,7 @@ document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.que
 // clock + sample account
 function tick(){const now=new Date(),f=(tz,o)=>new Intl.DateTimeFormat('en-GB',{timeZone:tz,...o}).format(now);
  const working=AG.filter(a=>a.work>0).length;document.getElementById('clock').textContent=`${f('America/New_York',{day:'numeric',month:'short'})} · NY ${f('America/New_York',{hour:'2-digit',minute:'2-digit'})} · LDN ${f('Europe/London',{hour:'2-digit',minute:'2-digit'})} · ${working} working`}
-let acct=100000,pnl=0;setInterval(()=>{if(LIVE){tick();return}pnl+=(open?(Math.random()-.42)*18*open:0);const v=acct+pnl;document.getElementById('val').textContent='$'+v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+setInterval(tick,1000);tick();let acct=100000,pnl=0;if(0)setInterval(()=>{pnl+=(open?(Math.random()-.42)*18*open:0);const v=acct+pnl;document.getElementById('val').textContent='$'+v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
  const d=document.getElementById('dv');d.textContent=(pnl>=0?'+':'−')+'$'+Math.abs(pnl).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});d.classList.toggle('neg',pnl<0);tick()},1000);tick();
 // ================= input: drag, wheel, pinch, tap =================
 let drag=null,pinch=null,moved=0;const pts=new Map();
@@ -299,6 +301,12 @@ async function poll(){const f=await loadFeed();if(!f)return;LIVE=f;const s=f.sco
  if(f&&((f.calls||[]).length||f.daytype)){LIVE=f;showDay(f);document.getElementById('badge').innerHTML='<i></i>Live · real desk calls';
    for(const c of (f.calls||[]).slice(0,12).reverse()){const tm=c.when.slice(11,16),ch=c.chief||{};logLine('SCOUT','CHIEF',`${c.inst}: ${c.setup}`,tm);logLine('CHIEF',ch.view==='take'?'FILLS':'LEDGER',`${(ch.view||'?').toUpperCase()}${pct(ch)}. ${ch.reason||''}`,tm)}
    await poll();queue=(f.calls||[]).slice(0,3).reverse();setTimeout(liveLoop,800);setInterval(poll,60000)}
- else{document.getElementById('badge').innerHTML='<i></i>Waiting for the first live call · sample until then';setTimeout(script,800);
-   setInterval(async()=>{const g=await loadFeed();if(g&&(g.calls||[]).length)location.reload()},120000)}})();
+ else if(f){LIVE=f;document.getElementById('badge').innerHTML='<i></i>Live · no setups judged yet';idle(f);setInterval(async()=>{const g=await loadFeed();if(g){LIVE=g;showDay(g);if((g.calls||[]).length)location.reload()}},60000)}
+ else{document.getElementById('badge').innerHTML='<i></i>Can\'t reach the desk feed';}})();
+function idle(f){const b=f.book,k=f.kronos||{},q=[];const ut=x=>x?x.slice(11,16):'';
+ if(b)q.push(['BOOK','YOU',`v2 book ready: ${b.strategies.length} strategies, ${b.risk_pct}% risk, skip trades costing over ${Math.round(b.cost_cap_R*100)}% of 1R. Backtest ${b.window[0]} to ${b.window[1]}: $100k to $${b.final.toLocaleString('en-US')}, worst drop ${b.worst_drop}% (mostly in-sample). Paper trading starts 1 Jan.`,'']);
+ for(const [m,v] of Object.entries(k))q.push(['KRONOS','CHIEF',`${m} next ${v.horizon||'hour'}: ${v.direction}, ${Math.round((v.confidence||0)*100)}% confident.`,ut(v.updated)]);
+ q.push(['CLOCK','ROUTER',`Desk last checked ${ut(f.checked)} UTC. No fresh setup to judge.`,ut(f.checked)]);
+ if(b&&b.killed)q.push(['KILL','ROUTER','Kill switch is ON: no new trades.','']);
+ q.forEach((m,i)=>setTimeout(()=>send(m[0],m[1],m[2],m[3]),i*1700));setTimeout(()=>showDay(f),q.length*1700+400)}
 </script></body></html>
