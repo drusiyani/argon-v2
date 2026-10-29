@@ -53,27 +53,27 @@
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-10-29T20:24Z"
+   "updated": "2026-10-29T20:43Z"
   },
   "ES": {
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-10-29T20:24Z"
+   "updated": "2026-10-29T20:43Z"
   },
   "YM": {
    "direction": "down",
-   "confidence": 0.6,
+   "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-10-29T20:24Z"
+   "updated": "2026-10-29T20:43Z"
   },
   "RTY": {
    "direction": "down",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-10-29T20:25Z"
+   "updated": "2026-10-29T20:43Z"
   }
  },
  "checked": "2026-10-29 20:30 UTC",
- "updated": "2026-10-29 20:31 UTC"
+ "updated": "2026-10-29 20:44 UTC"
 }
