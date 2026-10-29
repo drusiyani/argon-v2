@@ -1,4 +1,4 @@
-"""Build the site (docs/index.html): a glass dashboard with five tabs (Overview, Chart, Research, Brain, Desk), from Argon's data.
+"""Build the site (docs/index.html): a research-paper style site with five tabs (Overview, Chart, Research, Brain, Desk), from Argon's data.
 The page is a template (engine/site_template.html) plus one embedded DATA object; the heavy tabs load docs/data/*.json on demand.
 The old all-in-one dashboard is still built as docs/lab.html (the brain export needs it) but is not linked."""
 import os, json, glob, datetime as dt
@@ -36,4 +36,4 @@ DATA = dict(
     built=dt.datetime.now(dt.timezone.utc).strftime('%d %b %Y, %H:%M UTC'))
 tpl = open(os.path.join(ROOT, 'engine', 'site_template.html'), encoding='utf-8').read()
 page = tpl.replace('/*__DATA__*/null', json.dumps(DATA, separators=(',', ':')).replace('</', '<\\/'))
-open(os.path.join(ROOT, 'docs', 'index.html'), 'w', encoding='utf-8').write(page); print('built docs/index.html (glass site)', len(page))
+open(os.path.join(ROOT, 'docs', 'index.html'), 'w', encoding='utf-8').write(page); print('built docs/index.html (site)', len(page))
