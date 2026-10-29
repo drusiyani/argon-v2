@@ -1,49 +1,56 @@
 name: Argon v2 desk (live AI agents)
 
+# GitHub only ran the old every-15-minutes schedule about twice a day, so fresh setups (under 30 minutes old) were never
+# judged. Now each run starts before a session and STAYS ALIVE, checking every 5 minutes until the session ends.
 on:
   schedule:
-    - cron: "*/15 6-16 * * 1-5"   # every 15 minutes across the London and New York sessions (UTC); the script checks the exact window
+    - cron: "50 6 * * 1-5"     # London session
+    - cron: "50 12 * * 1-5"    # New York session (before the 9:30 open in EDT and EST)
+    - cron: "45 18 * * 1-5"    # New York afternoon, in case the morning run started late or timed out
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: argon-v2-writer      # the farm and the desk take turns, so they never save over each other
+  group: argon-v2-desk          # its own lane; it only writes desk files and rebases onto everyone else's saves
   cancel-in-progress: false
 
 jobs:
   desk:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 355
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Latest prices
-        run: python engine/fetch_data.py
-      - name: Kronos-small forecasts the next hour (free CPU)
+      - name: Kronos-small setup (free CPU)
         run: |
           pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
           pip install --quiet pandas huggingface_hub einops safetensors tqdm
           [ -d vendor/Kronos ] || git clone --depth 1 https://github.com/shiyu-coder/Kronos.git vendor/Kronos
-          python engine/kronos.py || echo "Kronos skipped this run"
-      - name: The desk looks at fresh setups
+      - name: Watch the session (every 5 minutes)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python engine/agents.py
-      - name: Commit
         run: |
-          git config user.name "argon-bot"
-          git config user.email "argon-bot@users.noreply.github.com"
-          for p in data/desk_calls.jsonl data/agent_memory data/kronos.json; do [ -e "$p" ] && git add -A "$p"; done   # prices are saved once a day by the farm, not every 15 minutes
-          if git diff --cached --quiet; then echo "nothing new to save"; exit 0; fi
-          git commit -m "desk: $(date -u +%H:%M)"
-          git stash --include-untracked >/dev/null 2>&1 || true      # leftovers must not block catching up
-          for i in 1 2 3 4 5 6; do
-            if git pull --rebase -X theirs origin main && git push origin HEAD:main; then echo "saved"; exit 0; fi
-            git rebase --abort >/dev/null 2>&1 || true
-            echo "someone else saved first, catching up and retrying ($i)"; sleep $((i*15))
+          git config user.name "argon-bot"; git config user.email "argon-bot@users.noreply.github.com"
+          end=$((SECONDS + 340*60)); i=0
+          while [ $SECONDS -lt $end ]; do
+            H=$(date -u +%H)
+            if [ "$H" -ge 21 ]; then echo "session over"; break; fi
+            python engine/fetch_data.py || echo "prices skipped"
+            if [ $((i % 3)) -eq 0 ]; then python engine/kronos.py || echo "Kronos skipped"; fi
+            python engine/agents.py || echo "desk run failed this round"
+            python engine/desk_feed.py || echo "feed skipped"
+            for p in data/desk_calls.jsonl data/agent_memory data/kronos.json docs/desk_feed.json; do [ -e "$p" ] && git add -A "$p"; done
+            if ! git diff --cached --quiet; then
+              git commit -m "desk: $(date -u +%H:%M)" -q
+              git stash --include-untracked -q 2>/dev/null || true
+              for k in 1 2 3 4 5; do git pull --rebase -X theirs -q origin main && git push -q origin HEAD:main && break; git rebase --abort 2>/dev/null; sleep $((k*10)); done
+              git stash drop -q 2>/dev/null || true
+            else
+              git stash --include-untracked -q 2>/dev/null && git stash drop -q 2>/dev/null; git pull --rebase -q origin main || true
+            fi
+            i=$((i+1)); sleep 300
           done
-          exit 1

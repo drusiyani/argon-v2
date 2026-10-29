@@ -48,8 +48,8 @@ body{background:var(--bg);color:var(--ink);font:13px/1.5 Geist,system-ui,sans-se
 <canvas id="c" aria-label="Argon office map: each room is part of the desk, bots at their desks, messages moving between rooms"></canvas>
 <div class="top">
  <div class="brand"><svg viewBox="0 0 32 32"><path d="M5 15a11 11 0 0 1 22 0v13l-3.7-2.6L19.6 28 16 25.4 12.4 28l-3.7-2.6L5 28z" fill="#F4F1EA"/><ellipse cx="12" cy="14" rx="2.3" ry="3.1" fill="#0b0b0b"/><ellipse cx="20" cy="14" rx="2.3" ry="3.1" fill="#0b0b0b"/></svg>Argon<span class="sl">/</span><span class="pj">desk</span></div>
- <span class="badge"><i></i>Preview · sample data</span><a href="./" target="_top" style="pointer-events:auto;color:var(--quiet);font-size:12px;text-decoration:none;border:1px solid var(--line);border-radius:99px;padding:2px 10px">← back to Argon</a>
- <div class="pill"><span id="val">$100,000.00</span><span class="d" id="dv">+$0.00</span><small>sample account</small></div>
+ <span class="badge" id="badge"><i></i>Preview · sample data</span><a href="./" target="_top" style="pointer-events:auto;color:var(--quiet);font-size:12px;text-decoration:none;border:1px solid var(--line);border-radius:99px;padding:2px 10px">← back to Argon</a>
+ <div class="pill"><span id="val">$100,000.00</span><span class="d" id="dv">+$0.00</span><small id="pillnote">sample account</small></div>
  <div class="clock" id="clock"></div>
 </div>
 <div class="zoom"><button id="zo" aria-label="Zoom out">−</button><button id="zi" aria-label="Zoom in">+</button><button id="fit" style="font-size:12px">Fit</button></div>
@@ -170,15 +170,15 @@ function label(txt,x,y,col,size,weight=500,dot){ctx.font=`${weight} ${size}px "G
  if(dot){ctx.fillStyle=dot;ctx.beginPath();ctx.arc(x0-8,y,2.6,0,7);ctx.fill()}ctx.letterSpacing='0px';return w}
 // ================= messages =================
 const packets=[];
-function send(from,to,msg){const a=A[from],b=A[to],rooms=route(a.room,b.room),pts=[{u:a.u,v:a.v}];
+function send(from,to,msg,tm){const a=A[from],b=A[to],rooms=route(a.room,b.room),pts=[{u:a.u,v:a.v}];
  for(let i=0;i<rooms.length;i++){const c=ctr(R[rooms[i]]);if(i>0){const cor=COR.find(k=>(k.a===rooms[i-1]&&k.b===rooms[i])||(k.b===rooms[i-1]&&k.a===rooms[i]));const p=cor.a===rooms[i-1]?cor.pts:[...cor.pts].reverse();pts.push(...p.slice(1,-1))}
   if(i>0&&i<rooms.length-1)pts.push(c);else if(i===0&&rooms.length>1)pts.push(c)}
  pts.push({u:b.u,v:b.v});let L=0;const seg=[];for(let i=1;i<pts.length;i++){const d=Math.hypot(pts[i].u-pts[i-1].u,pts[i].v-pts[i-1].v);seg.push(d);L+=d}
- packets.push({pts,seg,L,p:0,c:R[a.room].c,to});a.work=2.2;logLine(from,to,msg)}
+ packets.push({pts,seg,L,p:0,c:R[a.room].c,to});a.work=2.2;logLine(from,to,msg,tm)}
 let logN=0;const logEl=document.getElementById('log');
 function hm(){return new Intl.DateTimeFormat('en-GB',{timeZone:'America/New_York',hour:'2-digit',minute:'2-digit'}).format(new Date())}
-function logLine(f,t,m){logN++;document.getElementById('shn').textContent=logN;const li=document.createElement('li');
- li.innerHTML=`<time>${hm()}</time><span class="r"><span style="color:${R[A[f].room].c}">${f}</span> <span style="color:var(--quiet)">→</span> <span style="color:${R[A[t].room].c}">${t}</span></span><span class="m"></span>`;
+function logLine(f,t,m,tm){logN++;document.getElementById('shn').textContent=logN;const li=document.createElement('li');
+ li.innerHTML=`<time>${tm||hm()}</time><span class="r"><span style="color:${R[A[f].room].c}">${f}</span> <span style="color:var(--quiet)">→</span> <span style="color:${R[A[t].room].c}">${t}</span></span><span class="m"></span>`;
  li.querySelector('.m').textContent=m;logEl.prepend(li);while(logEl.children.length>40)logEl.lastChild.remove()}
 const SETUPS=[
  {name:'QuantLab',side:'long',time:'9:35',why:'first candle closed above the 12 EMA (not an FOMC day)',v:{s:'Gap already did half the move.',k:'Forecast: flat to up.',r:'Open risk 0R, day 0R. OK.'},take:true,fill:'Filled long NQ, +2 ticks'},
@@ -210,6 +210,9 @@ function syncSheet(){document.documentElement.style.setProperty('--sheet',sheet.
 const body=document.getElementById('body');
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
  if(b.dataset.t==='log'){document.getElementById('sht').firstChild.textContent='COMMS LOG';body.replaceChildren(logEl)}
+ else if(LIVE){document.getElementById('sht').firstChild.textContent='CALLS';const d=document.createElement('div');
+  d.innerHTML=(LIVE.calls||[]).slice(0,20).map(c=>`<div class="tr"><span>${c.when.slice(5)} · ${c.inst} · ${(c.chief.view||'?')}</span><span style="color:${c.R==null?'var(--quiet)':c.R>=0?'var(--up)':'var(--down)'}">${c.R==null?'open':(c.R>=0?'+':'')+(+c.R).toFixed(2)+'R'}</span><span class="q"></span></div>`).join('')+`<p class="note"></p>`;
+  d.querySelectorAll('.q').forEach((q,i)=>q.textContent=LIVE.calls[i].setup);d.querySelector('.note').textContent='Setups from: '+LIVE.source;body.replaceChildren(d)}
  else{document.getElementById('sht').firstChild.textContent='TRADES';const d=document.createElement('div');
   d.innerHTML=`<div class="kv"><div><span>CASH</span><b>$${(100000-open*0).toLocaleString('en-US')}</b></div><div><span>OPEN RISK</span><b>${(open*1).toFixed(2)}%</b></div></div>`+
    (open?Array.from({length:open},(_,i)=>`<div class="tr"><span>NQ ${i%2?'noise band':'QuantLab'} long</span><span style="color:var(--up)">+${(0.4+i*0.3).toFixed(1)}R</span><span class="q">stop set by the rule · flat by 3:55pm</span></div>`).join(''):'<p class="note">No open trades.</p>')+
@@ -217,7 +220,7 @@ document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.que
 // clock + sample account
 function tick(){const now=new Date(),f=(tz,o)=>new Intl.DateTimeFormat('en-GB',{timeZone:tz,...o}).format(now);
  const working=AG.filter(a=>a.work>0).length;document.getElementById('clock').textContent=`${f('America/New_York',{day:'numeric',month:'short'})} · NY ${f('America/New_York',{hour:'2-digit',minute:'2-digit'})} · LDN ${f('Europe/London',{hour:'2-digit',minute:'2-digit'})} · ${working} working`}
-let acct=100000,pnl=0;setInterval(()=>{pnl+=(open?(Math.random()-.42)*18*open:0);const v=acct+pnl;document.getElementById('val').textContent='$'+v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+let acct=100000,pnl=0;setInterval(()=>{if(LIVE){tick();return}pnl+=(open?(Math.random()-.42)*18*open:0);const v=acct+pnl;document.getElementById('val').textContent='$'+v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
  const d=document.getElementById('dv');d.textContent=(pnl>=0?'+':'−')+'$'+Math.abs(pnl).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});d.classList.toggle('neg',pnl<0);tick()},1000);tick();
 // ================= input: drag, wheel, pinch, tap =================
 let drag=null,pinch=null,moved=0;const pts=new Map();
@@ -265,5 +268,32 @@ function frame(now){const dt=Math.min(.05,(now-last)/1000),t=now/1000;last=now;
   if(cam.s>1.25){ctx.font=`400 ${Math.min(11,8*cam.s)}px "Geist Mono",monospace`;ctx.fillStyle='#8f8f8f';ctx.textAlign='center';ctx.fillText(a.st,h.x,h.y-4-Math.min(14,11*cam.s))}}
  requestAnimationFrame(frame)}
 requestAnimationFrame(frame);
-document.fonts.ready.then(()=>{});setTimeout(script,800);
+document.fonts.ready.then(()=>{});let LIVE=null,played=new Set(),queue=[];
+function pct(v){return v&&v.confidence!=null?` ${v.confidence}%`:''}
+function playCall(c){const tm=c.when.slice(11,16),v=c.views||{},ch=c.chief||{},up=x=>(x||'?').toUpperCase(),q=[
+  ['TAPE','SCOUT',`${c.inst}: ${c.setup}`],
+  ['SCOUT','CHIEF',`${up(v.Scout&&v.Scout.view)}${pct(v.Scout)}. ${(v.Scout&&v.Scout.reason)||''}`],
+  ['CHIEF','SCEPTIC','Break it.'],['KRONOS','SCEPTIC','Forecast in the briefing.'],
+  ['SCEPTIC','CHIEF',`${up(v.Sceptic&&v.Sceptic.view)}${pct(v.Sceptic)}. ${(v.Sceptic&&v.Sceptic.reason)||''}`],
+  ['CHIEF','RISK','Size and limits?'],
+  ['RISK','CHIEF',`${up(v.Risk&&v.Risk.view)}${pct(v.Risk)}. ${(v.Risk&&v.Risk.reason)||''}`],
+  ...(ch.view==='take'?[['CHIEF','FILLS',`TAKE${pct(ch)}. ${ch.reason||''}`],['FILLS','LEDGER','Logged and scored against taking every setup.']]
+                      :[['CHIEF','LEDGER',`SKIP${pct(ch)}. ${ch.reason||''}`]]),
+  ...(c.R!=null?[['LEDGER','LESSONS',`Result: ${c.R>=0?'+':''}${(+c.R).toFixed(2)}R. Into this week's lessons.`]]:[])];
+ A.CHIEF.st=(ch.view==='take'?'Took ':'Skipped ')+c.inst;A.SCOUT.st='Found '+c.inst+' setup';A.SCEPTIC.st=(v.Sceptic&&v.Sceptic.view)?'Said '+v.Sceptic.view:'Waiting';A.RISK.st=(v.Risk&&v.Risk.view)?'Said '+v.Risk.view:'Limits loaded';
+ q.forEach((m,i)=>setTimeout(()=>send(m[0],m[1],m[2],tm),i*1900));return q.length*1900}
+function liveLoop(){const next=queue.shift();if(next){played.add(next.key);setTimeout(liveLoop,playCall(next)+2500)}
+ else{const recent=(LIVE.calls||[]).slice(0,5).reverse();if(recent.length)queue=recent.slice();setTimeout(liveLoop,30000)}}
+async function loadFeed(){try{const r=await fetch('desk_feed.json?'+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json()}catch(e){return null}}
+async function poll(){const f=await loadFeed();if(!f)return;LIVE=f;const s=f.score||{};
+ document.getElementById('val').textContent=`Chief ${s.taken_R>=0?'+':''}${(s.taken_R||0).toFixed(1)}R`;
+ const d=document.getElementById('dv');d.textContent=`take-all ${s.all_R>=0?'+':''}${(s.all_R||0).toFixed(1)}R`;d.classList.toggle('neg',(s.taken_R||0)<(s.all_R||0));
+ document.getElementById('pillnote').textContent=`${s.calls||0} real calls · ${s.resolved||0} scored`;
+ for(const c of (f.calls||[]).slice().reverse())if(!played.has(c.key)&&!queue.find(x=>x.key===c.key)&&Date.now()-Date.parse(c.when.replace(' ','T')+'-05:00')<36e5*3)queue.push(c)}
+(async()=>{const f=await loadFeed();
+ if(f&&(f.calls||[]).length){LIVE=f;document.getElementById('badge').innerHTML='<i></i>Live · real desk calls';
+   for(const c of f.calls.slice(0,12).reverse()){const tm=c.when.slice(11,16),ch=c.chief||{};logLine('SCOUT','CHIEF',`${c.inst}: ${c.setup}`,tm);logLine('CHIEF',ch.view==='take'?'FILLS':'LEDGER',`${(ch.view||'?').toUpperCase()}${pct(ch)}. ${ch.reason||''}`,tm)}
+   await poll();queue=f.calls.slice(0,3).reverse();setTimeout(liveLoop,800);setInterval(poll,60000)}
+ else{document.getElementById('badge').innerHTML='<i></i>Waiting for the first live call · sample until then';setTimeout(script,800);
+   setInterval(async()=>{const g=await loadFeed();if(g&&(g.calls||[]).length)location.reload()},120000)}})();
 </script></body></html>
