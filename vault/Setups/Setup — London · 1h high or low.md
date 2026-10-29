@@ -1,6 +1,6 @@
 ---
 type: setup
-examples: 2
+examples: 3
 taken: 0
 ---
 # Setup — London · 1h high or low
@@ -10,10 +10,10 @@ taken: 0
 
 | | how many | won | total | per trade |
 |---|---|---|---|---|
-| all examples | 2 | 50% | +1.00R | +0.50R |
+| all examples | 3 | 33% | 0.00R | 0.00R |
 | actually taken | 0 | – | 0.00R | – |
 
-By market: Nasdaq 1 (-1.00R), S&P 500 0 (0.00R), the Dow 1 (+2.00R), the Russell 2000 0 (0.00R).
+By market: Nasdaq 1 (-1.00R), S&P 500 0 (0.00R), the Dow 1 (+2.00R), the Russell 2000 1 (-1.00R).
 
 ## Trades taken
 
