@@ -57,6 +57,31 @@ def curve(trades, months, cx, risk):
     return dict(sharpe=round(c.sharpe(s), 2), R=round(sum(s), 1), final=round(eq), a_year=round(((eq / CONFIG['start_usd']) ** (12 / len(s)) - 1) * 100, 1),
                 worst_drop=round(dd * 100, 1), losing_months=sum(1 for v in s if v < 0), months=len(s), years=years, equity=pts, monthly_R=[round(v, 2) for v in s])
 
+def chart_data(trades, sessions=60):
+    """For the Chart tab: NQ daily candles (2021-07 on), the book's R per day, and 5-minute candles + every NQ trade for the
+    last `sessions` sessions (entry at the open of its entry minute, exit at the close of its exit minute)."""
+    T, O, H, L, C, n, mins, days, wd = c.prep('NQ'); D, dl, atr = c.daily('NQ')
+    dl = [d for d in dl if d >= '2021-07']
+    daily = [[d, round(D[d]['o'], 2), round(D[d]['h'], 2), round(D[d]['l'], 2), round(D[d]['c'], 2)] for d in dl]
+    by = collections.defaultdict(list)
+    for t in trades:
+        if t['sym'] == 'NQ': by[t['date']].append(t)
+    out = {}
+    for d in dl[-sessions:]:
+        r = D[d]['r']; at = {mins[i]: i for i in r}; bars = collections.OrderedDict()
+        for i in r:
+            k = mins[i] // 5 * 5; b = bars.get(k)
+            if b is None: bars[k] = [k, O[i], H[i], L[i], C[i]]
+            else: b[2] = max(b[2], H[i]); b[3] = min(b[3], L[i]); b[4] = C[i]
+        tr = []
+        for t in by.get(d, []):
+            ei, xi = at.get(t['entry_min']), at.get(t['exit_min'])
+            if ei is None or xi is None: continue
+            tr.append(dict(strategy=t['strat'], side=t['side'], entry_min=t['entry_min'], exit_min=t['exit_min'], entry=round(O[ei], 2), exit=round(C[xi], 2),
+                           R=round(t['w'] * (t['gross'] - t['cost']), 2)))
+        out[d] = dict(bars=[[k, round(o, 2), round(h, 2), round(l, 2), round(cc, 2)] for k, o, h, l, cc in bars.values()], trades=tr)
+    return dict(daily=daily, sessions=out)
+
 if __name__ == '__main__':
     killed = os.path.exists(os.path.join(ROOT, 'data', 'KILL'))
     end = max(c.FULL_END, dt.date.today().replace(day=1).isoformat()[:7])
@@ -76,4 +101,7 @@ if __name__ == '__main__':
                trades_by_strategy=dict(by), recent_trades=recent, daily_R=daily,
                honesty=["Most of this history is in-sample: the strategies and their settings were picked by looking at it.", "On 2011-2020, ten years never used to build it, this book lost money: about -7% over the decade at 1% risk, with a -70% drop during 2011-2017. It only works in the more volatile markets since 2018.", "So it is a bet that today's market regime continues. Expect live results well below the backtest."])
     json.dump(out, open(os.path.join(ROOT, 'data', 'portfolio.json'), 'w'), indent=1)
+    os.makedirs(os.path.join(ROOT, 'docs', 'data'), exist_ok=True)
+    cd = chart_data(trades); cd['daily_R'] = {d: v[0] for d, v in daily.items()}
+    json.dump(cd, open(os.path.join(ROOT, 'docs', 'data', 'chart.json'), 'w'), separators=(',', ':'))
     print('portfolio', main['sharpe'], main['final'], 'shadow', shadow['sharpe'], shadow['final'], 'killed' if killed else '')
