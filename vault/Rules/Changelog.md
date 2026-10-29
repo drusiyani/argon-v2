@@ -46,7 +46,7 @@ type: changelog
 
 ## v0.3 · 13 October 2026
 
-- The rules became settings that Claude can adjust. This week's [[Strategy lab — 13 Oct 2026|lab]] tried 1,305 versions; 12 passed the first test; the 5 best all failed on unseen days. **Nothing changed.**
+- The rules became settings that Claude can adjust. This week's [[Strategy lab — 13 Oct 2026|lab]] tried 1,305 versions; 10 passed the first test; the 5 best all failed on unseen days. **Nothing changed.**
 - Added Argon v1's risk rules.
 - Added a "day's direction" check, and a bad luck / bad reasoning verdict on losing trades.
 - See [[Lessons]].

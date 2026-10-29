@@ -1,0 +1,27 @@
+{
+ "start": "2027-01-01",
+ "scored_days": 0,
+ "min_days": 120,
+ "margin": 0.15,
+ "arms": {
+  "1x": {
+   "R": 0,
+   "sharpe": null
+  },
+  "dumb rule": {
+   "R": 0,
+   "sharpe": null
+  },
+  "AI": {
+   "R": 0,
+   "sharpe": null
+  }
+ },
+ "ai_trend_brier": null,
+ "brier_note": "0.25 = coin flip; lower is better",
+ "verdict": "collecting data",
+ "vetos": 0,
+ "late_days": 0,
+ "latest_call": null,
+ "updated": "2026-10-29 01:56 UTC"
+}
