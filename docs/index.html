@@ -41,10 +41,14 @@ ol.steps span{color:var(--quiet);font-size:15px}ol.steps span strong{color:var(-
 ul.fail{list-style:none;padding:0;margin:0;display:grid;gap:10px}ul.fail li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:14px 0;border-top:1px solid var(--line)}
 ul.fail li b{font-weight:500}ul.fail li em{font:normal 500 13px "Geist Mono",monospace;color:var(--down);white-space:nowrap}ul.fail li span{grid-column:1/3;color:var(--quiet);font-size:14px}
 .btn{display:inline-block;margin-top:20px;padding:9px 16px;border:1px solid var(--line);border-radius:99px;text-decoration:none;font-size:14px}.btn:hover{border-color:var(--quiet)}
+section#tools .tools{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.tools a{background:var(--panel);padding:18px;text-decoration:none;display:block;transition:background .15s}.tools a:hover{background:var(--bg)}
+.tools b{display:block;font-weight:500;margin-bottom:4px}.tools b::after{content:" →";color:var(--quiet)}.tools span{color:var(--quiet);font-size:13px;line-height:1.45}
+@media (max-width:900px){section#tools .tools{grid-template-columns:repeat(2,1fr)}}@media (max-width:520px){section#tools .tools{grid-template-columns:1fr}}
 footer{padding:32px 0 48px;border-top:1px solid var(--line);color:var(--quiet);font-size:13px;display:flex;flex-wrap:wrap;gap:8px 20px}footer a{color:var(--quiet)}
 @media (max-width:760px){.two,.grid,.arms{grid-template-columns:1fr}.kv{grid-template-columns:repeat(2,1fr)}ol.steps li{grid-template-columns:1fr;gap:2px}}
 </style></head><body><main>
-<nav><b>Argon</b><span class="sl">/</span><span>v2</span><span class="pill"><i></i>Paper trading from 1 Jan 2027</span><span class="sp"></span><a href="#book">Book</a><a href="#method">Method</a><a href="#desk">Desk</a><a href="#failed">What failed</a></nav>
+<nav><b>Argon</b><span class="sl">/</span><span>v2</span><span class="pill"><i></i>Paper trading from 1 Jan 2027</span><span class="sp"></span><a href="#book">Book</a><a href="#method">Method</a><a href="#desk">Desk</a><a href="#failed">What failed</a><a href="#tools">Tools</a><a href="lab.html">Lab</a></nav>
 
 <header class="hero"><span class="pill">Research project · Dru Siyani · Habs</span>
 <h1>Can an AI trade?</h1>
@@ -94,7 +98,19 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line);color:var(--quiet);f
 <li><b>A daily loss limit</b><em>lookahead bug</em><span>Looked like +0.09 Sharpe; with exact trade times it made results worse.</span></li>
 <li><b>The v2 book on 2011–2020</b><em>Sharpe −1.03</em><span>Ten never-seen years, opened once. Across all their trades, three of four strategies had a small edge before costs and QuantLab had none. Adding the cost rule afterwards lifted it to 0.12, still a loss ($92,695 from $100,000), and that fix was chosen after seeing the result. Published anyway.</span></li>
 </ul>
-<a class="btn" href="lab.html">Open the old full dashboard →</a></section>
+<a class="btn" href="lab.html">Open the full dashboard →</a></section>
 
+<section id="tools"><h2>Everything else</h2>
+<p class="lead">All of Argon’s tools are still here.</p>
+<div class="tools">
+<a href="lab.html#overview"><b>Full dashboard</b><span>Every number, every strategy, the live farm and the original desk experiment.</span></a>
+<a href="lab.html#chart"><b>Charts</b><span>Live futures charts with Argon’s levels, setups and trades drawn on.</span></a>
+<a href="lab.html#lab"><b>Strategy lab</b><span>The rule variants Argon tests, how each one scores, and the monthly re-pick.</span></a>
+<a href="lab.html#studies"><b>Studies</b><span>The research write-ups: influencer strategies, papers, and what each one taught.</span></a>
+<a href="lab.html#events"><b>Events</b><span>The farm’s event log: sweeps, structure breaks and fills as they happen.</span></a>
+<a href="https://github.com/drusiyani/argon-v2/tree/main/vault"><b>The brain (Obsidian)</b><span>Argon’s notes: rulebooks, lessons, levels, markets and reviews, linked like a second brain.</span></a>
+<a href="desk.html"><b>The 3D desk</b><span>The agents in their rooms, passing the desk’s real messages.</span></a>
+<a href="https://github.com/drusiyani/argon-v2/tree/main/research"><b>Research code</b><span>Every test script and result, so anyone can re-run them.</span></a>
+</div></section>
 <footer><span>Argon v2 · built by Dru Siyani · updated 29 Oct 2026</span><a href="https://github.com/drusiyani/argon-v2">GitHub</a><a href="https://github.com/drusiyani/argon-v2/blob/main/PREREGISTRATION.md">Pre-registration</a><a href="https://github.com/drusiyani/argon-v2/tree/main/research/results">Research results</a><span>Paper trading only. Not financial advice.</span></footer>
 </main></body></html>

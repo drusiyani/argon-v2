@@ -52,7 +52,7 @@ def site_export():
         from playwright.sync_api import sync_playwright
     except ImportError: return []
     with sync_playwright() as p:
-        b=p.chromium.launch(); pg=b.new_page(); pg.goto('file://'+os.path.join(ROOT,'docs','index.html')); pg.wait_for_timeout(2500)
+        b=p.chromium.launch(); pg=b.new_page(); pg.goto('file://'+os.path.join(ROOT,'docs','lab.html')); pg.wait_for_timeout(2500)
         files=pg.evaluate("window.__exportFiles()"); b.close(); return files
 FOLD={'Daily':'Days','Concepts':'Ideas','Trades':'Trades','Setups':'Setups','Rules':'Rules','Reviews':'Reviews'}
 for f in site_export():

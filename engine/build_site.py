@@ -1,6 +1,6 @@
 import os
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-"""Glue the page together: styles + layout + the farm's data + the app scripts -> docs/index.html (GitHub Pages)."""
+"""Glue the page together: styles + layout + the farm's data + the app scripts -> docs/lab.html (the full dashboard; the front page is engine/build_front.py)."""
 src=os.path.join(ROOT,'site','src')
 d=open(os.path.join(ROOT,'data','farm.json')).read().replace('</','<\\/')
 out=open(os.path.join(src,'head.html')).read()+open(os.path.join(src,'body.html')).read().replace('__DATA__',d)
