@@ -1,0 +1,341 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Argon v2: can an AI trade?</title>
+<meta name="description" content="A pre-registered paper-trading research desk for Nasdaq and S&P futures. Backtests, a never-seen lockbox, and an AI desk tested honestly.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07080b;--ink:#f2f2f3;--quiet:rgba(242,242,243,.58);--faint:rgba(242,242,243,.38);--glass:rgba(255,255,255,.055);--glass2:rgba(255,255,255,.09);
+ --edge:rgba(255,255,255,.12);--edge2:rgba(255,255,255,.2);--shade:rgba(0,0,0,.35);--gold:#F2B45A;--up:#4ADE9B;--down:#FF6B6B;--blue:#7AA7FF;--violet:#B79CFF;
+ --b1:#c2410c;--b2:#7c3aed;--b3:#0e7490;--b4:#a16207;color-scheme:dark;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#eef0f4;--ink:#14151a;--quiet:rgba(20,21,26,.62);--faint:rgba(20,21,26,.42);--glass:rgba(255,255,255,.55);
+ --glass2:rgba(255,255,255,.72);--edge:rgba(255,255,255,.85);--edge2:rgba(20,21,26,.14);--shade:rgba(40,40,70,.12);--gold:#B7791F;--up:#159a63;--down:#d64545;--blue:#3b6fe0;--violet:#7c5ce0;
+ --b1:#fdba74;--b2:#c4b5fd;--b3:#67e8f9;--b4:#fde68a;color-scheme:light}}
+:root[data-theme="dark"]{--bg:#07080b;--ink:#f2f2f3;--quiet:rgba(242,242,243,.58);--faint:rgba(242,242,243,.38);--glass:rgba(255,255,255,.055);--glass2:rgba(255,255,255,.09);--edge:rgba(255,255,255,.12);--edge2:rgba(255,255,255,.2);--shade:rgba(0,0,0,.35);--b1:#c2410c;--b2:#7c3aed;--b3:#0e7490;--b4:#a16207;color-scheme:dark}
+:root[data-theme="light"]{--bg:#eef0f4;--ink:#14151a;--quiet:rgba(20,21,26,.62);--faint:rgba(20,21,26,.42);--glass:rgba(255,255,255,.55);--glass2:rgba(255,255,255,.72);--edge:rgba(255,255,255,.85);--edge2:rgba(20,21,26,.14);--shade:rgba(40,40,70,.12);--b1:#fdba74;--b2:#c4b5fd;--b3:#67e8f9;--b4:#fde68a;color-scheme:light}
+*{box-sizing:border-box}[hidden]{display:none!important}html{scroll-padding-top:calc(84px + env(safe-area-inset-top,0px))}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font:15px/1.55 Geist,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}button{font:inherit;color:inherit}
+.mono{font-family:"Geist Mono",ui-monospace,monospace}
+/* ---------- living background */
+.bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.bg i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;will-change:transform}
+.bg .b1{width:52vmax;height:52vmax;left:-12vmax;top:-18vmax;background:var(--b1);animation:d1 38s ease-in-out infinite alternate}
+.bg .b2{width:46vmax;height:46vmax;right:-14vmax;top:4vmax;background:var(--b2);animation:d2 44s ease-in-out infinite alternate;opacity:.42}
+.bg .b3{width:40vmax;height:40vmax;left:18vmax;bottom:-22vmax;background:var(--b3);animation:d3 50s ease-in-out infinite alternate;opacity:.38}
+.bg .b4{width:30vmax;height:30vmax;right:14vmax;bottom:-10vmax;background:var(--b4);animation:d1 41s ease-in-out infinite alternate-reverse;opacity:.32}
+.bg::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 0%,transparent 40%,var(--bg) 100%);opacity:.85}
+.grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+@keyframes d1{to{transform:translate(14vmax,10vmax) scale(1.12)}}@keyframes d2{to{transform:translate(-12vmax,14vmax) scale(.92)}}@keyframes d3{to{transform:translate(10vmax,-12vmax) scale(1.1)}}
+/* ---------- glass */
+.glass{background:var(--glass);border:1px solid var(--edge);-webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%);
+ box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 18px 40px -18px var(--shade)}
+.card{position:relative;border-radius:22px;padding:20px;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s,background .35s}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;
+ background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.09),transparent 60%)}
+.card:hover{transform:translateY(-2px);border-color:var(--edge2)}.card:hover::before{opacity:1}
+/* ---------- top bar */
+.top{position:fixed;left:0;right:0;top:0;z-index:30;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:calc(14px + env(safe-area-inset-top,0px)) 20px 10px}
+.top::before{content:"";position:fixed;left:0;right:0;top:0;height:calc(70px + env(safe-area-inset-top,0px));z-index:-1;background:linear-gradient(var(--bg),transparent);opacity:.8;pointer-events:none}
+.brand{text-decoration:none;display:flex;align-items:center;gap:10px;border-radius:99px;padding:6px 14px 6px 8px;width:max-content;font-weight:600;letter-spacing:-.01em}
+.brand svg{width:26px;height:26px}.brand small{font:500 11px "Geist Mono",monospace;color:var(--quiet);font-weight:500}
+.pills{position:relative;display:flex;gap:2px;border-radius:99px;padding:4px}
+.pills a{position:relative;z-index:1;display:flex;align-items:center;gap:7px;padding:7px 14px;border-radius:99px;font-size:13px;color:var(--quiet);text-decoration:none;transition:color .25s}
+.pills a svg{width:15px;height:15px}.pills a:hover{color:var(--ink)}.pills a.on{color:var(--ink)}
+.pills .ind{position:absolute;z-index:0;top:4px;bottom:4px;left:0;width:0;border-radius:99px;background:var(--glass2);border:1px solid var(--edge);box-shadow:0 6px 16px -8px var(--shade);transition:transform .5s cubic-bezier(.3,1.4,.4,1),width .5s cubic-bezier(.3,1.4,.4,1)}
+.right{display:flex;justify-content:flex-end;gap:8px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:7px;border-radius:99px;padding:7px 12px;font-size:12px;color:var(--quiet);white-space:nowrap}
+.chip b{color:var(--ink);font-weight:500}.chip i{width:7px;height:7px;border-radius:50%;background:var(--up);box-shadow:0 0 0 0 rgba(74,222,155,.6);animation:pulse 2.2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 7px rgba(74,222,155,0)}}
+.ib{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;text-decoration:none}.ib svg{width:17px;height:17px}
+/* ---------- dock */
+.dock{position:fixed;z-index:30;left:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;padding:8px;border-radius:99px}
+.dock a{position:relative;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;color:var(--quiet);text-decoration:none;transition:background .25s,color .25s,transform .25s}
+.dock a svg{width:18px;height:18px}.dock a:hover{color:var(--ink);transform:scale(1.08)}.dock a.on{background:var(--ink);color:var(--bg)}
+.dock a span{position:absolute;left:52px;top:50%;transform:translate(-6px,-50%);opacity:0;pointer-events:none;white-space:nowrap;font-size:12px;padding:5px 10px;border-radius:8px;
+ background:var(--glass2);border:1px solid var(--edge);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);color:var(--ink);transition:opacity .2s,transform .2s}
+.dock a:hover span{opacity:1;transform:translate(0,-50%)}
+/* ---------- layout */
+main{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:calc(86px + env(safe-area-inset-top,0px)) clamp(16px,4vw,40px) 64px clamp(16px,calc(4vw + 56px),104px)}
+.view{animation:viewin .6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes viewin{from{opacity:0;filter:blur(10px);transform:translateY(10px) scale(.995)}}
+.rise{opacity:0;transform:translateY(14px);filter:blur(6px)}
+.in .rise{animation:rise .75s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--d,0) * 70ms)}
+@keyframes rise{to{opacity:1;transform:none;filter:none}}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin:8px 0 22px}
+.head h1{margin:0;font-size:clamp(28px,4vw,40px);line-height:1.08;letter-spacing:-.035em;font-weight:600}.head p{margin:6px 0 0;color:var(--quiet);max-width:62ch}
+.seg{position:relative;display:inline-flex;padding:4px;border-radius:99px}
+.seg button{position:relative;z-index:1;border:0;background:none;padding:7px 14px;border-radius:99px;font-size:13px;color:var(--quiet);cursor:pointer;transition:color .25s;white-space:nowrap}
+.seg button.on{color:var(--ink)}.seg .th{position:absolute;top:4px;bottom:4px;left:0;border-radius:99px;background:var(--glass2);border:1px solid var(--edge);transition:transform .45s cubic-bezier(.3,1.3,.4,1),width .45s cubic-bezier(.3,1.3,.4,1)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.kpi .ic{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--glass2);border:1px solid var(--edge);color:var(--c,var(--ink))}.kpi .ic svg{width:17px;height:17px}
+.kpi .r1{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.kpi .lb{color:var(--quiet);font-size:13px;margin:14px 0 2px}.kpi .v{font:500 clamp(24px,2.6vw,30px)/1.1 "Geist Mono",monospace;letter-spacing:-.04em}
+.kpi .row{display:flex;justify-content:space-between;align-items:flex-end;gap:8px;margin-top:8px}
+.tag{display:inline-flex;align-items:center;gap:4px;font:500 11px "Geist Mono",monospace;padding:3px 8px;border-radius:99px;background:var(--glass2);border:1px solid var(--edge);color:var(--quiet);white-space:nowrap}
+.tag.up{color:var(--up)}.tag.dn{color:var(--down)}
+.spark{width:112px;height:38px;display:block;overflow:visible}
+.draw{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:drawl 1.4s cubic-bezier(.6,0,.2,1) forwards;animation-delay:calc(var(--d,0) * 70ms + .15s)}
+@keyframes drawl{to{stroke-dashoffset:0}}
+.fadein{opacity:0;animation:fo 1s ease forwards .6s}@keyframes fo{to{opacity:1}}
+.g2{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:14px;margin-top:14px}
+.ch-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.ch-head h3,.card h3{margin:0;font-size:15px;font-weight:600;letter-spacing:-.01em}.ch-head p,.sub{margin:3px 0 0;color:var(--quiet);font-size:13px}
+.big{position:relative;height:270px;margin-top:10px}.big svg{width:100%;height:100%;display:block;overflow:visible}
+.tip{position:absolute;pointer-events:none;transform:translate(-50%,-115%);padding:6px 10px;border-radius:10px;font:500 12px "Geist Mono",monospace;white-space:nowrap;opacity:0;transition:opacity .15s}
+.list{display:grid;gap:10px;margin-top:12px}
+.li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;background:var(--glass);border:1px solid var(--edge)}
+.li .k{color:var(--quiet);font-size:13px}.li .val{font:500 13px "Geist Mono",monospace;text-align:right}
+.count{display:flex;align-items:baseline;gap:6px;margin-top:6px}.count b{font:500 44px/1 "Geist Mono",monospace;letter-spacing:-.05em}.count span{color:var(--quiet)}
+.bar{height:6px;border-radius:99px;background:var(--glass2);overflow:hidden;margin-top:10px}.bar i{display:block;height:100%;width:var(--w,0%);border-radius:inherit;background:linear-gradient(90deg,var(--gold),#ffd89a);transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.sec{margin-top:34px}.sec>h2{margin:0 0 4px;font-size:20px;letter-spacing:-.02em;font-weight:600}.sec>p{margin:0 0 16px;color:var(--quiet)}
+.strats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.st .top2{display:flex;flex-direction:column;gap:2px}.st .nm{font-weight:600}.st .by{font:11px "Geist Mono",monospace;color:var(--faint)}
+.st p{color:var(--quiet);font-size:13px;margin:8px 0 14px;min-height:5.2em}
+.st dl{display:grid;grid-template-columns:1fr auto;gap:6px 10px;margin:0;font-size:13px}.st dt{color:var(--quiet)}.st dd{margin:0;font-family:"Geist Mono",monospace;text-align:right}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step .n{font:500 12px "Geist Mono",monospace;color:var(--gold)}.step h3{margin:6px 0 4px}.step p{margin:0;color:var(--quiet);font-size:13px}
+.fails{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.fail .r{font:500 13px "Geist Mono",monospace;color:var(--down)}.fail p{margin:6px 0 0;color:var(--quiet);font-size:13px}
+.note{color:var(--quiet);font-size:13px;margin:12px 0 0;max-width:80ch}
+.up{color:var(--up)}.dn{color:var(--down)}
+/* ---------- chart / docs / desk */
+.panel{border-radius:22px;padding:16px}
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.toolbar select,.toolbar .btn{font:inherit;font-size:13px;padding:7px 12px;border-radius:99px;border:1px solid var(--edge);background:var(--glass);color:var(--ink);cursor:pointer;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.toolbar .sum{color:var(--quiet);font:12px "Geist Mono",monospace}
+.chartbox{height:min(540px,62vh);border-radius:16px;overflow:hidden}
+table.tt{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}table.tt td,table.tt th{padding:8px;border-top:1px solid var(--edge);text-align:right;font-family:"Geist Mono",monospace;font-weight:400}
+table.tt th{color:var(--quiet);font-family:inherit}table.tt td:first-child,table.tt th:first-child{text-align:left}
+.docs{display:grid;grid-template-columns:270px minmax(0,1fr);gap:14px;align-items:start}
+.docs aside{position:sticky;top:92px;max-height:calc(100vh - 110px);overflow:auto;border-radius:20px;padding:10px}
+.docs aside a{display:block;padding:7px 10px;border-radius:10px;font-size:13px;color:var(--quiet);text-decoration:none;cursor:pointer;transition:background .2s,color .2s}
+.docs aside a:hover{color:var(--ink)}.docs aside a.on{background:var(--glass2);color:var(--ink)}
+.docs aside .fd{font:500 10px "Geist Mono",monospace;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);margin:14px 10px 4px}
+.docs input{width:100%;font:inherit;font-size:13px;padding:9px 12px;border-radius:12px;border:1px solid var(--edge);background:var(--glass);color:var(--ink);margin-bottom:6px;outline:none}
+.docs input:focus{border-color:var(--edge2)}
+.md{border-radius:22px;padding:26px clamp(18px,3vw,36px);min-width:0;animation:viewin .45s cubic-bezier(.2,.8,.2,1)}
+.md h1{font-size:26px;letter-spacing:-.025em;margin:0 0 12px}.md h2{font-size:18px;margin:26px 0 8px;letter-spacing:-.01em}.md h3{font-size:15px;margin:18px 0 6px}
+.md code{font:12.5px "Geist Mono",monospace;background:var(--glass2);padding:1px 6px;border-radius:6px}.md pre{overflow:auto;background:var(--glass);border:1px solid var(--edge);border-radius:12px;padding:12px}
+.md table{display:block;overflow-x:auto;border-collapse:collapse;font-size:12.5px;margin:12px 0}.md th,.md td{border:1px solid var(--edge);padding:6px 9px;text-align:left;vertical-align:top}.md th{color:var(--quiet);font-weight:500}
+.md a.wl{color:var(--gold);text-decoration:none;cursor:pointer;border-bottom:1px dashed currentColor}.md blockquote{margin:0;padding:2px 14px;border-left:2px solid var(--edge2);color:var(--quiet)}
+.md .src{color:var(--faint);font-size:12px;margin-top:20px}
+.deskf{width:100%;height:calc(100vh - 150px);min-height:540px;border:0;border-radius:18px;display:block;background:#000}
+footer{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,40px) 40px clamp(16px,calc(4vw + 56px),104px);color:var(--faint);font-size:12px;display:flex;flex-wrap:wrap;gap:6px 18px}
+footer a{color:var(--quiet)}
+/* ---------- responsive */
+@media (max-width:1060px){.kpis,.strats{grid-template-columns:repeat(2,1fr)}.g2{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:820px){.top{grid-template-columns:1fr auto}.pills{display:none}
+ .dock{left:50%;right:auto;top:auto;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);flex-direction:row}.dock a span{display:none}
+ main{padding:calc(76px + env(safe-area-inset-top,0px)) 16px calc(96px + env(safe-area-inset-bottom,0px))}footer{padding:0 16px calc(96px + env(safe-area-inset-bottom,0px))}
+ .docs{grid-template-columns:1fr}.docs aside{position:static;max-height:42vh}.fails,.steps{grid-template-columns:1fr}.chip.hide-s{display:none}}
+@media (max-width:520px){.kpis,.strats{grid-template-columns:1fr}.big{height:220px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-delay:0ms!important;transition-duration:.001ms!important}.rise{opacity:1;transform:none;filter:none}}
+::view-transition-old(root){animation:vtout .28s ease both}::view-transition-new(root){animation:vtin .45s cubic-bezier(.2,.8,.2,1) both}
+@keyframes vtout{to{opacity:0;filter:blur(8px)}}@keyframes vtin{from{opacity:0;filter:blur(8px)}}
+</style></head><body>
+<div class="bg" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i></div><div class="grain" aria-hidden="true"></div>
+
+<header class="top">
+ <a class="brand glass" href="#overview" aria-label="Argon home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 15a11 11 0 0 1 22 0v13l-3.7-2.6L19.6 28 16 25.4 12.4 28l-3.7-2.6L5 28z" fill="#F4F1EA"/><ellipse cx="12" cy="14" rx="2.3" ry="3.1" fill="#0b0b0b"/><ellipse cx="20" cy="14" rx="2.3" ry="3.1" fill="#0b0b0b"/></svg>Argon <small>v2</small></a>
+ <nav class="pills glass" id="pills" aria-label="Sections"><span class="ind" aria-hidden="true"></span></nav>
+ <div class="right"><span class="chip glass hide-s"><i></i><span id="status">Paper trading in <b id="cd">–</b> days</span></span>
+  <a class="ib glass" href="https://github.com/drusiyani/argon-v2" aria-label="Argon on GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></a></div>
+</header>
+<nav class="dock glass" id="dock" aria-label="Sections"></nav>
+
+<main id="main">
+ <section class="view" id="v-overview"></section>
+ <section class="view" id="v-chart" hidden>
+  <div class="head rise" style="--d:0"><div><h1>Chart</h1><p>The Nasdaq, and the book’s trades drawn on it.</p></div>
+   <div class="seg glass" id="cmode"><span class="th"></span><button data-m="daily" class="on">Daily, 2021–26</button><button data-m="day">One day</button></div></div>
+  <div class="panel glass rise" style="--d:1">
+   <div class="toolbar" id="dayrow" hidden><button class="btn" id="prev" aria-label="Previous day">←</button><select id="dsel" aria-label="Day"></select><button class="btn" id="next" aria-label="Next day">→</button><span class="sum" id="dsum"></span></div>
+   <div id="chartbox" class="chartbox"></div><div id="ctrades"></div><p class="note" id="cnote"></p></div>
+ </section>
+ <section class="view" id="v-research" hidden>
+  <div class="head rise" style="--d:0"><div><h1>Research</h1><p>Every test, the rules written before it, and what happened. Straight from the repo.</p></div></div>
+  <div class="docs rise" style="--d:1"><aside class="glass" id="rlist"></aside><article class="md glass" id="rdoc"></article></div>
+ </section>
+ <section class="view" id="v-brain" hidden>
+  <div class="head rise" style="--d:0"><div><h1>Brain</h1><p>Argon’s Obsidian vault: rulebooks, lessons, levels, markets and reviews, linked like a second brain.</p></div></div>
+  <div class="docs rise" style="--d:1"><aside class="glass"><input id="bq" placeholder="Search the brain" aria-label="Search notes"><div id="blist"></div></aside><article class="md glass" id="bdoc"></article></div>
+ </section>
+ <section class="view" id="v-desk" hidden>
+  <div class="head rise" style="--d:0"><div><h1>Desk</h1><p>The agents in their rooms, passing the desk’s real messages. Trades start in January; until then it shows the real morning forecasts, Kronos and the desk’s checks.</p></div></div>
+  <div class="panel glass rise" style="--d:1;padding:8px"><iframe class="deskf" id="deskf" data-src="desk.html" title="The Argon desk: agents in their rooms passing real messages"></iframe></div>
+ </section>
+</main>
+<footer><span>Argon v2 · built by Dru Siyani · <span id="built"></span></span><a href="https://github.com/drusiyani/argon-v2/blob/main/PREREGISTRATION.md">Pre-registration</a><a href="https://github.com/drusiyani/argon-v2/tree/main/research">Research code</a><span>Paper trading only. Not financial advice.</span></footer>
+
+<script>const DATA=/*__DATA__*/null;</script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
+<script>
+"use strict";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const ICON={
+ overview:'<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>',
+ chart:'<path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/>',
+ research:'<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/><path d="M9 8h6"/>',
+ brain:'<circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="7" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="m8 7.3 7.6.4M7.2 8.2l3.6 7.6M16.9 9.2l-3.6 6.7"/>',
+ desk:'<path d="M12 2.5 3.5 7v10l8.5 4.5 8.5-4.5V7z"/><path d="m3.5 7 8.5 4.5L20.5 7M12 11.5v10"/>',
+ wallet:'<path d="M4 7h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a1 1 0 0 1-1-1z"/><path d="M4 7l11-3v3"/><circle cx="16" cy="13.5" r="1.2" fill="currentColor"/>',
+ gauge:'<path d="M4 16a8 8 0 1 1 16 0"/><path d="m12 16 4-5"/>',
+ shield:'<path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6z"/>',
+ down:'<path d="m3 7 6 6 4-4 8 8"/><path d="M21 12v5h-5"/>'};
+const svg=(k,extra='')=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ${extra}>${ICON[k]}</svg>`;
+const TABS=[['overview','Overview'],['chart','Chart'],['research','Research'],['brain','Brain'],['desk','Desk']];
+$('#pills').insertAdjacentHTML('beforeend',TABS.map(([k,n])=>`<a href="#${k}" data-t="${k}">${svg(k)}${n}</a>`).join(''));
+$('#dock').innerHTML=TABS.map(([k,n])=>`<a href="#${k}" data-t="${k}" aria-label="${n}">${svg(k)}<span>${n}</span></a>`).join('');
+$('#built').textContent='updated '+DATA.built;
+const days=Math.max(0,Math.ceil((Date.parse(DATA.live_start+'T00:00:00Z')-Date.now())/864e5));
+$('#cd').textContent=days;if(!days)$('#status').innerHTML='<b>Paper trading is live</b>';if(DATA.killed)$('#status').innerHTML='<b>Kill switch on</b>';
+// ---------- helpers
+function countTo(el,to,fmt,dur=1000){if(reduce||to==null||isNaN(to)){el.textContent=fmt(to);return}const from=+el.dataset.v||0,t0=performance.now();el.dataset.v=to;
+ (function f(t){const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,4);el.textContent=fmt(from+(to-from)*e);if(p<1)requestAnimationFrame(f)})(t0)}
+function seg(el,on){const b=[...el.querySelectorAll('button')],a=b.find(x=>x.dataset.m===on||x.dataset.e===on)||b[0],th=el.querySelector('.th');
+ b.forEach(x=>x.classList.toggle('on',x===a));th.style.width=a.offsetWidth+'px';th.style.transform=`translateX(${a.offsetLeft-4}px)`}
+function path(pts,w,h,pad=4){const xs=pts.map((_,i)=>i/(pts.length-1)*w),lo=Math.min(...pts),hi=Math.max(...pts),r=hi-lo||1;
+ return pts.map((v,i)=>`${i?'L':'M'}${xs[i].toFixed(1)},${(h-pad-(v-lo)/r*(h-2*pad)).toFixed(1)}`).join('')}
+function spark(pts,col,d){if(!pts||pts.length<2)return'';const p=path(pts,100,34);
+ return `<svg class="spark" viewBox="0 0 100 34" preserveAspectRatio="none"><path d="${p}" fill="none" stroke="${col}" stroke-width="1.8" stroke-linecap="round" vector-effect="non-scaling-stroke" class="draw" style="--len:300;--d:${d}" pathLength="300"/></svg>`}
+function monthly(curve){const r=[];for(let i=1;i<curve.length;i++)r.push((curve[i][1]/curve[i-1][1]-1)*100/DATA.risk);return r}
+function roll(r,n,f){const o=[];for(let i=n;i<=r.length;i++)o.push(f(r.slice(i-n,i)));return o}
+const mean=a=>a.reduce((x,y)=>x+y,0)/a.length,sd=a=>{const m=mean(a);return Math.sqrt(a.reduce((x,y)=>x+(y-m)**2,0)/(a.length-1))};
+const sharpe=a=>{const s=sd(a);return s?mean(a)/s*Math.sqrt(12):0},sortino=a=>{const d=Math.sqrt(mean(a.map(x=>Math.min(0,x)**2)));return d?mean(a)/d*Math.sqrt(12):0};
+function dd(curve){let pk=0;return curve.map(([,v])=>{pk=Math.max(pk,v);return (v/pk-1)*100})}
+const money=v=>'$'+Math.round(v).toLocaleString('en-US'),f2=v=>v==null?'–':(+v).toFixed(2);
+// ---------- Overview
+const NAMES={quantlab:['QuantLab','Opening candle','If the 9:30–9:35 candle closes above its 12 EMA, buy the Nasdaq at 9:35; below, sell. Trailing exit, re-picked monthly. Skips FOMC days.'],
+ noiseband:['Noise band','Zarattini et al.','Trade when the Nasdaq breaks outside its usual move from the open for that time of day. VWAP or band stop.'],
+ atrband:['ATR band','Open ± ½ ATR','Every 15 minutes, a close above open + 0.5×ATR buys, below open − 0.5×ATR sells. Stop at the open.'],
+ expiry:['Expiry reversal','Baltussen et al.','On the third Friday (options expiry), sell Nasdaq and S&P futures at 9:31 and buy back at 12:00.']};
+let era='recent';
+function hour(){const h=+new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',hour:'numeric',hourCycle:'h23'}).format(new Date());return h<12?'Good morning':h<18?'Good afternoon':'Good evening'}
+function overview(){const v=$('#v-overview'),D=DATA.desk||{};
+ const dc=D.daytype,ai=dc&&dc.ai,kron=D.kronos||{};
+ v.innerHTML=`<div class="head"><div class="rise" style="--d:0"><h1>${hour()}.</h1><p>Here’s where Argon stands, <b>${days}</b> day${days===1?'':'s'} before paper trading starts. Every rule was written down before it was tested, and the failures are published next to the wins.</p></div>
+  <div class="seg glass rise" style="--d:1" id="era"><span class="th"></span><button data-e="recent" class="on">2021–26 backtest</button><button data-e="unseen">2011–20 never seen</button></div></div>
+ <div class="kpis">
+  <div class="card glass kpi rise" style="--d:2;--c:var(--gold)"><div class="r1"><div class="ic">${svg('wallet')}</div><span id="k-final-s"></span></div><div class="lb">$100k became</div><div class="v" id="k-final">–</div><div class="row"><span class="tag" id="k-final-t">–</span></div></div>
+  <div class="card glass kpi rise" style="--d:3;--c:var(--blue)"><div class="r1"><div class="ic">${svg('gauge')}</div><span id="k-sh-s"></span></div><div class="lb">Sharpe ratio</div><div class="v" id="k-sh">–</div><div class="row"><span class="tag">rolling 12 months</span></div></div>
+  <div class="card glass kpi rise" style="--d:4;--c:var(--violet)"><div class="r1"><div class="ic">${svg('shield')}</div><span id="k-so-s"></span></div><div class="lb">Sortino ratio</div><div class="v" id="k-so">–</div><div class="row"><span class="tag">downside only</span></div></div>
+  <div class="card glass kpi rise" style="--d:5;--c:var(--down)"><div class="r1"><div class="ic">${svg('down')}</div><span id="k-dd-s"></span></div><div class="lb">Worst drop</div><div class="v" id="k-dd">–</div><div class="row"><span class="tag" id="k-dd-t">–</span></div></div>
+ </div>
+ <div class="g2">
+  <div class="card glass rise" style="--d:6"><div class="ch-head"><div><h3>Account value</h3><p id="eq-note"></p></div><span class="tag mono" id="eq-tag"></span></div><div class="big" id="eq"></div></div>
+  <div class="card glass rise" style="--d:7"><h3>Today</h3><p class="sub">The live desk, before trading starts.</p>
+   <div class="count"><b>${days}</b><span>days to paper trading</span></div><p class="sub" style="margin-top:2px">Built since September; the bar is how far along.</p><div class="bar"><i id="pbar"></i></div>
+   <div class="list">
+    <div class="li"><span class="k">Morning call</span><span class="val">${ai?`${ai.trend_probability!=null?'trend '+Math.round(ai.trend_probability)+'%':'no forecast'} · ${dc.ai_size_used===0?'veto':dc.ai_size_used+'×'}`:'first one at 8:45 NY'}</span></div>
+    <div class="li"><span class="k">Dumb rule</span><span class="val">${dc?dc.dumb_size+'×':'–'}</span></div>
+    <div class="li"><span class="k">Kronos, next hour</span><span class="val">${Object.entries(kron).map(([m,k])=>`<span class="${k.direction==='up'?'up':'dn'}">${m} ${k.direction==='up'?'↑':'↓'}</span>`).join(' ')||'–'}</span></div>
+    <div class="li"><span class="k">Desk last checked</span><span class="val">${D.checked?D.checked.slice(11,16)+' UTC':'–'}</span></div>
+    <div class="li"><span class="k">Rules freeze</span><span class="val">31 Dec, 23:59 UTC</span></div>
+   </div></div>
+ </div>
+ <p class="note rise" style="--d:8" id="era-note"></p>
+ <div class="sec"><h2 class="rise" style="--d:8">The four strategies</h2><p class="rise" style="--d:8">${DATA.risk}% risk per trade. Any trade whose costs eat more than ${Math.round(DATA.cost_cap*100)}% of the risk is skipped. Numbers follow the era toggle above.</p>
+  <div class="strats" id="strats">${Object.entries(NAMES).map(([k,[n,b,p]],i)=>`<div class="card glass st rise" style="--d:${9+i}"><div class="top2"><span class="nm">${n}</span><span class="by">${b}</span></div><p>${p}</p>
+   <dl><dt>Sharpe</dt><dd data-s="${k}" data-f="sharpe">–</dd><dt>Result</dt><dd data-s="${k}" data-f="R">–</dd><dt>Before costs</dt><dd data-s="${k}" data-f="R_before_costs">–</dd><dt>Trades</dt><dd data-s="${k}" data-f="trades">–</dd><dt>Win rate</dt><dd data-s="${k}" data-f="win_rate">–</dd></dl></div>`).join('')}</div></div>
+ <div class="sec"><h2 class="rise" style="--d:13">How each claim was earned</h2><p class="rise" style="--d:13">The method, in six steps.</p><div class="steps">
+  ${[['01','Pre-registered','Pass marks, test windows and every adjustment were committed before any test ran. The commit timestamps are the proof.'],
+     ['02','Real costs','Costs on every trade, extra stop slippage at the open, limit orders that fill only if price trades through, then everything again at double costs.'],
+     ['03','Walk-forward','Strategies that re-pick their settings only ever use months that have already happened.'],
+     ['04',`Round 1 · ${DATA.rounds.r1} ideas`,`${DATA.rounds.r1s} survived and passed its lockbox: QuantLab skipping FOMC days.`],
+     ['05',`Round 2 · ${DATA.rounds.r2} ideas`,`${DATA.rounds.r2s} survived (risk parity). Then the whole book met ten never-seen years, and failed.`],
+     ['06','Freeze','From 31 Dec nothing changes except an emergency kill switch. Every change before that is logged in public.']]
+    .map(([n,h,p],i)=>`<div class="card glass step rise" style="--d:${14+i}"><span class="n">${n}</span><h3>${h}</h3><p>${p}</p></div>`).join('')}</div></div>
+ <div class="sec"><h2 class="rise" style="--d:20">What failed</h2><p class="rise" style="--d:20">Most ideas didn’t survive. These are the big ones.</p><div class="fails">
+  ${[['The original “liquidity sweep” strategy','+40.8R → −16.3R','Sweep of a level, structure shift, fair value gap. Profitable until realistic costs and slippage were added.'],
+     ['15+ influencer strategies','all lost','CRT, inverse FVGs, a “$328k” ICT model, dip-buying RSI. Following the push works on the Nasdaq; fading it loses after costs.'],
+     ['A daily loss limit','lookahead bug','Looked like +0.09 Sharpe. With exact trade times it made results worse.'],
+     ['The book on 2011–2020','Sharpe −1.03','Ten never-seen years, opened once. The cost rule added afterwards lifts it to '+f2(DATA.eras.unseen.book.sharpe)+', still a loss, and that fix was chosen after seeing the result.']]
+    .map(([h,r,p],i)=>`<div class="card glass fail rise" style="--d:${21+i}"><div class="ch-head"><h3>${h}</h3><span class="r">${r}</span></div><p>${p}</p></div>`).join('')}</div></div>`;
+ $$('#era button').forEach(b=>b.onclick=()=>setEra(b.dataset.e));
+ requestAnimationFrame(()=>{seg($('#era'),era);setEra(era,true);setTimeout(()=>{const s0=Date.parse('2026-09-01T00:00:00Z'),s1=Date.parse(DATA.live_start+'T00:00:00Z');$('#pbar').style.setProperty('--w',Math.max(2,Math.min(100,(Date.now()-s0)/(s1-s0)*100))+'%')},300)})}
+function setEra(e,first){era=e;seg($('#era'),e);const E=DATA.eras[e],b=E.book||{},c=b.curve||[],r=monthly(c);
+ countTo($('#k-final'),b.final,money);const yrs=c.length/12,cagr=b.final?(Math.pow(b.final/1e5,1/yrs)-1)*100:0;
+ const t=$('#k-final-t');t.textContent=(cagr>=0?'+':'')+cagr.toFixed(1)+'% a year';t.className='tag '+(cagr>=0?'up':'dn');
+ countTo($('#k-sh'),b.sharpe,f2);countTo($('#k-so'),b.sortino,f2);countTo($('#k-dd'),b.worst_drop,v=>(+v).toFixed(1)+'%');
+ $('#k-dd-t').textContent=b.losing_months!=null?b.losing_months+' of '+b.months+' months lost':'';
+ const d0=first?0:-1;
+ $('#k-final-s').innerHTML=spark(c.map(x=>x[1]),'var(--gold)',d0<0?0:2);$('#k-sh-s').innerHTML=spark(roll(r,12,sharpe),'var(--blue)',d0<0?0:3);
+ $('#k-so-s').innerHTML=spark(roll(r,12,sortino),'var(--violet)',d0<0?0:4);$('#k-dd-s').innerHTML=spark(dd(c),'var(--down)',d0<0?0:5);
+ $('#eq-note').textContent=E.note;$('#eq-tag').textContent=E.label+' · '+(b.trades||0).toLocaleString('en-US')+' trades';
+ $('#era-note').textContent=e==='recent'?'The honest reading: these edges only show up in the more volatile markets since 2018. Toggle to 2011–20 to see what happened in the calm years.':'In 2011–2017 the book lost money: intraday momentum fades when markets are calm and options dealers dampen moves. It only works since 2018, so Argon v2 is a bet that today’s market regime continues.';
+ equity(c,e==='recent'?'var(--gold)':'var(--down)');
+ $$('#strats dd').forEach(dd=>{const s=(E.strategies||{})[dd.dataset.s]||{},f=dd.dataset.f,v=s[f];
+  dd.className=(f==='R'||f==='R_before_costs')?(v>=0?'up':'dn'):'';
+  countTo(dd,v,f==='trades'?x=>Math.round(x).toLocaleString('en-US'):f==='win_rate'?x=>(+x).toFixed(1)+'%':f==='sharpe'?f2:x=>(x>=0?'+':'')+(+x).toFixed(1)+'R',800)})}
+function equity(c,col){const box=$('#eq');if(!c.length){box.innerHTML='';return}const W=box.clientWidth||600,H=box.clientHeight||270,P=8;
+ const ys=c.map(x=>x[1]),lo=Math.min(...ys,1e5),hi=Math.max(...ys,1e5),X=i=>i/(c.length-1)*W,Y=v=>H-P-(v-lo)/(hi-lo||1)*(H-2*P);
+ const line=c.map((p,i)=>`${i?'L':'M'}${X(i).toFixed(1)},${Y(p[1]).toFixed(1)}`).join(''),area=line+`L${W},${H}L0,${H}Z`,id='g'+Math.random().toString(36).slice(2,7);
+ const grid=[.25,.5,.75].map(f=>`<line x1="0" x2="${W}" y1="${(H*f).toFixed(1)}" y2="${(H*f).toFixed(1)}" stroke="var(--edge)" stroke-dasharray="2 5"/>`).join('');
+ const yr=[...new Set(c.map(p=>p[0].slice(0,4)))].map(y=>{const i=c.findIndex(p=>p[0].startsWith(y));return `<text x="${X(i)+4}" y="${H-6}" fill="var(--faint)" font-size="10" font-family="Geist Mono">${y}</text>`}).join('');
+ box.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity=".32"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></linearGradient></defs>
+  ${grid}<line x1="0" x2="${W}" y1="${Y(1e5).toFixed(1)}" y2="${Y(1e5).toFixed(1)}" stroke="var(--edge2)" stroke-dasharray="4 4"/>${yr}
+  <path d="${area}" fill="url(#${id})" class="fadein"/><path d="${line}" fill="none" stroke="${col}" stroke-width="2.2" stroke-linejoin="round" pathLength="1000" class="draw" style="--len:1000"/>
+  <line id="cx" x1="0" x2="0" y1="0" y2="${H}" stroke="var(--edge2)" opacity="0"/><circle id="cdot" r="4.5" fill="${col}" stroke="var(--bg)" stroke-width="2" opacity="0"/></svg><div class="tip glass" id="tip"></div>`;
+ const s=box.querySelector('svg'),tip=$('#tip'),cx=$('#cx'),dot=$('#cdot');
+ s.onpointermove=ev=>{const r=s.getBoundingClientRect(),i=Math.max(0,Math.min(c.length-1,Math.round((ev.clientX-r.left)/r.width*(c.length-1)))),x=X(i),y=Y(c[i][1]);
+  cx.setAttribute('x1',x);cx.setAttribute('x2',x);cx.setAttribute('opacity',1);dot.setAttribute('cx',x);dot.setAttribute('cy',y);dot.setAttribute('opacity',1);
+  tip.style.left=(x/W*r.width)+'px';tip.style.top=(y/H*r.height)+'px';tip.style.opacity=1;tip.textContent=c[i][0]+' · '+money(c[i][1])};
+ s.onpointerleave=()=>{tip.style.opacity=0;cx.setAttribute('opacity',0);dot.setAttribute('opacity',0)}}
+addEventListener('resize',()=>{if(!$('#v-overview').hidden&&DATA.eras[era])equity(DATA.eras[era].book.curve||[],era==='recent'?'var(--gold)':'var(--down)')});
+// spotlight on cards
+document.addEventListener('pointermove',e=>{const c=e.target.closest&&e.target.closest('.card');if(!c)return;const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')});
+// ---------- tabs with transitions
+const init={},cache={};let cur=null;
+async function data(n){if(!cache[n])cache[n]=fetch('data/'+n+'.json',{cache:'no-store'}).then(r=>r.json());return cache[n]}
+function mark(t){$$('[data-t]').forEach(a=>a.classList.toggle('on',a.dataset.t===t));const a=$(`#pills a[data-t="${t}"]`),ind=$('#pills .ind');
+ if(a&&a.offsetWidth){ind.style.width=a.offsetWidth+'px';ind.style.transform=`translateX(${a.offsetLeft}px)`}}
+function swap(t){for(const [k] of TABS){const v=$('#v-'+k);v.hidden=k!==t;v.classList.remove('in')}const v=$('#v-'+t);
+ if(!init[t]){init[t]=1;({overview,chart:chartTab,research:researchTab,brain:brainTab,desk:()=>{const f=$('#deskf');f.src=f.dataset.src}}[t])()}
+ void v.offsetWidth;v.classList.add('in');mark(t);cur=t;scrollTo({top:0,behavior:'instant'})}
+function route(){const t=TABS.some(([k])=>k===location.hash.slice(1))?location.hash.slice(1):'overview';if(t===cur)return;
+ if(document.startViewTransition&&!reduce&&cur)document.startViewTransition(()=>swap(t));else swap(t)}
+addEventListener('hashchange',route);route();addEventListener('resize',()=>mark(cur));document.fonts&&document.fonts.ready.then(()=>{mark(cur);if($('#era'))seg($('#era'),era);if($('#cmode'))seg($('#cmode'),mode)});
+// ---------- markdown
+function md(text){return marked.parse(text.replace(/\[\[([^\]|#]+)(?:#[^\]|]*)?(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="wl" data-n="${esc(a.trim())}">${esc(b||a)}</a>`))}
+async function researchTab(){const D=await data('research'),L=$('#rlist');L.innerHTML=D.map((d,i)=>`<a data-i="${i}">${esc(d.title)}</a>`).join('');
+ const open=i=>{L.querySelectorAll('a').forEach(a=>a.classList.toggle('on',+a.dataset.i===i));const art=$('#rdoc');art.style.animation='none';void art.offsetWidth;art.style.animation='';
+  art.innerHTML=md(D[i].text)+`<p class="src">Source: <a href="https://github.com/drusiyani/argon-v2/blob/main/${esc(D[i].path)}">${esc(D[i].path)}</a></p>`};
+ L.onclick=e=>{const a=e.target.closest('a');if(a){open(+a.dataset.i);if(innerWidth<820)$('#rdoc').scrollIntoView({behavior:'smooth'})}};open(0)}
+async function brainTab(){const N=await data('brain'),L=$('#blist'),byT={};N.forEach((n,i)=>byT[n.title.toLowerCase()]=i);
+ const list=q=>{const g={};N.forEach((n,i)=>{if(!q||n.title.toLowerCase().includes(q)||n.text.toLowerCase().includes(q))(g[n.folder]=g[n.folder]||[]).push([n,i])});
+  L.innerHTML=Object.keys(g).sort().map(k=>`<div class="fd">${esc(k)}</div>`+g[k].map(([n,i])=>`<a data-i="${i}">${esc(n.title)}</a>`).join('')).join('')||'<p class="note" style="margin:10px">No notes match.</p>'};
+ const open=i=>{const n=N[i];L.querySelectorAll('a').forEach(a=>a.classList.toggle('on',+a.dataset.i===i));const art=$('#bdoc');art.style.animation='none';void art.offsetWidth;art.style.animation='';
+  const back=N.filter(m=>m!==n&&m.text.includes('[['+n.title)).map(m=>`<a class="wl" data-n="${esc(m.title)}">${esc(m.title)}</a>`);
+  art.innerHTML=`<p class="src" style="margin:0 0 8px">${esc(n.folder)}</p>`+md(n.text.replace(/^---[\s\S]*?---\n/,''))+(back.length?`<h3>Linked from</h3><p>${back.join(' · ')}</p>`:'')};
+ L.onclick=e=>{const a=e.target.closest('a');if(a)open(+a.dataset.i)};
+ $('#bdoc').onclick=e=>{const a=e.target.closest('a.wl');if(!a)return;const i=byT[a.dataset.n.toLowerCase()];if(i!=null){open(i);$('#bdoc').scrollIntoView({behavior:'smooth',block:'start'})}};
+ $('#bq').oninput=e=>list(e.target.value.trim().toLowerCase());list('');open(byT['argon']??byT['home']??0)}
+// ---------- chart
+let CH=null,mode='daily',C;const UP='#4ADE9B',DN='#FF6B6B',SN={quantlab:'QuantLab',noiseband:'Noise band',atrband:'ATR band',expiry:'Expiry'};
+async function chartTab(){C=await data('chart');const ds=Object.keys(C.sessions),sel=$('#dsel');
+ sel.innerHTML=ds.slice().reverse().map(d=>{const n=C.sessions[d].trades.length;return`<option value="${d}">${d}${n?' · '+n+' trade'+(n>1?'s':''):''}</option>`}).join('');
+ const w=ds.slice().reverse().find(d=>C.sessions[d].trades.length);if(w)sel.value=w;
+ sel.onchange=draw;$('#prev').onclick=()=>{sel.selectedIndex=Math.min(sel.options.length-1,sel.selectedIndex+1);draw()};$('#next').onclick=()=>{sel.selectedIndex=Math.max(0,sel.selectedIndex-1);draw()};
+ $$('#cmode button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;seg($('#cmode'),mode);draw()});seg($('#cmode'),mode);
+ draw();new ResizeObserver(()=>CH&&CH.applyOptions({width:$('#chartbox').clientWidth,height:$('#chartbox').clientHeight})).observe($('#chartbox'))}
+function mk(){if(CH)CH.remove();const b=$('#chartbox');CH=LightweightCharts.createChart(b,{width:b.clientWidth,height:b.clientHeight,localization:{locale:'en-GB'},
+ layout:{background:{type:'solid',color:'transparent'},textColor:css('--quiet'),fontFamily:'Geist Mono, monospace',fontSize:11},
+ grid:{vertLines:{color:'rgba(128,128,128,.08)'},horzLines:{color:'rgba(128,128,128,.08)'}},rightPriceScale:{borderVisible:false},timeScale:{borderVisible:false,timeVisible:mode==='day'},crosshair:{mode:0}});return CH}
+function draw(){const ch=mk();$('#dayrow').hidden=mode!=='day';const cs=ch.addCandlestickSeries({upColor:UP,downColor:DN,borderVisible:false,wickUpColor:UP,wickDownColor:DN});
+ if(mode==='daily'){cs.setData(C.daily.map(([d,o,h,l,c])=>({time:d,open:o,high:h,low:l,close:c})));cs.priceScale().applyOptions({scaleMargins:{top:.05,bottom:.28}});
+  const hs=ch.addHistogramSeries({priceScaleId:'r',priceFormat:{type:'custom',formatter:v=>v.toFixed(1)+'R'}});ch.priceScale('r').applyOptions({scaleMargins:{top:.78,bottom:0}});
+  hs.setData(Object.entries(C.daily_R).filter(([d])=>d>=C.daily[0][0]).map(([d,v])=>({time:d,value:v,color:v>=0?UP+'99':DN+'99'})));
+  ch.timeScale().fitContent();$('#ctrades').innerHTML='';$('#cnote').textContent='Daily candles are the regular session (9:30–16:00 New York). Bars underneath are the book’s result each day, in R. Backtest data, mostly in-sample.';return}
+ const d=$('#dsel').value,S=C.sessions[d],t0=Date.parse(d+'T00:00:00Z')/1000,T=m=>t0+m*60;
+ cs.setData(S.bars.map(([m,o,h,l,c])=>({time:T(m),open:o,high:h,low:l,close:c})));const mm=[];
+ S.trades.forEach(x=>{mm.push({time:T(Math.floor(x.entry_min/5)*5),position:x.side>0?'belowBar':'aboveBar',color:x.side>0?UP:DN,shape:x.side>0?'arrowUp':'arrowDown',text:SN[x.strategy]||x.strategy});
+  mm.push({time:T(Math.floor(x.exit_min/5)*5),position:x.side>0?'aboveBar':'belowBar',color:'#9aa0aa',shape:'circle',text:(x.R>=0?'+':'')+x.R.toFixed(2)+'R'})});
+ mm.sort((a,b)=>a.time-b.time);cs.setMarkers(mm);ch.timeScale().fitContent();
+ const tot=S.trades.reduce((a,x)=>a+x.R,0),hm=m=>String(m/60|0).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
+ $('#dsum').textContent=S.trades.length?`${S.trades.length} NQ trade${S.trades.length>1?'s':''} · ${tot>=0?'+':''}${tot.toFixed(2)}R`:'no NQ trades this day';
+ $('#ctrades').innerHTML=S.trades.length?`<table class="tt"><tr><th>Strategy</th><th>Side</th><th>In</th><th>Out</th><th>Entry</th><th>Exit</th><th>Result</th></tr>${S.trades.map(x=>`<tr><td>${SN[x.strategy]||x.strategy}</td><td>${x.side>0?'long':'short'}</td><td>${hm(x.entry_min)}</td><td>${hm(x.exit_min)}</td><td>${x.entry}</td><td>${x.exit}</td><td class="${x.R>=0?'up':'dn'}">${x.R>=0?'+':''}${x.R.toFixed(2)}R</td></tr>`).join('')}</table>`:'';
+ $('#cnote').textContent='5-minute candles, New York time. Arrows are entries, dots are exits with the result. ES expiry trades are not drawn. Backtest data, mostly in-sample.'}
+</script></body></html>
