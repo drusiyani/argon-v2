@@ -58,6 +58,8 @@ jobs:
         run: python engine/farm.py
       - name: Portfolio v2 (4 strategies + risk-parity shadow)
         run: python engine/portfolio.py || echo "portfolio skipped"
+      - name: Score the day-type arms (shadow test, Amendment 4)
+        run: python engine/daytype_score.py || echo "day-type score skipped"
       - name: Build the site
         run: python engine/build_site.py
       - name: Grow the brain (Obsidian vault)

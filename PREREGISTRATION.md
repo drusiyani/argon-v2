@@ -122,3 +122,22 @@ treated as ideas to test, not as evidence.
   $1.19M vs $282k at 1%) but with bigger drops (−70%/−32% vs −65%/−24%). QuantLab's gains are concentrated in a few big-news
   months (2024: +61R of its +77R came in July and November).
 - The desk page (docs/desk.html) is embedded in the site as a preview with sample data.
+
+## Amendment 4 (28 October 2026): the desk becomes a morning day-type forecaster (shadow test)
+Designed after a 6-member council review (statistician, risk manager, trader, AI engineer, sceptic, methodologist).
+- **Job:** every weekday 8:45-9:25am New York, before the open, forecast whether today is a TREND day or a CHOP day and pick a
+  size for the whole v2 book: 0.5x / 1x / 1.5x. It never picks direction. Inputs are only things known before 9:30: overnight
+  move and range, yesterday's range vs its 20-day average, 5-day RSI (dealer-gamma clue), VIX and its 1-year percentile,
+  calendar (FOMC, options expiry, jobs Friday) and market headlines. Code: `engine/daytype.py`.
+- **Three arms, all on paper from 1 Jan 2027, none changes the real book:** (1) 1x, (2) dumb rule: yesterday's range / 20-day
+  average > 1.2 -> 1.5x, < 0.8 -> 0.5x, else 1x, (3) AI forecast. A day never risks more than 4R in total (size x trades <= 4).
+- **AI rules:** model pinned to `claude-sonnet-5-5`, temperature 0, asked 3 times, MEDIAN size used; prompt frozen, fingerprint
+  `8b27b11cc4cadeba`; it reads no self-written lessons. Veto only for: breaking_unscheduled_event, market_halt, data_feed_broken, and only if
+  2 of 3 runs agree. Not finished by 9:25 -> counts as 1x (logged as late).
+- **Scoring:** `engine/daytype_score.py`: Sharpe of each arm (monthly R), plus the Brier score of the AI's trend probability
+  against whether the book made money before costs that day.
+- **Promotion rule:** after **at least 120 scored trading days**, the AI arm takes real control only if its Sharpe beats
+  **both** other arms by **at least +0.15**. Otherwise it stays shadow and the result is published either way.
+- **Any change to the model, prompt, inputs or rules restarts the 120-day clock.**
+- The separate per-setup desk (Scout / Sceptic / Risk / Chief judging the original strategy's setups) continues as its own
+  experiment, scored against "take every setup". It does not touch the v2 book.

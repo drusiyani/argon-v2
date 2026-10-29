@@ -285,15 +285,20 @@ function playCall(c){const tm=c.when.slice(11,16),v=c.views||{},ch=c.chief||{},u
 function liveLoop(){const next=queue.shift();if(next){played.add(next.key);setTimeout(liveLoop,playCall(next)+2500)}
  else{const recent=(LIVE.calls||[]).slice(0,5).reverse();if(recent.length)queue=recent.slice();setTimeout(liveLoop,30000)}}
 async function loadFeed(){try{const r=await fetch('desk_feed.json?'+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json()}catch(e){return null}}
-async function poll(){const f=await loadFeed();if(!f)return;LIVE=f;const s=f.score||{};
+let dayShown='';
+function showDay(f){const c=f&&f.daytype;if(!c||dayShown===c.date)return;dayShown=c.date;const a=c.ai||{},sz=x=>x===0?'veto':x+'x';
+ const msg=`Day call ${c.date}: ${a.trend_probability!=null?'trend '+a.trend_probability+'%':'no forecast'} · AI ${sz(c.ai_size_used)} · dumb rule ${sz(c.dumb_size)} · shadow only (book trades 1x). ${a.reason||''}`;
+ send('KRONOS','CHIEF',`Morning inputs: VIX ${c.inputs.vix} (${c.inputs.vix_1y_percentile}th pct), range ratio ${c.inputs.range_ratio}, RSI5 ${c.inputs.rsi5}. ${(c.inputs.calendar||[]).join('; ')}`,c.made_at);
+ setTimeout(()=>send('CHIEF','SIZE',msg,c.made_at),1900);A.CHIEF.st=`Day call: ${sz(c.ai_size_used)} (shadow)`;A.SIZE.st=`AI ${sz(c.ai_size_used)} · rule ${sz(c.dumb_size)}`}
+async function poll(){const f=await loadFeed();if(!f)return;LIVE=f;const s=f.score||{};showDay(f);
  document.getElementById('val').textContent=`Chief ${s.taken_R>=0?'+':''}${(s.taken_R||0).toFixed(1)}R`;
  const d=document.getElementById('dv');d.textContent=`take-all ${s.all_R>=0?'+':''}${(s.all_R||0).toFixed(1)}R`;d.classList.toggle('neg',(s.taken_R||0)<(s.all_R||0));
  document.getElementById('pillnote').textContent=`${s.calls||0} real calls · ${s.resolved||0} scored`;
  for(const c of (f.calls||[]).slice().reverse())if(!played.has(c.key)&&!queue.find(x=>x.key===c.key)&&Date.now()-Date.parse(c.when.replace(' ','T')+'-05:00')<36e5*3)queue.push(c)}
 (async()=>{const f=await loadFeed();
- if(f&&(f.calls||[]).length){LIVE=f;document.getElementById('badge').innerHTML='<i></i>Live · real desk calls';
-   for(const c of f.calls.slice(0,12).reverse()){const tm=c.when.slice(11,16),ch=c.chief||{};logLine('SCOUT','CHIEF',`${c.inst}: ${c.setup}`,tm);logLine('CHIEF',ch.view==='take'?'FILLS':'LEDGER',`${(ch.view||'?').toUpperCase()}${pct(ch)}. ${ch.reason||''}`,tm)}
-   await poll();queue=f.calls.slice(0,3).reverse();setTimeout(liveLoop,800);setInterval(poll,60000)}
+ if(f&&((f.calls||[]).length||f.daytype)){LIVE=f;showDay(f);document.getElementById('badge').innerHTML='<i></i>Live · real desk calls';
+   for(const c of (f.calls||[]).slice(0,12).reverse()){const tm=c.when.slice(11,16),ch=c.chief||{};logLine('SCOUT','CHIEF',`${c.inst}: ${c.setup}`,tm);logLine('CHIEF',ch.view==='take'?'FILLS':'LEDGER',`${(ch.view||'?').toUpperCase()}${pct(ch)}. ${ch.reason||''}`,tm)}
+   await poll();queue=(f.calls||[]).slice(0,3).reverse();setTimeout(liveLoop,800);setInterval(poll,60000)}
  else{document.getElementById('badge').innerHTML='<i></i>Waiting for the first live call · sample until then';setTimeout(script,800);
    setInterval(async()=>{const g=await loadFeed();if(g&&(g.calls||[]).length)location.reload()},120000)}})();
 </script></body></html>

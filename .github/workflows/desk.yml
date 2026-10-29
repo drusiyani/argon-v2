@@ -41,9 +41,11 @@ jobs:
             if [ "$H" -ge 21 ]; then echo "session over"; break; fi
             python engine/fetch_data.py || echo "prices skipped"
             if [ $((i % 3)) -eq 0 ]; then python engine/kronos.py || echo "Kronos skipped"; fi
+            python engine/daytype.py || echo "day-type forecast failed"      # only acts 8:45-9:25 New York, once a day
             python engine/agents.py || echo "desk run failed this round"
+            python engine/daytype_score.py || echo "day-type score skipped"
             python engine/desk_feed.py || echo "feed skipped"
-            for p in data/desk_calls.jsonl data/agent_memory data/kronos.json docs/desk_feed.json; do [ -e "$p" ] && git add -A "$p"; done
+            for p in data/desk_calls.jsonl data/agent_memory data/kronos.json data/daytype.jsonl data/daytype_score.json docs/desk_feed.json; do [ -e "$p" ] && git add -A "$p"; done
             if ! git diff --cached --quiet; then
               git commit -m "desk: $(date -u +%H:%M)" -q
               git stash --include-untracked -q 2>/dev/null || true

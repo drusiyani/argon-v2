@@ -67,10 +67,13 @@ if __name__ == '__main__':
     hm = lambda m: f'{m // 60:02d}:{m % 60:02d}'
     recent = [dict(date=t['date'], strategy=t['strat'], symbol=t['sym'], side='long' if t['side'] == 1 else 'short', entry=hm(t['entry_min']), exit=hm(t['exit_min']),
                    R=round(t['gross'] - t['cost'], 2)) for t in trades[-40:]][::-1]
+    daily = collections.defaultdict(lambda: [0.0, 0.0, 0])      # date -> [net R, gross R, trades] at 1x, for the day-type arms
+    for t in trades: x = daily[t['date']]; x[0] += t['w'] * (t['gross'] - t['cost']); x[1] += t['w'] * t['gross']; x[2] += 1
+    daily = {d: [round(v[0], 4), round(v[1], 4), v[2]] for d, v in sorted(daily.items()) if d >= '2021-07'}
     out = dict(generated=dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%d %H:%M UTC'), config=CONFIG, status='stopped by kill switch' if killed else 'ready for paper trading from 1 Jan 2027',
                killed=killed, window=[months[0], months[-1]], main=main, double_costs={k: dbl[k] for k in ('sharpe', 'R', 'final', 'a_year', 'worst_drop')},
                shadow={k: shadow[k] for k in ('sharpe', 'R', 'final', 'a_year', 'worst_drop', 'equity', 'years')}, shadow_weights_latest=W.get(months[-1]),
-               trades_by_strategy=dict(by), recent_trades=recent,
+               trades_by_strategy=dict(by), recent_trades=recent, daily_R=daily,
                honesty=["Most of this history is in-sample: the strategies and their settings were picked by looking at it.", "On 2011-2020, ten years never used to build it, this book lost money: about -7% over the decade at 1% risk, with a -70% drop during 2011-2017. It only works in the more volatile markets since 2018.", "So it is a bet that today's market regime continues. Expect live results well below the backtest."])
     json.dump(out, open(os.path.join(ROOT, 'data', 'portfolio.json'), 'w'), indent=1)
     print('portfolio', main['sharpe'], main['final'], 'shadow', shadow['sharpe'], shadow['final'], 'killed' if killed else '')
