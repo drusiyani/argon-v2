@@ -1,0 +1,23 @@
+{
+ "eras": {
+  "2011-17": {
+   "chop_R": -49.8,
+   "book_sharpe": -0.578,
+   "with_chop": -0.899,
+   "corr": -0.12
+  },
+  "2018-26": {
+   "chop_R": -63.2,
+   "book_sharpe": 1.096,
+   "with_chop": 0.965,
+   "corr": -0.26
+  }
+ },
+ "checks": {
+  "1 positive in both eras": false,
+  "2 lifts the book by +0.05 in both eras, correlation < 0.3": false,
+  "3 positive at double costs": false,
+  "4 every nearby setting positive": false
+ },
+ "verdict": "FAIL"
+}
