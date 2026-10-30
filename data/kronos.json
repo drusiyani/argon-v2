@@ -3,32 +3,32 @@
   "direction": "up",
   "confidence": 1.0,
   "horizon": "1h",
-  "expected_move": 147.95,
-  "updated": "2026-10-30T16:00Z",
+  "expected_move": 185.14,
+  "updated": "2026-10-30T16:17Z",
   "model": "Kronos-small"
  },
  "ES": {
   "direction": "up",
   "confidence": 1.0,
   "horizon": "1h",
-  "expected_move": 21.36,
-  "updated": "2026-10-30T16:00Z",
+  "expected_move": 15.94,
+  "updated": "2026-10-30T16:17Z",
   "model": "Kronos-small"
  },
  "YM": {
   "direction": "up",
   "confidence": 1.0,
   "horizon": "1h",
-  "expected_move": 147.04,
-  "updated": "2026-10-30T16:00Z",
+  "expected_move": 145.51,
+  "updated": "2026-10-30T16:17Z",
   "model": "Kronos-small"
  },
  "RTY": {
   "direction": "up",
   "confidence": 1.0,
   "horizon": "1h",
-  "expected_move": 21.34,
-  "updated": "2026-10-30T16:00Z",
+  "expected_move": 19.75,
+  "updated": "2026-10-30T16:18Z",
   "model": "Kronos-small"
  }
 }
