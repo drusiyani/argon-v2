@@ -28,7 +28,7 @@ written_by: the site, automatically
 | looking at | group | trades | won | per trade | total |
 |---|---|---|---|---|---|
 | time | 08:00 | 9 | 0% | -1.00R | -9.00R |
-| level | 15m high or low | 19 | 11% | -0.61R | -11.64R |
+| level | 15m high or low | 18 | 11% | -0.59R | -10.64R |
 | session | NY | 96 | 17% | -0.48R | -45.87R |
 | day | Thu | 63 | 14% | -0.47R | -29.34R |
 | time | 09:00 | 83 | 17% | -0.46R | -38.39R |
@@ -36,7 +36,7 @@ written_by: the site, automatically
 
 ## Is each check helping?
 
-- An important level to target: skipped 48 trades that would have made +3.00R. So this check cost money.
+- An important level to target: skipped 45 trades that would have made +6.00R. So this check cost money.
 - Price swept it and came back: skipped 9 trades that would have made +9.00R. So this check cost money.
 - Matches the day's direction: skipped 23 trades that would have made +7.00R. So this check cost money.
 - The other market disagreed (SMT): skipped 0 trades that would have made 0.00R. Too few to tell.
@@ -45,8 +45,8 @@ written_by: the site, automatically
 
 ## Things that don't add up
 
-- The [[SMT]] check is earning its place: +0.09R a trade with it (65 trades) vs -0.34R without (69).
-- The "important level" check holds up: important levels -0.04R a trade (149) vs minor ones -0.16R (54).
+- The [[SMT]] check is earning its place: +0.09R a trade with it (65 trades) vs -0.36R without (71).
+- The "important level" check holds up: important levels -0.05R a trade (151) vs minor ones -0.13R (52).
 - The [[Grades]] work: A+ and A++ -0.12R a trade (30) vs B and C -0.14R (113).
 
 ## What's missing

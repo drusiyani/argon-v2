@@ -1,6 +1,6 @@
 ---
 type: level
-updated: 2026-10-29
+updated: 2026-10-31
 built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
 ---
 # Asia high

@@ -1,6 +1,6 @@
 ---
 type: setup
-examples: 59
+examples: 62
 taken: 23
 ---
 # Setup — London · equal highs and lows
@@ -10,10 +10,10 @@ taken: 23
 
 | | how many | won | total | per trade |
 |---|---|---|---|---|
-| all examples | 59 | 49% | +28.00R | +0.47R |
+| all examples | 62 | 47% | +25.00R | +0.40R |
 | actually taken | 23 | 43% | +7.00R | +0.30R |
 
-By market: Nasdaq 12 (+12.00R), S&P 500 16 (-1.00R), the Dow 14 (+10.00R), the Russell 2000 17 (+7.00R).
+By market: Nasdaq 12 (+12.00R), S&P 500 16 (-1.00R), the Dow 14 (+10.00R), the Russell 2000 20 (+4.00R).
 
 ## Trades taken
 
