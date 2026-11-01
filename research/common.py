@@ -17,7 +17,7 @@ def fexit(d): return _CH.exit_min(d) if d in _CH.FOMC_HIST else FOMC_EXIT_MIN
 DATA = os.environ.get('ARGON_DATA', 'databento')       # 'lockbox2010' only inside the one-time lockbox run
 from zoneinfo import ZoneInfo
 NY = ZoneInfo('America/New_York')
-COST = {'NQ': 0.75, 'ES': 0.5}; SL = {'NQ': 0.25, 'ES': 0.25}
+COST = {'NQ': 0.75, 'ES': 0.5, 'GC': 0.3}; SL = {'NQ': 0.25, 'ES': 0.25, 'GC': 0.1}   # GC: 3 ticks a round trip, like NQ
 FIRST_MONTH = '2021-07'; TEST_END = '2024-12'; LOCK_START = '2025-01'; FULL_END = '2026-09'
 OPEN = os.environ.get('ARGON_LOCKBOX') == 'open' or os.environ.get('ARGON_FULL') == '1'
 LAST_DAY = '9999-12-31' if OPEN else '2024-12-31'
@@ -34,7 +34,9 @@ def m1():
             g = {'__file__': ROOT + '/engine/x.py'}; exec(src, g)
         else:   # the engine's own load_db, reading the lockbox folder instead (NQ + ES only)
             src = full.split('# Databento futures if we have them')[0].replace("'data','databento'", "'data','" + DATA + "'")
-            g = {'__file__': ROOT + '/engine/x.py'}; exec(src, g); g['B5'] = {x: g['load_db'](x) for x in ('NQ', 'ES')}
+            g = {'__file__': ROOT + '/engine/x.py'}; exec(src, g)
+            syms = sorted({os.path.basename(f).split('_')[0] for f in glob.glob(f'{ROOT}/data/{DATA}/*_*.csv.gz')})
+            g['B5'] = {x: g['load_db'](x) for x in syms}
         _G = g
     return _G['M1'], _G['ROLL_DAYS']
 _P = {}
