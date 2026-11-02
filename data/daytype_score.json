@@ -22,6 +22,15 @@
  "verdict": "collecting data",
  "vetos": 0,
  "late_days": 0,
+ "council": {
+  "counted_sessions": 0,
+  "min_sessions": 250,
+  "members": {},
+  "error_overlap": {},
+  "trading_R": 0,
+  "note": "exploratory: never touches the book; judged only after the minimum sessions"
+ },
+ "label": "trend day = |close-open| >= 0.6 x (high-low), NQ 9:30-16:00",
  "latest_call": null,
- "updated": "2026-11-02 07:27 UTC"
+ "updated": "2026-11-02 16:40 UTC"
 }
