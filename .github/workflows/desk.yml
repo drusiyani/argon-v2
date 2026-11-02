@@ -4,9 +4,11 @@ name: Argon v2 desk (live AI agents)
 # judged. Now each run starts before a session and STAYS ALIVE, checking every 5 minutes until the session ends.
 on:
   schedule:
-    - cron: "50 6 * * 1-5"     # London session
-    - cron: "50 12 * * 1-5"    # New York session (before the 9:30 open in EDT and EST)
-    - cron: "45 18 * * 1-5"    # New York afternoon, in case the morning run started late or timed out
+    # GitHub often starts scheduled runs hours late (4 hours on 2 Nov), so the runs start early and overlap: each stays alive
+    # for ~5h40m. The 10:00 UTC run covers the 8:45-9:25am New York morning call even if it starts up to ~4 hours late.
+    - cron: "0 5 * * 1-5"      # London morning
+    - cron: "0 10 * * 1-5"     # covers the New York pre-open morning call
+    - cron: "0 15 * * 1-5"     # New York afternoon to the close
   workflow_dispatch:
 
 permissions:
