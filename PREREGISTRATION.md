@@ -141,3 +141,20 @@ Designed after a 6-member council review (statistician, risk manager, trader, AI
 - **Any change to the model, prompt, inputs or rules restarts the 120-day clock.**
 - The separate per-setup desk (Scout / Sceptic / Risk / Chief judging the original strategy's setups) continues as its own
   experiment, scored against "take every setup". It does not touch the v2 book.
+
+### Amendment 4b (2 November 2026): an objective trend label, and the AI council (exploratory)
+- **Trend day, fixed now:** |close − open| ≥ 0.6 × (high − low) for NQ's 9:30–16:00 session. This is the label the morning
+  forecasts are scored against (Brier score and accuracy). The book's own result is recorded separately as the trading outcome,
+  because scoring a forecast with the strategy it sizes would be circular. No forecasts had been scored yet, so nothing is lost.
+- **The AI council** (a separate, exploratory shadow test; it never touches the book or the main arms): every morning the same
+  frozen prompt and the same inputs, at the same moment, go to Claude (the existing forecaster) and to other model families:
+  Gemini (Google), Llama (via Groq) and optionally GPT (via OpenRouter). Temperature 0, each asked once, raw answers and timestamps
+  saved. Model ids are pinned in `engine/daytype.py`; any change restarts the council's clock. All ids must be confirmed and
+  pinned before the 31 Dec freeze.
+- **Combining rule, fixed now:** council trend probability = the average of the members' probabilities; council size = the
+  median of their sizes (with an even number, the average of the two middle ones). Sizes are all on the 0.5 / 1 / 1.5 scale.
+- **Missing answers, fixed now:** a member with no key, an error or a late answer counts as no answer that day. A session counts
+  only if at least 3 members answered. No session is dropped for any other reason.
+- **Measured:** each member's accuracy and Brier score, the council's, how often two members are wrong on the same day compared
+  with what independence would predict (do they make different mistakes?), and the council's trading result. Judged only after
+  at least **250 counted sessions**.

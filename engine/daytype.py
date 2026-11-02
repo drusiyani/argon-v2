@@ -81,6 +81,39 @@ def inputs(today):
 def dumb_rule(d):
     r = d['range_ratio']; return 1.5 if r > 1.2 else (0.5 if r < 0.8 else 1.0)
 
+# ---- the AI council (Amendment 4b): other model families, same frozen prompt and inputs, temperature 0, each asked once.
+# Model ids are pinned here; changing any of them restarts the council's clock. A member with no key, or that fails, is recorded as no answer.
+COUNCIL = [dict(name='gemini', key='GEMINI_API_KEY', model=os.environ.get('COUNCIL_GEMINI_MODEL', 'gemini-2.5-flash')),
+           dict(name='llama', key='GROQ_API_KEY', model=os.environ.get('COUNCIL_LLAMA_MODEL', 'llama-3.3-70b-versatile')),
+           dict(name='gpt', key='OPENROUTER_API_KEY', model=os.environ.get('COUNCIL_GPT_MODEL', 'openai/gpt-4o-mini'))]
+def parse(t):
+    j = json.loads(t[t.find('{'):t.rfind('}') + 1]); size = min(SIZES, key=lambda s: abs(s - float(j.get('size', 1))))
+    return dict(trend_probability=max(0, min(100, float(j.get('trend_probability', 50)))), size=size, veto=j.get('veto') if j.get('veto') in VETOS else None, reason=str(j.get('reason', ''))[:300])
+def post(url, body, headers):
+    return json.loads(urllib.request.urlopen(urllib.request.Request(url, data=json.dumps(body).encode(), headers=dict({'content-type': 'application/json'}, **headers)), timeout=60).read())
+def ask_member(m, text):
+    k = os.environ.get(m['key'])
+    if not k: return None
+    msg = PROMPT + text
+    if m['name'] == 'gemini':
+        r = post(f"https://generativelanguage.googleapis.com/v1beta/models/{m['model']}:generateContent?key={k}", {'contents': [{'parts': [{'text': msg}]}], 'generationConfig': {'temperature': 0, 'maxOutputTokens': 300}}, {})
+        t = r['candidates'][0]['content']['parts'][0]['text']
+    else:
+        url = 'https://api.groq.com/openai/v1/chat/completions' if m['name'] == 'llama' else 'https://openrouter.ai/api/v1/chat/completions'
+        r = post(url, {'model': m['model'], 'temperature': 0, 'max_tokens': 300, 'messages': [{'role': 'user', 'content': msg}]}, {'Authorization': 'Bearer ' + k})
+        t = r['choices'][0]['message']['content']
+    return dict(parse(t), raw=t[:1200], model_reported=r.get('model', m['model']))
+def council(text, claude):
+    members = {'claude': dict(claude, model_reported=MODEL) if claude.get('trend_probability') is not None else None}
+    for m in COUNCIL:
+        try: members[m['name']] = ask_member(m, text)
+        except Exception as e: members[m['name']] = None; print('council member failed', m['name'], repr(e)[:120])
+    got = [v for v in members.values() if v]
+    if len(got) < 3: return dict(members=members, answered=len(got), counted=False)
+    sizes = sorted(v['size'] for v in got); n = len(sizes)
+    med = sizes[n // 2] if n % 2 else (sizes[n // 2 - 1] + sizes[n // 2]) / 2
+    return dict(members=members, answered=n, counted=True, trend_probability=round(sum(v['trend_probability'] for v in got) / n, 1), size=med)
+
 def ask(text):
     body = json.dumps({'model': MODEL, 'max_tokens': 300, 'temperature': 0, 'messages': [{'role': 'user', 'content': PROMPT + text}]}).encode()
     req = urllib.request.Request('https://api.anthropic.com/v1/messages', data=body, headers={'x-api-key': KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json'})
@@ -113,7 +146,8 @@ if __name__ == '__main__':
                   veto=max(set(vetos), key=vetos.count) if len(vetos) >= 2 else None,      # a veto needs 2 of the 3 runs to agree
                   reason=runs[len(runs) // 2]['reason'])
     else: ai = dict(size=1.0, trend_probability=None, veto=None, reason='no forecast (no API key or all runs failed): counts as 1x')
-    rec = dict(date=today.isoformat(), made_at=dt.datetime.now(NY).strftime('%H:%M'), late=late, inputs=d, ai=ai, ai_runs=runs, dumb_size=dumb_rule(d),
+    cn = council(text, ai) if not late else dict(members={}, answered=0, counted=False, note='late')
+    rec = dict(date=today.isoformat(), made_at=dt.datetime.now(NY).strftime('%H:%M'), late=late, inputs=d, ai=ai, ai_runs=runs, council=cn, asked_at_utc=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'), dumb_size=dumb_rule(d),
                ai_size_used=1.0 if (late or not runs) else (0.0 if ai['veto'] else ai['size']), model=MODEL, prompt_hash=PROMPT_HASH, shadow=True)
     if force and '--dry' in sys.argv: print(json.dumps(rec, indent=1)); sys.exit(0)
     open(OUT, 'a').write(json.dumps(rec) + '\n')

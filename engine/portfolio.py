@@ -94,7 +94,9 @@ if __name__ == '__main__':
                    R=round(t['gross'] - t['cost'], 2)) for t in trades[-40:]][::-1]
     daily = collections.defaultdict(lambda: [0.0, 0.0, 0])      # date -> [net R, gross R, trades] at 1x, for the day-type arms
     for t in trades: x = daily[t['date']]; x[0] += t['w'] * (t['gross'] - t['cost']); x[1] += t['w'] * t['gross']; x[2] += 1
-    daily = {d: [round(v[0], 4), round(v[1], 4), v[2]] for d, v in sorted(daily.items()) if d >= '2021-07'}
+    DD, ddl, _ = c.daily('NQ'); trendday = {d: int(abs(DD[d]['c'] - DD[d]['o']) >= 0.6 * (DD[d]['h'] - DD[d]['l'])) for d in ddl if DD[d]['h'] > DD[d]['l']}
+    for d in trendday: daily[d]                                  # every session gets a row, even with no trades
+    daily = {d: [round(v[0], 4), round(v[1], 4), v[2], trendday.get(d)] for d, v in sorted(daily.items()) if d >= '2021-07'}   # [net R, gross R, trades, trend day 1/0]
     out = dict(generated=dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%d %H:%M UTC'), config=CONFIG, status='stopped by kill switch' if killed else 'ready for paper trading from 1 Jan 2027',
                killed=killed, window=[months[0], months[-1]], main=main, double_costs={k: dbl[k] for k in ('sharpe', 'R', 'final', 'a_year', 'worst_drop')},
                shadow={k: shadow[k] for k in ('sharpe', 'R', 'final', 'a_year', 'worst_drop', 'equity', 'years')}, shadow_weights_latest=W.get(months[-1]),
