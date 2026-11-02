@@ -1,27 +1,27 @@
 ---
 type: session
-updated: 2026-10-31
-built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
+updated: 2026-11-02
+built_from: 1508 days of prices (2021-01-04 to 2026-10-30)
 ---
 # New York (session)
 
-8:30 to 11:30am New York time, around the US stock market open. So far this session has lost money: -0.11R a trade over 2475 trades.
+8:30 to 11:30am New York time, around the US stock market open. So far this session has lost money: -0.11R a trade over 2499 trades.
 
 ## By market
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| [[Nasdaq]] | 14892 | 69% | 13% | 649 | 37% | -0.04R |
-| [[S&P 500]] | 13641 | 69% | 12% | 521 | 28% | -0.31R |
+| [[Nasdaq]] | 15109 | 69% | 13% | 650 | 37% | -0.04R |
+| [[S&P 500]] | 13835 | 69% | 12% | 523 | 28% | -0.32R |
 
 ## Hour by hour
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| 08:00 | 4876 | 69% | 11% | 142 | 24% | -0.47R |
-| 09:00 | 30594 | 68% | 20% | 2030 | 37% | -0.08R |
-| 10:00 | 16496 | 69% | 4% | 217 | 32% | -0.27R |
-| 11:00 | 5797 | 69% | 4% | 86 | 44% | +0.23R |
+| 08:00 | 4930 | 69% | 11% | 143 | 24% | -0.47R |
+| 09:00 | 30991 | 68% | 20% | 2049 | 37% | -0.09R |
+| 10:00 | 16767 | 69% | 4% | 218 | 33% | -0.26R |
+| 11:00 | 5877 | 69% | 4% | 89 | 46% | +0.26R |
 
 ## How this has changed
 

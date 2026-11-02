@@ -1,26 +1,26 @@
 ---
 type: session
-updated: 2026-10-31
-built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
+updated: 2026-11-02
+built_from: 1508 days of prices (2021-01-04 to 2026-10-30)
 ---
 # London (session)
 
-2am to 5am New York time. So far this session has lost money: -0.27R a trade over 1795 trades.
+2am to 5am New York time. So far this session has lost money: -0.26R a trade over 1827 trades.
 
 ## By market
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| [[Nasdaq]] | 13261 | 67% | 11% | 466 | 33% | -0.11R |
-| [[S&P 500]] | 13390 | 65% | 10% | 389 | 31% | -0.26R |
+| [[Nasdaq]] | 13424 | 67% | 11% | 475 | 32% | -0.13R |
+| [[S&P 500]] | 13549 | 65% | 10% | 399 | 32% | -0.25R |
 
 ## Hour by hour
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| 02:00 | 19500 | 65% | 14% | 798 | 32% | -0.22R |
-| 03:00 | 21110 | 68% | 11% | 776 | 27% | -0.33R |
-| 04:00 | 14394 | 65% | 5% | 221 | 31% | -0.23R |
+| 02:00 | 19755 | 65% | 14% | 813 | 32% | -0.22R |
+| 03:00 | 21319 | 68% | 11% | 787 | 28% | -0.31R |
+| 04:00 | 14627 | 65% | 5% | 227 | 30% | -0.25R |
 
 ## How this has changed
 

@@ -9,7 +9,7 @@ written_by: the site, automatically
 
 ## The two strategies
 
-- [[The main strategy]]: 23 trades, +7.00R, won 43%
+- [[The main strategy]]: 20 trades, +4.00R, won 40%
 - [[The order-block strategy]]: 0 trades, 0.00R, won 0%
 
 ## Doing best
@@ -38,7 +38,7 @@ written_by: the site, automatically
 
 - An important level to target: skipped 45 trades that would have made +6.00R. So this check cost money.
 - Price swept it and came back: skipped 9 trades that would have made +9.00R. So this check cost money.
-- Matches the day's direction: skipped 23 trades that would have made +7.00R. So this check cost money.
+- Matches the day's direction: skipped 28 trades that would have made +8.00R. So this check cost money.
 - The other market disagreed (SMT): skipped 0 trades that would have made 0.00R. Too few to tell.
 - The trend clearly flipped: skipped 0 trades that would have made 0.00R. Too few to tell.
 - Price came back to the entry: skipped 0 trades that would have made 0.00R. Too few to tell.
@@ -51,7 +51,7 @@ written_by: the site, automatically
 
 ## What's missing
 
-- 23 trades is far too few. Anything under about 100 could flip either way.
+- 20 trades is far too few. Anything under about 100 could flip either way.
 - Everything uses 5-minute candles. 2-minute data starts 2026-09-08.
 - Big news releases aren't filtered, fees are estimated, and entries assume a perfect fill.
 - Rules: [[Rulebook v1.0]].

@@ -1,7 +1,7 @@
 ---
 type: question
-updated: 2026-10-31
-built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
+updated: 2026-11-02
+built_from: 1508 days of prices (2021-01-04 to 2026-10-30)
 answer: "unclear, the difference is small"
 ---
 # Do big levels beat small ones
@@ -10,7 +10,7 @@ answer: "unclear, the difference is small"
 
 **Current answer:** unclear, the difference is small
 
-Session levels: -0.10R a trade (346 trades). 5-minute highs and lows: -0.16R a trade (1057 trades).
+Session levels: -0.11R a trade (352 trades). 5-minute highs and lows: -0.16R a trade (1073 trades).
 
 ## How the answer has changed
 

@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-31 01:43 UTC",
+ "generated": "2026-11-02 07:27 UTC",
  "config": {
   "risk_pct": 1.0,
   "start_usd": 100000,
@@ -26,16 +26,16 @@
  "killed": false,
  "window": [
   "2021-07",
-  "2026-09"
+  "2026-10"
  ],
  "main": {
   "sharpe": 1.18,
-  "R": 313.3,
-  "final": 1189919,
-  "a_year": 60.3,
+  "R": 317.0,
+  "final": 1233763,
+  "a_year": 60.2,
   "worst_drop": -32.2,
   "losing_months": 27,
-  "months": 63,
+  "months": 64,
   "years": {
    "2021": {
     "pct": 25.1,
@@ -58,8 +58,8 @@
     "usd": 398801
    },
    "2026": {
-    "pct": -6.0,
-    "usd": -76077
+    "pct": -2.5,
+    "usd": -32233
    }
   },
   "equity": [
@@ -314,6 +314,10 @@
    [
     "2026-09",
     1189919
+   ],
+   [
+    "2026-10",
+    1233763
    ]
   ],
   "monthly_R": [
@@ -379,21 +383,22 @@
    15.52,
    -22.75,
    -4.0,
-   13.43
+   13.43,
+   3.68
   ]
  },
  "double_costs": {
   "sharpe": 1.02,
-  "R": 264.1,
-  "final": 758387,
+  "R": 267.4,
+  "final": 782818,
   "a_year": 47.1,
   "worst_drop": -34.4
  },
  "shadow": {
-  "sharpe": 1.3,
-  "R": 208.8,
-  "final": 622798,
-  "a_year": 41.7,
+  "sharpe": 1.35,
+  "R": 221.0,
+  "final": 698810,
+  "a_year": 44.0,
   "worst_drop": -22.6,
   "equity": [
    [
@@ -647,6 +652,10 @@
    [
     "2026-09",
     622798
+   ],
+   [
+    "2026-10",
+    698810
    ]
   ],
   "years": {
@@ -671,383 +680,383 @@
     "usd": 155864
    },
    "2026": {
-    "pct": -6.0,
-    "usd": -39978
+    "pct": 5.4,
+    "usd": 36034
    }
   }
  },
  "shadow_weights_latest": {
-  "quantlab": 0.22359240633922153,
-  "noiseband": 0.5541572468584394,
-  "atrband": 1.1975929132676553,
-  "expiry": 2.024657433534684
+  "quantlab": 0.23836998176506305,
+  "noiseband": 0.5622871809633366,
+  "atrband": 1.2990548895774334,
+  "expiry": 1.9002879476941665
  },
  "trades_by_strategy": {
-  "quantlab": 1281,
-  "atrband": 757,
-  "expiry": 120,
-  "noiseband": 859
+  "quantlab": 1302,
+  "atrband": 770,
+  "expiry": 122,
+  "noiseband": 877
  },
  "recent_trades": [
   {
-   "date": "2026-09-30",
-   "strategy": "noiseband",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "10:30",
-   "exit": "12:29",
-   "R": 0.14
-  },
-  {
-   "date": "2026-09-30",
-   "strategy": "quantlab",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "09:35",
-   "exit": "10:34",
-   "R": 0.27
-  },
-  {
-   "date": "2026-09-29",
-   "strategy": "quantlab",
-   "symbol": "NQ",
-   "side": "short",
-   "entry": "09:35",
-   "exit": "09:52",
-   "R": -0.03
-  },
-  {
-   "date": "2026-09-28",
+   "date": "2026-10-30",
    "strategy": "atrband",
    "symbol": "NQ",
    "side": "short",
-   "entry": "10:45",
-   "exit": "12:27",
-   "R": -1.0
-  },
-  {
-   "date": "2026-09-28",
-   "strategy": "noiseband",
-   "symbol": "NQ",
-   "side": "short",
-   "entry": "10:30",
-   "exit": "12:29",
-   "R": -1.09
-  },
-  {
-   "date": "2026-09-28",
-   "strategy": "quantlab",
-   "symbol": "NQ",
-   "side": "short",
-   "entry": "09:35",
-   "exit": "09:54",
-   "R": 0.11
-  },
-  {
-   "date": "2026-09-24",
-   "strategy": "atrband",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "12:45",
+   "entry": "13:00",
    "exit": "15:55",
-   "R": 0.12
+   "R": -0.01
   },
   {
-   "date": "2026-09-24",
-   "strategy": "quantlab",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "09:35",
-   "exit": "09:54",
-   "R": 0.31
-  },
-  {
-   "date": "2026-09-23",
+   "date": "2026-10-30",
    "strategy": "noiseband",
    "symbol": "NQ",
    "side": "short",
-   "entry": "14:00",
+   "entry": "12:30",
    "exit": "15:55",
-   "R": 0.16
+   "R": 0.51
   },
   {
-   "date": "2026-09-23",
-   "strategy": "noiseband",
-   "symbol": "NQ",
-   "side": "short",
-   "entry": "11:00",
-   "exit": "13:59",
-   "R": 0.43
-  },
-  {
-   "date": "2026-09-23",
+   "date": "2026-10-30",
    "strategy": "noiseband",
    "symbol": "NQ",
    "side": "short",
    "entry": "10:30",
    "exit": "10:59",
-   "R": -1.41
+   "R": -1.0
   },
   {
-   "date": "2026-09-23",
-   "strategy": "atrband",
-   "symbol": "NQ",
-   "side": "short",
-   "entry": "10:15",
-   "exit": "15:55",
-   "R": -0.1
-  },
-  {
-   "date": "2026-09-23",
+   "date": "2026-10-30",
    "strategy": "quantlab",
    "symbol": "NQ",
    "side": "short",
    "entry": "09:35",
-   "exit": "10:51",
-   "R": 2.09
+   "exit": "09:40",
+   "R": -0.52
   },
   {
-   "date": "2026-09-22",
+   "date": "2026-10-29",
+   "strategy": "quantlab",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "09:35",
+   "exit": "09:42",
+   "R": -0.38
+  },
+  {
+   "date": "2026-10-27",
+   "strategy": "noiseband",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "15:00",
+   "exit": "15:55",
+   "R": 0.02
+  },
+  {
+   "date": "2026-10-27",
    "strategy": "atrband",
    "symbol": "NQ",
    "side": "long",
-   "entry": "14:00",
+   "entry": "12:00",
    "exit": "15:55",
-   "R": 0.23
+   "R": -0.11
   },
   {
-   "date": "2026-09-22",
+   "date": "2026-10-27",
+   "strategy": "noiseband",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "11:00",
+   "exit": "13:59",
+   "R": 0.56
+  },
+  {
+   "date": "2026-10-27",
+   "strategy": "quantlab",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "09:35",
+   "exit": "09:46",
+   "R": -0.18
+  },
+  {
+   "date": "2026-10-26",
+   "strategy": "atrband",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "11:00",
+   "exit": "15:55",
+   "R": -0.27
+  },
+  {
+   "date": "2026-10-26",
+   "strategy": "noiseband",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "10:30",
+   "exit": "15:55",
+   "R": 0.86
+  },
+  {
+   "date": "2026-10-26",
+   "strategy": "quantlab",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "09:35",
+   "exit": "09:35",
+   "R": -1.07
+  },
+  {
+   "date": "2026-10-23",
+   "strategy": "atrband",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "11:00",
+   "exit": "15:55",
+   "R": -0.69
+  },
+  {
+   "date": "2026-10-23",
+   "strategy": "noiseband",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "11:00",
+   "exit": "11:29",
+   "R": -0.29
+  },
+  {
+   "date": "2026-10-23",
+   "strategy": "quantlab",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "09:35",
+   "exit": "09:41",
+   "R": -0.52
+  },
+  {
+   "date": "2026-10-22",
+   "strategy": "atrband",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "11:15",
+   "exit": "15:55",
+   "R": 0.32
+  },
+  {
+   "date": "2026-10-22",
+   "strategy": "noiseband",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "10:30",
+   "exit": "15:55",
+   "R": 1.92
+  },
+  {
+   "date": "2026-10-22",
+   "strategy": "quantlab",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "09:35",
+   "exit": "09:42",
+   "R": -0.86
+  },
+  {
+   "date": "2026-10-21",
+   "strategy": "noiseband",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "14:30",
+   "exit": "14:59",
+   "R": -0.66
+  },
+  {
+   "date": "2026-10-21",
    "strategy": "noiseband",
    "symbol": "NQ",
    "side": "long",
    "entry": "13:00",
-   "exit": "15:55",
-   "R": 0.63
+   "exit": "13:59",
+   "R": -0.14
   },
   {
-   "date": "2026-09-22",
+   "date": "2026-10-21",
    "strategy": "noiseband",
    "symbol": "NQ",
    "side": "long",
-   "entry": "10:30",
-   "exit": "11:59",
-   "R": -0.57
-  },
-  {
-   "date": "2026-09-22",
-   "strategy": "quantlab",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "09:35",
-   "exit": "10:41",
-   "R": 0.46
-  },
-  {
-   "date": "2026-09-21",
-   "strategy": "noiseband",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "10:30",
-   "exit": "15:55",
-   "R": 3.82
-  },
-  {
-   "date": "2026-09-21",
-   "strategy": "atrband",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "10:00",
-   "exit": "15:55",
-   "R": 1.97
-  },
-  {
-   "date": "2026-09-21",
-   "strategy": "quantlab",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "09:35",
-   "exit": "13:24",
-   "R": 11.46
-  },
-  {
-   "date": "2026-09-18",
-   "strategy": "quantlab",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "09:35",
-   "exit": "09:35",
-   "R": -1.15
-  },
-  {
-   "date": "2026-09-18",
-   "strategy": "expiry",
-   "symbol": "ES",
-   "side": "short",
-   "entry": "09:31",
-   "exit": "12:00",
-   "R": 1.03
-  },
-  {
-   "date": "2026-09-18",
-   "strategy": "expiry",
-   "symbol": "NQ",
-   "side": "short",
-   "entry": "09:31",
-   "exit": "12:00",
-   "R": 0.93
-  },
-  {
-   "date": "2026-09-17",
-   "strategy": "quantlab",
-   "symbol": "NQ",
-   "side": "short",
-   "entry": "09:35",
-   "exit": "09:47",
+   "entry": "12:00",
+   "exit": "12:29",
    "R": -0.28
   },
   {
-   "date": "2026-09-15",
-   "strategy": "atrband",
-   "symbol": "NQ",
-   "side": "short",
-   "entry": "11:00",
-   "exit": "15:55",
-   "R": 0.05
-  },
-  {
-   "date": "2026-09-15",
-   "strategy": "noiseband",
-   "symbol": "NQ",
-   "side": "short",
-   "entry": "10:30",
-   "exit": "15:55",
-   "R": 1.47
-  },
-  {
-   "date": "2026-09-15",
-   "strategy": "quantlab",
-   "symbol": "NQ",
-   "side": "short",
-   "entry": "09:35",
-   "exit": "09:38",
-   "R": -1.04
-  },
-  {
-   "date": "2026-09-14",
-   "strategy": "atrband",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "10:15",
-   "exit": "15:55",
-   "R": 0.54
-  },
-  {
-   "date": "2026-09-14",
+   "date": "2026-10-21",
    "strategy": "quantlab",
    "symbol": "NQ",
    "side": "long",
    "entry": "09:35",
    "exit": "09:37",
-   "R": -1.06
+   "R": -1.03
   },
   {
-   "date": "2026-09-11",
+   "date": "2026-10-20",
+   "strategy": "atrband",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "10:30",
+   "exit": "15:55",
+   "R": -0.73
+  },
+  {
+   "date": "2026-10-20",
+   "strategy": "noiseband",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "10:30",
+   "exit": "11:29",
+   "R": -1.2
+  },
+  {
+   "date": "2026-10-20",
+   "strategy": "quantlab",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "09:35",
+   "exit": "09:49",
+   "R": 0.37
+  },
+  {
+   "date": "2026-10-19",
+   "strategy": "noiseband",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "11:30",
+   "exit": "12:29",
+   "R": -0.71
+  },
+  {
+   "date": "2026-10-19",
    "strategy": "quantlab",
    "symbol": "NQ",
    "side": "long",
    "entry": "09:35",
-   "exit": "10:06",
-   "R": -0.54
+   "exit": "09:39",
+   "R": -1.03
   },
   {
-   "date": "2026-09-10",
+   "date": "2026-10-16",
+   "strategy": "atrband",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "10:30",
+   "exit": "15:55",
+   "R": 2.09
+  },
+  {
+   "date": "2026-10-16",
+   "strategy": "noiseband",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "10:30",
+   "exit": "15:55",
+   "R": 4.18
+  },
+  {
+   "date": "2026-10-16",
+   "strategy": "quantlab",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "09:35",
+   "exit": "09:45",
+   "R": 0.34
+  },
+  {
+   "date": "2026-10-16",
+   "strategy": "expiry",
+   "symbol": "ES",
+   "side": "short",
+   "entry": "09:31",
+   "exit": "12:00",
+   "R": 2.38
+  },
+  {
+   "date": "2026-10-16",
+   "strategy": "expiry",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "09:31",
+   "exit": "12:00",
+   "R": 2.37
+  },
+  {
+   "date": "2026-10-15",
    "strategy": "atrband",
    "symbol": "NQ",
    "side": "long",
    "entry": "11:00",
    "exit": "15:55",
-   "R": -0.72
+   "R": 0.76
   },
   {
-   "date": "2026-09-10",
+   "date": "2026-10-15",
    "strategy": "quantlab",
    "symbol": "NQ",
    "side": "short",
    "entry": "09:35",
-   "exit": "09:35",
-   "R": -1.06
+   "exit": "09:39",
+   "R": -1.02
   },
   {
-   "date": "2026-09-09",
-   "strategy": "quantlab",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "09:35",
-   "exit": "10:16",
-   "R": 0.68
-  },
-  {
-   "date": "2026-09-08",
+   "date": "2026-10-14",
    "strategy": "atrband",
    "symbol": "NQ",
    "side": "short",
-   "entry": "10:15",
-   "exit": "11:42",
-   "R": -1.01
-  },
-  {
-   "date": "2026-09-08",
-   "strategy": "quantlab",
-   "symbol": "NQ",
-   "side": "short",
-   "entry": "09:35",
-   "exit": "09:57",
-   "R": 0.72
-  },
-  {
-   "date": "2026-09-07",
-   "strategy": "quantlab",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "09:35",
-   "exit": "09:35",
-   "R": -1.1
-  },
-  {
-   "date": "2026-09-04",
-   "strategy": "quantlab",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "09:35",
-   "exit": "10:12",
-   "R": -0.25
-  },
-  {
-   "date": "2026-09-03",
-   "strategy": "atrband",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "11:15",
+   "entry": "11:45",
    "exit": "15:55",
-   "R": 0.23
+   "R": 0.74
   },
   {
-   "date": "2026-09-03",
+   "date": "2026-10-14",
    "strategy": "noiseband",
    "symbol": "NQ",
-   "side": "long",
-   "entry": "10:30",
+   "side": "short",
+   "entry": "11:30",
    "exit": "15:55",
-   "R": 2.11
+   "R": 2.27
   },
   {
-   "date": "2026-09-03",
+   "date": "2026-10-14",
    "strategy": "quantlab",
    "symbol": "NQ",
-   "side": "long",
+   "side": "short",
+   "entry": "09:35",
+   "exit": "09:40",
+   "R": -1.03
+  },
+  {
+   "date": "2026-10-13",
+   "strategy": "quantlab",
+   "symbol": "NQ",
+   "side": "short",
    "entry": "09:35",
    "exit": "09:36",
-   "R": -1.05
+   "R": -1.09
+  },
+  {
+   "date": "2026-10-12",
+   "strategy": "atrband",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "15:00",
+   "exit": "15:55",
+   "R": -0.22
+  },
+  {
+   "date": "2026-10-12",
+   "strategy": "noiseband",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "12:30",
+   "exit": "15:55",
+   "R": 0.26
   }
  ],
  "daily_R": {
@@ -7600,6 +7609,111 @@
    0.4093,
    0.4242,
    2
+  ],
+  "2026-10-01": [
+   -1.3139,
+   -1.295,
+   2
+  ],
+  "2026-10-02": [
+   0.3864,
+   0.3947,
+   1
+  ],
+  "2026-10-05": [
+   0.5966,
+   0.6123,
+   3
+  ],
+  "2026-10-06": [
+   -0.374,
+   -0.3647,
+   1
+  ],
+  "2026-10-07": [
+   -1.0368,
+   -1.0184,
+   1
+  ],
+  "2026-10-08": [
+   -0.2346,
+   -0.2168,
+   3
+  ],
+  "2026-10-09": [
+   1.8369,
+   1.8582,
+   1
+  ],
+  "2026-10-12": [
+   -1.0467,
+   -1.0229,
+   4
+  ],
+  "2026-10-13": [
+   -1.0857,
+   -1.0429,
+   1
+  ],
+  "2026-10-14": [
+   1.9769,
+   2.0039,
+   3
+  ],
+  "2026-10-15": [
+   -0.2665,
+   -0.252,
+   2
+  ],
+  "2026-10-16": [
+   11.3662,
+   11.4121,
+   5
+  ],
+  "2026-10-19": [
+   -1.7381,
+   -1.7163,
+   2
+  ],
+  "2026-10-20": [
+   -1.5609,
+   -1.541,
+   3
+  ],
+  "2026-10-21": [
+   -2.1038,
+   -2.0761,
+   4
+  ],
+  "2026-10-22": [
+   1.3877,
+   1.4077,
+   3
+  ],
+  "2026-10-23": [
+   -1.4993,
+   -1.4778,
+   3
+  ],
+  "2026-10-26": [
+   -0.481,
+   -0.4369,
+   3
+  ],
+  "2026-10-27": [
+   0.2857,
+   0.306,
+   4
+  ],
+  "2026-10-29": [
+   -0.3805,
+   -0.3766,
+   1
+  ],
+  "2026-10-30": [
+   -1.03,
+   -1.0095,
+   4
   ]
  },
  "honesty": [

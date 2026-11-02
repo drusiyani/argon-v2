@@ -1,31 +1,31 @@
 ---
 type: level
-updated: 2026-10-31
-built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
+updated: 2026-11-02
+built_from: 1508 days of prices (2021-01-04 to 2026-10-30)
 ---
 # Asia low
 
-So far trading sweeps of asia low is roughly break-even (+0.02R a trade over 71 trades).
+So far trading sweeps of asia low is roughly break-even (+0.00R a trade over 75 trades).
 
 ## Everywhere
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| Asia low | 2417 | 67% | 10% | 71 | 41% | +0.02R |
+| Asia low | 2455 | 67% | 10% | 75 | 40% | +0.00R |
 
 ## By market
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| [[Nasdaq]] | 607 | 66% | 11% | 20 | 50% | +0.39R |
-| [[S&P 500]] | 581 | 66% | 8% | 11 | 45% | +0.13R |
+| [[Nasdaq]] | 618 | 66% | 12% | 21 | 48% | +0.32R |
+| [[S&P 500]] | 589 | 66% | 9% | 12 | 42% | +0.02R |
 
 ## By session
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| [[London (session)]] | 1659 | 66% | 9% | 39 | 38% | +0.00R |
-| [[New York (session)]] | 758 | 69% | 11% | 32 | 44% | +0.05R |
+| [[London (session)]] | 1681 | 66% | 9% | 42 | 38% | -0.01R |
+| [[New York (session)]] | 774 | 69% | 11% | 33 | 42% | +0.01R |
 
 Columns: how many times price poked past it, how often it came back (a sweep, not a breakout), how often the trend then clearly flipped, and what a simple trade (enter at the order block, target 2× the risk) would have done. [[What R means]].
 

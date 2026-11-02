@@ -1,7 +1,7 @@
 ---
 type: question
-updated: 2026-10-31
-built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
+updated: 2026-11-02
+built_from: 1508 days of prices (2021-01-04 to 2026-10-30)
 answer: "not yet"
 ---
 # Is there an edge yet
@@ -10,7 +10,7 @@ answer: "not yet"
 
 **Current answer:** not yet
 
-Main: -16.31R over 407 trades. Order-block: -21.28R over 900 trades. Over 63 test months.
+Main: -13.33R over 418 trades. Order-block: -17.87R over 909 trades. Over 64 test months.
 
 ## How the answer has changed
 

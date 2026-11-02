@@ -1,7 +1,7 @@
 ---
 type: market
-updated: 2026-10-31
-built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
+updated: 2026-11-02
+built_from: 1508 days of prices (2021-01-04 to 2026-10-30)
 ---
 # Nasdaq
 
@@ -16,17 +16,17 @@ Everything the brain knows about Nasdaq, re-measured from all the data every run
 
 ## A normal day
 
-- Whole day: moves about 341.6 from high to low
-- [[Asia high|Asia session]]: 78.3 · [[London (session)|London]]: 90.8 · [[New York (session)|New York]]: 208.0
-- Finished up on 54% of 1487 days
-- By weekday: Monday 320, Tuesday 333, Wednesday 355, Thursday 363, Friday 337
+- Whole day: moves about 345.1 from high to low
+- [[Asia high|Asia session]]: 79.8 · [[London (session)|London]]: 91.7 · [[New York (session)|New York]]: 209.4
+- Finished up on 54% of 1508 days
+- By weekday: Monday 323, Tuesday 334, Wednesday 357, Thursday 369, Friday 341
 
 ## Sweeps by session
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| [[London (session)]] | 13261 | 67% | 11% | 466 | 33% | -0.11R |
-| [[New York (session)]] | 14892 | 69% | 13% | 649 | 37% | -0.04R |
+| [[London (session)]] | 13424 | 67% | 11% | 475 | 32% | -0.13R |
+| [[New York (session)]] | 15109 | 69% | 13% | 650 | 37% | -0.04R |
 
 Columns: how many times price poked past it, how often it came back (a sweep, not a breakout), how often the trend then clearly flipped, and what a simple trade (enter at the order block, target 2× the risk) would have done. [[What R means]].
 
@@ -34,22 +34,22 @@ Columns: how many times price poked past it, how often it came back (a sweep, no
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| [[Equal lows]] | 6444 | 73% | 11% | 265 | 32% | -0.17R |
-| [[Equal highs]] | 5970 | 71% | 14% | 284 | 36% | -0.02R |
-| [[5m lows]] | 3860 | 65% | 13% | 142 | 39% | -0.01R |
-| [[5m highs]] | 3777 | 63% | 14% | 146 | 34% | -0.11R |
-| [[15m lows]] | 2133 | 66% | 9% | 61 | 39% | +0.06R |
-| [[15m highs]] | 1971 | 65% | 12% | 69 | 29% | -0.28R |
-| [[1h lows]] | 754 | 64% | 7% | 24 | 42% | +0.12R |
-| [[1h highs]] | 704 | 66% | 11% | 25 | 28% | -0.14R |
-| [[Asia low]] | 607 | 66% | 11% | 20 | 50% | +0.39R |
-| [[Asia high]] | 563 | 67% | 13% | 28 | 29% | -0.13R |
-| [[London low]] | 387 | 69% | 12% | 19 | 42% | +0.12R |
-| [[London high]] | 288 | 65% | 12% | 10 | 40% | +0.20R |
-| [[Yesterday's high]] | 271 | 59% | 11% | 8 | 38% | +0.11R |
-| [[Yesterday's low]] | 242 | 62% | 6% | 7 | 29% | -0.40R |
+| [[Equal lows]] | 6536 | 73% | 11% | 269 | 32% | -0.18R |
+| [[Equal highs]] | 6041 | 71% | 14% | 285 | 36% | -0.03R |
+| [[5m lows]] | 3931 | 65% | 13% | 143 | 38% | -0.01R |
+| [[5m highs]] | 3829 | 63% | 14% | 149 | 34% | -0.11R |
+| [[15m lows]] | 2158 | 66% | 9% | 61 | 39% | +0.06R |
+| [[15m highs]] | 1996 | 65% | 11% | 69 | 29% | -0.28R |
+| [[1h lows]] | 760 | 64% | 8% | 24 | 42% | +0.12R |
+| [[1h highs]] | 711 | 66% | 11% | 25 | 28% | -0.14R |
+| [[Asia low]] | 618 | 66% | 12% | 21 | 48% | +0.32R |
+| [[Asia high]] | 568 | 67% | 13% | 28 | 29% | -0.13R |
+| [[London low]] | 391 | 69% | 13% | 19 | 42% | +0.12R |
+| [[London high]] | 296 | 65% | 11% | 10 | 40% | +0.20R |
+| [[Yesterday's high]] | 272 | 58% | 11% | 8 | 38% | +0.11R |
+| [[Yesterday's low]] | 243 | 62% | 6% | 7 | 29% | -0.40R |
 | [[Last week's high]] | 109 | 65% | 20% | 6 | 33% | -0.16R |
-| [[Last week's low]] | 73 | 53% | 8% | 1 | 100% | +1.94R |
+| [[Last week's low]] | 74 | 54% | 8% | 1 | 100% | +1.94R |
 
 ## How this has changed
 

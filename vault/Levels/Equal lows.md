@@ -1,31 +1,31 @@
 ---
 type: level
-updated: 2026-10-31
-built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
+updated: 2026-11-02
+built_from: 1508 days of prices (2021-01-04 to 2026-10-30)
 ---
 # Equal lows
 
-So far trading sweeps of equal lows has lost money: -0.17R a trade over 1047 trades.
+So far trading sweeps of equal lows has lost money: -0.18R a trade over 1063 trades.
 
 ## Everywhere
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| Equal lows | 25659 | 72% | 11% | 1047 | 33% | -0.17R |
+| Equal lows | 26013 | 72% | 11% | 1063 | 33% | -0.18R |
 
 ## By market
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| [[Nasdaq]] | 6444 | 73% | 11% | 265 | 32% | -0.17R |
-| [[S&P 500]] | 6316 | 71% | 11% | 255 | 31% | -0.24R |
+| [[Nasdaq]] | 6536 | 73% | 11% | 269 | 32% | -0.18R |
+| [[S&P 500]] | 6401 | 71% | 11% | 258 | 31% | -0.24R |
 
 ## By session
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| [[London (session)]] | 12859 | 70% | 11% | 481 | 32% | -0.21R |
-| [[New York (session)]] | 12800 | 74% | 12% | 566 | 35% | -0.15R |
+| [[London (session)]] | 13043 | 70% | 11% | 492 | 32% | -0.20R |
+| [[New York (session)]] | 12970 | 74% | 12% | 571 | 35% | -0.15R |
 
 Columns: how many times price poked past it, how often it came back (a sweep, not a breakout), how often the trend then clearly flipped, and what a simple trade (enter at the order block, target 2× the risk) would have done. [[What R means]].
 

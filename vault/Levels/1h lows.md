@@ -1,31 +1,31 @@
 ---
 type: level
-updated: 2026-10-31
-built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
+updated: 2026-11-02
+built_from: 1508 days of prices (2021-01-04 to 2026-10-30)
 ---
 # 1h lows
 
-So far trading sweeps of 1h lows has lost money: -0.12R a trade over 102 trades.
+So far trading sweeps of 1h lows has lost money: -0.13R a trade over 103 trades.
 
 ## Everywhere
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| 1h lows | 2963 | 67% | 9% | 102 | 36% | -0.12R |
+| 1h lows | 3001 | 67% | 9% | 103 | 36% | -0.13R |
 
 ## By market
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| [[Nasdaq]] | 754 | 64% | 7% | 24 | 42% | +0.12R |
-| [[S&P 500]] | 689 | 68% | 7% | 18 | 28% | -0.36R |
+| [[Nasdaq]] | 760 | 64% | 8% | 24 | 42% | +0.12R |
+| [[S&P 500]] | 695 | 68% | 7% | 18 | 28% | -0.36R |
 
 ## By session
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| [[London (session)]] | 911 | 62% | 6% | 20 | 45% | +0.21R |
-| [[New York (session)]] | 2052 | 69% | 10% | 82 | 34% | -0.19R |
+| [[London (session)]] | 927 | 62% | 7% | 21 | 43% | +0.15R |
+| [[New York (session)]] | 2074 | 69% | 10% | 82 | 34% | -0.20R |
 
 Columns: how many times price poked past it, how often it came back (a sweep, not a breakout), how often the trend then clearly flipped, and what a simple trade (enter at the order block, target 2× the risk) would have done. [[What R means]].
 

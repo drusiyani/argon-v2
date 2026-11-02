@@ -30,16 +30,16 @@ type: changelog
 - Added a third strategy from published research: the opening-range breakout (Zarattini & Aziz, SSRN 4416622), with real futures trading costs and settings re-picked monthly. Nasdaq and S&P only for now.
 - Tested ICT's Silver Bullet hours and Judas swing on the sweep strategy. Neither went in.
 
-## v0.7 · 2026-10-30
+## v0.7 · 2026-11-02
 
 - **Fixed a clock bug** in the long backtest: the free history is New York time with daylight saving, and it had been read as fixed winter time, shifting every session by an hour for most of each year. All long-test results before this are wrong.
-- With the fix, the main strategy adjusting monthly made -16.31R on 63 unseen months. Not yet proven: see [[Lessons]].
+- With the fix, the main strategy adjusting monthly made -13.33R on 64 unseen months. Not yet proven: see [[Lessons]].
 - Now trading the same four markets as Kronos indices.
 
-## v0.4 · 2026-10-30
+## v0.4 · 2026-11-02
 
-- Tested on 1487 days of prices (2021-01-04 to 2026-10-01) instead of 50.
-- New way of adjusting: every month, re-pick the settings that did best over the previous 6 months. Over 63 test months this beat fixed rules for both strategies, but neither made a reliable profit. See [[Lessons]].
+- Tested on 1508 days of prices (2021-01-04 to 2026-10-30) instead of 50.
+- New way of adjusting: every month, re-pick the settings that did best over the previous 6 months. Over 64 test months this beat fixed rules for both strategies, but neither made a reliable profit. See [[Lessons]].
 - New settings Claude can use: "same direction as yesterday", "New York first 90 minutes only", "gold only".
 - Every trade is now played out on 1-minute candles, so the order of stop and target hits is exact. A new setting, "move the stop to entry at +1R", was tested and not picked.
 - This month's rules are in [[Rulebook v1.0]].

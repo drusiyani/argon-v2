@@ -1,157 +1,157 @@
 {
  "months": [
   "2021-07",
-  "2026-09",
-  63
+  "2026-10",
+  64
  ],
  "strategies": {
   "Portfolio": {
-   "sharpe": 0.52,
-   "sortino": 0.95,
-   "cagr": 10.1,
-   "max_dd": -51.5,
+   "sharpe": 0.58,
+   "sortino": 1.06,
+   "cagr": 18.3,
+   "max_dd": -78.1,
    "sharpe_ci": [
-    -0.55,
-    1.39
+    -0.48,
+    1.38
    ],
    "cagr_ci": [
-    -12.8,
-    35.9
+    -24.7,
+    72.8
    ],
-   "dd_median": -34.7,
-   "dd_bad": -58.8,
-   "p_losing": 0.175,
+   "dd_median": -59.4,
+   "dd_bad": -85.2,
+   "p_losing": 0.159,
    "deflated_lab": {
-    "dsr": 0.018,
-    "sr0_annual": 1.41,
-    "trials": 2296
+    "dsr": 0.028,
+    "sr0_annual": 1.38,
+    "trials": 2344
    },
    "deflated_project": {
-    "dsr": 0.003,
-    "sr0_annual": 1.67,
+    "dsr": 0.006,
+    "sr0_annual": 1.64,
     "trials": 33000
    }
   },
   "Main strategy": {
-   "sharpe": -0.19,
-   "sortino": -0.3,
-   "cagr": -1.9,
-   "max_dd": -32.9,
+   "sharpe": -0.15,
+   "sortino": -0.24,
+   "cagr": -3.7,
+   "max_dd": -55.9,
    "sharpe_ci": [
-    -1.56,
-    0.7
+    -1.52,
+    0.72
    ],
    "cagr_ci": [
-    -9.9,
-    6.4
+    -19.0,
+    12.6
    ],
-   "dd_median": -25.3,
-   "dd_bad": -41.8,
-   "p_losing": 0.729,
+   "dd_median": -44.4,
+   "dd_bad": -66.8,
+   "p_losing": 0.696,
    "deflated_lab": {
     "dsr": 0.0,
-    "sr0_annual": 1.41,
-    "trials": 2296
+    "sr0_annual": 1.38,
+    "trials": 2344
    },
    "deflated_project": {
     "dsr": 0.0,
-    "sr0_annual": 1.67,
+    "sr0_annual": 1.64,
     "trials": 33000
    }
   },
   "Opening range Nasdaq": {
-   "sharpe": 0.68,
-   "sortino": 1.29,
-   "cagr": 12.5,
-   "max_dd": -37.8,
+   "sharpe": 0.73,
+   "sortino": 1.4,
+   "cagr": 24.3,
+   "max_dd": -62.7,
    "sharpe_ci": [
-    -0.31,
-    1.52
+    -0.27,
+    1.53
    ],
    "cagr_ci": [
-    -7.3,
-    35.1
+    -15.7,
+    74.4
    ],
-   "dd_median": -27.0,
-   "dd_bad": -47.7,
-   "p_losing": 0.087,
+   "dd_median": -48.5,
+   "dd_bad": -75.2,
+   "p_losing": 0.084,
    "deflated_lab": {
-    "dsr": 0.038,
-    "sr0_annual": 1.41,
-    "trials": 2296
+    "dsr": 0.056,
+    "sr0_annual": 1.38,
+    "trials": 2344
    },
    "deflated_project": {
-    "dsr": 0.008,
-    "sr0_annual": 1.67,
+    "dsr": 0.013,
+    "sr0_annual": 1.64,
     "trials": 33000
    }
   }
  },
  "orb_trade_mean": {
-  "mean": 0.132,
+  "mean": 0.143,
   "ci": [
-   -0.037,
-   0.311
+   -0.028,
+   0.324
   ],
-  "days": 1095,
-  "trades": 1095
+  "days": 1106,
+  "trades": 1106
  },
  "orb_micro": {
-  "R": 128.9,
-  "sharpe": 0.63,
-  "skipped": 1,
-  "note": "$100,000 account, 0.5% risk, rounded down to whole MNQ contracts"
+  "R": 140.8,
+  "sharpe": 0.66,
+  "skipped": 0,
+  "note": "$100,000 account, 1.0% risk, rounded down to whole MNQ contracts"
  },
  "buy_and_hold": {
   "NQ": {
-   "sharpe": 0.8,
-   "cagr": 15.3,
+   "sharpe": 0.71,
+   "cagr": 13.5,
    "max_dd": -32.5
   },
   "ES": {
-   "sharpe": 0.81,
-   "cagr": 11.8,
+   "sharpe": 0.78,
+   "cagr": 11.4,
    "max_dd": -24.4
   }
  },
  "random_entries": {
   "NQ": {
-   "R": 3.6,
-   "sharpe": 0.02
+   "R": 15.1,
+   "sharpe": 0.07
   },
   "ES": {
-   "R": -75.0,
-   "sharpe": -0.27
+   "R": -79.4,
+   "sharpe": -0.28
   }
  },
  "risk_levels": [
   {
    "risk": 0.25,
-   "cagr": 5.6,
+   "cagr": 6.3,
    "dd": -29.8,
-   "dd_bad": -35.0,
-   "p_halved": 0.002
+   "dd_bad": -34.4,
+   "p_halved": 0.001
   },
   {
    "risk": 0.5,
-   "cagr": 10.1,
+   "cagr": 11.5,
    "dd": -51.5,
-   "dd_bad": -58.9,
-   "p_halved": 0.135
+   "dd_bad": -58.2,
+   "p_halved": 0.129
   },
   {
    "risk": 1.0,
-   "cagr": 15.3,
+   "cagr": 18.3,
    "dd": -78.1,
-   "dd_bad": -85.6,
-   "p_halved": 0.739
+   "dd_bad": -84.9,
+   "p_halved": 0.718
   },
   {
    "risk": 2.0,
-   "cagr": 9.7,
+   "cagr": 15.4,
    "dd": -96.5,
-   "dd_bad": -99.0,
-   "p_halved": 0.994
+   "dd_bad": -98.9,
+   "p_halved": 0.996
   }
  ]
 }

@@ -1,31 +1,31 @@
 ---
 type: level
-updated: 2026-10-31
-built_from: 1487 days of prices (2021-01-04 to 2026-10-01)
+updated: 2026-11-02
+built_from: 1508 days of prices (2021-01-04 to 2026-10-30)
 ---
 # Yesterday's high
 
-Only 26 trades so far, so nothing solid yet about trading sweeps of yesterday's high.
+Only 27 trades so far, so nothing solid yet about trading sweeps of yesterday's high.
 
 ## Everywhere
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| Yesterday's high | 1099 | 61% | 10% | 26 | 42% | +0.14R |
+| Yesterday's high | 1114 | 61% | 10% | 27 | 41% | +0.10R |
 
 ## By market
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| [[Nasdaq]] | 271 | 59% | 11% | 8 | 38% | +0.11R |
-| [[S&P 500]] | 270 | 58% | 8% | 5 | 60% | +0.70R |
+| [[Nasdaq]] | 272 | 58% | 11% | 8 | 38% | +0.11R |
+| [[S&P 500]] | 273 | 58% | 8% | 5 | 60% | +0.70R |
 
 ## By session
 
 | | times swept | came back | then flipped | trades | won | per trade |
 |---|---|---|---|---|---|---|
-| [[London (session)]] | 369 | 58% | 5% | 6 | 33% | -0.13R |
-| [[New York (session)]] | 730 | 62% | 13% | 20 | 45% | +0.22R |
+| [[London (session)]] | 372 | 58% | 5% | 6 | 33% | -0.13R |
+| [[New York (session)]] | 742 | 62% | 13% | 21 | 43% | +0.16R |
 
 Columns: how many times price poked past it, how often it came back (a sweep, not a breakout), how often the trend then clearly flipped, and what a simple trade (enter at the order block, target 2× the risk) would have done. [[What R means]].
 

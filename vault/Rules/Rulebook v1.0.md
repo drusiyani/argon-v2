@@ -12,7 +12,7 @@ The current rules, in plain English. Every month the settings are re-picked from
 
 1. **Pick a level.** It has to be an important one: a [[Session levels|session level]], a 15-minute or hourly high or low, or two near-equal highs or lows.
 2. **Wait for a sweep.** Price must poke past it and close back within 10 minutes, during London 2–5am only.
-3. **Day's direction:** only trade in the same direction as yesterday (sell if yesterday fell, buy if it rose).
+3. **Day's direction:** sell in the top half of yesterday's range, buy in the bottom half.
 4. **Markets disagree ([[SMT]]):** not required.
 5. **Trend flip.** Within 40 minutes, with a big candle.
 6. **Entry.** Wait for price to come back to the [[Price gap (FVG)|price gap]] (or the order block if there's no gap). Give up after an hour, or if price hits the target first.
@@ -22,7 +22,7 @@ Stop loss just past the sweep. Target: 2× the risk. Markets: Nasdaq, S&P 500 an
 
 ## [[The order-block strategy]]
 
-Buy or sell the first time price comes back to a fresh 15-minute order block, if the hourly trend agrees. Markets: Nasdaq only. Session: New York 8:30–10am only. Same risk rules.
+Buy or sell the first time price comes back to a fresh 15-minute order block, if the hourly trend agrees. Markets: Nasdaq only. Session: London 2–5am only. Same risk rules.
 
 ## Settings Claude is allowed to change
 
