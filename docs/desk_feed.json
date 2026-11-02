@@ -53,27 +53,27 @@
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-02T19:08Z"
+   "updated": "2026-11-02T19:26Z"
   },
   "ES": {
-   "direction": "up",
-   "confidence": 0.6,
+   "direction": "down",
+   "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-02T19:08Z"
+   "updated": "2026-11-02T19:27Z"
   },
   "YM": {
-   "direction": "down",
-   "confidence": 0.6,
+   "direction": "up",
+   "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-02T19:08Z"
+   "updated": "2026-11-02T19:27Z"
   },
   "RTY": {
    "direction": "down",
-   "confidence": 0.6,
+   "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-02T19:08Z"
+   "updated": "2026-11-02T19:27Z"
   }
  },
  "checked": "2026-11-02 19:15 UTC",
- "updated": "2026-11-02 19:15 UTC"
+ "updated": "2026-11-02 19:28 UTC"
 }
