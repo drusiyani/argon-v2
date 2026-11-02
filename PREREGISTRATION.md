@@ -158,3 +158,8 @@ Designed after a 6-member council review (statistician, risk manager, trader, AI
 - **Measured:** each member's accuracy and Brier score, the council's, how often two members are wrong on the same day compared
   with what independence would predict (do they make different mistakes?), and the council's trading result. Judged only after
   at least **250 counted sessions**.
+
+### Amendment 5 (3 November 2026): the per-setup desk is retired
+- The four-agent desk that judged the original strategy's setups is switched off and its code moved to `engine/retired/`,
+  unchanged. It never judged a setup (see `engine/retired/README.md`). The AI's role in Argon v2 is now the morning call and the
+  council (Amendments 4 and 4b). The 3D desk becomes the window onto those, the book's live view and the official ledger.

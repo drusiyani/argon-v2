@@ -1,4 +1,4 @@
-name: Argon v2 desk (live AI agents)
+name: Argon v2 desk (morning call, council, Kronos, live view)
 
 # GitHub only ran the old every-15-minutes schedule about twice a day, so fresh setups (under 30 minutes old) were never
 # judged. Now each run starts before a session and STAYS ALIVE, checking every 5 minutes until the session ends.
@@ -47,7 +47,6 @@ jobs:
             python engine/fetch_data.py || echo "prices skipped"
             if [ $((i % 3)) -eq 0 ]; then python engine/kronos.py || echo "Kronos skipped"; fi
             python engine/daytype.py || echo "day-type forecast failed"      # only acts 8:45-9:25 New York, once a day
-            python engine/agents.py || echo "desk run failed this round"
             python engine/daytype_score.py || echo "day-type score skipped"
             python engine/desk_feed.py || echo "feed skipped"
             for p in data/desk_calls.jsonl data/agent_memory data/kronos.json data/daytype.jsonl data/daytype_score.json docs/desk_feed.json; do [ -e "$p" ] && git add -A "$p"; done
