@@ -1,5 +1,20 @@
 # Argon v2
 
+> **Current state (Nov 2026).** The book is four pre-registered intraday strategies on Nasdaq and S&P futures (QuantLab, noise band,
+> ATR band, expiry reversal), tested on Databento 1-minute data. Paper trading starts **1 January 2027**; the rules freeze
+> **31 Dec 2026 23:59 UTC**. See `PREREGISTRATION.md` for every rule change.
+>
+> - **About 2011–2020:** that data was sealed until 28 Oct 2026, opened once, and has been used since for comparisons, so it is
+>   **no longer an independent test**. The book lost money on it.
+> - **The official live book** is `engine/live.py`: every night after the close it runs the exact backtest code on that day's
+>   Databento data and appends to a hash-chained ledger in `data/ledger/` (practice runs from 16 Nov 2026 in
+>   `data/ledger_practice/`). Workflow: `.github/workflows/live.yml`. The 5-minute live view on the site and desk
+>   (`engine/live_view.py`, Yahoo bars) is **unofficial**; the ledger is the record.
+> - Handy commands: `python engine/holding.py` (what am I holding?), `python engine/replay.py 2026-10-16` (replay any day),
+>   `python engine/alert.py "title" "msg"` (test the phone alert; needs the `NTFY_TOPIC` secret).
+>
+> Everything below this box describes the original v2 (the liquidity-sweep farm and the retired agent desk) and is kept for history.
+
 A research site that tests a liquidity-sweep trading strategy on the same markets as Argon v1's Kronos indices bot: Nasdaq, S&P 500, Dow and Russell 2000 futures, with no real money. Big players often push price just past obvious highs and lows to trigger stop orders, then reverse. Argon v2 finds those moments, decides whether to trade them, and keeps a record of every decision and result.
 
 Goes live on **1 January 2027**, but only if it passes the success criteria shown on the site.

@@ -48,8 +48,9 @@ jobs:
             if [ $((i % 3)) -eq 0 ]; then python engine/kronos.py || echo "Kronos skipped"; fi
             python engine/daytype.py || echo "day-type forecast failed"      # only acts 8:45-9:25 New York, once a day
             python engine/daytype_score.py || echo "day-type score skipped"
+            python engine/live_view.py || echo "live view skipped"     # UNOFFICIAL: same book code on Yahoo bars
             python engine/desk_feed.py || echo "feed skipped"
-            for p in data/desk_calls.jsonl data/agent_memory data/kronos.json data/daytype.jsonl data/daytype_score.json docs/desk_feed.json; do [ -e "$p" ] && git add -A "$p"; done
+            for p in data/desk_calls.jsonl data/agent_memory data/kronos.json data/daytype.jsonl data/daytype_score.json docs/desk_feed.json docs/data/live_view.json data/alerts.jsonl; do [ -e "$p" ] && git add -A "$p"; done
             if ! git diff --cached --quiet; then
               git commit -m "desk: $(date -u +%H:%M)" -q
               git stash --include-untracked -q 2>/dev/null || true

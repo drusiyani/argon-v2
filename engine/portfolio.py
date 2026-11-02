@@ -23,12 +23,23 @@ CONFIG = dict(risk_pct=1.0, start_usd=100000, daily_loss_limit=None, amendment=3
               freeze='2026-12-31T23:59:00Z')
 GROUPS = ('quantlab', 'noiseband', 'atrband', 'expiry')
 
-def book(cx=1.0):
-    kw = CONFIG['strategies']; out = []
-    out += c.walkforward(c.quantlab('NQ', **kw['quantlab']), cx)
-    out += c.walkforward(c.noiseband('NQ', **kw['noiseband']), cx)
-    out += c.atrband('NQ', **kw['atrband'])
-    out += c.opex('NQ', **kw['expiry']) + c.opex('ES', **kw['expiry'])
+_RAW = {}
+def raw():
+    """Every variant's trades, before the monthly re-pick. Cached, so book(1x) and book(2x) share one strategy run."""
+    if not _RAW:
+        kw = CONFIG['strategies']
+        _RAW.update(quantlab=c.quantlab('NQ', **kw['quantlab']), noiseband=c.noiseband('NQ', **kw['noiseband']),
+                    atrband=c.atrband('NQ', **kw['atrband']), expiry=c.opex('NQ', **kw['expiry']) + c.opex('ES', **kw['expiry']))
+    return _RAW
+
+def book(cx=1.0, skipped=None):
+    """The official book. If `skipped` is a list, the trades the cost rule removed are added to it."""
+    r = raw(); out = []
+    out += [dict(t) for t in c.walkforward(r['quantlab'], cx)]       # copies, so nothing downstream edits the cache
+    out += [dict(t) for t in c.walkforward(r['noiseband'], cx)]
+    out += [dict(t) for t in r['atrband']]
+    out += [dict(t) for t in r['expiry']]
+    if skipped is not None: skipped += [t for t in out if t['cost'] > CONFIG['cost_cap_R']]
     out = [t for t in out if t['cost'] <= CONFIG['cost_cap_R']]      # cost known at entry: skip trades where costs eat over 10% of 1R
     for t in out: t['w'] = 1.0
     return sorted(out, key=lambda t: (t['date'], t['entry_min']))
@@ -101,7 +112,7 @@ if __name__ == '__main__':
                killed=killed, window=[months[0], months[-1]], main=main, double_costs={k: dbl[k] for k in ('sharpe', 'R', 'final', 'a_year', 'worst_drop')},
                shadow={k: shadow[k] for k in ('sharpe', 'R', 'final', 'a_year', 'worst_drop', 'equity', 'years')}, shadow_weights_latest=W.get(months[-1]),
                trades_by_strategy=dict(by), recent_trades=recent, daily_R=daily,
-               honesty=["Most of this history is in-sample: the strategies and their settings were picked by looking at it.", "On 2011-2020, ten years never used to build it, this book lost money: about -7% over the decade at 1% risk, with a -70% drop during 2011-2017. It only works in the more volatile markets since 2018.", "So it is a bet that today's market regime continues. Expect live results well below the backtest."])
+               honesty=["Most of this history is in-sample: the strategies and their settings were picked by looking at it.", "On 2011-2020 (sealed until 28 Oct 2026, opened once, used since for comparisons, so no longer an independent test), this book lost money: about -7% over the decade at 1% risk, with a -70% drop during 2011-2017. It only works in the more volatile markets since 2018.", "So it is a bet that today's market regime continues. Expect live results well below the backtest."])
     json.dump(out, open(os.path.join(ROOT, 'data', 'portfolio.json'), 'w'), indent=1)
     os.makedirs(os.path.join(ROOT, 'docs', 'data'), exist_ok=True)
     cd = chart_data(trades); cd['daily_R'] = {d: v[0] for d, v in daily.items()}

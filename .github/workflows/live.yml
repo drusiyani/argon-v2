@@ -1,0 +1,61 @@
+name: Argon v2 live book (nightly ledger)
+
+# The OFFICIAL paper book (engine/live.py): after the close, top up Databento 1-minute data, then book every finished session
+# since the last run into the hash-chained ledger. Two schedules because GitHub often starts cron jobs hours late; missed
+# days are caught up automatically, and running twice never books a day twice.
+on:
+  schedule:
+    - cron: "15 22 * * 1-5"     # after the US close
+    - cron: "30 2 * * 2-6"      # backup, in case the first one was very late or failed
+  workflow_dispatch:
+    inputs:
+      book:
+        description: "practice or official (blank = by date)"
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: argon-v2-writer        # shares the farm's lane, so they never save over each other
+  cancel-in-progress: false
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Top up Databento data (pennies)
+        env:
+          DATABENTO_API_KEY: ${{ secrets.DATABENTO_API_KEY }}
+        run: python engine/fetch_live.py
+      - name: Book the finished sessions (kill switch, chain, replay, data gate, positions)
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python engine/live.py ${{ github.event.inputs.book }}
+      - name: Weekly report into the vault (Friday night and Saturday)
+        run: if [ "$(date -u +%u)" -ge 5 ]; then python engine/weekly_report.py; fi
+      - name: Alert if anything failed
+        if: failure()
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python engine/alert.py "Argon: nightly book run failed" "Run ${{ github.run_id }} failed or halted. Check data/ledger*/status.json." high
+      - name: Commit (always, so a halt is published too)
+        if: always()
+        run: |
+          git config user.name "argon-bot"
+          git config user.email "argon-bot@users.noreply.github.com"
+          for p in data/databento data/ledger data/ledger_practice data/alerts.jsonl docs/data/ledger.json vault/Live; do [ -e "$p" ] && git add -A "$p"; done
+          if git diff --cached --quiet; then echo "nothing new to save"; exit 0; fi
+          git commit -m "ledger: $(date -u +%Y-%m-%d)"
+          git stash --include-untracked >/dev/null 2>&1 || true
+          for i in 1 2 3 4 5 6; do
+            if git pull --rebase -X theirs origin main && git push origin HEAD:main; then echo "saved"; exit 0; fi
+            git rebase --abort >/dev/null 2>&1 || true
+            echo "someone else saved first, retrying ($i)"; sleep $((i*15))
+          done
+          exit 1

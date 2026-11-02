@@ -12,6 +12,13 @@ B = J('research', 'results', 'cards_lockbox2010.json', default={}) or {}
 S1 = J('research', 'results', 'summary.json', default={}) or {}
 S2 = J('research', 'results', 'round2', 'summary.json', default={}) or {}
 F = J('docs', 'desk_feed.json', default={}) or {}
+LG = J('docs', 'data', 'ledger.json', default={}) or {}
+LV = J('docs', 'data', 'live_view.json', default={}) or {}
+st = LG.get('status') or {}
+LEDGER = dict(book=LG.get('book'), state=st.get('state'), equity=st.get('equity'), last=st.get('last_booked'), days=st.get('days', 0),
+              checks=st.get('checks', {}), start=st.get('start') or '2026-11-16')
+LIVE = dict(date=LV.get('date'), as_of=LV.get('as_of'), n=len(LV.get('trades', [])), open=sum(1 for t in LV.get('trades', []) if t.get('state') == 'open'),
+            R=round(sum(t.get('R_now', 0) for t in LV.get('trades', [])), 2))
 
 os.makedirs(os.path.join(ROOT, 'docs', 'data'), exist_ok=True)
 notes = []
@@ -30,9 +37,10 @@ cfg = P.get('config') or {}
 DATA = dict(
     risk=cfg.get('risk_pct', 1.0), cost_cap=cfg.get('cost_cap_R', 0.10), live_start='2027-01-01', freeze='2026-12-31T23:59:00Z', killed=P.get('killed', False),
     eras=dict(recent=dict(label='2021–26', note='The backtest. Mostly in-sample: the settings were chosen on it.', book=A.get('book', {}), strategies=A.get('strategies', {})),
-              unseen=dict(label='2011–20', note='Never seen while building it. Opened once, 28 Oct 2026.', book=B.get('book', {}), strategies=B.get('strategies', {}))),
+              unseen=dict(label='2011–20', note='Sealed until 28 Oct 2026, opened once, used since for comparisons, so no longer an independent test.', book=B.get('book', {}), strategies=B.get('strategies', {}))),
     rounds=dict(r1=S1.get('tested', 109), r1s=len(S1.get('survivors', ['Q24'])), r2=S2.get('tested', 17), r2s=len(S2.get('survivors', []))),
     desk=dict(daytype=F.get('daytype'), score=F.get('daytype_score'), kronos=F.get('kronos'), checked=F.get('checked'), calls=(F.get('score') or {}).get('calls', 0)),
+    ledger=LEDGER, live=LIVE,
     built=dt.datetime.now(dt.timezone.utc).strftime('%d %b %Y, %H:%M UTC'))
 tpl = open(os.path.join(ROOT, 'engine', 'site_template.html'), encoding='utf-8').read()
 page = tpl.replace('/*__DATA__*/null', json.dumps(DATA, separators=(',', ':')).replace('</', '<\\/'))

@@ -76,3 +76,52 @@ def test_strategy_results_pinned(c, name):
     n, R = PINS[name]
     assert len(t) == n, f'{name}: {len(t)} trades, pinned {n}'
     assert abs(sum(x['gross'] - x['cost'] for x in t) - R) < 0.05, f'{name}: result changed from {R}R'
+
+# ---------------------------------------------------------------- live paper book (Task 1, Amendment 6)
+def _live():
+    import live
+    return live
+
+def test_live_fetches_all_four_markets():
+    """Rolls come from the days all four markets share, so the nightly top-up must fetch all four (council point 3)."""
+    import fetch_databento as fd
+    assert set(fd.MARKETS) == set(_live().MARKETS) == {'NQ', 'ES', 'YM', 'RTY'}
+
+def test_live_sizing_rounds_down():
+    lv = _live()
+    assert lv.contracts(dict(sym='NQ', risk_pts=89.75), 98783.86, 1.0) == 5          # $987.84 / $179.50 = 5.5 -> 5
+    assert lv.contracts(dict(sym='NQ', risk_pts=600.0), 100000, 1.0) == 0           # $1,200 a micro: too wide, skipped
+    assert lv.contracts(dict(sym='ES', risk_pts=19.9), 100000, 1.0) == 10           # $5/pt
+    assert lv.contracts(dict(sym='NQ', risk_pts=0.5), 100000, 1.0) == lv.MAX_CONTRACTS
+
+def test_live_chain_detects_edits():
+    lv = _live(); prev = '0' * 64; L = []
+    for i, d in enumerate(('2027-01-04', '2027-01-05')):
+        e = dict(seq=i, date=d, status='booked', equity_start=1.0, equity_end=1.0, trades=[], skipped=[], prev_hash=prev); e['hash'] = lv.ehash(e); prev = e['hash']; L.append(e)
+    assert lv.verify_chain(L) is None
+    L[0]['equity_end'] = 2.0; assert 'edited' in lv.verify_chain(L)
+    L[0]['hash'] = lv.ehash(L[0]); assert 'link' in lv.verify_chain(L)               # re-hashing one entry breaks the next link
+
+def test_live_band_preregistered():
+    p = os.path.join(ROOT, 'research', 'results', 'live_band.json')
+    assert hashlib.sha256(open(p, 'rb').read()).hexdigest() == '9f5992a96a67a4e7aa6e3a2deef81697af455f8148b16e6169b09a71102c03e4', 'the band is pre-registered (Amendment 6)'
+
+def test_live_practice_october(c, tmp_path):
+    """A full practice book over October 2026 on real data: books 22 days, re-running books nothing and passes the replay check,
+    and editing the ledger halts the book."""
+    import datetime as dt, json as js
+    from zoneinfo import ZoneInfo
+    lv = _live(); old = lv.BOOKS['practice']['start']; lv.BOOKS['practice']['start'] = '2026-10-01'
+    try:
+        now = dt.datetime(2026, 10, 31, 12, 0, tzinfo=ZoneInfo('America/New_York'))
+        assert lv.run('practice', now=now, root=str(tmp_path)) == 0
+        f = tmp_path / 'data' / 'ledger_practice'; st = js.load(open(f / 'status.json'))
+        assert st['days'] == 22 and st['trades'] == 54 and abs(st['equity'] - 102235.64) < 0.01, st
+        assert 'flat' in st['checks']['positions']
+        assert lv.run('practice', now=now, root=str(tmp_path)) == 0
+        st = js.load(open(f / 'status.json')); assert st['booked_now'] == [] and st['checks']['replay'].startswith('ok (22')
+        lines = open(f / 'ledger.jsonl').read().splitlines(); e = js.loads(lines[3]); e['equity_end'] += 1; lines[3] = js.dumps(e, sort_keys=True)
+        open(f / 'ledger.jsonl', 'w').write('\n'.join(lines) + '\n')
+        assert lv.run('practice', now=now, root=str(tmp_path)) == 2
+        assert js.load(open(f / 'status.json'))['state'] == 'halted: chain broken'
+    finally: lv.BOOKS['practice']['start'] = old

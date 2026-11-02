@@ -163,3 +163,23 @@ Designed after a 6-member council review (statistician, risk manager, trader, AI
 - The four-agent desk that judged the original strategy's setups is switched off and its code moved to `engine/retired/`,
   unchanged. It never judged a setup (see `engine/retired/README.md`). The AI's role in Argon v2 is now the morning call and the
   council (Amendments 4 and 4b). The 3D desk becomes the window onto those, the book's live view and the official ledger.
+
+### Amendment 6 (2 November 2026): the live paper book
+- **The official record is the nightly ledger**, `engine/live.py`, built to the council review in `research/COUNCIL_LIVE.md`
+  (committed before the code). It runs the exact backtest code (`engine/portfolio.py` → `research/common.py`) every night on that
+  day's Databento 1-minute data. There is no separate live version of any strategy.
+- **Money:** $100,000 on 1 Jan 2027. Micro contracts (MNQ $2/pt, MES $5/pt), rounded DOWN to whole contracts at 1% of the
+  account, capped at 200 per trade; the account compounds in dollars day by day (every trade sized from that morning's account).
+  A trade too wide for one micro is logged as skipped. Costs: the research costs in points (official); a double-cost ledger runs alongside.
+- **Ledger:** append-only, one entry per session, trade id `strategy|symbol|date|entry minute|variant`, each entry hashed and
+  linked to the previous one, with the code commit and each market's last bar recorded. Published daily in `data/ledger/`.
+- **Every run, in order:** kill switch; chain check; **replay check** (every booked day is rebuilt with today's code and data and
+  must match exactly, else the book halts and alerts; the ledger is never rewritten); data gate (a session is booked only when all
+  four markets' data reaches past 16:00 New York); book every missed session; position check (flat after the close, else halt).
+- **"Consistent with the backtest", fixed now:** `research/results/live_band.json`, sha256
+  `9f5992a96a67a4e7aa6e3a2deef81697af455f8148b16e6169b09a71102c03e4`. After k finished live months (k = 1..12), the live rule-R so
+  far (every trade the rules took, including ones too small for a micro) is compared with the 5th–95th percentile of the
+  backtest's rolling k-month sums (Jul 2021 – Sep 2026). It is a flag, never a stop rule, and it is optimistic (mostly in-sample).
+- **Unofficial live view:** the same code on Yahoo intraday bars, every 5 minutes in the desk loop. Always labelled unofficial.
+- **Practice book** from 16 Nov 2026 in `data/ledger_practice/`, same code, so bugs show up before 1 Jan.
+- Small code change with no effect on results: each trade now also records its entry price (stop and exit follow from it).

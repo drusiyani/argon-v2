@@ -83,9 +83,13 @@ def daily(s):
         atr[dl[k]] = sum(max(D[dl[j]]['h'] - D[dl[j]]['l'], abs(D[dl[j]]['h'] - D[dl[j - 1]]['c']), abs(D[dl[j]]['l'] - D[dl[j - 1]]['c'])) for j in range(k - 14, k)) / 14
     _D[s] = (D, dl, atr); return _D[s]
 
-def trade(strat, s, d, variant, side, emin, xmin, risk_pts, pnl_pts):
-    return dict(strat=strat, sym=s, date=d, month=d[:7], variant=variant, side=side, entry_min=emin, exit_min=xmin,
-                risk_pts=risk_pts, gross=pnl_pts / risk_pts, cost=COST[s] / risk_pts)
+def trade(strat, s, d, variant, side, emin, xmin, risk_pts, pnl_pts, entry=None):
+    """entry = the fill price the rules assume (slippage included). stop = entry - side*risk, exit = entry + side*pnl.
+    Added 2 Nov 2026 for the live ledger; it changes no result."""
+    t = dict(strat=strat, sym=s, date=d, month=d[:7], variant=variant, side=side, entry_min=emin, exit_min=xmin,
+             risk_pts=risk_pts, gross=pnl_pts / risk_pts, cost=COST[s] / risk_pts)
+    if entry is not None: t.update(entry=entry, stop=entry - side * risk_pts, exit=entry + side * pnl_pts)
+    return t
 
 def walkx(P, s, sess, side, entry, stop, risk, trail=None, atrd=None, be=None, partial=None):
     """1-minute walk used by ATR band and expiry. Stop slippage 1 tick. With no extras it is the original walk()."""
@@ -205,7 +209,7 @@ def quantlab(s='NQ', ema=12, chands=(2, 3), stops=('candle', 'atr'), stop_atr=0.
                     stp = max(stp, ts) if side == 1 else min(stp, ts)
             if res is None: continue
             if got is not None: res = 0.5 * got + 0.5 * res
-            out.append(trade('quantlab', s, d, vi, side, emin, xm, risk, res))
+            out.append(trade('quantlab', s, d, vi, side, emin, xm, risk, res, entry))
     return out
 
 # ---------------------------------------------------------------- 2. Noise band (Zarattini/Aziz/Barbon), from orig_deep.py part B
@@ -250,24 +254,24 @@ def noiseband(s='NQ', look=14, freqs=(30, 60), mults=(1.0, 1.5), stops=('band', 
             for x in rows:
                 m, o, h, l, c, v = x; tp = (h + l + c) / 3; pv += tp * v; vv += v; vwap = pv / vv if vv else c
                 if m >= fl:
-                    if pos: out.append(trade('noiseband', s, d, vi, pos, em, m, unit, (c - ent) * pos))
+                    if pos: out.append(trade('noiseband', s, d, vi, pos, em, m, unit, (c - ent) * pos, ent))
                     pos = 0; break
                 if pos and trail:       # optional trailing stop, checked every minute, in band units
                     best = max(best, h) if pos == 1 else min(best, l); ts = best - pos * trail * unit
                     if (l <= ts) if pos == 1 else (h >= ts):
-                        out.append(trade('noiseband', s, d, vi, pos, em, m, unit, (ts - pos * TK - ent) * pos)); pos = 0; continue
+                        out.append(trade('noiseband', s, d, vi, pos, em, m, unit, (ts - pos * TK - ent) * pos, ent)); pos = 0; continue
                 if m < start or (m - 570) % freq != freq - 1: continue
                 sg = stt.mean(sig_by_m[m]) if sig_by_m[m] else None
                 if not sg: continue
                 up = hi_ref * (1 + mult * sg); dn = lo_ref * (1 - mult * sg)
                 if pos == 1 and (c < up if stopk == 'band' else c < max(up, vwap)) or pos == -1 and (c > dn if stopk == 'band' else c > min(dn, vwap)):
-                    out.append(trade('noiseband', s, d, vi, pos, em, m, unit, (c - pos * TK - ent) * pos)); pos = 0
+                    out.append(trade('noiseband', s, d, vi, pos, em, m, unit, (c - pos * TK - ent) * pos, ent)); pos = 0
                 if pos == 0 and m <= cutoff and (c > up or c < dn):
                     sd = 1 if c > up else -1
                     if confirm and pend != sd: pend = sd; continue      # need two decisions in a row outside the band
                     pos = sd; ent = c + pos * TK; unit = max(1e-6, mult * sg * op); em = m + 1; best = ent
                 elif pos == 0: pend = 0
-            if pos and rows: out.append(trade('noiseband', s, d, vi, pos, em, rows[-1][0], unit, (rows[-1][4] - ent) * pos))
+            if pos and rows: out.append(trade('noiseband', s, d, vi, pos, em, rows[-1][0], unit, (rows[-1][4] - ent) * pos, ent))
     return out
 
 # ---------------------------------------------------------------- 3. ATR band
@@ -299,7 +303,7 @@ def atrband(s='NQ', mult=0.5, step=15, trail=None, be=None, partial=None, maxent
                     if risk > 2 * SL[s]:
                         sess = [x for x in r[ek:] if mins[x] < ex + 1]
                         pnl, x = walkx(P, s, sess, side, entry, stop, risk, trail=trail, atrd=atr[d], be=be, partial=partial)
-                        out.append(trade('atrband', s, d, 0, side, mins[e], mins[x], risk, pnl)); cnt += 1
+                        out.append(trade('atrband', s, d, 0, side, mins[e], mins[x], risk, pnl, entry)); cnt += 1
                         k = r.index(x) + 1; continue
             k += 1
     return out
@@ -325,7 +329,7 @@ def opex(s='NQ', em=571, xm=720, stopk=0.25, nostop=False, cond=False, placebo=F
             else: sess = sess[1:]; entry = O[sess[0]] - SL[s]
         risk = (H[r[0]] - L[r[0]]) + stopk * atr[d]; stop = entry + (1e9 if nostop else risk)
         pnl, x = walkx(P, s, sess, -1, entry, stop, risk)
-        out.append(trade('expiry', s, d, 0, -1, mins[sess[0]], mins[x], risk, pnl))
+        out.append(trade('expiry', s, d, 0, -1, mins[sess[0]], mins[x], risk, pnl, entry))
     return out
 
 # ---------------------------------------------------------------- walk-forward re-pick + scoring
