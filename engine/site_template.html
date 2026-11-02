@@ -138,18 +138,32 @@ table.tt th{color:var(--quiet);font-family:inherit}table.tt td:first-child,table
 .pager>.view.off{height:0;overflow:hidden;visibility:hidden;content-visibility:hidden}
 .pager>.view.peek{visibility:visible;content-visibility:visible;height:auto;overflow:visible}
 .pager.anim{transition:transform .42s cubic-bezier(.2,.9,.25,1.04)}
-/* ---------- bottom tab bar (phones) with a bubble you can tap or drag */
+/* ---------- bottom tab bar (phones): black bar + a clear liquid-glass lens you can tap or drag. It stands taller than the
+   bar, magnifies what's under it, and stretches with speed while it moves, then springs back. */
 .tabbar{display:none}
 @media (max-width:820px){
  .dock{display:none}
- .tabbar{position:fixed;z-index:40;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:repeat(5,1fr);
-  padding:6px;border-radius:26px;touch-action:none;user-select:none;-webkit-user-select:none;
-  background:color-mix(in srgb,var(--bg) 72%,transparent);border:1px solid var(--edge);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 12px 30px -12px var(--shade)}
- .tabbar a{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 0 5px;color:var(--quiet);text-decoration:none;font-size:10.5px;transition:color .25s;-webkit-tap-highlight-color:transparent}
- .tabbar a svg{width:20px;height:20px}.tabbar a.on{color:var(--ink)}
- .tabbar .bubble{position:absolute;z-index:0;top:6px;bottom:6px;left:6px;width:calc((100% - 12px)/5);border-radius:20px;background:var(--glass2);border:1px solid var(--edge2);
-  transition:transform .42s cubic-bezier(.3,1.35,.4,1);will-change:transform}
- .tabbar.drag .bubble{transition:none;transform-origin:center}
+ .tabbar{position:fixed;z-index:40;left:14px;right:14px;bottom:calc(16px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:repeat(5,1fr);
+  padding:5px 6px;border-radius:999px;touch-action:none;user-select:none;-webkit-user-select:none;background:#0a0a0b;
+  border:1px solid rgba(255,255,255,.08);box-shadow:0 18px 40px -14px rgba(0,0,0,.7),0 1px 0 rgba(255,255,255,.06) inset}
+ .tabbar a{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 0 6px;color:rgba(255,255,255,.42);text-decoration:none;font-size:10.5px;font-weight:500;
+  transition:color .3s,transform .35s cubic-bezier(.3,1.4,.4,1);-webkit-tap-highlight-color:transparent}
+ .tabbar a svg{width:21px;height:21px;transition:transform .35s cubic-bezier(.3,1.4,.4,1),filter .3s}
+ .tabbar a.on{color:#fff}.tabbar a.on svg{filter:drop-shadow(0 0 6px rgba(255,255,255,.55))}
+ .tabbar a.lens{transform:scale(1.14)}                                   /* magnified under the glass */
+ .tabbar .bubble{position:absolute;z-index:2;pointer-events:none;top:0;bottom:0;left:6px;width:calc((100% - 12px)/5);
+  transform:translateX(var(--x,0px));transition:transform .5s cubic-bezier(.28,1.32,.42,1);will-change:transform}
+ .tabbar .bubble i{position:absolute;inset:-11px -5px;border-radius:30px;display:block;
+  transform:scale(calc(var(--lift,1) * var(--sx,1)),calc(var(--lift,1) * var(--sy,1)));transition:transform .45s cubic-bezier(.28,1.5,.4,1);
+  background:radial-gradient(120% 90% at 50% 50%,rgba(255,255,255,0) 55%,rgba(255,255,255,.07) 100%),rgba(255,255,255,.025);
+  -webkit-backdrop-filter:brightness(1.2) saturate(1.5);backdrop-filter:brightness(1.2) saturate(1.5);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.26),inset 0 1.5px 1.5px rgba(255,255,255,.6),inset 0 -1.5px 1.5px rgba(255,255,255,.38),
+   inset 2px 0 3px -1px rgba(110,170,255,.35),inset -2px 0 3px -1px rgba(255,170,110,.28),0 10px 24px -8px rgba(0,0,0,.65)}
+ .tabbar .bubble i::before,.tabbar .bubble i::after{content:"";position:absolute;left:16%;right:16%;height:9px;border-radius:99px;filter:blur(.4px)}
+ .tabbar .bubble i::before{top:3px;background:linear-gradient(rgba(255,255,255,.62),rgba(255,255,255,0));box-shadow:-4px 1px 5px -2px rgba(90,160,255,.55),4px 1px 5px -2px rgba(255,140,90,.45)}
+ .tabbar .bubble i::after{bottom:3px;background:linear-gradient(rgba(255,255,255,0),rgba(255,255,255,.4));box-shadow:-4px -1px 5px -2px rgba(255,120,200,.45),4px -1px 5px -2px rgba(120,220,255,.5)}
+ .tabbar.drag .bubble{transition:none}
+ .tabbar.press .bubble i{--lift:1.12}                                    /* the glass lifts under your finger */
 }
 footer{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,40px) 40px clamp(16px,calc(4vw + 56px),104px);color:var(--faint);font-size:12px;display:flex;flex-wrap:wrap;gap:6px 18px}
 footer a{color:var(--quiet)}
@@ -160,7 +174,7 @@ footer a{color:var(--quiet)}
  main{padding:calc(76px + env(safe-area-inset-top,0px)) 16px calc(96px + env(safe-area-inset-bottom,0px))}footer{padding:0 16px calc(96px + env(safe-area-inset-bottom,0px))}
  .docs{grid-template-columns:1fr}.docs aside{position:static;max-height:42vh}.fails,.steps{grid-template-columns:1fr}.chip.hide-s{display:none}}
 @media (max-width:520px){.kpis,.strats{grid-template-columns:1fr}.big{height:220px}}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-delay:0ms!important;transition-duration:.001ms!important}.rise{opacity:1;transform:none}.pager{transition:none!important}.tabbar .bubble{transition:none!important}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-delay:0ms!important;transition-duration:.001ms!important}.rise{opacity:1;transform:none}.pager{transition:none!important}.tabbar .bubble,.tabbar .bubble i{transition:none!important}}
 ::view-transition-old(root){animation:vtout .28s ease both}::view-transition-new(root){animation:vtin .45s cubic-bezier(.2,.8,.2,1) both}
 @keyframes vtout{to{opacity:0}}@keyframes vtin{from{opacity:0}}
 </style></head><body>
@@ -196,7 +210,7 @@ footer a{color:var(--quiet)}
   <div class="panel glass rise" style="--d:1;padding:8px"><iframe class="deskf" id="deskf" data-src="desk.html" title="The Argon desk: agents in their rooms passing real messages"></iframe></div>
  </section>
 </div></div></main>
-<nav class="tabbar" id="tabbar" aria-label="Sections"><span class="bubble" aria-hidden="true"></span></nav>
+<nav class="tabbar" id="tabbar" aria-label="Sections"><span class="bubble" aria-hidden="true"><i></i></span></nav>
 <footer><span>Argon v2 · built by Dru Siyani · <span id="built"></span></span><a href="https://github.com/drusiyani/argon-v2/blob/main/PREREGISTRATION.md">Pre-registration</a><a href="https://github.com/drusiyani/argon-v2/tree/main/research">Research code</a><span>Paper trading only. Not financial advice.</span></footer>
 
 <script>const DATA=/*__DATA__*/null;</script>
@@ -371,7 +385,16 @@ function mark(t){$$('[data-t]').forEach(a=>a.classList.toggle('on',a.dataset.t==
 const IDX=Object.fromEntries(TABS.map(([k],i)=>[k,i])),PG=$('#pager');
 function ensure(t){if(!init[t]){init[t]=1;({overview,chart:chartTab,research:researchTab,brain:brainTab,desk:()=>{const f=$('#deskf');f.src=f.dataset.src}}[t])()}}
 function place(x,anim){PG.classList.toggle('anim',!!anim&&!reduce);PG.style.transform=`translate3d(${x}px,0,0)`}
-function bubble(pos,anim){const tb=$('#tabbar');if(!tb)return;const b=tb.querySelector('.bubble'),w=(tb.clientWidth-12)/TABS.length;tb.classList.toggle('drag',!anim);b.style.transform=`translateX(${pos*w}px)`}
+// liquid glass: stretches along the direction of travel with speed (and thins a little), then springs back when it stops
+let bp=null,bt=0,brest=0;
+function bubble(pos,anim){const tb=$('#tabbar');if(!tb||!tb.clientWidth)return;const b=tb.querySelector('.bubble'),g=b.firstChild,w=(tb.clientWidth-12)/TABS.length,now=performance.now();
+ tb.classList.toggle('drag',!anim);b.style.setProperty('--x',pos*w+'px');
+ let st=1;
+ if(!reduce){if(!anim&&bp!=null)st=Math.min(1.42,1+Math.abs(pos-bp)/Math.max(10,now-bt)*1000*.055);
+  else if(anim&&bp!=null&&Math.abs(pos-bp)>.4)g.animate([{transform:'scale(1)'},{transform:`scale(${Math.min(1.45,1.12+Math.abs(pos-bp)*.08)},.9)`,offset:.35},{transform:'scale(.97,1.03)',offset:.75},{transform:'scale(1)'}],{duration:520,easing:'cubic-bezier(.3,.7,.3,1)'})}
+ g.style.setProperty('--sx',st);g.style.setProperty('--sy',1/Math.sqrt(st));bp=pos;bt=now;
+ clearTimeout(brest);if(st>1)brest=setTimeout(()=>{g.style.setProperty('--sx',1);g.style.setProperty('--sy',1)},90);
+ const k=Math.round(pos);tb.querySelectorAll('a').forEach((a,i)=>a.classList.toggle('lens',i===k))}
 function swap(t,fromSwipe){for(const [k] of TABS){const v=$('#v-'+k);v.hidden=false;v.classList.toggle('off',k!==t);v.classList.remove('peek');if(k!==t)v.classList.remove('in')}
  const v=$('#v-'+t);ensure(t);place(-IDX[t]*PG.clientWidth,false);
  if(!fromSwipe||!v.classList.contains('in')){void v.offsetWidth;v.classList.add('in')}mark(t);bubble(IDX[t],true);cur=t;scrollTo({top:0,behavior:'instant'})}
@@ -396,9 +419,10 @@ function route(){const t=TABS.some(([k])=>k===location.hash.slice(1))?location.h
  PG.addEventListener('pointerup',end);PG.addEventListener('pointercancel',end)})();
 // ---------- tab bar: tap a tab, or drag the bubble and let go
 (function(){const tb=$('#tabbar');let on=false,moved=false,sx=0;const w=()=>(tb.clientWidth-12)/TABS.length,at=x=>Math.max(0,Math.min(TABS.length-1,(x-tb.getBoundingClientRect().left-6)/w()-.5));
- tb.addEventListener('pointerdown',e=>{on=true;moved=false;sx=e.clientX;tb.setPointerCapture(e.pointerId)});
+ tb.addEventListener('pointerdown',e=>{on=true;moved=false;sx=e.clientX;tb.setPointerCapture(e.pointerId);tb.classList.add('press')});
  tb.addEventListener('pointermove',e=>{if(!on)return;if(Math.abs(e.clientX-sx)>6)moved=true;if(moved)bubble(at(e.clientX),false)});
- tb.addEventListener('pointerup',e=>{if(!on)return;on=false;const j=Math.round(at(e.clientX));bubble(j,true);if(TABS[j][0]!==cur)location.hash=TABS[j][0]});
+ tb.addEventListener('pointercancel',()=>{on=false;tb.classList.remove('press');bubble(IDX[cur],true)});
+ tb.addEventListener('pointerup',e=>{if(!on)return;on=false;tb.classList.remove('press');const j=Math.round(at(e.clientX));bubble(j,true);if(TABS[j][0]!==cur)location.hash=TABS[j][0]});
  tb.addEventListener('click',e=>{if(e.detail)e.preventDefault()})})();      // keyboard (detail 0) still follows the link
 addEventListener('hashchange',route);route();addEventListener('resize',()=>{mark(cur);place(-IDX[cur]*PG.clientWidth,false);bubble(IDX[cur],true)});document.fonts&&document.fonts.ready.then(()=>{mark(cur);if($('#era'))seg($('#era'),era);if($('#cmode'))seg($('#cmode'),mode)});
 // ---------- markdown
