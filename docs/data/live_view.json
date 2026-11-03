@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-03",
- "as_of": "2026-11-03 09:50 NY",
- "last_bar": "2026-11-03 09:40",
+ "as_of": "2026-11-03 09:57 NY",
+ "last_bar": "2026-11-03 09:47",
  "equity_used": 100000.0,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-02 19:41",
-   "yahoo_bars": 830,
-   "last_real": "2026-11-03 09:40",
-   "last_price": 28312.5,
+   "yahoo_bars": 837,
+   "last_real": "2026-11-03 09:47",
+   "last_price": 28347.25,
    "gap_pct": -0.01
   },
   "ES": {
    "databento_last": "2026-11-02 19:41",
-   "yahoo_bars": 830,
-   "last_real": "2026-11-03 09:40",
-   "last_price": 7589.75,
+   "yahoo_bars": 837,
+   "last_real": "2026-11-03 09:47",
+   "last_price": 7593.5,
    "gap_pct": 0.0
   },
   "YM": {
    "databento_last": "2026-11-02 19:41",
-   "yahoo_bars": 839,
-   "last_real": "2026-11-03 09:40",
-   "last_price": 51800.0,
+   "yahoo_bars": 846,
+   "last_real": "2026-11-03 09:47",
+   "last_price": 51756.0,
    "gap_pct": -0.01
   },
   "RTY": {
    "databento_last": "2026-11-02 19:41",
-   "yahoo_bars": 804,
-   "last_real": "2026-11-03 09:40",
-   "last_price": 2827.0,
+   "yahoo_bars": 811,
+   "last_real": "2026-11-03 09:47",
+   "last_price": 2830.0,
    "gap_pct": -0.0
   }
  },
@@ -55,9 +55,16 @@
    [
     580,
     28316.0,
-    28321.25,
+    28374.0,
     28288.75,
-    28312.5
+    28370.5
+   ],
+   [
+    585,
+    28370.75,
+    28385.75,
+    28308.5,
+    28347.25
    ]
   ],
   "ES": [
@@ -78,9 +85,16 @@
    [
     580,
     7590.25,
-    7590.75,
-    7586.25,
-    7589.75
+    7597.0,
+    7586.0,
+    7596.75
+   ],
+   [
+    585,
+    7596.75,
+    7599.75,
+    7585.25,
+    7593.5
    ]
   ]
  },
@@ -97,10 +111,10 @@
    "stop": 28215.75,
    "exit_time": null,
    "exit": null,
-   "last": 28312.5,
+   "last": 28347.25,
    "state": "open",
-   "R_now": -0.054,
-   "usd_now": -44.0
+   "R_now": 0.288,
+   "usd_now": 234.0
   }
  ],
  "skipped": []
