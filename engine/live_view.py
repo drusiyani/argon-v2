@@ -14,6 +14,7 @@ from zoneinfo import ZoneInfo
 NY = ZoneInfo('America/New_York'); UTC = dt.timezone.utc
 YAHOO = {'NQ': 'NQ%3DF', 'ES': 'ES%3DF', 'YM': 'YM%3DF', 'RTY': 'RTY%3DF'}
 OUT = os.path.join(ROOT, 'docs', 'data', 'live_view.json')
+BARS = {}
 HEAD = 'ts_event,rtype,publisher_id,instrument_id,open,high,low,close,volume,symbol\n'
 
 def yahoo_1m(sym):
@@ -57,6 +58,14 @@ def make_root(today):
             for t, o, h, l, c, v in rows:
                 f.write(f"{dt.datetime.fromtimestamp(t, UTC):%Y-%m-%dT%H:%M:%S}.000000000Z,33,1,{iid},{o},{h},{l},{c},{int(v)},{sym}.v.0\n")
         first = real[0] if real else None
+        b5 = []
+        for t, o, h, l, c, v in real:
+            x = dt.datetime.fromtimestamp(t, NY)
+            if x.date() != today or not dt.time(9, 30) <= x.time() < dt.time(16, 0): continue
+            m5 = x.hour * 60 + x.minute; m5 -= m5 % 5
+            if b5 and b5[-1][0] == m5: b5[-1][2] = max(b5[-1][2], h); b5[-1][3] = min(b5[-1][3], l); b5[-1][4] = c
+            else: b5.append([m5, o, h, l, c])
+        BARS[sym] = b5
         info[sym] = dict(databento_last=dt.datetime.fromtimestamp(t0, NY).strftime('%Y-%m-%d %H:%M'), yahoo_bars=len(real),
                          last_real=dt.datetime.fromtimestamp(last[0], NY).strftime('%Y-%m-%d %H:%M') if last else None, last_price=last[4] if last else None,
                          gap_pct=round((first[1] / c0 - 1) * 100, 2) if first else None)
@@ -105,7 +114,8 @@ def main(force=False):
             res = json.loads(line[0][2:])
         warn = [f"{s}: Yahoo's first bar is {v['gap_pct']}% away from Databento's last close (a different contract month?)" for s, v in info.items() if v['gap_pct'] is not None and abs(v['gap_pct']) > 0.6]
         out = dict(unofficial=True, label='UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.', date=today.isoformat(),
-                   as_of=now.strftime('%Y-%m-%d %H:%M NY'), last_bar=info['NQ']['last_real'], equity_used=equity, markets=info, warnings=warn, **res)
+                   as_of=now.strftime('%Y-%m-%d %H:%M NY'), last_bar=info['NQ']['last_real'], equity_used=equity, markets=info, warnings=warn,
+                   bars={k: v for k, v in BARS.items() if k in ('NQ', 'ES')}, **res)
         os.makedirs(os.path.dirname(OUT), exist_ok=True); json.dump(out, open(OUT, 'w'), indent=1)
         print('live view:', len(res['trades']), 'trades,', sum(t['state'] == 'open' for t in res['trades']), 'open', warn or '')
     finally: shutil.rmtree(tmp, ignore_errors=True)

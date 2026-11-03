@@ -37,6 +37,10 @@ jobs:
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: python engine/live.py ${{ github.event.inputs.book }}
+      - name: Plain-English daily summary for the desk
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python engine/daily_summary.py || echo "summary skipped"
       - name: Weekly report into the vault (Friday night and Saturday)
         run: if [ "$(date -u +%u)" -ge 5 ]; then python engine/weekly_report.py; fi
       - name: Alert if anything failed
@@ -49,7 +53,7 @@ jobs:
         run: |
           git config user.name "argon-bot"
           git config user.email "argon-bot@users.noreply.github.com"
-          for p in data/databento data/ledger data/ledger_practice data/alerts.jsonl docs/data/ledger.json vault/Live; do [ -e "$p" ] && git add -A "$p"; done
+          for p in data/databento data/ledger data/ledger_practice data/alerts.jsonl docs/data/ledger.json docs/data/daily_summary.json vault/Live; do [ -e "$p" ] && git add -A "$p"; done
           if git diff --cached --quiet; then echo "nothing new to save"; exit 0; fi
           git commit -m "ledger: $(date -u +%Y-%m-%d)"
           git stash --include-untracked >/dev/null 2>&1 || true

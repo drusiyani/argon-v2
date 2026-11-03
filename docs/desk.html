@@ -44,19 +44,29 @@ body{background:var(--bg);color:var(--ink);font:13px/1.5 Geist,system-ui,sans-se
 .note{color:var(--quiet);font-size:11px;padding:6px 0 2px}
 @media (max-width:640px){.sheet{max-height:30vh}.sheet .tabs{padding-bottom:6px}.pill{font-size:15px}.zoom{top:calc(132px + env(safe-area-inset-top,0px))}.zoom button{width:40px;height:36px}}
 @media (prefers-reduced-motion:reduce){.log li{animation:none}}
+.dh{font:500 11px Geist Mono,monospace;color:var(--quiet);padding:10px 0 4px;letter-spacing:.04em}.uo{color:var(--gold);border:1px solid #3a3020;border-radius:99px;padding:0 6px;margin-left:6px;font-size:10px}
+.tr2{display:grid;grid-template-columns:1fr auto;width:100%;text-align:left;font:inherit;color:inherit;background:none;border:0;border-top:1px solid var(--line);padding:7px 0;cursor:pointer}.tr2:hover{background:#0f0f0f}.tr2 .q{color:var(--quiet);grid-column:1/3;font-size:11px}
+.sum{margin:4px 0 8px;color:#cfcfcf;line-height:1.55}.back{font:inherit;font-size:12px;color:var(--quiet);background:none;border:1px solid var(--line);border-radius:99px;padding:3px 10px;cursor:pointer;margin-top:6px}
+.spark{width:100%;height:120px;border:1px solid var(--line);border-radius:8px;background:#050505;margin:4px 0}
+.rp{display:flex;gap:6px;margin:8px 0}.rp select,.rp button{font:inherit;font-size:12px;color:var(--ink);background:#111;border:1px solid var(--line);border-radius:8px;padding:5px 10px}.rp select{flex:1}
+#rps{width:100%;accent-color:var(--gold)}.rpl{display:flex;justify-content:space-between;color:var(--quiet);font:11px Geist Mono,monospace}.rpl b{color:var(--ink)}
+.tabs{overflow-x:auto;max-width:calc(100% - 28px);scrollbar-width:none}
+@media (max-width:640px){.top{padding:calc(8px + env(safe-area-inset-top,0px)) 10px 0}.brand{font-size:13px}.pill{padding:5px 10px;font-size:14px}.clock{font-size:11px}
+ .sheet{left:8px;right:8px;width:auto;max-height:46vh;bottom:calc(8px + env(safe-area-inset-bottom,0px))}.cap{left:8px;right:8px;max-width:none;font-size:12px}.zoom{right:10px}.zoom button{width:36px;height:32px}}
+.embedded .sheet{bottom:calc(92px + env(safe-area-inset-bottom,0px))}@media (min-width:821px){.embedded .sheet{bottom:calc(96px + env(safe-area-inset-bottom,0px))}}
 </style></head><body>
 <canvas id="c" aria-label="Argon office map: each room is part of the desk, bots at their desks, messages moving between rooms"></canvas>
 <div class="top">
  <div class="brand"><svg viewBox="0 0 32 32"><path d="M5 15a11 11 0 0 1 22 0v13l-3.7-2.6L19.6 28 16 25.4 12.4 28l-3.7-2.6L5 28z" fill="#F4F1EA"/><ellipse cx="12" cy="14" rx="2.3" ry="3.1" fill="#0b0b0b"/><ellipse cx="20" cy="14" rx="2.3" ry="3.1" fill="#0b0b0b"/></svg>Argon<span class="sl">/</span><span class="pj">desk</span></div>
- <span class="badge" id="badge"><i></i>Preview · sample data</span><a href="./" target="_top" style="pointer-events:auto;color:var(--quiet);font-size:12px;text-decoration:none;border:1px solid var(--line);border-radius:99px;padding:2px 10px">← back to Argon</a>
- <div class="pill"><span id="val">$100,000.00</span><span class="d" id="dv"></span><small id="pillnote">paper account · trading starts 1 Jan 2027</small></div>
+ <span class="badge" id="badge"><i></i>Loading…</span><a href="./" target="_top" style="pointer-events:auto;color:var(--quiet);font-size:12px;text-decoration:none;border:1px solid var(--line);border-radius:99px;padding:2px 10px">← back to Argon</a>
+ <div class="pill"><span id="val">$100,000.00</span><span class="d" id="dv"></span><small id="pillnote">paper account</small></div>
  <div class="clock" id="clock"></div>
 </div>
 <div class="zoom"><button id="zo" aria-label="Zoom out">−</button><button id="zi" aria-label="Zoom in">+</button><button id="fit" style="font-size:12px">Fit</button></div>
 <div class="cap" id="cap"></div>
 <section class="sheet" id="sheet">
  <header id="sh"><h2 id="sht">COMMS LOG<b id="shn">0</b></h2><span class="chev">⌃</span></header>
- <div class="tabs"><button class="on" data-t="log">Live</button><button data-t="trades">Trades</button></div>
+ <div class="tabs"><button class="on" data-t="log">Live</button><button data-t="trades">Trades</button><button data-t="summary">Summary</button><button data-t="replay">Replay</button></div>
  <div class="body" id="body"><ul class="log" id="log"></ul></div>
  <div class="rooms" id="rooms"></div>
 </section>
@@ -65,42 +75,49 @@ body{background:var(--bg);color:var(--ink);font:13px/1.5 Geist,system-ui,sans-se
 // ================= the building =================
 const BOT={
  Chief:{d:'M5 15a11 11 0 0 1 22 0v13l-3.7-2.6L19.6 28 16 25.4 12.4 28l-3.7-2.6L5 28z',f:'#F4F1EA',e:[[12,14],[20,14]]},
- Scout:{d:'M16 6c6.6 0 11 4.6 11 10.6 0 6.4-4.6 10.4-11 10.4S5 23 5 16.6C5 10.6 9.4 6 16 6z',f:'#F2C14E',e:[[12,16],[20,16]],ant:1},
- Sceptic:{d:'M9 6h14a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4z',f:'#9B8FE0',e:[[12,15.5],[20,15.5]],brow:1},
+ // the four strategies
+ Quant:{d:'M16 4l11 6v12l-11 6-11-6V10z',f:'#F2C14E',e:[[12.4,15.5],[19.6,15.5]]},
+ Noise:{d:'M16 6c6.6 0 11 4.6 11 10.6 0 6.4-4.6 10.4-11 10.4S5 23 5 16.6C5 10.6 9.4 6 16 6z',f:'#5ED0E6',e:[[12,16],[20,16]],ant:1},
+ Atr:{d:'M16 4.5c1 0 1.9.5 2.4 1.4l9.2 16.5c1 1.8-.3 4.1-2.4 4.1H6.8c-2.1 0-3.4-2.3-2.4-4.1l9.2-16.5c.5-.9 1.4-1.4 2.4-1.4z',f:'#FF6B95',e:[[13,19],[19,19]],er:[2,2.7]},
+ Expiry:{d:'M9 6h14a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4z',f:'#9B8FE0',e:[[12,15.5],[20,15.5]],brow:1},
+ // the morning-call council: original designs, no company logos
+ Claude:{d:'M8 7h16a5 5 0 0 1 5 5v9a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5v-9a5 5 0 0 1 5-5z',f:'#E8876A',e:[[12,16],[20,16]]},
+ Gemini:{d:'M16 3.5l12 12.5-12 12.5L4 16z',f:'#7FA6FF',e:[[12.6,15.5],[19.4,15.5]],er:[2,2.6]},
+ Llama:{d:'M9 4h3v5h8V4h3v6a6 6 0 0 1 4 5.7V24a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4v-8.3A6 6 0 0 1 9 10z',f:'#C9A27A',e:[[12.4,17],[19.6,17]]},
+ Gpt:{d:'M16 7a9 9 0 1 1 0 18 9 9 0 0 1 0-18z',f:'#4FD1A5',e:[[12.6,15.5],[19.4,15.5]],legs:1},
+ // desk staff
  Risk:{d:'M16 4l10.4 6v12L16 28 5.6 22V10z',f:'#F59A3E',e:[[12.4,15.5],[19.6,15.5]]},
- Size:{d:'M16 4.5c1 0 1.9.5 2.4 1.4l9.2 16.5c1 1.8-.3 4.1-2.4 4.1H6.8c-2.1 0-3.4-2.3-2.4-4.1l9.2-16.5c.5-.9 1.4-1.4 2.4-1.4z',f:'#FF6B95',e:[[13,19],[19,19]],er:[2,2.7]},
+ Size:{d:'M10 9h12a7 7 0 0 1 0 14H10a7 7 0 0 1 0-14z',f:'#FFB4C8',e:[[11.5,16],[20.5,16]]},
  Fills:{d:'M10 9h12a7 7 0 0 1 0 14H10a7 7 0 0 1 0-14z',f:'#4FD18B',e:[[11.5,16],[20.5,16]]},
- Crawler:{d:'M16 7a9 9 0 1 1 0 18 9 9 0 0 1 0-18z',f:'#E46FD8',e:[[12.6,15.5],[19.4,15.5]],legs:1},
  Filter:{d:'M5.5 6h21c1.4 0 2.1 1.6 1.2 2.7L19.5 18v7.4c0 .8-.5 1.4-1.2 1.7l-3 1.2c-.9.4-1.8-.3-1.8-1.2V18L4.3 8.7c-.9-1.1-.2-2.7 1.2-2.7z',f:'#6C9BF2',e:[[12.6,11.5],[19.4,11.5]],er:[2,2.6]}};
 for(const b of Object.values(BOT))b.p=new Path2D(b.d);
-// rooms sit on a 3x3 diamond (cell centres 6 apart), plus a small "you" room at the bottom
+// eight rooms on a 3x3 diamond (cell centres 6.2 apart), the ledger in the middle, you in the last corner
 const ROOMS=[
- {id:'data',name:'MARKET DATA',c:'#E46FD8',i:-1,j:-1,desc:'Market data: 1-minute Nasdaq and S&P futures from Databento, plus the newswires the Crawler reads.'},
- {id:'intake',name:'INTAKE',c:'#F2C14E',i:-1,j:0,desc:'Intake: the Scout checks the four strategies for setups. Filter blocks junk sources before anything reaches the desk.'},
- {id:'hub',name:'HUB',c:'#5ED0E6',i:0,j:0,oct:1,desc:'Hub: every message goes through here. The clock runs the supervisor loop and the kill switch can stop the whole desk.'},
- {id:'analysis',name:'ANALYSIS',c:'#9B8FE0',i:0,j:-1,desc:'Analysis: the Sceptic tries to break every setup, with Kronos-small\'s forecast in the briefing.'},
- {id:'review',name:'REVIEW',c:'#F59A3E',i:1,j:-1,desc:'Review: Risk applies the cost rule (skip any trade whose costs eat more than 10% of 1R) and checks open risk across the four strategies. Size works out 1% per trade.'},
- {id:'decision',name:'DECISION',c:'#ECE6D8',i:1,j:0,desc:'Decision: the Chief reads everyone and decides take or skip. Scored on beating "take every setup".'},
- {id:'execution',name:'EXECUTION',c:'#4FD18B',i:0,j:1,desc:'Execution: Fills places paper orders with the same costs and slippage as the backtests.'},
- {id:'learning',name:'LEARNING',c:'#7FA6FF',i:-1,j:1,desc:'Learning: every decision is logged, then reviewed into lessons the agents read next time.'},
- {id:'positions',name:'POSITIONS',c:'#3FC1B0',i:1,j:1,desc:'Positions: open trades, stops and the running account.'},
- {id:'you',name:'YOU',c:'#E6B54A',i:2,j:2,sz:2.4,desc:'You: the only one who can change the rules, and only before the freeze.'}];
+ {id:'data',name:'MARKET DATA',c:'#E46FD8',i:-1,j:-1,desc:'Market data: the tape, Databento 1-minute futures (the official record), news and the economic calendar.'},
+ {id:'book',name:'THE BOOK',c:'#F2C14E',i:0,j:-1,desc:'The book: the four strategies, QuantLab, Noise band, ATR band and Expiry, running the exact backtest code.'},
+ {id:'risk',name:'RISK',c:'#F59A3E',i:1,j:-1,desc:'Risk: the kill switch, sizing (1% per trade, whole micros, rounded down) and the cost rule.'},
+ {id:'call',name:'MORNING CALL',c:'#E8876A',i:-1,j:0,desc:'Morning call: Claude, Gemini, Llama and GPT each read the morning inputs; the one-line rule votes too. Shadow only until scored.'},
+ {id:'ledger',name:'LEDGER',c:'#ECE6D8',i:0,j:0,oct:1,desc:'Ledger: every booked day, hash-chained, with the code version. Rebuilt and checked every night.'},
+ {id:'positions',name:'POSITIONS',c:'#3FC1B0',i:1,j:0,desc:'Positions: open trades and the paper account.'},
+ {id:'lab',name:'LAB',c:'#7FA6FF',i:-1,j:1,desc:'Lab: the test suite and the latest research.'},
+ {id:'score',name:'SCOREBOARD',c:'#4FD18B',i:0,j:1,desc:'Scoreboard: the shadow arms (1x, the one-line rule, the AI) scored from 1 Jan 2027.'},
+ {id:'you',name:'YOU',c:'#E6B54A',i:1,j:1,sz:2.6,desc:'You: the only one who can change the rules, and only before the freeze.'}];
 const R={};for(const r of ROOMS){const s=r.sz||4.4;r.u0=r.i*6.2-s/2;r.v0=r.j*6.2-s/2;r.s=s;R[r.id]=r}
-// who works where (local coords inside the room, 0..size)
 const AG=[
- {id:'TAPE',room:'data',x:1.1,y:1.2,kind:'rack',st:'Live 5-min prices'},{id:'CRAWLER',room:'data',bot:'Crawler',x:3.0,y:1.5,st:'Not built yet'},{id:'NEWS',room:'data',x:1.4,y:3.2,kind:'rack',st:'Headlines for the morning call'},
- {id:'SCOUT',room:'intake',bot:'Scout',x:1.5,y:1.5,st:'Watching for fresh setups'},{id:'FILTER',room:'intake',bot:'Filter',x:3.1,y:3.0,st:'Not built yet'},
- {id:'ROUTER',room:'hub',x:2.2,y:2.2,kind:'core',st:'Routing'},{id:'CLOCK',room:'hub',x:3.3,y:1.2,kind:'rack',st:'Supervisor loop'},{id:'KILL',room:'hub',x:1.2,y:3.3,kind:'rack',red:1,st:'Armed'},
- {id:'SCEPTIC',room:'analysis',bot:'Sceptic',x:1.5,y:1.6,st:'Waiting for proposals'},{id:'KRONOS',room:'analysis',x:3.2,y:3.0,kind:'rack',st:'Next-hour forecast'},
- {id:'RISK',room:'review',bot:'Risk',x:1.5,y:1.6,st:'Cost rule: max 10% of 1R'},{id:'SIZE',room:'review',bot:'Size',x:3.1,y:3.0,st:'1% per trade'},
- {id:'CHIEF',room:'decision',bot:'Chief',x:2.2,y:2.0,big:1,st:'Waiting for a fresh setup'},
- {id:'FILLS',room:'execution',bot:'Fills',x:1.6,y:1.6,st:'Paper trading starts 1 Jan'},{id:'BROKER',room:'execution',x:3.2,y:3.1,kind:'rack',st:'Costs + slippage on'},
- {id:'MEMORY',room:'learning',x:1.1,y:1.3,kind:'rack',st:'Recording events'},{id:'LESSONS',room:'learning',x:3.0,y:1.3,kind:'rack',st:'Next: daily wrap'},{id:'LEDGER',room:'learning',x:2.0,y:3.2,kind:'rack',st:'Decisions logged'},
- {id:'BOOK',room:'positions',x:2.2,y:2.2,kind:'rack',st:'0 open · starts 1 Jan'},
- {id:'YOU',room:'you',x:1.2,y:1.2,kind:'you',st:'Watching'}];
-const A={};for(const a of AG){a.u=R[a.room].u0+a.x;a.v=R[a.room].v0+a.y;a.work=0;A[a.id]=a}
-// corridors between neighbouring rooms (room ids); drawn along the grid axes
-const LINKS=[['data','intake'],['intake','hub'],['hub','analysis'],['analysis','review'],['review','decision'],['hub','decision'],['hub','execution'],['decision','positions'],['execution','positions'],['learning','intake'],['learning','execution'],['positions','you'],['data','analysis']];
+ {id:'TAPE',room:'data',x:1.0,y:1.1,kind:'rack',st:'Prices'},{id:'DATABENTO',room:'data',x:3.3,y:1.1,kind:'rack',st:'1-minute futures'},
+ {id:'NEWS',room:'data',x:1.0,y:3.3,kind:'rack',st:'Headlines'},{id:'CALENDAR',room:'data',x:3.3,y:3.3,kind:'rack',st:'Economic calendar'},
+ {id:'QUANTLAB',room:'book',bot:'Quant',x:1.2,y:1.3,st:'Waiting for 9:30'},{id:'NOISE',room:'book',bot:'Noise',x:3.2,y:1.3,st:'Waiting'},
+ {id:'ATR',room:'book',bot:'Atr',x:1.2,y:3.3,st:'Waiting'},{id:'EXPIRY',room:'book',bot:'Expiry',x:3.2,y:3.3,st:'Third Fridays only'},
+ {id:'KILL',room:'risk',x:1.0,y:1.1,kind:'rack',red:1,st:'Off'},{id:'SIZE',room:'risk',bot:'Size',x:3.2,y:1.4,st:'1% per trade'},{id:'COST',room:'risk',bot:'Risk',x:2.0,y:3.3,st:'Cost rule: max 10% of 1R'},
+ {id:'CLAUDE',room:'call',bot:'Claude',x:1.2,y:1.3,st:'Asked at 8:45'},{id:'GEMINI',room:'call',bot:'Gemini',x:3.2,y:1.3,st:'Asked at 8:45'},
+ {id:'LLAMA',room:'call',bot:'Llama',x:1.2,y:3.3,st:'Asked at 8:45'},{id:'GPT',room:'call',bot:'Gpt',x:3.2,y:3.3,st:'Asked at 8:45'},{id:'RULE',room:'call',x:2.2,y:2.3,kind:'core',st:'One-line rule'},
+ {id:'CHAIN',room:'ledger',x:2.2,y:2.2,kind:'core',st:'Hash chain'},{id:'FILLS',room:'ledger',bot:'Fills',x:1.2,y:1.2,st:'Books after the close'},{id:'CODE',room:'ledger',x:3.4,y:3.3,kind:'rack',st:'Code version'},
+ {id:'BOOK',room:'positions',x:1.4,y:1.4,kind:'rack',st:'0 open'},{id:'ACCOUNT',room:'positions',x:3.1,y:3.0,kind:'rack',st:'$100,000'},
+ {id:'TESTS',room:'lab',x:1.3,y:1.4,kind:'rack',st:'Test suite'},{id:'RESEARCH',room:'lab',bot:'Filter',x:3.1,y:3.0,st:'Latest research'},
+ {id:'ARMS',room:'score',x:2.2,y:2.2,kind:'rack',st:'Starts 1 Jan'},
+ {id:'YOU',room:'you',x:1.3,y:1.3,kind:'you',st:'Watching'}];
+const A={};for(const a of AG){a.u=R[a.room].u0+a.x;a.v=R[a.room].v0+a.y;a.work=0;a.blink=Math.random()*4;A[a.id]=a}
+const LINKS=[['data','book'],['data','call'],['book','risk'],['book','ledger'],['call','ledger'],['risk','positions'],['ledger','positions'],['ledger','score'],['call','lab'],['lab','score'],['score','you'],['positions','you']];
 const ctr=r=>({u:r.u0+r.s/2,v:r.v0+r.s/2});
 function corridor(a,b){const p=ctr(R[a]),q=ctr(R[b]);if(Math.abs(p.u-q.u)<.01||Math.abs(p.v-q.v)<.01)return [p,q];return [p,{u:q.u,v:p.v},q]}
 const COR=LINKS.map(([a,b])=>({a,b,pts:corridor(a,b)}));
@@ -180,50 +197,20 @@ function hm(){return new Intl.DateTimeFormat('en-GB',{timeZone:'America/New_York
 function logLine(f,t,m,tm){logN++;document.getElementById('shn').textContent=logN;const li=document.createElement('li');
  li.innerHTML=`<time>${tm||hm()}</time><span class="r"><span style="color:${R[A[f].room].c}">${f}</span> <span style="color:var(--quiet)">→</span> <span style="color:${R[A[t].room].c}">${t}</span></span><span class="m"></span>`;
  li.querySelector('.m').textContent=m;logEl.prepend(li);while(logEl.children.length>40)logEl.lastChild.remove()}
-const SETUPS=[
- {name:'QuantLab',side:'long',time:'9:35',why:'first candle closed above the 12 EMA (not an FOMC day)',v:{s:'Gap already did half the move.',k:'Forecast: flat to up.',r:'Open risk 0R, day 0R. OK.'},take:true,fill:'Filled long NQ, +2 ticks'},
- {name:'ATR band',side:'short',time:'10:44',why:'15-min close below open − 0.5×ATR',v:{s:'No hole in it.',k:'Forecast: down.',r:'QuantLab is already long. Opposite bets, skip.'},take:false},
- {name:'Noise band',side:'long',time:'11:29',why:'outside the usual move, above VWAP',v:{s:'Fine, it\'s trending.',k:'Forecast: up.',r:'Open risk 1R, room for it.'},take:true,fill:'Filled long NQ at the close'},
- {name:'Expiry',side:'short',time:'9:31',why:'third Friday, short NQ + ES to 12:00',v:{s:'This year\'s expiries mostly lost small.',k:'Forecast: flat.',r:'Small fixed stop. Rules say take.'},take:false}];
-let si=0,open=0;
-function script(){const S=SETUPS[si++%SETUPS.length],q=[
- ['TAPE','SCOUT',`Bar closed ${S.time}. ${S.name} conditions checked.`],
- ['FILTER','SCOUT','Sources clean. 1 Reddit post blocked.'],
- ['SCOUT','CHIEF',`${S.name}: ${S.side} NQ, ${S.why}.`],
- ['CHIEF','SCEPTIC','Break it.'],['KRONOS','SCEPTIC',S.v.k],['SCEPTIC','CHIEF',S.v.s],
- ['CHIEF','RISK','Size and limits?'],['SIZE','RISK','1% risk, stop set by the rule.'],['RISK','CHIEF',S.v.r],
- ...(S.take?[['CHIEF','FILLS','Take it.'],['FILLS','BOOK',S.fill],['BOOK','YOU',`${open+1} open`],['BOOK','LEDGER','Trade recorded.']]
-          :[['CHIEF','LEDGER','Skip. Reason logged.'],['LEDGER','LESSONS','Queued for the daily wrap.']])];
- if(S.take){open++;A.BOOK.st=open+' open'}
- A.CHIEF.st=S.take?'Took '+S.name:'Skipped '+S.name;A.SCOUT.st='Found '+S.name;
- q.forEach((m,i)=>setTimeout(()=>send(...m),i*1700));setTimeout(()=>send('CLOCK','ROUTER','Supervisor loop: budgets ok.'),q.length*1700+400);
- setTimeout(script,q.length*1700+3200)}
 // ================= UI =================
 const roomsEl=document.getElementById('rooms'),cap=document.getElementById('cap');
 for(const r of ROOMS){const b=document.createElement('button');b.textContent=r.name;b.style.setProperty('--c',r.c);b.onclick=()=>select(r.id);b.dataset.id=r.id;roomsEl.appendChild(b)}
 function select(id){sel=id;roomsEl.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.id===id));
- if(!id){cap.style.display='none';fitTo(ROOMS);return}const r=R[id];cap.style.display='block';cap.style.setProperty('--c',r.c);const [h,...rest]=r.desc.split(': ');cap.innerHTML=`<b>${h}</b>: ${rest.join(': ')}`;fitTo([r],.78)}
+ if(!id){cap.style.display='none';fitTo(ROOMS);return}const r=R[id];cap.style.display='block';cap.style.setProperty('--c',r.c);cap.innerHTML=roomInfo(id);fitTo([r],.78)}
 document.getElementById('fit').onclick=()=>select(null);
 document.getElementById('zi').onclick=()=>goal.s=Math.min(3.2,goal.s*1.3);document.getElementById('zo').onclick=()=>goal.s=Math.max(.35,goal.s/1.3);
 const sheet=document.getElementById('sheet');document.getElementById('sh').onclick=()=>{sheet.classList.toggle('min');syncSheet()};
 function syncSheet(){document.documentElement.style.setProperty('--sheet',sheet.offsetHeight+'px');area();if(!sel)fitTo(ROOMS)}new ResizeObserver(syncSheet).observe(sheet);
-const body=document.getElementById('body');
-document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
- if(b.dataset.t==='log'){document.getElementById('sht').firstChild.textContent='COMMS LOG';body.replaceChildren(logEl)}
- else if(LIVE&&!(LIVE.calls||[]).length){document.getElementById('sht').firstChild.textContent='BOOK';const d=document.createElement('div'),b=LIVE.book||{};
-  d.innerHTML=`<div class="kv"><div><span>PAPER ACCOUNT</span><b>$100,000</b></div><div><span>RISK PER TRADE</span><b>${b.risk_pct||1}%</b></div></div><p class="note">No trades yet: paper trading starts 1 January 2027. No desk calls yet either.</p><p class="note">Backtest ${b.window?b.window.join(' to '):''}: $100k to $${(b.final||0).toLocaleString('en-US')}, Sharpe ${b.sharpe}, worst drop ${b.worst_drop}%. Mostly in-sample; on 2011-2020 it lost money.</p>`;body.replaceChildren(d)}
- else if(LIVE){document.getElementById('sht').firstChild.textContent='CALLS';const d=document.createElement('div');
-  d.innerHTML=(LIVE.calls||[]).slice(0,20).map(c=>`<div class="tr"><span>${c.when.slice(5)} · ${c.inst} · ${(c.chief.view||'?')}</span><span style="color:${c.R==null?'var(--quiet)':c.R>=0?'var(--up)':'var(--down)'}">${c.R==null?'open':(c.R>=0?'+':'')+(+c.R).toFixed(2)+'R'}</span><span class="q"></span></div>`).join('')+`<p class="note"></p>`;
-  d.querySelectorAll('.q').forEach((q,i)=>q.textContent=LIVE.calls[i].setup);d.querySelector('.note').textContent='Setups from: '+LIVE.source;body.replaceChildren(d)}
- else{document.getElementById('sht').firstChild.textContent='TRADES';const d=document.createElement('div');
-  d.innerHTML=`<div class="kv"><div><span>CASH</span><b>$${(100000-open*0).toLocaleString('en-US')}</b></div><div><span>OPEN RISK</span><b>${(open*1).toFixed(2)}%</b></div></div>`+
-   (open?Array.from({length:open},(_,i)=>`<div class="tr"><span>NQ ${i%2?'noise band':'QuantLab'} long</span><span style="color:var(--up)">+${(0.4+i*0.3).toFixed(1)}R</span><span class="q">stop set by the rule · flat by 3:55pm</span></div>`).join(''):'<p class="note">No open trades.</p>')+
-   '<p class="note">Sample data. Paper trading starts 1 January 2027.</p>';body.replaceChildren(d)}});
-// clock + sample account
+const body=document.getElementById('body');let TAB='log';
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{TAB=b.dataset.t;document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));renderTab()});
 function tick(){const now=new Date(),f=(tz,o)=>new Intl.DateTimeFormat('en-GB',{timeZone:tz,...o}).format(now);
  const working=AG.filter(a=>a.work>0).length;document.getElementById('clock').textContent=`${f('America/New_York',{day:'numeric',month:'short'})} · NY ${f('America/New_York',{hour:'2-digit',minute:'2-digit'})} · LDN ${f('Europe/London',{hour:'2-digit',minute:'2-digit'})} · ${working} working`}
-setInterval(tick,1000);tick();let acct=100000,pnl=0;if(0)setInterval(()=>{pnl+=(open?(Math.random()-.42)*18*open:0);const v=acct+pnl;document.getElementById('val').textContent='$'+v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
- const d=document.getElementById('dv');d.textContent=(pnl>=0?'+':'−')+'$'+Math.abs(pnl).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});d.classList.toggle('neg',pnl<0);tick()},1000);tick();
+setInterval(tick,1000);tick();
 // ================= input: drag, wheel, pinch, tap =================
 let drag=null,pinch=null,moved=0;const pts=new Map();
 cv.addEventListener('pointerdown',e=>{cv.setPointerCapture(e.pointerId);pts.set(e.pointerId,{x:e.clientX,y:e.clientY});moved=0;
@@ -254,6 +241,9 @@ function frame(now){const dt=Math.min(.05,(now-last)/1000),t=now/1000;last=now;
   ctx.strokeStyle='#262626';ctx.lineWidth=1;ctx.setLineDash([3*cam.s,5*cam.s]);ctx.beginPath();p.forEach((q,i)=>i?ctx.lineTo(q.x,q.y):ctx.moveTo(q.x,q.y));ctx.stroke();ctx.setLineDash([])}
  const order=[...ROOMS].sort((a,b)=>(a.u0+a.v0)-(b.u0+b.v0));
  for(const r of order)drawRoom(r,t);
+ // disagreement beams between council members who disagree (trend call 25+ points apart, or a different size)
+ for(const [x,y,w] of BEAMS){const p=scr(A[x].u,A[x].v,.9),q=scr(A[y].u,A[y].v,.9);ctx.strokeStyle=`rgba(242,95,92,${(.25+.35*Math.abs(Math.sin(t*2.2+w)))*Math.min(1,w)})`;
+  ctx.lineWidth=Math.max(1,1.6*cam.s);ctx.setLineDash([4*cam.s,3*cam.s]);ctx.lineDashOffset=-t*18;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();ctx.setLineDash([])}
  // agents, back to front
  const heads=[];for(const a of [...AG].sort((a,b)=>(a.u+a.v)-(b.u+b.v))){a.work=Math.max(0,a.work-dt);heads.push([a,drawAgent(a,t)])}
  // packets
@@ -265,48 +255,147 @@ function frame(now){const dt=Math.min(.05,(now-last)/1000),t=now/1000;last=now;
  for(let i=packets.length-1;i>=0;i--)if(packets[i].done)packets.splice(i,1);
  // labels
  const ls=Math.max(9,Math.min(13,10*cam.s));
- for(const r of ROOMS){const c=scr(r.u0+r.s+.42,r.v0+r.s+.42,0);const w=label(r.name,c.x+5,c.y,sel===r.id?'#EDEDED':'#8F8F8F',ls,500);ctx.fillStyle=r.c;ctx.fillRect(c.x+5-w/2-11,c.y-3,6,6)}
+ for(const r of ROOMS){const c=scr(r.u0+r.s+.42,r.v0+r.s+.42,0);const w=label(r.name,c.x+5,c.y,sel===r.id?'#EDEDED':'#8F8F8F',ls,500);ctx.fillStyle=r.c;ctx.fillRect(c.x+5-w/2-11,c.y-3,6,6);
+  const hc=HEALTH[r.id]||'#3a3a3a';ctx.fillStyle=hc;ctx.beginPath();ctx.arc(c.x+5+w/2+9,c.y,3.2,0,7);ctx.fill();if(hc!=='#3a3a3a'){ctx.fillStyle=hexA(hc,.22+.12*Math.sin(t*3));ctx.beginPath();ctx.arc(c.x+5+w/2+9,c.y,6.5,0,7);ctx.fill()}}
  if(cam.s>.95)for(const [a,h] of heads){const c=R[a.room].c;label(a.id,h.x,h.y-4,'#EDEDED',Math.max(8,Math.min(12,9*cam.s)),500,a.work>0?'#3FCF8E':'#3a3a3a');
   if(cam.s>1.25){ctx.font=`400 ${Math.min(11,8*cam.s)}px "Geist Mono",monospace`;ctx.fillStyle='#8f8f8f';ctx.textAlign='center';ctx.fillText(a.st,h.x,h.y-4-Math.min(14,11*cam.s))}}
  requestAnimationFrame(frame)}
 requestAnimationFrame(frame);
-document.fonts.ready.then(()=>{});let LIVE=null,played=new Set(),queue=[];
-function pct(v){return v&&v.confidence!=null?` ${v.confidence}%`:''}
-function playCall(c){const tm=c.when.slice(11,16),v=c.views||{},ch=c.chief||{},up=x=>(x||'?').toUpperCase(),q=[
-  ['TAPE','SCOUT',`${c.inst}: ${c.setup}`],
-  ['SCOUT','CHIEF',`${up(v.Scout&&v.Scout.view)}${pct(v.Scout)}. ${(v.Scout&&v.Scout.reason)||''}`],
-  ['CHIEF','SCEPTIC','Break it.'],['KRONOS','SCEPTIC','Forecast in the briefing.'],
-  ['SCEPTIC','CHIEF',`${up(v.Sceptic&&v.Sceptic.view)}${pct(v.Sceptic)}. ${(v.Sceptic&&v.Sceptic.reason)||''}`],
-  ['CHIEF','RISK','Size and limits?'],
-  ['RISK','CHIEF',`${up(v.Risk&&v.Risk.view)}${pct(v.Risk)}. ${(v.Risk&&v.Risk.reason)||''}`],
-  ...(ch.view==='take'?[['CHIEF','FILLS',`TAKE${pct(ch)}. ${ch.reason||''}`],['FILLS','LEDGER','Logged and scored against taking every setup.']]
-                      :[['CHIEF','LEDGER',`SKIP${pct(ch)}. ${ch.reason||''}`]]),
-  ...(c.R!=null?[['LEDGER','LESSONS',`Result: ${c.R>=0?'+':''}${(+c.R).toFixed(2)}R. Into this week's lessons.`]]:[])];
- A.CHIEF.st=(ch.view==='take'?'Took ':'Skipped ')+c.inst;A.SCOUT.st='Found '+c.inst+' setup';A.SCEPTIC.st=(v.Sceptic&&v.Sceptic.view)?'Said '+v.Sceptic.view:'Waiting';A.RISK.st=(v.Risk&&v.Risk.view)?'Said '+v.Risk.view:'Limits loaded';
- q.forEach((m,i)=>setTimeout(()=>send(m[0],m[1],m[2],tm),i*1900));return q.length*1900}
-function liveLoop(){const next=queue.shift();if(next){played.add(next.key);setTimeout(liveLoop,playCall(next)+2500)}
- else{const recent=(LIVE.calls||[]).slice(0,5).reverse();if(recent.length)queue=recent.slice();setTimeout(liveLoop,30000)}}
-async function loadFeed(){try{const r=await fetch('desk_feed.json?'+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json()}catch(e){return null}}
-let dayShown='';
-function showDay(f){const c=f&&f.daytype;if(!c||dayShown===c.date)return;dayShown=c.date;const a=c.ai||{},sz=x=>x===0?'veto':x+'x';
- const msg=`Day call ${c.date}: ${a.trend_probability!=null?'trend '+a.trend_probability+'%':'no forecast'} · AI ${sz(c.ai_size_used)} · dumb rule ${sz(c.dumb_size)} · shadow only (book trades 1x). ${a.reason||''}`;
- send('KRONOS','CHIEF',`Morning inputs: VIX ${c.inputs.vix} (${c.inputs.vix_1y_percentile}th pct), range ratio ${c.inputs.range_ratio}, RSI5 ${c.inputs.rsi5}. ${(c.inputs.calendar||[]).join('; ')}`,c.made_at);
- setTimeout(()=>send('CHIEF','SIZE',msg,c.made_at),1900);A.CHIEF.st=`Day call: ${sz(c.ai_size_used)} (shadow)`;A.SIZE.st=`AI ${sz(c.ai_size_used)} · rule ${sz(c.dumb_size)}`}
-async function poll(){const f=await loadFeed();if(!f)return;LIVE=f;const s=f.score||{};showDay(f);
- document.getElementById('val').textContent=`Chief ${s.taken_R>=0?'+':''}${(s.taken_R||0).toFixed(1)}R`;
- const d=document.getElementById('dv');d.textContent=`take-all ${s.all_R>=0?'+':''}${(s.all_R||0).toFixed(1)}R`;d.classList.toggle('neg',(s.taken_R||0)<(s.all_R||0));
- document.getElementById('pillnote').textContent=`${s.calls||0} real calls · ${s.resolved||0} scored`;
- for(const c of (f.calls||[]).slice().reverse())if(!played.has(c.key)&&!queue.find(x=>x.key===c.key)&&Date.now()-Date.parse(c.when.replace(' ','T')+'-05:00')<36e5*3)queue.push(c)}
-(async()=>{const f=await loadFeed();
- if(f&&((f.calls||[]).length||f.daytype)){LIVE=f;showDay(f);document.getElementById('badge').innerHTML='<i></i>Live · real desk calls';
-   for(const c of (f.calls||[]).slice(0,12).reverse()){const tm=c.when.slice(11,16),ch=c.chief||{};logLine('SCOUT','CHIEF',`${c.inst}: ${c.setup}`,tm);logLine('CHIEF',ch.view==='take'?'FILLS':'LEDGER',`${(ch.view||'?').toUpperCase()}${pct(ch)}. ${ch.reason||''}`,tm)}
-   await poll();queue=(f.calls||[]).slice(0,3).reverse();setTimeout(liveLoop,800);setInterval(poll,60000)}
- else if(f){LIVE=f;document.getElementById('badge').innerHTML='<i></i>Live · no setups judged yet';idle(f);setInterval(async()=>{const g=await loadFeed();if(g){LIVE=g;showDay(g);if((g.calls||[]).length)location.reload()}},60000)}
- else{document.getElementById('badge').innerHTML='<i></i>Can\'t reach the desk feed';}})();
-function idle(f){const b=f.book,k=f.kronos||{},q=[];const ut=x=>x?x.slice(11,16):'';
- if(b)q.push(['BOOK','YOU',`v2 book ready: ${b.strategies.length} strategies, ${b.risk_pct}% risk, skip trades costing over ${Math.round(b.cost_cap_R*100)}% of 1R. Backtest ${b.window[0]} to ${b.window[1]}: $100k to $${b.final.toLocaleString('en-US')}, worst drop ${b.worst_drop}% (mostly in-sample). Paper trading starts 1 Jan.`,'']);
- for(const [m,v] of Object.entries(k))q.push(['KRONOS','CHIEF',`${m} next ${v.horizon||'hour'}: ${v.direction}, ${Math.round((v.confidence||0)*100)}% confident.`,ut(v.updated)]);
- q.push(['CLOCK','ROUTER',`Desk last checked ${ut(f.checked)} UTC. No fresh setup to judge.`,ut(f.checked)]);
- if(b&&b.killed)q.push(['KILL','ROUTER','Kill switch is ON: no new trades.','']);
- q.forEach((m,i)=>setTimeout(()=>send(m[0],m[1],m[2],m[3]),i*1700));setTimeout(()=>showDay(f),q.length*1700+400)}
+// ================= real data (no samples) =================
+let FEED=null,LG=null,LV=null,SUM=null,TESTS=null,CHART=null,HEALTH={},BEAMS=[],HIST=null;
+const G='#3FCF8E',AM='#F5A623',RD='#F25F5C',GR='#3a3a3a';
+const RULES={quantlab:'QuantLab: trades the way the first 5-minute candle after 9:30 breaks against the 12-period EMA. The stop sits at the far side of that candle; the rules trail it and exit on the EMA. Not on FOMC days. Flat by 15:55.',
+ noiseband:'Noise band: goes with the move once price closes outside the day\'s usual range (the noise band, built from the last 14 days), on the same side as VWAP. The stop follows the band. Flat by 15:55.',
+ atrband:'ATR band: a 15-minute close beyond today\'s open ± 0.5×ATR enters that way, with the stop and exit set by the rules. Flat by 15:55.',
+ expiry:'Expiry: on monthly options expiry (the third Friday) it shorts NQ and ES at the open and gets out by 12:00, with a small fixed stop.'};
+const BOTOF={quantlab:'QUANTLAB',noiseband:'NOISE',atrband:'ATR',expiry:'EXPIRY'},NAMEOF={quantlab:'QuantLab',noiseband:'Noise band',atrband:'ATR band',expiry:'Expiry'};
+async function get(u){try{const r=await fetch(u+(u.includes('?')?'&':'?')+'t='+Date.now(),{cache:'no-store'});if(!r.ok)return null;return await r.json()}catch(e){return null}}
+function ny(){const p=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false,weekday:'short'}).formatToParts(new Date()),g=k=>p.find(x=>x.type===k).value;
+ return {date:`${g('year')}-${g('month')}-${g('day')}`,min:(+g('hour')%24)*60+ +g('minute'),wd:!['Sat','Sun'].includes(g('weekday'))}}
+const hrs=s=>s?(Date.now()-Date.parse(s.replace(' UTC','Z').replace(' ','T')))/36e5:1e9;
+const money=v=>'$'+(+v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const esc=x=>String(x==null?'':x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const hm2=m=>`${String(m/60|0).padStart(2,'0')}:${String(m%60).padStart(2,'0')}`,mm=t=>+t.slice(0,2)*60+ +t.slice(3,5);
+// ---------- health lights: green on time, amber late, red failed, grey not started
+function health(){const n=ny(),sess=n.wd&&n.min>=570&&n.min<960,st=(LG&&LG.status)||{},ck=st.checks||{},H={};
+ const fa=FEED?hrs(FEED.checked):1e9;H.data=!FEED?RD:sess?(fa<.5?G:fa<3?AM:RD):(fa<(n.wd?26:74)?G:fa<120?AM:RD);
+ const la=LV&&LV.as_of?(Date.now()-Date.parse(LV.as_of.slice(0,10)+'T'+LV.as_of.slice(11,16)+':00-05:00'))/36e5:1e9;H.book=sess?(LV&&LV.date===n.date?(la<.34?G:la<1?AM:RD):AM):G;
+ const dc=FEED&&FEED.daytype;if(!dc&&n.date<'2026-11-04')H.call=GR;else if(n.wd&&n.min>=570)H.call=dc&&dc.date===n.date?(dc.late?AM:G):(n.min<720?AM:RD);else H.call=dc?G:AM;
+ H.risk=!ck.kill?GR:String(ck.kill).startsWith('off')?G:RD;
+ const ra=st.run_at?(Date.now()-Date.parse(st.run_at))/36e5:1e9;H.ledger=!st.state?GR:String(st.state).startsWith('halt')?RD:ra<(n.wd?30:78)?G:AM;
+ H.positions=!ck.positions?GR:String(ck.positions).includes('flat')?G:RD;
+ H.score=n.date<'2027-01-01'?GR:(FEED&&FEED.daytype_score?G:AM);
+ H.lab=!TESTS?GR:TESTS.status!=='completed'?AM:TESTS.conclusion==='success'?G:RD;H.you=G;HEALTH=H}
+const HWORD={[G]:'on time',[AM]:'late',[RD]:'failed',[GR]:'not started'};
+function roomInfo(id){const r=R[id],[h,...rest]=r.desc.split(': '),st=(LG&&LG.status)||{},ck=st.checks||{},dc=FEED&&FEED.daytype;let x=[];
+ if(id==='data')x=[`Desk last checked ${FEED?FEED.checked:'?'}`,...Object.entries(st.data_last_bar_utc||{}).map(([k,v])=>`${k} last Databento bar ${v} UTC`),...((dc&&dc.inputs&&dc.inputs.calendar)||[]).map(c=>'Calendar: '+c)];
+ if(id==='book')x=LV?[`Live view (unofficial) as of ${LV.as_of}: ${(LV.trades||[]).length} trades`,...(LV.warnings||[])]:['No live view yet'];
+ if(id==='call')x=dc?[`${dc.date} at ${dc.made_at}${dc.late?' (late)':''}: AI ${sz(dc.ai_size_used)}, rule ${sz(dc.dumb_size)}`,dc.council&&dc.council.counted?`Council average: trend ${dc.council.trend_probability}%, size ${sz(dc.council.size)}`:'Council: not enough answers to count','Shadow only: the book always trades 1x']:['First morning call: 8:45 New York on a trading day'];
+ if(id==='risk')x=[`Kill switch: ${ck.kill||'?'}`,'1% per trade, whole micros rounded down, cap 200','Cost rule: skip any trade whose costs are over 10% of 1R'];
+ if(id==='ledger')x=[`${st.book||'?'} book: ${st.state||'not run yet'}`,`Chain: ${ck.chain||'?'} · replay: ${ck.replay||'?'}`,`Head ${LG&&LG.head_hash?LG.head_hash.slice(0,12):'(empty)'} · code ${st.code||'?'}`,`Last run ${st.run_at||'?'}`];
+ if(id==='positions')x=[`Account ${money(st.equity||100000)} (double costs ${money(st.equity_2x||100000)})`,`Position check: ${ck.positions||'?'}`];
+ if(id==='score')x=FEED&&FEED.daytype_score?[`${FEED.daytype_score.scored_days} days scored: ${FEED.daytype_score.verdict}`]:['The shadow arms are scored from 1 Jan 2027'];
+ if(id==='lab')x=[TESTS?`Tests: ${TESTS.conclusion||TESTS.status} (${TESTS.sha}, ${TESTS.when})`:'Tests: unknown',...(LAB?['Latest research: '+LAB]:[])];
+ const hc=HEALTH[id]||GR;return `<b>${h}</b> <span style="color:${hc}">● ${HWORD[hc]}</span><br>${esc(rest.join(': '))}${x.length?'<br><span style="color:var(--quiet)">'+x.map(esc).join('<br>')+'</span>':''}`}
+const sz=x=>x==null?'?':x===0?'veto':x+'x';let LAB='';
+// ---------- statuses + beams from the data
+function refresh(){health();const st=(LG&&LG.status)||{},ck=st.checks||{},n=ny();
+ A.KILL.st=ck.kill?(String(ck.kill).startsWith('off')?'Off':'ON'):'?';A.KILL.red=ck.kill&&!String(ck.kill).startsWith('off')?1:0;
+ A.ACCOUNT.st=money(st.equity||100000);A.CHAIN.st=LG&&LG.head_hash?'Head '+LG.head_hash.slice(0,8):'Empty until '+(st.start||'16 Nov');A.CODE.st=st.code?'Code '+String(st.code).slice(0,7):'Code version';
+ A.FILLS.st=st.last_booked?'Last booked '+st.last_booked:'Books after the close';
+ const lt=(LV&&LV.date===n.date&&LV.trades)||[],open=lt.filter(t=>t.state==='open');A.BOOK.st=open.length?`${open.length} open (unofficial)`:'Flat';
+ for(const k in BOTOF){const mine=lt.filter(t=>t.strategy===k);A[BOTOF[k]].st=mine.length?mine.map(t=>`${t.side} ${t.state} ${t.R_now>=0?'+':''}${t.R_now.toFixed(2)}R`).join(', '):(k==='expiry'?'Third Fridays only':'No trade today')}
+ const dc=FEED&&FEED.daytype,M=(dc&&dc.council&&dc.council.members)||{};BEAMS=[];
+ const who={claude:'CLAUDE',gemini:'GEMINI',llama:'LLAMA',gpt:'GPT'};
+ for(const [k,id] of Object.entries(who)){const v=k==='claude'?(dc&&dc.ai):M[k];A[id].st=v&&v.trend_probability!=null?`Trend ${v.trend_probability}% · ${sz(v.veto?0:v.size)}`:'No answer'}
+ const ks=Object.keys(who).filter(k=>{const v=k==='claude'?(dc&&dc.ai):M[k];return v&&v.trend_probability!=null});
+ for(let a=0;a<ks.length;a++)for(let b=a+1;b<ks.length;b++){const va=ks[a]==='claude'?dc.ai:M[ks[a]],vb=ks[b]==='claude'?dc.ai:M[ks[b]],gap=Math.abs(va.trend_probability-vb.trend_probability);
+  if(gap>=25||va.size!==vb.size)BEAMS.push([who[ks[a]],who[ks[b]],Math.min(1.5,gap/40+.4)])}
+ A.RULE.st=dc?'Rule says '+sz(dc.dumb_size):'One-line rule';A.ARMS.st=n.date<'2027-01-01'?'Starts 1 Jan':'Scoring';
+ A.TESTS.st=TESTS?(TESTS.conclusion==='success'?'Passing':TESTS.conclusion||TESTS.status):'Test suite';
+ const v=document.getElementById('val'),d=document.getElementById('dv');
+ if(!HIST){v.textContent=money(st.equity||100000);const day=LG&&LG.days&&LG.days[0];d.textContent=day?`${day.usd>=0?'+':'−'}$${Math.abs(day.usd).toLocaleString('en-US')} ${day.date.slice(5)}`:'';d.classList.toggle('neg',day&&day.usd<0);
+  document.getElementById('pillnote').textContent=st.book==='official'?'paper account · official ledger':`${st.book||'practice'} book · official from 1 Jan 2027`}
+ if(sel)cap.innerHTML=roomInfo(sel)}
+// ---------- the trades tab and "why it fired"
+function tradesOf(date){const n=ny();if(LV&&date===LV.date&&date===n.date)return {src:'live',list:LV.trades||[],skipped:LV.skipped||[]};
+ const d=LG&&(LG.days||[]).find(x=>x.date===date);return d?{src:'ledger',list:d.trades,skipped:d.skipped}:{src:'none',list:[],skipped:[]}}
+function renderTab(){const sht=document.getElementById('sht').firstChild,d=document.createElement('div');
+ if(TAB==='log'){sht.textContent='COMMS LOG';body.replaceChildren(logEl);return}
+ if(TAB==='trades'){sht.textContent='TRADES';const n=ny(),days=[];if(LV&&LV.date===n.date)days.push(n.date);for(const x of (LG&&LG.days)||[])if(!days.includes(x.date))days.push(x.date);
+  d.innerHTML=days.length?days.slice(0,12).map(dd=>{const T=tradesOf(dd);return `<div class="dh">${dd}${T.src==='live'?' <span class="uo">unofficial live view</span>':''}</div>`+
+   (T.list.length?T.list.map((t,i)=>`<button class="tr2" data-d="${dd}" data-i="${i}"><span>${NAMEOF[t.strategy]} · ${t.side} ${t.contracts} ${t.contract}</span><span style="color:${(t.R_now??t.R)>=0?'var(--up)':'var(--down)'}">${t.state==='open'?'open ':''}${(t.R_now??t.R)>=0?'+':''}${(+(t.R_now??t.R)).toFixed(2)}R</span><span class="q">${t.entry_time}${t.exit_time?'–'+t.exit_time:''} · ${t.usd!=null?((t.usd>=0?'+':'−')+'$'+Math.abs(t.usd).toLocaleString('en-US')):'unrealised'}</span></button>`).join(''):'<p class="note">No trades.</p>')+
+   T.skipped.map(k=>`<p class="note">Skipped: ${esc(k.id.split('|')[0])} · ${esc(k.reason)}</p>`).join('')}).join(''):'<p class="note">No trades yet. The practice book starts 16 Nov 2026; the official one on 1 Jan 2027.</p>';
+  d.querySelectorAll('.tr2').forEach(b=>b.onclick=()=>why(b.dataset.d,+b.dataset.i));body.replaceChildren(d);return}
+ if(TAB==='summary'){sht.textContent='DAILY SUMMARY';const ks=Object.keys(SUM||{}).sort().reverse();
+  d.innerHTML=ks.length?ks.slice(0,10).map(k=>`<div class="dh">${k}</div><p class="sum">${esc(SUM[k].text)}</p><p class="note">Written by ${esc(SUM[k].by)} from the ledger's facts.</p>`).join(''):'<p class="note">The first plain-English summary arrives the night after the first booked practice day (16 Nov).</p>';body.replaceChildren(d);return}
+ if(TAB==='replay'){sht.textContent='REPLAY';renderReplay(d);body.replaceChildren(d)}}
+async function why(date,i){const T=tradesOf(date),t=T.list[i];if(!t)return;const d=document.createElement('div');
+ let bars=null;if(T.src==='live')bars=LV.bars&&LV.bars[t.market];else bars=LG.bars&&LG.bars[date]&&LG.bars[date][t.market];
+ if(!bars&&t.market==='NQ'){CHART=CHART||await get('data/chart.json');bars=CHART&&CHART.sessions&&CHART.sessions[date]&&CHART.sessions[date].bars}
+ const R1=t.R_now??t.R;
+ d.innerHTML=`<button class="back">← trades</button><div class="dh">${date} · ${NAMEOF[t.strategy]} · ${t.side} ${t.contracts} ${t.contract}${T.src==='live'?' <span class="uo">unofficial</span>':''}</div>
+  <p class="sum">${esc(RULES[t.strategy])}${t.variant!=null?` This month it runs variant ${t.variant} (picked from the last six months).`:''}</p>${spark(bars,t)}
+  <div class="kv"><div><span>ENTRY</span><b>${t.entry} · ${t.entry_time}</b></div><div><span>STOP</span><b>${t.stop}</b></div>
+  <div><span>EXIT</span><b>${t.exit!=null?t.exit+' · '+t.exit_time:'open, last '+t.last}</b></div><div><span>RESULT</span><b style="color:${R1>=0?'var(--up)':'var(--down)'}">${R1>=0?'+':''}${(+R1).toFixed(2)}R</b></div>
+  <div><span>RISK</span><b>${t.risk_usd!=null?money(t.risk_usd):'–'}</b></div><div><span>COST</span><b>${t.usd_cost!=null?money(t.usd_cost):'in R'}</b></div></div>
+  <p class="note">${T.src==='live'?'From the unofficial live view (Yahoo, delayed). The nightly ledger is the record.':'From the hash-chained ledger: id '+esc(t.id)+'.'}</p>`;
+ d.querySelector('.back').onclick=renderTab;body.replaceChildren(d);const bot=BOTOF[t.strategy];if(bot){A[bot].work=2.2;select('book')}}
+function spark(bars,t){if(!bars||!bars.length)return '<p class="note">No chart for this day.</p>';const W=360,H=120,lo=Math.min(...bars.map(b=>b[3]),t.stop,t.entry),hi=Math.max(...bars.map(b=>b[2]),t.stop,t.entry),m0=570,m1=960;
+ const X=m=>(m-m0)/(m1-m0)*W,Y=v=>H-6-(v-lo)/((hi-lo)||1)*(H-12);let p='';for(const b of bars){const x=X(b[0]+2.5);p+=`<line x1="${x}" x2="${x}" y1="${Y(b[2])}" y2="${Y(b[3])}" stroke="${b[4]>=b[1]?'#3FCF8E':'#F25F5C'}" stroke-opacity=".7"/>`}
+ const e=X(mm(t.entry_time)),x=t.exit_time?X(mm(t.exit_time)):W,c=t.side==='long'?'#3FCF8E':'#F25F5C';
+ return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${p}<line x1="${e}" x2="${x}" y1="${Y(t.entry)}" y2="${Y(t.entry)}" stroke="#EDEDED" stroke-width="1.2"/>
+  <line x1="${e}" x2="${x}" y1="${Y(t.stop)}" y2="${Y(t.stop)}" stroke="#F25F5C" stroke-dasharray="3 3"/>${t.exit!=null?`<circle cx="${x}" cy="${Y(t.exit)}" r="3.5" fill="#E6B54A"/>`:''}<circle cx="${e}" cy="${Y(t.entry)}" r="3.5" fill="${c}"/></svg>
+  <p class="note">Nasdaq${t.market==='ES'?'/S&P':''} 5-minute bars, 9:30–16:00. White: entry · red dashed: stop · gold: exit.</p>`}
+// ---------- replay slider + history mode
+let RP={date:null,t:570,play:null};
+function replayEvents(date){const T=tradesOf(date),ev=[];const call=(FEED&&(FEED.daytype_history||[]).find(x=>x.date===date))||null;
+ if(call)ev.push({m:mm(call.made_at),f:'CLAUDE',to:'RULE',msg:`Morning call: AI ${sz(call.ai_size_used)}, rule ${sz(call.dumb_size)} (shadow only).`});
+ for(const t of T.list){const b=BOTOF[t.strategy];ev.push({m:mm(t.entry_time),f:b,to:'COST',msg:`${NAMEOF[t.strategy]}: ${t.side} ${t.market} at ${t.entry}, stop ${t.stop}.`},{m:mm(t.entry_time),f:'SIZE',to:'BOOK',msg:`${t.contracts} ${t.contract} at 1% risk.`});
+  if(t.exit_time)ev.push({m:mm(t.exit_time),f:'BOOK',to:'FILLS',msg:`${NAMEOF[t.strategy]} out at ${t.exit}: ${(t.R>=0?'+':'')+(+t.R).toFixed(2)}R.`})}
+ if(T.src==='ledger')ev.push({m:961,f:'FILLS',to:'CHAIN',msg:'Day booked into the ledger.'});return ev.sort((a,b)=>a.m-b.m)}
+function applyReplay(fire,from){const T=tradesOf(RP.date),t=RP.t;let usd=0,open=0;
+ for(const x of T.list){const e=mm(x.entry_time),q=x.exit_time?mm(x.exit_time):9999,b=BOTOF[x.strategy];if(t>=e&&t<q){open++;A[b].st=`${x.side} open`}else if(t>=q){usd+=x.usd||0;A[b].st=`${(x.R>=0?'+':'')+(+x.R).toFixed(2)}R`}else A[b].st='Waiting'}
+ A.BOOK.st=`${open} open at ${hm2(Math.min(t,960))}`;document.getElementById('val').textContent=`${usd>=0?'+':'−'}$${Math.abs(usd).toLocaleString('en-US',{maximumFractionDigits:0})}`;
+ document.getElementById('dv').textContent=hm2(Math.min(t,960))+' NY';document.getElementById('pillnote').textContent=`history · ${RP.date}`;
+ if(fire)for(const e of replayEvents(RP.date))if(e.m>from&&e.m<=t)send(e.f,e.to,e.msg,hm2(Math.min(e.m,960)));
+ const tl=document.getElementById('rpt');if(tl)tl.textContent=hm2(Math.min(t,960))}
+function renderReplay(d){const n=ny(),days=[];if(LV&&LV.date===n.date)days.push(n.date);for(const x of (LG&&LG.days)||[])days.push(x.date);
+ if(!days.length){d.innerHTML='<p class="note">Nothing to replay yet: the practice book starts 16 Nov 2026.</p>';return}
+ RP.date=RP.date&&days.includes(RP.date)?RP.date:days[0];
+ d.innerHTML=`<div class="rp"><select id="rpd">${days.map(x=>`<option${x===RP.date?' selected':''}>${x}</option>`).join('')}</select><button id="rpp">▶ Play</button><button id="rpl">Live</button></div>
+  <input type="range" id="rps" min="540" max="961" step="1" value="${RP.t}"><div class="rpl"><span>9:00</span><b id="rpt">${hm2(RP.t)}</b><span>16:00</span></div>
+  <p class="note">History mode: the desk shows that day as it happened. Drag the slider or press play; Live goes back to now.</p>`;
+ const sl=d.querySelector('#rps');HIST=RP.date;document.getElementById('badge').innerHTML='<i></i>History · '+RP.date;
+ d.querySelector('#rpd').onchange=e=>{RP.date=e.target.value;RP.t=540;sl.value=540;HIST=RP.date;document.getElementById('badge').innerHTML='<i></i>History · '+RP.date;applyReplay(false)};
+ sl.oninput=()=>{const old=RP.t;RP.t=+sl.value;applyReplay(Math.abs(RP.t-old)<20,old)};
+ d.querySelector('#rpp').onclick=e=>{if(RP.play){clearInterval(RP.play);RP.play=null;e.target.textContent='▶ Play';return}e.target.textContent='❚❚ Pause';if(RP.t>=961)RP.t=540;
+  RP.play=setInterval(()=>{const old=RP.t;RP.t=Math.min(961,RP.t+2);sl.value=RP.t;applyReplay(true,old);if(RP.t>=961){clearInterval(RP.play);RP.play=null;e.target.textContent='▶ Play'}},120)};
+ d.querySelector('#rpl').onclick=()=>{if(RP.play)clearInterval(RP.play);RP.play=null;HIST=null;document.getElementById('badge').innerHTML='<i></i>Live · real data';refresh();
+  document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x.dataset.t==='log'));TAB='log';renderTab()};applyReplay(false)}
+// ---------- live comms from real events
+function playMorning(dc){const M=(dc.council&&dc.council.members)||{},q=[],v=(k,x)=>x&&x.trend_probability!=null?`trend ${x.trend_probability}%, size ${sz(x.veto?0:x.size)}. ${x.reason||''}`:'no answer.';
+ q.push(['CALENDAR','CLAUDE',`Inputs: VIX ${dc.inputs.vix} (${dc.inputs.vix_1y_percentile}th pct), range ratio ${dc.inputs.range_ratio}, RSI5 ${dc.inputs.rsi5}.`]);
+ q.push(['CLAUDE','RULE','Claude: '+v('claude',dc.ai)]);for(const [k,id] of [['gemini','GEMINI'],['llama','LLAMA'],['gpt','GPT']])q.push([id,'RULE',k[0].toUpperCase()+k.slice(1)+': '+v(k,M[k])]);
+ q.push(['RULE','SIZE',`Rule ${sz(dc.dumb_size)} · AI ${sz(dc.ai_size_used)}${dc.council&&dc.council.counted?` · council average trend ${dc.council.trend_probability}%`:''}. Shadow only: the book trades 1x.`]);
+ q.forEach((m,i)=>setTimeout(()=>send(m[0],m[1],m[2],dc.made_at),i*1600));return q.length*1600}
+const seen=new Set();
+function playNew(){const n=ny(),q=[];
+ if(FEED&&FEED.daytype&&!seen.has('call'+FEED.daytype.date)){seen.add('call'+FEED.daytype.date);q.push(()=>playMorning(FEED.daytype))}
+ if(LV&&LV.date===n.date)for(const t of LV.trades||[]){const k=t.id+t.state;if(seen.has(k))continue;seen.add(k);const b=BOTOF[t.strategy];
+  q.push(()=>{send(b,'COST',`${NAMEOF[t.strategy]}: ${t.side} ${t.market} at ${t.entry}, stop ${t.stop} (unofficial live view).`,t.entry_time);
+   setTimeout(()=>send('SIZE','BOOK',`${t.contracts} ${t.contract} at 1% risk.`,t.entry_time),1600);if(t.state==='closed')setTimeout(()=>send('BOOK','ACCOUNT',`${NAMEOF[t.strategy]} closed at ${t.exit}: ${t.R_now>=0?'+':''}${t.R_now.toFixed(2)}R.`,t.exit_time),3200);return 4800})}
+ const st=LG&&LG.status;if(st&&st.run_at&&!seen.has('run'+st.run_at)){seen.add('run'+st.run_at);
+  q.push(()=>{send('DATABENTO','FILLS',`Nightly run ${st.run_at.slice(0,16).replace('T',' ')} NY: ${(st.booked_now||[]).length} day(s) booked.`,'');setTimeout(()=>send('FILLS','CHAIN',`Chain ${st.checks.chain||'?'} · replay ${st.checks.replay||'?'}`,''),1600);
+   setTimeout(()=>send('CHAIN','ACCOUNT',`${st.checks.positions||''} Account ${money(st.equity||100000)}.`,''),3200);return 4800})}
+ if(TESTS&&!seen.has('t'+TESTS.sha)){seen.add('t'+TESTS.sha);q.push(()=>{send('TESTS','YOU',`Tests ${TESTS.conclusion||TESTS.status} on ${TESTS.sha}.`,'');return 1600})}
+ let delay=0;for(const f of q){setTimeout(()=>{const ms=f()},delay);delay+=5200}}
+async function poll(){const [f,lg,lv,sm]=await Promise.all([get('desk_feed.json'),get('data/ledger.json'),get('data/live_view.json'),get('data/daily_summary.json')]);
+ if(f)FEED=f;if(lg)LG=lg;if(lv)LV=lv;if(sm)SUM=sm;
+ try{const r=await get('https://api.github.com/repos/drusiyani/argon-v2/actions/workflows/tests.yml/runs?per_page=1');const x=r&&r.workflow_runs&&r.workflow_runs[0];if(x)TESTS={status:x.status,conclusion:x.conclusion,sha:x.head_sha.slice(0,7),when:x.updated_at.slice(0,16).replace('T',' ')}}catch(e){}
+ if(!LAB){const rs=await get('data/research.json');try{const ds=(rs&&(rs.docs||rs.pages||rs.items||[]))||[];const last=ds[ds.length-1];LAB=last?(last.title||last.name||''):''}catch(e){}}
+ document.getElementById('badge').innerHTML=HIST?'<i></i>History · '+HIST:(FEED||LG?'<i></i>Live · real data':'<i></i>Can\'t reach the data');
+ refresh();if(!HIST)playNew();if(TAB==='trades'||TAB==='summary')renderTab()}
+if(window.top!==window)document.documentElement.classList.add('embedded');
+poll();setInterval(poll,60000);
 </script></body></html>
