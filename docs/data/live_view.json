@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-03",
- "as_of": "2026-11-03 09:44 NY",
- "last_bar": "2026-11-03 09:34",
+ "as_of": "2026-11-03 09:50 NY",
+ "last_bar": "2026-11-03 09:40",
  "equity_used": 100000.0,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-02 19:41",
-   "yahoo_bars": 824,
-   "last_real": "2026-11-03 09:34",
-   "last_price": 28289.75,
+   "yahoo_bars": 830,
+   "last_real": "2026-11-03 09:40",
+   "last_price": 28312.5,
    "gap_pct": -0.01
   },
   "ES": {
    "databento_last": "2026-11-02 19:41",
-   "yahoo_bars": 824,
-   "last_real": "2026-11-03 09:34",
-   "last_price": 7586.0,
+   "yahoo_bars": 830,
+   "last_real": "2026-11-03 09:40",
+   "last_price": 7589.75,
    "gap_pct": 0.0
   },
   "YM": {
    "databento_last": "2026-11-02 19:41",
-   "yahoo_bars": 833,
-   "last_real": "2026-11-03 09:34",
-   "last_price": 51856.0,
+   "yahoo_bars": 839,
+   "last_real": "2026-11-03 09:40",
+   "last_price": 51800.0,
    "gap_pct": -0.01
   },
   "RTY": {
    "databento_last": "2026-11-02 19:41",
-   "yahoo_bars": 798,
-   "last_real": "2026-11-03 09:34",
-   "last_price": 2823.39990234375,
+   "yahoo_bars": 804,
+   "last_real": "2026-11-03 09:40",
+   "last_price": 2827.0,
    "gap_pct": -0.0
   }
  },
@@ -43,7 +43,21 @@
     28266.0,
     28319.5,
     28215.75,
-    28289.75
+    28316.25
+   ],
+   [
+    575,
+    28316.75,
+    28328.75,
+    28271.25,
+    28314.0
+   ],
+   [
+    580,
+    28316.0,
+    28321.25,
+    28288.75,
+    28312.5
    ]
   ],
   "ES": [
@@ -52,10 +66,42 @@
     7580.0,
     7588.5,
     7576.5,
-    7586.0
+    7588.0
+   ],
+   [
+    575,
+    7588.0,
+    7592.5,
+    7585.0,
+    7590.25
+   ],
+   [
+    580,
+    7590.25,
+    7590.75,
+    7586.25,
+    7589.75
    ]
   ]
  },
- "trades": [],
+ "trades": [
+  {
+   "id": "quantlab|NQ|2026-11-03|575|1",
+   "strategy": "quantlab",
+   "market": "NQ",
+   "contract": "MNQ",
+   "contracts": 4,
+   "side": "long",
+   "entry_time": "09:35",
+   "entry": 28317.25,
+   "stop": 28215.75,
+   "exit_time": null,
+   "exit": null,
+   "last": 28312.5,
+   "state": "open",
+   "R_now": -0.054,
+   "usd_now": -44.0
+  }
+ ],
  "skipped": []
 }
