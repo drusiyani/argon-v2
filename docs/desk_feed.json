@@ -51,30 +51,30 @@
  },
  "kronos": {
   "NQ": {
-   "direction": "up",
+   "direction": "down",
    "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-03T13:00Z"
+   "updated": "2026-11-03T13:16Z"
   },
   "ES": {
    "direction": "down",
-   "confidence": 0.6,
+   "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-03T13:00Z"
+   "updated": "2026-11-03T13:17Z"
   },
   "YM": {
-   "direction": "down",
-   "confidence": 0.6,
+   "direction": "up",
+   "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-03T13:00Z"
+   "updated": "2026-11-03T13:17Z"
   },
   "RTY": {
    "direction": "down",
    "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-03T13:01Z"
+   "updated": "2026-11-03T13:17Z"
   }
  },
- "checked": "2026-11-03 13:00 UTC",
- "updated": "2026-11-03 13:01 UTC"
+ "checked": "2026-11-03 13:15 UTC",
+ "updated": "2026-11-03 13:17 UTC"
 }
