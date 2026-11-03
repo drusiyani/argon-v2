@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-03",
- "as_of": "2026-11-03 11:47 NY",
- "last_bar": "2026-11-03 11:37",
+ "as_of": "2026-11-03 11:53 NY",
+ "last_bar": "2026-11-03 11:43",
  "equity_used": 100000.0,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-02 19:41",
-   "yahoo_bars": 947,
-   "last_real": "2026-11-03 11:37",
-   "last_price": 28310.0,
+   "yahoo_bars": 953,
+   "last_real": "2026-11-03 11:43",
+   "last_price": 28299.0,
    "gap_pct": -0.01
   },
   "ES": {
    "databento_last": "2026-11-02 19:41",
-   "yahoo_bars": 947,
-   "last_real": "2026-11-03 11:37",
-   "last_price": 7601.5,
+   "yahoo_bars": 953,
+   "last_real": "2026-11-03 11:43",
+   "last_price": 7599.25,
    "gap_pct": 0.0
   },
   "YM": {
    "databento_last": "2026-11-02 19:41",
-   "yahoo_bars": 956,
-   "last_real": "2026-11-03 11:37",
-   "last_price": 51924.0,
+   "yahoo_bars": 962,
+   "last_real": "2026-11-03 11:43",
+   "last_price": 51891.0,
    "gap_pct": -0.01
   },
   "RTY": {
    "databento_last": "2026-11-02 19:41",
-   "yahoo_bars": 921,
-   "last_real": "2026-11-03 11:37",
-   "last_price": 2835.60009765625,
+   "yahoo_bars": 927,
+   "last_real": "2026-11-03 11:43",
+   "last_price": 2833.0,
    "gap_pct": -0.0
   }
  },
@@ -216,9 +216,16 @@
    [
     695,
     28288.0,
-    28331.25,
+    28332.25,
     28287.0,
-    28310.0
+    28323.0
+   ],
+   [
+    700,
+    28322.75,
+    28335.75,
+    28297.25,
+    28299.0
    ]
   ],
   "ES": [
@@ -402,7 +409,14 @@
     7599.0,
     7604.5,
     7598.0,
-    7601.5
+    7602.25
+   ],
+   [
+    700,
+    7602.0,
+    7605.25,
+    7598.25,
+    7599.25
    ]
   ]
  },
@@ -419,7 +433,7 @@
    "stop": 28215.75,
    "exit_time": "09:53",
    "exit": 28281.96,
-   "last": 28310.0,
+   "last": 28299.0,
    "state": "closed",
    "R_now": -0.355,
    "usd_now": -288.29
@@ -436,7 +450,7 @@
    "stop": 28282.17,
    "exit_time": "11:29",
    "exit": 28350.0,
-   "last": 28310.0,
+   "last": 28299.0,
    "state": "closed",
    "R_now": -0.505,
    "usd_now": -411.0
