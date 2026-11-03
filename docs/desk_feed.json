@@ -9,6 +9,7 @@
  },
  "calls": [],
  "daytype": null,
+ "daytype_history": [],
  "daytype_score": {
   "scored_days": 0,
   "arms": {
@@ -51,29 +52,29 @@
  "kronos": {
   "NQ": {
    "direction": "up",
-   "confidence": 1.0,
+   "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-02T21:00Z"
+   "updated": "2026-11-03T12:44Z"
   },
   "ES": {
-   "direction": "up",
-   "confidence": 1.0,
-   "horizon": "1h",
-   "updated": "2026-11-02T21:00Z"
-  },
-  "YM": {
    "direction": "down",
    "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-02T21:00Z"
+   "updated": "2026-11-03T12:44Z"
+  },
+  "YM": {
+   "direction": "up",
+   "confidence": 0.8,
+   "horizon": "1h",
+   "updated": "2026-11-03T12:44Z"
   },
   "RTY": {
-   "direction": "up",
+   "direction": "down",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-02T21:00Z"
+   "updated": "2026-11-03T12:44Z"
   }
  },
- "checked": "2026-11-02 21:00 UTC",
- "updated": "2026-11-02 21:01 UTC"
+ "checked": "2026-11-03 12:30 UTC",
+ "updated": "2026-11-03 12:44 UTC"
 }
