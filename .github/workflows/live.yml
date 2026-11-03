@@ -42,12 +42,14 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python engine/daily_summary.py || echo "summary skipped"
       - name: Weekly report into the vault (Friday night and Saturday)
-        run: if [ "$(date -u +%u)" -ge 5 ]; then python engine/weekly_report.py; fi
+        run: |
+          if [ "$(date -u +%u)" -ge 5 ]; then python engine/weekly_report.py; fi
       - name: Alert if anything failed
         if: failure()
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-        run: python engine/alert.py "Argon: nightly book run failed" "Run ${{ github.run_id }} failed or halted. Check data/ledger*/status.json." high
+        run: |
+          python engine/alert.py "Argon - nightly book run failed" "Run ${{ github.run_id }} failed or halted. Check data/ledger*/status.json." high
       - name: Commit (always, so a halt is published too)
         if: always()
         run: |
