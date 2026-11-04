@@ -102,14 +102,14 @@
   "brier": null
  },
  "book": {
-  "final": 1233763,
-  "a_year": 60.2,
-  "sharpe": 1.18,
+  "final": 1216700,
+  "a_year": 58.6,
+  "sharpe": 1.17,
   "worst_drop": -32.2,
   "risk_pct": 1.0,
   "window": [
    "2021-07",
-   "2026-10"
+   "2026-11"
   ],
   "killed": false,
   "live_start": "2027-01-01",
@@ -123,30 +123,30 @@
  },
  "kronos": {
   "NQ": {
-   "direction": "down",
+   "direction": "up",
    "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-03T20:48Z"
+   "updated": "2026-11-04T12:54Z"
   },
   "ES": {
-   "direction": "up",
-   "confidence": 0.6,
+   "direction": "down",
+   "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-03T20:48Z"
+   "updated": "2026-11-04T12:54Z"
   },
   "YM": {
    "direction": "down",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-03T20:48Z"
+   "updated": "2026-11-04T12:54Z"
   },
   "RTY": {
    "direction": "down",
-   "confidence": 0.6,
+   "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-03T20:48Z"
+   "updated": "2026-11-04T12:55Z"
   }
  },
- "checked": "2026-11-03 20:45 UTC",
- "updated": "2026-11-03 20:49 UTC"
+ "checked": "2026-11-04 12:45 UTC",
+ "updated": "2026-11-04 12:55 UTC"
 }
