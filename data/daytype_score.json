@@ -32,35 +32,35 @@
  },
  "label": "trend day = |close-open| >= 0.6 x (high-low), NQ 9:30-16:00",
  "latest_call": {
-  "date": "2026-11-03",
-  "made_at": "08:50",
+  "date": "2026-11-04",
+  "made_at": "08:49",
   "late": false,
   "inputs": {
-   "yesterday_range_pts": 789.5,
-   "avg20_range_pts": 589.8,
-   "range_ratio": 1.34,
-   "rsi5": 22.6,
-   "last_5_closes_change_pct": -4.45,
-   "overnight_change_pct": 0.78,
-   "overnight_range_vs_avg20": 0.66,
-   "vix": 20.69,
-   "vix_1y_percentile": 85,
+   "yesterday_range_pts": 411.2,
+   "avg20_range_pts": 595.0,
+   "range_ratio": 0.69,
+   "rsi5": 15.7,
+   "last_5_closes_change_pct": -5.05,
+   "overnight_change_pct": 0.44,
+   "overnight_range_vs_avg20": 1.76,
+   "vix": 18.49,
+   "vix_1y_percentile": 68,
    "calendar": [
     "nothing scheduled that Argon tracks"
    ],
    "headlines": [
-    "US Midterm Elections: Yardeni Warns A Blue Wave Could Deliver \u2018A Cold Shower For Stocks\u2019 \u2014 UBS Sees Near-Term Volatility",
-    "US Stock Market Today: S&P 500 Futures Slip On Firm Manufacturing And Jobs Focus",
-    "Premarket movers: Apple, Palantir, Dynatrace slide premarket; Grab, Upwork jump",
-    "C.J. Lawrence Launches Buffered Bulldog ETF (ACJL), Bringing Its Bulldog Strategy to the ETF Market",
-    "Stocks Mostly Down Pre-Bell Ahead of Midterm Elections",
-    "What Sent Carvana Stock Higher?",
-    "Is Mastercard's Next Big Thing Already Here?",
-    "Why Did Stanley Black & Decker Stock Jump?",
-    "Is Agnico Eagle Mines Stock A Real Bargain?",
-    "Is Lam Research Stock's Fall A Bargain Or A Warning?",
-    "Does The Move In Joby Stock Change Anything?",
-    "What Is Going On With Adobe Stock?"
+    "This Is How the Stock Market Typically Performs After Midterm Elections",
+    "5 Dividend Stocks to Buy in 2027 and Hold for the Next 5 Years",
+    "60% of S&P 500 Stocks Are in a Bear Market, With the Index Near a Record",
+    "If a Stock Market Crash Is Coming, Warren Buffett's 7-Word Investing Advice Has Never Been Wrong",
+    "US Stock Market Today: S&P 500 Futures Edge Higher On Strong Factory And Freight Data",
+    "Earnings Gaps and a Lost 50-Day Line Set the Levels Chart Watchers Have Circled",
+    "Stocks Rise Pre-Bell as Democrats Seen Sweeping Congress",
+    "How the VIX Tends to Perform After Overtaking 20",
+    "Blue Wave Turns Markets Green as Midterm Relief Rally Kicks in",
+    "What Just Happened To DuPont Stock?",
+    "What Is Behind The Move In Sysco Stock?",
+    "What Sent Bloom Energy Stock Higher?"
    ]
   },
   "ai": {
@@ -80,12 +80,12 @@
    "answered": 0,
    "counted": false
   },
-  "asked_at_utc": "2026-11-03T13:50:09+00:00",
-  "dumb_size": 1.5,
+  "asked_at_utc": "2026-11-04T13:49:33+00:00",
+  "dumb_size": 0.5,
   "ai_size_used": 1.0,
   "model": "claude-sonnet-5-5",
   "prompt_hash": "8b27b11cc4cadeba",
   "shadow": true
  },
- "updated": "2026-11-04 13:44 UTC"
+ "updated": "2026-11-04 13:49 UTC"
 }
