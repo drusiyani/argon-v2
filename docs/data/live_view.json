@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-04",
- "as_of": "2026-11-04 09:44 NY",
- "last_bar": "2026-11-04 09:34",
+ "as_of": "2026-11-04 09:50 NY",
+ "last_bar": "2026-11-04 09:40",
  "equity_used": 100000.0,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-03 20:35",
-   "yahoo_bars": 765,
-   "last_real": "2026-11-04 09:34",
-   "last_price": 28435.5,
+   "yahoo_bars": 771,
+   "last_real": "2026-11-04 09:40",
+   "last_price": 28661.0,
    "gap_pct": 0.0
   },
   "ES": {
    "databento_last": "2026-11-03 20:35",
-   "yahoo_bars": 765,
-   "last_real": "2026-11-04 09:34",
-   "last_price": 7682.75,
+   "yahoo_bars": 771,
+   "last_real": "2026-11-04 09:40",
+   "last_price": 7711.0,
    "gap_pct": 0.01
   },
   "YM": {
    "databento_last": "2026-11-03 20:35",
-   "yahoo_bars": 773,
-   "last_real": "2026-11-04 09:34",
-   "last_price": 53098.0,
+   "yahoo_bars": 780,
+   "last_real": "2026-11-04 09:40",
+   "last_price": 53043.0,
    "gap_pct": 0.0
   },
   "RTY": {
    "databento_last": "2026-11-03 20:35",
-   "yahoo_bars": 765,
-   "last_real": "2026-11-04 09:34",
-   "last_price": 2881.800048828125,
+   "yahoo_bars": 771,
+   "last_real": "2026-11-04 09:40",
+   "last_price": 2882.60009765625,
    "gap_pct": -0.0
   }
  },
@@ -43,7 +43,21 @@
     28430.25,
     28554.25,
     28405.0,
-    28435.5
+    28415.5
+   ],
+   [
+    575,
+    28416.25,
+    28652.25,
+    28416.0,
+    28651.0
+   ],
+   [
+    580,
+    28650.5,
+    28682.25,
+    28643.25,
+    28661.0
    ]
   ],
   "ES": [
@@ -52,10 +66,42 @@
     7683.0,
     7697.0,
     7679.75,
-    7682.75
+    7682.25
+   ],
+   [
+    575,
+    7682.25,
+    7713.0,
+    7682.0,
+    7713.0
+   ],
+   [
+    580,
+    7712.75,
+    7713.0,
+    7708.75,
+    7711.0
    ]
   ]
  },
- "trades": [],
+ "trades": [
+  {
+   "id": "quantlab|NQ|2026-11-04|575|1",
+   "strategy": "quantlab",
+   "market": "NQ",
+   "contract": "MNQ",
+   "contracts": 3,
+   "side": "short",
+   "entry_time": "09:35",
+   "entry": 28415.75,
+   "stop": 28554.25,
+   "exit_time": "09:37",
+   "exit": 28555.0,
+   "last": 28661.0,
+   "state": "closed",
+   "R_now": -1.011,
+   "usd_now": -840.0
+  }
+ ],
  "skipped": []
 }
