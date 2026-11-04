@@ -2,7 +2,7 @@
 type: lab-run
 week: 2026-W42
 versions_tried: 1305
-passed: 3
+passed: 5
 ---
 # Strategy lab — 13 Oct 2026
 
@@ -11,17 +11,17 @@ passed: 3
 
 ## Result
 
-1,305 versions tried → 13 made money in both practice halves → 5 best picked → 3 passed the exam. So Rulebook v1.0 keeps the same rules, plus the risk rules from Argon v1.
+1,305 versions tried → 13 made money in both practice halves → 5 best picked → 5 passed the exam. So Rulebook v1.0 keeps the same rules, plus the risk rules from Argon v1.
 
 ## The five best
 
 | settings | practice | exam | worst drop | result |
 |---|---|---|---|---|
-| entry ob_first, windows both, bias pd, smt optional, pool any, markets all, target pool | +19.65R (26 trades) | +0.76R (32) | -7.35R | passed |
-| entry ob_only, windows both, bias pd, smt optional, pool any, markets all, target pool | +19.65R (26 trades) | -1.27R (31) | -7.35R | failed |
-| entry fvg_first, windows both, bias pd, smt optional, pool any, markets all, target pool | +14.64R (26 trades) | -1.66R (31) | -8.4R | failed |
-| entry ob_first, windows both, bias pd, smt optional, pool any, markets all, target 3R | +12.84R (24 trades) | +5.24R (35) | -8.4R | passed |
-| entry ob_only, windows both, bias pd, smt optional, pool any, markets all, target 3R | +12.84R (24 trades) | +4.16R (34) | -8.4R | passed |
+| entry ob_first, windows both, bias pd, smt optional, pool any, markets all, target pool | +19.65R (26 trades) | +2.67R (34) | -7.35R | passed |
+| entry ob_only, windows both, bias pd, smt optional, pool any, markets all, target pool | +19.65R (26 trades) | +0.64R (33) | -7.35R | passed |
+| entry fvg_first, windows both, bias pd, smt optional, pool any, markets all, target pool | +14.64R (26 trades) | +0.25R (33) | -8.4R | passed |
+| entry ob_first, windows both, bias pd, smt optional, pool any, markets all, target 3R | +12.84R (24 trades) | +8.00R (37) | -8.4R | passed |
+| entry ob_only, windows both, bias pd, smt optional, pool any, markets all, target 3R | +12.84R (24 trades) | +6.92R (36) | -8.4R | passed |
 | old rules (v0.2) | +0.61R (14) | +1.02R (23) | – | for comparison |
 
 Why, in plain English: [[Lessons]]. Current rules: [[Rulebook v1.0]].

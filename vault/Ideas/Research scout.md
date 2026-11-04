@@ -1,6 +1,6 @@
 ---
 type: scout
-updated: 2026-11-03
+updated: 2026-11-04
 built_from: 1508 days of prices (2021-01-04 to 2026-10-30)
 ---
 # Research scout
