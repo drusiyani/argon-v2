@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-05",
- "as_of": "2026-11-05 10:45 NY",
- "last_bar": "2026-11-05 10:35",
+ "as_of": "2026-11-05 10:52 NY",
+ "last_bar": "2026-11-05 10:42",
  "equity_used": 100000.0,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-04 20:41",
-   "yahoo_bars": 825,
-   "last_real": "2026-11-05 10:35",
-   "last_price": 27300.0,
+   "yahoo_bars": 832,
+   "last_real": "2026-11-05 10:42",
+   "last_price": 27147.75,
    "gap_pct": 0.01
   },
   "ES": {
    "databento_last": "2026-11-04 20:41",
-   "yahoo_bars": 825,
-   "last_real": "2026-11-05 10:35",
-   "last_price": 7527.5,
+   "yahoo_bars": 832,
+   "last_real": "2026-11-05 10:42",
+   "last_price": 7501.25,
    "gap_pct": 0.0
   },
   "YM": {
    "databento_last": "2026-11-04 20:41",
-   "yahoo_bars": 833,
-   "last_real": "2026-11-05 10:35",
-   "last_price": 52647.0,
+   "yahoo_bars": 840,
+   "last_real": "2026-11-05 10:42",
+   "last_price": 52520.0,
    "gap_pct": -0.0
   },
   "RTY": {
    "databento_last": "2026-11-04 20:41",
-   "yahoo_bars": 814,
-   "last_real": "2026-11-05 10:35",
-   "last_price": 2807.199951171875,
+   "yahoo_bars": 821,
+   "last_real": "2026-11-05 10:42",
+   "last_price": 2799.5,
    "gap_pct": 0.0
   }
  },
@@ -131,10 +131,17 @@
    ],
    [
     635,
-    27283.75,
+    27285.25,
     27326.75,
-    27259.0,
-    27300.0
+    27185.0,
+    27201.25
+   ],
+   [
+    640,
+    27200.0,
+    27235.75,
+    27101.25,
+    27147.75
    ]
   ],
   "ES": [
@@ -233,8 +240,15 @@
     635,
     7528.0,
     7531.25,
-    7523.5,
-    7527.5
+    7510.5,
+    7512.25
+   ],
+   [
+    640,
+    7511.75,
+    7519.5,
+    7494.5,
+    7501.25
    ]
   ]
  },
@@ -251,10 +265,10 @@
    "stop": 28228.25,
    "exit_time": null,
    "exit": null,
-   "last": 27300.0,
+   "last": 27147.75,
    "state": "open",
-   "R_now": 2.681,
-   "usd_now": 1351.0
+   "R_now": 3.285,
+   "usd_now": 1655.5
   },
   {
    "id": "atrband|NQ|2026-11-05|585|0",
@@ -268,10 +282,10 @@
    "stop": 28203.0,
    "exit_time": null,
    "exit": null,
-   "last": 27300.0,
+   "last": 27147.75,
    "state": "open",
-   "R_now": 0.828,
-   "usd_now": 817.5
+   "R_now": 1.137,
+   "usd_now": 1122.0
   },
   {
    "id": "noiseband|NQ|2026-11-05|630|1",
@@ -285,10 +299,10 @@
    "stop": 27355.94,
    "exit_time": null,
    "exit": null,
-   "last": 27300.0,
+   "last": 27147.75,
    "state": "open",
-   "R_now": -0.576,
-   "usd_now": -450.0
+   "R_now": 0.593,
+   "usd_now": 463.5
   }
  ],
  "skipped": []
