@@ -9,8 +9,8 @@
  },
  "calls": [],
  "daytype": {
-  "date": "2026-11-04",
-  "made_at": "08:49",
+  "date": "2026-11-05",
+  "made_at": "08:45",
   "late": false,
   "ai": {
    "size": 1.0,
@@ -18,7 +18,7 @@
    "veto": null,
    "reason": "no forecast (no API key or all runs failed): counts as 1x"
   },
-  "dumb_size": 0.5,
+  "dumb_size": 1.5,
   "ai_size_used": 1.0,
   "shadow": true,
   "council": {
@@ -34,11 +34,11 @@
    "size": null
   },
   "inputs": {
-   "vix": 18.49,
-   "vix_1y_percentile": 68,
-   "range_ratio": 0.69,
-   "rsi5": 15.7,
-   "overnight_change_pct": 0.44,
+   "vix": 16.8,
+   "vix_1y_percentile": 44,
+   "range_ratio": 2.1,
+   "rsi5": 19.2,
+   "overnight_change_pct": -0.86,
    "calendar": [
     "nothing scheduled that Argon tracks"
    ]
@@ -116,6 +116,42 @@
      "nothing scheduled that Argon tracks"
     ]
    }
+  },
+  {
+   "date": "2026-11-05",
+   "made_at": "08:45",
+   "late": false,
+   "ai": {
+    "size": 1.0,
+    "trend_probability": null,
+    "veto": null,
+    "reason": "no forecast (no API key or all runs failed): counts as 1x"
+   },
+   "dumb_size": 1.5,
+   "ai_size_used": 1.0,
+   "shadow": true,
+   "council": {
+    "members": {
+     "claude": null,
+     "gemini": null,
+     "llama": null,
+     "gpt": null
+    },
+    "answered": 0,
+    "counted": false,
+    "trend_probability": null,
+    "size": null
+   },
+   "inputs": {
+    "vix": 16.8,
+    "vix_1y_percentile": 44,
+    "range_ratio": 2.1,
+    "rsi5": 19.2,
+    "overnight_change_pct": -0.86,
+    "calendar": [
+     "nothing scheduled that Argon tracks"
+    ]
+   }
   }
  ],
  "daytype_score": {
@@ -183,6 +219,6 @@
    "updated": "2026-11-05T13:35Z"
   }
  },
- "checked": "2026-11-05 13:30 UTC",
- "updated": "2026-11-05 13:35 UTC"
+ "checked": "2026-11-05 13:45 UTC",
+ "updated": "2026-11-05 13:46 UTC"
 }

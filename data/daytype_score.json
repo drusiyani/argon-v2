@@ -32,35 +32,35 @@
  },
  "label": "trend day = |close-open| >= 0.6 x (high-low), NQ 9:30-16:00",
  "latest_call": {
-  "date": "2026-11-04",
-  "made_at": "08:49",
+  "date": "2026-11-05",
+  "made_at": "08:45",
   "late": false,
   "inputs": {
-   "yesterday_range_pts": 411.2,
-   "avg20_range_pts": 595.0,
-   "range_ratio": 0.69,
-   "rsi5": 15.7,
-   "last_5_closes_change_pct": -5.05,
-   "overnight_change_pct": 0.44,
-   "overnight_range_vs_avg20": 1.76,
-   "vix": 18.49,
-   "vix_1y_percentile": 68,
+   "yesterday_range_pts": 1353.2,
+   "avg20_range_pts": 643.7,
+   "range_ratio": 2.1,
+   "rsi5": 19.2,
+   "last_5_closes_change_pct": -4.71,
+   "overnight_change_pct": -0.86,
+   "overnight_range_vs_avg20": 0.7,
+   "vix": 16.8,
+   "vix_1y_percentile": 44,
    "calendar": [
     "nothing scheduled that Argon tracks"
    ],
    "headlines": [
-    "This Is How the Stock Market Typically Performs After Midterm Elections",
-    "5 Dividend Stocks to Buy in 2027 and Hold for the Next 5 Years",
-    "60% of S&P 500 Stocks Are in a Bear Market, With the Index Near a Record",
-    "If a Stock Market Crash Is Coming, Warren Buffett's 7-Word Investing Advice Has Never Been Wrong",
-    "US Stock Market Today: S&P 500 Futures Edge Higher On Strong Factory And Freight Data",
-    "Earnings Gaps and a Lost 50-Day Line Set the Levels Chart Watchers Have Circled",
-    "Stocks Rise Pre-Bell as Democrats Seen Sweeping Congress",
-    "How the VIX Tends to Perform After Overtaking 20",
-    "Blue Wave Turns Markets Green as Midterm Relief Rally Kicks in",
-    "What Just Happened To DuPont Stock?",
-    "What Is Behind The Move In Sysco Stock?",
-    "What Sent Bloom Energy Stock Higher?"
+    "Premarket movers: Qualcomm, Snap slide premarket; Unity surges",
+    "Stock Market Crash Or Rally? Plan For Both",
+    "3 Stocks Yielding Triple the S&P 500 to Buy in November",
+    "If You Ran NRG Energy, What Would You Do?",
+    "These 6 Stocks Make Up a Big Share of the S&P 500",
+    "Stock Market Today: Dow Rises After Postelection Rally; Cava, Dutch Bros Plunge On Earnings News (Live Coverage)",
+    "Morgan Stanley cuts Cisco rating, sees pull-forward risk after strong run",
+    "Dow Jones Futures Rise As Techs Fall; Apple, Microsoft, Amazon Flash Buy Signals",
+    "Can D-Wave Quantum Stock Fall 50%?",
+    "What Changed In Bristol Myers Squibb's Story?",
+    "The Dow Just Jumped 1,569 Points for Its Best Post-Midterm Day in 44 Years",
+    "Stocks Mostly Up Pre-Bell as Traders Weigh Impact of Democrats' Midterm Victory"
    ]
   },
   "ai": {
@@ -80,12 +80,12 @@
    "answered": 0,
    "counted": false
   },
-  "asked_at_utc": "2026-11-04T13:49:33+00:00",
-  "dumb_size": 0.5,
+  "asked_at_utc": "2026-11-05T13:45:59+00:00",
+  "dumb_size": 1.5,
   "ai_size_used": 1.0,
   "model": "claude-sonnet-5-5",
   "prompt_hash": "8b27b11cc4cadeba",
   "shadow": true
  },
- "updated": "2026-11-05 13:40 UTC"
+ "updated": "2026-11-05 13:45 UTC"
 }
