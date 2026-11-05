@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-05",
- "as_of": "2026-11-05 09:52 NY",
- "last_bar": "2026-11-05 09:41",
+ "as_of": "2026-11-05 09:58 NY",
+ "last_bar": "2026-11-05 09:47",
  "equity_used": 100000.0,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-04 20:41",
-   "yahoo_bars": 771,
-   "last_real": "2026-11-05 09:41",
-   "last_price": 27772.75,
+   "yahoo_bars": 777,
+   "last_real": "2026-11-05 09:47",
+   "last_price": 27700.25,
    "gap_pct": 0.01
   },
   "ES": {
    "databento_last": "2026-11-04 20:41",
-   "yahoo_bars": 771,
-   "last_real": "2026-11-05 09:41",
-   "last_price": 7641.5,
+   "yahoo_bars": 777,
+   "last_real": "2026-11-05 09:47",
+   "last_price": 7618.5,
    "gap_pct": 0.0
   },
   "YM": {
    "databento_last": "2026-11-04 20:41",
-   "yahoo_bars": 779,
-   "last_real": "2026-11-05 09:41",
-   "last_price": 53501.0,
+   "yahoo_bars": 785,
+   "last_real": "2026-11-05 09:47",
+   "last_price": 53305.0,
    "gap_pct": -0.0
   },
   "RTY": {
    "databento_last": "2026-11-04 20:41",
-   "yahoo_bars": 760,
-   "last_real": "2026-11-05 09:41",
-   "last_price": 2848.5,
+   "yahoo_bars": 766,
+   "last_real": "2026-11-05 09:47",
+   "last_price": 2839.39990234375,
    "gap_pct": 0.0
   }
  },
@@ -56,8 +56,15 @@
     580,
     27868.25,
     27874.25,
-    27763.0,
-    27772.75
+    27700.0,
+    27707.75
+   ],
+   [
+    585,
+    27709.75,
+    27748.0,
+    27624.25,
+    27700.25
    ]
   ],
   "ES": [
@@ -79,8 +86,15 @@
     580,
     7658.75,
     7659.75,
-    7638.75,
-    7641.5
+    7621.25,
+    7621.5
+   ],
+   [
+    585,
+    7621.75,
+    7625.75,
+    7605.5,
+    7618.5
    ]
   ]
  },
@@ -97,10 +111,27 @@
    "stop": 28228.25,
    "exit_time": null,
    "exit": null,
-   "last": 27772.75,
+   "last": 27700.25,
    "state": "open",
-   "R_now": 0.805,
-   "usd_now": 405.5
+   "R_now": 1.092,
+   "usd_now": 550.5
+  },
+  {
+   "id": "atrband|NQ|2026-11-05|585|0",
+   "strategy": "atrband",
+   "market": "NQ",
+   "contract": "MNQ",
+   "contracts": 1,
+   "side": "short",
+   "entry_time": "09:45",
+   "entry": 27709.5,
+   "stop": 28203.0,
+   "exit_time": null,
+   "exit": null,
+   "last": 27700.25,
+   "state": "open",
+   "R_now": 0.017,
+   "usd_now": 17.0
   }
  ],
  "skipped": []
