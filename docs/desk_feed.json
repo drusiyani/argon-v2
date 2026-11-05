@@ -198,27 +198,27 @@
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-05T18:15Z"
+   "updated": "2026-11-05T18:34Z"
   },
   "ES": {
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-05T18:15Z"
+   "updated": "2026-11-05T18:34Z"
   },
   "YM": {
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-05T18:15Z"
+   "updated": "2026-11-05T18:34Z"
   },
   "RTY": {
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-05T18:15Z"
+   "updated": "2026-11-05T18:34Z"
   }
  },
- "checked": "2026-11-05 18:15 UTC",
- "updated": "2026-11-05 18:16 UTC"
+ "checked": "2026-11-05 18:30 UTC",
+ "updated": "2026-11-05 18:35 UTC"
 }
