@@ -32,35 +32,35 @@
  },
  "label": "trend day = |close-open| >= 0.6 x (high-low), NQ 9:30-16:00",
  "latest_call": {
-  "date": "2026-11-05",
-  "made_at": "08:45",
+  "date": "2026-11-06",
+  "made_at": "08:47",
   "late": false,
   "inputs": {
-   "yesterday_range_pts": 1353.2,
-   "avg20_range_pts": 643.7,
-   "range_ratio": 2.1,
-   "rsi5": 19.2,
-   "last_5_closes_change_pct": -4.71,
-   "overnight_change_pct": -0.86,
-   "overnight_range_vs_avg20": 0.7,
-   "vix": 16.8,
-   "vix_1y_percentile": 44,
+   "yesterday_range_pts": 2098.5,
+   "avg20_range_pts": 715.0,
+   "range_ratio": 2.94,
+   "rsi5": 11.9,
+   "last_5_closes_change_pct": -9.51,
+   "overnight_change_pct": 1.32,
+   "overnight_range_vs_avg20": 1.24,
+   "vix": 26.86,
+   "vix_1y_percentile": 97,
    "calendar": [
-    "nothing scheduled that Argon tracks"
+    "first Friday: jobs report at 8:30am"
    ],
    "headlines": [
-    "Premarket movers: Qualcomm, Snap slide premarket; Unity surges",
-    "Stock Market Crash Or Rally? Plan For Both",
-    "3 Stocks Yielding Triple the S&P 500 to Buy in November",
-    "If You Ran NRG Energy, What Would You Do?",
-    "These 6 Stocks Make Up a Big Share of the S&P 500",
-    "Stock Market Today: Dow Rises After Postelection Rally; Cava, Dutch Bros Plunge On Earnings News (Live Coverage)",
-    "Morgan Stanley cuts Cisco rating, sees pull-forward risk after strong run",
-    "Dow Jones Futures Rise As Techs Fall; Apple, Microsoft, Amazon Flash Buy Signals",
-    "Can D-Wave Quantum Stock Fall 50%?",
-    "What Changed In Bristol Myers Squibb's Story?",
-    "The Dow Just Jumped 1,569 Points for Its Best Post-Midterm Day in 44 Years",
-    "Stocks Mostly Up Pre-Bell as Traders Weigh Impact of Democrats' Midterm Victory"
+    "Equity Futures Mostly Point Higher Following Tech-Led Selloff",
+    "Jobs Report Due As Fed Rate Hike Looms Despite Sell-Off (Live Coverage)",
+    "Yardeni explains why Thursday\u2019s selloff is a buying opportunity",
+    "Cathie Wood Just Dumped $134 Million of Broadcom and Bought Nvidia and SpaceX",
+    "Healthcare and Staples Hold the Line Against Tech. The Time to Be Fearful When Others Are Greedy Has Arrived.",
+    "US Equity Futures Mixed Pre-Bell as Traders Buy Dip Following Post-Election Tech Stock Rout",
+    "Premarket movers: Airbnb, Cloudflare, IREN rally; Atlassian, Five9 tumble",
+    "Tech just had a crisis-sized day \u2014 the kind that came in 2000, 2008, and 2020: Chart of the Day",
+    "Dow Jones Futures Fall, AI Stocks Nvidia, Sandisk, CoreWeave, SpaceX Bounce; Tesla To End Cybertruck Production",
+    "The VIX volatility index just spiked 70%. Here's what history suggests comes next.",
+    "How Much Could You Lose In Rigetti Computing Stock?",
+    "Should You Buy Qualcomm Stock Now Or Wait?"
    ]
   },
   "ai": {
@@ -80,12 +80,12 @@
    "answered": 0,
    "counted": false
   },
-  "asked_at_utc": "2026-11-05T13:45:59+00:00",
+  "asked_at_utc": "2026-11-06T13:47:28+00:00",
   "dumb_size": 1.5,
   "ai_size_used": 1.0,
   "model": "claude-sonnet-5-5",
   "prompt_hash": "8b27b11cc4cadeba",
   "shadow": true
  },
- "updated": "2026-11-06 13:42 UTC"
+ "updated": "2026-11-06 13:47 UTC"
 }

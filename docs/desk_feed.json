@@ -9,8 +9,8 @@
  },
  "calls": [],
  "daytype": {
-  "date": "2026-11-05",
-  "made_at": "08:45",
+  "date": "2026-11-06",
+  "made_at": "08:47",
   "late": false,
   "ai": {
    "size": 1.0,
@@ -34,13 +34,13 @@
    "size": null
   },
   "inputs": {
-   "vix": 16.8,
-   "vix_1y_percentile": 44,
-   "range_ratio": 2.1,
-   "rsi5": 19.2,
-   "overnight_change_pct": -0.86,
+   "vix": 26.86,
+   "vix_1y_percentile": 97,
+   "range_ratio": 2.94,
+   "rsi5": 11.9,
+   "overnight_change_pct": 1.32,
    "calendar": [
-    "nothing scheduled that Argon tracks"
+    "first Friday: jobs report at 8:30am"
    ]
   }
  },
@@ -152,6 +152,42 @@
      "nothing scheduled that Argon tracks"
     ]
    }
+  },
+  {
+   "date": "2026-11-06",
+   "made_at": "08:47",
+   "late": false,
+   "ai": {
+    "size": 1.0,
+    "trend_probability": null,
+    "veto": null,
+    "reason": "no forecast (no API key or all runs failed): counts as 1x"
+   },
+   "dumb_size": 1.5,
+   "ai_size_used": 1.0,
+   "shadow": true,
+   "council": {
+    "members": {
+     "claude": null,
+     "gemini": null,
+     "llama": null,
+     "gpt": null
+    },
+    "answered": 0,
+    "counted": false,
+    "trend_probability": null,
+    "size": null
+   },
+   "inputs": {
+    "vix": 26.86,
+    "vix_1y_percentile": 97,
+    "range_ratio": 2.94,
+    "rsi5": 11.9,
+    "overnight_change_pct": 1.32,
+    "calendar": [
+     "first Friday: jobs report at 8:30am"
+    ]
+   }
   }
  ],
  "daytype_score": {
@@ -219,6 +255,6 @@
    "updated": "2026-11-06T13:42Z"
   }
  },
- "checked": "2026-11-06 13:30 UTC",
- "updated": "2026-11-06 13:42 UTC"
+ "checked": "2026-11-06 13:45 UTC",
+ "updated": "2026-11-06 13:47 UTC"
 }
