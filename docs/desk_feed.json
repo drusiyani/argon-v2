@@ -232,29 +232,29 @@
  "kronos": {
   "NQ": {
    "direction": "down",
-   "confidence": 1.0,
+   "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-06T16:42Z"
+   "updated": "2026-11-06T17:01Z"
   },
   "ES": {
-   "direction": "down",
-   "confidence": 1.0,
+   "direction": "up",
+   "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-06T16:43Z"
+   "updated": "2026-11-06T17:02Z"
   },
   "YM": {
    "direction": "down",
-   "confidence": 0.8,
+   "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-06T16:43Z"
+   "updated": "2026-11-06T17:02Z"
   },
   "RTY": {
    "direction": "down",
-   "confidence": 0.8,
+   "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-06T16:43Z"
+   "updated": "2026-11-06T17:02Z"
   }
  },
- "checked": "2026-11-06 16:45 UTC",
- "updated": "2026-11-06 16:50 UTC"
+ "checked": "2026-11-06 17:00 UTC",
+ "updated": "2026-11-06 17:03 UTC"
 }
