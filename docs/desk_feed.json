@@ -232,12 +232,12 @@
  "kronos": {
   "NQ": {
    "direction": "down",
-   "confidence": 0.6,
+   "confidence": 0.8,
    "horizon": "1h",
    "updated": "2026-11-06T18:38Z"
   },
   "ES": {
-   "direction": "up",
+   "direction": "down",
    "confidence": 0.8,
    "horizon": "1h",
    "updated": "2026-11-06T18:38Z"
@@ -255,6 +255,6 @@
    "updated": "2026-11-06T18:38Z"
   }
  },
- "checked": "2026-11-06 18:30 UTC",
- "updated": "2026-11-06 18:39 UTC"
+ "checked": "2026-11-06 18:45 UTC",
+ "updated": "2026-11-06 18:45 UTC"
 }
