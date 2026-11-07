@@ -11,11 +11,16 @@ Every weekday between 8:45 and 9:25am New York, once:
     side by side by engine/daytype_score.py, and the AI only gets real control under the pre-registered promotion rule.
 If the forecast is not finished by 9:25 the AI arm counts as 1x for that day (recorded as late)."""
 import os, sys, json, time, hashlib, statistics as stt, urllib.request, datetime as dt, re, html
+from concurrent.futures import ThreadPoolExecutor
 from zoneinfo import ZoneInfo
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); sys.path.insert(0, os.path.join(ROOT, 'engine'))
 from calendar_us import FOMC
 NY = ZoneInfo('America/New_York'); OUT = os.path.join(ROOT, 'data', 'daytype.jsonl')
-KEY = os.environ.get('ANTHROPIC_API_KEY'); MODEL = 'claude-sonnet-5-5'        # PINNED for the whole trial (changing it resets the clock)
+KEY = os.environ.get('ANTHROPIC_API_KEY')
+# Solo AI. Practice-run settings (Nov 2026): the final models and effort level are fixed by amendment before the 31 Jan 2027 freeze.
+MODEL = os.environ.get('DAYTYPE_MODEL', 'claude-opus-5-5')
+EFFORT = os.environ.get('DAYTYPE_EFFORT', 'high')       # same effort level for every AI
+MAXTOK = 16000                                           # room for thinking + the short JSON answer
 SIZES = (0.5, 1.0, 1.5); VETOS = ('breaking_unscheduled_event', 'market_halt', 'data_feed_broken')
 UA = {'User-Agent': 'Mozilla/5.0'}
 
@@ -83,31 +88,39 @@ def dumb_rule(d):
 
 # ---- the AI council (Amendment 4b): other model families, same frozen prompt and inputs, temperature 0, each asked once.
 # Model ids are pinned here; changing any of them restarts the council's clock. A member with no key, or that fails, is recorded as no answer.
-COUNCIL = [dict(name='gemini', key='GEMINI_API_KEY', model=os.environ.get('COUNCIL_GEMINI_MODEL', 'gemini-2.5-flash')),
-           dict(name='llama', key='GROQ_API_KEY', model=os.environ.get('COUNCIL_LLAMA_MODEL', 'llama-3.3-70b-versatile')),
-           dict(name='gpt', key='OPENROUTER_API_KEY', model=os.environ.get('COUNCIL_GPT_MODEL', 'openai/gpt-4o-mini'))]
+# ---- the AI council (Amendment 4b, models updated Nov 2026): one top model from each of three other companies, all through
+# OpenRouter (one key), same frozen prompt, inputs and effort level, each asked once. DeepSeek avoids its own China-hosted API
+# where another host serves the model. A member that fails is recorded as no answer, with the error kept in the record.
+COUNCIL = [dict(name='gemini', model=os.environ.get('COUNCIL_GEMINI_MODEL', 'google/gemini-4-argon')),
+           dict(name='gpt', model=os.environ.get('COUNCIL_GPT_MODEL', 'openai/gpt-6-astra')),
+           dict(name='deepseek', model=os.environ.get('COUNCIL_DEEPSEEK_MODEL', 'deepseek/deepseek-v4-pro'), avoid=['DeepSeek'])]
+ERRORS = {}
+def err_text(e):
+    try: return f"{e} {e.read().decode()[:400]}"
+    except Exception: return repr(e)[:400]
 def parse(t):
     j = json.loads(t[t.find('{'):t.rfind('}') + 1]); size = min(SIZES, key=lambda s: abs(s - float(j.get('size', 1))))
     return dict(trend_probability=max(0, min(100, float(j.get('trend_probability', 50)))), size=size, veto=j.get('veto') if j.get('veto') in VETOS else None, reason=str(j.get('reason', ''))[:300])
 def post(url, body, headers):
-    return json.loads(urllib.request.urlopen(urllib.request.Request(url, data=json.dumps(body).encode(), headers=dict({'content-type': 'application/json'}, **headers)), timeout=60).read())
+    return json.loads(urllib.request.urlopen(urllib.request.Request(url, data=json.dumps(body).encode(), headers=dict({'content-type': 'application/json'}, **headers)), timeout=240).read())
 def ask_member(m, text):
-    k = os.environ.get(m['key'])
-    if not k: return None
-    msg = PROMPT + text
-    if m['name'] == 'gemini':
-        r = post(f"https://generativelanguage.googleapis.com/v1beta/models/{m['model']}:generateContent?key={k}", {'contents': [{'parts': [{'text': msg}]}], 'generationConfig': {'temperature': 0, 'maxOutputTokens': 300}}, {})
-        t = r['candidates'][0]['content']['parts'][0]['text']
-    else:
-        url = 'https://api.groq.com/openai/v1/chat/completions' if m['name'] == 'llama' else 'https://openrouter.ai/api/v1/chat/completions'
-        r = post(url, {'model': m['model'], 'temperature': 0, 'max_tokens': 300, 'messages': [{'role': 'user', 'content': msg}]}, {'Authorization': 'Bearer ' + k})
-        t = r['choices'][0]['message']['content']
-    return dict(parse(t), raw=t[:1200], model_reported=r.get('model', m['model']))
+    k = os.environ.get('OPENROUTER_API_KEY')
+    if not k: ERRORS[m['name']] = 'no OPENROUTER_API_KEY'; return None
+    body = {'model': m['model'], 'max_tokens': MAXTOK, 'reasoning': {'effort': EFFORT}, 'messages': [{'role': 'user', 'content': PROMPT + text}]}
+    if m.get('avoid'): body['provider'] = {'ignore': m['avoid']}
+    try: r = post('https://openrouter.ai/api/v1/chat/completions', body, {'Authorization': 'Bearer ' + k})
+    except Exception:
+        if not m.get('avoid'): raise
+        body.pop('provider'); r = post('https://openrouter.ai/api/v1/chat/completions', body, {'Authorization': 'Bearer ' + k})   # no other host: use any
+    t = r['choices'][0]['message']['content'] or ''
+    return dict(parse(t), raw=t[:1200], model_reported=r.get('model', m['model']), provider=r.get('provider'))
 def council(text, claude):
     members = {'claude': dict(claude, model_reported=MODEL) if claude.get('trend_probability') is not None else None}
-    for m in COUNCIL:
-        try: members[m['name']] = ask_member(m, text)
-        except Exception as e: members[m['name']] = None; print('council member failed', m['name'], repr(e)[:120])
+    def one(m):                                   # all members are asked at the same time (parallel), so the call stays fast
+        try: return m['name'], ask_member(m, text)
+        except Exception as e: ERRORS[m['name']] = err_text(e); print('council member failed', m['name'], ERRORS[m['name']][:200]); return m['name'], None
+    with ThreadPoolExecutor(len(COUNCIL)) as ex:
+        for name, v in ex.map(one, COUNCIL): members[name] = v
     got = [v for v in members.values() if v]
     if len(got) < 3: return dict(members=members, answered=len(got), counted=False)
     sizes = sorted(v['size'] for v in got); n = len(sizes)
@@ -115,9 +128,11 @@ def council(text, claude):
     return dict(members=members, answered=n, counted=True, trend_probability=round(sum(v['trend_probability'] for v in got) / n, 1), size=med)
 
 def ask(text):
-    body = json.dumps({'model': MODEL, 'max_tokens': 300, 'temperature': 0, 'messages': [{'role': 'user', 'content': PROMPT + text}]}).encode()
+    # Claude 5.5 models reject temperature/top_p/top_k (400), so none are sent; the effort level controls thinking instead.
+    body = json.dumps({'model': MODEL, 'max_tokens': MAXTOK, 'output_config': {'effort': EFFORT}, 'messages': [{'role': 'user', 'content': PROMPT + text}]}).encode()
     req = urllib.request.Request('https://api.anthropic.com/v1/messages', data=body, headers={'x-api-key': KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json'})
-    t = json.loads(urllib.request.urlopen(req, timeout=60).read())['content'][0]['text']
+    blocks = json.loads(urllib.request.urlopen(req, timeout=240).read())['content']
+    t = next(b['text'] for b in blocks if b.get('type') == 'text')      # skip thinking blocks
     j = json.loads(t[t.find('{'):t.rfind('}') + 1])
     size = min(SIZES, key=lambda s: abs(s - float(j.get('size', 1))))
     veto = j.get('veto') if j.get('veto') in VETOS else None
@@ -136,9 +151,10 @@ if __name__ == '__main__':
     d = inputs(today); text = json.dumps(d, indent=1)
     runs = []
     if KEY:
-        for _ in range(3):
-            try: runs.append(ask(text))
-            except Exception as e: print('run failed', repr(e)[:120])
+        def run(_):
+            try: return ask(text)
+            except Exception as e: ERRORS.setdefault('claude', []).append(err_text(e)); print('run failed', ERRORS['claude'][-1][:200]); return None
+        with ThreadPoolExecutor(3) as ex: runs = [r for r in ex.map(run, range(3)) if r]
     late = dt.datetime.now(NY).time() > dt.time(9, 25)
     if runs:
         sizes = sorted(r['size'] for r in runs); vetos = [r['veto'] for r in runs if r['veto']]
@@ -147,7 +163,7 @@ if __name__ == '__main__':
                   reason=runs[len(runs) // 2]['reason'])
     else: ai = dict(size=1.0, trend_probability=None, veto=None, reason='no forecast (no API key or all runs failed): counts as 1x')
     cn = council(text, ai) if not late else dict(members={}, answered=0, counted=False, note='late')
-    rec = dict(date=today.isoformat(), made_at=dt.datetime.now(NY).strftime('%H:%M'), late=late, inputs=d, ai=ai, ai_runs=runs, council=cn, asked_at_utc=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'), dumb_size=dumb_rule(d),
+    rec = dict(date=today.isoformat(), made_at=dt.datetime.now(NY).strftime('%H:%M'), late=late, inputs=d, ai=ai, ai_runs=runs, council=cn, asked_at_utc=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'), dumb_size=dumb_rule(d), effort=EFFORT, errors=ERRORS,
                ai_size_used=1.0 if (late or not runs) else (0.0 if ai['veto'] else ai['size']), model=MODEL, prompt_hash=PROMPT_HASH, shadow=True)
     if force and '--dry' in sys.argv: print(json.dumps(rec, indent=1)); sys.exit(0)
     open(OUT, 'a').write(json.dumps(rec) + '\n')

@@ -40,9 +40,10 @@ def claude(f):
     if not k: return None
     prompt = ('Write a plain-English summary of this paper-trading day for a 15-year-old, in 3 or 4 short sentences. '
               'Use only these facts. No advice, no hype, no predictions. Say it is paper trading. The morning call is shadow only (it does not change the trades).\n\n' + json.dumps(f))
-    body = json.dumps({'model': MODEL, 'max_tokens': 220, 'temperature': 0, 'messages': [{'role': 'user', 'content': prompt}]}).encode()
+    body = json.dumps({'model': MODEL, 'max_tokens': 4000, 'output_config': {'effort': 'low'}, 'messages': [{'role': 'user', 'content': prompt}]}).encode()   # 5.5 models reject temperature
     req = urllib.request.Request('https://api.anthropic.com/v1/messages', data=body, headers={'x-api-key': k, 'anthropic-version': '2023-06-01', 'content-type': 'application/json'})
-    return json.loads(urllib.request.urlopen(req, timeout=60).read())['content'][0]['text'].strip()
+    blocks = json.loads(urllib.request.urlopen(req, timeout=120).read())['content']
+    return next(x['text'] for x in blocks if x.get('type') == 'text').strip()
 if __name__ == '__main__':
     f = facts()
     if not f: print('nothing booked yet'); sys.exit(0)

@@ -183,3 +183,14 @@ Designed after a 6-member council review (statistician, risk manager, trader, AI
 - **Unofficial live view:** the same code on Yahoo intraday bars, every 5 minutes in the desk loop. Always labelled unofficial.
 - **Practice book** from 16 Nov 2026 in `data/ledger_practice/`, same code, so bugs show up before 1 Jan.
 - Small code change with no effect on results: each trade now also records its entry price (stop and exit follow from it).
+
+### Amendment 7 (7 November 2026, practice run, before any freeze): morning-call fixes
+- **Bug fixed:** every morning call so far returned "no forecast". Claude 5.5 models reject the `temperature` setting (HTTP 400),
+  and the council had no API keys. Those days count as 1x and stay in the practice record as they are.
+- **No sampling settings for any AI** (models that reject them can't be compared fairly otherwise). Thinking is set by one shared
+  **effort level** for every AI instead (`high` during practice).
+- **Council:** Gemini 4 Argon, GPT-6 Astra and DeepSeek V4 Pro (replacing Llama, which Groq made enterprise-only), all through
+  OpenRouter with the same prompt and inputs. DeepSeek avoids its own China-hosted API where another host serves the model.
+  **Solo AI:** Claude Opus 5.5. Every failure's error message is now saved in the record.
+- **Still to fix before the freeze (a later amendment):** the rule for which model each company races with ("top generally
+  available model on the Artificial Analysis Intelligence Index on the freeze date"), the final effort level, and the new freeze date.

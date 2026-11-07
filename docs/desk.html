@@ -83,7 +83,7 @@ const BOT={
  // the morning-call council: original designs, no company logos
  Claude:{d:'M8 7h16a5 5 0 0 1 5 5v9a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5v-9a5 5 0 0 1 5-5z',f:'#E8876A',e:[[12,16],[20,16]]},
  Gemini:{d:'M16 3.5l12 12.5-12 12.5L4 16z',f:'#7FA6FF',e:[[12.6,15.5],[19.4,15.5]],er:[2,2.6]},
- Llama:{d:'M9 4h3v5h8V4h3v6a6 6 0 0 1 4 5.7V24a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4v-8.3A6 6 0 0 1 9 10z',f:'#C9A27A',e:[[12.4,17],[19.6,17]]},
+ Deepseek:{d:'M9 4h3v5h8V4h3v6a6 6 0 0 1 4 5.7V24a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4v-8.3A6 6 0 0 1 9 10z',f:'#6F7DF7',e:[[12.4,17],[19.6,17]]},
  Gpt:{d:'M16 7a9 9 0 1 1 0 18 9 9 0 0 1 0-18z',f:'#4FD1A5',e:[[12.6,15.5],[19.4,15.5]],legs:1},
  // desk staff
  Risk:{d:'M16 4l10.4 6v12L16 28 5.6 22V10z',f:'#F59A3E',e:[[12.4,15.5],[19.6,15.5]]},
@@ -96,7 +96,7 @@ const ROOMS=[
  {id:'data',name:'MARKET DATA',c:'#E46FD8',i:-1,j:-1,desc:'Market data: the tape, Databento 1-minute futures (the official record), news and the economic calendar.'},
  {id:'book',name:'THE BOOK',c:'#F2C14E',i:0,j:-1,desc:'The book: the four strategies, QuantLab, Noise band, ATR band and Expiry, running the exact backtest code.'},
  {id:'risk',name:'RISK',c:'#F59A3E',i:1,j:-1,desc:'Risk: the kill switch, sizing (1% per trade, whole micros, rounded down) and the cost rule.'},
- {id:'call',name:'MORNING CALL',c:'#E8876A',i:-1,j:0,desc:'Morning call: Claude, Gemini, Llama and GPT each read the morning inputs; the one-line rule votes too. Shadow only until scored.'},
+ {id:'call',name:'MORNING CALL',c:'#E8876A',i:-1,j:0,desc:'Morning call: Claude, Gemini, GPT and DeepSeek each read the morning inputs; the one-line rule votes too. Shadow only until scored.'},
  {id:'ledger',name:'LEDGER',c:'#ECE6D8',i:0,j:0,oct:1,desc:'Ledger: every booked day, hash-chained, with the code version. Rebuilt and checked every night.'},
  {id:'positions',name:'POSITIONS',c:'#3FC1B0',i:1,j:0,desc:'Positions: open trades and the paper account.'},
  {id:'lab',name:'LAB',c:'#7FA6FF',i:-1,j:1,desc:'Lab: the test suite and the latest research.'},
@@ -110,7 +110,7 @@ const AG=[
  {id:'ATR',room:'book',bot:'Atr',x:1.2,y:3.3,st:'Waiting'},{id:'EXPIRY',room:'book',bot:'Expiry',x:3.2,y:3.3,st:'Third Fridays only'},
  {id:'KILL',room:'risk',x:1.0,y:1.1,kind:'rack',red:1,st:'Off'},{id:'SIZE',room:'risk',bot:'Size',x:3.2,y:1.4,st:'1% per trade'},{id:'COST',room:'risk',bot:'Risk',x:2.0,y:3.3,st:'Cost rule: max 10% of 1R'},
  {id:'CLAUDE',room:'call',bot:'Claude',x:1.2,y:1.3,st:'Asked at 8:45'},{id:'GEMINI',room:'call',bot:'Gemini',x:3.2,y:1.3,st:'Asked at 8:45'},
- {id:'LLAMA',room:'call',bot:'Llama',x:1.2,y:3.3,st:'Asked at 8:45'},{id:'GPT',room:'call',bot:'Gpt',x:3.2,y:3.3,st:'Asked at 8:45'},{id:'RULE',room:'call',x:2.2,y:2.3,kind:'core',st:'One-line rule'},
+ {id:'DEEPSEEK',room:'call',bot:'Deepseek',x:1.2,y:3.3,st:'Asked at 8:45'},{id:'GPT',room:'call',bot:'Gpt',x:3.2,y:3.3,st:'Asked at 8:45'},{id:'RULE',room:'call',x:2.2,y:2.3,kind:'core',st:'One-line rule'},
  {id:'CHAIN',room:'ledger',x:2.2,y:2.2,kind:'core',st:'Hash chain'},{id:'FILLS',room:'ledger',bot:'Fills',x:1.2,y:1.2,st:'Books after the close'},{id:'CODE',room:'ledger',x:3.4,y:3.3,kind:'rack',st:'Code version'},
  {id:'BOOK',room:'positions',x:1.4,y:1.4,kind:'rack',st:'0 open'},{id:'ACCOUNT',room:'positions',x:3.1,y:3.0,kind:'rack',st:'$100,000'},
  {id:'TESTS',room:'lab',x:1.3,y:1.4,kind:'rack',st:'Test suite'},{id:'RESEARCH',room:'lab',bot:'Filter',x:3.1,y:3.0,st:'Latest research'},
@@ -306,7 +306,7 @@ function refresh(){health();const st=(LG&&LG.status)||{},ck=st.checks||{},n=ny()
  const lt=(LV&&LV.date===n.date&&LV.trades)||[],open=lt.filter(t=>t.state==='open');A.BOOK.st=open.length?`${open.length} open (unofficial)`:'Flat';
  for(const k in BOTOF){const mine=lt.filter(t=>t.strategy===k);A[BOTOF[k]].st=mine.length?mine.map(t=>`${t.side} ${t.state} ${t.R_now>=0?'+':''}${t.R_now.toFixed(2)}R`).join(', '):(k==='expiry'?'Third Fridays only':'No trade today')}
  const dc=FEED&&FEED.daytype,M=(dc&&dc.council&&dc.council.members)||{};BEAMS=[];
- const who={claude:'CLAUDE',gemini:'GEMINI',llama:'LLAMA',gpt:'GPT'};
+ const who={claude:'CLAUDE',gemini:'GEMINI',deepseek:'DEEPSEEK',gpt:'GPT'};
  for(const [k,id] of Object.entries(who)){const v=k==='claude'?(dc&&dc.ai):M[k];A[id].st=v&&v.trend_probability!=null?`Trend ${v.trend_probability}% · ${sz(v.veto?0:v.size)}`:'No answer'}
  const ks=Object.keys(who).filter(k=>{const v=k==='claude'?(dc&&dc.ai):M[k];return v&&v.trend_probability!=null});
  for(let a=0;a<ks.length;a++)for(let b=a+1;b<ks.length;b++){const va=ks[a]==='claude'?dc.ai:M[ks[a]],vb=ks[b]==='claude'?dc.ai:M[ks[b]],gap=Math.abs(va.trend_probability-vb.trend_probability);
@@ -376,7 +376,7 @@ function renderReplay(d){const n=ny(),days=[];if(LV&&LV.date===n.date)days.push(
 // ---------- live comms from real events
 function playMorning(dc){const M=(dc.council&&dc.council.members)||{},q=[],v=(k,x)=>x&&x.trend_probability!=null?`trend ${x.trend_probability}%, size ${sz(x.veto?0:x.size)}. ${x.reason||''}`:'no answer.';
  q.push(['CALENDAR','CLAUDE',`Inputs: VIX ${dc.inputs.vix} (${dc.inputs.vix_1y_percentile}th pct), range ratio ${dc.inputs.range_ratio}, RSI5 ${dc.inputs.rsi5}.`]);
- q.push(['CLAUDE','RULE','Claude: '+v('claude',dc.ai)]);for(const [k,id] of [['gemini','GEMINI'],['llama','LLAMA'],['gpt','GPT']])q.push([id,'RULE',k[0].toUpperCase()+k.slice(1)+': '+v(k,M[k])]);
+ q.push(['CLAUDE','RULE','Claude: '+v('claude',dc.ai)]);for(const [k,id] of [['gemini','GEMINI'],['deepseek','DEEPSEEK'],['gpt','GPT']])q.push([id,'RULE',k[0].toUpperCase()+k.slice(1)+': '+v(k,M[k])]);
  q.push(['RULE','SIZE',`Rule ${sz(dc.dumb_size)} · AI ${sz(dc.ai_size_used)}${dc.council&&dc.council.counted?` · council average trend ${dc.council.trend_probability}%`:''}. Shadow only: the book trades 1x.`]);
  q.forEach((m,i)=>setTimeout(()=>send(m[0],m[1],m[2],dc.made_at),i*1600));return q.length*1600}
 const seen=new Set();
