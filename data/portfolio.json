@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-05 02:40 UTC",
+ "generated": "2026-11-07 02:09 UTC",
  "config": {
   "risk_pct": 1.0,
   "start_usd": 100000,
@@ -29,12 +29,12 @@
   "2026-11"
  ],
  "main": {
-  "sharpe": 1.16,
-  "R": 314.1,
-  "final": 1197996,
-  "a_year": 58.2,
+  "sharpe": 1.18,
+  "R": 317.7,
+  "final": 1242155,
+  "a_year": 59.2,
   "worst_drop": -32.2,
-  "losing_months": 28,
+  "losing_months": 27,
   "months": 65,
   "years": {
    "2021": {
@@ -58,8 +58,8 @@
     "usd": 398801
    },
    "2026": {
-    "pct": -5.4,
-    "usd": -68000
+    "pct": -1.9,
+    "usd": -23841
    }
   },
   "equity": [
@@ -321,7 +321,7 @@
    ],
    [
     "2026-11",
-    1197996
+    1242155
    ]
   ],
   "monthly_R": [
@@ -389,21 +389,21 @@
    -4.0,
    13.43,
    3.68,
-   -2.9
+   0.68
   ]
  },
  "double_costs": {
-  "sharpe": 1.0,
-  "R": 264.4,
-  "final": 759678,
-  "a_year": 45.4,
+  "sharpe": 1.02,
+  "R": 268.0,
+  "final": 787415,
+  "a_year": 46.4,
   "worst_drop": -34.4
  },
  "shadow": {
-  "sharpe": 1.34,
-  "R": 220.8,
-  "final": 697345,
-  "a_year": 43.1,
+  "sharpe": 1.36,
+  "R": 222.9,
+  "final": 712512,
+  "a_year": 43.7,
   "worst_drop": -22.6,
   "equity": [
    [
@@ -664,7 +664,7 @@
    ],
    [
     "2026-11",
-    697345
+    712512
    ]
   ],
   "years": {
@@ -689,8 +689,8 @@
     "usd": 155864
    },
    "2026": {
-    "pct": 5.2,
-    "usd": 34569
+    "pct": 7.5,
+    "usd": 49736
    }
   }
  },
@@ -701,12 +701,84 @@
   "expiry": 1.6369287528537726
  },
  "trades_by_strategy": {
-  "quantlab": 1305,
-  "atrband": 771,
+  "quantlab": 1307,
+  "atrband": 773,
   "expiry": 122,
-  "noiseband": 880
+  "noiseband": 884
  },
  "recent_trades": [
+  {
+   "date": "2026-11-06",
+   "strategy": "quantlab",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "09:35",
+   "exit": "09:37",
+   "R": -1.01
+  },
+  {
+   "date": "2026-11-05",
+   "strategy": "noiseband",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "10:30",
+   "exit": "15:55",
+   "R": 3.08
+  },
+  {
+   "date": "2026-11-05",
+   "strategy": "atrband",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "09:45",
+   "exit": "15:55",
+   "R": 1.79
+  },
+  {
+   "date": "2026-11-05",
+   "strategy": "quantlab",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "09:35",
+   "exit": "10:56",
+   "R": 3.76
+  },
+  {
+   "date": "2026-11-04",
+   "strategy": "noiseband",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "12:00",
+   "exit": "13:59",
+   "R": -0.8
+  },
+  {
+   "date": "2026-11-04",
+   "strategy": "noiseband",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "11:00",
+   "exit": "11:29",
+   "R": -0.79
+  },
+  {
+   "date": "2026-11-04",
+   "strategy": "noiseband",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "10:30",
+   "exit": "10:59",
+   "R": -1.75
+  },
+  {
+   "date": "2026-11-04",
+   "strategy": "atrband",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "09:45",
+   "exit": "15:55",
+   "R": -0.71
+  },
   {
    "date": "2026-11-04",
    "strategy": "quantlab",
@@ -994,78 +1066,6 @@
    "entry": "09:35",
    "exit": "09:49",
    "R": 0.37
-  },
-  {
-   "date": "2026-10-19",
-   "strategy": "noiseband",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "11:30",
-   "exit": "12:29",
-   "R": -0.71
-  },
-  {
-   "date": "2026-10-19",
-   "strategy": "quantlab",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "09:35",
-   "exit": "09:39",
-   "R": -1.03
-  },
-  {
-   "date": "2026-10-16",
-   "strategy": "atrband",
-   "symbol": "NQ",
-   "side": "short",
-   "entry": "10:30",
-   "exit": "15:55",
-   "R": 2.09
-  },
-  {
-   "date": "2026-10-16",
-   "strategy": "noiseband",
-   "symbol": "NQ",
-   "side": "short",
-   "entry": "10:30",
-   "exit": "15:55",
-   "R": 4.18
-  },
-  {
-   "date": "2026-10-16",
-   "strategy": "quantlab",
-   "symbol": "NQ",
-   "side": "short",
-   "entry": "09:35",
-   "exit": "09:45",
-   "R": 0.34
-  },
-  {
-   "date": "2026-10-16",
-   "strategy": "expiry",
-   "symbol": "ES",
-   "side": "short",
-   "entry": "09:31",
-   "exit": "12:00",
-   "R": 2.38
-  },
-  {
-   "date": "2026-10-16",
-   "strategy": "expiry",
-   "symbol": "NQ",
-   "side": "short",
-   "entry": "09:31",
-   "exit": "12:00",
-   "R": 2.37
-  },
-  {
-   "date": "2026-10-15",
-   "strategy": "atrband",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "11:00",
-   "exit": "15:55",
-   "R": 0.76
   }
  ],
  "daily_R": {
@@ -9314,8 +9314,20 @@
    0
   ],
   "2026-11-04": [
-   -1.0108,
-   -1.0054,
+   -5.0547,
+   -5.0308,
+   5,
+   0
+  ],
+  "2026-11-05": [
+   8.6376,
+   8.6479,
+   3,
+   1
+  ],
+  "2026-11-06": [
+   -1.0146,
+   -1.0073,
    1,
    null
   ]

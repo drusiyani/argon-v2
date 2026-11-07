@@ -13,7 +13,7 @@ taken: 0
 | all examples | 28 | 39% | +5.00R | +0.18R |
 | actually taken | 0 | – | 0.00R | – |
 
-By market: Nasdaq 6 (0.00R), S&P 500 9 (+6.00R), the Dow 10 (-4.00R), the Russell 2000 3 (+3.00R).
+By market: Nasdaq 8 (+1.00R), S&P 500 8 (+7.00R), the Dow 10 (-4.00R), the Russell 2000 2 (+1.00R).
 
 ## Trades taken
 

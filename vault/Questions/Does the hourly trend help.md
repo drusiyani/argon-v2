@@ -1,6 +1,6 @@
 ---
 type: question
-updated: 2026-11-05
+updated: 2026-11-07
 built_from: 1508 days of prices (2021-01-04 to 2026-10-30)
 answer: "unclear, the difference is small"
 ---

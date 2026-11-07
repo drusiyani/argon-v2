@@ -1,19 +1,19 @@
 ---
 type: setup
-examples: 9
+examples: 10
 taken: 0
 ---
 # Setup — London · Asia high or low
 
 > [!info]
-> Not enough examples to tell yet.
+> Making money so far. Needs more examples before trusting it.
 
 | | how many | won | total | per trade |
 |---|---|---|---|---|
-| all examples | 9 | 56% | +6.00R | +0.67R |
+| all examples | 10 | 60% | +8.00R | +0.80R |
 | actually taken | 0 | – | 0.00R | – |
 
-By market: Nasdaq 4 (+2.00R), S&P 500 2 (+1.00R), the Dow 2 (+4.00R), the Russell 2000 1 (-1.00R).
+By market: Nasdaq 5 (+4.00R), S&P 500 2 (+1.00R), the Dow 2 (+4.00R), the Russell 2000 1 (-1.00R).
 
 ## Trades taken
 

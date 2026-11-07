@@ -10,10 +10,10 @@ taken: 0
 
 | | how many | won | total | per trade |
 |---|---|---|---|---|
-| all examples | 5 | 20% | +0.55R | +0.11R |
+| all examples | 5 | 20% | +0.64R | +0.13R |
 | actually taken | 0 | – | 0.00R | – |
 
-By market: Nasdaq 0 (0.00R), S&P 500 0 (0.00R), the Dow 3 (+2.55R), the Russell 2000 2 (-2.00R).
+By market: Nasdaq 0 (0.00R), S&P 500 0 (0.00R), the Dow 3 (+2.64R), the Russell 2000 2 (-2.00R).
 
 ## Trades taken
 
