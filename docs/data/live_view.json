@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-09",
- "as_of": "2026-11-09 11:22 NY",
- "last_bar": "2026-11-09 11:12",
+ "as_of": "2026-11-09 11:29 NY",
+ "last_bar": "2026-11-09 11:19",
  "equity_used": 100000.0,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-06 16:59",
-   "yahoo_bars": 1014,
-   "last_real": "2026-11-09 11:12",
+   "yahoo_bars": 1021,
+   "last_real": "2026-11-09 11:19",
    "last_price": 27905.75,
    "gap_pct": -0.01
   },
   "ES": {
    "databento_last": "2026-11-06 16:59",
-   "yahoo_bars": 1013,
-   "last_real": "2026-11-09 11:12",
-   "last_price": 7548.0,
+   "yahoo_bars": 1020,
+   "last_real": "2026-11-09 11:19",
+   "last_price": 7548.75,
    "gap_pct": 0.11
   },
   "YM": {
    "databento_last": "2026-11-06 16:59",
-   "yahoo_bars": 1013,
-   "last_real": "2026-11-09 11:12",
-   "last_price": 52272.0,
+   "yahoo_bars": 1020,
+   "last_real": "2026-11-09 11:19",
+   "last_price": 52267.0,
    "gap_pct": 0.18
   },
   "RTY": {
    "databento_last": "2026-11-06 16:59",
-   "yahoo_bars": 1012,
-   "last_real": "2026-11-09 11:12",
-   "last_price": 2833.60009765625,
+   "yahoo_bars": 1019,
+   "last_real": "2026-11-09 11:19",
+   "last_price": 2834.10009765625,
    "gap_pct": 0.2
   }
  },
@@ -182,7 +182,14 @@
     670,
     27933.5,
     27934.25,
-    27902.0,
+    27891.75,
+    27904.0
+   ],
+   [
+    675,
+    27902.75,
+    27930.25,
+    27894.5,
     27905.75
    ]
   ],
@@ -331,8 +338,15 @@
     670,
     7551.75,
     7551.75,
-    7545.75,
-    7548.0
+    7544.25,
+    7546.0
+   ],
+   [
+    675,
+    7546.0,
+    7551.5,
+    7544.5,
+    7548.75
    ]
   ]
  },
@@ -347,12 +361,12 @@
    "entry_time": "09:35",
    "entry": 27458.5,
    "stop": 27316.25,
-   "exit_time": null,
-   "exit": null,
+   "exit_time": "11:14",
+   "exit": 27899.29,
    "last": 27905.75,
-   "state": "open",
-   "R_now": 3.139,
-   "usd_now": 2679.0
+   "state": "closed",
+   "R_now": 3.093,
+   "usd_now": 2640.21
   },
   {
    "id": "atrband|NQ|2026-11-09|600|0",
