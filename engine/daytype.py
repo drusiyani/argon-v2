@@ -10,7 +10,7 @@ Every weekday between 8:45 and 9:25am New York, once:
   - writes one line to data/daytype.jsonl. Nothing here changes the real book: all three arms (1x, dumb rule, AI) are scored
     side by side by engine/daytype_score.py, and the AI only gets real control under the pre-registered promotion rule.
 If the forecast is not finished by 9:25 the AI arm counts as 1x for that day (recorded as late)."""
-import os, sys, json, time, hashlib, statistics as stt, urllib.request, datetime as dt, re, html
+import os, sys, json, time, math, hashlib, statistics as stt, urllib.request, datetime as dt, re, html
 from concurrent.futures import ThreadPoolExecutor
 from zoneinfo import ZoneInfo
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); sys.path.insert(0, os.path.join(ROOT, 'engine'))
@@ -130,6 +130,18 @@ def memory(name):
     lines += [f"{x['date']}: said {x['p']:.0f}% trend, size {x['size']}x -> {'TREND' if x['trend'] else 'CHOP'} day, book {x['R']:+.2f}R" for x in past[-20:]]
     return '\n'.join(lines)
 
+MF = json.load(open(os.path.join(ROOT, 'research', 'results', 'market_forecaster.json')))     # frozen market forecaster (Amendment 9)
+def market_forecast(d):
+    c, k = MF['coef'], MF['cutoffs']
+    z = c['intercept'] + c['vix_1y_percentile'] * d['vix_1y_percentile'] / 100 + c['range_ratio'] * d['range_ratio']; p = 1 / (1 + math.exp(-z))
+    size = 2.0 if p >= k['two'] else 1.5 if p >= k['one_and_half'] else 0.5 if p < k['half'] else 1.0
+    return dict(trend_probability=round(100 * p, 1), size=size)
+
+# --- cost tracking: tokens and dollars per call, alarm above COST_ALERT a day
+PRICE = {MODEL: (4.0, 20.0)}                                   # $ per million in/out for Claude (OpenRouter reports its own cost)
+USAGE = []
+COST_ALERT = float(os.environ.get('DAYTYPE_COST_ALERT', '3'))
+
 RANDOM_SEED = 'argon-random-sizer-v1'                          # fixed in advance (Amendment 8): the 'luck' competitor
 def random_size(day): return SIZES[int(hashlib.sha256(f'{RANDOM_SEED}|{day}'.encode()).hexdigest(), 16) % len(SIZES)]
 
@@ -161,11 +173,13 @@ def ask_member(m, text, extra=''):
     k = os.environ.get('OPENROUTER_API_KEY')
     if not k: ERRORS[m['name']] = 'no OPENROUTER_API_KEY'; return None
     body = {'model': m['model'], 'max_tokens': MAXTOK, 'reasoning': {'effort': EFFORT}, 'messages': [{'role': 'user', 'content': PROMPT + text + extra}]}
+    body['usage'] = {'include': True}                          # OpenRouter returns the real cost of each call
     if m.get('avoid'): body['provider'] = {'ignore': m['avoid']}
     try: r = post('https://openrouter.ai/api/v1/chat/completions', body, {'Authorization': 'Bearer ' + k})
     except Exception:
         if not m.get('avoid'): raise
         body.pop('provider'); r = post('https://openrouter.ai/api/v1/chat/completions', body, {'Authorization': 'Bearer ' + k})   # no other host: use any
+    USAGE.append(dict(who=m['name'], usd=round(float((r.get('usage') or {}).get('cost') or 0), 5), tokens={k: v for k, v in (r.get('usage') or {}).items() if k != 'cost'}))
     t = r['choices'][0]['message']['content'] or ''
     return dict(parse(t), raw=t[:1200], model_reported=r.get('model', m['model']), provider=r.get('provider'))
 def summarise(members):
@@ -212,7 +226,8 @@ def ask(text, extra=''):
     content = [{'type': 'text', 'text': PROMPT + text, 'cache_control': {'type': 'ephemeral'}}] + ([{'type': 'text', 'text': extra}] if extra else [])
     body = json.dumps({'model': MODEL, 'max_tokens': MAXTOK, 'output_config': {'effort': EFFORT}, 'messages': [{'role': 'user', 'content': content}]}).encode()
     req = urllib.request.Request('https://api.anthropic.com/v1/messages', data=body, headers={'x-api-key': KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json'})
-    blocks = json.loads(urllib.request.urlopen(req, timeout=240).read())['content']
+    resp = json.loads(urllib.request.urlopen(req, timeout=240).read()); blocks = resp['content']; u = resp.get('usage', {}); pi, po = PRICE.get(MODEL, (4.0, 20.0))
+    USAGE.append(dict(who='claude', usd=round((u.get('input_tokens', 0) * pi + u.get('cache_creation_input_tokens', 0) * pi * 1.25 + u.get('cache_read_input_tokens', 0) * pi * 0.1 + u.get('output_tokens', 0) * po) / 1e6, 5), tokens=u))
     t = next(b['text'] for b in blocks if b.get('type') == 'text')      # skip thinking blocks
     j = json.loads(t[t.find('{'):t.rfind('}') + 1])
     size = min(SIZES, key=lambda s: abs(s - float(j.get('size', 1))))
@@ -246,8 +261,12 @@ if __name__ == '__main__':
     else: ai = dict(size=1.0, trend_probability=None, veto=None, reason='no forecast (no API key or all runs failed): counts as 1x')
     cn = council(base, ai) if not late else dict(members={}, answered=0, counted=False, note='late')
     cn2 = council_round2(base, cn, today.isoformat()) if (not late and cn.get('counted')) else dict(members={}, answered=0, counted=False)
-    rec = dict(date=today.isoformat(), made_at=dt.datetime.now(NY).strftime('%H:%M'), late=late, inputs=d, ai=ai, ai_runs=runs, council=cn, asked_at_utc=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'), dumb_size=dumb_rule(d), council_r2=cn2, random_size=random_size(today.isoformat()), effort=EFFORT, errors=ERRORS,
+    rec = dict(date=today.isoformat(), made_at=dt.datetime.now(NY).strftime('%H:%M'), late=late, inputs=d, ai=ai, ai_runs=runs, council=cn, asked_at_utc=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'), dumb_size=dumb_rule(d), council_r2=cn2, random_size=random_size(today.isoformat()), market=market_forecast(d), cost_usd=round(sum(x['usd'] for x in USAGE), 4), usage=USAGE, effort=EFFORT, errors=ERRORS,
                ai_size_used=1.0 if (late or not runs) else (0.0 if ai['veto'] else ai['size']), model=MODEL, prompt_hash=PROMPT_HASH, shadow=True)
     if force and '--dry' in sys.argv: print(json.dumps(rec, indent=1)); sys.exit(0)
     open(OUT, 'a').write(json.dumps(rec) + '\n')
+    if rec['cost_usd'] > COST_ALERT:
+        try:
+            import alert; alert.send('Argon: morning call cost alert', f"Today's AI calls cost ${rec['cost_usd']:.2f} (alarm at ${COST_ALERT:.2f}).", 'default')
+        except Exception as e: print('alert failed', e)
     print('daytype:', today, 'AI', ai['size'], ai['trend_probability'], ai['veto'], '| dumb', rec['dumb_size'], '| late' if late else '')

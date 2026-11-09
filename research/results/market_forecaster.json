@@ -1,0 +1,19 @@
+{
+ "written": "2026-11-09",
+ "fitted_on": "2021-07-01 to 2026-09-30 (1308 days)",
+ "trend_day_rate": 0.384,
+ "coef": {
+  "intercept": -0.4526,
+  "vix_1y_percentile": 0.157,
+  "range_ratio": -0.0932
+ },
+ "cutoffs": {
+  "half": 0.3749,
+  "one_and_half": 0.389,
+  "two": 0.3989
+ },
+ "in_sample_brier": 0.2363,
+ "always_base_rate_brier": 0.2365,
+ "size_rule": "p >= two -> 2x; p >= one_and_half -> 1.5x; p < half -> 0.5x; else 1x",
+ "note": "in-sample fit, so its live skill will likely be lower; it is a benchmark, not a strategy"
+}

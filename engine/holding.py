@@ -3,7 +3,7 @@ unofficial live view. Usage: python engine/holding.py [official|practice]"""
 import os, sys, json, datetime as dt
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BOOKS = dict(official='data/ledger', practice='data/ledger_practice')
-name = sys.argv[1] if len(sys.argv) > 1 else ('practice' if dt.date.today() < dt.date(2027, 1, 1) else 'official')
+name = sys.argv[1] if len(sys.argv) > 1 else ('practice' if dt.date.today() < dt.date(2027, 2, 1) else 'official')
 st = os.path.join(ROOT, BOOKS[name], 'status.json')
 if not os.path.exists(st): print(f'{name} book: nothing booked yet'); sys.exit(0)
 s = json.load(open(st))

@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you refer to Argon or its results, please cite it like this."
+title: "Argon v2: Can an AI trade? A pre-registered live test of AI sizing on index futures"
+authors:
+  - family-names: Siyani
+    given-names: Dru
+date-released: 2026-11-09
+url: "https://github.com/drusiyani/argon-v2"

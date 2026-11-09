@@ -27,5 +27,5 @@ def report(name, today=None):
     lines += ['', '_Written automatically from the hash-chained ledger. The ledger is the record; this page is a summary._']
     p = os.path.join(ROOT, 'vault', 'Live', f'{y}-W{w:02d}.md'); os.makedirs(os.path.dirname(p), exist_ok=True); open(p, 'w').write('\n'.join(lines) + '\n'); return p
 if __name__ == '__main__':
-    name = sys.argv[1] if len(sys.argv) > 1 else ('practice' if dt.date.today() < dt.date(2027, 1, 1) else 'official')
+    name = sys.argv[1] if len(sys.argv) > 1 else ('practice' if dt.date.today() < dt.date(2027, 2, 1) else 'official')
     print(report(name) or 'no booked days this week')

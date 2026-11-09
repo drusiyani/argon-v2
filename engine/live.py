@@ -23,7 +23,7 @@ c = P.c
 from zoneinfo import ZoneInfo
 NY = ZoneInfo('America/New_York')
 
-BOOKS = dict(official=dict(start='2027-01-01', folder='data/ledger'), practice=dict(start='2026-11-16', folder='data/ledger_practice'))
+BOOKS = dict(official=dict(start='2027-02-01', folder='data/ledger'), practice=dict(start='2026-11-16', folder='data/ledger_practice'))
 START_USD = 100000.0
 MICRO = {'NQ': ('MNQ', 2.0), 'ES': ('MES', 5.0)}        # micro contract and dollars per index point
 MAX_CONTRACTS = 200                                       # sanity cap per trade (council point 6)
@@ -157,7 +157,7 @@ def regime(days):
 # ---------------------------------------------------------------- the run
 def run(name=None, now=None, root=None):
     now = now or dt.datetime.now(NY)
-    name = name or ('practice' if now.date() < dt.date(2027, 1, 1) else 'official')
+    name = name or ('practice' if now.date() < dt.date(2027, 2, 1) else 'official')
     B = BOOKS[name]; folder = os.path.join(root or ROOT, B['folder']); os.makedirs(folder, exist_ok=True)
     paths = {1.0: os.path.join(folder, 'ledger.jsonl'), 2.0: os.path.join(folder, 'ledger_2x.jsonl')}
     stat = dict(book=name, start=B['start'], run_at=now.isoformat(timespec='seconds'), code=commit(), checks={})

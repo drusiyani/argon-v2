@@ -213,3 +213,21 @@ Designed after a 6-member council review (statistician, risk manager, trader, AI
   The ledger stays the official record.
 - Practice changes only: nothing here touches a booked result. Still to fix before the freeze: the final models, effort level and
   freeze date (31 Jan 2027).
+
+### Amendment 9 (9 November 2026, before the freeze): statistics plan, market forecaster, integrity
+- **Dates:** official ledger and Race 1 start **1 February 2027**; rules freeze **31 January 2027, 23:59 UTC**.
+- **Statistics plan, fixed now:** `research/results/stats_plan.json` (sha256 `d37d866301ab5a60c8fa52e1b3c7eb03d95127313a4f65156f65b5b32e024a5e`). Paired circular block bootstrap of the
+  annualised Sharpe difference on daily returns (blocks of 5 days), one-sided, Holm-corrected at 5% across: AI vs 1x, AI vs the
+  one-line rule, council round 2 vs solo AI. **Pass** = AI beats 1x AND the one-line rule after Holm, in Race 1 and again in Race 2.
+  A gap under +0.30 annualised Sharpe is reported but not called meaningful.
+- **Checked on fake data before any race data exists:** with no real skill the test wrongly declares a winner 0.5% of the time.
+  **Power is low:** with ~230 days it only reliably detects very large edges (around +1.2 to +1.3 Sharpe for ~70-80% power).
+  So a "no" in Race 1 can mean "too small to see", which is one reason for Race 2.
+- **Market forecaster** (`research/results/market_forecaster.json`, sha256 `81f1382cc120bf743f4f5d3171fd8a67a75562f23fd86be802627bfd9d097a0c`): a frozen logistic regression on the VIX's
+  1-year percentile and yesterday's range ratio, fitted once on Jul 2021-Sep 2026, with fixed size cut-offs. In-sample it barely
+  beats guessing (Brier 0.2363 vs 0.2365), so it is the "what the market data already says" benchmark. Scored as a shadow arm.
+- **Missed calls:** a day with no AI call (late or failed) is MISSING and left out of every comparison; never filled in as 1x.
+- **Accounts:** each competitor gets its own compounding paper account and worst-drawdown figure.
+- **Integrity:** the ledger's head hash is stamped nightly with OpenTimestamps (anchored in Bitcoin), so its history can't be
+  rewritten even by force-pushing; Databento closes are cross-checked against Yahoo nightly (over 1% gap, outside roll days, alerts).
+- **Cost:** each call's tokens and dollars are recorded; a day over $3 alerts the phone.

@@ -1,0 +1,34 @@
+{
+ "written": "2026-11-09",
+ "test": "paired circular block bootstrap of the annualised Sharpe difference, daily returns, block 5 days, one-sided",
+ "comparisons": [
+  "AI vs 1x",
+  "AI vs one-line rule",
+  "council R2 vs solo AI"
+ ],
+ "correction": "Holm at 5% across the three",
+ "pass_rule": "AI vs 1x AND AI vs one-line rule both pass after Holm, in Race 1 and again in Race 2",
+ "meaningful_difference": "+0.3 annualised Sharpe: smaller gaps are reported but not called important",
+ "race_days": 230,
+ "seed": 20261109,
+ "fake_data_false_alarm_rate": 0.005,
+ "power_by_skill": {
+  "0.15": {
+   "sharpe_gap": 0.35,
+   "power": 0.07
+  },
+  "0.3": {
+   "sharpe_gap": 0.79,
+   "power": 0.42
+  },
+  "0.45": {
+   "sharpe_gap": 1.19,
+   "power": 0.68
+  },
+  "0.6": {
+   "sharpe_gap": 1.32,
+   "power": 0.77
+  }
+ },
+ "note": "Power shows the size of edge ~230 days can reliably detect; smaller real edges may be missed, so a \"no\" can mean \"too small to see\"."
+}

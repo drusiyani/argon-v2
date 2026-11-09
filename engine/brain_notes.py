@@ -82,6 +82,11 @@ Why Argon v2 is built the way it is. Every rule change is also logged as a numbe
 | Nov 2026 | Headlines since the previous close from two sources; suspicious ones are hidden and logged | the AIs should read news (their strength) without being hijacked by it |
 | Nov 2026 | Prompt caching on the solo AI's three repeat calls | same answers, lower cost |
 | Nov 2026 | Every trading day gets a Brain note; this page records the reasons | a readable trail for the write-up and the interview |
+| 9 Nov 2026 | Statistics plan fixed in advance and tested on fake data (false alarms 0.5%; ~230 days only detect big edges) | a "no" can't be explained away later, and the low power is admitted up front |
+| 9 Nov 2026 | **Market forecaster** competitor (VIX + yesterday's range, frozen) | does the AI know anything the market data doesn't? |
+| 9 Nov 2026 | Missed calls are missing, not 1x; each competitor gets its own account | fair comparison on the same days |
+| 9 Nov 2026 | Nightly OpenTimestamps stamp of the ledger, Databento vs Yahoo price check, cost alarm | untouchable history, bad data caught early, no surprise bills |
+| 9 Nov 2026 | Raw Databento files: licence checked; CME data may not be republished | decision pending (see the to-do) |
 """
 def run(name):
     folder = os.path.join(ROOT, BOOKS[name]); L = read(os.path.join(folder, 'ledger.jsonl'))

@@ -15,16 +15,18 @@ if os.path.exists(p):
         except Exception: pass
 port=json.load(open(os.path.join(ROOT,'data','portfolio.json'))); daily=port.get('daily_R',{})
 def capped(size,n): return min(size,DAY_CAP/max(1,n)) if size>0 else 0.0
-arms={'1x':[], 'dumb rule':[], 'AI':[], 'council R1':[], 'council R2':[], 'random':[]}; rows=[]; brier=[]
+arms={'1x':[], 'dumb rule':[], 'AI':[], 'council R1':[], 'council R2':[], 'random':[], 'market':[]}; rows=[]; brier=[]; missing=[]
 for d,c in sorted(calls.items()):
     if d<START or d not in daily and d>max(daily or ['0']): continue          # day not in the book's data yet
     row=daily.get(d,[0.0,0.0,0,None]); net,gross,n=row[0],row[1],row[2]; trend=row[3] if len(row)>3 else None
+    if c.get('late') or not c.get('ai_runs'): missing.append(d); continue      # Amendment 9: a missed call is MISSING, never filled in as 1x
     s1,sd,sa=1.0,capped(c['dumb_size'],n),capped(c['ai_size_used'],n)
     arms['1x'].append((d,net*capped(s1,n))); arms['dumb rule'].append((d,net*sd)); arms['AI'].append((d,net*sa))
     c1=c.get('council') or {}; c2=c.get('council_r2') or {}
     arms['council R1'].append((d,net*capped(c1.get('size',1.0) if c1.get('counted') else 1.0,n)))
     arms['council R2'].append((d,net*capped(c2.get('size',1.0) if c2.get('counted') else 1.0,n)))
     arms['random'].append((d,net*capped(c.get('random_size',1.0),n)))
+    arms['market'].append((d,net*capped((c.get('market') or {}).get('size',1.0),n)))
     tp=c['ai'].get('trend_probability')
     if tp is not None and trend is not None: brier.append((tp/100-trend)**2)        # label = the MARKET's day (Amendment 4b), not the book's result
     rows.append(dict(date=d,trades=n,book_R=net,ai_size=c['ai_size_used'],dumb_size=c['dumb_size'],veto=c['ai'].get('veto'),late=c.get('late')))
@@ -54,12 +56,19 @@ def monthly_sharpe(xs):
     m=collections.defaultdict(float)
     for d,v in xs: m[d[:7]]+=v
     v=list(m.values()); return round(stt.mean(v)/stt.stdev(v)*12**.5,3) if len(v)>1 and stt.stdev(v)>0 else None
-res={k:dict(R=round(sum(v for _,v in xs),2),sharpe=monthly_sharpe(xs)) for k,xs in arms.items()}
+def account(xs, start=100000.0):
+    """Each competitor's own compounding paper account: every day, equity changes by (risk% x R)."""
+    eq=peak=start; dd=0.0
+    for _,v in xs: eq*=1+0.01*v; peak=max(peak,eq); dd=min(dd,eq/peak-1)
+    return round(eq,2), round(100*dd,2)
+res={}
+for k,xs in arms.items():
+    eq,dd=account(xs); res[k]=dict(R=round(sum(v for _,v in xs),2),sharpe=monthly_sharpe(xs),account=eq,worst_drawdown_pct=dd)
 days=len(rows); verdict='collecting data'
 if days>=MIN_DAYS and all(res[k]['sharpe'] is not None for k in ('1x','dumb rule','AI')):
     verdict='PROMOTE the AI arm' if res['AI']['sharpe']>=max(res['1x']['sharpe'],res['dumb rule']['sharpe'])+MARGIN else 'AI arm not promoted (stays shadow)'
 out=dict(start=START,scored_days=days,min_days=MIN_DAYS,margin=MARGIN,arms=res,ai_trend_brier=round(stt.mean(brier),3) if brier else None,
-         brier_note='0.25 = coin flip; lower is better',verdict=verdict,vetos=sum(1 for r in rows if r['veto']),late_days=sum(1 for r in rows if r['late']),
+         brier_note='0.25 = coin flip; lower is better',verdict=verdict,missing_calls=len(missing),missing_note='days with no AI call are left out of every comparison (Amendment 9)',vetos=sum(1 for r in rows if r['veto']),late_days=sum(1 for r in rows if r['late']),
          council=council_out, label='trend day = |close-open| >= 0.6 x (high-low), NQ 9:30-16:00',
          latest_call=calls[max(calls)] if calls else None,updated=dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%d %H:%M UTC'))
 json.dump(out,open(os.path.join(ROOT,'data','daytype_score.json'),'w'),indent=1); print('daytype score:',days,'days',res,verdict)

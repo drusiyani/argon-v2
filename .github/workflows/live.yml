@@ -37,6 +37,15 @@ jobs:
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: python engine/live.py ${{ github.event.inputs.book }}
+      - name: Public timestamp of the ledger (OpenTimestamps)
+        run: |
+          pip install -q opentimestamps-client || true
+          python engine/stamp.py || echo "stamp skipped"
+      - name: Cross-check prices with a second source
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          python engine/price_check.py || echo "price check skipped"
       - name: Plain-English daily summary for the desk
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -58,7 +67,7 @@ jobs:
         run: |
           git config user.name "argon-bot"
           git config user.email "argon-bot@users.noreply.github.com"
-          for p in data/databento data/ledger data/ledger_practice data/alerts.jsonl docs/data/ledger.json docs/data/daily_summary.json vault/Live; do [ -e "$p" ] && git add -A "$p"; done
+          for p in data/databento data/ledger data/ledger_practice data/stamps data/price_check.json data/alerts.jsonl docs/data/ledger.json docs/data/daily_summary.json vault/Live; do [ -e "$p" ] && git add -A "$p"; done
           if git diff --cached --quiet; then echo "nothing new to save"; exit 0; fi
           git commit -m "ledger: $(date -u +%Y-%m-%d)"
           git stash --include-untracked >/dev/null 2>&1 || true
