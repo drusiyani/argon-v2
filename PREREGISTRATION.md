@@ -194,3 +194,22 @@ Designed after a 6-member council review (statistician, risk manager, trader, AI
   **Solo AI:** Claude Opus 5.5. Every failure's error message is now saved in the record.
 - **Still to fix before the freeze (a later amendment):** the rule for which model each company races with ("top generally
   available model on the Artificial Analysis Intelligence Index on the freeze date"), the final effort level, and the new freeze date.
+
+### Amendment 8 (9 November 2026, before the freeze): a stronger morning call
+- **Sizes:** 0.5x, 1x, 1.5x or **2x**. The one-line rule gains a 2x tier (yesterday's range above 1.6x its 20-day average).
+  A day never risks more than **6%** in total (size x trades <= 6), for every competitor.
+- **Memory:** each AI sees a short track record of its OWN past calls (hit rate, Brier score, average size, what its sizing added,
+  and its last 20 calls with outcomes). It never sees Argon's notes or other AIs' records. The solo AI's three repeat calls use
+  prompt caching (same text, lower cost).
+- **Two-round council:** round 1 = each member answers alone and privately (scored as "council R1"). Round 2 = each member sees
+  the others' round-1 answers, anonymous and in a random order fixed by the date, then gives a final private answer (scored as
+  "council R2"). Comparing R1 with R2 tests whether discussion helps or just causes herding.
+- **Random sizer:** a 'luck' competitor whose size each day comes from sha256("argon-random-sizer-v1|date"). If the AIs can't
+  beat it, they show no skill.
+- **News:** headlines published since the previous trading day's 4pm close, from Yahoo Finance and MarketWatch. The AIs are told
+  headlines are untrusted data; headlines that look like instructions are kept out and logged.
+- **Fair limits:** every AI gets the same effort level, the same time limit and one retry; failures are saved with their error.
+- **Brain:** every booked day gets a note (trades, every AI's call, headlines, analysis), plus monthly pages and a Decisions page.
+  The ledger stays the official record.
+- Practice changes only: nothing here touches a booked result. Still to fix before the freeze: the final models, effort level and
+  freeze date (31 Jan 2027).

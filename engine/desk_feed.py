@@ -23,7 +23,9 @@ if os.path.exists(dp):
         def one(last):
             cn=last.get('council') or {}
             mem={k:(dict(trend_probability=v.get('trend_probability'),size=v.get('size'),veto=v.get('veto'),reason=(v.get('reason') or '')[:240]) if v else None) for k,v in (cn.get('members') or {}).items()}
-            return dict(date=last['date'],made_at=last['made_at'],late=last['late'],ai=last['ai'],dumb_size=last['dumb_size'],ai_size_used=last['ai_size_used'],shadow=True,
+            c2=last.get('council_r2') or {}
+            r2=dict(counted=c2.get('counted',False),trend_probability=c2.get('trend_probability'),size=c2.get('size'),members={k:(dict(trend_probability=v.get('trend_probability'),size=v.get('size'),reason=(v.get('reason') or '')[:240]) if v else None) for k,v in (c2.get('members') or {}).items()})
+            return dict(date=last['date'],made_at=last['made_at'],late=last['late'],ai=last['ai'],dumb_size=last['dumb_size'],ai_size_used=last['ai_size_used'],shadow=True,council_r2=r2,random_size=last.get('random_size'),headlines=(last.get('inputs') or {}).get('headlines',[])[:6],
                         council=dict(members=mem,answered=cn.get('answered',0),counted=cn.get('counted',False),trend_probability=cn.get('trend_probability'),size=cn.get('size')),
                         inputs={k:last['inputs'].get(k) for k in ('vix','vix_1y_percentile','range_ratio','rsi5','overnight_change_pct','calendar')})
         dt_call=one(allc[-1]); dt_hist=[one(x) for x in allc[-30:]]

@@ -174,6 +174,11 @@ table.tt th{color:var(--quiet);font-family:inherit}table.tt td:first-child,table
 }
 /* laptops: the same glass tab bar, centred at the bottom (it replaces the top pills and the side dock) */
 @media (min-width:821px){.tabbar{left:50%;right:auto;width:460px;margin-left:-230px;bottom:22px}.tabbar a{cursor:pointer}#pills{display:none}body{padding-bottom:96px}}
+/* morning-call board + live countdown */
+.mc{margin-top:16px}.mcg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:12px}
+.mcc{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:14px;border:1px solid var(--edge);background:color-mix(in srgb,var(--glass2) 70%,transparent)}
+.mcc b{font-size:22px;font-weight:600;letter-spacing:-.01em}.mcc .k{font-size:12px;color:var(--quiet)}
+.tick{font-size:13px;color:var(--gold);margin-top:2px;letter-spacing:.04em}
 footer{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,40px) 40px clamp(16px,calc(4vw + 56px),104px);color:var(--faint);font-size:12px;display:flex;flex-wrap:wrap;gap:6px 18px}
 footer a{color:var(--quiet)}
 /* ---------- responsive */
@@ -192,7 +197,7 @@ footer a{color:var(--quiet)}
 <header class="top">
  <a class="brand glass" href="#overview" aria-label="Argon home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 15a11 11 0 0 1 22 0v13l-3.7-2.6L19.6 28 16 25.4 12.4 28l-3.7-2.6L5 28z" fill="#F4F1EA"/><ellipse cx="12" cy="14" rx="2.3" ry="3.1" fill="#0b0b0b"/><ellipse cx="20" cy="14" rx="2.3" ry="3.1" fill="#0b0b0b"/></svg>Argon <small>v2</small></a>
  <nav class="pills glass" id="pills" aria-label="Sections"><span class="ind" aria-hidden="true"></span></nav>
- <div class="right"><span class="chip glass hide-s"><i></i><span id="status">Paper trading in <b id="cd">–</b> days</span></span>
+ <div class="right"><span class="chip glass hide-s"><i></i><span id="status">Race 1 in <b id="cd">–</b> days</span></span>
   <a class="ib glass" href="https://github.com/drusiyani/argon-v2" aria-label="Argon on GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></a></div>
 </header>
 <nav class="dock glass" id="dock" aria-label="Sections"></nav>
@@ -272,7 +277,7 @@ requestAnimationFrame(lensMap);addEventListener('resize',lensMap);
 $('#dock').innerHTML=TABS.map(([k,n])=>`<a href="#${k}" data-t="${k}" aria-label="${n}">${svg(k)}<span>${n}</span></a>`).join('');
 $('#built').textContent='updated '+DATA.built;
 const days=Math.max(0,Math.ceil((Date.parse(DATA.live_start+'T00:00:00Z')-Date.now())/864e5));
-$('#cd').textContent=days;if(!days)$('#status').innerHTML='<b>Paper trading is live</b>';if(DATA.killed)$('#status').innerHTML='<b>Kill switch on</b>';
+$('#cd').textContent=days;if(!days)$('#status').innerHTML='<b>Race 1 is live</b>';if(DATA.killed)$('#status').innerHTML='<b>Kill switch on</b>';
 // ---------- helpers
 function countTo(el,to,fmt,dur=1000){if(reduce||to==null||isNaN(to)){el.textContent=fmt(to);return}const from=+el.dataset.v||0,t0=performance.now();el.dataset.v=to;
  (function f(t){const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,4);el.textContent=fmt(from+(to-from)*e);if(p<1)requestAnimationFrame(f)})(t0)}
@@ -308,7 +313,7 @@ function overview(){const v=$('#v-overview'),D=DATA.desk||{};
  <div class="g2">
   <div class="card glass rise" style="--d:6"><div class="ch-head"><div><h3>$100,000 through the book, 2011 to 2026</h3><p>Grey: 2011–20, sealed until 28 Oct 2026, used since for comparisons. Gold: the years it was built on. Log scale, after costs.</p></div><span class="tag mono" id="eq-tag">1% risk per trade</span></div><div class="big" id="eq"></div></div>
   <div class="card glass rise" style="--d:7"><h3>Today</h3><p class="sub">The live desk, before trading starts.</p>
-   <div class="count"><b>${days}</b><span>days to paper trading</span></div><p class="sub" style="margin-top:2px">Built since September; the bar is how far along.</p><div class="bar"><i id="pbar"></i></div>
+   <div class="count"><b>${days}</b><span>days to Race 1</span></div><div class="tick mono" id="tick" aria-live="off"></div><p class="sub" style="margin-top:2px">Built since September; the bar is how far along.</p><div class="bar"><i id="pbar"></i></div>
    <div class="list">
     <div class="li"><span class="k">Morning call</span><span class="val">${ai?`${ai.trend_probability!=null?'trend '+Math.round(ai.trend_probability)+'%':'no forecast'} · ${dc.ai_size_used===0?'veto':dc.ai_size_used+'×'}`:'first one at 8:45 NY'}</span></div>
     <div class="li"><span class="k">One-line rule</span><span class="val">${dc?dc.dumb_size+'×':'–'}</span></div>
@@ -316,10 +321,12 @@ function overview(){const v=$('#v-overview'),D=DATA.desk||{};
     <div class="li"><span class="k">Practice book</span><span class="val">${DATA.ledger&&DATA.ledger.days?money(DATA.ledger.equity)+' · '+DATA.ledger.days+' days'+(String(DATA.ledger.state||'').startsWith('halt')?' · <span class="dn">halted</span>':''):'starts '+(DATA.ledger&&DATA.ledger.start||'16 Nov')}</span></div>
     <div class="li"><span class="k">Live view <span class="tag">unofficial</span></span><span class="val">${DATA.live&&DATA.live.date?DATA.live.n+' trade'+(DATA.live.n===1?'':'s')+(DATA.live.open?' · '+DATA.live.open+' open':'')+' · <span class="'+(DATA.live.R>=0?'up':'dn')+'">'+(DATA.live.R>=0?'+':'')+DATA.live.R.toFixed(2)+'R</span>':'–'}</span></div>
     <div class="li"><span class="k">Desk last checked</span><span class="val">${D.checked?D.checked.slice(11,16)+' UTC':'–'}</span></div>
-    <div class="li"><span class="k">Rules freeze</span><span class="val">31 Dec, 23:59 UTC</span></div>
+    <div class="li"><span class="k">Rules freeze</span><span class="val">31 Jan, 23:59 UTC</span></div>
    </div></div>
  </div>
- <p class="note rise" style="--d:8" id="era-note"></p>
+ <div class="card glass rise mc" style="--d:8"><div class="ch-head"><div><h3>This morning's call</h3><p>Every competitor's call for today, published before the 9:30 open. Shadow only until Race 1 is scored.</p></div><span class="tag mono">${dc?dc.date+' · '+dc.made_at+' NY':'from 16 Nov'}</span></div>
+  <div class="mcg">${mcBoard(dc)}</div></div>
+ <p class="note rise" style="--d:9" id="era-note"></p>
  <div class="sec"><h2 class="rise" style="--d:8">What it trades</h2><p class="rise" style="--d:8">${DATA.risk}% risk per trade. Any trade whose costs eat more than ${Math.round(DATA.cost_cap*100)}% of the risk is skipped. The numbers follow the toggle at the top.</p>
   <div class="strats" id="strats">${Object.entries(NAMES).map(([k,[n,b,p]],i)=>`<div class="card glass st rise" style="--d:${9+i}"><div class="top2"><span class="nm">${n}</span><span class="by">${b}</span></div><p>${p}</p>
    <dl><dt>Sharpe</dt><dd data-s="${k}" data-f="sharpe">–</dd><dt>Result</dt><dd data-s="${k}" data-f="R">–</dd><dt>Before costs</dt><dd data-s="${k}" data-f="R_before_costs">–</dd><dt>Trades</dt><dd data-s="${k}" data-f="trades">–</dd><dt>Win rate</dt><dd data-s="${k}" data-f="win_rate">–</dd></dl></div>`).join('')}</div></div>
@@ -332,8 +339,8 @@ function overview(){const v=$('#v-overview'),D=DATA.desk||{};
    ['28 Oct','The sealed years opened','The whole book failed on 2011 to 2020. Published the same day.','6e05757',1],
    ['28 Oct','Eight versions compared','Chosen by a rule fixed in advance. Dru then kept QuantLab, and logged that choice openly.','b533965'],
    ['29 Oct','The AI desk changes job','It now forecasts each morning whether the day will trend, tested in the shadow first.','138c080'],
-   ['31 Dec','The rules freeze','After this nothing changes, apart from an emergency kill switch.',null,2],
-   ['1 Jan','Paper trading starts','The first test none of this research can influence.',null,2]]
+   ['31 Jan','The rules freeze','After this nothing changes, apart from an emergency kill switch.',null,2],
+   ['1 Feb','Race 1 starts','The first test none of this research can influence.',null,2]]
    .map(([d,h,t,c,k])=>`<li class="${k===1?'key':k===2?'next':''}"><time>${d}</time><div><b>${h}</b><p>${t}${c?` <a href="https://github.com/drusiyani/argon-v2/commit/${c}">${c}</a>`:''}</p></div></li>`).join('')}</ol></div></div>
  <div class="sec"><h2 class="rise" style="--d:20">What didn’t work</h2><p class="rise" style="--d:20">Most ideas failed. These taught the most.</p><div class="fails">
   ${[['The original “liquidity sweep” strategy','+40.8R → −16.3R','Sweep of a level, structure shift, fair value gap. Profitable until realistic costs and slippage were added.'],
@@ -427,6 +434,16 @@ function bubble(pos,anim){const tb=$('#tabbar');if(!tb||!tb.clientWidth)return;c
   else if(anim&&bp!=null&&Math.abs(pos-bp)>.4)g.animate([{transform:'scale(1)'},{transform:`scale(${Math.min(1.3,1.08+Math.abs(pos-bp)*.06)},.94)`,offset:.35},{transform:'scale(.98,1.02)',offset:.75},{transform:'scale(1)'}],{duration:520,easing:'cubic-bezier(.3,.7,.3,1)'})}
  g.style.setProperty('--sx',st);g.style.setProperty('--sy',1/Math.sqrt(st));bp=pos;bt=now;
  clearTimeout(brest);if(st>1)brest=setTimeout(()=>{g.style.setProperty('--sx',1);g.style.setProperty('--sy',1)},90);}
+function mcBoard(dc){if(!dc)return '<p class="sub">The first call is made at 8:45 New York on a trading day.</p>';
+ const sz=x=>x==null?'–':x===0?'veto':(+x).toFixed(x%1?2:0).replace(/\.?0+$/,'')+'×',pc=v=>v&&v.trend_probability!=null?Math.round(v.trend_probability)+'%':'–';
+ const cell=(who,v,s,note)=>`<div class="mcc"><span class="k">${who}</span><b>${s}</b><span class="sub">${note}</span></div>`;
+ const r1=(dc.council||{}),r2=(dc.council_r2||{}),M=r1.members||{};
+ return cell('Solo AI · Claude',dc.ai,sz(dc.ai&&dc.ai.trend_probability!=null?dc.ai.size:null),'trend '+pc(dc.ai))
+  +cell('Council · round 1',r1,r1.counted?sz(r1.size):'–',r1.counted?'trend '+pc(r1)+' · independent':'not enough answers')
+  +cell('Council · round 2',r2,r2.counted?sz(r2.size):'–',r2.counted?'trend '+pc(r2)+' · after discussion':'not enough answers')
+  +cell('One-line rule',null,sz(dc.dumb_size),"yesterday's range")
+  +cell('Random sizer',null,sz(dc.random_size),'the luck benchmark')
+  +['gemini','gpt','deepseek'].map(k=>cell({gemini:'Gemini',gpt:'GPT',deepseek:'DeepSeek'}[k],M[k],M[k]?sz(M[k].size):'–',M[k]?'trend '+pc(M[k]):'no answer')).join('')}
 function swap(t,fromSwipe){for(const [k] of TABS){const v=$('#v-'+k);v.hidden=false;v.classList.toggle('off',k!==t);v.classList.remove('peek');if(k!==t)v.classList.remove('in')}
  const v=$('#v-'+t);ensure(t);place(-IDX[t]*PG.clientWidth,false);
  if(!fromSwipe||!v.classList.contains('in')){void v.offsetWidth;v.classList.add('in')}mark(t);bubble(IDX[t],true);cur=t;scrollTo({top:0,behavior:'instant'})}
@@ -461,6 +478,8 @@ function route(){const t=TABS.some(([k])=>k===location.hash.slice(1))?location.h
  tb.addEventListener('pointercancel',()=>{on=false;tb.classList.remove('press');bubble(IDX[cur],true)});
  tb.addEventListener('pointerup',e=>{if(!on)return;on=false;tb.classList.remove('press');const j=Math.round(at(e.clientX));bubble(j,true);if(TABS[j][0]!==cur)location.hash=TABS[j][0]});
  tb.addEventListener('click',e=>{if(e.detail)e.preventDefault()})})();      // keyboard (detail 0) still follows the link
+setInterval(()=>{const el=document.getElementById('tick');if(!el)return;let s=Math.max(0,(Date.parse(DATA.live_start+'T00:00:00Z')-Date.now())/1e3|0);
+ const d=s/86400|0;s%=86400;const h=s/3600|0;s%=3600;const m=s/60|0;s%=60;el.textContent=`${d}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`},1000);
 addEventListener('hashchange',route);route();addEventListener('resize',()=>{mark(cur);place(-IDX[cur]*PG.clientWidth,false);bubble(IDX[cur],true)});document.fonts&&document.fonts.ready.then(()=>{mark(cur);if($('#era'))seg($('#era'),era);if($('#cmode'))seg($('#cmode'),mode)});
 // ---------- markdown
 function md(text){return marked.parse(text.replace(/\[\[([^\]|#]+)(?:#[^\]|]*)?(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="wl" data-n="${esc(a.trim())}">${esc(b||a)}</a>`))}

@@ -1,11 +1,12 @@
 """Score the three pre-registered sizing arms (Amendment 4) on the v2 book, from 1 Jan 2027:
   1x (plain book)  |  dumb rule (yesterday's range vs 20-day average)  |  AI day-type forecast (median of 3, limited veto)
-Each arm multiplies that day's book R by its size, capped so a day never risks more than 4R in total (size x trades <= 4).
+Each arm multiplies that day's book R by its size (0.5x-2x), capped so a day never risks more than 6R = 6% in total (size x trades <= 6).
+Amendment 8 adds three shadow arms: council round 1 (independent), council round 2 (after an anonymous discussion), and a seeded random sizer (the 'luck' arm).
 Promotion rule (fixed in advance): after at least 120 scored trading days, the AI arm takes real control only if its Sharpe beats
 BOTH other arms by at least +0.15. Writes data/daytype_score.json (and the 3D desk shows the latest call)."""
 import os,json,statistics as stt,collections,datetime as dt
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-START=os.environ.get('DAYTYPE_START','2027-01-01'); MIN_DAYS=120; MARGIN=0.15; DAY_CAP=4.0
+START=os.environ.get('DAYTYPE_START','2027-01-01'); MIN_DAYS=120; MARGIN=0.15; DAY_CAP=6.0
 calls={}
 p=os.path.join(ROOT,'data','daytype.jsonl')
 if os.path.exists(p):
@@ -14,12 +15,16 @@ if os.path.exists(p):
         except Exception: pass
 port=json.load(open(os.path.join(ROOT,'data','portfolio.json'))); daily=port.get('daily_R',{})
 def capped(size,n): return min(size,DAY_CAP/max(1,n)) if size>0 else 0.0
-arms={'1x':[], 'dumb rule':[], 'AI':[]}; rows=[]; brier=[]
+arms={'1x':[], 'dumb rule':[], 'AI':[], 'council R1':[], 'council R2':[], 'random':[]}; rows=[]; brier=[]
 for d,c in sorted(calls.items()):
     if d<START or d not in daily and d>max(daily or ['0']): continue          # day not in the book's data yet
     row=daily.get(d,[0.0,0.0,0,None]); net,gross,n=row[0],row[1],row[2]; trend=row[3] if len(row)>3 else None
     s1,sd,sa=1.0,capped(c['dumb_size'],n),capped(c['ai_size_used'],n)
     arms['1x'].append((d,net*capped(s1,n))); arms['dumb rule'].append((d,net*sd)); arms['AI'].append((d,net*sa))
+    c1=c.get('council') or {}; c2=c.get('council_r2') or {}
+    arms['council R1'].append((d,net*capped(c1.get('size',1.0) if c1.get('counted') else 1.0,n)))
+    arms['council R2'].append((d,net*capped(c2.get('size',1.0) if c2.get('counted') else 1.0,n)))
+    arms['random'].append((d,net*capped(c.get('random_size',1.0),n)))
     tp=c['ai'].get('trend_probability')
     if tp is not None and trend is not None: brier.append((tp/100-trend)**2)        # label = the MARKET's day (Amendment 4b), not the book's result
     rows.append(dict(date=d,trades=n,book_R=net,ai_size=c['ai_size_used'],dumb_size=c['dumb_size'],veto=c['ai'].get('veto'),late=c.get('late')))
@@ -51,7 +56,7 @@ def monthly_sharpe(xs):
     v=list(m.values()); return round(stt.mean(v)/stt.stdev(v)*12**.5,3) if len(v)>1 and stt.stdev(v)>0 else None
 res={k:dict(R=round(sum(v for _,v in xs),2),sharpe=monthly_sharpe(xs)) for k,xs in arms.items()}
 days=len(rows); verdict='collecting data'
-if days>=MIN_DAYS and all(res[k]['sharpe'] is not None for k in res):
+if days>=MIN_DAYS and all(res[k]['sharpe'] is not None for k in ('1x','dumb rule','AI')):
     verdict='PROMOTE the AI arm' if res['AI']['sharpe']>=max(res['1x']['sharpe'],res['dumb rule']['sharpe'])+MARGIN else 'AI arm not promoted (stays shadow)'
 out=dict(start=START,scored_days=days,min_days=MIN_DAYS,margin=MARGIN,arms=res,ai_trend_brier=round(stt.mean(brier),3) if brier else None,
          brier_note='0.25 = coin flip; lower is better',verdict=verdict,vetos=sum(1 for r in rows if r['veto']),late_days=sum(1 for r in rows if r['late']),

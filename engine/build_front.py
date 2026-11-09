@@ -35,7 +35,7 @@ json.dump(docs, open(os.path.join(ROOT, 'docs', 'data', 'research.json'), 'w'), 
 
 cfg = P.get('config') or {}
 DATA = dict(
-    risk=cfg.get('risk_pct', 1.0), cost_cap=cfg.get('cost_cap_R', 0.10), live_start='2027-01-01', freeze='2026-12-31T23:59:00Z', killed=P.get('killed', False),
+    risk=cfg.get('risk_pct', 1.0), cost_cap=cfg.get('cost_cap_R', 0.10), live_start='2027-02-01', freeze='2027-01-31T23:59:00Z', killed=P.get('killed', False),
     eras=dict(recent=dict(label='2021–26', note='The backtest. Mostly in-sample: the settings were chosen on it.', book=A.get('book', {}), strategies=A.get('strategies', {})),
               unseen=dict(label='2011–20', note='Sealed until 28 Oct 2026, opened once, used since for comparisons, so no longer an independent test.', book=B.get('book', {}), strategies=B.get('strategies', {}))),
     rounds=dict(r1=S1.get('tested', 109), r1s=len(S1.get('survivors', ['Q24'])), r2=S2.get('tested', 17), r2s=len(S2.get('survivors', []))),

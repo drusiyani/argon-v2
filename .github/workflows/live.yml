@@ -41,6 +41,9 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python engine/daily_summary.py || echo "summary skipped"
+      - name: Brain notes (one per trading day, monthly pages, Decisions)
+        run: |
+          python engine/brain_notes.py || echo "brain notes skipped"
       - name: Weekly report into the vault (Friday night and Saturday)
         run: |
           if [ "$(date -u +%u)" -ge 5 ]; then python engine/weekly_report.py; fi
