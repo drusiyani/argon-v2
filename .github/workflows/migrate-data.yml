@@ -1,0 +1,25 @@
+name: One-time copy of raw market data to the private repo
+
+# Copies data/databento into the private drusiyani/argon-data repo (Databento's licence: raw CME data must not be republished).
+# Needs the DATA_TOKEN secret: a fine-grained token with read and write access to argon-data's contents. Run it once, by hand.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Copy to argon-data
+        env:
+          DATA_TOKEN: ${{ secrets.DATA_TOKEN }}
+        run: |
+          test -n "$DATA_TOKEN" || { echo "Add the DATA_TOKEN secret first"; exit 1; }
+          git clone -q "https://x-access-token:${DATA_TOKEN}@github.com/drusiyani/argon-data.git" /tmp/argon-data
+          mkdir -p /tmp/argon-data/databento && cp data/databento/*.csv.gz /tmp/argon-data/databento/
+          cd /tmp/argon-data && git config user.name argon-bot && git config user.email argon-bot@users.noreply.github.com
+          git add -A && git commit -qm "raw Databento data copied from argon-v2" && git push -q
+          echo "copied $(ls databento | wc -l) files"

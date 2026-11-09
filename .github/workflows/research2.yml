@@ -16,6 +16,14 @@ jobs:
     timeout-minutes: 360
     steps:
       - uses: actions/checkout@v4
+      - name: Private market data (argon-data)
+        env:
+          DATA_TOKEN: ${{ secrets.DATA_TOKEN }}
+        run: |
+          if [ -n "$DATA_TOKEN" ]; then
+            git clone -q --depth 1 "https://x-access-token:${DATA_TOKEN}@github.com/drusiyani/argon-data.git" /tmp/argon-data
+            if [ -d /tmp/argon-data/databento ]; then mkdir -p data/databento && cp -n /tmp/argon-data/databento/* data/databento/; echo "private data loaded"; fi
+          else echo "no DATA_TOKEN yet: using the data in this repo"; fi
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"

@@ -26,6 +26,14 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+      - name: Private market data (argon-data)
+        env:
+          DATA_TOKEN: ${{ secrets.DATA_TOKEN }}
+        run: |
+          if [ -n "$DATA_TOKEN" ]; then
+            git clone -q --depth 1 "https://x-access-token:${DATA_TOKEN}@github.com/drusiyani/argon-data.git" /tmp/argon-data
+            if [ -d /tmp/argon-data/databento ]; then mkdir -p data/databento && cp -n /tmp/argon-data/databento/* data/databento/; echo "private data loaded"; fi
+          else echo "no DATA_TOKEN yet: using the data in this repo"; fi
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -33,6 +41,15 @@ jobs:
         env:
           DATABENTO_API_KEY: ${{ secrets.DATABENTO_API_KEY }}
         run: python engine/fetch_live.py
+      - name: Save new market data to the private repo
+        env:
+          DATA_TOKEN: ${{ secrets.DATA_TOKEN }}
+        run: |
+          if [ -n "$DATA_TOKEN" ] && [ -d /tmp/argon-data ]; then
+            mkdir -p /tmp/argon-data/databento && cp -n data/databento/*.csv.gz /tmp/argon-data/databento/ 2>/dev/null || true
+            cd /tmp/argon-data && git config user.name argon-bot && git config user.email argon-bot@users.noreply.github.com
+            git add -A && (git diff --cached --quiet || (git commit -qm "data: $(date -u +%Y-%m-%d)" && git push -q))
+          fi
       - name: Book the finished sessions (kill switch, chain, replay, data gate, positions)
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
