@@ -511,7 +511,7 @@ function draw(){const ch=mk();$('#dayrow').hidden=mode!=='day';const cs=ch.addCa
  if(mode==='daily'){cs.setData(C.daily.map(([d,o,h,l,c])=>({time:d,open:o,high:h,low:l,close:c})));cs.priceScale().applyOptions({scaleMargins:{top:.05,bottom:.28}});
   const hs=ch.addHistogramSeries({priceScaleId:'r',priceFormat:{type:'custom',formatter:v=>v.toFixed(1)+'R'}});ch.priceScale('r').applyOptions({scaleMargins:{top:.78,bottom:0}});
   hs.setData(Object.entries(C.daily_R).filter(([d])=>d>=C.daily[0][0]).map(([d,v])=>({time:d,value:v,color:v>=0?UP+'99':DN+'99'})));
-  ch.timeScale().fitContent();$('#ctrades').innerHTML='';$('#cnote').textContent='Daily candles are the regular session (9:30–16:00 New York). Bars underneath are the book’s result each day, in R. Backtest data, mostly in-sample.';return}
+  ch.timeScale().fitContent();$('#ctrades').innerHTML='';$('#cnote').textContent='Daily candles are Yahoo Finance prices (full session, delayed), for display only. Bars underneath are the book’s result each day, in R. Backtest results, mostly in-sample.';return}
  const d=$('#dsel').value,S=C.sessions[d],t0=Date.parse(d+'T00:00:00Z')/1000,T=m=>t0+m*60;
  cs.setData(S.bars.map(([m,o,h,l,c])=>({time:T(m),open:o,high:h,low:l,close:c})));const mm=[];
  S.trades.forEach(x=>{mm.push({time:T(Math.floor(x.entry_min/5)*5),position:x.side>0?'belowBar':'aboveBar',color:x.side>0?UP:DN,shape:x.side>0?'arrowUp':'arrowDown',text:SN[x.strategy]||x.strategy});
@@ -520,5 +520,5 @@ function draw(){const ch=mk();$('#dayrow').hidden=mode!=='day';const cs=ch.addCa
  const tot=S.trades.reduce((a,x)=>a+x.R,0),hm=m=>String(m/60|0).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
  $('#dsum').textContent=S.trades.length?`${S.trades.length} NQ trade${S.trades.length>1?'s':''} · ${tot>=0?'+':''}${tot.toFixed(2)}R`:'no NQ trades this day';
  $('#ctrades').innerHTML=S.trades.length?`<table class="tt"><tr><th>Strategy</th><th>Side</th><th>In</th><th>Out</th><th>Entry</th><th>Exit</th><th>Result</th></tr>${S.trades.map(x=>`<tr><td>${SN[x.strategy]||x.strategy}</td><td>${x.side>0?'long':'short'}</td><td>${hm(x.entry_min)}</td><td>${hm(x.exit_min)}</td><td>${x.entry}</td><td>${x.exit}</td><td class="${x.R>=0?'up':'dn'}">${x.R>=0?'+':''}${x.R.toFixed(2)}R</td></tr>`).join('')}</table>`:'';
- $('#cnote').textContent='5-minute candles, New York time. Arrows are entries, dots are exits with the result. ES expiry trades are not drawn. Backtest data, mostly in-sample.'}
+ $('#cnote').textContent='5-minute candles from Yahoo Finance, New York time, for display only: markers sit within a few points of the engine’s real prices. Arrows are entries, dots are exits with the result. ES expiry trades are not drawn. Backtest results, mostly in-sample.'}
 </script></body></html>

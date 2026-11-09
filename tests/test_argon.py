@@ -125,3 +125,20 @@ def test_live_practice_october(c, tmp_path):
         assert lv.run('practice', now=now, root=str(tmp_path)) == 2
         assert js.load(open(f / 'status.json'))['state'] == 'halted: chain broken'
     finally: lv.BOOKS['practice']['start'] = old
+
+
+def test_public_charts_use_yahoo_not_databento(monkeypatch):
+    """The public chart files must be built from Yahoo (engine/public_bars.py): Databento's licence forbids republishing."""
+    import datetime as dt, json as js, public_bars as pb
+    t0 = int(dt.datetime(2026, 11, 5, 9, 30, tzinfo=pb.NY).timestamp())
+    monkeypatch.setattr(pb, '_get', lambda sym, q: [(t0 + 300 * i, 100.0 + i, 101.0 + i, 99.0 + i, 100.5 + i) for i in range(78)])
+    s = pb.sessions('NQ')
+    assert list(s) == ['2026-11-05'] and len(s['2026-11-05']) == 78 and s['2026-11-05'][0] == [570, 100.0, 101.0, 99.0, 100.5]
+    monkeypatch.setattr(pb, '_get', lambda sym, q: (_ for _ in ()).throw(OSError('down')))
+    assert pb.sessions('NQ') == {} and pb.daily('NQ') == []          # Yahoo down: nothing, and never a Databento fallback
+    c = js.load(open(os.path.join(ROOT, 'docs', 'data', 'chart.json')))
+    assert c.get('source') == pb.SOURCE
+    for f in ('portfolio.py', 'live.py'):
+        src = open(os.path.join(ROOT, 'engine', f)).read()
+        body = src[src.index('def chart_data(' if f == 'portfolio.py' else 'def bars5('):src.index("if __name__ == '__main__':")]
+        assert 'public_bars' in body and 'c.prep(' not in body and 'c.daily(' not in body

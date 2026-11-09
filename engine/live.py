@@ -254,22 +254,22 @@ def publish(name, folder, stat):
                head_hash=L[-1]['hash'] if L else None, days=[dict(date=e['date'], status=e['status'], usd=round(e['equity_end'] - e['equity_start'], 2),
                trades=e['trades'], skipped=e['skipped'], regime=reg.get(e['date']), hash=e['hash'][:12], code=e['code_commit']) for e in L[-30:]][::-1],
                ledger_url=f"https://github.com/drusiyani/argon-v2/blob/main/{BOOKS[name]['folder']}/ledger.jsonl")
-    try: out['bars'] = bars5({e['date'] for e in L[-30:] if e['trades']})
+    try: import public_bars as pb; out['bars'] = bars5({e['date'] for e in L[-30:] if e['trades']}); out['bars_source'] = pb.SOURCE
     except Exception as ex: print('bars for the desk failed:', ex)
     os.makedirs(os.path.join(ROOT, 'docs', 'data'), exist_ok=True)
     json.dump(out, open(os.path.join(ROOT, 'docs', 'data', 'ledger.json'), 'w'), separators=(',', ':'))
 
 def bars5(days):
-    """{date: {sym: [[minute, o, h, l, c], ...]}} 5-minute regular-session bars, for the desk's 'why it fired' charts."""
-    out = {}
+    """{date: {sym: [[minute, o, h, l, c], ...]}} 5-minute regular-session bars, for the desk's 'why it fired' charts.
+    From Yahoo (engine/public_bars.py), never Databento: the licence forbids republishing it. Yahoo only reaches back about
+    60 sessions, so bars already published (and marked as Yahoo's) are kept."""
+    import public_bars as pb
+    try: old = json.load(open(os.path.join(ROOT, 'docs', 'data', 'ledger.json')))
+    except Exception: old = {}
+    out = {d: v for d, v in (old.get('bars') or {}).items() if d in days} if old.get('bars_source') == pb.SOURCE else {}
     for s in ('NQ', 'ES'):
-        T, O, H, L, C, n, mins, ds, wd = c.prep(s); cur = None
-        for i in range(n):
-            d = ds[i]
-            if d not in days or not 570 <= mins[i] < 960: continue
-            m5 = mins[i] - mins[i] % 5; row = out.setdefault(d, {}).setdefault(s, [])
-            if row and row[-1][0] == m5: b = row[-1]; b[2] = max(b[2], H[i]); b[3] = min(b[3], L[i]); b[4] = C[i]
-            else: row.append([m5, O[i], H[i], L[i], C[i]])
+        for d, b in pb.sessions(s).items():
+            if d in days: out.setdefault(d, {})[s] = b
     return out
 
 if __name__ == '__main__':

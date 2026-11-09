@@ -346,7 +346,7 @@ function spark(bars,t){if(!bars||!bars.length)return '<p class="note">No chart f
  const e=X(mm(t.entry_time)),x=t.exit_time?X(mm(t.exit_time)):W,c=t.side==='long'?'#3FCF8E':'#F25F5C';
  return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${p}<line x1="${e}" x2="${x}" y1="${Y(t.entry)}" y2="${Y(t.entry)}" stroke="#EDEDED" stroke-width="1.2"/>
   <line x1="${e}" x2="${x}" y1="${Y(t.stop)}" y2="${Y(t.stop)}" stroke="#F25F5C" stroke-dasharray="3 3"/>${t.exit!=null?`<circle cx="${x}" cy="${Y(t.exit)}" r="3.5" fill="#E6B54A"/>`:''}<circle cx="${e}" cy="${Y(t.entry)}" r="3.5" fill="${c}"/></svg>
-  <p class="note">Nasdaq${t.market==='ES'?'/S&P':''} 5-minute bars, 9:30–16:00. White: entry · red dashed: stop · gold: exit.</p>`}
+  <p class="note">Nasdaq${t.market==='ES'?'/S&P':''} 5-minute bars (Yahoo, display only), 9:30–16:00. White: entry · red dashed: stop · gold: exit.</p>`}
 // ---------- replay slider + history mode
 let RP={date:null,t:570,play:null};
 function replayEvents(date){const T=tradesOf(date),ev=[];const call=(FEED&&(FEED.daytype_history||[]).find(x=>x.date===date))||null;

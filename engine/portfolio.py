@@ -69,29 +69,30 @@ def curve(trades, months, cx, risk):
                 worst_drop=round(dd * 100, 1), losing_months=sum(1 for v in s if v < 0), months=len(s), years=years, equity=pts, monthly_R=[round(v, 2) for v in s])
 
 def chart_data(trades, sessions=60):
-    """For the Chart tab: NQ daily candles (2021-07 on), the book's R per day, and 5-minute candles + every NQ trade for the
-    last `sessions` sessions (entry at the open of its entry minute, exit at the close of its exit minute)."""
-    T, O, H, L, C, n, mins, days, wd = c.prep('NQ'); D, dl, atr = c.daily('NQ')
-    dl = [d for d in dl if d >= '2021-07']
-    daily = [[d, round(D[d]['o'], 2), round(D[d]['h'], 2), round(D[d]['l'], 2), round(D[d]['c'], 2)] for d in dl]
+    """For the Chart tab: NQ daily candles (2021-07 on) and 5-minute candles + every NQ trade for the last `sessions` sessions.
+    Every PRICE in this file comes from Yahoo (engine/public_bars.py), never from Databento, whose licence forbids republishing.
+    The trades, their times and their R are the book's own results. A marker sits at Yahoo's open of the 5-minute bar the
+    trade entered in and Yahoo's close of the bar it left in, so it is close to, not equal to, the price the engine used."""
+    sys.path.insert(0, os.path.join(ROOT, 'engine')); import public_bars as pb
+    path = os.path.join(ROOT, 'docs', 'data', 'chart.json')
+    try: old = json.load(open(path))
+    except Exception: old = {}
+    if old.get('source') != pb.SOURCE: old = {}                  # anything published before the switch was Databento: drop it
+    daily = pb.daily('NQ') or old.get('daily', [])
+    bars = {d: v['bars'] for d, v in (old.get('sessions') or {}).items()}; bars.update(pb.sessions('NQ'))
     by = collections.defaultdict(list)
     for t in trades:
         if t['sym'] == 'NQ': by[t['date']].append(t)
     out = {}
-    for d in dl[-sessions:]:
-        r = D[d]['r']; at = {mins[i]: i for i in r}; bars = collections.OrderedDict()
-        for i in r:
-            k = mins[i] // 5 * 5; b = bars.get(k)
-            if b is None: bars[k] = [k, O[i], H[i], L[i], C[i]]
-            else: b[2] = max(b[2], H[i]); b[3] = min(b[3], L[i]); b[4] = C[i]
-        tr = []
+    for d in sorted(bars)[-sessions:]:
+        at = {b[0]: b for b in bars[d]}; tr = []
         for t in by.get(d, []):
-            ei, xi = at.get(t['entry_min']), at.get(t['exit_min'])
-            if ei is None or xi is None: continue
-            tr.append(dict(strategy=t['strat'], side=t['side'], entry_min=t['entry_min'], exit_min=t['exit_min'], entry=round(O[ei], 2), exit=round(C[xi], 2),
+            e, x = at.get(t['entry_min'] // 5 * 5), at.get(t['exit_min'] // 5 * 5)
+            if e is None or x is None: continue
+            tr.append(dict(strategy=t['strat'], side=t['side'], entry_min=t['entry_min'], exit_min=t['exit_min'], entry=e[1], exit=x[4],
                            R=round(t['w'] * (t['gross'] - t['cost']), 2)))
-        out[d] = dict(bars=[[k, round(o, 2), round(h, 2), round(l, 2), round(cc, 2)] for k, o, h, l, cc in bars.values()], trades=tr)
-    return dict(daily=daily, sessions=out)
+        out[d] = dict(bars=bars[d], trades=tr)
+    return dict(source=pb.SOURCE, daily=daily, sessions=out)
 
 if __name__ == '__main__':
     killed = os.path.exists(os.path.join(ROOT, 'data', 'KILL'))
