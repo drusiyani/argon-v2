@@ -19,7 +19,7 @@ jobs:
         run: |
           test -n "$DATA_TOKEN" || { echo "Add the DATA_TOKEN secret first"; exit 1; }
           git clone -q "https://x-access-token:${DATA_TOKEN}@github.com/drusiyani/argon-data.git" /tmp/argon-data
-          mkdir -p /tmp/argon-data/databento && cp data/databento/*.csv.gz /tmp/argon-data/databento/
+          for d in databento lockbox2010 extra; do mkdir -p /tmp/argon-data/$d && cp data/$d/* /tmp/argon-data/$d/ 2>/dev/null || true; done
           cd /tmp/argon-data && git config user.name argon-bot && git config user.email argon-bot@users.noreply.github.com
-          git add -A && git commit -qm "raw Databento data copied from argon-v2" && git push -q
-          echo "copied $(ls databento | wc -l) files"
+          git add -A && (git diff --cached --quiet || git commit -qm "raw Databento data copied from argon-v2") && git push -q
+          echo "copied: $(ls databento | wc -l) databento, $(ls lockbox2010 | wc -l) lockbox, $(ls extra | wc -l) extra"

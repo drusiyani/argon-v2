@@ -18,7 +18,7 @@ jobs:
         run: |
           if [ -n "$DATA_TOKEN" ]; then
             git clone -q --depth 1 "https://x-access-token:${DATA_TOKEN}@github.com/drusiyani/argon-data.git" /tmp/argon-data
-            if [ -d /tmp/argon-data/databento ]; then mkdir -p data/databento && cp -n /tmp/argon-data/databento/* data/databento/; echo "private data loaded"; fi
+            for d in databento lockbox2010 extra; do if [ -d /tmp/argon-data/$d ]; then mkdir -p data/$d && cp -n /tmp/argon-data/$d/* data/$d/; fi; done; echo "private data loaded"
           else echo "no DATA_TOKEN yet: using the data in this repo"; fi
       - uses: actions/setup-python@v5
         with:

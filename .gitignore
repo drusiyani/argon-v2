@@ -6,3 +6,11 @@ engine/fast.so
 # rebuilt from the .part1/.part2 halves on each run
 data/histdata/NSXUSD_2024.zip
 data/histdata/SPXUSD_2024.zip
+
+# Raw market data from Databento (CME): its licence forbids republishing it, so it lives in the private repo drusiyani/argon-data.
+# The manifests (file names + sha256) stay public so the research can still be audited.
+data/databento/
+data/lockbox2010/*
+!data/lockbox2010/MANIFEST.json
+data/extra/*
+!data/extra/MANIFEST.json
