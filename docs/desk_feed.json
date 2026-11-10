@@ -456,27 +456,27 @@
    "direction": "down",
    "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-10T18:18Z"
+   "updated": "2026-11-10T18:37Z"
   },
   "ES": {
    "direction": "down",
-   "confidence": 0.8,
+   "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-10T18:18Z"
+   "updated": "2026-11-10T18:37Z"
   },
   "YM": {
    "direction": "down",
-   "confidence": 0.8,
+   "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-10T18:18Z"
+   "updated": "2026-11-10T18:37Z"
   },
   "RTY": {
    "direction": "down",
    "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-10T18:19Z"
+   "updated": "2026-11-10T18:38Z"
   }
  },
  "checked": "2026-11-10 18:30 UTC",
- "updated": "2026-11-10 18:32 UTC"
+ "updated": "2026-11-10 18:39 UTC"
 }
