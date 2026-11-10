@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-10",
- "as_of": "2026-11-10 10:58 NY",
- "last_bar": "2026-11-10 10:48",
+ "as_of": "2026-11-10 11:05 NY",
+ "last_bar": "2026-11-10 10:55",
  "equity_used": 100000.0,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-09 21:10",
-   "yahoo_bars": 809,
-   "last_real": "2026-11-10 10:48",
-   "last_price": 27779.5,
+   "yahoo_bars": 816,
+   "last_real": "2026-11-10 10:55",
+   "last_price": 27749.25,
    "gap_pct": 0.0
   },
   "ES": {
    "databento_last": "2026-11-09 21:10",
-   "yahoo_bars": 809,
-   "last_real": "2026-11-10 10:48",
-   "last_price": 7517.75,
+   "yahoo_bars": 816,
+   "last_real": "2026-11-10 10:55",
+   "last_price": 7513.75,
    "gap_pct": -0.0
   },
   "YM": {
    "databento_last": "2026-11-09 21:10",
-   "yahoo_bars": 814,
-   "last_real": "2026-11-10 10:48",
-   "last_price": 52127.0,
+   "yahoo_bars": 821,
+   "last_real": "2026-11-10 10:55",
+   "last_price": 52143.0,
    "gap_pct": -0.0
   },
   "RTY": {
    "databento_last": "2026-11-09 21:10",
-   "yahoo_bars": 803,
-   "last_real": "2026-11-10 10:48",
-   "last_price": 2807.60009765625,
+   "yahoo_bars": 810,
+   "last_real": "2026-11-10 10:55",
+   "last_price": 2809.5,
    "gap_pct": -0.0
   }
  },
@@ -148,7 +148,21 @@
     27811.5,
     27829.25,
     27760.0,
-    27779.5
+    27780.5
+   ],
+   [
+    650,
+    27777.5,
+    27779.0,
+    27707.0,
+    27744.75
+   ],
+   [
+    655,
+    27744.75,
+    27755.5,
+    27709.75,
+    27749.25
    ]
   ],
   "ES": [
@@ -263,6 +277,20 @@
     7526.75,
     7516.0,
     7517.75
+   ],
+   [
+    650,
+    7517.5,
+    7518.0,
+    7503.75,
+    7513.75
+   ],
+   [
+    655,
+    7513.75,
+    7515.0,
+    7507.0,
+    7513.75
    ]
   ]
  },
@@ -279,7 +307,7 @@
    "stop": 27637.25,
    "exit_time": "10:23",
    "exit": 27929.43,
-   "last": 27779.5,
+   "last": 27749.25,
    "state": "closed",
    "R_now": 1.01,
    "usd_now": 878.57
