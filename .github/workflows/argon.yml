@@ -29,7 +29,7 @@ jobs:
         run: |
           if [ -n "$DATA_TOKEN" ]; then
             git clone -q --depth 1 "https://x-access-token:${DATA_TOKEN}@github.com/drusiyani/argon-data.git" /tmp/argon-data
-            for d in databento lockbox2010 extra; do if [ -d /tmp/argon-data/$d ]; then mkdir -p data/$d && cp -n /tmp/argon-data/$d/* data/$d/; fi; done; echo "private data loaded"
+            for d in databento lockbox2010 extra histdata; do if [ -d /tmp/argon-data/$d ]; then mkdir -p data/$d && cp -n /tmp/argon-data/$d/* data/$d/; fi; done; echo "private data loaded"
           else echo "no DATA_TOKEN yet: using the data in this repo"; fi
       - uses: actions/setup-python@v5
         with:
@@ -90,6 +90,15 @@ jobs:
           path: data/databento/
           if-no-files-found: ignore
           retention-days: 14
+      - name: Save new HistData files to the private repo (HistData publishes no licence, so they never go public)
+        env:
+          DATA_TOKEN: ${{ secrets.DATA_TOKEN }}
+        run: |
+          if [ -n "$DATA_TOKEN" ] && [ -d /tmp/argon-data ]; then
+            mkdir -p /tmp/argon-data/histdata && cp -n data/histdata/*.zip* /tmp/argon-data/histdata/ 2>/dev/null || true
+            cd /tmp/argon-data && git config user.name argon-bot && git config user.email argon-bot@users.noreply.github.com
+            git add -A && (git diff --cached --quiet || (git commit -qm "histdata: $(date -u +%Y-%m-%d)" && git push -q))
+          fi
       - name: Commit
         run: |
           git config user.name "argon-bot"

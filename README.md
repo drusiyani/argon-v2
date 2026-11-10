@@ -97,4 +97,5 @@ Over 27 months of testing, adjusting the rules monthly beat fixed rules, but nei
 
 - Futures: Yahoo Finance (CME NQ, ES, RTY and CBOT YM), 5- and 2-minute bars
 - History: HistData.com 1-minute CFD prices for Nasdaq and S&P 500 (NSXUSD, SPXUSD). The Dow and Russell only have the futures history the workflow saves each day.
+- Raw data is not in this repo. Databento's licence forbids republishing CME data, and HistData publishes no licence to redistribute its files, so both live in the private repo `drusiyani/argon-data`. Each folder keeps a public `MANIFEST.json` (file names, sizes, SHA-256). To reproduce a result, get your own copies (Databento is paid; HistData is a free download) into `data/`, then run `python engine/verify_data.py` to check they match byte for byte.
 - Charts: TradingView Lightweight Charts (Apache 2.0)
