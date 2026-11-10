@@ -5,7 +5,7 @@ written_by: the site, automatically
 # Edge report
 
 > [!info]
-> Worked out automatically from 221 possible trades for the main strategy (taken and skipped) and 0 order-block trades. A group needs at least 8 trades to show up. Nothing here is proven yet; it shows where to look.
+> Worked out automatically from 223 possible trades for the main strategy (taken and skipped) and 0 order-block trades. A group needs at least 8 trades to show up. Nothing here is proven yet; it shows where to look.
 
 ## The two strategies
 
@@ -29,14 +29,14 @@ written_by: the site, automatically
 |---|---|---|---|---|---|
 | time | 08:00 | 9 | 0% | -1.00R | -9.00R |
 | level | 15m high or low | 20 | 15% | -0.48R | -9.64R |
-| time | 09:00 | 89 | 18% | -0.43R | -38.37R |
 | day | Thu | 59 | 15% | -0.43R | -25.37R |
-| session | NY | 109 | 21% | -0.40R | -43.82R |
-| direction | buys | 132 | 25% | -0.27R | -35.05R |
+| time | 09:00 | 91 | 20% | -0.38R | -34.37R |
+| session | NY | 111 | 23% | -0.36R | -39.82R |
+| direction | buys | 134 | 26% | -0.23R | -31.05R |
 
 ## Is each check helping?
 
-- An important level to target: skipped 48 trades that would have made +12.00R. So this check cost money.
+- An important level to target: skipped 47 trades that would have made +10.00R. So this check cost money.
 - Price swept it and came back: skipped 8 trades that would have made +7.00R. So this check cost money.
 - Matches the day's direction: skipped 30 trades that would have made +12.00R. So this check cost money.
 - The other market disagreed (SMT): skipped 0 trades that would have made 0.00R. Too few to tell.
@@ -45,9 +45,9 @@ written_by: the site, automatically
 
 ## Things that don't add up
 
-- The [[SMT]] check is earning its place: +0.14R a trade with it (68 trades) vs -0.17R without (81).
-- The "important level" check holds up: important levels +0.03R a trade (164) vs minor ones -0.13R (57).
-- The [[Grades]] work: A+ and A++ -0.04R a trade (33) vs B and C -0.06R (124).
+- The [[SMT]] check is earning its place: +0.14R a trade with it (68 trades) vs -0.14R without (82).
+- The "important level" check holds up: important levels +0.04R a trade (165) vs minor ones -0.10R (58).
+- **The [[Grades]] don't work yet.** A+ and A++ setups made -0.04R a trade (33), B and C made -0.02R (126). Better grades should win more, and they don't.
 
 ## What's missing
 
