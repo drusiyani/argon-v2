@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-10",
- "as_of": "2026-11-10 10:08 NY",
- "last_bar": "2026-11-10 09:58",
+ "as_of": "2026-11-10 10:14 NY",
+ "last_bar": "2026-11-10 10:03",
  "equity_used": 100000.0,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-09 21:10",
-   "yahoo_bars": 759,
-   "last_real": "2026-11-10 09:58",
-   "last_price": 27949.0,
+   "yahoo_bars": 764,
+   "last_real": "2026-11-10 10:03",
+   "last_price": 28021.25,
    "gap_pct": 0.0
   },
   "ES": {
    "databento_last": "2026-11-09 21:10",
-   "yahoo_bars": 759,
-   "last_real": "2026-11-10 09:58",
-   "last_price": 7542.5,
+   "yahoo_bars": 765,
+   "last_real": "2026-11-10 10:04",
+   "last_price": 7559.0,
    "gap_pct": -0.0
   },
   "YM": {
    "databento_last": "2026-11-09 21:10",
-   "yahoo_bars": 764,
-   "last_real": "2026-11-10 09:58",
-   "last_price": 52225.0,
+   "yahoo_bars": 770,
+   "last_real": "2026-11-10 10:04",
+   "last_price": 52329.0,
    "gap_pct": -0.0
   },
   "RTY": {
    "databento_last": "2026-11-09 21:10",
-   "yahoo_bars": 753,
-   "last_real": "2026-11-10 09:58",
-   "last_price": 2826.5,
+   "yahoo_bars": 759,
+   "last_real": "2026-11-10 10:04",
+   "last_price": 2831.800048828125,
    "gap_pct": -0.0
   }
  },
@@ -76,9 +76,16 @@
    [
     595,
     27879.0,
-    27996.25,
+    28016.75,
     27868.75,
-    27949.0
+    28014.75
+   ],
+   [
+    600,
+    28011.75,
+    28090.0,
+    27993.0,
+    28021.25
    ]
   ],
   "ES": [
@@ -120,9 +127,16 @@
    [
     595,
     7527.25,
-    7547.75,
+    7551.75,
     7525.75,
-    7542.5
+    7551.5
+   ],
+   [
+    600,
+    7551.25,
+    7565.5,
+    7550.25,
+    7559.0
    ]
   ]
  },
@@ -139,10 +153,10 @@
    "stop": 27637.25,
    "exit_time": null,
    "exit": null,
-   "last": 27949.0,
+   "last": 28021.25,
    "state": "open",
-   "R_now": 1.145,
-   "usd_now": 996.0
+   "R_now": 1.643,
+   "usd_now": 1429.5
   }
  ],
  "skipped": []
