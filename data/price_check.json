@@ -1,0 +1,76 @@
+{
+ "checked": "2026-11-10T04:09:59+00:00",
+ "rows": [
+  {
+   "date": "2026-10-27",
+   "databento": 29813.25,
+   "yahoo": 29812.0,
+   "gap_pct": 0.004,
+   "roll": false
+  },
+  {
+   "date": "2026-10-28",
+   "databento": 29994.5,
+   "yahoo": 29979.5,
+   "gap_pct": 0.05,
+   "roll": false
+  },
+  {
+   "date": "2026-10-29",
+   "databento": 29566.25,
+   "yahoo": 29562.0,
+   "gap_pct": 0.014,
+   "roll": false
+  },
+  {
+   "date": "2026-10-30",
+   "databento": 28527.25,
+   "yahoo": 28534.0,
+   "gap_pct": -0.024,
+   "roll": false
+  },
+  {
+   "date": "2026-11-02",
+   "databento": 28138.75,
+   "yahoo": 28127.5,
+   "gap_pct": 0.04,
+   "roll": false
+  },
+  {
+   "date": "2026-11-03",
+   "databento": 28300.5,
+   "yahoo": 28305.75,
+   "gap_pct": -0.019,
+   "roll": false
+  },
+  {
+   "date": "2026-11-04",
+   "databento": 28566.75,
+   "yahoo": 28566.75,
+   "gap_pct": 0.0,
+   "roll": false
+  },
+  {
+   "date": "2026-11-05",
+   "databento": 26742.5,
+   "yahoo": 26752.0,
+   "gap_pct": -0.036,
+   "roll": false
+  },
+  {
+   "date": "2026-11-06",
+   "databento": 27074.5,
+   "yahoo": 27085.25,
+   "gap_pct": -0.04,
+   "roll": false
+  },
+  {
+   "date": "2026-11-09",
+   "databento": 28021.75,
+   "yahoo": 27910.75,
+   "gap_pct": 0.398,
+   "roll": false
+  }
+ ],
+ "flagged": []
+}
