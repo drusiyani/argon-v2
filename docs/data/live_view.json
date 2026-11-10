@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-10",
- "as_of": "2026-11-10 11:24 NY",
- "last_bar": "2026-11-10 11:14",
+ "as_of": "2026-11-10 11:30 NY",
+ "last_bar": "2026-11-10 11:20",
  "equity_used": 100000.0,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-09 21:10",
-   "yahoo_bars": 835,
-   "last_real": "2026-11-10 11:14",
-   "last_price": 27803.5,
+   "yahoo_bars": 841,
+   "last_real": "2026-11-10 11:20",
+   "last_price": 27801.0,
    "gap_pct": 0.0
   },
   "ES": {
    "databento_last": "2026-11-09 21:10",
-   "yahoo_bars": 835,
-   "last_real": "2026-11-10 11:14",
-   "last_price": 7520.75,
+   "yahoo_bars": 841,
+   "last_real": "2026-11-10 11:20",
+   "last_price": 7521.5,
    "gap_pct": -0.0
   },
   "YM": {
    "databento_last": "2026-11-09 21:10",
-   "yahoo_bars": 840,
-   "last_real": "2026-11-10 11:14",
-   "last_price": 52114.0,
+   "yahoo_bars": 846,
+   "last_real": "2026-11-10 11:20",
+   "last_price": 52148.0,
    "gap_pct": -0.0
   },
   "RTY": {
    "databento_last": "2026-11-09 21:10",
-   "yahoo_bars": 829,
-   "last_real": "2026-11-10 11:14",
-   "last_price": 2810.0,
+   "yahoo_bars": 835,
+   "last_real": "2026-11-10 11:20",
+   "last_price": 2812.199951171875,
    "gap_pct": -0.0
   }
  },
@@ -183,7 +183,21 @@
     27827.5,
     27830.75,
     27789.75,
-    27803.5
+    27802.5
+   ],
+   [
+    675,
+    27800.5,
+    27851.25,
+    27773.5,
+    27798.0
+   ],
+   [
+    680,
+    27798.75,
+    27813.0,
+    27784.5,
+    27801.0
    ]
   ],
   "ES": [
@@ -332,7 +346,21 @@
     7526.5,
     7526.75,
     7518.75,
-    7520.75
+    7520.0
+   ],
+   [
+    675,
+    7519.75,
+    7529.25,
+    7515.0,
+    7520.25
+   ],
+   [
+    680,
+    7520.25,
+    7523.25,
+    7519.25,
+    7521.5
    ]
   ]
  },
@@ -349,7 +377,7 @@
    "stop": 27637.25,
    "exit_time": "10:23",
    "exit": 27929.43,
-   "last": 27803.5,
+   "last": 27801.0,
    "state": "closed",
    "R_now": 1.01,
    "usd_now": 878.57
