@@ -1,0 +1,136 @@
+{
+ "note": "Backtest, 1% risk per trade, after costs, mostly in-sample. ES trades come only from the expiry rule (third Friday).",
+ "years": {
+  "2021": {
+   "ES": {
+    "trades": 11,
+    "wins": 6,
+    "R": 1.62,
+    "pct": 1.6
+   },
+   "NQ": {
+    "trades": 336,
+    "wins": 142,
+    "R": 33.01,
+    "pct": 35.1
+   }
+  },
+  "2022": {
+   "ES": {
+    "trades": 11,
+    "wins": 7,
+    "R": 4.38,
+    "pct": 4.4
+   },
+   "NQ": {
+    "trades": 614,
+    "wins": 249,
+    "R": 60.92,
+    "pct": 68.4
+   }
+  },
+  "2023": {
+   "ES": {
+    "trades": 12,
+    "wins": 7,
+    "R": 4.05,
+    "pct": 4.1
+   },
+   "NQ": {
+    "trades": 573,
+    "wins": 246,
+    "R": 66.21,
+    "pct": 74.2
+   }
+  },
+  "2024": {
+   "ES": {
+    "trades": 12,
+    "wins": 6,
+    "R": 0.16,
+    "pct": 0.1
+   },
+   "NQ": {
+    "trades": 562,
+    "wins": 227,
+    "R": 94.94,
+    "pct": 119.9
+   }
+  },
+  "2025": {
+   "ES": {
+    "trades": 11,
+    "wins": 6,
+    "R": 0.27,
+    "pct": 0.2
+   },
+   "NQ": {
+    "trades": 533,
+    "wins": 198,
+    "R": 50.84,
+    "pct": 46.0
+   }
+  },
+  "2026": {
+   "ES": {
+    "trades": 9,
+    "wins": 5,
+    "R": 0.9,
+    "pct": 0.8
+   },
+   "NQ": {
+    "trades": 477,
+    "wins": 170,
+    "R": 14.6,
+    "pct": 2.2
+   }
+  }
+ },
+ "es_2026_trades": [
+  {
+   "date": "2026-01-16",
+   "side": "short",
+   "R": 0.6
+  },
+  {
+   "date": "2026-02-20",
+   "side": "short",
+   "R": -1.02
+  },
+  {
+   "date": "2026-03-20",
+   "side": "short",
+   "R": 0.78
+  },
+  {
+   "date": "2026-04-17",
+   "side": "short",
+   "R": -1.02
+  },
+  {
+   "date": "2026-05-15",
+   "side": "short",
+   "R": 0.21
+  },
+  {
+   "date": "2026-07-17",
+   "side": "short",
+   "R": -1.03
+  },
+  {
+   "date": "2026-08-21",
+   "side": "short",
+   "R": -1.03
+  },
+  {
+   "date": "2026-09-18",
+   "side": "short",
+   "R": 1.03
+  },
+  {
+   "date": "2026-10-16",
+   "side": "short",
+   "R": 2.38
+  }
+ ]
+}
