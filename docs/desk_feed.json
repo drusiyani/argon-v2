@@ -454,29 +454,29 @@
  "kronos": {
   "NQ": {
    "direction": "up",
-   "confidence": 1.0,
+   "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-10T13:41Z"
+   "updated": "2026-11-10T13:58Z"
   },
   "ES": {
    "direction": "up",
-   "confidence": 0.8,
+   "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-10T13:41Z"
+   "updated": "2026-11-10T13:58Z"
   },
   "YM": {
    "direction": "up",
-   "confidence": 0.8,
+   "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-10T13:41Z"
+   "updated": "2026-11-10T13:58Z"
   },
   "RTY": {
-   "direction": "down",
-   "confidence": 0.6,
+   "direction": "up",
+   "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-10T13:42Z"
+   "updated": "2026-11-10T13:58Z"
   }
  },
  "checked": "2026-11-10 13:45 UTC",
- "updated": "2026-11-10 13:47 UTC"
+ "updated": "2026-11-10 13:58 UTC"
 }
