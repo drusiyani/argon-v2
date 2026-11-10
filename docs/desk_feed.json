@@ -453,30 +453,30 @@
  },
  "kronos": {
   "NQ": {
-   "direction": "down",
-   "confidence": 1.0,
-   "horizon": "1h",
-   "updated": "2026-11-10T20:26Z"
-  },
-  "ES": {
-   "direction": "down",
+   "direction": "up",
    "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-10T20:27Z"
+   "updated": "2026-11-10T20:46Z"
+  },
+  "ES": {
+   "direction": "up",
+   "confidence": 0.8,
+   "horizon": "1h",
+   "updated": "2026-11-10T20:46Z"
   },
   "YM": {
-   "direction": "down",
-   "confidence": 1.0,
+   "direction": "up",
+   "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-10T20:27Z"
+   "updated": "2026-11-10T20:46Z"
   },
   "RTY": {
    "direction": "down",
-   "confidence": 0.8,
+   "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-10T20:27Z"
+   "updated": "2026-11-10T20:46Z"
   }
  },
- "checked": "2026-11-10 20:30 UTC",
- "updated": "2026-11-10 20:34 UTC"
+ "checked": "2026-11-10 20:45 UTC",
+ "updated": "2026-11-10 20:47 UTC"
 }
