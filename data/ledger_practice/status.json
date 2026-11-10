@@ -1,8 +1,8 @@
 {
  "book": "practice",
  "start": "2026-11-16",
- "run_at": "2026-11-09T23:05:57-05:00",
- "code": "4d368dbca61a",
+ "run_at": "2026-11-10T05:11:56-05:00",
+ "code": "343cce9de5eb",
  "checks": {
   "kill": "off",
   "chain": "ok",
@@ -10,10 +10,10 @@
   "positions": "flat (ledger and engine agree: no open trades)"
  },
  "data_last_bar_utc": {
-  "NQ": "2026-11-09 20:04",
-  "ES": "2026-11-09 20:04",
-  "YM": "2026-11-09 20:04",
-  "RTY": "2026-11-09 20:04"
+  "NQ": "2026-11-10 02:10",
+  "ES": "2026-11-10 02:10",
+  "YM": "2026-11-10 02:10",
+  "RTY": "2026-11-10 02:10"
  },
  "booked_now": [],
  "last_booked": null,
