@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-10",
- "as_of": "2026-11-10 10:20 NY",
- "last_bar": "2026-11-10 10:10",
+ "as_of": "2026-11-10 10:27 NY",
+ "last_bar": "2026-11-10 10:17",
  "equity_used": 100000.0,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-09 21:10",
-   "yahoo_bars": 771,
-   "last_real": "2026-11-10 10:10",
-   "last_price": 28043.25,
+   "yahoo_bars": 778,
+   "last_real": "2026-11-10 10:17",
+   "last_price": 27988.25,
    "gap_pct": 0.0
   },
   "ES": {
    "databento_last": "2026-11-09 21:10",
-   "yahoo_bars": 771,
-   "last_real": "2026-11-10 10:10",
-   "last_price": 7562.0,
+   "yahoo_bars": 778,
+   "last_real": "2026-11-10 10:17",
+   "last_price": 7551.75,
    "gap_pct": -0.0
   },
   "YM": {
    "databento_last": "2026-11-09 21:10",
-   "yahoo_bars": 776,
-   "last_real": "2026-11-10 10:10",
-   "last_price": 52317.0,
+   "yahoo_bars": 783,
+   "last_real": "2026-11-10 10:17",
+   "last_price": 52266.0,
    "gap_pct": -0.0
   },
   "RTY": {
    "databento_last": "2026-11-09 21:10",
-   "yahoo_bars": 765,
-   "last_real": "2026-11-10 10:10",
-   "last_price": 2833.89990234375,
+   "yahoo_bars": 772,
+   "last_real": "2026-11-10 10:17",
+   "last_price": 2827.699951171875,
    "gap_pct": -0.0
   }
  },
@@ -96,10 +96,17 @@
    ],
    [
     610,
-    28047.0,
+    28046.0,
     28058.0,
-    28023.75,
-    28043.25
+    27994.0,
+    28019.25
+   ],
+   [
+    615,
+    28018.5,
+    28021.0,
+    27949.0,
+    27988.25
    ]
   ],
   "ES": [
@@ -163,8 +170,15 @@
     610,
     7562.0,
     7564.25,
-    7558.0,
-    7562.0
+    7553.75,
+    7556.5
+   ],
+   [
+    615,
+    7556.25,
+    7556.75,
+    7545.75,
+    7551.75
    ]
   ]
  },
@@ -181,10 +195,10 @@
    "stop": 27637.25,
    "exit_time": null,
    "exit": null,
-   "last": 28043.25,
+   "last": 27988.25,
    "state": "open",
-   "R_now": 1.795,
-   "usd_now": 1561.5
+   "R_now": 1.416,
+   "usd_now": 1231.5
   }
  ],
  "skipped": []
