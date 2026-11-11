@@ -1,0 +1,119 @@
+{
+ "era": "databento",
+ "note": "Analysis only (does not touch the race). Leverage on the best package, with Sortino ratios and a paired block bootstrap.\nPass mark fixed BEFORE the run (11 Nov 2026): a leverage level PASSES if, in BOTH eras, the historical worst drop is shallower\nthan -35% AND under 20% of bootstrapped histories have a worst drop deeper than -35%.\nPackage = VXN-managed Nasdaq core + Argon rules at half size + pre-FOMC tilt; leverage k scales those, T-bill interest on cash\nis added once. Bootstrap: 1,000 resamples of each era, 21-trading-day blocks (about a month, keeps volatility clustering),\nthe SAME blocks for every strategy so their comparison is paired. Seed 20261111.",
+ "range": [
+  "2021-01-27",
+  "2026-11-10"
+ ],
+ "verdict_this_era": {
+  "package 1.0x": "PASS",
+  "package 1.25x": "FAIL",
+  "package 1.5x": "FAIL"
+ },
+ "history": {
+  "Nasdaq alone": {
+   "final_usd": 165589,
+   "cagr_pct": 9.2,
+   "sharpe": 0.51,
+   "sortino": 0.72,
+   "worst_drop_pct": -37.2
+  },
+  "existing rules alone": {
+   "final_usd": 1707340,
+   "cagr_pct": 64.0,
+   "sharpe": 1.27,
+   "sortino": 3.51,
+   "worst_drop_pct": -34.3
+  },
+  "\"$2.28m\" rules + pre-FOMC + interest": {
+   "final_usd": 2237021,
+   "cagr_pct": 71.9,
+   "sharpe": 1.36,
+   "sortino": 3.81,
+   "worst_drop_pct": -33.3
+  },
+  "package 1.0x": {
+   "final_usd": 1078987,
+   "cagr_pct": 51.4,
+   "sharpe": 1.52,
+   "sortino": 3.0,
+   "worst_drop_pct": -19.1
+  },
+  "package 1.25x": {
+   "final_usd": 1723994,
+   "cagr_pct": 64.3,
+   "sharpe": 1.49,
+   "sortino": 2.95,
+   "worst_drop_pct": -23.4
+  },
+  "package 1.5x": {
+   "final_usd": 2672581,
+   "cagr_pct": 77.4,
+   "sharpe": 1.48,
+   "sortino": 2.92,
+   "worst_drop_pct": -27.8
+  }
+ },
+ "bootstrap": {
+  "Nasdaq alone": {
+   "median_cagr_pct": 10.5,
+   "bad_case_cagr_pct_5th": -3.4,
+   "good_case_cagr_pct_95th": 27.0,
+   "chance_of_losing_money_pct": 9.8,
+   "typical_worst_drop_pct": -31.5,
+   "bad_case_worst_drop_pct_5th": -51.8,
+   "chance_drop_worse_than_35_pct": 37.3,
+   "chance_beats_nasdaq_pct": 0.0
+  },
+  "existing rules alone": {
+   "median_cagr_pct": 62.7,
+   "bad_case_cagr_pct_5th": 25.9,
+   "good_case_cagr_pct_95th": 114.6,
+   "chance_of_losing_money_pct": 0.1,
+   "typical_worst_drop_pct": -36.0,
+   "bad_case_worst_drop_pct_5th": -53.2,
+   "chance_drop_worse_than_35_pct": 55.1,
+   "chance_beats_nasdaq_pct": 97.4
+  },
+  "\"$2.28m\" rules + pre-FOMC + interest": {
+   "median_cagr_pct": 71.2,
+   "bad_case_cagr_pct_5th": 32.2,
+   "good_case_cagr_pct_95th": 126.1,
+   "chance_of_losing_money_pct": 0.0,
+   "typical_worst_drop_pct": -34.3,
+   "bad_case_worst_drop_pct_5th": -50.8,
+   "chance_drop_worse_than_35_pct": 46.4,
+   "chance_beats_nasdaq_pct": 98.6
+  },
+  "package 1.0x": {
+   "median_cagr_pct": 53.3,
+   "bad_case_cagr_pct_5th": 30.3,
+   "good_case_cagr_pct_95th": 80.5,
+   "chance_of_losing_money_pct": 0.0,
+   "typical_worst_drop_pct": -23.7,
+   "bad_case_worst_drop_pct_5th": -35.3,
+   "chance_drop_worse_than_35_pct": 5.5,
+   "chance_beats_nasdaq_pct": 100.0
+  },
+  "package 1.25x": {
+   "median_cagr_pct": 66.9,
+   "bad_case_cagr_pct_5th": 36.4,
+   "good_case_cagr_pct_95th": 104.0,
+   "chance_of_losing_money_pct": 0.0,
+   "typical_worst_drop_pct": -29.2,
+   "bad_case_worst_drop_pct_5th": -42.8,
+   "chance_drop_worse_than_35_pct": 20.8,
+   "chance_beats_nasdaq_pct": 100.0
+  },
+  "package 1.5x": {
+   "median_cagr_pct": 80.7,
+   "bad_case_cagr_pct_5th": 42.0,
+   "good_case_cagr_pct_95th": 129.9,
+   "chance_of_losing_money_pct": 0.0,
+   "typical_worst_drop_pct": -34.5,
+   "bad_case_worst_drop_pct_5th": -49.7,
+   "chance_drop_worse_than_35_pct": 46.1,
+   "chance_beats_nasdaq_pct": 100.0
+  }
+ }
+}
