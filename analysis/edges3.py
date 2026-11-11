@@ -1,11 +1,4 @@
-"""Analysis only (does not touch the race). THIRD batch (core timing), tested exactly as published, on both eras.
-Pass mark fixed BEFORE the run (11 Nov 2026): PASS if, in BOTH eras, Sharpe beats holding the Nasdaq AND the worst drop is shallower.
-  H1 FOMC cycle (Cieslak, Morse & Vissing-Jorgensen 2019): hold 1x Nasdaq only in even weeks of the FOMC cycle
-     (trading days -1..3, 9..13, 19..23, 29..33 around the last scheduled decision), else T-bills.
-  H2 Halloween (Bouman & Jacobsen 2002): hold 1x Nasdaq November to April, T-bills May to October.
-  H3 VIX term structure: hold 1x Nasdaq when yesterday's VIX / 3-month VIX < 1 (normal), else T-bills.
-Each is also tried on top of the VXN-managed core inside the current package. Old docstring follows.
-Second batch, tested exactly as published, on both eras.
+"""(batch 3 header below) Second batch, tested exactly as published, on both eras.
 Pass marks fixed BEFORE the run (11 Nov 2026):
   Core changes (G1, G2) PASS if, in BOTH eras, Sharpe beats holding the Nasdaq AND the worst drop is shallower.
   Timing edges (G3, G4) PASS if, in BOTH eras, mean > 0 AND Sharpe >= 0.3.
@@ -55,42 +48,36 @@ for d in sorted(c.FOMC):
     if d in skip or p in skip: continue
     i2 = [i for i in D[d]['r'] if mins[i] <= 839]
     if i2: fomc[d] = C[i2[-1]] / D[p]['c'] - 1 - COST / D[p]['c']
+NOTE = """Analysis only (does not touch the race). Third batch, tested exactly as published, on both eras.
+Pass marks fixed BEFORE the run (11 Nov 2026): core changes (H1, H2) PASS if, in BOTH eras, they beat the current best core
+(VXN-managed Nasdaq) on Sharpe with a worst drop no deeper. H3 PASSES if mean > 0 and Sharpe >= 0.3 in both eras.
+  H1 Halloween (Bouman & Jacobsen 2002): VXN core November-April, cash earning T-bills May-October.
+  H2 FOMC cycle (Cieslak, Morse & Vissing-Jorgensen 2019): VXN core at 1.5x in even weeks after a Fed decision, 0.5x in odd weeks.
+  H3 Option-expiry week (Stivers & Sun 2013): extra 1x long Saturday-to-third-Friday (the week of monthly expiry), close to close."""
 lo, hi = (('2021-01-01', '2026-12-31') if ERA == 'databento' else ('2010-07-01', '2020-12-31'))
 lo = max(lo, first)
-
-VIX = {r['date']: float(r['vixcls']) for r in csv.DictReader(open(os.path.join(ROOT, 'analysis', 'VIXCLS.csv')))}
-VX3 = {r['date']: float(r['vxvcls']) for r in csv.DictReader(open(os.path.join(ROOT, 'analysis', 'VXVCLS.csv')))}
-vix_p, vx3_p = carry(VIX), carry(VX3)
-fl = sorted(d for d in c.FOMC)
-lpos = {d: k for k, d in enumerate(ld)}
-def cycle_day(k):
-    d = ld[k]
-    nxt = [f for f in fl if f >= d]
-    if nxt and nxt[0] in lpos and lpos[nxt[0]] - k == 1: return -1
-    prv = [f for f in fl if f <= d and f in lpos]
-    return k - lpos[prv[-1]] if prv else None
-EVEN = set(range(0, 4)) | set(range(9, 14)) | set(range(19, 24)) | set(range(29, 34))
 vxw = {}
-for k, d in enumerate(ld):
+vxs = sorted(VX); vi = 0
+for d in ld:
+    while vi < len(vxs) and vxs[vi] < d: vi += 1
     v = vx_prev[d]
-    if v:
-        i = sum(1 for x in vxh if x < d); h = sorted(VX[x] for x in vxh[max(0, i - 252):i])
-        vxw[d] = min(1.5, (h[len(h) // 2] if len(h) >= 60 else v) / v)
-    else: vxw[d] = 1.0
-on = {'H1 FOMC even weeks': {}, 'H2 Halloween (Nov-Apr)': {}, 'H3 VIX term structure': {}}
+    if not v: vxw[d] = 1.0; continue
+    h = sorted(VX[x] for x in vxs[max(0, vi - 252):vi]); med = h[len(h) // 2] if len(h) >= 60 else v
+    vxw[d] = min(1.5, med / v)
+core = lambda d, m=1.0: m * vxw[d] * ret[d] + (1 - m * vxw[d]) * (tb_prev[d] or 0.0)
+# H2: FOMC cycle week, counted in trading days from the day before the latest decision (that day = 0)
+fd = sorted(x for x in c.FOMC if x in pos); cyc = {}
 for k, d in enumerate(ld):
-    cd = cycle_day(k)
-    on['H1 FOMC even weeks'][d] = cd is not None and (cd == -1 or cd in EVEN)
-    on['H2 Halloween (Nov-Apr)'][d] = int(d[5:7]) in (11, 12, 1, 2, 3, 4)
-    a, b = vix_p[d], vx3_p[d]
-    on['H3 VIX term structure'][d] = not (a and b and a / b >= 1)
-def timed(name, w=lambda d: 1.0):
-    flag = on[name]; prev = [None]
-    def f(d):
-        x = w(d) * ret[d] + (1 - w(d)) * (tb_prev[d] or 0.0) if flag[d] else (tb_prev[d] or 0.0)
-        if prev[0] is not None and flag[d] != prev[0]: x -= COST / D[d]['c']
-        prev[0] = flag[d]; return x
-    return f
+    prior = [x for x in fd if x <= d]
+    if not prior: continue
+    p0 = pos[prior[-1]] - 1; cyc[d] = ((pos[d] - p0) // 5) % 2 == 0
+# H3: option-expiry week = the trading days after the Friday before the third Friday, up to and including the third Friday
+def third_friday(y, m):
+    d0 = dt.date(y, m, 1); return d0 + dt.timedelta(days=(4 - d0.weekday()) % 7 + 14)
+opx = set()
+for d in ld:
+    a_ = dt.date.fromisoformat(d); tf = third_friday(a_.year, a_.month)
+    if tf - dt.timedelta(days=6) <= a_ <= tf: opx.add(d)
 days_e = [d for d in ld if lo <= d <= hi]
 def stats(f):
     eq, peak, dd, xs = 1.0, 1.0, 0.0, []
@@ -99,15 +86,20 @@ def stats(f):
     m = sum(xs) / len(xs); s = math.sqrt(sum((v - m) ** 2 for v in xs) / (len(xs) - 1)) or 1
     return dict(final_usd=round(100000 * eq), cagr_pct=round(100 * (eq ** (252 / len(xs)) - 1), 1), sharpe=round(m / s * math.sqrt(252), 2), worst_drop_pct=round(100 * dd, 1))
 R = lambda d: risk * book.get(d, 0.0); tbd = lambda d: tb_prev[d] or 0.0
-vcore = lambda d: vxw[d] * ret[d] + (1 - vxw[d]) * tbd(d)
-res = {'Nasdaq alone': stats(lambda d: ret[d]), 'VXN core (batch 2 pass)': stats(vcore)}
-for nm in on: res[nm] = stats(timed(nm))
-ix = res['Nasdaq alone']
-verdict = {nm: 'PASS' if res[nm]['sharpe'] > ix['sharpe'] and res[nm]['worst_drop_pct'] > ix['worst_drop_pct'] else 'FAIL' for nm in on}
-res['PACKAGE: VXN core + half rules + pre-FOMC + interest'] = stats(lambda d: vcore(d) + 0.5 * R(d) + fomc.get(d, 0.0))
-for nm in on:
-    g = timed(nm, lambda d: vxw[d])
-    res[f'PACKAGE with {nm} on the VXN core'] = stats(lambda d, g=g: g(d) + 0.5 * R(d) + fomc.get(d, 0.0))
-out = dict(era=ERA, note=__doc__, range=[days_e[0], days_e[-1]], verdict_this_era=verdict, results=res)
+halloween = lambda d: core(d) if int(d[5:7]) in (11, 12, 1, 2, 3, 4) else tbd(d)
+fomcc = lambda d: core(d, 1.5 if cyc.get(d, True) else 0.5)
+h3 = lambda d: (ret[d] - (COST / D[d]['c'] if dt.date.fromisoformat(d).weekday() == 4 else 0.0)) if d in opx else 0.0
+res = {'Nasdaq alone': stats(lambda d: ret[d]), 'VXN core (current best)': stats(core),
+       'H1 VXN core + Halloween': stats(halloween), 'H2 VXN core + FOMC cycle': stats(fomcc), 'H3 option-expiry week (alone)': stats(h3)}
+b = res['VXN core (current best)']
+ok = lambda k: res[k]['sharpe'] > b['sharpe'] and res[k]['worst_drop_pct'] >= b['worst_drop_pct']
+verdict = {'H1 VXN core + Halloween': ok('H1 VXN core + Halloween'), 'H2 VXN core + FOMC cycle': ok('H2 VXN core + FOMC cycle'),
+           'H3 option-expiry week (alone)': res['H3 option-expiry week (alone)']['final_usd'] > 100000 and res['H3 option-expiry week (alone)']['sharpe'] >= 0.3}
+base_pkg = lambda d, cf=core: cf(d) + 0.5 * R(d) + fomc.get(d, 0.0) + tbd(d)
+res['BEST PACKAGE (VXN core + half rules + pre-FOMC + interest)'] = stats(base_pkg)
+res['best package with H1'] = stats(lambda d: base_pkg(d, halloween))
+res['best package with H2'] = stats(lambda d: base_pkg(d, fomcc))
+res['best package + H3'] = stats(lambda d: base_pkg(d) + h3(d))
+out = dict(era=ERA, note=NOTE, range=[days_e[0], days_e[-1]], verdict_this_era={k: 'PASS' if v else 'FAIL' for k, v in verdict.items()}, results=res)
 json.dump(out, open(os.path.join(ROOT, 'analysis', f'edges3_{ERA}.json'), 'w'), indent=1)
-print(json.dumps(verdict)); [print(k, v) for k, v in res.items()]
+print(json.dumps(out['verdict_this_era'], indent=1)); [print(k, v) for k, v in res.items()]

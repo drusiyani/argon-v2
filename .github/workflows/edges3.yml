@@ -1,4 +1,4 @@
-name: One-off analysis - third batch (core timing), both eras
+name: One-off analysis - third batch of edges, both eras
 on:
   push:
     paths: ['.github/workflows/edges3.yml', 'analysis/edges3.py', 'analysis/vxn.csv']
@@ -28,5 +28,5 @@ jobs:
       - name: Save result
         run: |
           git config user.name argon-bot; git config user.email argon-bot@users.noreply.github.com
-          git add analysis/edges3_*.json; git commit -qm "analysis: third batch (core timing), both eras"
+          git add analysis/edges3_*.json; git commit -qm "analysis: third batch of edges, both eras"
           for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0; sleep $((i*10)); done; exit 1
