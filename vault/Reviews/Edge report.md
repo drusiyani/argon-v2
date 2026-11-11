@@ -5,11 +5,11 @@ written_by: the site, automatically
 # Edge report
 
 > [!info]
-> Worked out automatically from 223 possible trades for the main strategy (taken and skipped) and 0 order-block trades. A group needs at least 8 trades to show up. Nothing here is proven yet; it shows where to look.
+> Worked out automatically from 224 possible trades for the main strategy (taken and skipped) and 0 order-block trades. A group needs at least 8 trades to show up. Nothing here is proven yet; it shows where to look.
 
 ## The two strategies
 
-- [[The main strategy]]: 21 trades, +6.00R, won 43%
+- [[The main strategy]]: 22 trades, +5.00R, won 41%
 - [[The order-block strategy]]: 0 trades, 0.00R, won 0%
 
 ## Doing best
@@ -17,10 +17,10 @@ written_by: the site, automatically
 | looking at | group | trades | won | per trade | total |
 |---|---|---|---|---|---|
 | time | 03:00 | 31 | 58% | +0.74R | +23.00R |
-| sweep | breakout | 23 | 52% | +0.52R | +12.03R |
-| session | London | 112 | 46% | +0.37R | +41.00R |
-| direction | sells | 89 | 46% | +0.36R | +32.23R |
+| sweep | breakout | 22 | 59% | +0.73R | +16.03R |
+| session | London | 114 | 45% | +0.34R | +39.00R |
 | level | Asia high or low | 14 | 43% | +0.33R | +4.68R |
+| direction | sells | 87 | 45% | +0.33R | +29.04R |
 | time | 04:00 | 35 | 43% | +0.29R | +10.00R |
 
 ## Losing the most
@@ -28,30 +28,30 @@ written_by: the site, automatically
 | looking at | group | trades | won | per trade | total |
 |---|---|---|---|---|---|
 | time | 08:00 | 9 | 0% | -1.00R | -9.00R |
-| level | 15m high or low | 20 | 15% | -0.48R | -9.64R |
-| day | Thu | 59 | 15% | -0.43R | -25.37R |
-| time | 09:00 | 91 | 20% | -0.38R | -34.37R |
-| session | NY | 111 | 23% | -0.36R | -39.82R |
-| direction | buys | 134 | 26% | -0.23R | -31.05R |
+| level | 15m high or low | 21 | 14% | -0.51R | -10.64R |
+| day | Thu | 63 | 14% | -0.47R | -29.34R |
+| time | 09:00 | 91 | 18% | -0.43R | -39.55R |
+| session | NY | 110 | 20% | -0.41R | -45.21R |
+| market | S&P 500 | 47 | 23% | -0.30R | -14.00R |
 
 ## Is each check helping?
 
-- An important level to target: skipped 47 trades that would have made +10.00R. So this check cost money.
-- Price swept it and came back: skipped 8 trades that would have made +7.00R. So this check cost money.
-- Matches the day's direction: skipped 30 trades that would have made +12.00R. So this check cost money.
+- An important level to target: skipped 49 trades that would have made +11.00R. So this check cost money.
+- Price swept it and came back: skipped 9 trades that would have made +9.00R. So this check cost money.
+- Matches the day's direction: skipped 28 trades that would have made +8.00R. So this check cost money.
 - The other market disagreed (SMT): skipped 0 trades that would have made 0.00R. Too few to tell.
 - The trend clearly flipped: skipped 0 trades that would have made 0.00R. Too few to tell.
 - Price came back to the entry: skipped 0 trades that would have made 0.00R. Too few to tell.
 
 ## Things that don't add up
 
-- The [[SMT]] check is earning its place: +0.14R a trade with it (68 trades) vs -0.14R without (82).
-- The "important level" check holds up: important levels +0.04R a trade (165) vs minor ones -0.10R (58).
-- **The [[Grades]] don't work yet.** A+ and A++ setups made -0.04R a trade (33), B and C made -0.02R (126). Better grades should win more, and they don't.
+- The [[SMT]] check is earning its place: +0.09R a trade with it (69 trades) vs -0.22R without (83).
+- The "important level" check holds up: important levels -0.00R a trade (167) vs minor ones -0.10R (57).
+- **The [[Grades]] don't work yet.** A+ and A++ setups made -0.08R a trade (32), B and C made -0.06R (127). Better grades should win more, and they don't.
 
 ## What's missing
 
-- 21 trades is far too few. Anything under about 100 could flip either way.
+- 22 trades is far too few. Anything under about 100 could flip either way.
 - Everything uses 5-minute candles. 2-minute data starts 2026-09-08.
 - Big news releases aren't filtered, fees are estimated, and entries assume a perfect fill.
 - Rules: [[Rulebook v1.0]].

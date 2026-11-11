@@ -1,6 +1,6 @@
 ---
 type: setup
-examples: 51
+examples: 52
 taken: 0
 ---
 # Setup — NY · equal highs and lows
@@ -10,10 +10,10 @@ taken: 0
 
 | | how many | won | total | per trade |
 |---|---|---|---|---|
-| all examples | 51 | 29% | -13.51R | -0.26R |
+| all examples | 52 | 27% | -16.60R | -0.32R |
 | actually taken | 0 | – | 0.00R | – |
 
-By market: Nasdaq 12 (-7.57R), S&P 500 8 (-5.90R), the Dow 11 (+4.45R), the Russell 2000 20 (-4.49R).
+By market: Nasdaq 12 (-7.53R), S&P 500 8 (-8.00R), the Dow 12 (+3.45R), the Russell 2000 20 (-4.52R).
 
 ## Trades taken
 
