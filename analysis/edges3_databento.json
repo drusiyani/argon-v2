@@ -1,0 +1,69 @@
+{
+ "era": "databento",
+ "note": "Analysis only (does not touch the race). Third batch, tested exactly as published, on both eras.\nPass marks fixed BEFORE the run (11 Nov 2026): core changes (H1, H2) PASS if, in BOTH eras, they beat the current best core\n(VXN-managed Nasdaq) on Sharpe with a worst drop no deeper. H3 PASSES if mean > 0 and Sharpe >= 0.3 in both eras.\n  H1 Halloween (Bouman & Jacobsen 2002): VXN core November-April, cash earning T-bills May-October.\n  H2 FOMC cycle (Cieslak, Morse & Vissing-Jorgensen 2019): VXN core at 1.5x in even weeks after a Fed decision, 0.5x in odd weeks.\n  H3 Option-expiry week (Stivers & Sun 2013): extra 1x long Saturday-to-third-Friday (the week of monthly expiry), close to close.",
+ "range": [
+  "2021-01-27",
+  "2026-11-10"
+ ],
+ "verdict_this_era": {
+  "H1 VXN core + Halloween": "FAIL",
+  "H2 VXN core + FOMC cycle": "FAIL",
+  "H3 option-expiry week (alone)": "FAIL"
+ },
+ "results": {
+  "Nasdaq alone": {
+   "final_usd": 165589,
+   "cagr_pct": 9.2,
+   "sharpe": 0.51,
+   "worst_drop_pct": -37.2
+  },
+  "VXN core (current best)": {
+   "final_usd": 168122,
+   "cagr_pct": 9.5,
+   "sharpe": 0.54,
+   "worst_drop_pct": -34.6
+  },
+  "H1 VXN core + Halloween": {
+   "final_usd": 126782,
+   "cagr_pct": 4.2,
+   "sharpe": 0.35,
+   "worst_drop_pct": -26.7
+  },
+  "H2 VXN core + FOMC cycle": {
+   "final_usd": 144528,
+   "cagr_pct": 6.6,
+   "sharpe": 0.4,
+   "worst_drop_pct": -28.9
+  },
+  "H3 option-expiry week (alone)": {
+   "final_usd": 80804,
+   "cagr_pct": -3.6,
+   "sharpe": -0.35,
+   "worst_drop_pct": -25.3
+  },
+  "BEST PACKAGE (VXN core + half rules + pre-FOMC + interest)": {
+   "final_usd": 1071641,
+   "cagr_pct": 51.2,
+   "sharpe": 1.51,
+   "worst_drop_pct": -19.0
+  },
+  "best package with H1": {
+   "final_usd": 797295,
+   "cagr_pct": 43.6,
+   "sharpe": 1.44,
+   "worst_drop_pct": -16.7
+  },
+  "best package with H2": {
+   "final_usd": 920499,
+   "cagr_pct": 47.3,
+   "sharpe": 1.37,
+   "worst_drop_pct": -22.6
+  },
+  "best package + H3": {
+   "final_usd": 838626,
+   "cagr_pct": 44.9,
+   "sharpe": 1.27,
+   "worst_drop_pct": -34.2
+  }
+ }
+}
