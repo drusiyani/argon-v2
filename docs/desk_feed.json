@@ -432,9 +432,9 @@
   "brier": null
  },
  "book": {
-  "final": 1242155,
-  "a_year": 59.2,
-  "sharpe": 1.18,
+  "final": 1314251,
+  "a_year": 60.9,
+  "sharpe": 1.2,
   "worst_drop": -32.2,
   "risk_pct": 1.0,
   "window": [
@@ -453,30 +453,30 @@
  },
  "kronos": {
   "NQ": {
-   "direction": "up",
-   "confidence": 0.6,
+   "direction": "down",
+   "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-10T20:46Z"
+   "updated": "2026-11-11T12:36Z"
   },
   "ES": {
-   "direction": "up",
+   "direction": "down",
    "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-10T20:46Z"
+   "updated": "2026-11-11T12:36Z"
   },
   "YM": {
    "direction": "up",
    "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-10T20:46Z"
+   "updated": "2026-11-11T12:36Z"
   },
   "RTY": {
    "direction": "down",
    "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-10T20:46Z"
+   "updated": "2026-11-11T12:36Z"
   }
  },
- "checked": "2026-11-10 20:45 UTC",
- "updated": "2026-11-10 20:47 UTC"
+ "checked": "2026-11-11 12:30 UTC",
+ "updated": "2026-11-11 12:36 UTC"
 }
