@@ -1,0 +1,101 @@
+{
+ "note": "Backtest, after costs. Book result in R per day (1R = 1% at current sizing). Index = Nasdaq futures regular session, close to close, roll days excluded. Read-only analysis; chooses nothing.",
+ "range": [
+  "2021-01-05",
+  "2026-11-10"
+ ],
+ "sealed_2011_2020": {
+  "days": 0,
+  "note": "not enough index days in this range"
+ },
+ "built_2021_2026": {
+  "days": 1416,
+  "corr_daily_close_to_close": -0.079,
+  "corr_daily_intraday": -0.094,
+  "corr_monthly": -0.209,
+  "worst_5pct_index_days": {
+   "n": 71,
+   "index_avg_pct": -3.25,
+   "book_avg_R": 3.052,
+   "book_total_R": 216.7
+  },
+  "best_5pct_index_days": {
+   "n": 71,
+   "index_avg_pct": 3.07,
+   "book_avg_R": 2.114,
+   "book_total_R": 150.1
+  },
+  "middle_90pct_days": {
+   "book_avg_R": -0.018,
+   "book_total_R": -23.4
+  },
+  "sharpe_book": 1.29,
+  "sharpe_index": 0.56,
+  "per_rule_corr_daily": {
+   "atrband": -0.05,
+   "expiry": -0.124,
+   "noiseband": -0.036,
+   "quantlab": -0.054
+  }
+ },
+ "year_2026": {
+  "days": 210,
+  "corr_daily_close_to_close": -0.012,
+  "corr_daily_intraday": -0.124,
+  "corr_monthly": null,
+  "worst_5pct_index_days": {
+   "n": 11,
+   "index_avg_pct": -3.09,
+   "book_avg_R": 3.8,
+   "book_total_R": 41.8
+  },
+  "best_5pct_index_days": {
+   "n": 11,
+   "index_avg_pct": 2.95,
+   "book_avg_R": 4.813,
+   "book_total_R": 52.9
+  },
+  "middle_90pct_days": {
+   "book_avg_R": -0.394,
+   "book_total_R": -74.1
+  },
+  "sharpe_book": 0.51,
+  "sharpe_index": 0.37,
+  "per_rule_corr_daily": {
+   "atrband": -0.066,
+   "expiry": -0.113,
+   "noiseband": -0.143,
+   "quantlab": 0.082
+  }
+ },
+ "all": {
+  "days": 1416,
+  "corr_daily_close_to_close": -0.079,
+  "corr_daily_intraday": -0.094,
+  "corr_monthly": -0.209,
+  "worst_5pct_index_days": {
+   "n": 71,
+   "index_avg_pct": -3.25,
+   "book_avg_R": 3.052,
+   "book_total_R": 216.7
+  },
+  "best_5pct_index_days": {
+   "n": 71,
+   "index_avg_pct": 3.07,
+   "book_avg_R": 2.114,
+   "book_total_R": 150.1
+  },
+  "middle_90pct_days": {
+   "book_avg_R": -0.018,
+   "book_total_R": -23.4
+  },
+  "sharpe_book": 1.29,
+  "sharpe_index": 0.56,
+  "per_rule_corr_daily": {
+   "atrband": -0.05,
+   "expiry": -0.124,
+   "noiseband": -0.036,
+   "quantlab": -0.054
+  }
+ }
+}
