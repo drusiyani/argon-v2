@@ -9,8 +9,12 @@ c = P.c
 tr = P.book(1.0)
 net = lambda t: t['w'] * (t['gross'] - t['cost'])
 D, dl, _ = c.daily('NQ')
-try: skip = set(c.roll('NQ')) | set(c.bad_days('NQ'))
-except Exception: skip = set()
+skip = set()
+for f in ('roll', 'bad_days'):
+    try:
+        v = getattr(c, f)('NQ'); v = v.keys() if isinstance(v, dict) else v
+        skip |= {x for x in v if isinstance(x, str) and len(x) == 10}
+    except Exception as ex: print(f, 'not used:', ex)
 idx_c2c, idx_o2c = {}, {}
 for k in range(1, len(dl)):
     d, p = dl[k], dl[k - 1]
@@ -18,6 +22,7 @@ for k in range(1, len(dl)):
     if d not in skip and p not in skip:
         r = D[d]['c'] / D[p]['c'] - 1
         if abs(r) < 0.15: idx_c2c[d] = r          # guard against a roll jump that slipped through
+print('daily bars', len(dl), dl[:1], dl[-1:], 'skip', len(skip), 'c2c days', len(idx_c2c), 'trade dates', min(t['date'] for t in tr), max(t['date'] for t in tr))
 book = collections.defaultdict(float); rule = collections.defaultdict(lambda: collections.defaultdict(float))
 for t in tr: book[t['date']] += net(t); rule[t['strat']][t['date']] += net(t)
 
@@ -30,6 +35,7 @@ def corr(a, b):
 
 def era_stats(lo, hi):
     days = [d for d in sorted(idx_c2c) if lo <= d <= hi]
+    if len(days) < 60: return dict(days=len(days), note='not enough index days in this range')
     ix = [idx_c2c[d] for d in days]; bk = [book.get(d, 0.0) for d in days]
     q = sorted(ix); lo5, hi5 = q[int(0.05 * len(q))], q[int(0.95 * len(q))]
     worst = [d for d in days if idx_c2c[d] <= lo5]; best = [d for d in days if idx_c2c[d] >= hi5]
