@@ -65,7 +65,7 @@ body{background:var(--bg);color:var(--ink);font:13px/1.5 Geist,system-ui,sans-se
 <div class="zoom"><button id="zo" aria-label="Zoom out">−</button><button id="zi" aria-label="Zoom in">+</button><button id="fit" style="font-size:12px">Fit</button></div>
 <div class="cap" id="cap"></div>
 <section class="sheet" id="sheet">
- <header id="sh"><h2 id="sht">COMMS LOG<b id="shn">0</b></h2><span class="chev">⌃</span></header>
+ <header id="sh"><h2 id="sht">COMMS LOG <b id="shn">0</b></h2><span class="chev">⌃</span></header>
  <div class="tabs"><button class="on" data-t="log">Live</button><button data-t="trades">Trades</button><button data-t="summary">Summary</button><button data-t="replay">Replay</button></div>
  <div class="body" id="body"><ul class="log" id="log"></ul></div>
  <div class="rooms" id="rooms"></div>
@@ -315,7 +315,7 @@ function refresh(){health();const st=(LG&&LG.status)||{},ck=st.checks||{},n=ny()
  A.TESTS.st=TESTS?(TESTS.conclusion==='success'?'Passing':TESTS.conclusion||TESTS.status):'Test suite';
  const v=document.getElementById('val'),d=document.getElementById('dv');
  if(!HIST){v.textContent=money(st.equity||100000);const day=LG&&LG.days&&LG.days[0];d.textContent=day?`${day.usd>=0?'+':'−'}$${Math.abs(day.usd).toLocaleString('en-US')} ${day.date.slice(5)}`:'';d.classList.toggle('neg',day&&day.usd<0);
-  document.getElementById('pillnote').textContent=st.book==='official'?'paper account · official ledger':`${st.book||'practice'} book · official from 1 Jan 2027`}
+  document.getElementById('pillnote').textContent=st.book==='official'?'paper account · official ledger':`${st.book||'practice'} book · official from 1 Feb 2027`}
  if(sel)cap.innerHTML=roomInfo(sel)}
 // ---------- the trades tab and "why it fired"
 function tradesOf(date){const n=ny();if(LV&&date===LV.date&&date===n.date)return {src:'live',list:LV.trades||[],skipped:LV.skipped||[]};

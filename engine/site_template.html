@@ -272,7 +272,7 @@ body[data-tab="overview"] .herostar{opacity:calc(1 - var(--sy,0) / 520)}
   <div class="docs rise" style="--d:1"><aside class="glass"><input id="bq" placeholder="Search the brain" aria-label="Search notes"><div id="blist"></div></aside><article class="md glass" id="bdoc"></article></div>
  </section>
  <section class="view" id="v-desk" hidden>
-  <div class="head rise" style="--d:0"><div><h1>Desk</h1><p>The agents in their rooms, passing the desk’s real messages. Trades start in January; until then it shows the real morning forecasts, Kronos and the desk’s checks.</p></div></div>
+  <div class="head rise" style="--d:0"><div><h1>Desk</h1><p>The live desk, passing its real messages. Official trades start on 1 February 2027 and the practice book runs from 16 November; until then it shows the real morning forecasts, Kronos and the desk’s checks.</p></div></div>
   <div class="panel glass rise" style="--d:1;padding:8px"><iframe class="deskf" id="deskf" data-src="desk.html" title="The Argon desk: agents in their rooms passing real messages"></iframe></div>
  </section>
 </div></div></main>
@@ -328,7 +328,7 @@ function lensMap(){const tb=$('#tabbar');if(!tb.clientWidth)return;const slot=(t
 requestAnimationFrame(lensMap);addEventListener('resize',lensMap);
 $('#dock').innerHTML=TABS.map(([k,n])=>`<a href="#${k}" data-t="${k}" aria-label="${n}">${svg(k)}<span>${n}</span></a>`).join('');
 $('#built').textContent='updated '+DATA.built;
-const days=Math.max(0,Math.ceil((Date.parse(DATA.live_start+'T00:00:00Z')-Date.now())/864e5));
+const days=Math.max(0,Math.floor((Date.parse(DATA.live_start+'T00:00:00Z')-Date.now())/864e5));
 $('#cd').textContent=days;if(!days)$('#status').innerHTML='<b>Race 1 is live</b>';if(DATA.killed)$('#status').innerHTML='<b>Kill switch on</b>';
 // ---------- helpers
 function countTo(el,to,fmt,dur=1000){if(reduce||to==null||isNaN(to)){el.textContent=fmt(to);return}const from=+el.dataset.v||0,t0=performance.now();el.dataset.v=to;
@@ -354,7 +354,7 @@ let era='recent';
 function hour(){const h=+new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',hour:'numeric',hourCycle:'h23'}).format(new Date());return h<12?'Good morning':h<18?'Good afternoon':'Good evening'}
 function overview(){const v=$('#v-overview'),D=DATA.desk||{};
  const dc=D.daytype,ai=dc&&dc.ai,kron=D.kronos||{};
- v.innerHTML=`<div class="head hero"><div><h1 aria-label="Can an AI trade?">${'Can an AI trade?'.split(' ').map((w,i)=>`<span class="w" aria-hidden="true" style="--i:${i}"><span>${w}</span></span>`).join(' ')}</h1><p class="rise" style="--d:4">Argon trades Nasdaq and S&amp;P futures on paper. Its rules were written down before they were tested, then checked against ten older years that had been sealed away. Those years were opened once, on 28 Oct 2026, and have been used for comparisons since. This is what happened.</p></div>
+ v.innerHTML=`<div class="head hero"><div><h1 aria-label="Can an AI trade?">${'Can an AI trade?'.split(' ').map((w,i)=>`<span class="w" aria-hidden="true" style="--i:${i}"><span>${w}</span></span>`).join(' ')}</h1><p class="rise" style="--d:4">Argon trades Nasdaq and S&amp;P futures on paper. Its four strategies were picked using 2021–26, so those years flatter it. Every later change, and its pass mark, was committed before its test ran, then checked against ten older years that had been sealed away. Those years were opened once, on 28 Oct 2026, and have been used for comparisons since. This is what happened.</p></div>
   <div class="seg glass rise" style="--d:5" id="era"><span class="th"></span><button data-e="recent" class="on">Built on, 2021–26</button><button data-e="unseen">Sealed era, 2011–20</button></div></div>
  <div class="kpis">
   <div class="card glass kpi rise" style="--d:2;--c:var(--gold)"><div class="r1"><div class="ic">${svg('wallet')}</div><span id="k-final-s"></span></div><div class="lb">$100k became</div><div class="v" id="k-final">–</div><div class="row"><span class="tag" id="k-final-t">–</span></div></div>
@@ -362,14 +362,15 @@ function overview(){const v=$('#v-overview'),D=DATA.desk||{};
   <div class="card glass kpi rise" style="--d:4;--c:var(--violet)"><div class="r1"><div class="ic">${svg('shield')}</div><span id="k-so-s"></span></div><div class="lb">Sortino ratio</div><div class="v" id="k-so">–</div><div class="row"><span class="tag">downside only</span></div></div>
   <div class="card glass kpi rise" style="--d:5;--c:var(--down)"><div class="r1"><div class="ic">${svg('down')}</div><span id="k-dd-s"></span></div><div class="lb">Worst drop</div><div class="v" id="k-dd">–</div><div class="row"><span class="tag" id="k-dd-t">–</span></div></div>
  </div>
+ <p class="sub" style="margin:-4px 0 16px">In-sample: 2021–26 are the years the strategies were picked on. On the sealed 2011–20 decade the same book lost money; switch eras above to see it.</p>
  <div class="g2">
   <div class="card glass rise" style="--d:6"><div class="ch-head"><div><h3>$100,000 through the book, 2011 to 2026</h3><p>Grey: 2011–20, sealed until 28 Oct 2026, used since for comparisons. Gold: the years it was built on. Log scale, after costs.</p></div><span class="tag mono" id="eq-tag">1% risk per trade</span></div><div class="big" id="eq"></div></div>
   <div class="card glass rise" style="--d:7"><h3>Today</h3><p class="sub">The live desk, before trading starts.</p>
-   <div class="count"><b id="cdays">${reduce?days:0}</b><span>days to Race 1</span></div><div class="tick mono" id="tick" aria-live="off"></div><p class="sub" style="margin-top:2px">Built since September; the bar is how far along.</p><div class="bar"><i id="pbar"></i></div>
+   <div class="count"><b id="cdays">${reduce?days:0}</b><span>days to Race 1</span></div><div class="tick mono" id="tick" aria-live="off"></div><p class="sub" style="margin-top:2px">Built since September; the bar shows how close Race 1 is.</p><div class="bar"><i id="pbar"></i></div>
    <div class="list">
     <div class="li"><span class="k">Morning call</span><span class="val">${ai?`${ai.trend_probability!=null?'trend '+Math.round(ai.trend_probability)+'%':'no forecast'} · ${dc.ai_size_used===0?'veto':dc.ai_size_used+'×'}`:'first one at 8:45 NY'}</span></div>
     <div class="li"><span class="k">One-line rule</span><span class="val">${dc?dc.dumb_size+'×':'–'}</span></div>
-    <div class="li"><span class="k">Kronos, next hour</span><span class="val">${Object.entries(kron).map(([m,k])=>`<span class="${k.direction==='up'?'up':'dn'}">${m} ${k.direction==='up'?'↑':'↓'}</span>`).join(' ')||'–'}</span></div>
+    <div class="li"><span class="k">Kronos, next hour (not scored)</span><span class="val">${Object.entries(kron).map(([m,k])=>`<span class="${k.direction==='up'?'up':'dn'}">${m} ${k.direction==='up'?'↑':'↓'}</span>`).join(' ')||'–'}</span></div>
     <div class="li"><span class="k">Practice book</span><span class="val">${DATA.ledger&&DATA.ledger.days?money(DATA.ledger.equity)+' · '+DATA.ledger.days+' days'+(String(DATA.ledger.state||'').startsWith('halt')?' · <span class="dn">halted</span>':''):'starts '+(DATA.ledger&&DATA.ledger.start||'16 Nov')}</span></div>
     <div class="li"><span class="k">Live view <span class="tag">unofficial</span></span><span class="val">${DATA.live&&DATA.live.date?DATA.live.n+' trade'+(DATA.live.n===1?'':'s')+(DATA.live.open?' · '+DATA.live.open+' open':'')+' · <span class="'+(DATA.live.R>=0?'up':'dn')+'">'+(DATA.live.R>=0?'+':'')+DATA.live.R.toFixed(2)+'R</span>':'–'}</span></div>
     <div class="li"><span class="k">Desk last checked</span><span class="val">${D.checked?D.checked.slice(11,16)+' UTC':'–'}</span></div>
@@ -558,7 +559,7 @@ setInterval(()=>{const el=document.getElementById('tick');if(!el)return;let s=Ma
  const d=s/86400|0;s%=86400;const h=s/3600|0;s%=3600;const m=s/60|0;s%=60;el.textContent=`${d}d ${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`},1000);
 addEventListener('hashchange',route);route();addEventListener('resize',()=>{mark(cur);place(-IDX[cur]*PG.clientWidth,false);bubble(IDX[cur],true)});document.fonts&&document.fonts.ready.then(()=>{mark(cur);if($('#era'))seg($('#era'),era);if($('#cmode'))seg($('#cmode'),mode)});
 // ---------- markdown
-function md(text){return marked.parse(text.replace(/\[\[([^\]|#]+)(?:#[^\]|]*)?(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="wl" data-n="${esc(a.trim())}">${esc(b||a)}</a>`))}
+function md(text){text=text.replace(/%%[\s\S]*?%%/g,'').replace(/!?\[\[[^\]]+\.base(?:\|[^\]]*)?\]\]/g,'(Obsidian view, not on the web)');return marked.parse(text.replace(/\[\[([^\]|#]+)(?:#[^\]|]*)?(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="wl" data-n="${esc(a.trim())}">${esc(b||a)}</a>`))}
 async function researchTab(){await need('marked');const D=await data('research'),L=$('#rlist');L.innerHTML=D.map((d,i)=>`<a data-i="${i}">${esc(d.title)}</a>`).join('');
  const open=i=>{L.querySelectorAll('a').forEach(a=>a.classList.toggle('on',+a.dataset.i===i));const art=$('#rdoc');art.style.animation='none';void art.offsetWidth;art.style.animation='';
   art.innerHTML=md(D[i].text)+`<p class="src">Source: <a href="https://github.com/drusiyani/argon-v2/blob/main/${esc(D[i].path)}">${esc(D[i].path)}</a></p>`};
@@ -587,7 +588,7 @@ function draw(){const ch=mk();$('#dayrow').hidden=mode!=='day';const cs=ch.addCa
  if(mode==='daily'){cs.setData(C.daily.map(([d,o,h,l,c])=>({time:d,open:o,high:h,low:l,close:c})));cs.priceScale().applyOptions({scaleMargins:{top:.05,bottom:.28}});
   const hs=ch.addHistogramSeries({priceScaleId:'r',priceFormat:{type:'custom',formatter:v=>v.toFixed(1)+'R'}});ch.priceScale('r').applyOptions({scaleMargins:{top:.78,bottom:0}});
   hs.setData(Object.entries(C.daily_R).filter(([d])=>d>=C.daily[0][0]).map(([d,v])=>({time:d,value:v,color:v>=0?UP+'99':DN+'99'})));
-  ch.timeScale().fitContent();$('#ctrades').innerHTML='';$('#cnote').textContent='Daily candles are Yahoo Finance prices (full session, delayed), for display only. Bars underneath are the book’s result each day, in R. Backtest results, mostly in-sample.';return}
+  ch.timeScale().fitContent();$('#ctrades').innerHTML='';$('#cnote').textContent='Daily candles are Yahoo Finance prices (full session, delayed), for display only. Bars underneath are the book’s result each day, in R. Backtest results, in-sample: the strategies were picked using these years.';return}
  const d=$('#dsel').value,S=C.sessions[d],t0=Date.parse(d+'T00:00:00Z')/1000,T=m=>t0+m*60;
  cs.setData(S.bars.map(([m,o,h,l,c])=>({time:T(m),open:o,high:h,low:l,close:c})));const mm=[];
  S.trades.forEach(x=>{mm.push({time:T(Math.floor(x.entry_min/5)*5),position:x.side>0?'belowBar':'aboveBar',color:x.side>0?UP:DN,shape:x.side>0?'arrowUp':'arrowDown',text:SN[x.strategy]||x.strategy});
@@ -596,5 +597,5 @@ function draw(){const ch=mk();$('#dayrow').hidden=mode!=='day';const cs=ch.addCa
  const tot=S.trades.reduce((a,x)=>a+x.R,0),hm=m=>String(m/60|0).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
  $('#dsum').textContent=S.trades.length?`${S.trades.length} NQ trade${S.trades.length>1?'s':''} · ${tot>=0?'+':''}${tot.toFixed(2)}R`:'no NQ trades this day';
  $('#ctrades').innerHTML=S.trades.length?`<table class="tt"><tr><th>Strategy</th><th>Side</th><th>In</th><th>Out</th><th>Entry</th><th>Exit</th><th>Result</th></tr>${S.trades.map(x=>`<tr><td>${SN[x.strategy]||x.strategy}</td><td>${x.side>0?'long':'short'}</td><td>${hm(x.entry_min)}</td><td>${hm(x.exit_min)}</td><td>${x.entry}</td><td>${x.exit}</td><td class="${x.R>=0?'up':'dn'}">${x.R>=0?'+':''}${x.R.toFixed(2)}R</td></tr>`).join('')}</table>`:'';
- $('#cnote').textContent='5-minute candles from Yahoo Finance, New York time, for display only: markers sit within a few points of the engine’s real prices. Arrows are entries, dots are exits with the result. ES expiry trades are not drawn. Backtest results, mostly in-sample.'}
+ $('#cnote').textContent='5-minute candles from Yahoo Finance, New York time, for display only: markers sit within a few points of the engine’s real prices. Arrows are entries, dots are exits with the result. ES expiry trades are not drawn. Backtest results, in-sample: the strategies were picked using these years.'}
 </script></body></html>
