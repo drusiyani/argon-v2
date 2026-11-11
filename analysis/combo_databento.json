@@ -1,0 +1,97 @@
+{
+ "era": "databento",
+ "note": "Analysis only (does not touch the race). The surviving ideas combined with the existing strategy, on both eras.\nPass marks fixed BEFORE the run (11 Nov 2026):\n  FULL PACKAGE (Nasdaq core + rules at half size + pre-FOMC tilt + T-bill interest) passes if, in BOTH eras,\n  its Sharpe beats the Nasdaq alone AND its worst drop is no deeper than the Nasdaq alone.\nPieces: core = 1x NQ close to close; rules = Argon's book unchanged, 1% per 1R, at half size; pre-FOMC tilt = an extra\n1x long from the close before a scheduled Fed decision to 13:59 on decision day; interest = 3-month T-bill (FRED DTB3,\nanalysis/tbill_dtb3.csv) on the cash, since futures only tie up margin. Costs 0.75 NQ pts per round trip. Roll days skipped.",
+ "range": [
+  "2021-01-28",
+  "2026-11-10"
+ ],
+ "fomc_days": 34,
+ "avg_tbill_pct": 3.34,
+ "results": {
+  "existing strategy (rules alone)": {
+   "final_usd": 1712924,
+   "cagr_pct": 64.2,
+   "sharpe": 1.27,
+   "worst_drop_pct": -34.3,
+   "years": {
+    "2021": 35.6,
+    "2022": 79.9,
+    "2023": 92.2,
+    "2024": 114.0,
+    "2025": 55.2,
+    "2026": 9.9
+   }
+  },
+  "existing + pre-FOMC + interest": {
+   "final_usd": 2281550,
+   "cagr_pct": 72.6,
+   "sharpe": 1.37,
+   "worst_drop_pct": -33.3,
+   "years": {
+    "2021": 35.8,
+    "2022": 94.0,
+    "2023": 103.0,
+    "2024": 132.9,
+    "2025": 61.2,
+    "2026": 13.6
+   }
+  },
+  "Nasdaq alone": {
+   "final_usd": 170196,
+   "cagr_pct": 9.7,
+   "sharpe": 0.53,
+   "worst_drop_pct": -37.2,
+   "years": {
+    "2021": 29.1,
+    "2022": -32.4,
+    "2023": 37.0,
+    "2024": 18.4,
+    "2025": 14.6,
+    "2026": 5.0
+   }
+  },
+  "Nasdaq + half rules": {
+   "final_usd": 832710,
+   "cagr_pct": 44.8,
+   "sharpe": 1.34,
+   "worst_drop_pct": -23.9,
+   "years": {
+    "2021": 53.5,
+    "2022": -6.5,
+    "2023": 93.8,
+    "2024": 80.9,
+    "2025": 46.9,
+    "2026": 12.7
+   }
+  },
+  "Nasdaq + half rules + pre-FOMC": {
+   "final_usd": 913632,
+   "cagr_pct": 47.1,
+   "sharpe": 1.38,
+   "worst_drop_pct": -20.6,
+   "years": {
+    "2021": 53.7,
+    "2022": -1.4,
+    "2023": 94.8,
+    "2024": 87.1,
+    "2025": 46.6,
+    "2026": 12.8
+   }
+  },
+  "FULL PACKAGE (+ interest)": {
+   "final_usd": 1105899,
+   "cagr_pct": 52.1,
+   "sharpe": 1.49,
+   "worst_drop_pct": -20.4,
+   "years": {
+    "2021": 53.7,
+    "2022": 0.6,
+    "2023": 104.7,
+    "2024": 96.5,
+    "2025": 52.6,
+    "2026": 16.4
+   }
+  }
+ },
+ "verdict": "PASS"
+}
