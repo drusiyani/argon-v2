@@ -64,71 +64,71 @@
  },
  "label": "trend day = |close-open| >= 0.6 x (high-low), NQ 9:30-16:00",
  "latest_call": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "made_at": "08:47",
   "late": false,
   "inputs": {
-   "yesterday_range_pts": 1378.0,
-   "avg20_range_pts": 798.9,
-   "range_ratio": 1.72,
-   "rsi5": 48.4,
-   "last_5_closes_change_pct": -0.4,
-   "overnight_change_pct": -0.9,
-   "overnight_range_vs_avg20": 0.57,
-   "vix": 20.62,
-   "vix_1y_percentile": 83,
+   "yesterday_range_pts": 593.0,
+   "avg20_range_pts": 812.8,
+   "range_ratio": 0.73,
+   "rsi5": 43.3,
+   "last_5_closes_change_pct": -1.66,
+   "overnight_change_pct": 1.9,
+   "overnight_range_vs_avg20": 0.68,
+   "vix": 18.39,
+   "vix_1y_percentile": 66,
    "calendar": [
     "nothing scheduled that Argon tracks"
    ],
    "headlines": [
-    "[Yahoo Finance, Tue 08:28] Stock Futures Mostly Up Ahead of Key Consumer Inflation Report",
-    "[Yahoo Finance, Tue 08:10] US Stock Market Today: S&P 500 Futures Edge Higher On Key CPI Focus",
-    "[Yahoo Finance, Tue 08:09] Bill Ackman and Warren Buffett Both Have the Same Warning About the Stock Market",
-    "[Yahoo Finance, Tue 08:08] Canadian Stock Market Today: TSX Futures Nudge Higher On Crucial US Inflation Test",
-    "[Yahoo Finance, Tue 08:04] Premarket movers: Sanmina, AAON surge; Hims & Hers, Rocket Lab fall",
-    "[Yahoo Finance, Tue 08:38] CPI Inflation Stays Hot, Sealing Fed Rate Hike After Hawkish Waller; S&P 500 Falls (Live Coverage)",
-    "[Yahoo Finance, Tue 08:13] UBS keeps S&P 500 end-2027 target at 8,900, says derating sets up strong returns",
-    "[Yahoo Finance, Tue 08:11] Which Dates Could Move Honeywell Stock Most?",
-    "[Yahoo Finance, Tue 08:11] Can You Still Buy Merck Stock Today?",
-    "[Yahoo Finance, Tue 08:11] What Sent Intel Stock Higher?",
-    "[Yahoo Finance, Tue 08:11] What Is Driving Palantir Stock?",
-    "[Yahoo Finance, Tue 08:11] Why Is Warby Parker Stock Going Up?"
+    "[Yahoo Finance, Wed 08:14] US Stock Market Today: S&P 500 Futures Rebound On Stubborn Inflation Higher-For-Longer Risk",
+    "[Yahoo Finance, Wed 08:01] Stock Futures Rise Amid CoreWeave's Strong Financial Results",
+    "[Yahoo Finance, Wed 08:00] Why a Surge in Put Buying Could Be Bullish for Stocks",
+    "[Yahoo Finance, Wed 07:46] If I Were in My 20s, I'd Buy This AI ETF After Its Recent Crash and Hold It Forever",
+    "[Yahoo Finance, Wed 06:20] Healthcare Just Hit a Record Lead Over Tech. 3 Things Could Shrink It",
+    "[Yahoo Finance, Wed 08:28] Why You Should Think About Bloom Energy Differently Now",
+    "[Yahoo Finance, Wed 08:08] Premarket movers: CoreWeave, Nvidia rally; Fossil, Tandy Leather jump",
+    "[Yahoo Finance, Wed 08:04] Dow Jones Futures Rise, Techs Jump On CoreWeave Earnings; Look For This Bullish Market Signal",
+    "[Yahoo Finance, Wed 08:00] Rattled Market Has S&P 500 Stock Assessing Risk \u2014 And Opportunity",
+    "[Yahoo Finance, Wed 08:00] 10 Stocks Rode Trump Era \u2014 What Happens As MAGA 'Disintegrates'?",
+    "[Yahoo Finance, Wed 06:05] CoreWeave Earnings Trigger AI Revival on Wall Street; Asia, Europe Up",
+    "[Yahoo Finance, Wed 08:14] Nasdaq Futures Rally as AI Optimism Returns"
    ],
    "headline_flags": []
   },
   "ai": {
-   "size": 1.5,
-   "trend_probability": 70.0,
+   "size": 1.0,
+   "trend_probability": 52.0,
    "veto": null,
-   "reason": "Several trend signals line up: a hot CPI print (a macro-release day the calendar missed) that headlines say seals a Fed hike, elevated VIX (83rd percentile), yesterday's range at 1.72x average, and a neutral RSI5 with no rally to fade. I'm holding at 1.5x rather than 2x because the overnight range w"
+   "reason": "Supportive signals are elevated VIX (66th percentile), a modest 5-day selloff (dealers possibly short gamma), and an AI-earnings catalyst behind a 1.9% gap. These are offset by compressed ranges (0.73 yesterday, 0.68 overnight), no scheduled macro events, and a large gap that may already price in th"
   },
   "ai_runs": [
    {
-    "trend_probability": 70.0,
-    "size": 1.5,
+    "trend_probability": 52.0,
+    "size": 1.0,
     "veto": null,
-    "reason": "Volatility is high (yesterday's range was 1.72x the 20-day average, VIX at the 83rd percentile), and a hot CPI print raising rate-hike odds is pushing futures lower, which favors a one-way move with dealers likely short gamma. RSI5 is neutral and much of the CPI news may already be priced in by the "
+    "reason": "Several things favor a trend: a recent mild selloff (5-day -1.66%, RSI5 43) likely leaves dealers short gamma, VIX sits at the 66th percentile, and there is a news catalyst (CoreWeave earnings and an AI rally). Against that, yesterday's range was small (0.73x average), nothing is scheduled, and the "
    },
    {
-    "trend_probability": 70.0,
-    "size": 1.5,
+    "trend_probability": 55.0,
+    "size": 1.0,
     "veto": null,
-    "reason": "Several trend signals line up: a hot CPI print (a macro-release day the calendar missed) that headlines say seals a Fed hike, elevated VIX (83rd percentile), yesterday's range at 1.72x average, and a neutral RSI5 with no rally to fade. I'm holding at 1.5x rather than 2x because the overnight range w"
+    "reason": "Supportive signals are elevated VIX (66th percentile), a modest 5-day selloff (dealers possibly short gamma), and an AI-earnings catalyst behind a 1.9% gap. These are offset by compressed ranges (0.73 yesterday, 0.68 overnight), no scheduled macro events, and a large gap that may already price in th"
    },
    {
-    "trend_probability": 68.0,
-    "size": 1.5,
+    "trend_probability": 52.0,
+    "size": 1.0,
     "veto": null,
-    "reason": "Today is a macro-release day: a hot CPI print that cements a Fed hike, though Argon's calendar does not track it. It lands on top of a high-volatility backdrop (yesterday's range 1.72x average, VIX at the 83rd percentile) with neutral RSI5 and a weak tape, which favors follow-through over fades. Som"
+    "reason": "Moderately elevated VIX (66th percentile) and a 5-day pullback (RSI5 43, so dealers are likely not long gamma) favor momentum. But a compressed range ratio (0.73), no scheduled catalyst and a large +1.9% overnight gap on largely priced-in CoreWeave/AI news (which could fade as easily as extend) keep"
    }
   ],
   "council": {
    "members": {
     "claude": {
-     "size": 1.5,
-     "trend_probability": 70.0,
+     "size": 1.0,
+     "trend_probability": 52.0,
      "veto": null,
-     "reason": "Several trend signals line up: a hot CPI print (a macro-release day the calendar missed) that headlines say seals a Fed hike, elevated VIX (83rd percentile), yesterday's range at 1.72x average, and a neutral RSI5 with no rally to fade. I'm holding at 1.5x rather than 2x because the overnight range w",
+     "reason": "Supportive signals are elevated VIX (66th percentile), a modest 5-day selloff (dealers possibly short gamma), and an AI-earnings catalyst behind a 1.9% gap. These are offset by compressed ranges (0.73 yesterday, 0.68 overnight), no scheduled macro events, and a large gap that may already price in th",
      "model_reported": "claude-opus-5-5"
     },
     "gemini": null,
@@ -138,34 +138,34 @@
    "answered": 1,
    "counted": false
   },
-  "asked_at_utc": "2026-11-10T13:47:30+00:00",
-  "dumb_size": 2.0,
+  "asked_at_utc": "2026-11-11T13:47:09+00:00",
+  "dumb_size": 0.5,
   "council_r2": {
    "members": {},
    "answered": 0,
    "counted": false
   },
-  "random_size": 1.5,
+  "random_size": 1.0,
   "market": {
-   "trend_probability": 38.2,
-   "size": 1.0
+   "trend_probability": 39.7,
+   "size": 1.5
   },
-  "cost_usd": 0.0346,
+  "cost_usd": 0.0367,
   "usage": [
    {
     "who": "claude",
-    "usd": 0.01681,
+    "usd": 0.01644,
     "tokens": {
      "input_tokens": 4,
-     "cache_creation_input_tokens": 1591,
+     "cache_creation_input_tokens": 1652,
      "cache_read_input_tokens": 0,
      "cache_creation": {
-      "ephemeral_5m_input_tokens": 1591,
+      "ephemeral_5m_input_tokens": 1652,
       "ephemeral_1h_input_tokens": 0
      },
-     "output_tokens": 442,
+     "output_tokens": 408,
      "output_tokens_details": {
-      "thinking_tokens": 269
+      "thinking_tokens": 219
      },
      "service_tier": "standard",
      "inference_geo": "global",
@@ -174,18 +174,18 @@
    },
    {
     "who": "claude",
-    "usd": 0.00809,
+    "usd": 0.00884,
     "tokens": {
      "input_tokens": 4,
      "cache_creation_input_tokens": 0,
-     "cache_read_input_tokens": 1591,
+     "cache_read_input_tokens": 1652,
      "cache_creation": {
       "ephemeral_5m_input_tokens": 0,
       "ephemeral_1h_input_tokens": 0
      },
-     "output_tokens": 372,
+     "output_tokens": 408,
      "output_tokens_details": {
-      "thinking_tokens": 196
+      "thinking_tokens": 231
      },
      "service_tier": "standard",
      "inference_geo": "global",
@@ -194,18 +194,18 @@
    },
    {
     "who": "claude",
-    "usd": 0.00971,
+    "usd": 0.01146,
     "tokens": {
      "input_tokens": 4,
      "cache_creation_input_tokens": 0,
-     "cache_read_input_tokens": 1591,
+     "cache_read_input_tokens": 1652,
      "cache_creation": {
       "ephemeral_5m_input_tokens": 0,
       "ephemeral_1h_input_tokens": 0
      },
-     "output_tokens": 453,
+     "output_tokens": 539,
      "output_tokens_details": {
-      "thinking_tokens": 268
+      "thinking_tokens": 368
      },
      "service_tier": "standard",
      "inference_geo": "global",
@@ -216,13 +216,13 @@
   "effort": "high",
   "errors": {
    "gemini": "no OPENROUTER_API_KEY",
-   "deepseek": "no OPENROUTER_API_KEY",
-   "gpt": "no OPENROUTER_API_KEY"
+   "gpt": "no OPENROUTER_API_KEY",
+   "deepseek": "no OPENROUTER_API_KEY"
   },
-  "ai_size_used": 1.5,
+  "ai_size_used": 1.0,
   "model": "claude-opus-5-5",
   "prompt_hash": "683d73102ca25a20",
   "shadow": true
  },
- "updated": "2026-11-11 13:41 UTC"
+ "updated": "2026-11-11 13:47 UTC"
 }
