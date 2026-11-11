@@ -1,0 +1,86 @@
+{
+ "era": "databento",
+ "note": "Analysis only (does not touch the race). Second batch, tested exactly as published, on both eras.\nPass marks fixed BEFORE the run (11 Nov 2026):\n  Core changes (G1, G2) PASS if, in BOTH eras, Sharpe beats holding the Nasdaq AND the worst drop is shallower.\n  Timing edges (G3, G4) PASS if, in BOTH eras, mean > 0 AND Sharpe >= 0.3.\n  G1 200-day trend filter (Faber): hold 1x Nasdaq while yesterday's close > its 200-day average, else cash earning T-bills.\n  G2 VXN-managed core: exposure = trailing-252-day median VXN / yesterday's VXN, capped at 1.5 (no fitted constant).\n  G3 Buy the dip (Connors RSI-2): long at the close when RSI(2) < 10 and close > 200-day average; out at the first close\n     above the 5-day average.\n  G4 Pre-holiday: long over the last trading day before a weekday market holiday (close to close).\nPrices: a roll-free Nasdaq level built from the futures' daily returns (roll days count as 0). Costs 0.75 NQ pts per round\ntrip. If any pass, the package (Nasdaq core + half rules + pre-FOMC + interest) is re-run with them.",
+ "range": [
+  "2021-01-27",
+  "2026-11-10"
+ ],
+ "verdict_this_era": {
+  "G1 200-day trend filter": "PASS",
+  "G2 VXN-managed core": "PASS",
+  "G3 buy the dip (RSI-2)": "PASS",
+  "G4 pre-holiday": "PASS"
+ },
+ "results": {
+  "Nasdaq alone": {
+   "final_usd": 165589,
+   "cagr_pct": 9.2,
+   "sharpe": 0.51,
+   "worst_drop_pct": -37.2,
+   "days_in": null
+  },
+  "G1 200-day trend filter": {
+   "final_usd": 158729,
+   "cagr_pct": 8.4,
+   "sharpe": 0.63,
+   "worst_drop_pct": -17.2,
+   "days_in": null
+  },
+  "G2 VXN-managed core": {
+   "final_usd": 168122,
+   "cagr_pct": 9.5,
+   "sharpe": 0.54,
+   "worst_drop_pct": -34.6,
+   "days_in": null
+  },
+  "G3 buy the dip (RSI-2)": {
+   "final_usd": 146488,
+   "cagr_pct": 6.9,
+   "sharpe": 0.74,
+   "worst_drop_pct": -11.3,
+   "days_in": 314
+  },
+  "G4 pre-holiday": {
+   "final_usd": 112203,
+   "cagr_pct": 2.0,
+   "sharpe": 0.66,
+   "worst_drop_pct": -3.4,
+   "days_in": 55
+  },
+  "package (Nasdaq + half rules + pre-FOMC + interest)": {
+   "final_usd": 1056187,
+   "cagr_pct": 50.8,
+   "sharpe": 1.46,
+   "worst_drop_pct": -20.4,
+   "days_in": null
+  },
+  "package with G1 core": {
+   "final_usd": 1002974,
+   "cagr_pct": 49.5,
+   "sharpe": 1.62,
+   "worst_drop_pct": -20.4,
+   "days_in": null
+  },
+  "package with G2 core": {
+   "final_usd": 1071641,
+   "cagr_pct": 51.2,
+   "sharpe": 1.51,
+   "worst_drop_pct": -19.0,
+   "days_in": null
+  },
+  "package + G3": {
+   "final_usd": 1479447,
+   "cagr_pct": 60.0,
+   "sharpe": 1.51,
+   "worst_drop_pct": -24.3,
+   "days_in": null
+  },
+  "package + G4": {
+   "final_usd": 1177035,
+   "cagr_pct": 53.7,
+   "sharpe": 1.5,
+   "worst_drop_pct": -21.8,
+   "days_in": null
+  }
+ }
+}
