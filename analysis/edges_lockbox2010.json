@@ -1,0 +1,60 @@
+{
+ "era": "lockbox2010",
+ "note": "Analysis only (does not touch the race). Four published Nasdaq-futures edges, tested unchanged on both eras.\nPass mark fixed BEFORE the run (11 Nov 2026): mean return > 0 AND Sharpe >= 0.3 in BOTH eras (2011-20 and 2021-26).\nCosts: 0.75 NQ points per round trip (Argon's cost), charged on every entry. Sized 1x the contract value when in.\n  E1 Overnight hold: long at the 16:00 close, out at the next 9:30 open.\n  E2 Overnight reversal (CO-OC): at 9:30, short to 16:00 if the overnight move was up, long if it was down.\n  E3 Turn of the month: long from the close of the day before the month's last trading day to the close of the 3rd trading day.\n  E4 Pre-FOMC: long from the close the day before a scheduled Fed decision to 13:59 on decision day.\nRoll days are skipped. Also reported: correlation with Argon's book, day by day.",
+ "range": [
+  "2010-07-02",
+  "2020-12-31"
+ ],
+ "results": {
+  "E1 overnight hold": {
+   "times_traded": 2530,
+   "avg_per_trade_pct": 0.039,
+   "t_stat": 2.61,
+   "final_usd": 249078,
+   "cagr_pct": 9.2,
+   "sharpe": 0.81,
+   "worst_drop_pct": -22.6,
+   "corr_with_argon": 0.023
+  },
+  "E2 overnight reversal": {
+   "times_traded": 2519,
+   "avg_per_trade_pct": -0.038,
+   "t_stat": -2.01,
+   "final_usd": 34459,
+   "cagr_pct": -9.8,
+   "sharpe": -0.62,
+   "worst_drop_pct": -68.0,
+   "corr_with_argon": -0.068
+  },
+  "E3 turn of month": {
+   "times_traded": 125,
+   "avg_per_trade_pct": 0.528,
+   "t_stat": 2.59,
+   "final_usd": 187005,
+   "cagr_pct": 6.2,
+   "sharpe": 0.79,
+   "worst_drop_pct": -9.1,
+   "corr_with_argon": 0.012
+  },
+  "E4 pre-FOMC": {
+   "times_traded": 76,
+   "avg_per_trade_pct": 0.179,
+   "t_stat": 1.78,
+   "final_usd": 114255,
+   "cagr_pct": 1.3,
+   "sharpe": 0.55,
+   "worst_drop_pct": -3.2,
+   "corr_with_argon": 0.001
+  },
+  "index alone (reference)": {
+   "times_traded": 2614,
+   "avg_per_trade_pct": 0.08,
+   "t_stat": 3.33,
+   "final_usd": 657098,
+   "cagr_pct": 19.9,
+   "sharpe": 1.03,
+   "worst_drop_pct": -28.6,
+   "corr_with_argon": -0.077
+  }
+ }
+}
