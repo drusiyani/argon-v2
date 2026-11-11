@@ -1,0 +1,32 @@
+name: One-off analysis - combined package, both eras
+on:
+  push:
+    paths: ['.github/workflows/combo.yml', 'analysis/combo.py', 'analysis/tbill_dtb3.csv']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: argon-v2-writer
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Private market data (argon-data)
+        env:
+          DATA_TOKEN: ${{ secrets.DATA_TOKEN }}
+        run: |
+          git clone -q --depth 1 "https://x-access-token:${DATA_TOKEN}@github.com/drusiyani/argon-data.git" /tmp/argon-data
+          for d in databento lockbox2010 extra histdata; do if [ -d /tmp/argon-data/$d ]; then mkdir -p data/$d && cp -n /tmp/argon-data/$d/* data/$d/; fi; done
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python analysis/combo.py
+      - run: ARGON_DATA=lockbox2010 python analysis/combo.py || echo "sealed-era run failed"
+      - name: Save result
+        run: |
+          git config user.name argon-bot; git config user.email argon-bot@users.noreply.github.com
+          git add analysis/combo_*.json; git commit -qm "analysis: combined package, both eras"
+          for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0; sleep $((i*10)); done; exit 1
