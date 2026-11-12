@@ -566,29 +566,29 @@
  "kronos": {
   "NQ": {
    "direction": "up",
-   "confidence": 0.8,
+   "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-12T19:05Z"
+   "updated": "2026-11-12T19:24Z"
   },
   "ES": {
    "direction": "down",
-   "confidence": 0.6,
+   "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-12T19:05Z"
+   "updated": "2026-11-12T19:24Z"
   },
   "YM": {
    "direction": "down",
    "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-12T19:05Z"
+   "updated": "2026-11-12T19:24Z"
   },
   "RTY": {
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-12T19:05Z"
+   "updated": "2026-11-12T19:24Z"
   }
  },
  "checked": "2026-11-12 19:15 UTC",
- "updated": "2026-11-12 19:18 UTC"
+ "updated": "2026-11-12 19:25 UTC"
 }
