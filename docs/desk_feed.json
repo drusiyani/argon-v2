@@ -42,7 +42,7 @@
      "trend_probability": 52.0,
      "size": 1.0,
      "veto": null,
-     "reason": "Supportive signals are elevated VIX (66th percentile), a modest 5-day selloff (dealers possibly short gamma), and an AI-earnings catalyst behind a 1.9% gap. These are offset by compressed ranges (0.73 yesterday, 0.68 overnight), no schedule"
+     "reason": "Supportive signals are elevated VIX (66th percentile), a modest 5-day selloff (dealers possibly short gamma), and an AI-earnings catalyst behind a 1.9% gap. These are offset by compressed ranges (0.73 yesterday, 0.68 overnight), no\u2026"
     },
     "gemini": null,
     "gpt": null,
@@ -303,7 +303,7 @@
       "trend_probability": 66.0,
       "size": 1.5,
       "veto": null,
-      "reason": "Conditions favor momentum: VIX is elevated (89th percentile), yesterday's range was 1.41x average, and a 5% five-day selloff (RSI5 25.8) likely leaves dealers short gamma, while Nvidia CEO headlines add tech-specific news flow. Sizing stays"
+      "reason": "Conditions favor momentum: VIX is elevated (89th percentile), yesterday's range was 1.41x average, and a 5% five-day selloff (RSI5 25.8) likely leaves dealers short gamma, while Nvidia CEO headlines add tech-specific news flow. Sizing\u2026"
      },
      "gemini": null,
      "gpt": null,
@@ -359,7 +359,7 @@
       "trend_probability": 70.0,
       "size": 1.5,
       "veto": null,
-      "reason": "Several trend signals line up: a hot CPI print (a macro-release day the calendar missed) that headlines say seals a Fed hike, elevated VIX (83rd percentile), yesterday's range at 1.72x average, and a neutral RSI5 with no rally to fade. I'm "
+      "reason": "Several trend signals line up: a hot CPI print (a macro-release day the calendar missed) that headlines say seals a Fed hike, elevated VIX (83rd percentile), yesterday's range at 1.72x average, and a neutral RSI5 with no rally to fade. I'm\u2026"
      },
      "gemini": null,
      "gpt": null,
@@ -415,7 +415,7 @@
       "trend_probability": 52.0,
       "size": 1.0,
       "veto": null,
-      "reason": "Supportive signals are elevated VIX (66th percentile), a modest 5-day selloff (dealers possibly short gamma), and an AI-earnings catalyst behind a 1.9% gap. These are offset by compressed ranges (0.73 yesterday, 0.68 overnight), no schedule"
+      "reason": "Supportive signals are elevated VIX (66th percentile), a modest 5-day selloff (dealers possibly short gamma), and an AI-earnings catalyst behind a 1.9% gap. These are offset by compressed ranges (0.73 yesterday, 0.68 overnight), no\u2026"
      },
      "gemini": null,
      "gpt": null,
@@ -488,7 +488,7 @@
   "brier": null
  },
  "book": {
-  "final": 1314251,
+  "final": 1313350,
   "a_year": 60.9,
   "sharpe": 1.2,
   "worst_drop": -32.2,
@@ -509,30 +509,30 @@
  },
  "kronos": {
   "NQ": {
-   "direction": "down",
+   "direction": "up",
    "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-11T20:48Z"
+   "updated": "2026-11-12T13:40Z"
   },
   "ES": {
-   "direction": "down",
+   "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-11T20:48Z"
+   "updated": "2026-11-12T13:40Z"
   },
   "YM": {
-   "direction": "down",
-   "confidence": 1.0,
+   "direction": "up",
+   "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-11T20:48Z"
+   "updated": "2026-11-12T13:40Z"
   },
   "RTY": {
-   "direction": "down",
-   "confidence": 0.6,
+   "direction": "up",
+   "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-11T20:49Z"
+   "updated": "2026-11-12T13:40Z"
   }
  },
- "checked": "2026-11-11 20:45 UTC",
- "updated": "2026-11-11 20:49 UTC"
+ "checked": "2026-11-12 13:30 UTC",
+ "updated": "2026-11-12 13:40 UTC"
 }
