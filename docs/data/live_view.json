@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-12",
- "as_of": "2026-11-12 12:02 NY",
- "last_bar": "2026-11-12 11:52",
+ "as_of": "2026-11-12 12:08 NY",
+ "last_bar": "2026-11-12 11:58",
  "equity_used": 100000.0,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-11 21:00",
-   "yahoo_bars": 878,
-   "last_real": "2026-11-12 11:52",
-   "last_price": 28545.75,
+   "yahoo_bars": 884,
+   "last_real": "2026-11-12 11:58",
+   "last_price": 28529.25,
    "gap_pct": 0.0
   },
   "ES": {
    "databento_last": "2026-11-11 21:00",
-   "yahoo_bars": 878,
-   "last_real": "2026-11-12 11:52",
-   "last_price": 7656.75,
+   "yahoo_bars": 884,
+   "last_real": "2026-11-12 11:58",
+   "last_price": 7655.75,
    "gap_pct": 0.0
   },
   "YM": {
    "databento_last": "2026-11-11 21:00",
-   "yahoo_bars": 882,
-   "last_real": "2026-11-12 11:52",
-   "last_price": 52734.0,
+   "yahoo_bars": 888,
+   "last_real": "2026-11-12 11:58",
+   "last_price": 52729.0,
    "gap_pct": 0.02
   },
   "RTY": {
    "databento_last": "2026-11-11 21:00",
-   "yahoo_bars": 860,
-   "last_real": "2026-11-12 11:52",
-   "last_price": 2835.300048828125,
+   "yahoo_bars": 866,
+   "last_real": "2026-11-12 11:58",
+   "last_price": 2832.5,
    "gap_pct": -0.0
   }
  },
@@ -239,7 +239,14 @@
     28504.25,
     28552.5,
     28493.0,
-    28545.75
+    28524.0
+   ],
+   [
+    715,
+    28524.25,
+    28548.75,
+    28516.0,
+    28529.25
    ]
   ],
   "ES": [
@@ -444,7 +451,14 @@
     7651.75,
     7658.25,
     7649.75,
-    7656.75
+    7653.25
+   ],
+   [
+    715,
+    7653.25,
+    7658.0,
+    7653.0,
+    7655.75
    ]
   ]
  },
@@ -461,7 +475,7 @@
    "stop": 28044.5,
    "exit_time": "10:06",
    "exit": 28241.14,
-   "last": 28545.75,
+   "last": 28529.25,
    "state": "closed",
    "R_now": 0.215,
    "usd_now": 207.86
@@ -478,10 +492,10 @@
    "stop": 28063.5,
    "exit_time": null,
    "exit": null,
-   "last": 28545.75,
+   "last": 28529.25,
    "state": "open",
-   "R_now": 0.016,
-   "usd_now": 15.5
+   "R_now": -0.018,
+   "usd_now": -17.5
   }
  ],
  "skipped": []
