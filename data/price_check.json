@@ -1,13 +1,6 @@
 {
- "checked": "2026-11-12T03:01:47+00:00",
+ "checked": "2026-11-12T10:07:35+00:00",
  "rows": [
-  {
-   "date": "2026-10-28",
-   "databento": 29994.5,
-   "yahoo": 29979.5,
-   "gap_pct": 0.05,
-   "roll": false
-  },
   {
    "date": "2026-10-29",
    "databento": 29566.25,
@@ -69,6 +62,13 @@
    "databento": 27836.0,
    "yahoo": 27835.25,
    "gap_pct": 0.003,
+   "roll": false
+  },
+  {
+   "date": "2026-11-11",
+   "databento": 28484.25,
+   "yahoo": 28473.25,
+   "gap_pct": 0.039,
    "roll": false
   }
  ],
