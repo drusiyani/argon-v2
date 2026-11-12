@@ -17,11 +17,11 @@ passed: 2
 
 | settings | practice | exam | worst drop | result |
 |---|---|---|---|---|
-| entry ob_first, windows both, bias pd, smt optional, pool any, markets all, target pool | +19.68R (26 trades) | -4.86R (35) | -7.35R | failed |
-| entry ob_only, windows both, bias pd, smt optional, pool any, markets all, target pool | +19.68R (26 trades) | -4.86R (35) | -7.35R | failed |
-| entry ob_first, windows both, bias pd, smt optional, pool any, markets all, target 3R | +13.92R (23 trades) | +1.42R (38) | -7.35R | passed |
-| entry ob_only, windows both, bias pd, smt optional, pool any, markets all, target 3R | +13.92R (23 trades) | +1.42R (38) | -7.35R | passed |
-| entry fvg_first, windows both, bias pd, smt optional, pool any, markets all, target pool | +14.64R (26 trades) | -4.49R (35) | -8.4R | failed |
+| entry ob_first, windows both, bias pd, smt optional, pool any, markets all, target pool | +19.68R (26 trades) | -5.91R (36) | -7.35R | failed |
+| entry ob_only, windows both, bias pd, smt optional, pool any, markets all, target pool | +19.68R (26 trades) | -5.91R (36) | -7.35R | failed |
+| entry ob_first, windows both, bias pd, smt optional, pool any, markets all, target 3R | +13.92R (23 trades) | +0.37R (39) | -7.35R | passed |
+| entry ob_only, windows both, bias pd, smt optional, pool any, markets all, target 3R | +13.92R (23 trades) | +0.37R (39) | -7.35R | passed |
+| entry fvg_first, windows both, bias pd, smt optional, pool any, markets all, target pool | +14.64R (26 trades) | -5.54R (36) | -8.4R | failed |
 | old rules (v0.2) | +0.61R (14) | -3.29R (25) | – | for comparison |
 
 Why, in plain English: [[Lessons]]. Current rules: [[Rulebook v1.0]].
