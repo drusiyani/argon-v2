@@ -1,0 +1,147 @@
+{
+ "era": "lockbox2010",
+ "note": "Analysis only (does not touch the race). Batch 4 (11 Nov 2026), from Gemini's red-team (T5) as reviewed by Claude.\nPass marks fixed BEFORE the run:\n  F  Bug fixes, applied to everything: pre-FOMC exits 12:14 ET on the 2011-12 press-conference days (statement at 12:30);\n     roll days use the day's own open-to-close move instead of 0; the vol index is read one day earlier (no 16:15 print\n     used for a 16:00 trade); bootstrap blocks 63 days. The FIXED package \"survives\" if, in BOTH eras, it beats the\n     Nasdaq alone on Sharpe, Sortino and worst drop.\n  L  Long-only breakout rules (QuantLab, noise band, ATR band keep only long trades; expiry unchanged), from EdgeLab 2026.\n     L1 standalone PASS: Sharpe >= today's rules + 0.15 and worst drop no deeper, both eras.\n     L2 ADOPT in the package: package-with-long-only beats the fixed package on Sortino AND its bootstrap chance of a\n     drop worse than -35% is no higher, both eras.\n  V  Untouched check: the frozen fixed package rebuilt on the S&P (ES rules, VIX-managed ES core, pre-FOMC on ES,\n     interest). PASS if it beats the S&P alone on Sharpe with a worst drop no deeper, both eras. Nothing is tuned for ES.",
+ "nasdaq": {
+  "range": [
+   "2010-07-01",
+   "2020-12-31"
+  ],
+  "history": {
+   "index alone": {
+    "final_usd": 778410,
+    "cagr_pct": 21.9,
+    "sharpe": 1.11,
+    "sortino": 1.56,
+    "worst_drop_pct": -28.6
+   },
+   "rules (today)": {
+    "final_usd": 90343,
+    "cagr_pct": -1.0,
+    "sharpe": 0.11,
+    "sortino": 0.21,
+    "worst_drop_pct": -72.2
+   },
+   "rules long-only (breakouts)": {
+    "final_usd": 177429,
+    "cagr_pct": 5.7,
+    "sharpe": 0.38,
+    "sortino": 0.78,
+    "worst_drop_pct": -37.7
+   },
+   "package BEFORE fixes": {
+    "final_usd": 670800,
+    "cagr_pct": 20.1,
+    "sharpe": 0.99,
+    "sortino": 1.66,
+    "worst_drop_pct": -23.1
+   },
+   "package FIXED": {
+    "final_usd": 761141,
+    "cagr_pct": 21.6,
+    "sharpe": 1.05,
+    "sortino": 1.75,
+    "worst_drop_pct": -23.5
+   },
+   "package FIXED, long-only rules": {
+    "final_usd": 951699,
+    "cagr_pct": 24.2,
+    "sharpe": 1.18,
+    "sortino": 1.93,
+    "worst_drop_pct": -23.1
+   }
+  },
+  "bootstrap": {
+   "index alone": {
+    "median_cagr_pct": 21.0,
+    "bad_case_cagr_pct_5th": 12.7,
+    "chance_losing_money_pct": 0.0,
+    "chance_drop_worse_than_35_pct": 8.3
+   },
+   "rules (today)": {
+    "median_cagr_pct": -0.6,
+    "bad_case_cagr_pct_5th": -12.4,
+    "chance_losing_money_pct": 53.6,
+    "chance_drop_worse_than_35_pct": 99.7
+   },
+   "rules long-only (breakouts)": {
+    "median_cagr_pct": 5.1,
+    "bad_case_cagr_pct_5th": -2.6,
+    "chance_losing_money_pct": 13.6,
+    "chance_drop_worse_than_35_pct": 38.5
+   },
+   "package BEFORE fixes": {
+    "median_cagr_pct": 19.0,
+    "bad_case_cagr_pct_5th": 10.0,
+    "chance_losing_money_pct": 0.0,
+    "chance_drop_worse_than_35_pct": 11.4
+   },
+   "package FIXED": {
+    "median_cagr_pct": 20.6,
+    "bad_case_cagr_pct_5th": 11.0,
+    "chance_losing_money_pct": 0.0,
+    "chance_drop_worse_than_35_pct": 7.4
+   },
+   "package FIXED, long-only rules": {
+    "median_cagr_pct": 22.8,
+    "bad_case_cagr_pct_5th": 13.7,
+    "chance_losing_money_pct": 0.0,
+    "chance_drop_worse_than_35_pct": 4.8
+   }
+  }
+ },
+ "sp500_check": {
+  "range": [
+   "2010-07-01",
+   "2020-12-31"
+  ],
+  "history": {
+   "S&P index alone": {
+    "final_usd": 412929,
+    "cagr_pct": 14.6,
+    "sharpe": 0.88,
+    "sortino": 1.22,
+    "worst_drop_pct": -29.5
+   },
+   "S&P rules (today)": {
+    "final_usd": 18564,
+    "cagr_pct": -15.0,
+    "sharpe": -0.69,
+    "sortino": -1.21,
+    "worst_drop_pct": -82.5
+   },
+   "S&P package FIXED": {
+    "final_usd": 172264,
+    "cagr_pct": 5.4,
+    "sharpe": 0.42,
+    "sortino": 0.63,
+    "worst_drop_pct": -24.4
+   }
+  },
+  "bootstrap": {
+   "S&P index alone": {
+    "median_cagr_pct": 14.0,
+    "bad_case_cagr_pct_5th": 7.2,
+    "chance_losing_money_pct": 0.0,
+    "chance_drop_worse_than_35_pct": 13.0
+   },
+   "S&P rules (today)": {
+    "median_cagr_pct": -14.7,
+    "bad_case_cagr_pct_5th": -21.6,
+    "chance_losing_money_pct": 99.6,
+    "chance_drop_worse_than_35_pct": 100.0
+   },
+   "S&P package FIXED": {
+    "median_cagr_pct": 5.1,
+    "bad_case_cagr_pct_5th": -1.8,
+    "chance_losing_money_pct": 11.7,
+    "chance_drop_worse_than_35_pct": 35.7
+   }
+  }
+ },
+ "verdict_this_era": {
+  "F_package_survives_fixes": "FAIL",
+  "L1_long_only_standalone": "PASS",
+  "L2_long_only_in_package": "PASS",
+  "V_sp500_check": "FAIL"
+ }
+}
