@@ -1,0 +1,142 @@
+{
+ "era": "lockbox2010",
+ "note": "Analysis only (does not touch the race). Batch 5 (11 Nov 2026): Gemini's T6 proposals, as reviewed by Claude.\nBaseline = the FIXED package from batch 4 (VXN-managed core read a day earlier + Argon's rules at half size + pre-FOMC with\nthe 2011-12 press-conference exit + T-bill interest; roll days use the day's open-to-close).\nPass mark fixed BEFORE the run: a change is ADOPTED only if, in BOTH eras, against the fixed package, it has a higher\nper-year return AND a higher Sortino AND a worst drop no more than 1 point deeper AND a bootstrap chance of a drop worse\nthan -35% no more than 1 point higher. The combination is only considered if both parts pass alone.\n  P1 Short gate: short trades of QuantLab / noise band / ATR band are kept only when yesterday's VXN close is at or above\n     the 66.7th percentile of all VXN closes from 2009-01-02 up to the day before (expanding); else skipped. Longs and the\n     expiry rule unchanged. (Gao et al. 2018 terciles; EdgeLab 2026 short side = volatility-spike bet.)\n  P2 Opening-volatility sizing: for QuantLab / noise band / ATR band trades, realised volatility of the 1-minute returns\n     from 09:30 up to the entry minute (at most the first 30 minutes) is compared with the same measure over the previous\n     252 days: bottom third x0, middle x1, top third x2 (the package's 0.5 rule weight becomes 0 / 0.5 / 1.0).\n     The x0/x1/x2 step was chosen by Gemini, not a paper (flagged). Gao et al. 2018 terciles.\n  P3 Opening-volume gate: NOT TESTED - Argon's minute data holds prices only, no volume.",
+ "range": [
+  "2010-07-01",
+  "2020-12-31"
+ ],
+ "extra": {
+  "short_gate_open_share_pct": 21.5,
+  "p2_multiplier_counts": {
+   "0.0": 948,
+   "1.0": 1113,
+   "2.0": 1538
+  }
+ },
+ "history": {
+  "index alone": {
+   "final_usd": 778410,
+   "cagr_pct": 21.9,
+   "sharpe": 1.11,
+   "sortino": 1.56,
+   "worst_drop_pct": -28.6
+  },
+  "rules baseline": {
+   "final_usd": 90343,
+   "cagr_pct": -1.0,
+   "sharpe": 0.11,
+   "sortino": 0.21,
+   "worst_drop_pct": -72.2
+  },
+  "package baseline": {
+   "final_usd": 761141,
+   "cagr_pct": 21.6,
+   "sharpe": 1.05,
+   "sortino": 1.75,
+   "worst_drop_pct": -23.5
+  },
+  "rules P1": {
+   "final_usd": 184829,
+   "cagr_pct": 6.1,
+   "sharpe": 0.36,
+   "sortino": 0.73,
+   "worst_drop_pct": -44.0
+  },
+  "package P1": {
+   "final_usd": 1022915,
+   "cagr_pct": 25.1,
+   "sharpe": 1.2,
+   "sortino": 1.98,
+   "worst_drop_pct": -22.0
+  },
+  "rules P2": {
+   "final_usd": 182002,
+   "cagr_pct": 5.9,
+   "sharpe": 0.34,
+   "sortino": 0.7,
+   "worst_drop_pct": -74.6
+  },
+  "package P2": {
+   "final_usd": 1256949,
+   "cagr_pct": 27.6,
+   "sharpe": 1.04,
+   "sortino": 1.82,
+   "worst_drop_pct": -30.6
+  },
+  "rules P1+P2": {
+   "final_usd": 332987,
+   "cagr_pct": 12.3,
+   "sharpe": 0.48,
+   "sortino": 1.02,
+   "worst_drop_pct": -49.8
+  },
+  "package P1+P2": {
+   "final_usd": 1533365,
+   "cagr_pct": 30.1,
+   "sharpe": 1.17,
+   "sortino": 2.05,
+   "worst_drop_pct": -30.8
+  }
+ },
+ "bootstrap": {
+  "index alone": {
+   "median_cagr_pct": 21.0,
+   "bad_case_cagr_pct_5th": 12.7,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 8.3
+  },
+  "rules baseline": {
+   "median_cagr_pct": -0.6,
+   "bad_case_cagr_pct_5th": -12.4,
+   "chance_losing_money_pct": 53.6,
+   "chance_drop_worse_than_35_pct": 99.7
+  },
+  "package baseline": {
+   "median_cagr_pct": 20.6,
+   "bad_case_cagr_pct_5th": 11.0,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 7.4
+  },
+  "rules P1": {
+   "median_cagr_pct": 6.6,
+   "bad_case_cagr_pct_5th": -3.2,
+   "chance_losing_money_pct": 14.2,
+   "chance_drop_worse_than_35_pct": 66.0
+  },
+  "package P1": {
+   "median_cagr_pct": 24.3,
+   "bad_case_cagr_pct_5th": 14.7,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 4.1
+  },
+  "rules P2": {
+   "median_cagr_pct": 5.2,
+   "bad_case_cagr_pct_5th": -12.5,
+   "chance_losing_money_pct": 33.1,
+   "chance_drop_worse_than_35_pct": 99.9
+  },
+  "package P2": {
+   "median_cagr_pct": 26.3,
+   "bad_case_cagr_pct_5th": 12.6,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 39.9
+  },
+  "rules P1+P2": {
+   "median_cagr_pct": 12.6,
+   "bad_case_cagr_pct_5th": -3.8,
+   "chance_losing_money_pct": 10.7,
+   "chance_drop_worse_than_35_pct": 97.1
+  },
+  "package P1+P2": {
+   "median_cagr_pct": 29.3,
+   "bad_case_cagr_pct_5th": 15.8,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 27.0
+  }
+ },
+ "verdict_this_era": {
+  "P1": "PASS",
+  "P2": "FAIL",
+  "P1+P2": "FAIL"
+ }
+}
