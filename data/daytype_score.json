@@ -64,71 +64,71 @@
  },
  "label": "trend day = |close-open| >= 0.6 x (high-low), NQ 9:30-16:00",
  "latest_call": {
-  "date": "2026-11-11",
-  "made_at": "08:47",
+  "date": "2026-11-12",
+  "made_at": "08:46",
   "late": false,
   "inputs": {
-   "yesterday_range_pts": 593.0,
-   "avg20_range_pts": 812.8,
-   "range_ratio": 0.73,
-   "rsi5": 43.3,
-   "last_5_closes_change_pct": -1.66,
-   "overnight_change_pct": 1.9,
-   "overnight_range_vs_avg20": 0.68,
-   "vix": 18.39,
-   "vix_1y_percentile": 66,
+   "yesterday_range_pts": 849.2,
+   "avg20_range_pts": 814.5,
+   "range_ratio": 1.04,
+   "rsi5": 48.8,
+   "last_5_closes_change_pct": -0.33,
+   "overnight_change_pct": -1.27,
+   "overnight_range_vs_avg20": 0.44,
+   "vix": 18.94,
+   "vix_1y_percentile": 73,
    "calendar": [
     "nothing scheduled that Argon tracks"
    ],
    "headlines": [
-    "[Yahoo Finance, Wed 08:14] US Stock Market Today: S&P 500 Futures Rebound On Stubborn Inflation Higher-For-Longer Risk",
-    "[Yahoo Finance, Wed 08:01] Stock Futures Rise Amid CoreWeave's Strong Financial Results",
-    "[Yahoo Finance, Wed 08:00] Why a Surge in Put Buying Could Be Bullish for Stocks",
-    "[Yahoo Finance, Wed 07:46] If I Were in My 20s, I'd Buy This AI ETF After Its Recent Crash and Hold It Forever",
-    "[Yahoo Finance, Wed 06:20] Healthcare Just Hit a Record Lead Over Tech. 3 Things Could Shrink It",
-    "[Yahoo Finance, Wed 08:28] Why You Should Think About Bloom Energy Differently Now",
-    "[Yahoo Finance, Wed 08:08] Premarket movers: CoreWeave, Nvidia rally; Fossil, Tandy Leather jump",
-    "[Yahoo Finance, Wed 08:04] Dow Jones Futures Rise, Techs Jump On CoreWeave Earnings; Look For This Bullish Market Signal",
-    "[Yahoo Finance, Wed 08:00] Rattled Market Has S&P 500 Stock Assessing Risk \u2014 And Opportunity",
-    "[Yahoo Finance, Wed 08:00] 10 Stocks Rode Trump Era \u2014 What Happens As MAGA 'Disintegrates'?",
-    "[Yahoo Finance, Wed 06:05] CoreWeave Earnings Trigger AI Revival on Wall Street; Asia, Europe Up",
-    "[Yahoo Finance, Wed 08:14] Nasdaq Futures Rally as AI Optimism Returns"
+    "[Yahoo Finance, Thu 08:00] ETF Investors Find A New Way To 'Cash In' On Stocks",
+    "[Yahoo Finance, Thu 06:52] Wall Street Just Called the Fed\u2019s October Hold a Mistake. Here\u2019s Warren Buffett\u2019s 9-Word Rule From the Last Time the Fed Doubled Rates, and What It Does for $1 Million in an Index Fund",
+    "[Yahoo Finance, Thu 08:36] If You Buy and Hold Just 3 ETFs, History Says This Combination Is Your Best Bet",
+    "[Yahoo Finance, Thu 08:03] Nasdaq Futures Drop as Nvidia Concerns Hit AI Rally",
+    "[Yahoo Finance, Thu 08:02] \u2018Don\u2019t waste a good sell-off\u2019: HSBC names 11 Buy-rated stocks after pullbacks",
+    "[Yahoo Finance, Thu 08:00] Breakout Watch: Systematic Investing In Inefficient Markets Fuels This Stock",
+    "[Yahoo Finance, Thu 07:18] Premarket movers: Nvidia sinks; Lilly gains on China approval",
+    "[Yahoo Finance, Thu 07:15] Intel\u2019s Selloff Is Turning to Range Bound Consolidation",
+    "[Yahoo Finance, Thu 07:05] Investing $196 Per Week in This ETF Could Build a $1 Million Portfolio. Here's How.",
+    "[Yahoo Finance, Thu 07:02] KLA Stock Has One Thing Left To Prove",
+    "[Yahoo Finance, Thu 06:50] 2 Memory Stocks to Buy and Hold Through 2030",
+    "[Yahoo Finance, Thu 08:29] Bernstein cuts ConocoPhillips and Diamondback ratings as Iran de-escalation looms"
    ],
    "headline_flags": []
   },
   "ai": {
    "size": 1.0,
-   "trend_probability": 52.0,
+   "trend_probability": 57.0,
    "veto": null,
-   "reason": "Supportive signals are elevated VIX (66th percentile), a modest 5-day selloff (dealers possibly short gamma), and an AI-earnings catalyst behind a 1.9% gap. These are offset by compressed ranges (0.73 yesterday, 0.68 overnight), no scheduled macro events, and a large gap that may already price in th"
+   "reason": "Several factors lean toward trend: VIX is elevated (73rd percentile), ranges are normal-to-wide, RSI5 is neutral rather than overbought, and Nvidia news is pushing Nasdaq futures down 1.27% overnight. But there is no scheduled catalyst, the overnight range is narrow and the news is largely priced in"
   },
   "ai_runs": [
    {
-    "trend_probability": 52.0,
+    "trend_probability": 57.0,
     "size": 1.0,
     "veto": null,
-    "reason": "Several things favor a trend: a recent mild selloff (5-day -1.66%, RSI5 43) likely leaves dealers short gamma, VIX sits at the 66th percentile, and there is a news catalyst (CoreWeave earnings and an AI rally). Against that, yesterday's range was small (0.73x average), nothing is scheduled, and the "
+    "reason": "Several factors favour a trend day: elevated volatility (VIX 18.9, 73rd percentile), a normal-to-large range, and a -1.27% overnight drop on Nvidia, a stock that heavily drives the Nasdaq-100. Against that, there is no scheduled catalyst, the 5-day RSI is neutral, and my recent calls have been overc"
    },
    {
-    "trend_probability": 55.0,
+    "trend_probability": 56.0,
     "size": 1.0,
     "veto": null,
-    "reason": "Supportive signals are elevated VIX (66th percentile), a modest 5-day selloff (dealers possibly short gamma), and an AI-earnings catalyst behind a 1.9% gap. These are offset by compressed ranges (0.73 yesterday, 0.68 overnight), no scheduled macro events, and a large gap that may already price in th"
+    "reason": "Several factors lean toward trend: VIX is elevated (73rd percentile), ranges are normal-to-wide, RSI5 is neutral rather than overbought, and Nvidia news is pushing Nasdaq futures down 1.27% overnight. But there is no scheduled catalyst, the overnight range is narrow and the news is largely priced in"
    },
    {
-    "trend_probability": 52.0,
+    "trend_probability": 58.0,
     "size": 1.0,
     "veto": null,
-    "reason": "Moderately elevated VIX (66th percentile) and a 5-day pullback (RSI5 43, so dealers are likely not long gamma) favor momentum. But a compressed range ratio (0.73), no scheduled catalyst and a large +1.9% overnight gap on largely priced-in CoreWeave/AI news (which could fade as easily as extend) keep"
+    "reason": "Elevated VIX (73rd percentile), a -1.27% overnight gap and the Nvidia-driven AI selloff favor follow-through, but ranges are only average, RSI5 is neutral and nothing is scheduled. My track record shows overconfidence (Brier worse than a coin flip), so I'm holding at normal size."
    }
   ],
   "council": {
    "members": {
     "claude": {
      "size": 1.0,
-     "trend_probability": 52.0,
+     "trend_probability": 57.0,
      "veto": null,
-     "reason": "Supportive signals are elevated VIX (66th percentile), a modest 5-day selloff (dealers possibly short gamma), and an AI-earnings catalyst behind a 1.9% gap. These are offset by compressed ranges (0.73 yesterday, 0.68 overnight), no scheduled macro events, and a large gap that may already price in th",
+     "reason": "Several factors lean toward trend: VIX is elevated (73rd percentile), ranges are normal-to-wide, RSI5 is neutral rather than overbought, and Nvidia news is pushing Nasdaq futures down 1.27% overnight. But there is no scheduled catalyst, the overnight range is narrow and the news is largely priced in",
      "model_reported": "claude-opus-5-5"
     },
     "gemini": null,
@@ -138,34 +138,34 @@
    "answered": 1,
    "counted": false
   },
-  "asked_at_utc": "2026-11-11T13:47:09+00:00",
-  "dumb_size": 0.5,
+  "asked_at_utc": "2026-11-12T13:46:13+00:00",
+  "dumb_size": 1.0,
   "council_r2": {
    "members": {},
    "answered": 0,
    "counted": false
   },
-  "random_size": 1.0,
+  "random_size": 1.5,
   "market": {
-   "trend_probability": 39.7,
+   "trend_probability": 39.3,
    "size": 1.5
   },
-  "cost_usd": 0.0367,
+  "cost_usd": 0.0353,
   "usage": [
    {
     "who": "claude",
-    "usd": 0.01644,
+    "usd": 0.01743,
     "tokens": {
      "input_tokens": 4,
-     "cache_creation_input_tokens": 1652,
+     "cache_creation_input_tokens": 1714,
      "cache_read_input_tokens": 0,
      "cache_creation": {
-      "ephemeral_5m_input_tokens": 1652,
+      "ephemeral_5m_input_tokens": 1714,
       "ephemeral_1h_input_tokens": 0
      },
-     "output_tokens": 408,
+     "output_tokens": 442,
      "output_tokens_details": {
-      "thinking_tokens": 219
+      "thinking_tokens": 264
      },
      "service_tier": "standard",
      "inference_geo": "global",
@@ -174,18 +174,18 @@
    },
    {
     "who": "claude",
-    "usd": 0.00884,
+    "usd": 0.00916,
     "tokens": {
      "input_tokens": 4,
      "cache_creation_input_tokens": 0,
-     "cache_read_input_tokens": 1652,
+     "cache_read_input_tokens": 1714,
      "cache_creation": {
       "ephemeral_5m_input_tokens": 0,
       "ephemeral_1h_input_tokens": 0
      },
-     "output_tokens": 408,
+     "output_tokens": 423,
      "output_tokens_details": {
-      "thinking_tokens": 231
+      "thinking_tokens": 246
      },
      "service_tier": "standard",
      "inference_geo": "global",
@@ -194,18 +194,18 @@
    },
    {
     "who": "claude",
-    "usd": 0.01146,
+    "usd": 0.00874,
     "tokens": {
      "input_tokens": 4,
      "cache_creation_input_tokens": 0,
-     "cache_read_input_tokens": 1652,
+     "cache_read_input_tokens": 1714,
      "cache_creation": {
       "ephemeral_5m_input_tokens": 0,
       "ephemeral_1h_input_tokens": 0
      },
-     "output_tokens": 539,
+     "output_tokens": 402,
      "output_tokens_details": {
-      "thinking_tokens": 368
+      "thinking_tokens": 262
      },
      "service_tier": "standard",
      "inference_geo": "global",
@@ -215,8 +215,8 @@
   ],
   "effort": "high",
   "errors": {
-   "gemini": "no OPENROUTER_API_KEY",
    "gpt": "no OPENROUTER_API_KEY",
+   "gemini": "no OPENROUTER_API_KEY",
    "deepseek": "no OPENROUTER_API_KEY"
   },
   "ai_size_used": 1.0,
@@ -224,5 +224,5 @@
   "prompt_hash": "683d73102ca25a20",
   "shadow": true
  },
- "updated": "2026-11-12 13:40 UTC"
+ "updated": "2026-11-12 13:46 UTC"
 }

@@ -9,16 +9,16 @@
  },
  "calls": [],
  "daytype": {
-  "date": "2026-11-11",
-  "made_at": "08:47",
+  "date": "2026-11-12",
+  "made_at": "08:46",
   "late": false,
   "ai": {
    "size": 1.0,
-   "trend_probability": 52.0,
+   "trend_probability": 57.0,
    "veto": null,
-   "reason": "Supportive signals are elevated VIX (66th percentile), a modest 5-day selloff (dealers possibly short gamma), and an AI-earnings catalyst behind a 1.9% gap. These are offset by compressed ranges (0.73 yesterday, 0.68 overnight), no scheduled macro events, and a large gap that may already price in th"
+   "reason": "Several factors lean toward trend: VIX is elevated (73rd percentile), ranges are normal-to-wide, RSI5 is neutral rather than overbought, and Nvidia news is pushing Nasdaq futures down 1.27% overnight. But there is no scheduled catalyst, the overnight range is narrow and the news is largely priced in"
   },
-  "dumb_size": 0.5,
+  "dumb_size": 1.0,
   "ai_size_used": 1.0,
   "shadow": true,
   "council_r2": {
@@ -27,22 +27,22 @@
    "size": null,
    "members": {}
   },
-  "random_size": 1.0,
+  "random_size": 1.5,
   "headlines": [
-   "[Yahoo Finance, Wed 08:14] US Stock Market Today: S&P 500 Futures Rebound On Stubborn Inflation Higher-For-Longer Risk",
-   "[Yahoo Finance, Wed 08:01] Stock Futures Rise Amid CoreWeave's Strong Financial Results",
-   "[Yahoo Finance, Wed 08:00] Why a Surge in Put Buying Could Be Bullish for Stocks",
-   "[Yahoo Finance, Wed 07:46] If I Were in My 20s, I'd Buy This AI ETF After Its Recent Crash and Hold It Forever",
-   "[Yahoo Finance, Wed 06:20] Healthcare Just Hit a Record Lead Over Tech. 3 Things Could Shrink It",
-   "[Yahoo Finance, Wed 08:28] Why You Should Think About Bloom Energy Differently Now"
+   "[Yahoo Finance, Thu 08:00] ETF Investors Find A New Way To 'Cash In' On Stocks",
+   "[Yahoo Finance, Thu 06:52] Wall Street Just Called the Fed\u2019s October Hold a Mistake. Here\u2019s Warren Buffett\u2019s 9-Word Rule From the Last Time the Fed Doubled Rates, and What It Does for $1 Million in an Index Fund",
+   "[Yahoo Finance, Thu 08:36] If You Buy and Hold Just 3 ETFs, History Says This Combination Is Your Best Bet",
+   "[Yahoo Finance, Thu 08:03] Nasdaq Futures Drop as Nvidia Concerns Hit AI Rally",
+   "[Yahoo Finance, Thu 08:02] \u2018Don\u2019t waste a good sell-off\u2019: HSBC names 11 Buy-rated stocks after pullbacks",
+   "[Yahoo Finance, Thu 08:00] Breakout Watch: Systematic Investing In Inefficient Markets Fuels This Stock"
   ],
   "council": {
    "members": {
     "claude": {
-     "trend_probability": 52.0,
+     "trend_probability": 57.0,
      "size": 1.0,
      "veto": null,
-     "reason": "Supportive signals are elevated VIX (66th percentile), a modest 5-day selloff (dealers possibly short gamma), and an AI-earnings catalyst behind a 1.9% gap. These are offset by compressed ranges (0.73 yesterday, 0.68 overnight), no\u2026"
+     "reason": "Several factors lean toward trend: VIX is elevated (73rd percentile), ranges are normal-to-wide, RSI5 is neutral rather than overbought, and Nvidia news is pushing Nasdaq futures down 1.27% overnight. But there is no scheduled catalyst\u2026"
     },
     "gemini": null,
     "gpt": null,
@@ -54,11 +54,11 @@
    "size": null
   },
   "inputs": {
-   "vix": 18.39,
-   "vix_1y_percentile": 66,
-   "range_ratio": 0.73,
-   "rsi5": 43.3,
-   "overnight_change_pct": 1.9,
+   "vix": 18.94,
+   "vix_1y_percentile": 73,
+   "range_ratio": 1.04,
+   "rsi5": 48.8,
+   "overnight_change_pct": -1.27,
    "calendar": [
     "nothing scheduled that Argon tracks"
    ]
@@ -436,6 +436,62 @@
      "nothing scheduled that Argon tracks"
     ]
    }
+  },
+  {
+   "date": "2026-11-12",
+   "made_at": "08:46",
+   "late": false,
+   "ai": {
+    "size": 1.0,
+    "trend_probability": 57.0,
+    "veto": null,
+    "reason": "Several factors lean toward trend: VIX is elevated (73rd percentile), ranges are normal-to-wide, RSI5 is neutral rather than overbought, and Nvidia news is pushing Nasdaq futures down 1.27% overnight. But there is no scheduled catalyst, the overnight range is narrow and the news is largely priced in"
+   },
+   "dumb_size": 1.0,
+   "ai_size_used": 1.0,
+   "shadow": true,
+   "council_r2": {
+    "counted": false,
+    "trend_probability": null,
+    "size": null,
+    "members": {}
+   },
+   "random_size": 1.5,
+   "headlines": [
+    "[Yahoo Finance, Thu 08:00] ETF Investors Find A New Way To 'Cash In' On Stocks",
+    "[Yahoo Finance, Thu 06:52] Wall Street Just Called the Fed\u2019s October Hold a Mistake. Here\u2019s Warren Buffett\u2019s 9-Word Rule From the Last Time the Fed Doubled Rates, and What It Does for $1 Million in an Index Fund",
+    "[Yahoo Finance, Thu 08:36] If You Buy and Hold Just 3 ETFs, History Says This Combination Is Your Best Bet",
+    "[Yahoo Finance, Thu 08:03] Nasdaq Futures Drop as Nvidia Concerns Hit AI Rally",
+    "[Yahoo Finance, Thu 08:02] \u2018Don\u2019t waste a good sell-off\u2019: HSBC names 11 Buy-rated stocks after pullbacks",
+    "[Yahoo Finance, Thu 08:00] Breakout Watch: Systematic Investing In Inefficient Markets Fuels This Stock"
+   ],
+   "council": {
+    "members": {
+     "claude": {
+      "trend_probability": 57.0,
+      "size": 1.0,
+      "veto": null,
+      "reason": "Several factors lean toward trend: VIX is elevated (73rd percentile), ranges are normal-to-wide, RSI5 is neutral rather than overbought, and Nvidia news is pushing Nasdaq futures down 1.27% overnight. But there is no scheduled catalyst\u2026"
+     },
+     "gemini": null,
+     "gpt": null,
+     "deepseek": null
+    },
+    "answered": 1,
+    "counted": false,
+    "trend_probability": null,
+    "size": null
+   },
+   "inputs": {
+    "vix": 18.94,
+    "vix_1y_percentile": 73,
+    "range_ratio": 1.04,
+    "rsi5": 48.8,
+    "overnight_change_pct": -1.27,
+    "calendar": [
+     "nothing scheduled that Argon tracks"
+    ]
+   }
   }
  ],
  "daytype_score": {
@@ -533,6 +589,6 @@
    "updated": "2026-11-12T13:40Z"
   }
  },
- "checked": "2026-11-12 13:30 UTC",
- "updated": "2026-11-12 13:40 UTC"
+ "checked": "2026-11-12 13:45 UTC",
+ "updated": "2026-11-12 13:46 UTC"
 }
