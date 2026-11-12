@@ -1,0 +1,116 @@
+{
+ "era": "databento",
+ "note": "Analysis only (does not touch the race). Batch 6 (12 Nov 2026): Gemini's structural ideas (T7), run at Dru's request.\nTrial count: about 155 ideas tested in total before this batch, so a lucky pass is likely; read results with that in mind.\nBaseline = the FIXED package (batch 4). Pass mark fixed BEFORE the run, same as batch 5: ADOPT only if, in BOTH eras,\nvs the fixed package: higher per-year return AND higher Sortino AND worst drop no more than 1 point deeper AND bootstrap\nchance of a drop worse than -35% no more than 1 point higher. Each idea is tested alone.\n  A1 Downside-volatility core (Wang & Yan 2021): core = min(1.5, median of the last 252 values / today's value) of the\n     22-day downside realised volatility of the Nasdaq, all known a day early. Replaces the VXN core.\n  A2 VXN core + recovery floor (Gemini's own rule, flagged): if the Nasdaq rose over the 21 days to two closes ago and\n     VXN then was below its level 20 days before, core weight is at least 1.0.\n  B1 QuantLab noise-band gate (Zarattini et al. 2024): a QuantLab trade is kept only if the price at entry is outside the\n     14-day noise band in its direction (band = max/min of today's open and yesterday's close, times 1 +/- the average\n     absolute move from the open to that minute over the previous 14 days).\n  B2 Reweighting (Gemini's own weights from in-sample results, flagged): QuantLab x0.5, noise band x1, ATR band x1.5,\n     expiry x1 on the package's half size.\n  C  Pyramiding gate (Gemini's own +0.5R trigger, flagged): among QuantLab / noise band / ATR band, the first trade in a\n     direction each day is taken; a later same-direction trade only if the first is still open and at least +0.5R in\n     profit at that minute.",
+ "range": [
+  "2021-01-27",
+  "2026-11-11"
+ ],
+ "extra": {
+  "quantlab_trades": 1310,
+  "quantlab_kept_by_B1": 345,
+  "breakout_trades": 3033,
+  "breakout_kept_by_C": 2053
+ },
+ "history": {
+  "index alone": {
+   "final_usd": 177834,
+   "cagr_pct": 10.6,
+   "sharpe": 0.56,
+   "sortino": 0.8,
+   "worst_drop_pct": -35.1
+  },
+  "package baseline": {
+   "final_usd": 1309163,
+   "cagr_pct": 56.6,
+   "sharpe": 1.61,
+   "sortino": 3.18,
+   "worst_drop_pct": -19.4
+  },
+  "A1 downside-vol core": {
+   "final_usd": 1511693,
+   "cagr_pct": 60.5,
+   "sharpe": 1.7,
+   "sortino": 3.39,
+   "worst_drop_pct": -19.5
+  },
+  "A2 recovery floor": {
+   "final_usd": 1306820,
+   "cagr_pct": 56.5,
+   "sharpe": 1.6,
+   "sortino": 3.14,
+   "worst_drop_pct": -19.4
+  },
+  "B1 QuantLab noise gate": {
+   "final_usd": 844825,
+   "cagr_pct": 45.0,
+   "sharpe": 1.58,
+   "sortino": 2.86,
+   "worst_drop_pct": -20.6
+  },
+  "B2 reweighting": {
+   "final_usd": 964917,
+   "cagr_pct": 48.4,
+   "sharpe": 1.62,
+   "sortino": 2.94,
+   "worst_drop_pct": -18.5
+  },
+  "C pyramiding gate": {
+   "final_usd": 1225524,
+   "cagr_pct": 54.8,
+   "sharpe": 1.63,
+   "sortino": 3.13,
+   "worst_drop_pct": -21.2
+  }
+ },
+ "bootstrap": {
+  "index alone": {
+   "median_cagr_pct": 12.4,
+   "bad_case_cagr_pct_5th": -0.9,
+   "chance_losing_money_pct": 5.9,
+   "chance_drop_worse_than_35_pct": 33.8
+  },
+  "package baseline": {
+   "median_cagr_pct": 60.5,
+   "bad_case_cagr_pct_5th": 36.6,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 1.0
+  },
+  "A1 downside-vol core": {
+   "median_cagr_pct": 65.0,
+   "bad_case_cagr_pct_5th": 41.0,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 0.3
+  },
+  "A2 recovery floor": {
+   "median_cagr_pct": 60.7,
+   "bad_case_cagr_pct_5th": 36.3,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 1.1
+  },
+  "B1 QuantLab noise gate": {
+   "median_cagr_pct": 47.0,
+   "bad_case_cagr_pct_5th": 27.7,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 1.0
+  },
+  "B2 reweighting": {
+   "median_cagr_pct": 51.7,
+   "bad_case_cagr_pct_5th": 31.9,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 0.3
+  },
+  "C pyramiding gate": {
+   "median_cagr_pct": 59.0,
+   "bad_case_cagr_pct_5th": 34.4,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 3.0
+  }
+ },
+ "verdict_this_era": {
+  "A1 downside-vol core": "PASS",
+  "A2 recovery floor": "FAIL",
+  "B1 QuantLab noise gate": "FAIL",
+  "B2 reweighting": "FAIL",
+  "C pyramiding gate": "FAIL"
+ }
+}
