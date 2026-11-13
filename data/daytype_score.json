@@ -64,71 +64,71 @@
  },
  "label": "trend day = |close-open| >= 0.6 x (high-low), NQ 9:30-16:00",
  "latest_call": {
-  "date": "2026-11-12",
-  "made_at": "08:46",
+  "date": "2026-11-13",
+  "made_at": "08:48",
   "late": false,
   "inputs": {
-   "yesterday_range_pts": 849.2,
-   "avg20_range_pts": 814.5,
-   "range_ratio": 1.04,
-   "rsi5": 48.8,
-   "last_5_closes_change_pct": -0.33,
-   "overnight_change_pct": -1.27,
-   "overnight_range_vs_avg20": 0.44,
-   "vix": 18.94,
-   "vix_1y_percentile": 73,
+   "yesterday_range_pts": 638.5,
+   "avg20_range_pts": 817.8,
+   "range_ratio": 0.78,
+   "rsi5": 87.6,
+   "last_5_closes_change_pct": 6.1,
+   "overnight_change_pct": 0.51,
+   "overnight_range_vs_avg20": 0.45,
+   "vix": 17.69,
+   "vix_1y_percentile": 58,
    "calendar": [
     "nothing scheduled that Argon tracks"
    ],
    "headlines": [
-    "[Yahoo Finance, Thu 08:00] ETF Investors Find A New Way To 'Cash In' On Stocks",
-    "[Yahoo Finance, Thu 06:52] Wall Street Just Called the Fed\u2019s October Hold a Mistake. Here\u2019s Warren Buffett\u2019s 9-Word Rule From the Last Time the Fed Doubled Rates, and What It Does for $1 Million in an Index Fund",
-    "[Yahoo Finance, Thu 08:36] If You Buy and Hold Just 3 ETFs, History Says This Combination Is Your Best Bet",
-    "[Yahoo Finance, Thu 08:03] Nasdaq Futures Drop as Nvidia Concerns Hit AI Rally",
-    "[Yahoo Finance, Thu 08:02] \u2018Don\u2019t waste a good sell-off\u2019: HSBC names 11 Buy-rated stocks after pullbacks",
-    "[Yahoo Finance, Thu 08:00] Breakout Watch: Systematic Investing In Inefficient Markets Fuels This Stock",
-    "[Yahoo Finance, Thu 07:18] Premarket movers: Nvidia sinks; Lilly gains on China approval",
-    "[Yahoo Finance, Thu 07:15] Intel\u2019s Selloff Is Turning to Range Bound Consolidation",
-    "[Yahoo Finance, Thu 07:05] Investing $196 Per Week in This ETF Could Build a $1 Million Portfolio. Here's How.",
-    "[Yahoo Finance, Thu 07:02] KLA Stock Has One Thing Left To Prove",
-    "[Yahoo Finance, Thu 06:50] 2 Memory Stocks to Buy and Hold Through 2030",
-    "[Yahoo Finance, Thu 08:29] Bernstein cuts ConocoPhillips and Diamondback ratings as Iran de-escalation looms"
+    "[Yahoo Finance, Fri 08:15] The S&P 500 Recently Experienced Its Worst Day Since 2025. Here's Why Investors Shouldn't Worry.",
+    "[Yahoo Finance, Fri 08:05] Goldman\u2019s Oppenheimer sees S&P 500 advancing to 8,700 in 2027",
+    "[Yahoo Finance, Fri 07:46] Stock Futures Trending Higher Ahead of PPI Report",
+    "[Yahoo Finance, Fri 07:15] \u2018Everybody needs to prepare\u2019: Market expert warns of December shock that puts Americans at high risk. Act by Dec. 8",
+    "[Yahoo Finance, Fri 07:12] $1 Million In SCHD Five Years Ago: What Is It Worth Now?",
+    "[Yahoo Finance, Fri 07:53] The Midterms Are Over. History Says This Is What the Stock Market Does Next.",
+    "[Yahoo Finance, Fri 07:27] Premarket movers: Modine surges; Cerebras jumps on Microsoft deal",
+    "[Yahoo Finance, Fri 07:15] Bill Ackman Explicitly Avoids Micron\u2019s Volatile Cash Flows Focusing Here Instead",
+    "[Yahoo Finance, Fri 07:12] What Could Surprise Netflix Stock Investors On The Upside?",
+    "[Yahoo Finance, Fri 07:12] What Changed In First Solar's Story?",
+    "[Yahoo Finance, Fri 07:12] How Has Chevron's Story Changed For Shareholders?",
+    "[Yahoo Finance, Fri 07:12] Is Archer Aviation Stock Still Worth Owning After Its Quarter?"
    ],
    "headline_flags": []
   },
   "ai": {
-   "size": 1.0,
-   "trend_probability": 57.0,
+   "size": 0.5,
+   "trend_probability": 35.0,
    "veto": null,
-   "reason": "Several factors lean toward trend: VIX is elevated (73rd percentile), ranges are normal-to-wide, RSI5 is neutral rather than overbought, and Nvidia news is pushing Nasdaq futures down 1.27% overnight. But there is no scheduled catalyst, the overnight range is narrow and the news is largely priced in"
+   "reason": "After a strong multi-day rally (RSI5 87.6, +6.1% over 5 days), dealers are likely long gamma, and with compressed ranges (0.78 yesterday, 0.45 overnight) and a middling VIX, moves are likely to fade. The PPI release comes before the open and is mostly priced in, and my recent overconfidence (Brier 0"
   },
   "ai_runs": [
    {
-    "trend_probability": 57.0,
-    "size": 1.0,
+    "trend_probability": 35.0,
+    "size": 0.5,
     "veto": null,
-    "reason": "Several factors favour a trend day: elevated volatility (VIX 18.9, 73rd percentile), a normal-to-large range, and a -1.27% overnight drop on Nvidia, a stock that heavily drives the Nasdaq-100. Against that, there is no scheduled catalyst, the 5-day RSI is neutral, and my recent calls have been overc"
+    "reason": "A strong multi-day rally (RSI5 87.6, +6.1% over 5 days) suggests dealers are long gamma, and with a small prior range (0.78x), a quiet overnight session (0.45x) and only middling VIX, today leans toward chop; the pre-open PPI release adds a little upside risk. My recent calls have been overconfident"
    },
    {
-    "trend_probability": 56.0,
-    "size": 1.0,
+    "trend_probability": 32.0,
+    "size": 0.5,
     "veto": null,
-    "reason": "Several factors lean toward trend: VIX is elevated (73rd percentile), ranges are normal-to-wide, RSI5 is neutral rather than overbought, and Nvidia news is pushing Nasdaq futures down 1.27% overnight. But there is no scheduled catalyst, the overnight range is narrow and the news is largely priced in"
+    "reason": "After a strong multi-day rally (RSI5 87.6, +6.1% over 5 days), dealers are likely long gamma, and with compressed ranges (0.78 yesterday, 0.45 overnight) and a middling VIX, moves are likely to fade. The PPI release comes before the open and is mostly priced in, and my recent overconfidence (Brier 0"
    },
    {
-    "trend_probability": 58.0,
-    "size": 1.0,
+    "trend_probability": 35.0,
+    "size": 0.5,
     "veto": null,
-    "reason": "Elevated VIX (73rd percentile), a -1.27% overnight gap and the Nvidia-driven AI selloff favor follow-through, but ranges are only average, RSI5 is neutral and nothing is scheduled. My track record shows overconfidence (Brier worse than a coin flip), so I'm holding at normal size."
+    "reason": "Several signs point to a chop day: a strong multi-day rally (RSI5 87.6, +6.1% over 5 days) that suggests dealers are long gamma, a below-average range (0.78x), and a quiet overnight session (0.45x), with VIX only middling. The PPI release mentioned in headlines lands before the open and should be mo"
    }
   ],
   "council": {
    "members": {
     "claude": {
-     "size": 1.0,
-     "trend_probability": 57.0,
+     "size": 0.5,
+     "trend_probability": 35.0,
      "veto": null,
-     "reason": "Several factors lean toward trend: VIX is elevated (73rd percentile), ranges are normal-to-wide, RSI5 is neutral rather than overbought, and Nvidia news is pushing Nasdaq futures down 1.27% overnight. But there is no scheduled catalyst, the overnight range is narrow and the news is largely priced in",
+     "reason": "After a strong multi-day rally (RSI5 87.6, +6.1% over 5 days), dealers are likely long gamma, and with compressed ranges (0.78 yesterday, 0.45 overnight) and a middling VIX, moves are likely to fade. The PPI release comes before the open and is mostly priced in, and my recent overconfidence (Brier 0",
      "model_reported": "claude-opus-5-5"
     },
     "gemini": null,
@@ -138,8 +138,8 @@
    "answered": 1,
    "counted": false
   },
-  "asked_at_utc": "2026-11-12T13:46:13+00:00",
-  "dumb_size": 1.0,
+  "asked_at_utc": "2026-11-13T13:48:51+00:00",
+  "dumb_size": 0.5,
   "council_r2": {
    "members": {},
    "answered": 0,
@@ -150,22 +150,22 @@
    "trend_probability": 39.3,
    "size": 1.5
   },
-  "cost_usd": 0.0353,
+  "cost_usd": 0.0351,
   "usage": [
    {
     "who": "claude",
-    "usd": 0.01743,
+    "usd": 0.01624,
     "tokens": {
      "input_tokens": 4,
-     "cache_creation_input_tokens": 1714,
+     "cache_creation_input_tokens": 1652,
      "cache_read_input_tokens": 0,
      "cache_creation": {
-      "ephemeral_5m_input_tokens": 1714,
+      "ephemeral_5m_input_tokens": 1652,
       "ephemeral_1h_input_tokens": 0
      },
-     "output_tokens": 442,
+     "output_tokens": 398,
      "output_tokens_details": {
-      "thinking_tokens": 264
+      "thinking_tokens": 223
      },
      "service_tier": "standard",
      "inference_geo": "global",
@@ -174,18 +174,18 @@
    },
    {
     "who": "claude",
-    "usd": 0.00916,
+    "usd": 0.00848,
     "tokens": {
      "input_tokens": 4,
      "cache_creation_input_tokens": 0,
-     "cache_read_input_tokens": 1714,
+     "cache_read_input_tokens": 1652,
      "cache_creation": {
       "ephemeral_5m_input_tokens": 0,
       "ephemeral_1h_input_tokens": 0
      },
-     "output_tokens": 423,
+     "output_tokens": 390,
      "output_tokens_details": {
-      "thinking_tokens": 246
+      "thinking_tokens": 223
      },
      "service_tier": "standard",
      "inference_geo": "global",
@@ -194,18 +194,18 @@
    },
    {
     "who": "claude",
-    "usd": 0.00874,
+    "usd": 0.01038,
     "tokens": {
      "input_tokens": 4,
      "cache_creation_input_tokens": 0,
-     "cache_read_input_tokens": 1714,
+     "cache_read_input_tokens": 1652,
      "cache_creation": {
       "ephemeral_5m_input_tokens": 0,
       "ephemeral_1h_input_tokens": 0
      },
-     "output_tokens": 402,
+     "output_tokens": 485,
      "output_tokens_details": {
-      "thinking_tokens": 262
+      "thinking_tokens": 313
      },
      "service_tier": "standard",
      "inference_geo": "global",
@@ -219,10 +219,10 @@
    "gemini": "no OPENROUTER_API_KEY",
    "deepseek": "no OPENROUTER_API_KEY"
   },
-  "ai_size_used": 1.0,
+  "ai_size_used": 0.5,
   "model": "claude-opus-5-5",
   "prompt_hash": "683d73102ca25a20",
   "shadow": true
  },
- "updated": "2026-11-13 13:42 UTC"
+ "updated": "2026-11-13 13:48 UTC"
 }

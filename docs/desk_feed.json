@@ -9,17 +9,17 @@
  },
  "calls": [],
  "daytype": {
-  "date": "2026-11-12",
-  "made_at": "08:46",
+  "date": "2026-11-13",
+  "made_at": "08:48",
   "late": false,
   "ai": {
-   "size": 1.0,
-   "trend_probability": 57.0,
+   "size": 0.5,
+   "trend_probability": 35.0,
    "veto": null,
-   "reason": "Several factors lean toward trend: VIX is elevated (73rd percentile), ranges are normal-to-wide, RSI5 is neutral rather than overbought, and Nvidia news is pushing Nasdaq futures down 1.27% overnight. But there is no scheduled catalyst, the overnight range is narrow and the news is largely priced in"
+   "reason": "After a strong multi-day rally (RSI5 87.6, +6.1% over 5 days), dealers are likely long gamma, and with compressed ranges (0.78 yesterday, 0.45 overnight) and a middling VIX, moves are likely to fade. The PPI release comes before the open and is mostly priced in, and my recent overconfidence (Brier 0"
   },
-  "dumb_size": 1.0,
-  "ai_size_used": 1.0,
+  "dumb_size": 0.5,
+  "ai_size_used": 0.5,
   "shadow": true,
   "council_r2": {
    "counted": false,
@@ -29,20 +29,20 @@
   },
   "random_size": 1.5,
   "headlines": [
-   "[Yahoo Finance, Thu 08:00] ETF Investors Find A New Way To 'Cash In' On Stocks",
-   "[Yahoo Finance, Thu 06:52] Wall Street Just Called the Fed\u2019s October Hold a Mistake. Here\u2019s Warren Buffett\u2019s 9-Word Rule From the Last Time the Fed Doubled Rates, and What It Does for $1 Million in an Index Fund",
-   "[Yahoo Finance, Thu 08:36] If You Buy and Hold Just 3 ETFs, History Says This Combination Is Your Best Bet",
-   "[Yahoo Finance, Thu 08:03] Nasdaq Futures Drop as Nvidia Concerns Hit AI Rally",
-   "[Yahoo Finance, Thu 08:02] \u2018Don\u2019t waste a good sell-off\u2019: HSBC names 11 Buy-rated stocks after pullbacks",
-   "[Yahoo Finance, Thu 08:00] Breakout Watch: Systematic Investing In Inefficient Markets Fuels This Stock"
+   "[Yahoo Finance, Fri 08:15] The S&P 500 Recently Experienced Its Worst Day Since 2025. Here's Why Investors Shouldn't Worry.",
+   "[Yahoo Finance, Fri 08:05] Goldman\u2019s Oppenheimer sees S&P 500 advancing to 8,700 in 2027",
+   "[Yahoo Finance, Fri 07:46] Stock Futures Trending Higher Ahead of PPI Report",
+   "[Yahoo Finance, Fri 07:15] \u2018Everybody needs to prepare\u2019: Market expert warns of December shock that puts Americans at high risk. Act by Dec. 8",
+   "[Yahoo Finance, Fri 07:12] $1 Million In SCHD Five Years Ago: What Is It Worth Now?",
+   "[Yahoo Finance, Fri 07:53] The Midterms Are Over. History Says This Is What the Stock Market Does Next."
   ],
   "council": {
    "members": {
     "claude": {
-     "trend_probability": 57.0,
-     "size": 1.0,
+     "trend_probability": 35.0,
+     "size": 0.5,
      "veto": null,
-     "reason": "Several factors lean toward trend: VIX is elevated (73rd percentile), ranges are normal-to-wide, RSI5 is neutral rather than overbought, and Nvidia news is pushing Nasdaq futures down 1.27% overnight. But there is no scheduled catalyst\u2026"
+     "reason": "After a strong multi-day rally (RSI5 87.6, +6.1% over 5 days), dealers are likely long gamma, and with compressed ranges (0.78 yesterday, 0.45 overnight) and a middling VIX, moves are likely to fade. The PPI release comes before the open\u2026"
     },
     "gemini": null,
     "gpt": null,
@@ -54,11 +54,11 @@
    "size": null
   },
   "inputs": {
-   "vix": 18.94,
-   "vix_1y_percentile": 73,
-   "range_ratio": 1.04,
-   "rsi5": 48.8,
-   "overnight_change_pct": -1.27,
+   "vix": 17.69,
+   "vix_1y_percentile": 58,
+   "range_ratio": 0.78,
+   "rsi5": 87.6,
+   "overnight_change_pct": 0.51,
    "calendar": [
     "nothing scheduled that Argon tracks"
    ]
@@ -492,6 +492,62 @@
      "nothing scheduled that Argon tracks"
     ]
    }
+  },
+  {
+   "date": "2026-11-13",
+   "made_at": "08:48",
+   "late": false,
+   "ai": {
+    "size": 0.5,
+    "trend_probability": 35.0,
+    "veto": null,
+    "reason": "After a strong multi-day rally (RSI5 87.6, +6.1% over 5 days), dealers are likely long gamma, and with compressed ranges (0.78 yesterday, 0.45 overnight) and a middling VIX, moves are likely to fade. The PPI release comes before the open and is mostly priced in, and my recent overconfidence (Brier 0"
+   },
+   "dumb_size": 0.5,
+   "ai_size_used": 0.5,
+   "shadow": true,
+   "council_r2": {
+    "counted": false,
+    "trend_probability": null,
+    "size": null,
+    "members": {}
+   },
+   "random_size": 1.5,
+   "headlines": [
+    "[Yahoo Finance, Fri 08:15] The S&P 500 Recently Experienced Its Worst Day Since 2025. Here's Why Investors Shouldn't Worry.",
+    "[Yahoo Finance, Fri 08:05] Goldman\u2019s Oppenheimer sees S&P 500 advancing to 8,700 in 2027",
+    "[Yahoo Finance, Fri 07:46] Stock Futures Trending Higher Ahead of PPI Report",
+    "[Yahoo Finance, Fri 07:15] \u2018Everybody needs to prepare\u2019: Market expert warns of December shock that puts Americans at high risk. Act by Dec. 8",
+    "[Yahoo Finance, Fri 07:12] $1 Million In SCHD Five Years Ago: What Is It Worth Now?",
+    "[Yahoo Finance, Fri 07:53] The Midterms Are Over. History Says This Is What the Stock Market Does Next."
+   ],
+   "council": {
+    "members": {
+     "claude": {
+      "trend_probability": 35.0,
+      "size": 0.5,
+      "veto": null,
+      "reason": "After a strong multi-day rally (RSI5 87.6, +6.1% over 5 days), dealers are likely long gamma, and with compressed ranges (0.78 yesterday, 0.45 overnight) and a middling VIX, moves are likely to fade. The PPI release comes before the open\u2026"
+     },
+     "gemini": null,
+     "gpt": null,
+     "deepseek": null
+    },
+    "answered": 1,
+    "counted": false,
+    "trend_probability": null,
+    "size": null
+   },
+   "inputs": {
+    "vix": 17.69,
+    "vix_1y_percentile": 58,
+    "range_ratio": 0.78,
+    "rsi5": 87.6,
+    "overnight_change_pct": 0.51,
+    "calendar": [
+     "nothing scheduled that Argon tracks"
+    ]
+   }
   }
  ],
  "daytype_score": {
@@ -565,30 +621,30 @@
  },
  "kronos": {
   "NQ": {
-   "direction": "up",
-   "confidence": 0.8,
+   "direction": "down",
+   "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-13T13:31Z"
+   "updated": "2026-11-13T13:48Z"
   },
   "ES": {
-   "direction": "up",
-   "confidence": 0.6,
+   "direction": "down",
+   "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-13T13:31Z"
+   "updated": "2026-11-13T13:48Z"
   },
   "YM": {
-   "direction": "up",
+   "direction": "down",
    "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-13T13:31Z"
+   "updated": "2026-11-13T13:48Z"
   },
   "RTY": {
    "direction": "down",
    "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-13T13:32Z"
+   "updated": "2026-11-13T13:48Z"
   }
  },
- "checked": "2026-11-13 13:30 UTC",
- "updated": "2026-11-13 13:32 UTC"
+ "checked": "2026-11-13 13:45 UTC",
+ "updated": "2026-11-13 13:48 UTC"
 }
