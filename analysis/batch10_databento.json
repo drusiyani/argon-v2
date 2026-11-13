@@ -1,0 +1,110 @@
+{
+ "era": "databento",
+ "range": [
+  "2021-01-27",
+  "2026-11-12"
+ ],
+ "verdict_this_era": {
+  "G1 S&P confirmation": "FAIL",
+  "G2 8:30 news shock": "FAIL",
+  "G3 pre-market volume": "FAIL"
+ },
+ "history": {
+  "package baseline": {
+   "final_usd": 1304474,
+   "cagr_pct": 56.4,
+   "sharpe": 1.61,
+   "sortino": 3.18,
+   "worst_drop_pct": -19.4
+  },
+  "G1 S&P confirmation": {
+   "final_usd": 764156,
+   "cagr_pct": 42.5,
+   "sharpe": 1.45,
+   "sortino": 2.63,
+   "worst_drop_pct": -21.2
+  },
+  "G2 8:30 news shock": {
+   "final_usd": 1282358,
+   "cagr_pct": 55.9,
+   "sharpe": 1.49,
+   "sortino": 3.04,
+   "worst_drop_pct": -22.9
+  },
+  "G3 pre-market volume": {
+   "final_usd": 927708,
+   "cagr_pct": 47.4,
+   "sharpe": 1.32,
+   "sortino": 2.63,
+   "worst_drop_pct": -22.6
+  }
+ },
+ "bootstrap": {
+  "package baseline": {
+   "median_cagr_pct": 59.9,
+   "bad_case_cagr_pct_5th": 36.5,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 1.0
+  },
+  "G1 S&P confirmation": {
+   "median_cagr_pct": 45.3,
+   "bad_case_cagr_pct_5th": 25.4,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 1.2
+  },
+  "G2 8:30 news shock": {
+   "median_cagr_pct": 59.3,
+   "bad_case_cagr_pct_5th": 32.0,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 4.6
+  },
+  "G3 pre-market volume": {
+   "median_cagr_pct": 49.7,
+   "bad_case_cagr_pct_5th": 25.1,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 9.8
+  }
+ },
+ "diagnostics": {
+  "G1": {
+   "kept": {
+    "trades": 2159,
+    "avg_R": 0.091,
+    "total_R": 196.3
+   },
+   "removed": {
+    "trades": 834,
+    "avg_R": 0.143,
+    "total_R": 118.9
+   }
+  },
+  "G2": {
+   "0.5": {
+    "days": 467,
+    "avg_rule_R_per_day": 0.246
+   },
+   "1.0": {
+    "days": 494,
+    "avg_rule_R_per_day": 0.206
+   },
+   "1.5": {
+    "days": 486,
+    "avg_rule_R_per_day": 0.259
+   }
+  },
+  "G3": {
+   "0.5": {
+    "days": 456,
+    "avg_rule_R_per_day": 0.272
+   },
+   "1.0": {
+    "days": 502,
+    "avg_rule_R_per_day": 0.423
+   },
+   "1.5": {
+    "days": 489,
+    "avg_rule_R_per_day": 0.013
+   }
+  }
+ }
+}
