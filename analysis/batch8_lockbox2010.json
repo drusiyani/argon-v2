@@ -1,0 +1,120 @@
+{
+ "era": "lockbox2010",
+ "range": [
+  "2010-07-01",
+  "2020-12-31"
+ ],
+ "verdict_this_era": {
+  "S1 spread": "FAIL",
+  "S2 fade": "FAIL"
+ },
+ "history": {
+  "package baseline": {
+   "final_usd": 761141,
+   "cagr_pct": 21.6,
+   "sharpe": 1.05,
+   "sortino": 1.75,
+   "worst_drop_pct": -23.5
+  },
+  "package + S1 spread": {
+   "final_usd": 731201,
+   "cagr_pct": 21.1,
+   "sharpe": 1.03,
+   "sortino": 1.72,
+   "worst_drop_pct": -24.0
+  },
+  "package + S2 fade": {
+   "final_usd": 704396,
+   "cagr_pct": 20.7,
+   "sharpe": 1.02,
+   "sortino": 1.67,
+   "worst_drop_pct": -25.3
+  },
+  "S1 alone (1% risk)": {
+   "final_usd": 92072,
+   "cagr_pct": -0.8,
+   "sharpe": -0.33,
+   "sortino": -0.45,
+   "worst_drop_pct": -14.4
+  },
+  "S2 alone (1% risk)": {
+   "final_usd": 83306,
+   "cagr_pct": -1.7,
+   "sharpe": -0.23,
+   "sortino": -0.33,
+   "worst_drop_pct": -34.6
+  }
+ },
+ "bootstrap": {
+  "package baseline": {
+   "median_cagr_pct": 20.6,
+   "bad_case_cagr_pct_5th": 11.0,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 7.4
+  },
+  "package + S1 spread": {
+   "median_cagr_pct": 20.0,
+   "bad_case_cagr_pct_5th": 10.7,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 8.3
+  },
+  "package + S2 fade": {
+   "median_cagr_pct": 19.4,
+   "bad_case_cagr_pct_5th": 10.1,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 9.1
+  }
+ },
+ "diagnostics": {
+  "S1 alone (1% risk)": {
+   "corr_with_package": -0.019,
+   "R_on_package_down_days": -3.2,
+   "trades": 173,
+   "total_R": -8.0,
+   "avg_R": -0.046,
+   "win_pct": 46.2,
+   "exits": {
+    "close": 131,
+    "stop": 28,
+    "target": 14
+   }
+  },
+  "S2 alone (1% risk)": {
+   "corr_with_package": -0.112,
+   "R_on_package_down_days": 29.9,
+   "trades": 504,
+   "total_R": -15.9,
+   "avg_R": -0.032,
+   "win_pct": 46.2,
+   "exits": {
+    "": 504
+   }
+  }
+ },
+ "leverage_1_25x": {
+  "1.25x package + S1": {
+   "worst_drop_pct": -29.6,
+   "cagr_pct": 26.1,
+   "sharpe": 1.02,
+   "boot21_chance_drop_worse_than_35_pct": 45.6
+  },
+  "1.25x package + S2": {
+   "worst_drop_pct": -30.9,
+   "cagr_pct": 25.5,
+   "sharpe": 1.01,
+   "boot21_chance_drop_worse_than_35_pct": 46.1
+  },
+  "1.25x package + S1+S2": {
+   "worst_drop_pct": -30.9,
+   "cagr_pct": 24.9,
+   "sharpe": 0.99,
+   "boot21_chance_drop_worse_than_35_pct": 48.9
+  },
+  "1.25x package + none": {
+   "worst_drop_pct": -29.0,
+   "cagr_pct": 26.7,
+   "sharpe": 1.04,
+   "boot21_chance_drop_worse_than_35_pct": 42.2
+  }
+ }
+}
