@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-13",
- "as_of": "2026-11-13 10:15 NY",
- "last_bar": "2026-11-13 10:05",
+ "as_of": "2026-11-13 10:21 NY",
+ "last_bar": "2026-11-13 10:11",
  "equity_used": 100000.0,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-12 20:48",
-   "yahoo_bars": 788,
-   "last_real": "2026-11-13 10:05",
-   "last_price": 27995.0,
+   "yahoo_bars": 794,
+   "last_real": "2026-11-13 10:11",
+   "last_price": 27870.0,
    "gap_pct": -0.0
   },
   "ES": {
    "databento_last": "2026-11-12 20:48",
-   "yahoo_bars": 788,
-   "last_real": "2026-11-13 10:05",
-   "last_price": 7569.0,
+   "yahoo_bars": 794,
+   "last_real": "2026-11-13 10:11",
+   "last_price": 7547.0,
    "gap_pct": 0.0
   },
   "YM": {
    "databento_last": "2026-11-12 20:48",
-   "yahoo_bars": 792,
-   "last_real": "2026-11-13 10:05",
-   "last_price": 52354.0,
+   "yahoo_bars": 798,
+   "last_real": "2026-11-13 10:11",
+   "last_price": 52253.0,
    "gap_pct": -0.0
   },
   "RTY": {
    "databento_last": "2026-11-12 20:48",
-   "yahoo_bars": 773,
-   "last_real": "2026-11-13 10:05",
-   "last_price": 2785.199951171875,
+   "yahoo_bars": 779,
+   "last_real": "2026-11-13 10:11",
+   "last_price": 2778.89990234375,
    "gap_pct": 0.0
   }
  },
@@ -89,10 +89,17 @@
    ],
    [
     605,
-    27966.0,
-    28029.75,
-    27964.25,
-    27995.0
+    27965.0,
+    28037.25,
+    27946.75,
+    27966.25
+   ],
+   [
+    610,
+    27964.75,
+    27965.75,
+    27850.0,
+    27870.0
    ]
   ],
   "ES": [
@@ -148,9 +155,16 @@
    [
     605,
     7564.0,
-    7572.75,
-    7563.75,
-    7569.0
+    7575.75,
+    7558.25,
+    7561.75
+   ],
+   [
+    610,
+    7561.5,
+    7561.75,
+    7543.5,
+    7547.0
    ]
   ]
  },
@@ -167,10 +181,10 @@
    "stop": 28399.0,
    "exit_time": null,
    "exit": null,
-   "last": 27995.0,
+   "last": 27870.0,
    "state": "open",
-   "R_now": 3.157,
-   "usd_now": 3062.5
+   "R_now": 4.446,
+   "usd_now": 4312.5
   }
  ],
  "skipped": []
