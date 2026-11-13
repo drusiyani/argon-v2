@@ -43,3 +43,12 @@ Race 1" unless Dru openly adopts it as a flagged amendment, because none of this
 
 ## Not allowed after seeing results
 No changing multipliers, the 2R, definitions or pass marks.
+
+## Addendum (13 Nov 2026, written after the Nasdaq package results, BEFORE the check below was run)
+Replication on a market the scan never looked at: the same three rules, unchanged, on the S&P future (ES), costs 0.5 pts,
+same 0.10R cost cap, both eras. The rules lose on the S&P overall, so only the DIFFERENCES matter:
+- Day-after (M2): ES rules' average R per day on days after an ES result above +2R, vs all other days.
+  Replicates if lower in all three periods (2010–17, 2018–20, 2021–26).
+- Gap-and-yesterday (M3): average R per ES trade for "with the ES gap and against ES's yesterday" vs "against the gap and with
+  yesterday". Replicates if higher in all three periods.
+The S&P and Nasdaq move together on most days, so this is supporting evidence, not an independent proof. Reported whatever it shows.
