@@ -1,0 +1,94 @@
+{
+ "era": "lockbox2010",
+ "range": [
+  "2010-07-01",
+  "2020-12-31"
+ ],
+ "verdict_this_era": {
+  "H1 regime tilt": "FAIL",
+  "H2 overnight after down day": "FAIL",
+  "H3 vol-managed size": "FAIL",
+  "H4 European noise band": "FAIL"
+ },
+ "history": {
+  "package baseline": {
+   "final_usd": 761141,
+   "cagr_pct": 21.6,
+   "sharpe": 1.05,
+   "sortino": 1.75,
+   "worst_drop_pct": -23.5
+  },
+  "H1 regime tilt": {
+   "final_usd": 864271,
+   "cagr_pct": 23.1,
+   "sharpe": 1.03,
+   "sortino": 1.77,
+   "worst_drop_pct": -27.1
+  },
+  "H2 overnight after down day": {
+   "final_usd": 875609,
+   "cagr_pct": 23.3,
+   "sharpe": 1.04,
+   "sortino": 1.68,
+   "worst_drop_pct": -29.1
+  },
+  "H3 vol-managed size": {
+   "final_usd": 898629,
+   "cagr_pct": 23.6,
+   "sharpe": 1.12,
+   "sortino": 1.92,
+   "worst_drop_pct": -22.5
+  },
+  "H4 European noise band": {
+   "final_usd": 623956,
+   "cagr_pct": 19.3,
+   "sharpe": 0.93,
+   "sortino": 1.54,
+   "worst_drop_pct": -23.2
+  }
+ },
+ "bootstrap": {
+  "package baseline": {
+   "median_cagr_pct": 20.6,
+   "bad_case_cagr_pct_5th": 11.0,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 7.4
+  },
+  "H1 regime tilt": {
+   "median_cagr_pct": 21.8,
+   "bad_case_cagr_pct_5th": 10.9,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 17.3
+  },
+  "H2 overnight after down day": {
+   "median_cagr_pct": 22.1,
+   "bad_case_cagr_pct_5th": 11.7,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 17.7
+  },
+  "H3 vol-managed size": {
+   "median_cagr_pct": 22.4,
+   "bad_case_cagr_pct_5th": 12.0,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 8.7
+  },
+  "H4 European noise band": {
+   "median_cagr_pct": 18.0,
+   "bad_case_cagr_pct_5th": 9.5,
+   "chance_losing_money_pct": 0.1,
+   "chance_drop_worse_than_35_pct": 9.8
+  }
+ },
+ "diagnostics": {
+  "H1_avg_rule_weight": 1.05,
+  "H2_nights": 1146,
+  "H2_total_pct": 18.2,
+  "H3_avg_k": 1.01,
+  "H4": {
+   "trades": 854,
+   "total_R": -36.4,
+   "avg_R": -0.043,
+   "win_pct": 33.0
+  }
+ }
+}
