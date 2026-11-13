@@ -1,0 +1,80 @@
+{
+ "era": "databento",
+ "note": "Analysis only (does not touch the race). Batch 7 (12 Nov 2026): the FIXED package with the Fed-day skip added.\nThe skip passed a cross-market test on free data (Sharpe and R/yr up in 4/4 markets to 2020 and 3/4 in 2021-26).\nPass mark fixed BEFORE the run (same as batches 5-6): ADOPT only if, in BOTH eras, vs the fixed package: higher per-year return\nAND higher Sortino AND worst drop no more than 1 point deeper AND bootstrap chance of a drop worse than -35% no more than 1 point higher.\n  FED: no trades by any of the four rules on scheduled FOMC decision days. The pre-FOMC tilt (long the index from the prior close to\n  13:59, 12:14 on 2011-12 press-conference days) is unchanged.",
+ "range": [
+  "2021-01-27",
+  "2026-11-12"
+ ],
+ "fed_days": 47,
+ "fed_trades_removed": 36,
+ "history": {
+  "index alone": {
+   "final_usd": 177231,
+   "cagr_pct": 10.5,
+   "sharpe": 0.56,
+   "sortino": 0.79,
+   "worst_drop_pct": -35.1
+  },
+  "rules alone": {
+   "final_usd": 1701282,
+   "cagr_pct": 63.8,
+   "sharpe": 1.26,
+   "sortino": 3.5,
+   "worst_drop_pct": -34.3
+  },
+  "rules alone + Fed skip": {
+   "final_usd": 1690754,
+   "cagr_pct": 63.6,
+   "sharpe": 1.26,
+   "sortino": 3.5,
+   "worst_drop_pct": -34.3
+  },
+  "package baseline": {
+   "final_usd": 1304474,
+   "cagr_pct": 56.4,
+   "sharpe": 1.61,
+   "sortino": 3.18,
+   "worst_drop_pct": -19.4
+  },
+  "package + Fed skip": {
+   "final_usd": 1298879,
+   "cagr_pct": 56.3,
+   "sharpe": 1.61,
+   "sortino": 3.16,
+   "worst_drop_pct": -19.4
+  }
+ },
+ "bootstrap": {
+  "index alone": {
+   "median_cagr_pct": 12.3,
+   "bad_case_cagr_pct_5th": -1.1,
+   "chance_losing_money_pct": 6.4,
+   "chance_drop_worse_than_35_pct": 35.3
+  },
+  "rules alone": {
+   "median_cagr_pct": 65.0,
+   "bad_case_cagr_pct_5th": 27.0,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 49.7
+  },
+  "rules alone + Fed skip": {
+   "median_cagr_pct": 65.0,
+   "bad_case_cagr_pct_5th": 26.9,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 49.3
+  },
+  "package baseline": {
+   "median_cagr_pct": 59.9,
+   "bad_case_cagr_pct_5th": 36.5,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 1.0
+  },
+  "package + Fed skip": {
+   "median_cagr_pct": 60.1,
+   "bad_case_cagr_pct_5th": 36.4,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 1.0
+  }
+ },
+ "verdict_this_era": "FAIL"
+}
