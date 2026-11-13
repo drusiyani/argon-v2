@@ -1,0 +1,92 @@
+{
+ "era": "databento",
+ "range": [
+  "2021-01-27",
+  "2026-11-12"
+ ],
+ "verdict_this_era": {
+  "K1 gap reallocation": "FAIL",
+  "K2 skip against-gap": "FAIL"
+ },
+ "history": {
+  "package baseline": {
+   "final_usd": 1304474,
+   "cagr_pct": 56.4,
+   "sharpe": 1.61,
+   "sortino": 3.18,
+   "worst_drop_pct": -19.4
+  },
+  "K1 gap reallocation": {
+   "final_usd": 1819456,
+   "cagr_pct": 65.7,
+   "sharpe": 1.66,
+   "sortino": 3.46,
+   "worst_drop_pct": -20.5
+  },
+  "K2 skip against-gap": {
+   "final_usd": 1014522,
+   "cagr_pct": 49.7,
+   "sharpe": 1.58,
+   "sortino": 3.01,
+   "worst_drop_pct": -24.3
+  }
+ },
+ "bootstrap": {
+  "package baseline": {
+   "median_cagr_pct": 59.9,
+   "bad_case_cagr_pct_5th": 36.5,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 1.0
+  },
+  "K1 gap reallocation": {
+   "median_cagr_pct": 69.5,
+   "bad_case_cagr_pct_5th": 39.9,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 2.6
+  },
+  "K2 skip against-gap": {
+   "median_cagr_pct": 52.7,
+   "bad_case_cagr_pct_5th": 28.6,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 6.0
+  }
+ },
+ "sub_periods": {
+  "2021-26 with": {
+   "trades": 1675,
+   "avg_R": 0.128,
+   "total_R": 214.8
+  },
+  "2021-26 against": {
+   "trades": 1312,
+   "avg_R": 0.045,
+   "total_R": 59.3
+  }
+ },
+ "leverage_1_25x": {
+  "1.25x baseline": {
+   "final_usd": 2181453,
+   "cagr_pct": 71.1,
+   "sharpe": 1.59,
+   "sortino": 3.13,
+   "worst_drop_pct": -23.9,
+   "boot21_chance_drop_worse_than_35_pct": 21.3
+  },
+  "1.25x K1": {
+   "final_usd": 3253736,
+   "cagr_pct": 83.4,
+   "sharpe": 1.64,
+   "sortino": 3.41,
+   "worst_drop_pct": -25.2,
+   "boot21_chance_drop_worse_than_35_pct": 27.7
+  },
+  "1.25x K2": {
+   "final_usd": 1614754,
+   "cagr_pct": 62.3,
+   "sharpe": 1.56,
+   "sortino": 2.96,
+   "worst_drop_pct": -29.8,
+   "boot21_chance_drop_worse_than_35_pct": 24.0
+  }
+ }
+}

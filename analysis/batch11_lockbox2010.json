@@ -1,0 +1,102 @@
+{
+ "era": "lockbox2010",
+ "range": [
+  "2010-07-01",
+  "2020-12-31"
+ ],
+ "verdict_this_era": {
+  "K1 gap reallocation": "PASS",
+  "K2 skip against-gap": "PASS"
+ },
+ "history": {
+  "package baseline": {
+   "final_usd": 761141,
+   "cagr_pct": 21.6,
+   "sharpe": 1.05,
+   "sortino": 1.75,
+   "worst_drop_pct": -23.5
+  },
+  "K1 gap reallocation": {
+   "final_usd": 1273147,
+   "cagr_pct": 27.8,
+   "sharpe": 1.2,
+   "sortino": 2.08,
+   "worst_drop_pct": -20.7
+  },
+  "K2 skip against-gap": {
+   "final_usd": 1324328,
+   "cagr_pct": 28.3,
+   "sharpe": 1.42,
+   "sortino": 2.32,
+   "worst_drop_pct": -18.2
+  }
+ },
+ "bootstrap": {
+  "package baseline": {
+   "median_cagr_pct": 20.6,
+   "bad_case_cagr_pct_5th": 11.0,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 7.4
+  },
+  "K1 gap reallocation": {
+   "median_cagr_pct": 26.4,
+   "bad_case_cagr_pct_5th": 15.9,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 4.0
+  },
+  "K2 skip against-gap": {
+   "median_cagr_pct": 26.4,
+   "bad_case_cagr_pct_5th": 18.2,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 0.2
+  }
+ },
+ "sub_periods": {
+  "2010-17 with": {
+   "trades": 1185,
+   "avg_R": 0.018,
+   "total_R": 21.5
+  },
+  "2010-17 against": {
+   "trades": 944,
+   "avg_R": -0.131,
+   "total_R": -123.7
+  },
+  "2018-20 with": {
+   "trades": 804,
+   "avg_R": 0.12,
+   "total_R": 96.7
+  },
+  "2018-20 against": {
+   "trades": 626,
+   "avg_R": 0.033,
+   "total_R": 20.6
+  }
+ },
+ "leverage_1_25x": {
+  "1.25x baseline": {
+   "final_usd": 1163473,
+   "cagr_pct": 26.7,
+   "sharpe": 1.04,
+   "sortino": 1.74,
+   "worst_drop_pct": -29.0,
+   "boot21_chance_drop_worse_than_35_pct": 42.2
+  },
+  "1.25x K1": {
+   "final_usd": 2187702,
+   "cagr_pct": 34.6,
+   "sharpe": 1.2,
+   "sortino": 2.07,
+   "worst_drop_pct": -25.3,
+   "boot21_chance_drop_worse_than_35_pct": 40.8
+  },
+  "1.25x K2": {
+   "final_usd": 2352417,
+   "cagr_pct": 35.6,
+   "sharpe": 1.41,
+   "sortino": 2.31,
+   "worst_drop_pct": -22.4,
+   "boot21_chance_drop_worse_than_35_pct": 15.4
+  }
+ }
+}
