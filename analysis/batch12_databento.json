@@ -1,0 +1,178 @@
+{
+ "era": "databento",
+ "range": [
+  "2021-01-27",
+  "2026-11-12"
+ ],
+ "verdict_this_era": {
+  "M1 day-after reallocation": "FAIL",
+  "M2 skip day after big win": "PASS",
+  "M3 gap-and-yesterday": "PASS"
+ },
+ "history": {
+  "package baseline": {
+   "final_usd": 1304474,
+   "cagr_pct": 56.4,
+   "sharpe": 1.61,
+   "sortino": 3.18,
+   "worst_drop_pct": -19.4
+  },
+  "M1 day-after reallocation": {
+   "final_usd": 2129746,
+   "cagr_pct": 70.3,
+   "sharpe": 1.73,
+   "sortino": 3.58,
+   "worst_drop_pct": -24.2
+  },
+  "M2 skip day after big win": {
+   "final_usd": 1516589,
+   "cagr_pct": 60.6,
+   "sharpe": 1.73,
+   "sortino": 3.46,
+   "worst_drop_pct": -19.0
+  },
+  "M3 gap-and-yesterday": {
+   "final_usd": 1682202,
+   "cagr_pct": 63.5,
+   "sharpe": 1.69,
+   "sortino": 3.41,
+   "worst_drop_pct": -20.3
+  }
+ },
+ "bootstrap": {
+  "package baseline": {
+   "median_cagr_pct": 59.9,
+   "bad_case_cagr_pct_5th": 36.5,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 1.0
+  },
+  "M1 day-after reallocation": {
+   "median_cagr_pct": 73.3,
+   "bad_case_cagr_pct_5th": 46.2,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 2.2
+  },
+  "M2 skip day after big win": {
+   "median_cagr_pct": 64.2,
+   "bad_case_cagr_pct_5th": 39.6,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 0.4
+  },
+  "M3 gap-and-yesterday": {
+   "median_cagr_pct": 66.2,
+   "bad_case_cagr_pct_5th": 40.9,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 1.0
+  }
+ },
+ "avg_trade_weight": {
+  "package baseline": 1.0,
+  "M1 day-after reallocation": 1.151,
+  "M2 skip day after big win": 0.873,
+  "M3 gap-and-yesterday": 1.029
+ },
+ "combinations_for_the_record": {
+  "M1 + M2": {
+   "final_usd": 2288654,
+   "cagr_pct": 72.5,
+   "sharpe": 1.77,
+   "sortino": 3.68,
+   "worst_drop_pct": -22.9,
+   "boot": 1.2,
+   "verdict": "FAIL"
+  },
+  "M1 + M3": {
+   "final_usd": 2907638,
+   "cagr_pct": 79.8,
+   "sharpe": 1.79,
+   "sortino": 3.84,
+   "worst_drop_pct": -23.0,
+   "boot": 2.9,
+   "verdict": "FAIL"
+  },
+  "M2 + M3": {
+   "final_usd": 1924709,
+   "cagr_pct": 67.4,
+   "sharpe": 1.81,
+   "sortino": 3.69,
+   "worst_drop_pct": -20.6,
+   "boot": 0.9,
+   "verdict": "FAIL"
+  },
+  "M1 + M2 + M3": {
+   "final_usd": 3097709,
+   "cagr_pct": 81.8,
+   "sharpe": 1.83,
+   "sortino": 3.94,
+   "worst_drop_pct": -22.3,
+   "boot": 2.3,
+   "verdict": "FAIL"
+  }
+ },
+ "leverage_1_25x": {
+  "1.25x package baseline": {
+   "final_usd": 2181453,
+   "cagr_pct": 71.1,
+   "sharpe": 1.59,
+   "sortino": 3.13,
+   "worst_drop_pct": -23.9,
+   "boot21_chance_drop_worse_than_35_pct": 21.3
+  },
+  "1.25x M1 day-after reallocation": {
+   "final_usd": 3954456,
+   "cagr_pct": 89.7,
+   "sharpe": 1.71,
+   "sortino": 3.53,
+   "worst_drop_pct": -29.7,
+   "boot21_chance_drop_worse_than_35_pct": 25.9
+  },
+  "1.25x M2 skip day after big win": {
+   "final_usd": 2643403,
+   "cagr_pct": 76.9,
+   "sharpe": 1.71,
+   "sortino": 3.41,
+   "worst_drop_pct": -23.6,
+   "boot21_chance_drop_worse_than_35_pct": 13.6
+  },
+  "1.25x M3 gap-and-yesterday": {
+   "final_usd": 2976981,
+   "cagr_pct": 80.6,
+   "sharpe": 1.67,
+   "sortino": 3.36,
+   "worst_drop_pct": -24.9,
+   "boot21_chance_drop_worse_than_35_pct": 23.2
+  },
+  "1.25x M1 + M2": {
+   "final_usd": 4330291,
+   "cagr_pct": 92.8,
+   "sharpe": 1.75,
+   "sortino": 3.64,
+   "worst_drop_pct": -28.1,
+   "boot21_chance_drop_worse_than_35_pct": 21.9
+  },
+  "1.25x M1 + M3": {
+   "final_usd": 5760461,
+   "cagr_pct": 102.6,
+   "sharpe": 1.77,
+   "sortino": 3.8,
+   "worst_drop_pct": -28.3,
+   "boot21_chance_drop_worse_than_35_pct": 31.7
+  },
+  "1.25x M2 + M3": {
+   "final_usd": 3539129,
+   "cagr_pct": 86.1,
+   "sharpe": 1.79,
+   "sortino": 3.64,
+   "worst_drop_pct": -25.5,
+   "boot21_chance_drop_worse_than_35_pct": 15.1
+  },
+  "1.25x M1 + M2 + M3": {
+   "final_usd": 6241768,
+   "cagr_pct": 105.4,
+   "sharpe": 1.81,
+   "sortino": 3.89,
+   "worst_drop_pct": -27.3,
+   "boot21_chance_drop_worse_than_35_pct": 29.1
+  }
+ }
+}

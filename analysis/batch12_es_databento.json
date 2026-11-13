@@ -1,0 +1,29 @@
+{
+ "era": "databento",
+ "trades": 2455,
+ "total_R": -82.5,
+ "day_after": {
+  "2021-26 | after win > 2R": {
+   "days": 142,
+   "avg_R_per_day": -0.222
+  },
+  "2021-26 | other days": {
+   "days": 1304,
+   "avg_R_per_day": -0.033
+  }
+ },
+ "gap_and_yesterday": {
+  "2021-26 | against gap, with yesterday": {
+   "trades": 566,
+   "avg_R": -0.045
+  },
+  "2021-26 | other": {
+   "trades": 1187,
+   "avg_R": -0.077
+  },
+  "2021-26 | with gap, against yesterday": {
+   "trades": 685,
+   "avg_R": 0.062
+  }
+ }
+}

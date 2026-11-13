@@ -1,0 +1,49 @@
+{
+ "era": "lockbox2010",
+ "trades": 2723,
+ "total_R": -146.8,
+ "day_after": {
+  "2010-17 | after win > 2R": {
+   "days": 63,
+   "avg_R_per_day": -0.25
+  },
+  "2010-17 | other days": {
+   "days": 1803,
+   "avg_R_per_day": -0.055
+  },
+  "2018-20 | after win > 2R": {
+   "days": 51,
+   "avg_R_per_day": 0.043
+  },
+  "2018-20 | other days": {
+   "days": 697,
+   "avg_R_per_day": -0.046
+  }
+ },
+ "gap_and_yesterday": {
+  "2010-17 | against gap, with yesterday": {
+   "trades": 337,
+   "avg_R": -0.111
+  },
+  "2010-17 | other": {
+   "trades": 862,
+   "avg_R": -0.103
+  },
+  "2010-17 | with gap, against yesterday": {
+   "trades": 510,
+   "avg_R": 0.02
+  },
+  "2018-20 | against gap, with yesterday": {
+   "trades": 197,
+   "avg_R": 0.025
+  },
+  "2018-20 | other": {
+   "trades": 530,
+   "avg_R": -0.038
+  },
+  "2018-20 | with gap, against yesterday": {
+   "trades": 282,
+   "avg_R": -0.052
+  }
+ }
+}
