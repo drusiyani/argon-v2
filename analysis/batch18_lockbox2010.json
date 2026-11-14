@@ -1,0 +1,122 @@
+{
+ "era": "lockbox2010",
+ "range": [
+  "2010-07-01",
+  "2020-12-31"
+ ],
+ "limits_index_alone": {
+  "drop": -28.6,
+  "boot": 8.3
+ },
+ "history": {
+  "package baseline": {
+   "final_usd": 761141,
+   "cagr_pct": 21.6,
+   "sharpe": 1.05,
+   "sortino": 1.75,
+   "worst_drop_pct": -23.5
+  },
+  "Q QuantLab second chance": {
+   "final_usd": 599491,
+   "cagr_pct": 18.8,
+   "sharpe": 0.92,
+   "sortino": 1.53,
+   "worst_drop_pct": -24.9
+  },
+  "G1 low-gamma days only": {
+   "final_usd": 1197292,
+   "cagr_pct": 27.0,
+   "sharpe": 1.35,
+   "sortino": 2.17,
+   "worst_drop_pct": -21.8
+  },
+  "G2 gamma reallocation": {
+   "final_usd": 1252818,
+   "cagr_pct": 27.6,
+   "sharpe": 1.19,
+   "sortino": 2.06,
+   "worst_drop_pct": -25.5
+  }
+ },
+ "bootstrap": {
+  "package baseline": {
+   "median_cagr_pct": 20.6,
+   "bad_case_cagr_pct_5th": 11.0,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 7.4
+  },
+  "Q QuantLab second chance": {
+   "median_cagr_pct": 17.9,
+   "bad_case_cagr_pct_5th": 8.3,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 14.2
+  },
+  "G1 low-gamma days only": {
+   "median_cagr_pct": 25.2,
+   "bad_case_cagr_pct_5th": 15.9,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 4.5
+  },
+  "G2 gamma reallocation": {
+   "median_cagr_pct": 25.7,
+   "bad_case_cagr_pct_5th": 14.9,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 12.1
+  }
+ },
+ "marks": {
+  "Q QuantLab second chance": {
+   "strict": false,
+   "growth": false
+  },
+  "G1 low-gamma days only": {
+   "strict": true,
+   "growth": true
+  },
+  "G2 gamma reallocation": {
+   "strict": false,
+   "growth": false
+  }
+ },
+ "diag_reentry": {
+  "2010-17": {
+   "trades": 2813,
+   "avg_R": -0.256,
+   "total_R": -719.1
+  },
+  "2018-20": {
+   "trades": 982,
+   "avg_R": -0.21,
+   "total_R": -206.6
+  },
+  "2021-25": {
+   "trades": 0,
+   "avg_R": null,
+   "total_R": 0
+  },
+  "2026": {
+   "trades": 0,
+   "avg_R": null,
+   "total_R": 0
+  },
+  "picked_into_book": 144
+ },
+ "diag_gamma": {
+  "2011-17 low": {
+   "days": 656,
+   "avg_rules_R_per_day": -0.016
+  },
+  "2011-17 high": {
+   "days": 875,
+   "avg_rules_R_per_day": -0.065
+  },
+  "2018-20 low": {
+   "days": 368,
+   "avg_rules_R_per_day": 0.391
+  },
+  "2018-20 high": {
+   "days": 380,
+   "avg_rules_R_per_day": -0.07
+  }
+ }
+}

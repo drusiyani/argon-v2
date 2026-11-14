@@ -1,0 +1,114 @@
+{
+ "era": "databento",
+ "range": [
+  "2021-01-27",
+  "2026-11-12"
+ ],
+ "limits_index_alone": {
+  "drop": -35.1,
+  "boot": 35.3
+ },
+ "history": {
+  "package baseline": {
+   "final_usd": 1304474,
+   "cagr_pct": 56.4,
+   "sharpe": 1.61,
+   "sortino": 3.18,
+   "worst_drop_pct": -19.4
+  },
+  "Q QuantLab second chance": {
+   "final_usd": 1095299,
+   "cagr_pct": 51.7,
+   "sharpe": 1.47,
+   "sortino": 2.83,
+   "worst_drop_pct": -21.9
+  },
+  "G1 low-gamma days only": {
+   "final_usd": 422633,
+   "cagr_pct": 28.5,
+   "sharpe": 1.14,
+   "sortino": 1.9,
+   "worst_drop_pct": -23.0
+  },
+  "G2 gamma reallocation": {
+   "final_usd": 854265,
+   "cagr_pct": 45.3,
+   "sharpe": 1.39,
+   "sortino": 2.61,
+   "worst_drop_pct": -25.2
+  }
+ },
+ "bootstrap": {
+  "package baseline": {
+   "median_cagr_pct": 59.9,
+   "bad_case_cagr_pct_5th": 36.5,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 1.0
+  },
+  "Q QuantLab second chance": {
+   "median_cagr_pct": 56.1,
+   "bad_case_cagr_pct_5th": 30.3,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 6.6
+  },
+  "G1 low-gamma days only": {
+   "median_cagr_pct": 32.0,
+   "bad_case_cagr_pct_5th": 15.7,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 6.5
+  },
+  "G2 gamma reallocation": {
+   "median_cagr_pct": 48.9,
+   "bad_case_cagr_pct_5th": 28.2,
+   "chance_losing_money_pct": 0.0,
+   "chance_drop_worse_than_35_pct": 3.7
+  }
+ },
+ "marks": {
+  "Q QuantLab second chance": {
+   "strict": false,
+   "growth": false
+  },
+  "G1 low-gamma days only": {
+   "strict": false,
+   "growth": false
+  },
+  "G2 gamma reallocation": {
+   "strict": false,
+   "growth": false
+  }
+ },
+ "diag_reentry": {
+  "2010-17": {
+   "trades": 0,
+   "avg_R": null,
+   "total_R": 0
+  },
+  "2018-20": {
+   "trades": 0,
+   "avg_R": null,
+   "total_R": 0
+  },
+  "2021-25": {
+   "trades": 1798,
+   "avg_R": -0.014,
+   "total_R": -24.9
+  },
+  "2026": {
+   "trades": 376,
+   "avg_R": -0.253,
+   "total_R": -95.1
+  },
+  "picked_into_book": 347
+ },
+ "diag_gamma": {
+  "2021-26 low": {
+   "days": 662,
+   "avg_rules_R_per_day": 0.108
+  },
+  "2021-26 high": {
+   "days": 785,
+   "avg_rules_R_per_day": 0.31
+  }
+ }
+}
