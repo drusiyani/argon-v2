@@ -1,0 +1,50 @@
+{
+ "luck_check_skip_only": {
+  "databento": {
+   "model_cagr": 57.9,
+   "shuffled_mean_cagr": 47.3,
+   "shuffles_beating_model_on_return": 7,
+   "model_sortino": 3.3,
+   "shuffles_beating_model_on_sortino": 8
+  },
+  "lockbox2010": {
+   "model_cagr": 28.5,
+   "shuffled_mean_cagr": 21.3,
+   "shuffles_beating_model_on_return": 0,
+   "model_sortino": 2.29,
+   "shuffles_beating_model_on_sortino": 1
+  }
+ },
+ "sub_periods": {
+  "core only (no rules)": {
+   "2013-17 (no edge)": "+17.4% / -17.1%",
+   "2018-20": "+28.2% / -17.8%",
+   "2021-25": "+20.4% / -25.8%",
+   "2026 so far": "+10.0% / -14.1%"
+  },
+  "package today": {
+   "2013-17 (no edge)": "+9.5% / -23.5%",
+   "2018-20": "+53.9% / -20.4%",
+   "2021-25": "+64.2% / -19.4%",
+   "2026 so far": "+19.1% / -18.9%"
+  },
+  "skip-only (R2)": {
+   "2013-17 (no edge)": "+15.8% / -20.8%",
+   "2018-20": "+66.7% / -19.5%",
+   "2021-25": "+64.3% / -18.8%",
+   "2026 so far": "+25.9% / -18.7%"
+  },
+  "cut-only (R1)": {
+   "2013-17 (no edge)": "+12.6% / -21.9%",
+   "2018-20": "+60.3% / -20.0%",
+   "2021-25": "+64.4% / -16.9%",
+   "2026 so far": "+22.6% / -18.8%"
+  },
+  "model x0.5/x1/x1.5": {
+   "2013-17 (no edge)": "+11.9% / -23.5%",
+   "2018-20": "+75.1% / -21.6%",
+   "2021-25": "+80.8% / -17.4%",
+   "2026 so far": "+31.4% / -22.5%"
+  }
+ }
+}
