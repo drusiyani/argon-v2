@@ -1,0 +1,648 @@
+{
+ "limits_index_alone": {
+  "databento": {
+   "drop": -35.1,
+   "boot": 35.3
+  },
+  "lockbox2010": {
+   "drop": -28.6,
+   "boot": 8.3
+  }
+ },
+ "baseline": {
+  "databento": {
+   "cagr_pct": 56.4,
+   "sharpe": 1.61,
+   "sortino": 3.18,
+   "worst_drop_pct": -19.4,
+   "boot": 1.0
+  },
+  "lockbox2010": {
+   "cagr_pct": 21.6,
+   "sharpe": 1.05,
+   "sortino": 1.75,
+   "worst_drop_pct": -23.5,
+   "boot": 7.4
+  }
+ },
+ "part_A": {
+  "by_period": {
+   "2013-17": {
+    "x0.5": {
+     "trades": 367,
+     "avg_R": -0.068
+    },
+    "x1.0": {
+     "trades": 432,
+     "avg_R": -0.042
+    },
+    "x1.5": {
+     "trades": 395,
+     "avg_R": -0.056
+    }
+   },
+   "2018-20": {
+    "x0.5": {
+     "trades": 281,
+     "avg_R": 0.005
+    },
+    "x1.0": {
+     "trades": 286,
+     "avg_R": 0.0
+    },
+    "x1.5": {
+     "trades": 442,
+     "avg_R": -0.071
+    }
+   },
+   "2021-26": {
+    "x0.5": {
+     "trades": 673,
+     "avg_R": -0.053
+    },
+    "x1.0": {
+     "trades": 761,
+     "avg_R": -0.038
+    },
+    "x1.5": {
+     "trades": 999,
+     "avg_R": -0.009
+    }
+   }
+  },
+  "top_third_2013_20": {
+   "trades": 837,
+   "avg_R": -0.064
+  },
+  "top_third_2021_26": {
+   "trades": 999,
+   "avg_R": -0.009
+  },
+  "replicates": false,
+  "part_B_condition_met": false
+ },
+ "results": {
+  "baseline": {
+   "name": "package baseline",
+   "databento": {
+    "cagr_pct": 56.4,
+    "sharpe": 1.61,
+    "sortino": 3.18,
+    "worst_drop_pct": -19.4,
+    "boot": 1.0,
+    "strict": false,
+    "growth": false,
+    "lev125": {
+     "cagr_pct": 71.1,
+     "sharpe": 1.59,
+     "sortino": 3.13,
+     "worst_drop_pct": -23.9,
+     "boot21": 21.3,
+     "ok": false
+    }
+   },
+   "lockbox2010": {
+    "cagr_pct": 21.6,
+    "sharpe": 1.05,
+    "sortino": 1.75,
+    "worst_drop_pct": -23.5,
+    "boot": 7.4,
+    "strict": false,
+    "growth": false,
+    "lev125": {
+     "cagr_pct": 26.7,
+     "sharpe": 1.04,
+     "sortino": 1.74,
+     "worst_drop_pct": -29.0,
+     "boot21": 42.2,
+     "ok": false
+    }
+   },
+   "strict_both": false,
+   "growth_both": false,
+   "lev125_both": false
+  },
+  "W1": {
+   "name": "W1 yearly, 24 features (batch 13)",
+   "databento": {
+    "cagr_pct": 71.5,
+    "sharpe": 1.73,
+    "sortino": 3.64,
+    "worst_drop_pct": -22.2,
+    "boot": 1.2,
+    "strict": false,
+    "growth": true,
+    "lev125": {
+     "cagr_pct": 91.3,
+     "sharpe": 1.71,
+     "sortino": 3.59,
+     "worst_drop_pct": -27.3,
+     "boot21": 26.0,
+     "ok": false
+    }
+   },
+   "lockbox2010": {
+    "cagr_pct": 26.8,
+    "sharpe": 1.18,
+    "sortino": 2.08,
+    "worst_drop_pct": -24.4,
+    "boot": 6.9,
+    "strict": true,
+    "growth": true,
+    "lev125": {
+     "cagr_pct": 33.4,
+     "sharpe": 1.17,
+     "sortino": 2.07,
+     "worst_drop_pct": -29.8,
+     "boot21": 43.2,
+     "ok": false
+    }
+   },
+   "strict_both": false,
+   "growth_both": true,
+   "lev125_both": false
+  },
+  "W1m": {
+   "name": "W1m monthly, 24 features",
+   "databento": {
+    "cagr_pct": 72.3,
+    "sharpe": 1.73,
+    "sortino": 3.67,
+    "worst_drop_pct": -22.5,
+    "boot": 1.2,
+    "strict": false,
+    "growth": true,
+    "lev125": {
+     "cagr_pct": 92.3,
+     "sharpe": 1.72,
+     "sortino": 3.63,
+     "worst_drop_pct": -27.7,
+     "boot21": 26.4,
+     "ok": false
+    }
+   },
+   "lockbox2010": {
+    "cagr_pct": 28.1,
+    "sharpe": 1.21,
+    "sortino": 2.15,
+    "worst_drop_pct": -23.5,
+    "boot": 6.2,
+    "strict": true,
+    "growth": true,
+    "lev125": {
+     "cagr_pct": 35.0,
+     "sharpe": 1.2,
+     "sortino": 2.14,
+     "worst_drop_pct": -28.7,
+     "boot21": 44.5,
+     "ok": false
+    }
+   },
+   "strict_both": false,
+   "growth_both": true,
+   "lev125_both": false
+  },
+  "W3": {
+   "name": "W3 monthly, 52 features",
+   "databento": {
+    "cagr_pct": 70.6,
+    "sharpe": 1.74,
+    "sortino": 3.67,
+    "worst_drop_pct": -19.8,
+    "boot": 0.9,
+    "strict": true,
+    "growth": true,
+    "lev125": {
+     "cagr_pct": 90.1,
+     "sharpe": 1.72,
+     "sortino": 3.62,
+     "worst_drop_pct": -24.2,
+     "boot21": 21.5,
+     "ok": false
+    }
+   },
+   "lockbox2010": {
+    "cagr_pct": 28.3,
+    "sharpe": 1.2,
+    "sortino": 2.19,
+    "worst_drop_pct": -25.6,
+    "boot": 8.8,
+    "strict": false,
+    "growth": false,
+    "lev125": {
+     "cagr_pct": 35.3,
+     "sharpe": 1.2,
+     "sortino": 2.18,
+     "worst_drop_pct": -31.2,
+     "boot21": 44.1,
+     "ok": false
+    }
+   },
+   "strict_both": false,
+   "growth_both": false,
+   "lev125_both": false
+  },
+  "D": {
+   "name": "candidate: W1m sizing",
+   "databento": {
+    "cagr_pct": 72.3,
+    "sharpe": 1.73,
+    "sortino": 3.67,
+    "worst_drop_pct": -22.5,
+    "boot": 1.2,
+    "strict": false,
+    "growth": true,
+    "lev125": {
+     "cagr_pct": 92.3,
+     "sharpe": 1.72,
+     "sortino": 3.63,
+     "worst_drop_pct": -27.7,
+     "boot21": 26.4,
+     "ok": false
+    }
+   },
+   "lockbox2010": {
+    "cagr_pct": 28.1,
+    "sharpe": 1.21,
+    "sortino": 2.15,
+    "worst_drop_pct": -23.5,
+    "boot": 6.2,
+    "strict": true,
+    "growth": true,
+    "lev125": {
+     "cagr_pct": 35.0,
+     "sharpe": 1.2,
+     "sortino": 2.14,
+     "worst_drop_pct": -28.7,
+     "boot21": 44.5,
+     "ok": false
+    }
+   },
+   "strict_both": false,
+   "growth_both": true,
+   "lev125_both": false
+  }
+ },
+ "chosen_model": "W1m",
+ "nasdaq_buckets": {
+  "W1": {
+   "2013-17": {
+    "x0.5": {
+     "trades": 490,
+     "avg_R": -0.089
+    },
+    "x1.0": {
+     "trades": 482,
+     "avg_R": -0.023
+    },
+    "x1.5": {
+     "trades": 495,
+     "avg_R": -0.018
+    }
+   },
+   "2018-20": {
+    "x0.5": {
+     "trades": 427,
+     "avg_R": -0.079
+    },
+    "x1.0": {
+     "trades": 361,
+     "avg_R": 0.089
+    },
+    "x1.5": {
+     "trades": 642,
+     "avg_R": 0.186
+    }
+   },
+   "2021-26": {
+    "x0.5": {
+     "trades": 697,
+     "avg_R": -0.01
+    },
+    "x1.0": {
+     "trades": 916,
+     "avg_R": 0.097
+    },
+    "x1.5": {
+     "trades": 1374,
+     "avg_R": 0.17
+    }
+   }
+  },
+  "W1m": {
+   "2013-17": {
+    "x0.5": {
+     "trades": 510,
+     "avg_R": -0.107
+    },
+    "x1.0": {
+     "trades": 467,
+     "avg_R": -0.003
+    },
+    "x1.5": {
+     "trades": 490,
+     "avg_R": -0.015
+    }
+   },
+   "2018-20": {
+    "x0.5": {
+     "trades": 397,
+     "avg_R": -0.114
+    },
+    "x1.0": {
+     "trades": 344,
+     "avg_R": 0.121
+    },
+    "x1.5": {
+     "trades": 689,
+     "avg_R": 0.176
+    }
+   },
+   "2021-26": {
+    "x0.5": {
+     "trades": 696,
+     "avg_R": -0.011
+    },
+    "x1.0": {
+     "trades": 925,
+     "avg_R": 0.086
+    },
+    "x1.5": {
+     "trades": 1366,
+     "avg_R": 0.178
+    }
+   }
+  },
+  "W3": {
+   "2013-17": {
+    "x0.5": {
+     "trades": 479,
+     "avg_R": -0.017
+    },
+    "x1.0": {
+     "trades": 459,
+     "avg_R": -0.107
+    },
+    "x1.5": {
+     "trades": 529,
+     "avg_R": -0.012
+    }
+   },
+   "2018-20": {
+    "x0.5": {
+     "trades": 386,
+     "avg_R": -0.168
+    },
+    "x1.0": {
+     "trades": 337,
+     "avg_R": 0.074
+    },
+    "x1.5": {
+     "trades": 707,
+     "avg_R": 0.222
+    }
+   },
+   "2021-26": {
+    "x0.5": {
+     "trades": 721,
+     "avg_R": -0.025
+    },
+    "x1.0": {
+     "trades": 888,
+     "avg_R": 0.146
+    },
+    "x1.5": {
+     "trades": 1378,
+     "avg_R": 0.148
+    }
+   }
+  }
+ },
+ "W3_latest_weights": [
+  [
+   "yesterday o-c",
+   -0.1467
+  ],
+  [
+   "is QuantLab",
+   0.0889
+  ],
+  [
+   "yesterday rules R",
+   -0.0801
+  ],
+  [
+   "dist from open",
+   0.0515
+  ],
+  [
+   "08:30 reaction",
+   0.0479
+  ],
+  [
+   "policy uncertainty",
+   0.047
+  ],
+  [
+   "VIX/VIX3M",
+   -0.0456
+  ],
+  [
+   "overnight range",
+   -0.0446
+  ],
+  [
+   "movement so far",
+   -0.0425
+  ],
+  [
+   "oil 5d",
+   -0.042
+  ],
+  [
+   "range position",
+   0.0407
+  ],
+  [
+   "NQ minus S&P",
+   0.0381
+  ],
+  [
+   "yesterday close loc",
+   0.0375
+  ],
+  [
+   "|gap|",
+   0.0363
+  ],
+  [
+   "vs QuantLab",
+   0.0358
+  ],
+  [
+   "no trades yesterday",
+   -0.0351
+  ],
+  [
+   "Fed tomorrow",
+   -0.0336
+  ],
+  [
+   "open outside range",
+   0.0307
+  ],
+  [
+   "10y-2y",
+   -0.0307
+  ],
+  [
+   "yesterday c-c",
+   0.03
+  ],
+  [
+   "gap dir",
+   0.0298
+  ],
+  [
+   "rules R so far today",
+   -0.0279
+  ],
+  [
+   "VXN 5d",
+   0.0266
+  ],
+  [
+   "stop size",
+   -0.024
+  ],
+  [
+   "is noise band",
+   -0.0227
+  ],
+  [
+   "month start",
+   0.0221
+  ],
+  [
+   "S&P move",
+   0.0218
+  ],
+  [
+   "10y 5d",
+   -0.02
+  ],
+  [
+   "dollar 5d",
+   -0.0198
+  ],
+  [
+   "side",
+   -0.0194
+  ],
+  [
+   "Fed yesterday",
+   0.0186
+  ],
+  [
+   "yesterday range",
+   -0.0184
+  ],
+  [
+   "time of day",
+   -0.0178
+  ],
+  [
+   "opening range",
+   -0.0175
+  ],
+  [
+   "VXN weight",
+   -0.0167
+  ],
+  [
+   "Monday",
+   -0.0141
+  ],
+  [
+   "Fri",
+   0.0138
+  ],
+  [
+   "overnight dir",
+   0.0132
+  ],
+  [
+   "open in overnight range",
+   0.0119
+  ],
+  [
+   "volume so far",
+   0.0112
+  ],
+  [
+   "expiry week",
+   0.0083
+  ],
+  [
+   "dist from VWAP",
+   -0.0082
+  ],
+  [
+   "trade number",
+   -0.0065
+  ],
+  [
+   "same-dir open",
+   -0.0056
+  ],
+  [
+   "5d",
+   0.0034
+  ],
+  [
+   "month end",
+   0.0031
+  ],
+  [
+   "Tue",
+   0.0025
+  ],
+  [
+   "Wed",
+   -0.0019
+  ],
+  [
+   "gap signed",
+   0.0018
+  ],
+  [
+   "Thu",
+   -0.001
+  ],
+  [
+   "20d",
+   0.0006
+  ],
+  [
+   "pre-mkt volume",
+   -0.0003
+  ]
+ ],
+ "luck_check": {
+  "databento": {
+   "model": 72.3,
+   "shuffled_mean": 59.3,
+   "shuffles_beating_model": 4
+  },
+  "lockbox2010": {
+   "model": 28.1,
+   "shuffled_mean": 22.0,
+   "shuffles_beating_model": 1
+  }
+ },
+ "rows": {
+  "nasdaq": 6561,
+  "nasdaq_with_new_features": 6561,
+  "sp": 5147
+ }
+}
