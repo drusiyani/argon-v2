@@ -1,0 +1,303 @@
+{
+ "part_A_mechanism": {
+  "NQ": {
+   "2010-17": {
+    "next_day_after_big_move": {
+     "size": 0.51,
+     "straightness": 0.474
+    },
+    "next_day_after_other": {
+     "size": 0.445,
+     "straightness": 0.462
+    },
+    "follow_gap_all": {
+     "days": 1826,
+     "avg_bps": 1.9,
+     "t": 1.0
+    },
+    "follow_gap_against_yesterday": {
+     "days": 907,
+     "avg_bps": 5.8,
+     "t": 2.13
+    },
+    "follow_gap_with_yesterday": {
+     "days": 914,
+     "avg_bps": -1.8,
+     "t": -0.69
+    }
+   },
+   "2018-20": {
+    "next_day_after_big_move": {
+     "size": 0.562,
+     "straightness": 0.467
+    },
+    "next_day_after_other": {
+     "size": 0.456,
+     "straightness": 0.473
+    },
+    "follow_gap_all": {
+     "days": 736,
+     "avg_bps": 1.3,
+     "t": 0.3
+    },
+    "follow_gap_against_yesterday": {
+     "days": 342,
+     "avg_bps": 15.7,
+     "t": 2.39
+    },
+    "follow_gap_with_yesterday": {
+     "days": 392,
+     "avg_bps": -11.5,
+     "t": -1.91
+    }
+   },
+   "2021-26": {
+    "next_day_after_big_move": {
+     "size": 0.502,
+     "straightness": 0.467
+    },
+    "next_day_after_other": {
+     "size": 0.476,
+     "straightness": 0.499
+    },
+    "follow_gap_all": {
+     "days": 1423,
+     "avg_bps": 0.5,
+     "t": 0.17
+    },
+    "follow_gap_against_yesterday": {
+     "days": 712,
+     "avg_bps": 1.7,
+     "t": 0.41
+    },
+    "follow_gap_with_yesterday": {
+     "days": 709,
+     "avg_bps": -0.9,
+     "t": -0.19
+    }
+   }
+  },
+  "ES": {
+   "2010-17": {
+    "next_day_after_big_move": {
+     "size": 0.476,
+     "straightness": 0.45
+    },
+    "next_day_after_other": {
+     "size": 0.435,
+     "straightness": 0.459
+    },
+    "follow_gap_all": {
+     "days": 1809,
+     "avg_bps": 2.4,
+     "t": 1.49
+    },
+    "follow_gap_against_yesterday": {
+     "days": 913,
+     "avg_bps": 5.0,
+     "t": 2.17
+    },
+    "follow_gap_with_yesterday": {
+     "days": 871,
+     "avg_bps": -0.4,
+     "t": -0.16
+    }
+   },
+   "2018-20": {
+    "next_day_after_big_move": {
+     "size": 0.566,
+     "straightness": 0.441
+    },
+    "next_day_after_other": {
+     "size": 0.444,
+     "straightness": 0.467
+    },
+    "follow_gap_all": {
+     "days": 731,
+     "avg_bps": -1.0,
+     "t": -0.26
+    },
+    "follow_gap_against_yesterday": {
+     "days": 343,
+     "avg_bps": 5.1,
+     "t": 0.97
+    },
+    "follow_gap_with_yesterday": {
+     "days": 380,
+     "avg_bps": -7.4,
+     "t": -1.41
+    }
+   },
+   "2021-26": {
+    "next_day_after_big_move": {
+     "size": 0.546,
+     "straightness": 0.458
+    },
+    "next_day_after_other": {
+     "size": 0.453,
+     "straightness": 0.483
+    },
+    "follow_gap_all": {
+     "days": 1417,
+     "avg_bps": -1.8,
+     "t": -0.78
+    },
+    "follow_gap_against_yesterday": {
+     "days": 720,
+     "avg_bps": -0.4,
+     "t": -0.13
+    },
+    "follow_gap_with_yesterday": {
+     "days": 691,
+     "avg_bps": -3.4,
+     "t": -0.99
+    }
+   }
+  }
+ },
+ "part_B": {
+  "condition_met": true,
+  "alone_at_1x": {
+   "databento": {
+    "trades": 711,
+    "per_year_pct": 3.6,
+    "sharpe": 0.29,
+    "worst_drop_pct": -19.0,
+    "avg_bps_per_trade": 2.9
+   },
+   "lockbox2010": {
+    "trades": 1248,
+    "per_year_pct": 6.7,
+    "sharpe": 0.67,
+    "worst_drop_pct": -20.4,
+    "avg_bps_per_trade": 5.6
+   }
+  },
+  "alone_passes": false
+ },
+ "results": {
+  "baseline": {
+   "name": "package today (rules 0.5, fixed size)",
+   "databento": {
+    "cagr_pct": 56.4,
+    "sharpe": 1.61,
+    "sortino": 3.18,
+    "worst_drop_pct": -19.4,
+    "boot": 1.0,
+    "growth": false
+   },
+   "lockbox2010": {
+    "cagr_pct": 21.6,
+    "sharpe": 1.05,
+    "sortino": 1.75,
+    "worst_drop_pct": -23.5,
+    "boot": 7.4,
+    "growth": false
+   },
+   "growth_both": false
+  },
+  "dial0.5": {
+   "name": "model-sized rules at weight 0.5",
+   "databento": {
+    "cagr_pct": 72.3,
+    "sharpe": 1.73,
+    "sortino": 3.67,
+    "worst_drop_pct": -22.5,
+    "boot": 1.2,
+    "growth": true
+   },
+   "lockbox2010": {
+    "cagr_pct": 28.1,
+    "sharpe": 1.21,
+    "sortino": 2.15,
+    "worst_drop_pct": -23.5,
+    "boot": 6.2,
+    "growth": true
+   },
+   "growth_both": true
+  },
+  "dial0.75": {
+   "name": "model-sized rules at weight 0.75",
+   "databento": {
+    "cagr_pct": 101.8,
+    "sharpe": 1.72,
+    "sortino": 4.08,
+    "worst_drop_pct": -30.3,
+    "boot": 16.6,
+    "growth": false
+   },
+   "lockbox2010": {
+    "cagr_pct": 30.5,
+    "sharpe": 1.05,
+    "sortino": 2.0,
+    "worst_drop_pct": -28.2,
+    "boot": 40.8,
+    "growth": false
+   },
+   "growth_both": false
+  },
+  "dial1.0": {
+   "name": "model-sized rules at weight 1.0",
+   "databento": {
+    "cagr_pct": 132.3,
+    "sharpe": 1.68,
+    "sortino": 4.27,
+    "worst_drop_pct": -37.5,
+    "boot": 58.5,
+    "growth": false
+   },
+   "lockbox2010": {
+    "cagr_pct": 32.2,
+    "sharpe": 0.93,
+    "sortino": 1.84,
+    "worst_drop_pct": -32.9,
+    "boot": 86.0,
+    "growth": false
+   },
+   "growth_both": false
+  }
+ },
+ "dial_chosen": 0.5,
+ "part_D_what_if_wrong": {
+  "core only (no rules)": {
+   "2013-17 (no edge)": "+17.4% / -17.1%",
+   "2018-20": "+28.2% / -17.8%",
+   "2021-25": "+20.4% / -25.8%",
+   "2026 so far": "+10.0% / -14.1%"
+  },
+  "package today": {
+   "2013-17 (no edge)": "+9.5% / -23.5%",
+   "2018-20": "+53.9% / -20.4%",
+   "2021-25": "+64.2% / -19.4%",
+   "2026 so far": "+19.1% / -18.9%"
+  },
+  "model-sized, rules 0.5": {
+   "2013-17 (no edge)": "+11.9% / -23.5%",
+   "2018-20": "+75.1% / -21.6%",
+   "2021-25": "+80.8% / -17.4%",
+   "2026 so far": "+31.4% / -22.5%"
+  },
+  "model-sized, rules 0.75": {
+   "2013-17 (no edge)": "+8.7% / -28.2%",
+   "2018-20": "+99.8% / -25.4%",
+   "2021-25": "+115.5% / -21.2%",
+   "2026 so far": "+39.3% / -30.3%"
+  },
+  "model-sized, rules 1.0": {
+   "2013-17 (no edge)": "+5.1% / -32.9%",
+   "2018-20": "+124.4% / -31.3%",
+   "2021-25": "+152.6% / -24.9%",
+   "2026 so far": "+44.8% / -37.5%"
+  }
+ },
+ "limits_index_alone": {
+  "databento": {
+   "drop": -35.1,
+   "boot": 35.3
+  },
+  "lockbox2010": {
+   "drop": -28.6,
+   "boot": 8.3
+  }
+ }
+}
