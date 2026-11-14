@@ -1,0 +1,551 @@
+{
+ "era": "databento",
+ "part1": {
+  "NQ": {
+   "2021": {
+    "quantlab": {
+     "n": 125,
+     "matched": 125,
+     "real_net": 17.6,
+     "real_before_commission": 23.1,
+     "friction_free": 36.2,
+     "kept_by_cost_rule": 125
+    },
+    "noiseband": {
+     "n": 58,
+     "matched": 58,
+     "real_net": 3.8,
+     "real_before_commission": 4.4,
+     "friction_free": 4.8,
+     "kept_by_cost_rule": 58
+    },
+    "atrband": {
+     "n": 142,
+     "matched": 142,
+     "real_net": 9.3,
+     "real_before_commission": 10.3,
+     "friction_free": 10.6,
+     "kept_by_cost_rule": 142
+    },
+    "all three": {
+     "n": 325,
+     "matched": 325,
+     "real_net": 30.7,
+     "real_before_commission": 37.8,
+     "friction_free": 51.6,
+     "kept_by_cost_rule": 325
+    }
+   },
+   "2022": {
+    "quantlab": {
+     "n": 249,
+     "matched": 249,
+     "real_net": 34.0,
+     "real_before_commission": 41.6,
+     "friction_free": 50.3,
+     "kept_by_cost_rule": 245
+    },
+    "noiseband": {
+     "n": 202,
+     "matched": 202,
+     "real_net": 13.5,
+     "real_before_commission": 15.1,
+     "friction_free": 16.0,
+     "kept_by_cost_rule": 202
+    },
+    "atrband": {
+     "n": 156,
+     "matched": 156,
+     "real_net": 15.4,
+     "real_before_commission": 16.0,
+     "friction_free": 16.3,
+     "kept_by_cost_rule": 156
+    },
+    "all three": {
+     "n": 607,
+     "matched": 607,
+     "real_net": 62.9,
+     "real_before_commission": 72.7,
+     "friction_free": 82.6,
+     "kept_by_cost_rule": 603
+    }
+   },
+   "2023": {
+    "quantlab": {
+     "n": 247,
+     "matched": 247,
+     "real_net": 38.6,
+     "real_before_commission": 48.0,
+     "friction_free": 59.4,
+     "kept_by_cost_rule": 244
+    },
+    "noiseband": {
+     "n": 175,
+     "matched": 175,
+     "real_net": 21.0,
+     "real_before_commission": 23.1,
+     "friction_free": 24.2,
+     "kept_by_cost_rule": 175
+    },
+    "atrband": {
+     "n": 142,
+     "matched": 142,
+     "real_net": 11.2,
+     "real_before_commission": 12.1,
+     "friction_free": 12.4,
+     "kept_by_cost_rule": 142
+    },
+    "all three": {
+     "n": 564,
+     "matched": 564,
+     "real_net": 70.8,
+     "real_before_commission": 83.2,
+     "friction_free": 96.0,
+     "kept_by_cost_rule": 561
+    }
+   },
+   "2024": {
+    "quantlab": {
+     "n": 248,
+     "matched": 248,
+     "real_net": 59.1,
+     "real_before_commission": 68.0,
+     "friction_free": 79.9,
+     "kept_by_cost_rule": 235
+    },
+    "noiseband": {
+     "n": 178,
+     "matched": 178,
+     "real_net": 7.2,
+     "real_before_commission": 8.9,
+     "friction_free": 9.8,
+     "kept_by_cost_rule": 178
+    },
+    "atrband": {
+     "n": 137,
+     "matched": 137,
+     "real_net": 8.2,
+     "real_before_commission": 8.9,
+     "friction_free": 9.1,
+     "kept_by_cost_rule": 137
+    },
+    "all three": {
+     "n": 563,
+     "matched": 563,
+     "real_net": 74.5,
+     "real_before_commission": 85.8,
+     "friction_free": 98.8,
+     "kept_by_cost_rule": 550
+    }
+   },
+   "2025": {
+    "quantlab": {
+     "n": 246,
+     "matched": 246,
+     "real_net": 29.6,
+     "real_before_commission": 35.9,
+     "friction_free": 46.5,
+     "kept_by_cost_rule": 246
+    },
+    "noiseband": {
+     "n": 140,
+     "matched": 140,
+     "real_net": 10.2,
+     "real_before_commission": 11.2,
+     "friction_free": 11.7,
+     "kept_by_cost_rule": 140
+    },
+    "atrband": {
+     "n": 136,
+     "matched": 136,
+     "real_net": 8.9,
+     "real_before_commission": 9.4,
+     "friction_free": 9.6,
+     "kept_by_cost_rule": 136
+    },
+    "all three": {
+     "n": 522,
+     "matched": 522,
+     "real_net": 48.7,
+     "real_before_commission": 56.5,
+     "friction_free": 67.8,
+     "kept_by_cost_rule": 522
+    }
+   },
+   "2026": {
+    "quantlab": {
+     "n": 217,
+     "matched": 217,
+     "real_net": 8.3,
+     "real_before_commission": 12.4,
+     "friction_free": 17.0,
+     "kept_by_cost_rule": 216
+    },
+    "noiseband": {
+     "n": 134,
+     "matched": 134,
+     "real_net": 2.2,
+     "real_before_commission": 2.9,
+     "friction_free": 3.3,
+     "kept_by_cost_rule": 134
+    },
+    "atrband": {
+     "n": 124,
+     "matched": 124,
+     "real_net": 1.3,
+     "real_before_commission": 1.7,
+     "friction_free": 1.9,
+     "kept_by_cost_rule": 124
+    },
+    "all three": {
+     "n": 475,
+     "matched": 475,
+     "real_net": 11.8,
+     "real_before_commission": 17.0,
+     "friction_free": 22.1,
+     "kept_by_cost_rule": 474
+    }
+   }
+  },
+  "ES": {
+   "2021": {
+    "quantlab": {
+     "n": 125,
+     "matched": 125,
+     "real_net": -23.5,
+     "real_before_commission": -6.5,
+     "friction_free": 21.4,
+     "kept_by_cost_rule": 44
+    },
+    "noiseband": {
+     "n": 58,
+     "matched": 58,
+     "real_net": -5.2,
+     "real_before_commission": -2.8,
+     "friction_free": -1.0,
+     "kept_by_cost_rule": 56
+    },
+    "atrband": {
+     "n": 125,
+     "matched": 125,
+     "real_net": 1.5,
+     "real_before_commission": 4.2,
+     "friction_free": 5.9,
+     "kept_by_cost_rule": 125
+    },
+    "all three": {
+     "n": 308,
+     "matched": 308,
+     "real_net": -27.2,
+     "real_before_commission": -5.1,
+     "friction_free": 26.2,
+     "kept_by_cost_rule": 225
+    }
+   },
+   "2022": {
+    "quantlab": {
+     "n": 248,
+     "matched": 248,
+     "real_net": -38.1,
+     "real_before_commission": -20.5,
+     "friction_free": 14.4,
+     "kept_by_cost_rule": 211
+    },
+    "noiseband": {
+     "n": 149,
+     "matched": 149,
+     "real_net": 23.0,
+     "real_before_commission": 26.4,
+     "friction_free": 29.0,
+     "kept_by_cost_rule": 149
+    },
+    "atrband": {
+     "n": 152,
+     "matched": 152,
+     "real_net": 14.5,
+     "real_before_commission": 16.3,
+     "friction_free": 17.3,
+     "kept_by_cost_rule": 152
+    },
+    "all three": {
+     "n": 549,
+     "matched": 549,
+     "real_net": -0.7,
+     "real_before_commission": 22.2,
+     "friction_free": 60.7,
+     "kept_by_cost_rule": 512
+    }
+   },
+   "2023": {
+    "quantlab": {
+     "n": 247,
+     "matched": 247,
+     "real_net": -66.8,
+     "real_before_commission": -38.2,
+     "friction_free": 19.7,
+     "kept_by_cost_rule": 92
+    },
+    "noiseband": {
+     "n": 175,
+     "matched": 175,
+     "real_net": 7.2,
+     "real_before_commission": 14.1,
+     "friction_free": 19.7,
+     "kept_by_cost_rule": 175
+    },
+    "atrband": {
+     "n": 135,
+     "matched": 135,
+     "real_net": 7.0,
+     "real_before_commission": 9.5,
+     "friction_free": 11.0,
+     "kept_by_cost_rule": 135
+    },
+    "all three": {
+     "n": 557,
+     "matched": 557,
+     "real_net": -52.5,
+     "real_before_commission": -14.6,
+     "friction_free": 50.3,
+     "kept_by_cost_rule": 402
+    }
+   },
+   "2024": {
+    "quantlab": {
+     "n": 248,
+     "matched": 248,
+     "real_net": -117.7,
+     "real_before_commission": -87.5,
+     "friction_free": -28.0,
+     "kept_by_cost_rule": 132
+    },
+    "noiseband": {
+     "n": 186,
+     "matched": 186,
+     "real_net": 1.2,
+     "real_before_commission": 8.8,
+     "friction_free": 15.0,
+     "kept_by_cost_rule": 186
+    },
+    "atrband": {
+     "n": 130,
+     "matched": 130,
+     "real_net": -4.2,
+     "real_before_commission": -2.0,
+     "friction_free": -0.7,
+     "kept_by_cost_rule": 130
+    },
+    "all three": {
+     "n": 564,
+     "matched": 564,
+     "real_net": -120.7,
+     "real_before_commission": -80.7,
+     "friction_free": -13.7,
+     "kept_by_cost_rule": 448
+    }
+   },
+   "2025": {
+    "quantlab": {
+     "n": 248,
+     "matched": 248,
+     "real_net": -19.1,
+     "real_before_commission": 0.3,
+     "friction_free": 47.5,
+     "kept_by_cost_rule": 195
+    },
+    "noiseband": {
+     "n": 111,
+     "matched": 111,
+     "real_net": -0.8,
+     "real_before_commission": 1.1,
+     "friction_free": 2.8,
+     "kept_by_cost_rule": 111
+    },
+    "atrband": {
+     "n": 139,
+     "matched": 139,
+     "real_net": 10.7,
+     "real_before_commission": 12.5,
+     "friction_free": 13.6,
+     "kept_by_cost_rule": 139
+    },
+    "all three": {
+     "n": 498,
+     "matched": 498,
+     "real_net": -9.2,
+     "real_before_commission": 14.0,
+     "friction_free": 63.9,
+     "kept_by_cost_rule": 445
+    }
+   },
+   "2026": {
+    "quantlab": {
+     "n": 217,
+     "matched": 217,
+     "real_net": -50.6,
+     "real_before_commission": -34.0,
+     "friction_free": 2.7,
+     "kept_by_cost_rule": 194
+    },
+    "noiseband": {
+     "n": 114,
+     "matched": 114,
+     "real_net": -7.5,
+     "real_before_commission": -5.3,
+     "friction_free": -3.5,
+     "kept_by_cost_rule": 114
+    },
+    "atrband": {
+     "n": 115,
+     "matched": 115,
+     "real_net": -0.9,
+     "real_before_commission": 0.4,
+     "friction_free": 1.2,
+     "kept_by_cost_rule": 115
+    },
+    "all three": {
+     "n": 446,
+     "matched": 446,
+     "real_net": -59.0,
+     "real_before_commission": -38.9,
+     "friction_free": 0.4,
+     "kept_by_cost_rule": 423
+    }
+   }
+  }
+ },
+ "scenario": {
+  "history": {
+   "package, real friction": {
+    "final_usd": 1304474,
+    "cagr_pct": 56.4,
+    "sharpe": 1.61,
+    "sortino": 3.18,
+    "worst_drop_pct": -19.4
+   },
+   "package, today's friction (scenario)": {
+    "final_usd": 1641099,
+    "cagr_pct": 62.8,
+    "sharpe": 1.74,
+    "sortino": 3.46,
+    "worst_drop_pct": -18.9
+   },
+   "core only": {
+    "final_usd": 268253,
+    "cagr_pct": 18.7,
+    "sharpe": 0.91,
+    "sortino": 1.32,
+    "worst_drop_pct": -25.8
+   }
+  },
+  "bootstrap": {
+   "package, real friction": 1.0,
+   "package, today's friction (scenario)": 0.4,
+   "core only": 10.8
+  },
+  "sub_periods": {
+   "package, real friction": {
+    "2021-25": {
+     "cagr_pct": 64.2,
+     "worst_drop_pct": -19.4
+    },
+    "2026": {
+     "cagr_pct": 19.1,
+     "worst_drop_pct": -18.9
+    }
+   },
+   "package, today's friction (scenario)": {
+    "2021-25": {
+     "cagr_pct": 72.0,
+     "worst_drop_pct": -18.6
+    },
+    "2026": {
+     "cagr_pct": 19.2,
+     "worst_drop_pct": -18.9
+    }
+   },
+   "core only": {
+    "2021-25": {
+     "cagr_pct": 20.4,
+     "worst_drop_pct": -25.8
+    },
+    "2026": {
+     "cagr_pct": 10.0,
+     "worst_drop_pct": -14.1
+    }
+   }
+  },
+  "rules_by_year": {
+   "real": {
+    "2021": {
+     "trades": 321,
+     "quantlab_trades": 121,
+     "net_R": 32.8
+    },
+    "2022": {
+     "trades": 596,
+     "quantlab_trades": 238,
+     "net_R": 57.1
+    },
+    "2023": {
+     "trades": 553,
+     "quantlab_trades": 236,
+     "net_R": 68.2
+    },
+    "2024": {
+     "trades": 543,
+     "quantlab_trades": 228,
+     "net_R": 88.9
+    },
+    "2025": {
+     "trades": 512,
+     "quantlab_trades": 236,
+     "net_R": 52.5
+    },
+    "2026": {
+     "trades": 468,
+     "quantlab_trades": 210,
+     "net_R": 15.5
+    }
+   },
+   "scenario": {
+    "2021": {
+     "trades": 321,
+     "quantlab_trades": 121,
+     "net_R": 42.0
+    },
+    "2022": {
+     "trades": 601,
+     "quantlab_trades": 239,
+     "net_R": 78.4
+    },
+    "2023": {
+     "trades": 553,
+     "quantlab_trades": 236,
+     "net_R": 79.4
+    },
+    "2024": {
+     "trades": 553,
+     "quantlab_trades": 231,
+     "net_R": 89.8
+    },
+    "2025": {
+     "trades": 512,
+     "quantlab_trades": 236,
+     "net_R": 56.1
+    },
+    "2026": {
+     "trades": 468,
+     "quantlab_trades": 210,
+     "net_R": 15.7
+    }
+   }
+  },
+  "unmatched": {},
+  "raw_counts": {
+   "quantlab": 8724,
+   "noiseband": 6679,
+   "atrband": 837
+  }
+ }
+}
