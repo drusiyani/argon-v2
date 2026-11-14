@@ -1,0 +1,22 @@
+{
+ "luck_check": {
+  "databento": {
+   "baseline": 56.4,
+   "model": 71.5,
+   "shuffled_mean": 59.4,
+   "shuffled_best": 74.0,
+   "shuffles_beating_model": 2
+  },
+  "lockbox2010": {
+   "baseline": 21.6,
+   "model": 26.8,
+   "shuffled_mean": 21.7,
+   "shuffled_best": 27.3,
+   "shuffles_beating_model": 1
+  }
+ },
+ "avg_multiplier": {
+  "databento": 1.113,
+  "lockbox2010": 1.031
+ }
+}

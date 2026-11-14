@@ -15,3 +15,7 @@ data/extra/*
 # HistData.com files: no published licence to redistribute, so they live in the private repo too (Nov 2026).
 data/histdata/*
 !data/histdata/MANIFEST.json
+
+# batch 13 working files (rebuilt by analysis/batch13_dump.py)
+analysis/_cache/
+analysis/batch9_days_*.json
