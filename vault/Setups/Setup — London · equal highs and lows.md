@@ -1,6 +1,6 @@
 ---
 type: setup
-examples: 65
+examples: 66
 taken: 22
 ---
 # Setup — London · equal highs and lows
@@ -10,10 +10,10 @@ taken: 22
 
 | | how many | won | total | per trade |
 |---|---|---|---|---|
-| all examples | 65 | 48% | +28.00R | +0.43R |
-| actually taken | 22 | 41% | +5.00R | +0.23R |
+| all examples | 66 | 50% | +33.00R | +0.50R |
+| actually taken | 22 | 45% | +8.00R | +0.36R |
 
-By market: Nasdaq 14 (+16.00R), S&P 500 16 (-1.00R), the Dow 14 (+10.00R), the Russell 2000 21 (+3.00R).
+By market: Nasdaq 14 (+16.00R), S&P 500 15 (0.00R), the Dow 14 (+10.00R), the Russell 2000 23 (+7.00R).
 
 ## Trades taken
 
@@ -26,7 +26,6 @@ By market: Nasdaq 14 (+16.00R), S&P 500 16 (-1.00R), the Dow 14 (+10.00R), the R
 - [[YM 2026-08-28 sell 0410]] +2.00R
 - [[YM 2026-09-14 sell 0300]] -1.00R
 - [[YM 2026-09-16 sell 0325]] -1.00R
-- [[ES 2026-09-24 buy 0355]] -1.00R
 - [[YM 2026-09-24 buy 0350]] -1.00R
 - [[ES 2026-09-25 sell 0335]] -1.00R
 - [[YM 2026-10-02 sell 0310]] -1.00R
@@ -39,6 +38,7 @@ By market: Nasdaq 14 (+16.00R), S&P 500 16 (-1.00R), the Dow 14 (+10.00R), the R
 - [[YM 2026-10-28 buy 0345]] +2.00R
 - [[RTY 2026-11-02 sell 0300]] -1.00R
 - [[NQ 2026-11-06 buy 0310]] +2.00R
+- [[RTY 2026-11-13 buy 0420]] +2.00R
 
 Part of [[The main strategy]]. Compared with every other setup in the [[Edge report]].
 
