@@ -1,0 +1,367 @@
+{
+ "train_rows": 4417,
+ "test_rows": 3827,
+ "test_unseen_quantlab": 1491,
+ "share_of_test_by_group": {
+  "0.5": 1277,
+  "1.0": 1251,
+  "1.5": 1299
+ },
+ "skill": {
+  "all trades": {
+   "2010-13": {
+    "bottom": {
+     "trades": 575,
+     "avg_R": -0.024
+    },
+    "middle": {
+     "trades": 516,
+     "avg_R": 0.008
+    },
+    "top": {
+     "trades": 573,
+     "avg_R": 0.025
+    },
+    "gap_top_minus_bottom": 0.049,
+    "t_stat": 0.51
+   },
+   "2014-17": {
+    "bottom": {
+     "trades": 702,
+     "avg_R": -0.064
+    },
+    "middle": {
+     "trades": 735,
+     "avg_R": 0.123
+    },
+    "top": {
+     "trades": 726,
+     "avg_R": 0.25
+    },
+    "gap_top_minus_bottom": 0.314,
+    "t_stat": 3.4
+   },
+   "2010-17": {
+    "bottom": {
+     "trades": 1277,
+     "avg_R": -0.046
+    },
+    "middle": {
+     "trades": 1251,
+     "avg_R": 0.075
+    },
+    "top": {
+     "trades": 1299,
+     "avg_R": 0.151
+    },
+    "gap_top_minus_bottom": 0.197,
+    "t_stat": 2.95
+   }
+  },
+  "QuantLab never in the real book": {
+   "2010-13": {
+    "bottom": {
+     "trades": 153,
+     "avg_R": 0.016
+    },
+    "middle": {
+     "trades": 207,
+     "avg_R": 0.035
+    },
+    "top": {
+     "trades": 292,
+     "avg_R": -0.042
+    },
+    "gap_top_minus_bottom": -0.058,
+    "t_stat": -0.25
+   },
+   "2014-17": {
+    "bottom": {
+     "trades": 191,
+     "avg_R": -0.127
+    },
+    "middle": {
+     "trades": 300,
+     "avg_R": 0.309
+    },
+    "top": {
+     "trades": 348,
+     "avg_R": 0.269
+    },
+    "gap_top_minus_bottom": 0.396,
+    "t_stat": 2.12
+   },
+   "2010-17": {
+    "bottom": {
+     "trades": 344,
+     "avg_R": -0.064
+    },
+    "middle": {
+     "trades": 507,
+     "avg_R": 0.197
+    },
+    "top": {
+     "trades": 640,
+     "avg_R": 0.127
+    },
+    "gap_top_minus_bottom": 0.191,
+    "t_stat": 1.31
+   }
+  },
+  "QuantLab all": {
+   "2010-13": {
+    "bottom": {
+     "trades": 174,
+     "avg_R": 0.001
+    },
+    "middle": {
+     "trades": 227,
+     "avg_R": -0.004
+    },
+    "top": {
+     "trades": 330,
+     "avg_R": 0.013
+    },
+    "gap_top_minus_bottom": 0.012,
+    "t_stat": 0.06
+   },
+   "2014-17": {
+    "bottom": {
+     "trades": 220,
+     "avg_R": -0.053
+    },
+    "middle": {
+     "trades": 336,
+     "avg_R": 0.347
+    },
+    "top": {
+     "trades": 389,
+     "avg_R": 0.289
+    },
+    "gap_top_minus_bottom": 0.342,
+    "t_stat": 1.84
+   },
+   "2010-17": {
+    "bottom": {
+     "trades": 394,
+     "avg_R": -0.029
+    },
+    "middle": {
+     "trades": 563,
+     "avg_R": 0.206
+    },
+    "top": {
+     "trades": 719,
+     "avg_R": 0.163
+    },
+    "gap_top_minus_bottom": 0.192,
+    "t_stat": 1.38
+   }
+  },
+  "noise band + ATR band": {
+   "2010-13": {
+    "bottom": {
+     "trades": 401,
+     "avg_R": -0.034
+    },
+    "middle": {
+     "trades": 289,
+     "avg_R": 0.017
+    },
+    "top": {
+     "trades": 243,
+     "avg_R": 0.041
+    },
+    "gap_top_minus_bottom": 0.075,
+    "t_stat": 1.09
+   },
+   "2014-17": {
+    "bottom": {
+     "trades": 482,
+     "avg_R": -0.069
+    },
+    "middle": {
+     "trades": 399,
+     "avg_R": -0.067
+    },
+    "top": {
+     "trades": 337,
+     "avg_R": 0.205
+    },
+    "gap_top_minus_bottom": 0.274,
+    "t_stat": 3.42
+   },
+   "2010-17": {
+    "bottom": {
+     "trades": 883,
+     "avg_R": -0.053
+    },
+    "middle": {
+     "trades": 688,
+     "avg_R": -0.032
+    },
+    "top": {
+     "trades": 580,
+     "avg_R": 0.137
+    },
+    "gap_top_minus_bottom": 0.19,
+    "t_stat": 3.47
+   }
+  }
+ },
+ "other_units": {
+  "friction-free outcomes": {
+   "2010-13": {
+    "bottom": {
+     "trades": 575,
+     "avg_R": -0.004
+    },
+    "middle": {
+     "trades": 516,
+     "avg_R": 0.035
+    },
+    "top": {
+     "trades": 573,
+     "avg_R": 0.061
+    },
+    "gap_top_minus_bottom": 0.065,
+    "t_stat": 0.67
+   },
+   "2014-17": {
+    "bottom": {
+     "trades": 702,
+     "avg_R": -0.039
+    },
+    "middle": {
+     "trades": 735,
+     "avg_R": 0.164
+    },
+    "top": {
+     "trades": 726,
+     "avg_R": 0.292
+    },
+    "gap_top_minus_bottom": 0.331,
+    "t_stat": 3.55
+   },
+   "2010-17": {
+    "bottom": {
+     "trades": 1277,
+     "avg_R": -0.023
+    },
+    "middle": {
+     "trades": 1251,
+     "avg_R": 0.111
+    },
+    "top": {
+     "trades": 1299,
+     "avg_R": 0.19
+    },
+    "gap_top_minus_bottom": 0.213,
+    "t_stat": 3.18
+   }
+  },
+  "real outcomes": {
+   "2010-13": {
+    "bottom": {
+     "trades": 575,
+     "avg_R": -0.22
+    },
+    "middle": {
+     "trades": 516,
+     "avg_R": -0.262
+    },
+    "top": {
+     "trades": 573,
+     "avg_R": -0.322
+    },
+    "gap_top_minus_bottom": -0.102,
+    "t_stat": -1.1
+   },
+   "2014-17": {
+    "bottom": {
+     "trades": 702,
+     "avg_R": -0.191
+    },
+    "middle": {
+     "trades": 735,
+     "avg_R": -0.087
+    },
+    "top": {
+     "trades": 726,
+     "avg_R": 0.038
+    },
+    "gap_top_minus_bottom": 0.229,
+    "t_stat": 2.49
+   },
+   "2010-17": {
+    "bottom": {
+     "trades": 1277,
+     "avg_R": -0.204
+    },
+    "middle": {
+     "trades": 1251,
+     "avg_R": -0.159
+    },
+    "top": {
+     "trades": 1299,
+     "avg_R": -0.121
+    },
+    "gap_top_minus_bottom": 0.083,
+    "t_stat": 1.26
+   }
+  }
+ },
+ "package_2010_17": {
+  "scenario package (fixed size)": {
+   "cagr_pct": 36.1,
+   "sharpe": 1.32,
+   "sortino": 2.62,
+   "worst_drop_pct": -30.4,
+   "boot": 8.9
+  },
+  "skip-only": {
+   "cagr_pct": 42.2,
+   "sharpe": 1.59,
+   "sortino": 3.16,
+   "worst_drop_pct": -22.5,
+   "boot": 3.2
+  },
+  "skip-and-press": {
+   "cagr_pct": 50.2,
+   "sharpe": 1.57,
+   "sortino": 3.38,
+   "worst_drop_pct": -27.3,
+   "boot": 10.3
+  },
+  "core only": {
+   "cagr_pct": 17.8,
+   "sharpe": 1.17,
+   "sortino": 1.66,
+   "worst_drop_pct": -17.1,
+   "boot": 0.0
+  }
+ },
+ "luck": {
+  "skip-only": {
+   "model_return": 42.2,
+   "random_mean": 30.2,
+   "random_beating": 21,
+   "draws": 5000,
+   "pct": 0.42
+  },
+  "skip-and-press": {
+   "model_return": 50.2,
+   "random_mean": 32.8,
+   "random_beating": 10,
+   "draws": 5000,
+   "pct": 0.2
+  }
+ },
+ "checks": {
+  "a": true,
+  "b": false,
+  "c": true,
+  "d": true
+ },
+ "reading": "does not carry"
+}
