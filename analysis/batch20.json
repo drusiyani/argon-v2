@@ -1,0 +1,275 @@
+{
+ "baseline": {
+  "databento": [
+   56.41,
+   3.18,
+   -19.38
+  ],
+  "lockbox2010": [
+   21.6,
+   1.75,
+   -23.52
+  ]
+ },
+ "part1_search_luck": {
+  "skip-only": {
+   "model": {
+    "databento": [
+     57.89,
+     3.3,
+     -18.81
+    ],
+    "lockbox2010": [
+     28.45,
+     2.29,
+     -21.16
+    ]
+   },
+   "random_mean_return": {
+    "databento": 47.7,
+    "lockbox2010": 21.3
+   },
+   "random_beats_model_return_each_era": {
+    "databento": 445,
+    "lockbox2010": 5
+   },
+   "random_beats_model_return_both_eras": 1,
+   "random_beats_model_sortino_both_eras": 1,
+   "random_passes_mark_each_era": {
+    "databento": 569,
+    "lockbox2010": 7053
+   },
+   "random_passes_mark_both_eras": 233,
+   "draws": 20000,
+   "best_of_230_beats_model_pct": 1.14,
+   "best_of_230_upper_bound_pct": 3.39,
+   "best_of_230_passes_mark_pct": 93.2,
+   "reading": "unlikely to be search luck"
+  },
+  "skip-and-press": {
+   "model": {
+    "databento": [
+     72.94,
+     3.68,
+     -21.98
+    ],
+    "lockbox2010": [
+     31.54,
+     2.37,
+     -22.37
+    ]
+   },
+   "random_mean_return": {
+    "databento": 55.0,
+    "lockbox2010": 21.8
+   },
+   "random_beats_model_return_each_era": {
+    "databento": 153,
+    "lockbox2010": 4
+   },
+   "random_beats_model_return_both_eras": 0,
+   "random_beats_model_sortino_both_eras": 1,
+   "random_passes_mark_each_era": {
+    "databento": 4378,
+    "lockbox2010": 7494
+   },
+   "random_passes_mark_both_eras": 1601,
+   "draws": 20000,
+   "best_of_230_beats_model_pct": 0.0,
+   "best_of_230_upper_bound_pct": 3.39,
+   "best_of_230_passes_mark_pct": 100.0,
+   "reading": "unlikely to be search luck"
+  }
+ },
+ "part2_quantlab_direction": {
+  "2010": {
+   "trades": 2,
+   "right_incl_first_candle_pct": 100.0,
+   "right_from_entry_pct": 100.0,
+   "hold_to_close_no_stop_avg_R": 0.898,
+   "actual_avg_gross_R": 0.036
+  },
+  "2011": {
+   "trades": 48,
+   "right_incl_first_candle_pct": 72.9,
+   "right_from_entry_pct": 68.8,
+   "hold_to_close_no_stop_avg_R": 0.228,
+   "actual_avg_gross_R": -0.049
+  },
+  "2012": {
+   "trades": 22,
+   "right_incl_first_candle_pct": 77.3,
+   "right_from_entry_pct": 59.1,
+   "hold_to_close_no_stop_avg_R": 0.923,
+   "actual_avg_gross_R": 0.013
+  },
+  "2013": {
+   "trades": 7,
+   "right_incl_first_candle_pct": 85.7,
+   "right_from_entry_pct": 85.7,
+   "hold_to_close_no_stop_avg_R": 0.763,
+   "actual_avg_gross_R": -0.113
+  },
+  "2014": {
+   "trades": 23,
+   "right_incl_first_candle_pct": 73.9,
+   "right_from_entry_pct": 69.6,
+   "hold_to_close_no_stop_avg_R": 0.34,
+   "actual_avg_gross_R": 0.353
+  },
+  "2015": {
+   "trades": 25,
+   "right_incl_first_candle_pct": 48.0,
+   "right_from_entry_pct": 40.0,
+   "hold_to_close_no_stop_avg_R": -0.504,
+   "actual_avg_gross_R": -0.399
+  },
+  "2016": {
+   "trades": 26,
+   "right_incl_first_candle_pct": 61.5,
+   "right_from_entry_pct": 65.4,
+   "hold_to_close_no_stop_avg_R": 1.76,
+   "actual_avg_gross_R": 0.316
+  },
+  "2017": {
+   "trades": 32,
+   "right_incl_first_candle_pct": 65.6,
+   "right_from_entry_pct": 50.0,
+   "hold_to_close_no_stop_avg_R": 0.439,
+   "actual_avg_gross_R": 0.119
+  },
+  "2018": {
+   "trades": 170,
+   "right_incl_first_candle_pct": 58.2,
+   "right_from_entry_pct": 52.9,
+   "hold_to_close_no_stop_avg_R": 1.4,
+   "actual_avg_gross_R": 0.073
+  },
+  "2019": {
+   "trades": 148,
+   "right_incl_first_candle_pct": 55.4,
+   "right_from_entry_pct": 45.9,
+   "hold_to_close_no_stop_avg_R": 0.009,
+   "actual_avg_gross_R": 0.319
+  },
+  "2020": {
+   "trades": 228,
+   "right_incl_first_candle_pct": 59.6,
+   "right_from_entry_pct": 53.1,
+   "hold_to_close_no_stop_avg_R": 0.799,
+   "actual_avg_gross_R": 0.085
+  },
+  "2021": {
+   "trades": 121,
+   "right_incl_first_candle_pct": 51.2,
+   "right_from_entry_pct": 45.5,
+   "hold_to_close_no_stop_avg_R": -0.812,
+   "actual_avg_gross_R": 0.207
+  },
+  "2022": {
+   "trades": 238,
+   "right_incl_first_candle_pct": 60.5,
+   "right_from_entry_pct": 54.6,
+   "hold_to_close_no_stop_avg_R": 0.341,
+   "actual_avg_gross_R": 0.142
+  },
+  "2023": {
+   "trades": 236,
+   "right_incl_first_candle_pct": 56.4,
+   "right_from_entry_pct": 50.8,
+   "hold_to_close_no_stop_avg_R": -0.133,
+   "actual_avg_gross_R": 0.187
+  },
+  "2024": {
+   "trades": 228,
+   "right_incl_first_candle_pct": 58.3,
+   "right_from_entry_pct": 50.4,
+   "hold_to_close_no_stop_avg_R": 0.107,
+   "actual_avg_gross_R": 0.349
+  },
+  "2025": {
+   "trades": 236,
+   "right_incl_first_candle_pct": 62.7,
+   "right_from_entry_pct": 57.6,
+   "hold_to_close_no_stop_avg_R": 0.422,
+   "actual_avg_gross_R": 0.167
+  },
+  "2026": {
+   "trades": 210,
+   "right_incl_first_candle_pct": 64.8,
+   "right_from_entry_pct": 58.6,
+   "hold_to_close_no_stop_avg_R": 1.405,
+   "actual_avg_gross_R": 0.075
+  }
+ },
+ "part3_cost_in_R": {
+  "2010": {
+   "trades": 71,
+   "avg_cost_R": 0.0443
+  },
+  "2011": {
+   "trades": 329,
+   "avg_cost_R": 0.0487
+  },
+  "2012": {
+   "trades": 280,
+   "avg_cost_R": 0.0474
+  },
+  "2013": {
+   "trades": 244,
+   "avg_cost_R": 0.0482
+  },
+  "2014": {
+   "trades": 304,
+   "avg_cost_R": 0.0425
+  },
+  "2015": {
+   "trades": 286,
+   "avg_cost_R": 0.0376
+  },
+  "2016": {
+   "trades": 329,
+   "avg_cost_R": 0.0394
+  },
+  "2017": {
+   "trades": 304,
+   "avg_cost_R": 0.0414
+  },
+  "2018": {
+   "trades": 482,
+   "avg_cost_R": 0.0353
+  },
+  "2019": {
+   "trades": 434,
+   "avg_cost_R": 0.0361
+  },
+  "2020": {
+   "trades": 514,
+   "avg_cost_R": 0.0238
+  },
+  "2021": {
+   "trades": 321,
+   "avg_cost_R": 0.0216
+  },
+  "2022": {
+   "trades": 596,
+   "avg_cost_R": 0.0132
+  },
+  "2023": {
+   "trades": 553,
+   "avg_cost_R": 0.0201
+  },
+  "2024": {
+   "trades": 543,
+   "avg_cost_R": 0.0154
+  },
+  "2025": {
+   "trades": 512,
+   "avg_cost_R": 0.0148
+  },
+  "2026": {
+   "trades": 468,
+   "avg_cost_R": 0.0104
+  }
+ }
+}
