@@ -74,3 +74,32 @@ other rules. Placebo: the identical rule on every non-release day.
 - U1's "after May 2024" window is 2.5 years. A pass there alone proves nothing and cannot be adopted.
 - U9 has small samples by construction (some flags are 4 days a year).
 - If nothing passes, G3 stays the recommendation and this batch is reported as a null result.
+
+---
+## Addendum (16 Nov 2026), written after the first Batch 29 run and before any of the checks below ran
+First run: nine of ten ideas failed. **U4 (shape of the signal candle) passed the strict mark, but by a hair**
+(+60.7% vs +60.2% and +29.4% vs +29.1%). The luck test it passed compares the whole model with random skipping, which G3
+already passes; it does not show that the three new facts add anything. So U4 gets harder checks before it counts.
+
+**Check A, junk-facts twin (the real luck test for an add-on).** 300 runs of the U4 pipeline in which the three shape
+facts are shuffled among QuantLab trades within each year, so they carry no information. U4 keeps its pass only if
+fewer than 5% of junk runs match or beat U4's return in both eras. Also reported: how often junk runs beat G3 on
+return, Sortino and worst drop in both eras (the false-pass rate of the strict mark for a three-fact add-on).
+
+**Check B, double costs.** With every trade's cost doubled, U4 must still beat G3 on return in both eras.
+
+**Check C, sub-periods.** Return a year for G3 and U4 in 2010–13, 2014–17, 2018–20, 2021–25, 2026. U4 must be at
+least level with G3 (within 0.1 points) in four of the five.
+
+**Reported, no mark:** trades whose keep/skip call changed (count and average net R), and the sign of each new fact's
+weight across the monthly refits.
+
+U4 is an adopt candidate only if A, B and C all pass.
+
+**U4b (one new trial, total about 279).** The same three facts for every rule, measured on the five 1-minute bars before
+the entry minute (for QuantLab that is the same 9:30–9:35 candle). Marks: strict vs G3; junk-facts twin as in Check A
+(shuffled among all trades within each year, 300 runs, under 5%); and it replaces U4 only if it also beats U4 on
+return and Sortino in both eras.
+
+Also logged for the write-up, no rule attached: the U1 clock footprint (early minus late, friction-free R a year) and
+the roll-week result from U9 (p = 0.035, short of the 0.01 bar).
