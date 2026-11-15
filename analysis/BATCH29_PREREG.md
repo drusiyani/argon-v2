@@ -103,3 +103,23 @@ return and Sortino in both eras.
 
 Also logged for the write-up, no rule attached: the U1 clock footprint (early minus late, friction-free R a year) and
 the roll-week result from U9 (p = 0.035, short of the 0.01 bar).
+
+---
+## Addendum 2 (16 Nov 2026): jitter test of our own recommendation. Written before it ran.
+What the U4 checks showed by accident: adding three facts that carry NO information moved G3's return by several
+points (junk-run median +56.4% / +27.0% when the junk sat on QuantLab trades; +59.1% / +28.3% when spread over all
+trades; G3 itself +60.2% / +29.1%). So (1) the strict mark cannot resolve differences of a point or two, and (2) G3's
+own headline may sit at the lucky end of what a G3-type model delivers. This has to be measured properly.
+
+**Jitter test.** For G3 and for skip-only: 300 runs each with three pure-noise facts (standard normal) added to the
+24, (i) on every trade, (ii) on QuantLab trades only (zero elsewhere). Nothing else changes. Reported per era:
+median and 5%–95% range of return, Sortino and worst drop; share of runs beating the plain package on return, and on
+Sortino, in both eras.
+
+**What it can change (fixed now):**
+- The "honest expectation" quoted for a model book becomes its jitter median (version i), not its single headline run.
+- The main-book recommendation moves from G3 to skip-only only if skip-only's jitter median beats G3's on BOTH return
+  and Sortino in BOTH eras (version i). Otherwise G3 stays.
+- If under 80% of G3 jitter runs beat the package on Sortino in both eras, G3's risk improvement is reported as
+  not robust.
+This is a check on an existing result, not a new idea; it adds no trial to the count.
