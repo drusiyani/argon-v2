@@ -1,0 +1,158 @@
+{
+ "G3": {
+  "databento": {
+   "cagr_pct": 60.2,
+   "sharpe": 1.76,
+   "sortino": 3.41,
+   "worst_drop_pct": -18.4,
+   "boot": 0.7
+  },
+  "lockbox2010": {
+   "cagr_pct": 29.1,
+   "sharpe": 1.41,
+   "sortino": 2.36,
+   "worst_drop_pct": -21.2,
+   "boot": 0.9
+  }
+ },
+ "G3c": {
+  "databento": {
+   "cagr_pct": 51.1,
+   "sharpe": 1.61,
+   "sortino": 3.0,
+   "worst_drop_pct": -18.7,
+   "boot": 0.7
+  },
+  "lockbox2010": {
+   "cagr_pct": 28.9,
+   "sharpe": 1.39,
+   "sortino": 2.33,
+   "worst_drop_pct": -21.2,
+   "boot": 0.9
+  }
+ },
+ "strict_vs_G3": false,
+ "luck_random_beating_both_eras": 0,
+ "adopt_candidate": false,
+ "sub_G3": {
+  "2010-13": "+17.9% / -21.2%",
+  "2014-17": "+14.2% / -19.8%",
+  "2018-20": "+68.8% / -18.4%",
+  "2021-25": "+66.1% / -17.7%",
+  "2026": "+30.5% / -18.4%"
+ },
+ "sub_G3c": {
+  "2010-13": "+18.1% / -21.2%",
+  "2014-17": "+13.4% / -19.7%",
+  "2018-20": "+69.1% / -18.4%",
+  "2021-25": "+54.6% / -18.7%",
+  "2026": "+32.4% / -18.3%"
+ },
+ "by_year": {
+  "2012": {
+   "offset": 0.015,
+   "extra_skips": 0,
+   "extra_skips_avg_R": null,
+   "extra_taken": 8,
+   "extra_taken_avg_R": 0.534
+  },
+  "2013": {
+   "offset": -0.008,
+   "extra_skips": 5,
+   "extra_skips_avg_R": 0.594,
+   "extra_taken": 0,
+   "extra_taken_avg_R": null
+  },
+  "2014": {
+   "offset": 0.035,
+   "extra_skips": 2,
+   "extra_skips_avg_R": 0.485,
+   "extra_taken": 31,
+   "extra_taken_avg_R": -0.071
+  },
+  "2015": {
+   "offset": -0.03,
+   "extra_skips": 20,
+   "extra_skips_avg_R": -0.32,
+   "extra_taken": 0,
+   "extra_taken_avg_R": null
+  },
+  "2016": {
+   "offset": 0.029,
+   "extra_skips": 7,
+   "extra_skips_avg_R": -0.247,
+   "extra_taken": 16,
+   "extra_taken_avg_R": -0.158
+  },
+  "2017": {
+   "offset": -0.008,
+   "extra_skips": 32,
+   "extra_skips_avg_R": 0.28,
+   "extra_taken": 20,
+   "extra_taken_avg_R": 0.077
+  },
+  "2018": {
+   "offset": 0.125,
+   "extra_skips": 0,
+   "extra_skips_avg_R": null,
+   "extra_taken": 49,
+   "extra_taken_avg_R": 0.056
+  },
+  "2019": {
+   "offset": 0.034,
+   "extra_skips": 1,
+   "extra_skips_avg_R": 0.846,
+   "extra_taken": 6,
+   "extra_taken_avg_R": -0.246
+  },
+  "2020": {
+   "offset": 0.023,
+   "extra_skips": 1,
+   "extra_skips_avg_R": -1.047,
+   "extra_taken": 0,
+   "extra_taken_avg_R": null
+  },
+  "2021": {
+   "offset": -0.1,
+   "extra_skips": 49,
+   "extra_skips_avg_R": 0.337,
+   "extra_taken": 0,
+   "extra_taken_avg_R": null
+  },
+  "2022": {
+   "offset": 0.043,
+   "extra_skips": 0,
+   "extra_skips_avg_R": null,
+   "extra_taken": 0,
+   "extra_taken_avg_R": null
+  },
+  "2023": {
+   "offset": -0.01,
+   "extra_skips": 35,
+   "extra_skips_avg_R": 0.703,
+   "extra_taken": 0,
+   "extra_taken_avg_R": null
+  },
+  "2024": {
+   "offset": 0.007,
+   "extra_skips": 3,
+   "extra_skips_avg_R": 10.772,
+   "extra_taken": 0,
+   "extra_taken_avg_R": null
+  },
+  "2025": {
+   "offset": 0.086,
+   "extra_skips": 0,
+   "extra_skips_avg_R": null,
+   "extra_taken": 0,
+   "extra_taken_avg_R": null
+  },
+  "2026": {
+   "offset": -0.075,
+   "extra_skips": 3,
+   "extra_skips_avg_R": -0.815,
+   "extra_taken": 0,
+   "extra_taken_avg_R": null
+  }
+ }
+}
