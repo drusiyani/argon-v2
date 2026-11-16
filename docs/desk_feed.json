@@ -670,27 +670,27 @@
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-16T18:42Z"
+   "updated": "2026-11-16T19:00Z"
   },
   "ES": {
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-16T18:42Z"
+   "updated": "2026-11-16T19:00Z"
   },
   "YM": {
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-16T18:42Z"
+   "updated": "2026-11-16T19:00Z"
   },
   "RTY": {
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-16T18:42Z"
+   "updated": "2026-11-16T19:00Z"
   }
  },
- "checked": "2026-11-16 18:45 UTC",
- "updated": "2026-11-16 18:49 UTC"
+ "checked": "2026-11-16 19:00 UTC",
+ "updated": "2026-11-16 19:01 UTC"
 }
