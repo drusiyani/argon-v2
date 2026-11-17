@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-17",
- "as_of": "2026-11-17 13:01 NY",
- "last_bar": "2026-11-17 12:51",
+ "as_of": "2026-11-17 13:07 NY",
+ "last_bar": "2026-11-17 12:57",
  "equity_used": 100000.0,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-16 13:39",
-   "yahoo_bars": 1314,
-   "last_real": "2026-11-17 12:51",
-   "last_price": 26957.0,
+   "yahoo_bars": 1320,
+   "last_real": "2026-11-17 12:57",
+   "last_price": 26967.25,
    "gap_pct": 0.0
   },
   "ES": {
    "databento_last": "2026-11-16 13:39",
-   "yahoo_bars": 1314,
-   "last_real": "2026-11-17 12:51",
-   "last_price": 7353.25,
+   "yahoo_bars": 1320,
+   "last_real": "2026-11-17 12:57",
+   "last_price": 7352.75,
    "gap_pct": 0.0
   },
   "YM": {
    "databento_last": "2026-11-16 13:39",
-   "yahoo_bars": 1318,
-   "last_real": "2026-11-17 12:51",
-   "last_price": 50926.0,
+   "yahoo_bars": 1324,
+   "last_real": "2026-11-17 12:57",
+   "last_price": 50919.0,
    "gap_pct": -0.01
   },
   "RTY": {
    "databento_last": "2026-11-16 13:39",
-   "yahoo_bars": 1314,
-   "last_real": "2026-11-17 12:51",
-   "last_price": 2724.60009765625,
+   "yahoo_bars": 1320,
+   "last_real": "2026-11-17 12:57",
+   "last_price": 2723.199951171875,
    "gap_pct": -0.0
   }
  },
@@ -321,9 +321,16 @@
    [
     770,
     26959.0,
-    26969.75,
+    27004.25,
     26947.0,
-    26957.0
+    26967.5
+   ],
+   [
+    775,
+    26968.0,
+    26974.0,
+    26952.25,
+    26967.25
    ]
   ],
   "ES": [
@@ -610,9 +617,16 @@
    [
     770,
     7354.75,
-    7356.25,
+    7361.0,
     7351.0,
-    7353.25
+    7353.75
+   ],
+   [
+    775,
+    7354.5,
+    7355.0,
+    7351.0,
+    7352.75
    ]
   ]
  },
@@ -629,7 +643,7 @@
    "stop": 27342.5,
    "exit_time": "09:40",
    "exit": 27288.89,
-   "last": 26957.0,
+   "last": 26967.25,
    "state": "closed",
    "R_now": -0.465,
    "usd_now": -458.93
@@ -646,10 +660,10 @@
    "stop": 27338.5,
    "exit_time": null,
    "exit": null,
-   "last": 26957.0,
+   "last": 26967.25,
    "state": "open",
-   "R_now": -0.195,
-   "usd_now": -185.0
+   "R_now": -0.217,
+   "usd_now": -205.5
   },
   {
    "id": "noiseband|NQ|2026-11-17|660|1",
@@ -663,7 +677,7 @@
    "stop": 27190.83,
    "exit_time": "12:29",
    "exit": 27050.0,
-   "last": 26957.0,
+   "last": 26967.25,
    "state": "closed",
    "R_now": -0.478,
    "usd_now": -256.5
