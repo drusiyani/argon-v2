@@ -721,27 +721,27 @@
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-17T17:04Z"
+   "updated": "2026-11-17T17:23Z"
   },
   "ES": {
    "direction": "up",
-   "confidence": 1.0,
+   "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-17T17:04Z"
+   "updated": "2026-11-17T17:23Z"
   },
   "YM": {
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-17T17:04Z"
+   "updated": "2026-11-17T17:23Z"
   },
   "RTY": {
    "direction": "up",
-   "confidence": 1.0,
+   "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-17T17:04Z"
+   "updated": "2026-11-17T17:23Z"
   }
  },
  "checked": "2026-11-17 17:15 UTC",
- "updated": "2026-11-17 17:17 UTC"
+ "updated": "2026-11-17 17:24 UTC"
 }
