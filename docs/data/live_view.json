@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-18",
- "as_of": "2026-11-18 11:15 NY",
- "last_bar": "2026-11-18 11:05",
+ "as_of": "2026-11-18 11:21 NY",
+ "last_bar": "2026-11-18 11:11",
  "equity_used": 100000.0,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-16 13:39",
-   "yahoo_bars": 2024,
-   "last_real": "2026-11-18 11:05",
-   "last_price": 27144.25,
+   "yahoo_bars": 2030,
+   "last_real": "2026-11-18 11:11",
+   "last_price": 27102.0,
    "gap_pct": 0.29
   },
   "ES": {
    "databento_last": "2026-11-16 13:39",
-   "yahoo_bars": 2024,
-   "last_real": "2026-11-18 11:05",
-   "last_price": 7345.5,
+   "yahoo_bars": 2030,
+   "last_real": "2026-11-18 11:11",
+   "last_price": 7334.5,
    "gap_pct": 0.01
   },
   "YM": {
    "databento_last": "2026-11-16 13:39",
-   "yahoo_bars": 2039,
-   "last_real": "2026-11-18 11:05",
-   "last_price": 50330.0,
+   "yahoo_bars": 2045,
+   "last_real": "2026-11-18 11:11",
+   "last_price": 50244.0,
    "gap_pct": -0.3
   },
   "RTY": {
    "databento_last": "2026-11-16 13:39",
-   "yahoo_bars": 2017,
-   "last_real": "2026-11-18 11:05",
-   "last_price": 2723.5,
+   "yahoo_bars": 2023,
+   "last_real": "2026-11-18 11:11",
+   "last_price": 2718.5,
    "gap_pct": -0.15
   }
  },
@@ -173,10 +173,17 @@
    ],
    [
     665,
-    27092.5,
+    27097.75,
     27159.5,
     27092.5,
-    27144.25
+    27133.25
+   ],
+   [
+    670,
+    27133.25,
+    27148.0,
+    27087.5,
+    27102.0
    ]
   ],
   "ES": [
@@ -315,10 +322,17 @@
    ],
    [
     665,
-    7337.0,
+    7337.5,
     7346.5,
-    7337.0,
-    7345.5
+    7334.5,
+    7340.0
+   ],
+   [
+    670,
+    7339.75,
+    7342.25,
+    7331.75,
+    7334.5
    ]
   ]
  },
@@ -335,7 +349,7 @@
    "stop": 27317.75,
    "exit_time": "09:52",
    "exit": 27082.86,
-   "last": 27144.25,
+   "last": 27102.0,
    "state": "closed",
    "R_now": 1.077,
    "usd_now": 971.14
