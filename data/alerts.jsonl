@@ -1,1 +1,2 @@
 {"at": "2026-11-18T03:43:59+00:00", "title": "Argon - nightly book run failed", "msg": "Run 44232128956 failed or halted. Check data/ledger*/status.json.", "priority": "high"}
+{"at": "2026-11-18T10:29:22+00:00", "title": "Argon - nightly book run failed", "msg": "Run 44285615226 failed or halted. Check data/ledger*/status.json.", "priority": "high"}
