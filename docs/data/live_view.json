@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-18",
- "as_of": "2026-11-18 12:50 NY",
- "last_bar": "2026-11-18 12:39",
+ "as_of": "2026-11-18 12:55 NY",
+ "last_bar": "2026-11-18 12:45",
  "equity_used": 100000.0,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-16 13:39",
-   "yahoo_bars": 2118,
-   "last_real": "2026-11-18 12:39",
-   "last_price": 27203.0,
+   "yahoo_bars": 2124,
+   "last_real": "2026-11-18 12:45",
+   "last_price": 27162.0,
    "gap_pct": 0.29
   },
   "ES": {
    "databento_last": "2026-11-16 13:39",
-   "yahoo_bars": 2118,
-   "last_real": "2026-11-18 12:39",
-   "last_price": 7358.25,
+   "yahoo_bars": 2124,
+   "last_real": "2026-11-18 12:45",
+   "last_price": 7350.0,
    "gap_pct": 0.01
   },
   "YM": {
    "databento_last": "2026-11-16 13:39",
-   "yahoo_bars": 2133,
-   "last_real": "2026-11-18 12:39",
-   "last_price": 50447.0,
+   "yahoo_bars": 2139,
+   "last_real": "2026-11-18 12:45",
+   "last_price": 50388.0,
    "gap_pct": -0.3
   },
   "RTY": {
    "databento_last": "2026-11-16 13:39",
-   "yahoo_bars": 2112,
-   "last_real": "2026-11-18 12:40",
-   "last_price": 2737.39990234375,
+   "yahoo_bars": 2117,
+   "last_real": "2026-11-18 12:45",
+   "last_price": 2737.199951171875,
    "gap_pct": -0.15
   }
  },
@@ -303,6 +303,20 @@
     27293.0,
     27188.25,
     27203.0
+   ],
+   [
+    760,
+    27204.0,
+    27212.25,
+    27154.25,
+    27171.75
+   ],
+   [
+    765,
+    27172.25,
+    27183.75,
+    27159.5,
+    27162.0
    ]
   ],
   "ES": [
@@ -571,6 +585,20 @@
     7372.75,
     7356.0,
     7358.25
+   ],
+   [
+    760,
+    7358.5,
+    7359.25,
+    7349.5,
+    7353.0
+   ],
+   [
+    765,
+    7353.0,
+    7355.0,
+    7349.25,
+    7350.0
    ]
   ]
  },
@@ -587,7 +615,7 @@
    "stop": 27317.75,
    "exit_time": "09:52",
    "exit": 27082.86,
-   "last": 27203.0,
+   "last": 27162.0,
    "state": "closed",
    "R_now": 1.077,
    "usd_now": 971.14
