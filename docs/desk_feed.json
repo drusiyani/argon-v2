@@ -9,8 +9,8 @@
  },
  "calls": [],
  "daytype": {
-  "date": "2026-11-17",
-  "made_at": "09:17",
+  "date": "2026-11-18",
+  "made_at": "08:47",
   "late": false,
   "ai": {
    "size": 1.0,
@@ -18,7 +18,7 @@
    "veto": null,
    "reason": "no forecast (no API key or all runs failed): counts as 1x"
   },
-  "dumb_size": 1.5,
+  "dumb_size": 1.0,
   "ai_size_used": 1.0,
   "shadow": true,
   "council_r2": {
@@ -29,12 +29,12 @@
   },
   "random_size": 1.5,
   "headlines": [
-   "[Yahoo Finance, Tue 08:51] Why Goldman Sachs expects the S&P 500 to rally in 2027",
-   "[Yahoo Finance, Tue 08:00] Analysts Expect 4 S&P 500 Stocks To Outgrow Nvidia Next Year",
-   "[Yahoo Finance, Tue 09:05] Alphabet\u2019s Profit Machine vs a Sliding Stock: Time to Buy, Sell or Hold?",
-   "[Yahoo Finance, Tue 08:44] Amazon (AMZN) Is Building Its Own Answer to NVIDIA. Here\u2019s How It\u2019s Going",
-   "[Yahoo Finance, Tue 08:28] Cathie Wood and Jim Cramer Agree on These 10 Stocks: Latest 13F",
-   "[Yahoo Finance, Tue 08:00] Is Trending Stock International Business Machines Corporation (IBM) a Buy Now?"
+   "[Yahoo Finance, Wed 08:15] Dow Jones Futures Fall, Techs Rise After Nvidia Earnings, Waller's 'Shock' Warning; Anthropic IPO Ahead",
+   "[Yahoo Finance, Wed 07:59] Equities Set to Rebound as Investors Parse Nvidia Results, Await Fed Minutes",
+   "[Yahoo Finance, Wed 08:21] Can KLA Stock Hit $220?",
+   "[Yahoo Finance, Wed 08:18] How Has Cintas's Story Changed?",
+   "[Yahoo Finance, Wed 08:11] Should You Buy Coinbase Stock Now Or Wait?",
+   "[Yahoo Finance, Wed 08:08] Eaton Stock Has One Thing Left To Prove"
   ],
   "council": {
    "members": {
@@ -49,11 +49,11 @@
    "size": null
   },
   "inputs": {
-   "vix": 22.93,
-   "vix_1y_percentile": 89,
-   "range_ratio": 1.26,
-   "rsi5": 31.8,
-   "overnight_change_pct": 0.34,
+   "vix": 24.38,
+   "vix_1y_percentile": 92,
+   "range_ratio": 0.99,
+   "rsi5": 31.3,
+   "overnight_change_pct": 0.77,
    "calendar": [
     "nothing scheduled that Argon tracks"
    ]
@@ -645,6 +645,57 @@
      "nothing scheduled that Argon tracks"
     ]
    }
+  },
+  {
+   "date": "2026-11-18",
+   "made_at": "08:47",
+   "late": false,
+   "ai": {
+    "size": 1.0,
+    "trend_probability": null,
+    "veto": null,
+    "reason": "no forecast (no API key or all runs failed): counts as 1x"
+   },
+   "dumb_size": 1.0,
+   "ai_size_used": 1.0,
+   "shadow": true,
+   "council_r2": {
+    "counted": false,
+    "trend_probability": null,
+    "size": null,
+    "members": {}
+   },
+   "random_size": 1.5,
+   "headlines": [
+    "[Yahoo Finance, Wed 08:15] Dow Jones Futures Fall, Techs Rise After Nvidia Earnings, Waller's 'Shock' Warning; Anthropic IPO Ahead",
+    "[Yahoo Finance, Wed 07:59] Equities Set to Rebound as Investors Parse Nvidia Results, Await Fed Minutes",
+    "[Yahoo Finance, Wed 08:21] Can KLA Stock Hit $220?",
+    "[Yahoo Finance, Wed 08:18] How Has Cintas's Story Changed?",
+    "[Yahoo Finance, Wed 08:11] Should You Buy Coinbase Stock Now Or Wait?",
+    "[Yahoo Finance, Wed 08:08] Eaton Stock Has One Thing Left To Prove"
+   ],
+   "council": {
+    "members": {
+     "claude": null,
+     "gemini": null,
+     "gpt": null,
+     "deepseek": null
+    },
+    "answered": 0,
+    "counted": false,
+    "trend_probability": null,
+    "size": null
+   },
+   "inputs": {
+    "vix": 24.38,
+    "vix_1y_percentile": 92,
+    "range_ratio": 0.99,
+    "rsi5": 31.3,
+    "overnight_change_pct": 0.77,
+    "calendar": [
+     "nothing scheduled that Argon tracks"
+    ]
+   }
   }
  ],
  "daytype_score": {
@@ -718,30 +769,30 @@
  },
  "kronos": {
   "NQ": {
-   "direction": "up",
-   "confidence": 1.0,
+   "direction": "down",
+   "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-17T20:58Z"
+   "updated": "2026-11-18T13:47Z"
   },
   "ES": {
    "direction": "up",
    "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-17T20:58Z"
+   "updated": "2026-11-18T13:47Z"
   },
   "YM": {
-   "direction": "up",
+   "direction": "down",
    "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-17T20:58Z"
+   "updated": "2026-11-18T13:47Z"
   },
   "RTY": {
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-17T20:58Z"
+   "updated": "2026-11-18T13:47Z"
   }
  },
- "checked": "2026-11-17 20:45 UTC",
- "updated": "2026-11-17 20:59 UTC"
+ "checked": "2026-11-18 13:45 UTC",
+ "updated": "2026-11-18 13:47 UTC"
 }
