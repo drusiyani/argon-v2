@@ -258,3 +258,6 @@ Designed after a 6-member council review (statistician, risk manager, trader, AI
   Gemini 4 Neon (xhigh) 61, Kimi K3.1 Pro 46 (Meta's Muse Wonder Full scores 50 but has no public API).
 - What it measures: the best general-purpose AI per seat, not the best trading AI; nobody ranks trading skill, which
   is what Race 1 tests.
+- **Speed fallback (same for every seat):** if a seat's top model fails to answer before the 09:25 cutoff on more than
+  10% of practice mornings in January 2027, that seat uses the same developer's next-best model on the snapshot.
+  Decided now, before anyone knows which seat (if any) it will affect.
