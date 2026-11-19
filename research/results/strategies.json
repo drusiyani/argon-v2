@@ -1,0 +1,686 @@
+{
+"note": "Return a year after costs, single backtest runs (not blind). 2026 = actual return 2 Jan to 12 Nov 2026. Judged against the bar at the time (the package, later G3).",
+"trials": 297,
+"rows": [
+{
+"name": "Nasdaq alone",
+"group": "Main books",
+"risk": "\u2014",
+"r2126": null,
+"r1020": null,
+"y2026": 4.6,
+"verdict": "reference",
+"batch": null
+},
+{
+"name": "Package (no model)",
+"group": "Main books",
+"risk": "0.5%",
+"r2126": 56.4,
+"r1020": 21.6,
+"y2026": 16.3,
+"verdict": "baseline",
+"batch": 11
+},
+{
+"name": "Skip-only",
+"group": "Main books",
+"risk": "0\u20130.5%",
+"r2126": 57.9,
+"r1020": 28.5,
+"y2026": 22.1,
+"verdict": "pass \u00b7 shadow",
+"batch": 16
+},
+{
+"name": "G3 at 0.5%",
+"group": "Main books",
+"risk": "0\u20130.5%",
+"r2126": 60.2,
+"r1020": 29.1,
+"y2026": 25.9,
+"verdict": "pass",
+"batch": 24
+},
+{
+"name": "G3 at 0.625% (main book)",
+"group": "Main books",
+"risk": "0\u20130.625%",
+"r2126": 71.5,
+"r1020": 31.0,
+"y2026": 29.9,
+"verdict": "main book",
+"batch": 30
+},
+{
+"name": "G3 at 0.75%",
+"group": "Size and mix",
+"risk": "0\u20130.75%",
+"r2126": 83.2,
+"r1020": 32.8,
+"y2026": 33.8,
+"verdict": "too risky",
+"batch": 30
+},
+{
+"name": "G3 at 1%",
+"group": "Size and mix",
+"risk": "0\u20131.0%",
+"r2126": 107.5,
+"r1020": 36.1,
+"y2026": 41.0,
+"verdict": "too risky",
+"batch": 30
+},
+{
+"name": "Skip-and-press",
+"group": "Main books",
+"risk": "0\u20130.75%",
+"r2126": 72.9,
+"r1020": 31.5,
+"y2026": 29.6,
+"verdict": "growth only",
+"batch": 17
+},
+{
+"name": "Skip-and-press 0.625 (\"87.8\")",
+"group": "Size and mix",
+"risk": "0\u20130.94%",
+"r2126": 87.8,
+"r1020": 33.8,
+"y2026": 34.0,
+"verdict": "too risky",
+"batch": 17
+},
+{
+"name": "Skip-only at 1%",
+"group": "Size and mix",
+"risk": "0\u20131.0%",
+"r2126": 101.0,
+"r1020": 34.5,
+"y2026": 32.3,
+"verdict": "too risky",
+"batch": 17
+},
+{
+"name": "Package, rules at 1%",
+"group": "Size and mix",
+"risk": "1.0%",
+"r2126": 132.3,
+"r1020": 32.2,
+"y2026": 19.0,
+"verdict": "too risky",
+"batch": 15
+},
+{
+"name": "Core 0.75 / rules 0.625",
+"group": "Size and mix",
+"risk": "0\u20130.625%",
+"r2126": 66.2,
+"r1020": 25.4,
+"y2026": 28.7,
+"verdict": "fail",
+"batch": 30
+},
+{
+"name": "Core 0.5 / rules 0.75",
+"group": "Size and mix",
+"risk": "0\u20130.75%",
+"r2126": 71.6,
+"r1020": 21.5,
+"y2026": 31.0,
+"verdict": "fail",
+"batch": 30
+},
+{
+"name": "Stack C (patterns + model)",
+"group": "Model & pattern tests",
+"risk": "0.25\u20131.0%",
+"r2126": 81.4,
+"r1020": 38.5,
+"y2026": 35.1,
+"verdict": "growth only",
+"batch": 13
+},
+{
+"name": "Stack A (day-after + gap)",
+"group": "Model & pattern tests",
+"risk": "0.25\u20131.0%",
+"r2126": 77.3,
+"r1020": 36.7,
+"y2026": 30.5,
+"verdict": "growth only",
+"batch": 13
+},
+{
+"name": "W1m model, monthly refit",
+"group": "Model & pattern tests",
+"risk": "0.25\u20130.75%",
+"r2126": 72.3,
+"r1020": 28.1,
+"y2026": 26.7,
+"verdict": "growth only",
+"batch": 14
+},
+{
+"name": "W1 model, yearly refit",
+"group": "Model & pattern tests",
+"risk": "0.25\u20130.75%",
+"r2126": 71.5,
+"r1020": 26.8,
+"y2026": 25.1,
+"verdict": "growth only",
+"batch": 13
+},
+{
+"name": "W3 model, 52 facts",
+"group": "Model & pattern tests",
+"risk": "0.25\u20130.75%",
+"r2126": 70.6,
+"r1020": 28.3,
+"y2026": 42.7,
+"verdict": "fail",
+"batch": 14
+},
+{
+"name": "W2 boosting model",
+"group": "Model & pattern tests",
+"risk": "0.25\u20130.75%",
+"r2126": 70.3,
+"r1020": 28.2,
+"y2026": 28.1,
+"verdict": "fail",
+"batch": 13
+},
+{
+"name": "M1 day-after resize",
+"group": "Model & pattern tests",
+"risk": "0.25\u20130.75%",
+"r2126": 70.3,
+"r1020": 30.1,
+"y2026": 24.4,
+"verdict": "growth only",
+"batch": 12
+},
+{
+"name": "M2 + M3 combined",
+"group": "Model & pattern tests",
+"risk": "0\u20130.75%",
+"r2126": 67.4,
+"r1020": 30.7,
+"y2026": null,
+"verdict": "fail by 0.2",
+"batch": 12
+},
+{
+"name": "R3 size-neutral",
+"group": "Model & pattern tests",
+"risk": "0.25\u20130.75%",
+"r2126": 67.7,
+"r1020": 27.7,
+"y2026": null,
+"verdict": "fail by 0.1",
+"batch": 16
+},
+{
+"name": "K1 gap \u00d71.5 / \u00d70.5",
+"group": "Model & pattern tests",
+"risk": "0.25\u20130.75%",
+"r2126": 65.7,
+"r1020": 27.8,
+"y2026": 28.0,
+"verdict": "growth only",
+"batch": 11
+},
+{
+"name": "H3 vol-managed size",
+"group": "Model & pattern tests",
+"risk": "varies",
+"r2126": 65.2,
+"r1020": 23.6,
+"y2026": 32.8,
+"verdict": "fail",
+"batch": 9
+},
+{
+"name": "M3 gap + yesterday",
+"group": "Model & pattern tests",
+"risk": "0.25\u20130.75%",
+"r2126": 63.5,
+"r1020": 27.2,
+"y2026": 26.5,
+"verdict": "pass (pre-model)",
+"batch": 12
+},
+{
+"name": "H5 learned sizing",
+"group": "Model & pattern tests",
+"risk": "0.25\u20130.75%",
+"r2126": 62.0,
+"r1020": 24.6,
+"y2026": null,
+"verdict": "fail",
+"batch": 9
+},
+{
+"name": "M2 skip after big win",
+"group": "Model & pattern tests",
+"risk": "0\u20130.5%",
+"r2126": 60.6,
+"r1020": 26.0,
+"y2026": 12.8,
+"verdict": "pass (pre-model)",
+"batch": 12
+},
+{
+"name": "R1 cut-only",
+"group": "Model & pattern tests",
+"risk": "0.25\u20130.5%",
+"r2126": 57.3,
+"r1020": 25.0,
+"y2026": null,
+"verdict": "pass",
+"batch": 16
+},
+{
+"name": "G3 recalibrated",
+"group": "Model & pattern tests",
+"risk": "0\u20130.5%",
+"r2126": 51.1,
+"r1020": 28.9,
+"y2026": 27.5,
+"verdict": "fail",
+"batch": 27
+},
+{
+"name": "S1 mega-cap earnings freeze",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 60.9,
+"r1020": 29.0,
+"y2026": 29.1,
+"verdict": "watch",
+"batch": 26
+},
+{
+"name": "T3 dynamic friction",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 60.8,
+"r1020": 27.7,
+"y2026": 26.7,
+"verdict": "fail",
+"batch": 25
+},
+{
+"name": "U4 signal-candle shape",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 60.7,
+"r1020": 29.4,
+"y2026": 33.0,
+"verdict": "fail (checks)",
+"batch": 29
+},
+{
+"name": "U6 more shorts",
+"group": "Ideas vs G3",
+"risk": "0\u20130.63%",
+"r2126": 60.3,
+"r1020": 28.0,
+"y2026": 23.3,
+"verdict": "fail",
+"batch": 29
+},
+{
+"name": "U4b shape, all rules",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 60.0,
+"r1020": 28.5,
+"y2026": 26.8,
+"verdict": "fail",
+"batch": 29
+},
+{
+"name": "Faster skip line (63)",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 59.9,
+"r1020": 29.0,
+"y2026": null,
+"verdict": "fail",
+"batch": 32
+},
+{
+"name": "Expiry-Friday overnight long",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 59.9,
+"r1020": 29.6,
+"y2026": null,
+"verdict": "fail",
+"batch": 31
+},
+{
+"name": "Variance-ratio feature",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 59.0,
+"r1020": 27.7,
+"y2026": null,
+"verdict": "fail",
+"batch": 33
+},
+{
+"name": "Hinged yesterday result",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 58.5,
+"r1020": 28.1,
+"y2026": null,
+"verdict": "fail",
+"batch": 33
+},
+{
+"name": "U7 night-heavy core",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 57.1,
+"r1020": 21.0,
+"y2026": 24.0,
+"verdict": "fail",
+"batch": 29
+},
+{
+"name": "Size-scaled ridge penalty",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 57.0,
+"r1020": 27.7,
+"y2026": null,
+"verdict": "fail",
+"batch": 31
+},
+{
+"name": "S2 10:00 release skip",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 55.7,
+"r1020": 28.7,
+"y2026": 17.7,
+"verdict": "fail",
+"batch": 26
+},
+{
+"name": "T2 remaining range",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 55.4,
+"r1020": 27.8,
+"y2026": 23.6,
+"verdict": "fail",
+"batch": 25
+},
+{
+"name": "K2 stop switch",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 54.8,
+"r1020": 27.8,
+"y2026": 16.5,
+"verdict": "fail",
+"batch": 26
+},
+{
+"name": "U10 8:30 news trades",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 54.6,
+"r1020": 28.3,
+"y2026": 23.2,
+"verdict": "fail",
+"batch": 29
+},
+{
+"name": "U2 sibling labels",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 54.3,
+"r1020": 29.2,
+"y2026": 24.1,
+"verdict": "fail",
+"batch": 29
+},
+{
+"name": "T4 two-stage model",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 53.4,
+"r1020": 27.2,
+"y2026": 17.4,
+"verdict": "fail",
+"batch": 25
+},
+{
+"name": "G1 expansion-bar skip",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 53.2,
+"r1020": 23.4,
+"y2026": 11.8,
+"verdict": "fail",
+"batch": 24
+},
+{
+"name": "U3 six-variant average",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 51.5,
+"r1020": 28.5,
+"y2026": 28.1,
+"verdict": "fail",
+"batch": 29
+},
+{
+"name": "T5 path efficiency",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 50.8,
+"r1020": 28.4,
+"y2026": 32.8,
+"verdict": "fail",
+"batch": 25
+},
+{
+"name": "U5 recency weighting",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 50.7,
+"r1020": 26.8,
+"y2026": 39.9,
+"verdict": "fail",
+"batch": 29
+},
+{
+"name": "G5 wick skip",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 50.5,
+"r1020": 22.7,
+"y2026": 28.2,
+"verdict": "fail",
+"batch": 24
+},
+{
+"name": "B drawdown stop",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 49.8,
+"r1020": 28.4,
+"y2026": 18.9,
+"verdict": "fail",
+"batch": 28
+},
+{
+"name": "T1 stop inside noise",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 39.2,
+"r1020": 23.3,
+"y2026": 27.9,
+"verdict": "fail",
+"batch": 25
+},
+{
+"name": "K3 changepoint switch",
+"group": "Ideas vs G3",
+"risk": "0\u20130.5%",
+"r2126": 34.0,
+"r1020": 25.4,
+"y2026": 22.8,
+"verdict": "fail",
+"batch": 26
+},
+{
+"name": "Package + hold leg",
+"group": "New rules & filters",
+"risk": "0.5% + leg",
+"r2126": 63.8,
+"r1020": 26.7,
+"y2026": null,
+"verdict": "fail",
+"batch": 21
+},
+{
+"name": "H2 overnight after down day",
+"group": "New rules & filters",
+"risk": "0.5% + leg",
+"r2126": 58.3,
+"r1020": 23.3,
+"y2026": null,
+"verdict": "fail",
+"batch": 9
+},
+{
+"name": "H1 regime tilt",
+"group": "New rules & filters",
+"risk": "0.5\u20130.75%",
+"r2126": 57.7,
+"r1020": 23.1,
+"y2026": null,
+"verdict": "fail",
+"batch": 9
+},
+{
+"name": "U1 noise band 5 min early",
+"group": "New rules & filters",
+"risk": "0.5%",
+"r2126": 57.6,
+"r1020": 20.3,
+"y2026": 15.7,
+"verdict": "fail (watch)",
+"batch": 29
+},
+{
+"name": "S2 calm-day fade",
+"group": "New rules & filters",
+"risk": "0.5%",
+"r2126": 55.9,
+"r1020": 20.7,
+"y2026": null,
+"verdict": "fail",
+"batch": 8
+},
+{
+"name": "G2 news reallocation",
+"group": "New rules & filters",
+"risk": "0.25\u20130.75%",
+"r2126": 55.9,
+"r1020": 25.9,
+"y2026": null,
+"verdict": "fail",
+"batch": 10
+},
+{
+"name": "S1 spread reversion",
+"group": "New rules & filters",
+"risk": "0.5%",
+"r2126": 51.9,
+"r1020": 21.1,
+"y2026": null,
+"verdict": "fail",
+"batch": 8
+},
+{
+"name": "QuantLab second chance",
+"group": "New rules & filters",
+"risk": "0.5%",
+"r2126": 51.7,
+"r1020": 18.8,
+"y2026": null,
+"verdict": "fail",
+"batch": 18
+},
+{
+"name": "K2 skip against-gap",
+"group": "New rules & filters",
+"risk": "0\u20130.5%",
+"r2126": 49.7,
+"r1020": 28.3,
+"y2026": null,
+"verdict": "fail",
+"batch": 11
+},
+{
+"name": "Pre-market volume",
+"group": "New rules & filters",
+"risk": "0.25\u20130.75%",
+"r2126": 47.4,
+"r1020": 25.8,
+"y2026": null,
+"verdict": "fail",
+"batch": 10
+},
+{
+"name": "Gamma reallocation",
+"group": "New rules & filters",
+"risk": "0.25\u20130.75%",
+"r2126": 45.3,
+"r1020": 27.6,
+"y2026": null,
+"verdict": "fail",
+"batch": 18
+},
+{
+"name": "S&P confirmation",
+"group": "New rules & filters",
+"risk": "0\u20130.5%",
+"r2126": 42.5,
+"r1020": 21.4,
+"y2026": null,
+"verdict": "fail",
+"batch": 10
+},
+{
+"name": "European-session band",
+"group": "New rules & filters",
+"risk": "0.5%",
+"r2126": 37.2,
+"r1020": 19.3,
+"y2026": null,
+"verdict": "fail",
+"batch": 9
+},
+{
+"name": "Low-gamma days only",
+"group": "New rules & filters",
+"risk": "0\u20130.5%",
+"r2126": 28.5,
+"r1020": 27.0,
+"y2026": null,
+"verdict": "fail",
+"batch": 18
+}
+]
+}
