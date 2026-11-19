@@ -261,3 +261,10 @@ Designed after a 6-member council review (statistician, risk manager, trader, AI
 - **Speed fallback (same for every seat):** if a seat's top model fails to answer before the 09:25 cutoff on more than
   10% of practice mornings in January 2027, that seat uses the same developer's next-best model on the snapshot.
   Decided now, before anyone knows which seat (if any) it will affect.
+
+### Amendment 12 (19 November 2026, practice only, before the freeze): council vs memory, decided later
+- Dru's decision: during the practice run, test BOTH (A) the four-model council (Amendment 11 seats, one call each,
+  median, no debate round) and (B) a memory arm (the same AI plus a short daily digest of the brain's live notes).
+- One of them becomes the official AI arm in the freeze record, chosen before the freeze; the choice will be made on
+  reliability, speed and cost in practice, NOT on practice-run performance (too few days to mean anything).
+- The no-news arm is dropped.
