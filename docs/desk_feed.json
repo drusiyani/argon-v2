@@ -9,8 +9,8 @@
  },
  "calls": [],
  "daytype": {
-  "date": "2026-11-18",
-  "made_at": "08:47",
+  "date": "2026-11-19",
+  "made_at": "09:18",
   "late": false,
   "ai": {
    "size": 1.0,
@@ -27,14 +27,14 @@
    "size": null,
    "members": {}
   },
-  "random_size": 1.5,
+  "random_size": 0.5,
   "headlines": [
-   "[Yahoo Finance, Wed 08:15] Dow Jones Futures Fall, Techs Rise After Nvidia Earnings, Waller's 'Shock' Warning; Anthropic IPO Ahead",
-   "[Yahoo Finance, Wed 07:59] Equities Set to Rebound as Investors Parse Nvidia Results, Await Fed Minutes",
-   "[Yahoo Finance, Wed 08:21] Can KLA Stock Hit $220?",
-   "[Yahoo Finance, Wed 08:18] How Has Cintas's Story Changed?",
-   "[Yahoo Finance, Wed 08:11] Should You Buy Coinbase Stock Now Or Wait?",
-   "[Yahoo Finance, Wed 08:08] Eaton Stock Has One Thing Left To Prove"
+   "[Yahoo Finance, Thu 08:47] A Bear Market Could Be Coming. Here's My Exact Investing Strategy to Prepare for It.",
+   "[Yahoo Finance, Thu 08:20] $1 Million In SMH Five Years Ago: What Is It Worth Now?",
+   "[Yahoo Finance, Thu 08:15] US Stock Market Today: S&P 500 Futures Advance On Falling Yields And Hawkish Fed Signals",
+   "[Yahoo Finance, Thu 08:07] Dow Jones Futures Rise, Nasdaq Jumps: Anthropic To Debut After Record IPO; Palo Alto, Everpure Rally, Walmart Falls",
+   "[Yahoo Finance, Thu 08:02] Are You Sure You Understand General Motors Stock's Risk?",
+   "[Yahoo Finance, Thu 08:01] Coca-Cola Stock Could Lose Its Fizz. Its Valuation Is the Highest in 25 Years."
   ],
   "council": {
    "members": {
@@ -49,11 +49,11 @@
    "size": null
   },
   "inputs": {
-   "vix": 24.38,
-   "vix_1y_percentile": 92,
-   "range_ratio": 0.99,
-   "rsi5": 31.3,
-   "overnight_change_pct": 0.77,
+   "vix": 22.55,
+   "vix_1y_percentile": 88,
+   "range_ratio": 0.8,
+   "rsi5": 7.4,
+   "overnight_change_pct": 1.78,
    "calendar": [
     "nothing scheduled that Argon tracks"
    ]
@@ -696,6 +696,57 @@
      "nothing scheduled that Argon tracks"
     ]
    }
+  },
+  {
+   "date": "2026-11-19",
+   "made_at": "09:18",
+   "late": false,
+   "ai": {
+    "size": 1.0,
+    "trend_probability": null,
+    "veto": null,
+    "reason": "no forecast (no API key or all runs failed): counts as 1x"
+   },
+   "dumb_size": 1.0,
+   "ai_size_used": 1.0,
+   "shadow": true,
+   "council_r2": {
+    "counted": false,
+    "trend_probability": null,
+    "size": null,
+    "members": {}
+   },
+   "random_size": 0.5,
+   "headlines": [
+    "[Yahoo Finance, Thu 08:47] A Bear Market Could Be Coming. Here's My Exact Investing Strategy to Prepare for It.",
+    "[Yahoo Finance, Thu 08:20] $1 Million In SMH Five Years Ago: What Is It Worth Now?",
+    "[Yahoo Finance, Thu 08:15] US Stock Market Today: S&P 500 Futures Advance On Falling Yields And Hawkish Fed Signals",
+    "[Yahoo Finance, Thu 08:07] Dow Jones Futures Rise, Nasdaq Jumps: Anthropic To Debut After Record IPO; Palo Alto, Everpure Rally, Walmart Falls",
+    "[Yahoo Finance, Thu 08:02] Are You Sure You Understand General Motors Stock's Risk?",
+    "[Yahoo Finance, Thu 08:01] Coca-Cola Stock Could Lose Its Fizz. Its Valuation Is the Highest in 25 Years."
+   ],
+   "council": {
+    "members": {
+     "claude": null,
+     "gemini": null,
+     "gpt": null,
+     "deepseek": null
+    },
+    "answered": 0,
+    "counted": false,
+    "trend_probability": null,
+    "size": null
+   },
+   "inputs": {
+    "vix": 22.55,
+    "vix_1y_percentile": 88,
+    "range_ratio": 0.8,
+    "rsi5": 7.4,
+    "overnight_change_pct": 1.78,
+    "calendar": [
+     "nothing scheduled that Argon tracks"
+    ]
+   }
   }
  ],
  "daytype_score": {
@@ -748,9 +799,9 @@
   "brier": null
  },
  "book": {
-  "final": 1335179,
-  "a_year": 61.4,
-  "sharpe": 1.21,
+  "final": 1320286,
+  "a_year": 61.0,
+  "sharpe": 1.2,
   "worst_drop": -32.2,
   "risk_pct": 1.0,
   "window": [
@@ -772,27 +823,27 @@
    "direction": "down",
    "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-18T20:44Z"
+   "updated": "2026-11-19T14:17Z"
   },
   "ES": {
-   "direction": "up",
-   "confidence": 0.8,
-   "horizon": "1h",
-   "updated": "2026-11-18T20:44Z"
-  },
-  "YM": {
-   "direction": "up",
-   "confidence": 1.0,
-   "horizon": "1h",
-   "updated": "2026-11-18T20:44Z"
-  },
-  "RTY": {
    "direction": "down",
    "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-18T20:44Z"
+   "updated": "2026-11-19T14:17Z"
+  },
+  "YM": {
+   "direction": "up",
+   "confidence": 0.8,
+   "horizon": "1h",
+   "updated": "2026-11-19T14:17Z"
+  },
+  "RTY": {
+   "direction": "up",
+   "confidence": 0.6,
+   "horizon": "1h",
+   "updated": "2026-11-19T14:18Z"
   }
  },
- "checked": "2026-11-18 20:45 UTC",
- "updated": "2026-11-18 20:45 UTC"
+ "checked": "2026-11-19 14:15 UTC",
+ "updated": "2026-11-19 14:18 UTC"
 }
