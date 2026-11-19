@@ -823,27 +823,27 @@
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-19T18:01Z"
+   "updated": "2026-11-19T18:20Z"
   },
   "ES": {
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-19T18:02Z"
+   "updated": "2026-11-19T18:21Z"
   },
   "YM": {
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-19T18:02Z"
+   "updated": "2026-11-19T18:21Z"
   },
   "RTY": {
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-19T18:02Z"
+   "updated": "2026-11-19T18:21Z"
   }
  },
  "checked": "2026-11-19 18:15 UTC",
- "updated": "2026-11-19 18:15 UTC"
+ "updated": "2026-11-19 18:22 UTC"
 }
