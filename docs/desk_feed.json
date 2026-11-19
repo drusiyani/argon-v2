@@ -820,30 +820,30 @@
  },
  "kronos": {
   "NQ": {
-   "direction": "down",
-   "confidence": 1.0,
-   "horizon": "1h",
-   "updated": "2026-11-19T15:10Z"
-  },
-  "ES": {
-   "direction": "down",
-   "confidence": 0.8,
-   "horizon": "1h",
-   "updated": "2026-11-19T15:10Z"
-  },
-  "YM": {
    "direction": "up",
    "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-19T15:10Z"
+   "updated": "2026-11-19T15:29Z"
   },
-  "RTY": {
-   "direction": "down",
+  "ES": {
+   "direction": "up",
    "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-19T15:10Z"
+   "updated": "2026-11-19T15:29Z"
+  },
+  "YM": {
+   "direction": "up",
+   "confidence": 1.0,
+   "horizon": "1h",
+   "updated": "2026-11-19T15:29Z"
+  },
+  "RTY": {
+   "direction": "up",
+   "confidence": 0.6,
+   "horizon": "1h",
+   "updated": "2026-11-19T15:29Z"
   }
  },
- "checked": "2026-11-19 15:15 UTC",
- "updated": "2026-11-19 15:17 UTC"
+ "checked": "2026-11-19 15:30 UTC",
+ "updated": "2026-11-19 15:30 UTC"
 }
