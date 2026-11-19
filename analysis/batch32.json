@@ -1,0 +1,80 @@
+{
+ "G3": {
+  "databento": {
+   "cagr_pct": 60.2,
+   "sharpe": 1.76,
+   "sortino": 3.41,
+   "worst_drop_pct": -18.4,
+   "boot": 0.7
+  },
+  "lockbox2010": {
+   "cagr_pct": 29.1,
+   "sharpe": 1.41,
+   "sortino": 2.36,
+   "worst_drop_pct": -21.2,
+   "boot": 0.9
+  }
+ },
+ "Q1_skip_line_63": {
+  "result": {
+   "databento": {
+    "cagr_pct": 59.9,
+    "sharpe": 1.75,
+    "sortino": 3.41,
+    "worst_drop_pct": -19.3,
+    "boot": 0.7
+   },
+   "lockbox2010": {
+    "cagr_pct": 29.0,
+    "sharpe": 1.41,
+    "sortino": 2.36,
+    "worst_drop_pct": -21.2,
+    "boot": 0.9
+   }
+  },
+  "strict_vs_G3": false,
+  "luck_random_beating_both_eras": 0,
+  "luck_pass": true,
+  "adopt_candidate": false,
+  "sub_periods": {
+   "G3": {
+    "2010-13": 17.9,
+    "2014-17": 14.2,
+    "2018-20": 68.8,
+    "2021-25": 66.1,
+    "2026": 30.5
+   },
+   "Q1": {
+    "2010-13": 17.9,
+    "2014-17": 14.2,
+    "2018-20": 68.5,
+    "2021-25": 65.7,
+    "2026": 30.7
+   },
+   "level_or_better": 3
+  },
+  "changed_share": 0.035,
+  "changed_in_high_keep_months": {
+   "newly_skipped": 0,
+   "newly_skipped_R": 0,
+   "newly_kept": 0,
+   "newly_kept_R": 0
+  },
+  "changed_in_other_months": {
+   "newly_skipped": 138,
+   "newly_skipped_R": -1.4,
+   "newly_kept": 73,
+   "newly_kept_R": -4.7
+  },
+  "july_2026_at_0625": {
+   "G3": -17.5,
+   "Q1": -17.5
+  },
+  "skip_share": {
+   "databento": 0.352,
+   "lockbox2010": 0.514
+  },
+  "clears_noise_floor": false,
+  "adopt": false
+ }
+}
