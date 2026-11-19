@@ -66,6 +66,7 @@ jobs:
       - name: Plain-English daily summary for the desk
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: python engine/daily_summary.py || echo "summary skipped"
       - name: Brain notes (one per trading day, monthly pages, Decisions)
         run: |

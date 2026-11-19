@@ -16,7 +16,8 @@ from zoneinfo import ZoneInfo
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); sys.path.insert(0, os.path.join(ROOT, 'engine'))
 from calendar_us import FOMC
 NY = ZoneInfo('America/New_York'); OUT = os.path.join(ROOT, 'data', 'daytype.jsonl')
-KEY = os.environ.get('ANTHROPIC_API_KEY')
+KEY = os.environ.get('ANTHROPIC_API_KEY') or os.environ.get('OPENROUTER_API_KEY')
+import llm
 # Solo AI. Practice-run settings (Nov 2026): the final models and effort level are fixed by amendment before the 31 Jan 2027 freeze.
 MODEL = os.environ.get('DAYTYPE_MODEL', 'claude-opus-5-5')
 EFFORT = os.environ.get('DAYTYPE_EFFORT', 'high')       # same effort level for every AI
@@ -221,6 +222,9 @@ def council_round2(base, r1, day):
     return summarise(out)
 
 def ask(text, extra=''):
+    if llm.ROUTE == 'openrouter':                                 # one OpenRouter account for every AI (19 Nov 2026)
+        r = ask_member(dict(name='claude', model=os.environ.get('CLAUDE_OR_MODEL') or llm.or_id(MODEL)), text, extra)
+        return {k: r[k] for k in ('trend_probability', 'size', 'veto', 'reason')}
     # Claude 5.5 models reject temperature/top_p/top_k (400), so none are sent; the effort level controls thinking instead.
     # The long shared part (instructions + inputs + track record) is cached, so repeat calls cost much less.
     content = [{'type': 'text', 'text': PROMPT + text, 'cache_control': {'type': 'ephemeral'}}] + ([{'type': 'text', 'text': extra}] if extra else [])

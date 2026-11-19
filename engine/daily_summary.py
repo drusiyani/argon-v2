@@ -36,14 +36,12 @@ def template(f):
     s += f" Account ${f['account']:,.0f}. Checks: {'all fine' if all(('ok' in str(v) or 'off' in str(v) or 'flat' in str(v)) for v in (f['checks'] or {}).values()) else 'something needs a look'}."
     return s
 def claude(f):
-    k = os.environ.get('ANTHROPIC_API_KEY')
+    k = os.environ.get('ANTHROPIC_API_KEY') or os.environ.get('OPENROUTER_API_KEY')
     if not k: return None
     prompt = ('Write a plain-English summary of this paper-trading day for a 15-year-old, in 3 or 4 short sentences. '
               'Use only these facts. No advice, no hype, no predictions. Say it is paper trading. The morning call is shadow only (it does not change the trades).\n\n' + json.dumps(f))
-    body = json.dumps({'model': MODEL, 'max_tokens': 4000, 'output_config': {'effort': 'low'}, 'messages': [{'role': 'user', 'content': prompt}]}).encode()   # 5.5 models reject temperature
-    req = urllib.request.Request('https://api.anthropic.com/v1/messages', data=body, headers={'x-api-key': k, 'anthropic-version': '2023-06-01', 'content-type': 'application/json'})
-    blocks = json.loads(urllib.request.urlopen(req, timeout=120).read())['content']
-    return next(x['text'] for x in blocks if x.get('type') == 'text').strip()
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import llm
+    return llm.claude(prompt, MODEL, max_tokens=4000, effort='low')[0].strip()
 if __name__ == '__main__':
     f = facts()
     if not f: print('nothing booked yet'); sys.exit(0)

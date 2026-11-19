@@ -9,12 +9,10 @@ Everything lands in data/scout.json, which feeds the site's Lab tab and the brai
 import os,sys,json,re,time,urllib.request,urllib.parse,datetime as dt,xml.etree.ElementTree as ET
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__))); sys.path.insert(0,os.path.join(ROOT,'engine'))
 import recipes
-KEY=os.environ.get('ANTHROPIC_API_KEY'); FAST=os.environ.get('ARGON_AGENT_MODEL','claude-haiku-5-5'); SMART=os.environ.get('ARGON_CHIEF_MODEL','claude-sonnet-5-5')
+KEY=os.environ.get('ANTHROPIC_API_KEY') or os.environ.get('OPENROUTER_API_KEY'); FAST=os.environ.get('ARGON_AGENT_MODEL','claude-haiku-5-5'); SMART=os.environ.get('ARGON_CHIEF_MODEL','claude-sonnet-5-5')
 OUT=os.path.join(ROOT,'data','scout.json'); SEEN=os.path.join(ROOT,'data','scout_seen.json')
 def ask(model,system,user,max_tokens=900):
-    body=json.dumps({'model':model,'max_tokens':max_tokens,'system':system,'messages':[{'role':'user','content':user}]}).encode()
-    req=urllib.request.Request('https://api.anthropic.com/v1/messages',data=body,headers={'x-api-key':KEY,'anthropic-version':'2023-06-01','content-type':'application/json'})
-    t=json.loads(urllib.request.urlopen(req,timeout=120).read())['content'][0]['text']
+    import llm; t,_=llm.claude(user,model,max_tokens=max_tokens,system=system)
     try: return json.loads(t[t.index('{'):t.rindex('}')+1])
     except Exception: return {'error':t[:300]}
 def get(url,headers=None):

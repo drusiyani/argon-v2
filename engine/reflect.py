@@ -3,7 +3,7 @@ and writes a short reflection that links back to what it read. Needs an ANTHROPI
 import os,json,re,glob,datetime as dt,urllib.request
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__))); V=os.path.join(ROOT,'vault')
 MARK='%% my notes below. Argon never changes anything under this line %%'
-key=os.environ.get('ANTHROPIC_API_KEY')
+key=os.environ.get('ANTHROPIC_API_KEY') or os.environ.get('OPENROUTER_API_KEY')
 if not key: print('no API key, skipping reflection'); raise SystemExit
 def read(p,n=4000): return open(p).read()[:n]
 parts=[]
@@ -22,9 +22,7 @@ prompt=("You are the reflective voice of a trading-research notebook called Argo
  "has written in his own notes. Write a short reflection (under 350 words, plain English a teacher would follow) with these headings: "
  "What changed this week. What I'm more sure of. What I'm less sure of. Something to test next. Questions for Dru. "
  "Link to notes you mention using [[Note name]] exactly as the note titles appear. Be honest about small samples. No preamble.\n\n"+'\n\n'.join(parts+mine))
-body=json.dumps({'model':'claude-haiku-5-5','max_tokens':1200,'messages':[{'role':'user','content':prompt}]}).encode()
-req=urllib.request.Request('https://api.anthropic.com/v1/messages',data=body,headers={'x-api-key':key,'anthropic-version':'2023-06-01','content-type':'application/json'})
-out=json.loads(urllib.request.urlopen(req,timeout=120).read())['content'][0]['text']
+import sys; sys.path.insert(0,os.path.dirname(os.path.abspath(__file__))); import llm; out,_=llm.claude(prompt,'claude-haiku-5-5',max_tokens=1200)
 os.makedirs(os.path.join(V,'Claude'),exist_ok=True)
 path=os.path.join(V,'Claude',title+'.md')
 mine_part=open(path).read().split(MARK,1)[1] if os.path.exists(path) and MARK in open(path).read() else '\n## My notes\n\n'
