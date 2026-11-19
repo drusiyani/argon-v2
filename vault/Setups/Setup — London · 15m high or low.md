@@ -1,19 +1,19 @@
 ---
 type: setup
-examples: 8
+examples: 11
 taken: 0
 ---
 # Setup — London · 15m high or low
 
 > [!info]
-> Not enough examples to tell yet.
+> Losing money. A candidate to drop or tighten.
 
 | | how many | won | total | per trade |
 |---|---|---|---|---|
-| all examples | 8 | 25% | -2.00R | -0.25R |
+| all examples | 11 | 27% | -2.00R | -0.18R |
 | actually taken | 0 | – | 0.00R | – |
 
-By market: Nasdaq 2 (+1.00R), S&P 500 2 (-2.00R), the Dow 2 (-2.00R), the Russell 2000 2 (+1.00R).
+By market: Nasdaq 2 (+1.00R), S&P 500 3 (-3.00R), the Dow 3 (0.00R), the Russell 2000 3 (0.00R).
 
 ## Trades taken
 
