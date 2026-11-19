@@ -231,3 +231,17 @@ Designed after a 6-member council review (statistician, risk manager, trader, AI
 - **Integrity:** the ledger's head hash is stamped nightly with OpenTimestamps (anchored in Bitcoin), so its history can't be
   rewritten even by force-pushing; Databento closes are cross-checked against Yahoo nightly (over 1% gap, outside roll days, alerts).
 - **Cost:** each call's tokens and dollars are recorded; a day over $3 alerts the phone.
+
+### Amendment 10 (19 November 2026, before the freeze): main book and size, decided by Dru
+- **Main book:** G3 trade filter (analysis/BATCH24) on the package: VXN-managed Nasdaq core at 1x plus the four rules.
+- **Size: rules weight 0.625**, i.e. **0.625% of the account at risk per rules trade** (up from 0.5%). G3 only ever skips;
+  it never sizes a trade up. Chosen by Dru after batch 30 showed no core/rules mix beats G3 without more risk.
+- **Backtest at this size (single run, not blind, ~296 trials):** 2021–26 +71.5% a year / Sortino 3.72 / worst drop
+  −20.5% / crash chance 0.7%; 2010–20 +31.0% / 2.39 / −23.8% / 3.1%; 2026 to 12 Nov +29.9%, worst drop −20.5%.
+  Batch 29's jitter test showed G3's single-run figures carry about ±3 points (2021–26) and ±1.5 (2010–20) of luck,
+  so these are upper-middle estimates, not promises. Plan for worse drops live.
+- **Accepted trade-off:** about 2 to 2.5 points deeper worst drop than at 0.5%, still inside the "never riskier than the
+  Nasdaq alone" limit in both eras.
+- **Shadows (paper only, never change the main book):** G3 at 0.5%; skip-only at 0.625%.
+- Recorded now; becomes binding with the freeze record (31 January 2027). The live engine's sizing is changed to match
+  as part of wiring G3 into it, and that change is logged in the freeze record.
