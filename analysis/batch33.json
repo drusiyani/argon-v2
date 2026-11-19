@@ -1,0 +1,110 @@
+{
+ "G3": {
+  "databento": {
+   "cagr_pct": 60.2,
+   "sharpe": 1.76,
+   "sortino": 3.41,
+   "worst_drop_pct": -18.4,
+   "boot": 0.7
+  },
+  "lockbox2010": {
+   "cagr_pct": 29.1,
+   "sharpe": 1.41,
+   "sortino": 2.36,
+   "worst_drop_pct": -21.2,
+   "boot": 0.9
+  }
+ },
+ "H1_hinged_yesterday_R": {
+  "result": {
+   "databento": {
+    "cagr_pct": 58.5,
+    "sharpe": 1.72,
+    "sortino": 3.34,
+    "worst_drop_pct": -17.8,
+    "boot": 0.3
+   },
+   "lockbox2010": {
+    "cagr_pct": 28.1,
+    "sharpe": 1.38,
+    "sortino": 2.31,
+    "worst_drop_pct": -21.3,
+    "boot": 2.6
+   }
+  },
+  "strict_vs_G3": false,
+  "luck_random_beating_both_eras": 1,
+  "luck_pass": true,
+  "adopt_candidate": false,
+  "sub_periods": {
+   "G3": {
+    "2010-13": 17.9,
+    "2014-17": 14.2,
+    "2018-20": 68.8,
+    "2021-25": 66.1,
+    "2026": 30.5
+   },
+   "idea": {
+    "2010-13": 19.3,
+    "2014-17": 12.3,
+    "2018-20": 65.9,
+    "2021-25": 64.4,
+    "2026": 28.8
+   },
+   "level_or_better": 1
+  },
+  "july_2026_at_0625": {
+   "G3": -17.5,
+   "idea": -16.8
+  },
+  "changed_share": 0.055,
+  "clears_noise_floor": false,
+  "adopt": false
+ },
+ "H2_variance_ratio_feature": {
+  "result": {
+   "databento": {
+    "cagr_pct": 59.0,
+    "sharpe": 1.74,
+    "sortino": 3.36,
+    "worst_drop_pct": -18.2,
+    "boot": 0.5
+   },
+   "lockbox2010": {
+    "cagr_pct": 27.7,
+    "sharpe": 1.36,
+    "sortino": 2.26,
+    "worst_drop_pct": -21.2,
+    "boot": 2.2
+   }
+  },
+  "strict_vs_G3": false,
+  "luck_random_beating_both_eras": 0,
+  "luck_pass": true,
+  "adopt_candidate": false,
+  "sub_periods": {
+   "G3": {
+    "2010-13": 17.9,
+    "2014-17": 14.2,
+    "2018-20": 68.8,
+    "2021-25": 66.1,
+    "2026": 30.5
+   },
+   "idea": {
+    "2010-13": 18.4,
+    "2014-17": 12.7,
+    "2018-20": 64.8,
+    "2021-25": 64.0,
+    "2026": 33.7
+   },
+   "level_or_better": 2
+  },
+  "july_2026_at_0625": {
+   "G3": -17.5,
+   "idea": -16.8
+  },
+  "changed_share": 0.037,
+  "clears_noise_floor": false,
+  "adopt": false
+ }
+}
