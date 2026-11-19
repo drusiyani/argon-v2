@@ -1,7 +1,8 @@
 __pycache__/
 *.pyc
 .DS_Store
-vendor/
+vendor/*
+!vendor/black-hole/
 engine/fast.so
 
 # Raw market data from Databento (CME): its licence forbids republishing it, so it lives in the private repo drusiyani/argon-data.
@@ -19,3 +20,4 @@ data/histdata/*
 # batch 13 working files (rebuilt by analysis/batch13_dump.py)
 analysis/_cache/
 analysis/batch9_days_*.json
+vendor/black-hole/node_modules/

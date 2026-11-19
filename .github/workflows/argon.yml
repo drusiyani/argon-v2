@@ -75,6 +75,10 @@ jobs:
           pip install playwright==1.47.0
           python -m playwright install --with-deps chromium
           python engine/brain.py
+      - name: Black hole map of the brain (Second Brain Black Hole, MIT)
+        run: |
+          cd vendor/black-hole && npm ci --omit=dev --no-audit --no-fund
+          node scripts/import-markdown.mjs ../../vault --owner "Argon" --cluster folders --max 500 --out ../../docs/brain-map.html || echo "brain map skipped"
       - name: Claude's weekly reflection and the research scout (Fridays, only if the API key secret is set)
         if: github.event.schedule == '30 22 * * 1-5'
         env:
