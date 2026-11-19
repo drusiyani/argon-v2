@@ -12,5 +12,12 @@
   "vix": 25.459999084472656,
   "vix_pct": 94,
   "trend_day": 0
+ },
+ "2026-11-18": {
+  "label": "choppy",
+  "range_ratio": 0.73,
+  "vix": 24.559999465942383,
+  "vix_pct": 92,
+  "trend_day": 0
  }
 }
