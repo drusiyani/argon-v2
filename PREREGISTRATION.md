@@ -245,3 +245,16 @@ Designed after a 6-member council review (statistician, risk manager, trader, AI
 - **Shadows (paper only, never change the main book):** G3 at 0.5%; skip-only at 0.625%.
 - Recorded now; becomes binding with the freeze record (31 January 2027). The live engine's sizing is changed to match
   as part of wiring G3 into it, and that change is logged in the freeze record.
+
+### Amendment 11 (19 November 2026, before the freeze): how the desk's models are chosen, decided by Dru
+- **Rule:** the desk's AIs are the best models on the Artificial Analysis Intelligence Index (artificialanalysis.ai),
+  taken from ONE snapshot of that page saved before the freeze (planned 24 January 2027):
+  - seat 1: the top Anthropic model; seat 2: the top OpenAI model; seat 3: the top Google model;
+  - seat 4: the top model with a public API from **any other developer** (replaces the DeepSeek seat, whose best
+    model scored far below the rest).
+- Each at the reasoning setting it was ranked at; exact model IDs and settings written into the freeze record.
+- **Pinned for all of Race 1.** Newer models released during the race are logged, not swapped in (Race 2 may update).
+- **Reading today (19 Nov 2026, for reference only, not binding):** Claude Fable 5.2 (max) 65, GPT-6.2 Astra (max) 62,
+  Gemini 4 Neon (xhigh) 61, Kimi K3.1 Pro 46 (Meta's Muse Wonder Full scores 50 but has no public API).
+- What it measures: the best general-purpose AI per seat, not the best trading AI; nobody ranks trading skill, which
+  is what Race 1 tests.
