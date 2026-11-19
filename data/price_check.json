@@ -1,20 +1,6 @@
 {
- "checked": "2026-11-17T10:59:07+00:00",
+ "checked": "2026-11-19T03:24:58+00:00",
  "rows": [
-  {
-   "date": "2026-11-02",
-   "databento": 28138.75,
-   "yahoo": 28127.5,
-   "gap_pct": 0.04,
-   "roll": false
-  },
-  {
-   "date": "2026-11-03",
-   "databento": 28300.5,
-   "yahoo": 28305.75,
-   "gap_pct": -0.019,
-   "roll": false
-  },
   {
    "date": "2026-11-04",
    "databento": 28566.75,
@@ -69,6 +55,20 @@
    "databento": 28038.0,
    "yahoo": 28034.75,
    "gap_pct": 0.012,
+   "roll": false
+  },
+  {
+   "date": "2026-11-16",
+   "databento": 27291.5,
+   "yahoo": 27284.25,
+   "gap_pct": 0.027,
+   "roll": false
+  },
+  {
+   "date": "2026-11-17",
+   "databento": 27085.75,
+   "yahoo": 27075.5,
+   "gap_pct": 0.038,
    "roll": false
   }
  ],

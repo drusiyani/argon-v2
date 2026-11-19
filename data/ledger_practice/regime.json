@@ -1,0 +1,16 @@
+{
+ "2026-11-16": {
+  "label": "trending",
+  "range_ratio": 0.9,
+  "vix": 22.90999984741211,
+  "vix_pct": 88,
+  "trend_day": 1
+ },
+ "2026-11-17": {
+  "label": "choppy",
+  "range_ratio": 1.27,
+  "vix": 25.459999084472656,
+  "vix_pct": 94,
+  "trend_day": 0
+ }
+}
