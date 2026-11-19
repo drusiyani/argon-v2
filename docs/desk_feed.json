@@ -821,29 +821,29 @@
  "kronos": {
   "NQ": {
    "direction": "down",
-   "confidence": 0.8,
+   "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-19T16:26Z"
+   "updated": "2026-11-19T16:45Z"
   },
   "ES": {
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-19T16:26Z"
+   "updated": "2026-11-19T16:45Z"
   },
   "YM": {
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-19T16:26Z"
+   "updated": "2026-11-19T16:45Z"
   },
   "RTY": {
    "direction": "up",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-19T16:27Z"
+   "updated": "2026-11-19T16:46Z"
   }
  },
- "checked": "2026-11-19 16:30 UTC",
- "updated": "2026-11-19 16:34 UTC"
+ "checked": "2026-11-19 16:45 UTC",
+ "updated": "2026-11-19 16:47 UTC"
 }
