@@ -223,25 +223,25 @@ footer a{color:var(--ink2);text-decoration:none}
 .why{font-size:13.5px;color:var(--ink2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer;margin:6px 0 0}.why.open{-webkit-line-clamp:unset}
 .hist .li .v{font-family:var(--mono)}
 /* chart */
-.tv{background:#131722;border:1px solid #2a2e39;border-radius:14px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.28);color:#d1d4dc;font-family:-apple-system,BlinkMacSystemFont,"Trebuchet MS",Roboto,Ubuntu,sans-serif;position:relative}
-.tvbar{display:flex;align-items:center;gap:2px;height:46px;padding:0 6px;border-bottom:1px solid #2a2e39;white-space:nowrap}
-.tvbar.bot{border-bottom:0;border-top:1px solid #2a2e39;height:40px}
+.tv{background:#c2baae;border:1px solid rgba(15,15,15,.14);border-radius:14px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.22);color:#0f0f0f;font-family:-apple-system,BlinkMacSystemFont,"Trebuchet MS",Roboto,Ubuntu,sans-serif;position:relative}
+.tvbar{display:flex;align-items:center;gap:2px;height:46px;padding:0 6px;border-bottom:1px solid rgba(15,15,15,.13);white-space:nowrap}
+.tvbar.bot{border-bottom:0;border-top:1px solid rgba(15,15,15,.13);height:40px}
 .tvbar>span{display:inline-flex;align-items:center;gap:2px}.tvbar>span[hidden]{display:none}
-.tvbtn{height:32px;min-width:32px;padding:0 9px;border:0;border-radius:4px;background:transparent;color:#d1d4dc;font:500 14px/1 -apple-system,BlinkMacSystemFont,"Trebuchet MS",Roboto,sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;flex:none}
-.tvbtn:hover{background:#2a2e39}.tvbtn.on{color:#2962ff}.tvbtn svg{display:block;flex:none}
+.tvbtn{height:32px;min-width:32px;padding:0 9px;border:0;border-radius:4px;background:transparent;color:#0f0f0f;font:500 14px/1 -apple-system,BlinkMacSystemFont,"Trebuchet MS",Roboto,sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;flex:none}
+.tvbtn:hover{background:rgba(15,15,15,.08)}.tvbtn.on{color:#2f5f7c;background:rgba(55,107,137,.14);font-weight:650}.tvbtn svg{display:block;flex:none}
 .tvbar.bot .tvbtn{font-size:13px;height:28px;padding:0 7px}
-.tvsym{font-weight:700;font-size:15px}.tvsym svg{color:#b2b5be}
-.tvsep{width:1px;height:22px;background:#2a2e39;margin:0 4px;flex:none}.tvsp{flex:1}
-.tvtz{font-size:12.5px;color:#787b86;padding:0 6px}
-.tvmenu{position:absolute;right:8px;top:44px;z-index:6;background:#1e222d;border:1px solid #2a2e39;border-radius:6px;box-shadow:0 12px 30px rgba(0,0,0,.45);padding:6px 0;min-width:200px}
-.tvmenu label{display:flex;align-items:center;gap:10px;padding:9px 14px;font-size:14px;cursor:pointer}.tvmenu label:hover{background:#2a2e39}
+.tvsym{font-weight:700;font-size:15px}.tvsym svg{color:#5d5850}
+.tvsep{width:1px;height:22px;background:rgba(15,15,15,.15);margin:0 4px;flex:none}.tvsp{flex:1}
+.tvtz{font-size:12.5px;color:#5d5850;padding:0 6px}
+.tvmenu{position:absolute;right:8px;top:44px;z-index:6;background:#1e1e1e;color:#e6e6e6;border:1px solid #333;border-radius:6px;box-shadow:0 12px 30px rgba(0,0,0,.45);padding:6px 0;min-width:200px}
+.tvmenu label{display:flex;align-items:center;gap:10px;padding:9px 14px;font-size:14px;cursor:pointer}.tvmenu label:hover{background:#2c2c2c}
 .tvmenu i{width:16px;height:2px;border-radius:1px;display:inline-block}.tvmenu input{accent-color:#2962ff;margin:0}
-.tv select{background:#1e222d;color:#d1d4dc;border:1px solid #2a2e39;border-radius:4px;height:28px;font:13px -apple-system,BlinkMacSystemFont,Roboto,sans-serif;padding:0 6px;max-width:190px}
+.tv select{background:rgba(255,255,255,.3);color:#0f0f0f;border:1px solid rgba(15,15,15,.18);border-radius:4px;height:28px;font:13px -apple-system,BlinkMacSystemFont,Roboto,sans-serif;padding:0 6px;max-width:190px}
 .chartbox{height:min(62vh,560px);position:relative}
-.tvleg{position:absolute;left:10px;top:6px;right:70px;z-index:3;pointer-events:none;font-size:13px;line-height:20px;color:#d1d4dc}
-.tvleg .r1{display:flex;flex-wrap:wrap;gap:0 8px;align-items:baseline}.tvleg .t{font-weight:600}.tvleg .k{color:#787b86;margin:0 3px 0 0}
-.tvleg .up{color:#089981}.tvleg .dn{color:#f23645}.tvleg .r2{font-size:12.5px;color:#b2b5be;display:flex;gap:12px;flex-wrap:wrap}
-.tvleg .mk{width:7px;height:7px;border-radius:50%;background:#089981;display:inline-block;margin-right:2px;transform:translateY(-1px)}
+.tvleg{position:absolute;left:10px;top:6px;right:70px;z-index:3;pointer-events:none;font-size:13px;line-height:20px;color:#0f0f0f}
+.tvleg .r1{display:flex;flex-wrap:wrap;gap:0 8px;align-items:baseline}.tvleg .t{font-weight:600}.tvleg .k{color:#5d5850;margin:0 3px 0 0}
+.tvleg .up{color:#1f6b52}.tvleg .dn{color:#a3261e}.tvleg .r2{font-size:12.5px;color:#3a3630;display:flex;gap:12px;flex-wrap:wrap}
+.tvleg .mk{width:7px;height:7px;border-radius:50%;background:#376b89;display:inline-block;margin-right:2px;transform:translateY(-1px)}
 @media (max-width:600px){.tvhide{display:none!important}.tvleg{font-size:12px;line-height:17px}}
 /* desk */
 .dk{border-radius:28px;padding:22px;color:#f5f5f7;position:relative;overflow:hidden;isolation:isolate;
@@ -457,41 +457,52 @@ function eqChart(e){eqEra=e;const box=$('#eq');if(!box||!B.curve)return;const W=
  s.onpointerleave=()=>{tip.style.opacity=0;cx.setAttribute('opacity',0);cd.setAttribute('opacity',0)}}
 
 // ================= CHART: TradingView Lightweight Charts (Apache-2.0, © TradingView, Inc.; vendored as docs/lwc.js)
-const TVC={up:'#089981',dn:'#f23645',bg:'#131722',grid:'rgba(42,46,57,.5)',bd:'#2a2e39',ink:'#d1d4dc',blue:'#2962ff',ma50:'#f7a21b',ma200:'#b388ff'};
+const TVC={up:'#b2b5be',dn:'#0f0f0f',edge:'#000000',bg:'#c2baae',ink:'#0f0f0f',ink3:'#5d5850',tgt:'#376b89',stp:'#5e6977',ma50:'#9a5b00',ma200:'#4b3c8c',pos:'#1f6b52',neg:'#a3261e'};
 const f2=v=>v==null?'–':v.toFixed(2);
+// long/short position boxes, drawn under the candles like TradingView's position tool
+class PosBoxes{constructor(){this.b=[]}attached(p){this.ch=p.chart;this.s=p.series;this.ru=p.requestUpdate}detached(){this.ru=null}set(b){this.b=b;this.ru&&this.ru()}updateAllViews(){}
+ paneViews(){const me=this;return[{zOrder:()=>'bottom',renderer:()=>({draw(t){t.useBitmapCoordinateSpace(sc=>{const c=sc.context,hr=sc.horizontalPixelRatio,vr=sc.verticalPixelRatio,ts=me.ch.timeScale(),Y=p=>me.s.priceToCoordinate(p);
+  for(const b of me.b){let x1=ts.timeToCoordinate(b.t1),x2=ts.timeToCoordinate(b.t2);if(x1==null||x2==null)continue;x2=Math.max(x2,x1+ts.options().barSpacing*3);const xa=Math.round(x1*hr),w=Math.round((x2-x1)*hr),ye=Y(b.entry);if(ye==null)continue;
+   const zone=(p,col)=>{const y=Y(p);if(y==null)return;c.fillStyle=col;c.fillRect(xa,Math.round(Math.min(y,ye)*vr),w,Math.max(1,Math.round(Math.abs(y-ye)*vr)))};
+   if(b.stop!=null)zone(b.stop,'rgba(94,105,119,.42)');if(b.target!=null)zone(b.target,'rgba(55,107,137,.55)');
+   c.fillStyle='rgba(15,15,15,.75)';c.fillRect(xa,Math.round(ye*vr),w,Math.max(1,Math.round(vr)));
+   if(b.label){c.font=`600 ${Math.round(11*vr)}px -apple-system,BlinkMacSystemFont,Roboto,sans-serif`;const tw=c.measureText(b.label).width,pd=5*hr,ty=Y(b.target??b.entry)-(b.side>0?1:-1)*0;const top=Math.round(Math.min(Y(b.target??b.entry),Y(b.stop??b.entry),ye)*vr)-Math.round(18*vr);
+    c.fillStyle=b.win?'#376b89':'#5e6977';c.fillRect(xa,top,Math.round(tw+pd*2),Math.round(15*vr));c.fillStyle='#fff';c.textBaseline='middle';c.fillText(b.label,xa+pd,top+Math.round(7.5*vr))}}})}})}]}}
 function TVChart(box){const LW=LightweightCharts;box.innerHTML='<div class="tvleg"></div>';const leg=box.firstChild;
  const ch=LW.createChart(box,{autoSize:true,
-  layout:{background:{type:LW.ColorType.Solid,color:TVC.bg},textColor:TVC.ink,fontSize:12,fontFamily:'-apple-system,BlinkMacSystemFont,"Trebuchet MS",Roboto,Ubuntu,sans-serif',attributionLogo:true,panes:{separatorColor:TVC.bd,separatorHoverColor:'rgba(41,98,255,.12)',enableResize:false}},
-  grid:{vertLines:{color:TVC.grid},horzLines:{color:TVC.grid}},
-  crosshair:{mode:LW.CrosshairMode.Normal,vertLine:{color:'#9598a1',style:LW.LineStyle.Dashed,labelBackgroundColor:'#363a45'},horzLine:{color:'#9598a1',style:LW.LineStyle.Dashed,labelBackgroundColor:'#363a45'}},
-  rightPriceScale:{borderColor:TVC.bd,scaleMargins:{top:.16,bottom:.06}},
-  timeScale:{borderColor:TVC.bd,rightOffset:5,minBarSpacing:.5},
+  layout:{background:{type:LW.ColorType.Solid,color:TVC.bg},textColor:TVC.ink,fontSize:innerWidth<600?11:13,fontFamily:'-apple-system,BlinkMacSystemFont,"Trebuchet MS",Roboto,Ubuntu,sans-serif',attributionLogo:true,panes:{separatorColor:'rgba(15,15,15,.18)',separatorHoverColor:'rgba(15,15,15,.08)',enableResize:false}},
+  grid:{vertLines:{visible:false},horzLines:{visible:false}},
+  crosshair:{mode:LW.CrosshairMode.Normal,vertLine:{color:'rgba(15,15,15,.55)',style:LW.LineStyle.Dotted,labelBackgroundColor:'#0f0f0f'},horzLine:{color:'rgba(15,15,15,.55)',style:LW.LineStyle.Dotted,labelBackgroundColor:'#0f0f0f'}},
+  rightPriceScale:{borderVisible:false,scaleMargins:{top:.16,bottom:.06}},
+  timeScale:{borderVisible:false,rightOffset:5,minBarSpacing:.5},
   handleScroll:{vertTouchDrag:false}});
  const quiet={priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false};
  // the hue under the candles: an area of the close with its line hidden
- const hue=ch.addSeries(LW.AreaSeries,{...quiet,lineVisible:false,lineWidth:2,lineColor:TVC.blue,topColor:'rgba(41,98,255,.16)',bottomColor:'rgba(41,98,255,0)',priceFormat:{type:'price',precision:2,minMove:.25}});
- const cs=ch.addSeries(LW.CandlestickSeries,{upColor:TVC.up,downColor:TVC.dn,borderVisible:false,wickUpColor:TVC.up,wickDownColor:TVC.dn,priceFormat:{type:'price',precision:2,minMove:.25}});
+ const hue=ch.addSeries(LW.AreaSeries,{...quiet,visible:false,lineWidth:2,lineColor:TVC.ink,topColor:'rgba(55,107,137,.32)',bottomColor:'rgba(55,107,137,0)',priceFormat:{type:'price',precision:2,minMove:.25}});
+ const cs=ch.addSeries(LW.CandlestickSeries,{upColor:TVC.up,downColor:TVC.dn,borderVisible:true,borderUpColor:TVC.edge,borderDownColor:TVC.edge,wickUpColor:TVC.edge,wickDownColor:TVC.edge,priceLineColor:TVC.ink,priceLineStyle:LW.LineStyle.Dotted,priceFormat:{type:'price',precision:2,minMove:.25}});
  const m50=ch.addSeries(LW.LineSeries,{...quiet,color:TVC.ma50,lineWidth:1,visible:false}),m200=ch.addSeries(LW.LineSeries,{...quiet,color:TVC.ma200,lineWidth:1,visible:false});
+ const PB=new PosBoxes();cs.attachPrimitive(PB);let lines=[];
  let rs=null,mk=null,bars=[],label='',ind={ma50:false,ma200:false},A50=new Map(),A200=new Map(),RM=new Map(),BI=new Map();
  const ma=p=>{const o=[];let t=0;for(let i=0;i<bars.length;i++){t+=bars[i].close;if(i>=p)t-=bars[i-p].close;if(i>=p-1)o.push({time:bars[i].time,value:t/p})}return o};
  function legend(i){if(i==null)i=bars.length-1;const b=bars[i];if(!b){leg.innerHTML='';return}const pv=bars[i-1],c=b.close>=b.open?'up':'dn',chg=pv?(b.close/pv.close-1)*100:0;
   const r2=[];if(ind.ma50&&A50.has(b.time))r2.push(`<span>MA 50 <span style="color:${TVC.ma50}">${f2(A50.get(b.time))}</span></span>`);if(ind.ma200&&A200.has(b.time))r2.push(`<span>MA 200 <span style="color:${TVC.ma200}">${f2(A200.get(b.time))}</span></span>`);
   if(RM.has(b.time)){const v=RM.get(b.time);r2.push(`<span>Argon rules <span class="${v>=0?'up':'dn'}">${v>=0?'+':M}${Math.abs(v).toFixed(2)}R</span></span>`)}
-  leg.innerHTML=`<div class="r1"><span class="t"><i class="mk"></i> ${label}</span><span><span class="k">O</span><span class="${c}">${f2(b.open)}</span></span><span><span class="k">H</span><span class="${c}">${f2(b.high)}</span></span><span><span class="k">L</span><span class="${c}">${f2(b.low)}</span></span><span><span class="k">C</span><span class="${c}">${f2(b.close)}</span></span><span class="${c}">${chg>=0?'+':M}${Math.abs(chg).toFixed(2)}%</span></div>${r2.length?`<div class="r2">${r2.join('')}</div>`:''}`}
+  leg.innerHTML=`<div class="r1"><span class="t"><i class="mk"></i> ${label}</span><span><span class="k">O</span><span>${f2(b.open)}</span></span><span><span class="k">H</span><span>${f2(b.high)}</span></span><span><span class="k">L</span><span>${f2(b.low)}</span></span><span><span class="k">C</span><span>${f2(b.close)}</span></span><span class="${c}">${chg>=0?'+':M}${Math.abs(chg).toFixed(2)}%</span></div>${r2.length?`<div class="r2">${r2.join('')}</div>`:''}`}
  ch.subscribeCrosshairMove(p=>legend(p&&p.time!=null&&BI.has(p.time)?BI.get(p.time):null));
  const api={def:252,chart:ch,
   set(d){bars=d.bars;label=d.label;BI=new Map(bars.map((b,i)=>[b.time,i]));ch.applyOptions({timeScale:{timeVisible:!!d.intraday,secondsVisible:false}});
    cs.setData(bars);hue.setData(bars.map(b=>({time:b.time,value:b.close})));
    const a=ma(50),z=ma(200);A50=new Map(a.map(x=>[x.time,x.value]));A200=new Map(z.map(x=>[x.time,x.value]));m50.setData(a);m200.setData(z);
-   if(mk){try{mk.detach()}catch(e){}mk=null}if(d.marks&&d.marks.length)mk=LW.createSeriesMarkers(cs,d.marks);
+   if(mk){try{mk.detach()}catch(e){}mk=null}if(d.marks&&d.marks.length)mk=LW.createSeriesMarkers(cs,d.marks);PB.set(d.boxes||[]);
+   lines.forEach(l=>cs.removePriceLine(l));lines=(d.levels||[]).map(([price,title])=>cs.createPriceLine({price,title,color:TVC.tgt,lineWidth:1,lineStyle:LW.LineStyle.Dashed,axisLabelVisible:true,axisLabelColor:TVC.tgt,axisLabelTextColor:'#fff'}));
    RM=new Map();if(d.R){if(!rs){rs=ch.addSeries(LW.HistogramSeries,{priceLineVisible:false,lastValueVisible:false,priceFormat:{type:'custom',minMove:.01,formatter:v=>(v>=0?'':M)+Math.abs(v).toFixed(1)+'R'}},1);
      try{ch.panes()[1].setHeight(Math.max(70,Math.round(box.clientHeight*.17)))}catch(e){}}
-    const rd=[];bars.forEach((b,i)=>{const v=d.R[i];if(v!=null){rd.push({time:b.time,value:v,color:v>=0?'rgba(8,153,129,.65)':'rgba(242,54,69,.65)'});RM.set(b.time,v)}});rs.setData(rd)}
+    const rd=[];bars.forEach((b,i)=>{const v=d.R[i];if(v!=null){rd.push({time:b.time,value:v,color:v>=0?'rgba(55,107,137,.85)':'rgba(15,15,15,.7)'});RM.set(b.time,v)}});rs.setData(rd)}
    else if(rs){ch.removeSeries(rs);rs=null}
    this.range(this.def);legend(null)},
   range(k){const n=bars.length;k=Math.min(n,k||n);ch.timeScale().setVisibleLogicalRange({from:n-k-(k>=n?Math.max(2,k*.04):0),to:n-1+Math.max(3,k*.04)})},
   opt(o){if(o.ind){Object.assign(ind,o.ind);m50.applyOptions({visible:ind.ma50});m200.applyOptions({visible:ind.ma200})}
-   if(o.style){const ln=o.style==='line';cs.applyOptions({visible:!ln});hue.applyOptions({lineVisible:ln,topColor:ln?'rgba(41,98,255,.28)':'rgba(41,98,255,.16)',crosshairMarkerVisible:ln,lastValueVisible:ln,priceLineVisible:ln})}
+   if(o.style){const ln=o.style==='line';cs.applyOptions({visible:!ln});hue.applyOptions({visible:ln,crosshairMarkerVisible:ln,lastValueVisible:ln})}
    if(o.log!=null)ch.priceScale('right').applyOptions({mode:o.log?LW.PriceScaleMode.Logarithmic:LW.PriceScaleMode.Normal});legend(null)},
   redraw(){}};
  return api}
@@ -505,7 +516,7 @@ async function chartTab(){const v=$('#v-chart');const narrow=innerWidth<600;
   <span id="cstyle"><button class="tvbtn on" data-v="candles" aria-label="Candles"><svg width="22" height="22" viewBox="0 0 28 28" fill="currentColor"><path d="M7 5h1v4h2v10H8v4H7v-4H5V9h2V5Zm-1 5v8h3v-8H6Zm13-3h1v4h2v7h-2v5h-1v-5h-2v-7h2V7Z"/></svg></button><button class="tvbtn" data-v="line" aria-label="Area"><svg width="22" height="22" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.4"><path d="m4 19 6-7 5 4 9-10"/><path d="m4 19 6-7 5 4 9-10v17H4Z" fill="currentColor" fill-opacity=".18" stroke="none"/></svg></button></span>
   <span class="tvsp"></span><button class="tvbtn" id="cindb" aria-label="Indicators" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 28 28" fill="currentColor"><path d="M12.4 6.2c-1.3 0-2.1.7-2.4 2.2l-.4 2.1H7.5v1.4h1.8l-1.5 7.7c-.2 1-.6 1.4-1.2 1.4-.3 0-.5-.1-.7-.2l-.4 1.3c.3.2.8.3 1.2.3 1.4 0 2.3-.9 2.7-2.8l1.5-7.7h2.3v-1.4h-2l.3-1.8c.2-.9.5-1.2 1-1.2.3 0 .5.1.7.2l.4-1.3c-.3-.1-.7-.2-1.2-.2Zm3 6.1 1.9 3-2.3 3.4h1.7l1.4-2.3 1.4 2.3h1.8l-2.3-3.4 2-3h-1.7l-1.2 2-1.2-2h-1.5Z"/></svg><span class="tvhide">Indicators</span></button></div>
  <div class="tvmenu" id="cind" hidden><label><input type="checkbox" data-k="ma50"><i style="background:${TVC.ma50}"></i>Moving average 50</label><label><input type="checkbox" data-k="ma200"><i style="background:${TVC.ma200}"></i>Moving average 200</label></div>
- <div class="chartbox" id="chartbox"><p class="sub" style="padding:16px;color:#787b86">Loading the chart…</p></div>
+ <div class="chartbox" id="chartbox"><p class="sub" style="padding:16px;color:#5d5850">Loading the chart…</p></div>
  <div class="tvbar bot"><span id="crange">${[['21','1M'],['63','3M'],['126','6M'],['ytd','YTD'],['252','1Y'],['9999','All']].map(([k,l])=>`<button class="tvbtn${k===(narrow?'63':'252')?' on':''}" data-v="${k}">${l}</button>`).join('')}</span>
   <span id="dayrow" hidden><button class="tvbtn" id="prev" aria-label="Earlier day">‹</button><select id="dsel" aria-label="Day"></select><button class="tvbtn" id="next" aria-label="Later day">›</button></span>
   <span class="tvsp"></span><span class="tvtz tvhide" id="ctz">Daily · delayed</span><span class="tvsep tvhide"></span><button class="tvbtn" id="clog" aria-pressed="false">log</button></div></div>
@@ -529,14 +540,15 @@ function cload(){const day=cmode==='day';
   $('#cnote').innerHTML='Daily candles: Yahoo Finance, delayed, for display only. Bars underneath: the four rules’ result each day in R (backtest, in-sample). Moving averages are for looking at, not part of the strategy. Chart by <a href="https://www.tradingview.com/">TradingView</a> Lightweight Charts™ (Apache-2.0), © 2026 TradingView, Inc.';return}
  const d=$('#dsel').value,S=C.sessions[d],base=Date.UTC(+d.slice(0,4),+d.slice(5,7)-1,+d.slice(8,10))/1000;
  const bars=S.bars.map(([t,o,h,l,c])=>({time:base+t*60,open:o,high:h,low:l,close:c})),tm=m=>{const b=S.bars.findIndex(x=>x[0]+5>m);return base+S.bars[Math.max(0,b)][0]*60};
- const marks=[];S.trades.forEach(x=>{const nm=SN[x.strategy]||x.strategy;
-  marks.push({time:tm(x.entry_min),position:x.side>0?'belowBar':'aboveBar',shape:x.side>0?'arrowUp':'arrowDown',color:x.side>0?TVC.up:TVC.dn,text:(x.side>0?'Long ':'Short ')+nm});
-  marks.push({time:tm(x.exit_min),position:x.side>0?'aboveBar':'belowBar',shape:'circle',color:x.R>=0?TVC.up:TVC.dn,text:(x.R>=0?'+':M)+Math.abs(x.R).toFixed(2)+'R'})});
- marks.sort((a,b)=>a.time-b.time);CHT.def=bars.length;CHT.set({bars,R:null,marks,intraday:true,label:'NQ1! · 5 · '+d});
+ const marks=[],boxes=[];S.trades.forEach(x=>{const nm=SN[x.strategy]||x.strategy,risk=Math.abs(x.R)>.05?Math.abs(x.exit-x.entry)/Math.abs(x.R):null,win=x.R>=0;
+  marks.push({time:tm(x.entry_min),position:x.side>0?'belowBar':'aboveBar',shape:x.side>0?'arrowUp':'arrowDown',color:TVC.ink,text:(x.side>0?'Long ':'Short ')+nm});
+  boxes.push({t1:tm(x.entry_min),t2:tm(x.exit_min),side:x.side,entry:x.entry,stop:risk?x.entry-x.side*risk:null,target:win?x.exit:null,win,label:`${x.side>0?'Long':'Short'} · ${win?'+':M}${Math.abs(x.R).toFixed(2)}R`})});
+ const lv=[[S.bars[0][1],'9:30 Open']];const b10=S.bars.find(r=>r[0]===600);if(b10)lv.push([b10[1],'10:00 Open']);
+ marks.sort((a,b)=>a.time-b.time);CHT.def=bars.length;CHT.set({bars,R:null,marks,boxes,levels:lv,intraday:true,label:'NQ1! · 5 · '+d});
  const tot=S.trades.reduce((a,x)=>a+x.R,0);
  $('#ctrades').innerHTML=S.trades.length?`<div class="card" style="margin-top:14px"><div style="display:flex;justify-content:space-between;align-items:center"><h3>Trades on ${esc(d)}</h3><span class="chip ${tot>=0?'g':'r'}">${tot>=0?'+':M}${Math.abs(tot).toFixed(2)}R</span></div>
   <table class="tt"><tr><th>Rule</th><th>Side</th><th>In</th><th>Out</th><th>Result</th></tr>${S.trades.map(x=>`<tr><td>${SN[x.strategy]||esc(x.strategy)}</td><td>${x.side>0?'long':'short'}</td><td>${hm(x.entry_min)}</td><td>${hm(x.exit_min)}</td><td class="${x.R>=0?'up':'dn'} num">${x.R>=0?'+':M}${Math.abs(x.R).toFixed(2)}R</td></tr>`).join('')}</table></div>`:'<p class="sub" style="margin-top:14px">No trades this day.</p>';
- $('#cnote').innerHTML='5-minute candles from Yahoo Finance, New York time, display only: markers sit within a few points of the engine’s real prices. Arrows are entries, dots are exits. Chart by <a href="https://www.tradingview.com/">TradingView</a> Lightweight Charts™ (Apache-2.0).'}
+ $('#cnote').innerHTML='5-minute candles from Yahoo Finance, New York time, display only: markers sit within a few points of the engine’s real prices. Blue boxes are the winning part of a trade, grey boxes the risk to the stop. Chart by <a href="https://www.tradingview.com/">TradingView</a> Lightweight Charts™ (Apache-2.0).'}
 
 // ================= RESEARCH
 const VC=v=>/main/.test(v)?'y':/^pass/.test(v)?'g':/growth|risky|watch|by 0/.test(v)?'o':/fail/.test(v)?'r':'';
