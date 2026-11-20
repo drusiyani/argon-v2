@@ -711,7 +711,7 @@ async function notesView(){const box=$('#b-notes');if(box.dataset.ok)return;box.
 const SEATS=['claude','gpt','gemini','kimi'];
 const SEAT={claude:['Claude','Anthropic','#D97757'],gpt:['GPT','OpenAI','#10A37F'],gemini:['Gemini','Google','#4285F4'],kimi:['Kimi','Moonshot AI','#7c8aa5']};
 // logos: drop the official files into docs/logos/ (claude.svg, gpt.svg, gemini.svg, kimi.svg) and they appear; until then, a letter
-const alogo=k=>{const [n,,c]=SEAT[k];return `<span class="alogo" style="--c:${c}"><img src="logos/${k}.svg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('b'),{textContent:'${n[0]}'}))"></span>`};
+const alogo=k=>{const [n,,c]=SEAT[k];return `<span class="alogo" style="--c:${c}"><img src="logos/${k}.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('b'),{textContent:'${n[0]}'}))"></span>`};
 function nextCall(){const now=new Date(),ny=new Date(now.toLocaleString('en-US',{timeZone:'America/New_York'})),t=new Date(ny);t.setHours(8,45,0,0);
  while(t<=ny||t.getDay()===0||t.getDay()===6)t.setDate(t.getDate()+1);return{ms:t-ny,nyDate:`${ny.getFullYear()}-${String(ny.getMonth()+1).padStart(2,'0')}-${String(ny.getDate()).padStart(2,'0')}`}}
 const dur=ms=>{const m=Math.round(ms/6e4),h=m/60|0,d=h/24|0;return d?`${d}d ${h%24}h`:h?`${h}h ${m%60}m`:`${m}m`};
