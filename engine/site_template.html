@@ -289,7 +289,8 @@ footer a{color:var(--ink2);text-decoration:none}
 .sc.on{border-color:color-mix(in srgb,var(--gold) 55%,transparent);background:color-mix(in srgb,var(--gold2) 12%,var(--fill))}
 .sc .hd{display:flex;gap:10px;align-items:center}
 .alogo{width:32px;height:32px;border-radius:10px;flex:none;display:grid;place-items:center;overflow:hidden;background:var(--bg2);box-shadow:inset 0 0 0 1px var(--sep)}
-.alogo img{width:22px;height:22px;object-fit:contain}.alogo b{font-size:14px;font-weight:750;color:var(--c)}
+.alogo img{width:20px;height:20px;object-fit:contain;filter:brightness(0)}.alogo b{font-size:14px;font-weight:750;color:var(--ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .alogo img{filter:brightness(0) invert(1)}}:root[data-theme=dark] .alogo img{filter:brightness(0) invert(1)}
 .sc .hd b{display:block;font-size:14.5px}.sc .hd small{display:block;font-size:11.5px;color:var(--ink3)}
 .sc svg.sp{display:block;width:100%;height:32px;margin-top:10px}
 .sc .now{display:flex;justify-content:space-between;align-items:baseline;margin-top:6px;font-size:12px;color:var(--ink3)}.sc .now b{font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}
