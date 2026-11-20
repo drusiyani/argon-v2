@@ -12,6 +12,7 @@ Why Argon v2 is built the way it is. Every rule change is also logged as a numbe
 | Nov 2026 | Freeze moved from 31 Dec to **31 Jan 2027**; Race 1 runs Feb-Dec 2027 | learn from v1's results first; every change before the freeze is logged |
 | Nov 2026 | Top generally-available model from each company races, chosen on the freeze date; upgrades only between races | fairness: no AI gets a newer model mid-race |
 | Nov 2026 | Solo AI = Claude Opus 5.5; council = Claude, Gemini 4 Argon, GPT-6 Astra, **DeepSeek V4 Pro** (replacing Llama) via OpenRouter | Llama went enterprise-only; DeepSeek is the most different model, which is what the council tests |
+| 20 Nov 2026 | Seat 4 switched from DeepSeek to **Kimi K3.1 Pro** (Amendment 11: best model from any other developer on the Artificial Analysis index) | DeepSeek's best model scored far below the other three |
 | 7 Nov 2026 | Fixed the morning call: Claude 5.5 rejects `temperature` (400 errors); errors are now saved | every call had silently failed |
 | Nov 2026 | Same effort level for every AI, no sampling settings | fairness between models |
 | Nov 2026 | Sizes 0.5x / 1x / 1.5x / **2x**; one-line rule also reaches 2x; at most **6%** risk in a day | a wider range shows the AI's skill more clearly; the cap stops a bad day sinking the account |
