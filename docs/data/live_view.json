@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-20",
- "as_of": "2026-11-20 11:25 NY",
- "last_bar": "2026-11-20 11:15",
+ "as_of": "2026-11-20 11:32 NY",
+ "last_bar": "2026-11-20 11:22",
  "equity_used": 99364.79,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-19 21:15",
-   "yahoo_bars": 831,
-   "last_real": "2026-11-20 11:15",
-   "last_price": 25963.5,
+   "yahoo_bars": 838,
+   "last_real": "2026-11-20 11:22",
+   "last_price": 25831.75,
    "gap_pct": 0.0
   },
   "ES": {
    "databento_last": "2026-11-19 21:15",
-   "yahoo_bars": 831,
-   "last_real": "2026-11-20 11:15",
-   "last_price": 7118.75,
+   "yahoo_bars": 838,
+   "last_real": "2026-11-20 11:22",
+   "last_price": 7096.25,
    "gap_pct": 0.01
   },
   "YM": {
    "databento_last": "2026-11-19 21:15",
-   "yahoo_bars": 840,
-   "last_real": "2026-11-20 11:15",
-   "last_price": 49243.0,
+   "yahoo_bars": 847,
+   "last_real": "2026-11-20 11:22",
+   "last_price": 49154.0,
    "gap_pct": 0.01
   },
   "RTY": {
    "databento_last": "2026-11-19 21:15",
-   "yahoo_bars": 830,
-   "last_real": "2026-11-20 11:15",
-   "last_price": 2643.199951171875,
+   "yahoo_bars": 837,
+   "last_real": "2026-11-20 11:22",
+   "last_price": 2635.0,
    "gap_pct": 0.02
   }
  },
@@ -187,10 +187,17 @@
    ],
    [
     675,
-    25938.5,
+    25938.0,
     25967.25,
-    25916.25,
-    25963.5
+    25831.75,
+    25853.75
+   ],
+   [
+    680,
+    25859.0,
+    25871.25,
+    25819.0,
+    25831.75
    ]
   ],
   "ES": [
@@ -345,8 +352,15 @@
     675,
     7114.75,
     7119.5,
-    7109.5,
-    7118.75
+    7094.75,
+    7098.75
+   ],
+   [
+    680,
+    7098.5,
+    7102.25,
+    7093.75,
+    7096.25
    ]
   ]
  },
@@ -363,10 +377,10 @@
    "stop": 26538.06,
    "exit_time": null,
    "exit": null,
-   "last": 25963.5,
+   "last": 25831.75,
    "state": "open",
-   "R_now": 0.791,
-   "usd_now": 507.0
+   "R_now": 1.203,
+   "usd_now": 770.5
   },
   {
    "id": "expiry|ES|2026-11-20|571|0",
@@ -380,7 +394,7 @@
    "stop": 7209.02,
    "exit_time": "10:00",
    "exit": 7209.27,
-   "last": 7118.75,
+   "last": 7096.25,
    "state": "closed",
    "R_now": -1.013,
    "usd_now": -877.77
@@ -397,7 +411,7 @@
    "stop": 26323.0,
    "exit_time": "09:47",
    "exit": 26261.46,
-   "last": 25963.5,
+   "last": 25831.75,
    "state": "closed",
    "R_now": -0.617,
    "usd_now": -587.79
@@ -414,10 +428,10 @@
    "stop": 26314.4,
    "exit_time": null,
    "exit": null,
-   "last": 25963.5,
+   "last": 25831.75,
    "state": "open",
-   "R_now": 0.327,
-   "usd_now": 172.5
+   "R_now": 0.826,
+   "usd_now": 436.0
   },
   {
    "id": "atrband|NQ|2026-11-20|645|0",
@@ -431,10 +445,10 @@
    "stop": 26321.0,
    "exit_time": null,
    "exit": null,
-   "last": 25963.5,
+   "last": 25831.75,
    "state": "open",
-   "R_now": -0.118,
-   "usd_now": -95.5
+   "R_now": 0.208,
+   "usd_now": 168.0
   }
  ],
  "skipped": []
