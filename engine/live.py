@@ -13,6 +13,9 @@ Order of every run:
   5. book every missed session in order, then the position check (after the close every strategy must be flat).
 
 Money: micro contracts (MNQ $2/pt, MES $5/pt), rounded DOWN at 1% of the account, account compounding in dollars day by day.
+From SWITCH (23 Nov 2026, Amendment 13) the book is the plain package: rules trades at 0.5% of the account, plus the
+Nasdaq core (engine/core.py: MNQ held close to close, sized by VXN, nearest whole contract), the pre-FOMC leg and T-bill
+interest. Days before SWITCH replay exactly as they were booked. The core is the one position held overnight by design.
 Costs: the research costs in points (official) and twice that (the double-cost ledger alongside).
 Books: 'official' from 1 Jan 2027 (data/ledger/) and 'practice' from 16 Nov 2026 (data/ledger_practice/).
 Usage: python engine/live.py [official|practice]     (default: practice before 2027, official after)"""
@@ -29,7 +32,9 @@ MICRO = {'NQ': ('MNQ', 2.0), 'ES': ('MES', 5.0)}        # micro contract and dol
 MAX_CONTRACTS = 200                                       # sanity cap per trade (council point 6)
 MARKETS = ('NQ', 'ES', 'YM', 'RTY')                       # the data gate needs all four (rolls come from their shared days)
 BAND = os.path.join(ROOT, 'research', 'results', 'live_band.json')
-COMPARED = ('date', 'status', 'equity_start', 'equity_end', 'trades', 'skipped')    # what the replay check compares
+COMPARED = ('date', 'status', 'equity_start', 'equity_end', 'trades', 'skipped', 'core')    # what the replay check compares
+SWITCH = '2026-11-23'                                     # Amendment 13: the plain package (rules at 0.5% + the core) from this session
+RISK_PACKAGE = 0.5                                        # % of the account at risk per rules trade from SWITCH
 
 def hm(m): return f'{m // 60:02d}:{m % 60:02d}'
 def tid(t): return f"{t['strat']}|{t['sym']}|{t['date']}|{t['entry_min']}|{t['variant']}"
@@ -40,12 +45,12 @@ def contracts(t, equity, risk_pct):
     ppt = MICRO[t['sym']][1]
     return min(MAX_CONTRACTS, int(math.floor(equity * risk_pct / 100 / (t['risk_pts'] * ppt) + 1e-9)))
 
-def book_day(d, trades, skipped_cost, equity, cx, risk_pct, status):
+def book_day(d, trades, skipped_cost, equity, cx, risk_pct, status, core_inp=None):
     out, skipped, pnl = [], [], 0.0
     for t in sorted(trades, key=tid):
         n = contracts(t, equity, risk_pct); sym, ppt = MICRO[t['sym']][0], MICRO[t['sym']][1]
         R = t['gross'] - cx * t['cost']
-        if n < 1: skipped.append(dict(id=tid(t), reason='size rounds to 0 micros (risk too wide for 1% of the account)', R_rules=r6(R))); continue
+        if n < 1: skipped.append(dict(id=tid(t), reason=f'size rounds to 0 micros (risk too wide for {risk_pct:g}% of the account)', R_rules=r6(R))); continue
         pts = t['gross'] * t['risk_pts'] - cx * c.COST[t['sym']]
         usd = round(n * ppt * pts, 2)
         out.append(dict(id=tid(t), strategy=t['strat'], market=t['sym'], contract=sym, variant=t['variant'],
@@ -56,7 +61,11 @@ def book_day(d, trades, skipped_cost, equity, cx, risk_pct, status):
         pnl += usd
     for t in sorted(skipped_cost, key=tid):
         skipped.append(dict(id=tid(t), reason=f"cost rule: costs {t['cost']:.3f}R > {P.CONFIG['cost_cap_R']}R", R_rules=r6(t['gross'] - cx * t['cost'])))
-    return dict(date=d, status=status, equity_start=round(equity, 2), equity_end=round(equity + pnl, 2), trades=out, skipped=skipped)
+    e = dict(date=d, status=status, equity_start=round(equity, 2), equity_end=round(equity + pnl, 2), trades=out, skipped=skipped)
+    if core_inp is not None and status == 'booked':
+        import core as K
+        e['core'] = K.day(c, d, core_inp, equity, cx); e['equity_end'] = round(equity + pnl + e['core']['total_usd'], 2)
+    return e
 
 def ehash(e): return hashlib.sha256(json.dumps({k: v for k, v in e.items() if k != 'hash'}, sort_keys=True).encode()).hexdigest()
 
@@ -98,19 +107,27 @@ def status_of(n):
     return 'booked'
 
 # ---------------------------------------------------------------- the ledger build (pure: same code + same data = same ledger)
-def build(days, cx, risk_pct):
-    """Ledger bodies for `days` (in order), starting from START_USD."""
+def build(days, cx, risk_pct, core_store=None):
+    """Ledger bodies for `days` (in order), starting from START_USD. `core_store` holds each day's saved core inputs
+    (filled in for days not seen before); without it, inputs are worked out from today's data files."""
     sk = []; tr = P.book(cx, skipped=sk); by = collections.defaultdict(list); bys = collections.defaultdict(list)
     for t in tr: by[t['date']].append(t)
     for t in sk: bys[t['date']].append(t)
     S = sessions(); eq = START_USD; out = []
     for d in days:
         st = status_of(S.get(d, 0))
-        e = book_day(d, by.get(d, []) if st == 'booked' else [], bys.get(d, []) if st == 'booked' else [], eq, cx, risk_pct, st)
+        ci = None
+        if d >= SWITCH and st == 'booked':
+            import core as K
+            store = core_store if core_store is not None else {}
+            if d not in store: D_, dl_, _ = c.daily('NQ'); store[d] = K.inputs(d, dl_[dl_.index(d) - 1])
+            ci = store[d]
+        e = book_day(d, by.get(d, []) if st == 'booked' else [], bys.get(d, []) if st == 'booked' else [], eq, cx,
+                     risk_pct if d < SWITCH else RISK_PACKAGE, st, ci)
         eq = e['equity_end']; out.append(e)
     return out, tr
 
-def body(e): return {k: e[k] for k in COMPARED}
+def body(e): return {k: e.get(k) for k in COMPARED}
 
 def open_positions(entries):
     """After the close every strategy is flat by 15:55. A trade ending at or after 16:00 means something is wrong."""
@@ -180,6 +197,7 @@ def run(name=None, now=None, root=None):
         alerts.append(('Argon: kill switch is on', stat['checks']['kill'] + '. Nothing was booked.', 'high')); return finish('stopped by kill switch')
     stat['checks']['kill'] = 'off'
     risk = P.CONFIG['risk_pct']; ledgers = {cx: read(p) for cx, p in paths.items()}
+    cpath = os.path.join(folder, 'core_inputs.json'); cstore = json.load(open(cpath)) if os.path.exists(cpath) else {}
 
     # 2. chain
     for cx, L in ledgers.items():
@@ -202,7 +220,7 @@ def run(name=None, now=None, root=None):
     # 4. rebuild everything from scratch and compare (replay check), then append the new days
     for cx in (1.0, 2.0):
         L = ledgers[cx]; days = [e['date'] for e in L] + todo
-        built, _ = build(days, cx, risk)
+        built, _ = build(days, cx, risk, cstore)
         for old, new in zip(L, built):
             if body(old) != body(new):
                 why = f"{cx:g}x ledger, {old['date']}: today's code and data give a different day than the one booked"
@@ -215,6 +233,7 @@ def run(name=None, now=None, root=None):
                 e = dict(seq=len(L), **e, code_commit=stat['code'], booked_at=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),
                          data_last_bar_utc=stat['data_last_bar_utc'], prev_hash=prev)
                 e['hash'] = ehash(e); prev = e['hash']; L.append(e); f.write(json.dumps(e, sort_keys=True) + '\n')
+    json.dump(dict(sorted(cstore.items())), open(cpath, 'w'), indent=1)       # each day's core inputs, saved when first booked
     stat['checks']['replay'] = f'ok ({len(ledgers[1.0]) - len(todo)} days re-derived)'
     stat['booked_now'] = todo
 
@@ -252,7 +271,7 @@ def publish(name, folder, stat):
     out = dict(book=name, generated=dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%d %H:%M UTC'), status=stat,
                equity=[[e['date'], e['equity_end']] for e in L], equity_2x=[[e['date'], e['equity_end']] for e in L2],
                head_hash=L[-1]['hash'] if L else None, days=[dict(date=e['date'], status=e['status'], usd=round(e['equity_end'] - e['equity_start'], 2),
-               trades=e['trades'], skipped=e['skipped'], regime=reg.get(e['date']), hash=e['hash'][:12], code=e['code_commit']) for e in L[-30:]][::-1],
+               trades=e['trades'], skipped=e['skipped'], core=e.get('core'), regime=reg.get(e['date']), hash=e['hash'][:12], code=e['code_commit']) for e in L[-30:]][::-1],
                ledger_url=f"https://github.com/drusiyani/argon-v2/blob/main/{BOOKS[name]['folder']}/ledger.jsonl")
     try: import public_bars as pb; out['bars'] = bars5({e['date'] for e in L[-30:] if e['trades']}); out['bars_source'] = pb.SOURCE
     except Exception as ex: print('bars for the desk failed:', ex)

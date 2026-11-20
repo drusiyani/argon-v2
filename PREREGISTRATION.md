@@ -294,6 +294,13 @@ Main-book choice made by Claude at Dru's request ("up to you, as long as it's pr
 - Trial count: "~299" is every trial listed across the batch documents; 185 is the number with saved results in both eras
   (identical results counted once). The rest were single-era, side-market or rerun tests. None are hidden.
 
+- **Live engine, from the 23 November 2026 session (practice book):** rules trades at 0.5%, plus the Nasdaq core
+  (`engine/core.py`): micro Nasdaq futures held from the previous close to this close, `w` = min(1.5, one-year median of
+  VXN / latest VXN), rounded to the **nearest** whole contract (rounding down would hold about half the target on $100k);
+  the pre-FOMC leg (previous close to 13:59 on decision days, with costs); T-bill interest (FRED DTB3). Each day's core
+  inputs are saved when the day is first booked, so replays are exact. Days booked before the switch replay unchanged.
+  Known gap: with whole contracts the core can only approximate `w` (one MNQ is about half of a $100k account).
+
 **The desk's test (replaces Amendment 4's promotion rule)**
 - **Headline = every trading day** (intention to treat). A morning with fewer than 3 valid seats, no headlines on a normal
   weekday, or a quote older than 5 minutes is "degraded", decided only by checks logged before 09:25; it counts at 1x and
