@@ -1,6 +1,6 @@
 ---
 type: home
-updated: 2026-11-19
+updated: 2026-11-20
 ---
 # Argon's brain
 
@@ -17,7 +17,7 @@ Anything you write under the line at the bottom of a note is yours and is never 
 - Markets: [[Nasdaq]] · [[S&P 500]] (the Dow and Russell 2000 only have recent data so far)
 - Sessions: [[London (session)]] · [[New York (session)]]
 - History: [[2021]] · [[2022]] · [[2023]] · [[2024]] · [[2025]] · [[2026]]
-- Latest day: [[2026-11-19]] · Latest lab run: [[Lab run 2026-11-19]]
+- Latest day: [[2026-11-20]] · Latest lab run: [[Lab run 2026-11-20]]
 
 ## How big the brain is
 
@@ -46,6 +46,7 @@ Anything you write under the line at the bottom of a note is yours and is never 
 | 2026-11-17 | 398 | 154,349 | 3 |
 | 2026-11-18 | 400 | 155,584 | 2 |
 | 2026-11-19 | 406 | 158,628 | 3 |
+| 2026-11-20 | 411 | 161,139 | 3 |
 
 %% my notes below. Argon never changes anything under this line %%
 ## My notes
