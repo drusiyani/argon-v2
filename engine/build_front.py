@@ -89,7 +89,7 @@ def _seats():
             if p is not None: s['answered'] += 1
             s['hist'].append([r.get('date'), p])
     for s in out.values(): s['hist'] = s['hist'][-20:]
-    return out
+    return {k: v for k, v in out.items() if k in ('claude', 'gpt', 'gemini', 'kimi')}     # retired seats (Llama, DeepSeek) are not shown
 DATA = dict(
     risk=cfg.get('risk_pct', 1.0), cost_cap=cfg.get('cost_cap_R', 0.10), live_start='2027-02-01', freeze='2027-01-31T23:59:00Z', killed=P.get('killed', False),
     eras=dict(recent=dict(label='2021–26', note='The backtest. Mostly in-sample: the settings were chosen on it.', book=A.get('book', {}), strategies=A.get('strategies', {})),

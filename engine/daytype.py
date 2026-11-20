@@ -156,11 +156,10 @@ def dumb_rule(d):
 # ---- the AI council (Amendment 4b): other model families, same frozen prompt and inputs, temperature 0, each asked once.
 # Model ids are pinned here; changing any of them restarts the council's clock. A member with no key, or that fails, is recorded as no answer.
 # ---- the AI council (Amendment 4b, models updated Nov 2026): one top model from each of three other companies, all through
-# OpenRouter (one key), same frozen prompt, inputs and effort level, each asked once. DeepSeek avoids its own China-hosted API
-# where another host serves the model. A member that fails is recorded as no answer, with the error kept in the record.
+# OpenRouter (one key), same frozen prompt, inputs and effort level, each asked once. A member that fails is recorded as no answer, with the error kept in the record.
 COUNCIL = [dict(name='gemini', model=os.environ.get('COUNCIL_GEMINI_MODEL', 'google/gemini-4-argon')),
            dict(name='gpt', model=os.environ.get('COUNCIL_GPT_MODEL', 'openai/gpt-6-astra')),
-           dict(name='deepseek', model=os.environ.get('COUNCIL_DEEPSEEK_MODEL', 'deepseek/deepseek-v4-pro'), avoid=['DeepSeek'])]
+           dict(name='kimi', model=os.environ.get('COUNCIL_KIMI_MODEL', 'moonshotai/kimi-k3.1-pro'))]   # seat 4 (Amendment 11): best other developer, Kimi K3.1 Pro; replaced DeepSeek 20 Nov 2026
 ERRORS = {}
 def err_text(e):
     try: return f"{e} {e.read().decode()[:400]}"
