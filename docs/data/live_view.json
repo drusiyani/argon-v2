@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-20",
- "as_of": "2026-11-20 09:56 NY",
- "last_bar": "2026-11-20 09:46",
+ "as_of": "2026-11-20 10:03 NY",
+ "last_bar": "2026-11-20 09:53",
  "equity_used": 99364.79,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-19 21:15",
-   "yahoo_bars": 742,
-   "last_real": "2026-11-20 09:46",
-   "last_price": 26236.75,
+   "yahoo_bars": 749,
+   "last_real": "2026-11-20 09:53",
+   "last_price": 26281.5,
    "gap_pct": 0.0
   },
   "ES": {
    "databento_last": "2026-11-19 21:15",
-   "yahoo_bars": 742,
-   "last_real": "2026-11-20 09:46",
-   "last_price": 7172.75,
+   "yahoo_bars": 749,
+   "last_real": "2026-11-20 09:53",
+   "last_price": 7171.75,
    "gap_pct": 0.01
   },
   "YM": {
    "databento_last": "2026-11-19 21:15",
-   "yahoo_bars": 751,
-   "last_real": "2026-11-20 09:46",
-   "last_price": 49431.0,
+   "yahoo_bars": 758,
+   "last_real": "2026-11-20 09:53",
+   "last_price": 49379.0,
    "gap_pct": 0.01
   },
   "RTY": {
    "databento_last": "2026-11-19 21:15",
-   "yahoo_bars": 741,
-   "last_real": "2026-11-20 09:46",
-   "last_price": 2660.10009765625,
+   "yahoo_bars": 748,
+   "last_real": "2026-11-20 09:53",
+   "last_price": 2657.10009765625,
    "gap_pct": 0.02
   }
  },
@@ -62,9 +62,16 @@
    [
     585,
     26175.0,
-    26254.5,
+    26315.0,
     26148.5,
-    26236.75
+    26252.5
+   ],
+   [
+    590,
+    26253.0,
+    26308.25,
+    26189.0,
+    26281.5
    ]
   ],
   "ES": [
@@ -92,9 +99,16 @@
    [
     585,
     7159.5,
-    7174.25,
+    7184.0,
     7155.5,
-    7172.75
+    7169.5
+   ],
+   [
+    590,
+    7169.5,
+    7177.25,
+    7159.0,
+    7171.75
    ]
   ]
  },
@@ -111,10 +125,10 @@
    "stop": 26538.06,
    "exit_time": null,
    "exit": null,
-   "last": 26236.75,
+   "last": 26281.5,
    "state": "open",
-   "R_now": -0.062,
-   "usd_now": -39.5
+   "R_now": -0.201,
+   "usd_now": -129.0
   },
   {
    "id": "expiry|ES|2026-11-20|571|0",
@@ -128,10 +142,10 @@
    "stop": 7209.02,
    "exit_time": null,
    "exit": null,
-   "last": 7172.75,
+   "last": 7171.75,
    "state": "open",
-   "R_now": -0.381,
-   "usd_now": -330.0
+   "R_now": -0.364,
+   "usd_now": -315.0
   },
   {
    "id": "quantlab|NQ|2026-11-20|575|1",
@@ -143,12 +157,12 @@
    "entry_time": "09:35",
    "entry": 26164.25,
    "stop": 26323.0,
-   "exit_time": null,
-   "exit": null,
-   "last": 26236.75,
-   "state": "open",
-   "R_now": -0.461,
-   "usd_now": -439.5
+   "exit_time": "09:47",
+   "exit": 26261.46,
+   "last": 26281.5,
+   "state": "closed",
+   "R_now": -0.617,
+   "usd_now": -587.79
   }
  ],
  "skipped": []
