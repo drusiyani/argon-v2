@@ -6,7 +6,7 @@ A = os.path.dirname(os.path.abspath(__file__)); s29 = open(f'{A}/batch29.py').re
 exec(s29.split('# ---------------------------------------------------------------- U1')[0])
 OUT = os.path.join(os.path.dirname(A), 'docs', 'data'); os.makedirs(os.path.join(OUT, 'cal'), exist_ok=True)
 K = 1.0                                                      # rules weight 0.5 (Amendment 13)
-NM = {'quantlab': 'QuantLab', 'noiseband': 'Noise band', 'atrband': 'ATR band', 'expiry': 'Expiry'}
+NM = {'quantlab': 'Opening Drive', 'noiseband': 'Noise Breakout', 'atrband': 'Range Breakout', 'expiry': 'Expiry Reversal'}   # display names (engine/names.py)
 book = dict(label='Plain package, 0.5% risk per rules trade (Amendment 13)', eras={}, curve=[], nasdaq=[], g3=[])
 cal = collections.defaultdict(dict); eq = eqn = eqg = 1e5; last_m = None
 for e in ('lockbox2010', 'databento'):

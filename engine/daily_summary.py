@@ -3,6 +3,7 @@
 Facts only go in (the booked day from the ledger, the morning call, the checks); Claude writes 3-4 short sentences a
 15-year-old could read. No key or a failed call -> a plain template from the same facts. Nothing here changes the book.
 Writes docs/data/daily_summary.json (last 30 days). Usage: python engine/daily_summary.py"""
+from names import name as RN
 import os, sys, json, urllib.request, datetime as dt
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'docs', 'data', 'daily_summary.json')
@@ -23,7 +24,7 @@ def facts():
             except Exception: pass
     c = calls.get(d['date']) or {}
     return dict(date=d['date'], book=lg.get('book'), status=d['status'], dollars=d['usd'], account=st.get('equity'),
-                trades=[dict(strategy=t['strategy'], side=t['side'], contracts=t['contracts'], contract=t['contract'], entry_time=t['entry_time'],
+                trades=[dict(strategy=RN(t['strategy']), side=t['side'], contracts=t['contracts'], contract=t['contract'], entry_time=t['entry_time'],
                              exit_time=t['exit_time'], R=t['R'], usd=t['usd']) for t in d['trades']],
                 skipped=[s['reason'] for s in d['skipped']], regime=(d.get('regime') or {}).get('label'),
                 morning_call=dict(size=c.get('ai_size_used'), trend_probability=(c.get('ai') or {}).get('trend_probability'), shadow=True) if c else None,

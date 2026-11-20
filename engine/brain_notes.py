@@ -4,6 +4,7 @@ Each day note has every trade, every AI's morning call (solo, council round 1, c
 the headlines the AIs saw, and a plain-English analysis. The ledger stays the official record: these notes are summaries,
 not hash-chained, and the AIs NEVER read them (their memory is only their own scorecard).
 Usage: python engine/brain_notes.py [official|practice]"""
+from names import name as RN
 import os, sys, json, collections, datetime as dt
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BOOKS = dict(official='data/ledger', practice='data/ledger_practice')
@@ -31,7 +32,7 @@ def day_note(name, e, c, reg, summary, label):
     L += ['', '## Trades', '']
     if T:
         L += ['| strategy | side | micros | entry → exit | stop | R | $ |', '|---|---|---|---|---|---|---|']
-        L += [f"| {t['strategy']} | {t['side']} | {t['contracts']} {t['contract']} | {t['entry']:.2f} ({t['entry_time']}) → {t['exit']:.2f} ({t['exit_time']}) | {t['stop']:.2f} | {t['R']:+.2f} | {t['usd']:+,.2f} |" for t in T]
+        L += [f"| {RN(t['strategy'])} | {t['side']} | {t['contracts']} {t['contract']} | {t['entry']:.2f} ({t['entry_time']}) → {t['exit']:.2f} ({t['exit_time']}) | {t['stop']:.2f} | {t['R']:+.2f} | {t['usd']:+,.2f} |" for t in T]
     else: L.append('No trades today.')
     for s in e['skipped']: L.append(f"- Skipped: `{s['id']}` · {s['reason']}")
     if c:

@@ -360,9 +360,14 @@ select{height:36px;border-radius:11px;border:0;background:var(--fill);padding:0 
  <feColorMatrix in="db" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="b"/>
  <feBlend in="r" in2="g" mode="screen" result="rg"/><feBlend in="rg" in2="b" mode="screen"/></filter></svg>
 <div class="sheetw" id="sheet" hidden><div class="scrim"></div><div class="sheet" role="dialog" aria-modal="true"><div class="grab"></div><button class="ib x" style="background:var(--fill)" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button><div class="body"></div></div></div>
-<script>const DATA=/*__DATA__*/null;</script>
+<script>
+const DATA=/*__DATA__*/null;</script>
 <script>
 "use strict";
+// the four rules' display names (engine/names.py); old names in saved data map to the new ones
+const RULES={quantlab:'Opening Drive',noiseband:'Noise Breakout',atrband:'Range Breakout',expiry:'Expiry Reversal',QuantLab:'Opening Drive','Noise band':'Noise Breakout','ATR band':'Range Breakout',Expiry:'Expiry Reversal'};
+const rn=t=>String(t).replace(/QuantLab/g,'Opening Drive').replace(/\bnoise band\b/gi,'Noise Breakout').replace(/\bATR band\b/gi,'Range Breakout').replace(/\bexpiry reversal\b/gi,'Expiry Reversal');
+
 document.documentElement.classList.add('js');
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -473,7 +478,7 @@ function home(){const v=$('#v-home'),L=DATA.ledger||{},dc=(DATA.desk||{}).daytyp
   <div class="legend"><span><i style="background:var(--gold)"></i>Main book</span><span><i style="background:var(--ink3)"></i>Nasdaq alone</span><span><i style="background:var(--blue);opacity:.6"></i>G3 (shadow test)</span></div></div>
   <div class="eq" id="eq"></div></div>
  <h2 class="rv">How it works</h2><p class="sub rv">Three layers. Only the first two make real decisions until Race 1 scores the AIs.</p>
- <div class="steps">${[['1','','Rules find trades','QuantLab, the noise band, the ATR band and the expiry reversal spot intraday Nasdaq moves. Everything is flat by 3:55pm.'],
+ <div class="steps">${[['1','','Rules find trades','Opening Drive, Noise Breakout, Range Breakout and Expiry Reversal spot intraday Nasdaq moves. Everything is flat by 3:55pm.'],
    ['2','','Small, fixed risk','Every signal is taken at 0.5% of the account at risk, next to a Nasdaq holding sized by volatility. A smarter trade filter (G3) runs alongside as a test.'],
    ['3','','Four AIs call the day','At 8:45 New York, Claude, GPT, Gemini and Kimi each say how big today should be. For now it is a shadow test, scored against simple rules and a coin flip.']]
    .map(([n,c,h,p])=>`<div class="card step rv"><div class="n">${n}</div><h3>${h}</h3><p>${p}</p></div>`).join('')}</div>
@@ -584,7 +589,7 @@ function TVChart(box){const LW=LightweightCharts;box.innerHTML='<div class="tvle
    if(o.log!=null)ch.priceScale('right').applyOptions({mode:o.log?LW.PriceScaleMode.Logarithmic:LW.PriceScaleMode.Normal});legend(null)},
   redraw(){}};
  return api}
-let CHT=null,cmode='daily',C=null;const CST={style:'candles',ind:{},log:false,def:252};const SN={quantlab:'QuantLab',noiseband:'Noise band',atrband:'ATR band',expiry:'Expiry'};
+let CHT=null,cmode='daily',C=null;const CST={style:'candles',ind:{},log:false,def:252};const SN=RULES;
 const tvg=(el,cb)=>el.addEventListener('click',e=>{const b=e.target.closest('button[data-v]');if(!b)return;$$('button[data-v]',el).forEach(x=>x.classList.toggle('on',x===b));cb(b.dataset.v)});
 async function chartTab(){const v=$('#v-chart');const narrow=innerWidth<600;
  v.innerHTML=`<h1 class="title">Chart</h1><p class="lede">The Nasdaq, with the main book's backtest result each day underneath. Drag, scroll or pinch to move around; pick one day to see its trades.</p>
@@ -650,7 +655,7 @@ async function research(){const v=$('#v-research'),S=DATA.strategies||{rows:[]},
  const draw=()=>{let rs=S.rows.filter(r=>(grp==='All'||r.group===grp)&&(!q||r.name.toLowerCase().includes(q)));
   rs.sort((a,b)=>{const x=a[key],y=b[key];if(x==null)return 1;if(y==null)return -1;return(typeof x==='number'?x-y:String(x).localeCompare(y))*dir});
   $('#stbl').innerHTML=`<tr>${cols.map(([k,n,r])=>`<th class="${r?'r':''} ${k===key?'on':''}" data-k="${k}">${n}${k===key?(dir<0?' ↓':' ↑'):''}</th>`).join('')}</tr>`+
-   rs.map(r=>`<tr class="${/main/.test(r.verdict)?'main':''}"><td><div class="nm">${esc(r.name)}</div><div class="gp">${esc(r.group)}${r.batch?' · batch '+r.batch:''}</div></td><td class="num">${esc(r.risk)}</td>
+   rs.map(r=>`<tr class="${/main/.test(r.verdict)?'main':''}"><td><div class="nm">${esc(rn(r.name))}</div><div class="gp">${esc(r.group)}${r.batch?' · batch '+r.batch:''}</div></td><td class="num">${esc(r.risk)}</td>
     <td class="r num">${r.r2126==null?'–':pct(r.r2126)}${r.r2126?`<span class="bar" style="width:${Math.max(2,r.r2126/mx*60)}px"></span>`:''}</td><td class="r num">${pct(r.r1020)}</td><td class="r num ${r.y2026>=0?'':'dn'}">${pct(r.y2026)}</td>
     <td><span class="chip ${VC(r.verdict)}">${esc(r.verdict)}</span></td></tr>`).join('');
   $$('#stbl th').forEach(th=>th.onclick=()=>{const k=th.dataset.k;if(k===key)dir=-dir;else{key=k;dir=['name','risk','verdict'].includes(k)?1:-1}draw()})};
@@ -784,7 +789,7 @@ function desk(){const v=$('#v-desk'),D=DATA.desk||{},dc=D.daytype,inp=(dc&&dc.in
     :`<p class="sub">${h.asked?'No answer today yet.':'Its record starts with today\'s call.'} When an AI misses the 9:25 cutoff the others decide; with fewer than 3 answers, the book runs at 1×.</p>`}
    ${h.hist.some(x=>x[1]!=null)?`<h3 style="margin-top:16px">Its calls</h3><div class="list">${h.hist.slice().reverse().filter(x=>x[1]!=null).slice(0,10).map(([d,p])=>`<div class="li"><span class="k">${esc(d)}</span><span class="v">${Math.round(p)}%</span></div>`).join('')}</div>`:''}`)}}
 // ================= IN THE MARKET: today's trades as they happen (unofficial live view: Yahoo bars, ~10 min delay; the nightly ledger is the record)
-const LVD={d:null};const SNM={quantlab:'QuantLab',noiseband:'Noise band',atrband:'ATR band',expiry:'Expiry'};
+const LVD={d:null};const SNM=RULES;
 function liveCard(){const V=LVD.d,nc=nextCall(),today=nc.nyDate;
  const head=`<div class="th"><span class="lbl">In the market</span><span class="chip ${V&&V.date===today?'g':''}">${V?(V.date===today?'Live · as of '+esc((V.as_of||'').slice(11)):'Last session '+esc(V.date)):'Loading…'}</span></div>`;
  if(!V)return `<div class="card tcard livecard">${head}<p class="sub">Checking today's trades…</p></div>`;
