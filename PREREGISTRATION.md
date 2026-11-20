@@ -268,3 +268,67 @@ Designed after a 6-member council review (statistician, risk manager, trader, AI
 - One of them becomes the official AI arm in the freeze record, chosen before the freeze; the choice will be made on
   reliability, speed and cost in practice, NOT on practice-run performance (too few days to mean anything).
 - The no-news arm is dropped.
+
+### Amendment 13 (20 November 2026, before the freeze): after the multiple-testing check (batch 34)
+Why: batch 34 (`analysis/BATCH34_RESULTS.md`, rules committed before the run) found that G3's gain over the plain
+package is not proven once ~299 trials are counted (pooled t 2.20 vs a bar of 3.09-3.59; in 2021-26 t 0.55), and that
+the desk's promotion rule would promote an AI with no skill about one time in five. Reviewed with Gemini.
+Main-book choice made by Claude at Dru's request ("up to you, as long as it's profitable").
+
+**Main book (replaces Amendment 10's choice)**
+- **Main book: the plain package at 0.5%**: VXN-managed Nasdaq core at 1x plus the four rules taking every signal, 0.5% of
+  the account at risk per rules trade. Backtest (single run, in-sample, not blind): 2021-26 +56.4% a year, Sortino 3.18,
+  worst drop -19.4%; 2010-20 +21.6%, 1.75, -23.5%. Expect live results well below these.
+- **Why not G3:** its gain is about zero in the recent era, its better 2010-20 figures were part of why it was picked, and
+  it adds a monthly model and 24 daily inputs that are not yet live. When the complex version cannot prove it beats the
+  simple one, the simple one is the default. Not chosen by looking at any new result for the package itself.
+- **Shadow (paper only):** G3 at 0.5% (replaces both Amendment 10 shadows). Its live replay must match its backtest
+  decisions trade for trade by **10 January 2027**, or it is logged as "not counted" for Race 1.
+- **Size is final at 0.5%.** The 0.625% option is closed.
+- Statement for every write-up: *"G3's gain over the package was not significant after correcting for ~299 tests;
+  Race 1 runs both side by side to measure it live."*
+- **No re-weighting and no dropping rules.** The before/after-May-2024 differences are noise (no rule's change has |t| > 1).
+  Watch item: at the end of Race 1, re-run the same table (now ~3.5 years after May 2024) and flag any rule whose
+  cumulative expectancy since May 2024 is at or below 0R for review in Race 2. Expiry is noted separately (daily options
+  may be eroding the monthly expiry effect).
+- Trial count: "~299" is every trial listed across the batch documents; 185 is the number with saved results in both eras
+  (identical results counted once). The rest were single-era, side-market or rerun tests. None are hidden.
+
+**The desk's test (replaces Amendment 4's promotion rule)**
+- **Headline = every trading day** (intention to treat). A morning with fewer than 3 valid seats, no headlines on a normal
+  weekday, or a quote older than 5 minutes is "degraded", decided only by checks logged before 09:25; it counts at 1x and
+  with a trend chance equal to the 2021-26 base rate of trend days. No day is ever dropped or reclassified afterwards.
+  Full-input days are reported only as a side note.
+- **Primary scientific test, two steps, one-sided 5%, stationary block bootstrap (10,000 draws, average block 5 days):**
+  1. The council's trend chance ranks trend days above chop days: AUC against the fixed trend-day label > 0.50.
+     If this fails, no forecasting skill is claimed and nothing further is tested.
+  2. Only if step 1 passes: its AUC beats the frozen market-data forecaster's (Amendment 9) on the same days.
+  Brier skill and calibration are reported as secondary diagnostics, not pass marks.
+- **Promotion to real control (Race 2 at the earliest):** both steps pass AND the council's result beats 95% of 10,000
+  reshuffles of its own daily sizes (same average size, so betting bigger earns nothing).
+- **Stated in advance:** about 230 days can detect a clear skill (AUC ~0.58: ~88% chance) but not a small one (AUC ~0.54:
+  ~37%). A "no skill shown" result does not prove the AI has none.
+- Checked first: the trend-day label lines up with the rules' profit (trend days +0.65% vs chop -0.20% a day in 2021-26,
+  t ~10; same in 2010-20), so forecasting trend days is the right target. Label window fixed: NQ 09:30-16:00 New York;
+  half days are not traded and not scored.
+
+**Desk inputs and models**
+- **No track record in the council's prompt.** Amendment 8's "own past calls and last 20 outcomes" is removed (what is shown
+  in a prompt steers the model). If Amendment 12's memory arm (B) is chosen instead, it may show only a neutral block
+  (days logged, trend-day rate, its average trend chance, its size mix), shows "not enough data" until 30 live days exist,
+  and contains no lessons, streaks or recent trades.
+- **Model snapshot moves to 2-4 January 2027** (from 24 January), so the four race models run all of January's practice and
+  the speed fallback can be judged on them.
+- Frozen with each model: exact model id, provider (OpenRouter host fixed, no silent fallback to another host),
+  temperature, reasoning effort and max tokens. One call per seat in Race 1. In January practice each seat is asked twice
+  to measure how often its answer flips (a diagnostic only).
+- **08:45 cutoff:** if the call runs late, it still only sees data up to 08:45; headlines are time-stamped and any published
+  after 08:45 are dropped.
+- Logged every day, no pass marks: whether each seat answered, whether news loaded, the cost of the call, and whether the
+  council's size moves with VIX.
+
+**Integrity**
+- At the freeze, the SHA-256 of this file and of every engine file is written to `FROZEN.txt`.
+- Planned (separate pre-registration before any data is bought): one frozen, no-changes run of the four rules on Russell
+  2000 futures (RTY, CME data 2018-2026), rules only, no Nasdaq core.
+
