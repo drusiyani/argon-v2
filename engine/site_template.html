@@ -302,6 +302,17 @@ footer a{color:var(--ink2);text-decoration:none}
 .sc svg.sp{display:block;width:100%;height:32px;margin-top:10px}
 .sc .now{display:flex;justify-content:space-between;align-items:baseline;margin-top:6px;font-size:12px;color:var(--ink3)}.sc .now b{font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}
 .ft4{position:relative;overflow:hidden}.ft4 svg{position:absolute;right:12px;top:14px;width:40%;height:42%}
+.livecard{margin-top:14px}.livecard .chip.g{background:color-mix(in srgb,var(--green) 16%,transparent);color:var(--green)}
+.lsum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:2px 0 6px}.lsum div{padding:10px 12px;border-radius:14px;background:var(--fill)}
+.lsum span{display:block;font-size:11.5px;color:var(--ink3)}.lsum b{font-size:20px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.lrows{display:flex;flex-direction:column}
+.lrow{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:10px 0;border-top:.5px solid var(--sep)}
+.lmk{font:700 11px/1 ui-monospace,Menlo,monospace;padding:6px 7px;border-radius:7px;background:color-mix(in srgb,var(--gold2) 20%,transparent);color:var(--gold)}
+.lnm b{display:block;font-size:14.5px}.lnm small,.lpl small{display:block;font-size:12px;color:var(--ink3);font-variant-numeric:tabular-nums}
+.lside{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-left:4px}
+.lpl{text-align:right}.lpl b{font-size:15px;font-variant-numeric:tabular-nums}
+.ldot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:4px;vertical-align:1px;animation:ldp 1.6s ease-in-out infinite}
+@keyframes ldp{50%{opacity:.3}}
 .calls .li .v{display:flex;align-items:center;gap:8px}.calls .mb{width:56px;height:5px;border-radius:3px;background:var(--fill);overflow:hidden;display:inline-block}.calls .mb i{display:block;height:100%;background:var(--gold2);border-radius:3px}
 /* numbers with a gold edge */
 .kpi::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;z-index:1;
@@ -478,6 +489,7 @@ function home(){const v=$('#v-home'),L=DATA.ledger||{},dc=(DATA.desk||{}).daytyp
    <div class="tgrid">${dc?[['Council',dc.council&&dc.council.counted?dc.council.size+'×':'–'],['Size used',dc.ai_size_used+'×'],['One-line rule',dc.dumb_size+'×'],['Random',dc.random_size+'×']].map(([k,x])=>`<div><span>${k}</span><b>${esc(x)}</b></div>`).join(''):''}</div>
    ${dc&&!answered?`<p class="tnote">${ic('alert')} No AI answered today, so it counts as 1×.</p>`:''}
    <a class="tlink" href="#desk">Open the desk ${ic('arrow')}</a></div></div>
+ ${liveCard()}
  <h2 class="rv">The search</h2><p class="sub rv">Every idea was written down before it was tested. Most failed.</p>
  <div class="grid g4">${[['~297','trials run'],[rows.length,'strategies in the table'],['33','research batches'],['1','main book survived']].map(([n,l])=>`<div class="card kpi gold rv"><div class="v num">${n}</div><div class="lb">${l}</div></div>`).join('')}</div>
  <div class="fails" style="margin-top:14px">${[['Bigger bets','looked better','Most “better” strategies just risked more per trade. At the same risk, nothing clearly beat the plain package.'],
@@ -748,6 +760,7 @@ function desk(){const v=$('#v-desk'),D=DATA.desk||{},dc=D.daytype,inp=(dc&&dc.in
     <div class="in">${p!=null?`<b>${Math.round(p)}%</b><span>trend chance</span>`:`<b id="mccd">${dur(nc.ms)}</b><span>until the call</span>`}</div></div>
    <div class="msay"><h2>${head}</h2><p>${say}</p><div class="trio2"><div class="y"><small>Used today</small><b>${isToday?esc(dc.ai_size_used):1}×</b></div><div><small>One-line rule</small><b>${isToday?esc(dc.dumb_size)+'×':'–'}</b></div><div><small>Random sizer</small><b>${isToday?esc(dc.random_size)+'×':'–'}</b></div></div></div></div>
   <div class="scards">${SEATS.map(card).join('')}</div></div>
+ ${liveCard()}
  ${vx!=null?`<h2 class="rv">What the AIs saw</h2><p class="sub rv">The same inputs go to every AI at 8:45${dc?' (last: '+esc(dc.date)+')':''}.</p>
  <div class="grid g4">
   <div class="card kpi ft4 rv"><div class="lb">VIX</div><div class="v num">${vx.toFixed(1)}</div><div class="ft">${vp!=null?vp+'th percentile, 1 year':''}</div>${gauge((vp??50)/100,'url(#gold1)')}</div>
@@ -757,14 +770,35 @@ function desk(){const v=$('#v-desk'),D=DATA.desk||{},dc=D.daytype,inp=(dc&&dc.in
  <div class="card rv calls" style="margin-top:14px"><h3>Recent calls</h3><p class="sub">The AIs' trend chance and the size used, against the one-line rule. The record starts on 20 November 2026, when all four AIs took their seats.</p><div class="list">${(DATA.history||[]).slice().reverse().slice(0,8).map(h=>`<div class="li"><span class="k">${esc(h.date)}</span><span class="v">${h.p==null?'<span class="qq">no forecast</span>':`<span class="mb"><i style="width:${h.p}%"></i></span>${Math.round(h.p)}%`} · ${esc(h.s)}× <span class="qq">rule ${esc(h.rule)}×</span></span></div>`).join('')||'<p class="sub">No calls yet.</p>'}</div></div>`;
  reveal(v);
  const ar=$('.gring .ar',v);if(ar)requestAnimationFrame(()=>requestAnimationFrame(()=>ar.style.strokeDashoffset=ar.dataset.off));
- if(!desk.fresh){desk.fresh=1;fetch('desk_feed.json',{cache:'no-cache'}).then(r=>r.json()).then(F=>{const o=DATA.desk.daytype;if(F.daytype&&(!o||F.daytype.date>o.date||(F.daytype.date===o.date&&F.daytype.made_at!==o.made_at))){DATA.desk.daytype=F.daytype;
-  DATA.history=(F.daytype_history||[]).filter(h=>(h.date||'')>='2026-11-20').map(h=>({date:h.date,at:h.made_at,p:(h.ai||{}).trend_probability,s:h.ai_size_used,rule:h.dumb_size})).slice(-15);if(cur==='desk')desk()}}).catch(()=>{})}
+
  clearInterval(desk.t);desk.t=setInterval(()=>{if(cur!=='desk')return;const t=dur(nextCall().ms);['mccd','mccd2'].forEach(i=>{const e=$('#'+i);if(e)e.textContent=t})},20000);
  $('.scards',v).onclick=e=>{const b=e.target.closest('.sc');if(!b)return;const k=b.dataset.k,m=isToday?mem[k]:null,[n,co]=SEAT[k],h=SH[k]||{hist:[],asked:0,answered:0};
   sheet(`<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">${alogo(k)}<div><h2 style="margin:0">${n}</h2><p class="sub" style="margin:0">${co}${h.asked?' · answered '+h.answered+' of '+h.asked+' mornings':''}</p></div></div>
    ${m?`<div class="grid g2" style="margin-bottom:12px"><div class="card kpi"><div class="lb">Trend chance</div><div class="v num">${Math.round(m.trend_probability)}%</div></div><div class="card kpi"><div class="lb">Size</div><div class="v num">${m.size}×</div></div></div><p>${esc(m.reason||'No reason given.')}</p>`
     :`<p class="sub">${h.asked?'No answer today yet.':'Its record starts with today\'s call.'} When an AI misses the 9:25 cutoff the others decide; with fewer than 3 answers, the book runs at 1×.</p>`}
    ${h.hist.some(x=>x[1]!=null)?`<h3 style="margin-top:16px">Its calls</h3><div class="list">${h.hist.slice().reverse().filter(x=>x[1]!=null).slice(0,10).map(([d,p])=>`<div class="li"><span class="k">${esc(d)}</span><span class="v">${Math.round(p)}%</span></div>`).join('')}</div>`:''}`)}}
+// ================= IN THE MARKET: today's trades as they happen (unofficial live view: Yahoo bars, ~10 min delay; the nightly ledger is the record)
+const LVD={d:null};const SNM={quantlab:'QuantLab',noiseband:'Noise band',atrband:'ATR band',expiry:'Expiry'};
+function liveCard(){const V=LVD.d,nc=nextCall(),today=nc.nyDate;
+ const head=`<div class="th"><span class="lbl">In the market</span><span class="chip ${V&&V.date===today?'g':''}">${V?(V.date===today?'Live · as of '+esc((V.as_of||'').slice(11)):'Last session '+esc(V.date)):'Loading…'}</span></div>`;
+ if(!V)return `<div class="card tcard livecard">${head}<p class="sub">Checking today's trades…</p></div>`;
+ const T=V.trades||[],open=T.filter(t=>t.state==='open'),usd=T.reduce((a,t)=>a+(t.usd_now||0),0),R=T.reduce((a,t)=>a+(t.R_now||0),0);
+ const rows=T.slice().sort((a,b)=>(a.state==='open'?0:1)-(b.state==='open'?0:1)||(b.entry_time||'').localeCompare(a.entry_time||'')).map(t=>`<div class="lrow">
+   <span class="lmk">${esc(t.contract)}</span><span class="lnm"><b>${SNM[t.strategy]||esc(t.strategy)} <span class="lside ${t.side==='long'?'up':'dn'}">${t.side}</span></b>
+   <small>${t.contracts} × in ${esc(t.entry_time)} at ${px(t.entry)}${t.state==='open'?` · stop ${px(t.stop)}`:` · out ${esc(t.exit_time)} at ${px(t.exit)}`}</small></span>
+   <span class="lpl"><b class="${t.usd_now>=0?'up':'dn'}">${money(t.usd_now)}</b><small>${t.state==='open'?'<i class="ldot"></i>open':'closed'} · ${t.R_now>=0?'+':M}${Math.abs(t.R_now).toFixed(2)}R</small></span></div>`).join('');
+ return `<div class="card tcard livecard">${head}
+  ${T.length?`<div class="lsum"><div><span>Open now</span><b>${open.length}</b></div><div><span>Trades today</span><b>${T.length}</b></div><div><span>Today so far</span><b class="${usd>=0?'up':'dn'}">${money(usd)}</b></div></div><div class="lrows">${rows}</div>`
+   :`<p class="sub">${V.date===today?'No trades yet today. The rules can enter from 9:31 New York.':'No trades in the last session.'}</p>`}
+  <p class="tnote" style="margin-top:8px">Unofficial view from delayed prices (about 10 minutes behind), updated every few minutes. The official record is booked in the ledger after the close.${(V.warnings||[]).length?' '+esc(V.warnings.join(' ')):''}</p></div>`}
+const px=(x,d=2)=>x==null?'–':Number(x).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+function paintLive(){$$('.livecard').forEach(el=>{el.outerHTML=liveCard()})}
+async function freshen(){const [F,V]=await Promise.all([fetch('desk_feed.json',{cache:'no-cache'}).then(r=>r.json()).catch(()=>null),fetch('data/live_view.json',{cache:'no-cache'}).then(r=>r.json()).catch(()=>null)]);
+ if(V&&(!LVD.d||V.as_of!==LVD.d.as_of||V.date!==LVD.d.date)){LVD.d=V;paintLive()}
+ const o=DATA.desk&&DATA.desk.daytype;if(F&&F.daytype&&(!o||F.daytype.date>o.date||(F.daytype.date===o.date&&F.daytype.made_at!==o.made_at))){DATA.desk.daytype=F.daytype;
+  DATA.history=(F.daytype_history||[]).filter(h=>(h.date||'')>='2026-11-20').map(h=>({date:h.date,at:h.made_at,p:(h.ai||{}).trend_probability,s:h.ai_size_used,rule:h.dumb_size})).slice(-15);
+  init.home=init.desk=0;if(cur==='home'){init.home=1;home()}else if(cur==='desk'){init.desk=1;desk()}}}
+setTimeout(freshen,300);setInterval(()=>{if(document.visibilityState==='visible')freshen()},90000);
 // cards lean towards the pointer and catch the light (desktop only, one listener for the whole page)
 if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduce){let el=null,ev=null,pend=false;
  addEventListener('pointermove',e=>{ev=e;if(pend)return;pend=true;requestAnimationFrame(()=>{pend=false;const c=ev.target.closest&&ev.target.closest('.card');
