@@ -818,16 +818,19 @@ function desk(){const v=$('#v-desk'),D=DATA.desk||{},dc=D.daytype,inp=(dc&&dc.in
    ${h.hist.some(x=>x[1]!=null)?`<h3 style="margin-top:16px">Its calls</h3><div class="list">${h.hist.slice().reverse().filter(x=>x[1]!=null).slice(0,10).map(([d,p])=>`<div class="li"><span class="k">${esc(d)}</span><span class="v">${Math.round(p)}%</span></div>`).join('')}</div>`:''}`)}}
 // ================= IN THE MARKET: today's trades as they happen (unofficial live view: Yahoo bars, ~10 min delay; the nightly ledger is the record)
 const LVD={d:null};const SNM=RULES;
-function liveCard(){const V=LVD.d,nc=nextCall(),today=nc.nyDate;
- const head=`<div class="th"><span class="lbl">In the market</span><span class="chip ${V&&V.date===today?'g':''}">${V?(V.date===today?'Live · as of '+esc((V.as_of||'').slice(11)):'Last session '+esc(V.date)):'Loading…'}</span></div>`;
+function nyMin(){const n=new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'}));return n.getHours()*60+n.getMinutes()}
+// after 3:55pm New York (or on a later day) every rule is flat, even if the last delayed update still shows a trade open
+function liveDone(V){const nc=nextCall();return !!V&&(V.date<nc.nyDate||nyMin()>=955)}
+function liveCard(){const V=LVD.d,nc=nextCall(),today=nc.nyDate,done=liveDone(V);
+ const head=`<div class="th"><span class="lbl">${done?'Today in the market':'In the market'}</span><span class="chip ${V&&V.date===today&&!done?'g':''}">${V?(done?(V.date===today?'Closed · all flat at 3:55':'Last session '+esc(V.date)):'Live · as of '+esc((V.as_of||'').slice(11))):'Loading…'}</span></div>`;
  if(!V)return `<div class="card tcard livecard">${head}<p class="sub">Checking today's trades…</p></div>`;
- const T=V.trades||[],open=T.filter(t=>t.state==='open'),usd=T.reduce((a,t)=>a+(t.usd_now||0),0),R=T.reduce((a,t)=>a+(t.R_now||0),0);
+ const T=(V.trades||[]).map(t=>done&&t.state==='open'?{...t,state:'flat',exit_time:'15:55'}:t),open=T.filter(t=>t.state==='open'),usd=T.reduce((a,t)=>a+(t.usd_now||0),0),R=T.reduce((a,t)=>a+(t.R_now||0),0);
  const rows=T.slice().sort((a,b)=>(a.state==='open'?0:1)-(b.state==='open'?0:1)||(b.entry_time||'').localeCompare(a.entry_time||'')).map(t=>`<div class="lrow">
    <span class="lmk">${esc(t.contract)}</span><span class="lnm"><b>${SNM[t.strategy]||esc(t.strategy)} <span class="lside ${t.side==='long'?'up':'dn'}">${t.side}</span></b>
-   <small>${t.contracts} × in ${esc(t.entry_time)} at ${px(t.entry)}${t.state==='open'?` · stop ${px(t.stop)}`:` · out ${esc(t.exit_time)} at ${px(t.exit)}`}</small></span>
-   <span class="lpl"><b class="${t.usd_now>=0?'up':'dn'}">${money(t.usd_now)}</b><small>${t.state==='open'?'<i class="ldot"></i>open':'closed'} · ${t.R_now>=0?'+':M}${Math.abs(t.R_now).toFixed(2)}R</small></span></div>`).join('');
+   <small>${t.contracts} × in ${esc(t.entry_time)} at ${px(t.entry)}${t.state==='open'?` · stop ${px(t.stop)}`:t.state==='flat'?` · out 15:55 (closing price)`:` · out ${esc(t.exit_time)} at ${px(t.exit)}`}</small></span>
+   <span class="lpl"><b class="${t.usd_now>=0?'up':'dn'}">${money(t.usd_now)}</b><small>${t.state==='open'?'<i class="ldot"></i>open':t.state==='flat'?'closed at 3:55 · est.':'closed'} · ${t.R_now>=0?'+':M}${Math.abs(t.R_now).toFixed(2)}R</small></span></div>`).join('');
  return `<div class="card tcard livecard">${head}
-  ${T.length?`<div class="lsum"><div><span>Open now</span><b>${open.length}</b></div><div><span>Trades today</span><b>${T.length}</b></div><div><span>Today so far</span><b class="${usd>=0?'up':'dn'}">${money(usd)}</b></div></div><div class="lrows">${rows}</div>`
+  ${T.length?`<div class="lsum"><div><span>Open now</span><b>${done?0:open.length}</b></div><div><span>Trades today</span><b>${T.length}</b></div><div><span>${done?'Day total (est.)':'Today so far'}</span><b class="${usd>=0?'up':'dn'}">${money(usd)}</b></div></div><div class="lrows">${rows}</div>`
    :`<p class="sub">${V.date===today?'No trades yet today. The rules can enter from 9:31 New York.':'No trades in the last session.'}</p>`}
   <p class="tnote" style="margin-top:8px">Unofficial view from delayed prices (about 10 minutes behind), updated every few minutes. The official record is booked in the ledger after the close.${(V.warnings||[]).length?' '+esc(V.warnings.join(' ')):''}</p></div>`}
 const px=(x,d=2)=>x==null?'–':Number(x).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
