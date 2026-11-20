@@ -804,6 +804,8 @@ function desk(){const v=$('#v-desk'),D=DATA.desk||{},dc=D.daytype,L=DATA.ledger|
    ${h.p==null?'<span class="q2">no forecast</span>':`<span class="mb2"><i style="width:${h.p}%"></i></span>`}<span>${h.p==null?'':Math.round(h.p)+'% · '}<b>${esc(h.s)}×</b> <span class="q2">rule ${esc(h.rule)}×</span></span></div>`).join('')||'<p class="sub">No calls yet.</p>'}</div></div></div>`;
  reveal(v);
  const ar=$('.gring .ar',v);if(ar)requestAnimationFrame(()=>requestAnimationFrame(()=>ar.style.strokeDashoffset=ar.dataset.off));
+ if(!desk.fresh){desk.fresh=1;fetch('desk_feed.json',{cache:'no-cache'}).then(r=>r.json()).then(F=>{const o=DATA.desk.daytype;if(F.daytype&&(!o||F.daytype.date>o.date||(F.daytype.date===o.date&&F.daytype.made_at!==o.made_at))){DATA.desk.daytype=F.daytype;
+  DATA.history=(F.daytype_history||[]).map(h=>({date:h.date,at:h.made_at,p:(h.ai||{}).trend_probability,s:h.ai_size_used,rule:h.dumb_size})).slice(-15);if(cur==='desk')desk()}}).catch(()=>{})}
  requestAnimationFrame(()=>wires(v));if(!desk.rs){desk.rs=1;addEventListener('resize',()=>cur==='desk'&&wires($('#v-desk')))}
  clearInterval(desk.t);desk.t=setInterval(()=>{if(cur!=='desk')return;const a=$('#mccd'),b=$('#nyclk');if(a)a.textContent=dur(nextCall().ms);if(b)b.textContent=nyClock()},20000);
  $('.scards',v).onclick=e=>{const b=e.target.closest('.sc');if(!b)return;const k=b.dataset.k,m=isToday?mem[k]:null,[n,co,c]=SEAT[k]||[k,'','#888'],h=SH[k]||{hist:[],asked:0,answered:0};
