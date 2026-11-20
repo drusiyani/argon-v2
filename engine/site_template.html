@@ -601,8 +601,9 @@ async function chartTab(){const v=$('#v-chart');const narrow=innerWidth<600;
  <div id="ctrades" class="scrollx"></div><p class="src" id="cnote" style="margin:12px 2px 0"></p>`;
  try{const [a,b]=await Promise.all([data('chart'),data('book_daily').catch(()=>({})),need('lwc')]);C=a;C.bd=b}catch(e){$('#chartbox').innerHTML='<p class="sub" style="padding:16px">The chart could not load. Try again later.</p>';return}
  CST.def=narrow?63:252;
- const ds=Object.keys(C.sessions||{}),sel=$('#dsel');sel.innerHTML=ds.slice().reverse().map(d=>{const k=C.sessions[d].trades.length;return`<option value="${d}">${d}${k?' · '+k+' trade'+(k>1?'s':''):''}</option>`}).join('');
- const w=ds.slice().reverse().find(d=>C.sessions[d].trades.length);if(w)sel.value=w;sel.onchange=cload;
+ if(!LVD.d)LVD.d=await fetch('data/live_view.json',{cache:'no-cache'}).then(r=>r.json()).catch(()=>null);
+ const ds=Object.keys(C.sessions||{}),sel=$('#dsel');sel.innerHTML=liveOpt()+ds.slice().reverse().filter(d=>!(liveSess()&&d===LVD.d.date)).map(d=>{const k=C.sessions[d].trades.length;return`<option value="${d}">${d}${k?' · '+k+' trade'+(k>1?'s':''):''}</option>`}).join('');
+ const w=liveSess()?'live':ds.slice().reverse().find(d=>C.sessions[d].trades.length);if(w)sel.value=w;sel.onchange=cload;
  $('#prev').onclick=()=>{sel.selectedIndex=Math.min(sel.options.length-1,sel.selectedIndex+1);cload()};$('#next').onclick=()=>{sel.selectedIndex=Math.max(0,sel.selectedIndex-1);cload()};
  tvg($('#cmode'),m=>{cmode=m;cload()});tvg($('#cstyle'),s=>{CST.style=s;CHT.opt({style:s})});
  tvg($('#crange'),k=>{if(k==='ytd'){const y=String(new Date().getFullYear()),n=C.daily.filter(r=>r[0].startsWith(y)).length;CST.def=n||252}else CST.def=+k;CHT.def=CST.def;CHT.range(CST.def)});
@@ -610,22 +611,27 @@ async function chartTab(){const v=$('#v-chart');const narrow=innerWidth<600;
  const mn=$('#cind'),mb=$('#cindb');mb.onclick=e=>{e.stopPropagation();mn.hidden=!mn.hidden;mb.classList.toggle('on',!mn.hidden);mb.setAttribute('aria-expanded',!mn.hidden)};
  mn.onchange=e=>{const c=e.target;CST.ind[c.dataset.k]=c.checked;CHT.opt({ind:{[c.dataset.k]:c.checked}})};document.addEventListener('click',e=>{if(!mn.hidden&&!mn.contains(e.target)&&e.target!==mb){mn.hidden=true;mb.classList.remove('on')}});
  cload()}
+function liveSess(){const V=LVD.d;if(!V||!V.bars||!(V.bars.NQ||[]).length)return null;const last=V.bars.NQ[V.bars.NQ.length-1],hm2=t=>{const [h,m]=(t||'0:0').split(':').map(Number);return h*60+m};
+ const tr=(V.trades||[]).filter(t=>t.market==='NQ').map(t=>({strategy:t.strategy,side:t.side==='long'?1:-1,entry_min:hm2(t.entry_time),exit_min:t.exit_time?hm2(t.exit_time):last[0],entry:t.entry,exit:t.exit??t.last,stop:t.stop,R:t.R_now||0,open:t.state==='open'}));
+ return{bars:V.bars.NQ,trades:tr,other:(V.trades||[]).filter(t=>t.market!=='NQ').length}}
+function liveOpt(){const S=liveSess();return S?`<option value="live">${esc(LVD.d.date)} · live${S.trades.length?' · '+S.trades.length+' trade'+(S.trades.length>1?'s':''):''}</option>`:''}
 function cload(){const day=cmode==='day';
  // a fresh chart when switching between daily and 5-minute, since the two use different kinds of time
  if(!CHT||CHT.mode!==cmode){if(CHT)CHT.chart.remove();CHT=TVChart($('#chartbox'));CHT.mode=cmode;CHT.opt({style:CST.style,ind:CST.ind,log:CST.log})}$('#dayrow').hidden=!day;$('#crange').hidden=day;$('#ctz').textContent=day?'5m · New York':'Daily · delayed';
  if(!day){CHT.def=CST.def;const bars=C.daily.map(([t,o,h,l,c])=>({time:t,open:o,high:h,low:l,close:c})),R=bars.map(b=>(C.bd||{})[b.time]??null);
   CHT.set({bars,R,marks:[],intraday:false,label:innerWidth<600?'NQ1! · 1D · CME':'Nasdaq 100 E-mini Futures · 1D · CME'});$('#ctrades').innerHTML='';
   $('#cnote').innerHTML='Daily candles: Yahoo Finance, delayed, for display only. Bars underneath: the main book’s result each day in % (backtest, in-sample, the plain package at 0.5%). Moving averages are for looking at, not part of the strategy. Chart by <a href="https://www.tradingview.com/">TradingView</a> Lightweight Charts™ (Apache-2.0), © 2026 TradingView, Inc.';return}
- const d=$('#dsel').value,S=C.sessions[d],base=Date.UTC(+d.slice(0,4),+d.slice(5,7)-1,+d.slice(8,10))/1000;
+ const d0=$('#dsel').value,isLive=d0==='live',S=isLive?liveSess():C.sessions[d0],d=isLive?LVD.d.date:d0,base=Date.UTC(+d.slice(0,4),+d.slice(5,7)-1,+d.slice(8,10))/1000;
  const bars=S.bars.map(([t,o,h,l,c])=>({time:base+t*60,open:o,high:h,low:l,close:c})),tm=m=>{const b=S.bars.findIndex(x=>x[0]+5>m);return base+S.bars[Math.max(0,b)][0]*60};
- const marks=[],boxes=[];S.trades.forEach(x=>{const nm=SN[x.strategy]||x.strategy,risk=Math.abs(x.R)>.05?Math.abs(x.exit-x.entry)/Math.abs(x.R):null,win=x.R>=0;
+ const marks=[],boxes=[];S.trades.forEach(x=>{const nm=SN[x.strategy]||x.strategy,risk=x.stop!=null?Math.abs(x.entry-x.stop):Math.abs(x.R)>.05?Math.abs(x.exit-x.entry)/Math.abs(x.R):null,win=x.R>=0;
   marks.push({time:tm(x.entry_min),position:x.side>0?'belowBar':'aboveBar',shape:x.side>0?'arrowUp':'arrowDown',color:TVC.ink,text:(x.side>0?'Long ':'Short ')+nm});
-  boxes.push({t1:tm(x.entry_min),t2:tm(x.exit_min),side:x.side,entry:x.entry,stop:risk?x.entry-x.side*risk:null,target:win?x.exit:null,win,label:`${x.side>0?'Long':'Short'} · ${win?'+':M}${Math.abs(x.R).toFixed(2)}R`})});
+  boxes.push({t1:tm(x.entry_min),t2:tm(x.exit_min),side:x.side,entry:x.entry,stop:risk?x.entry-x.side*risk:null,target:win?x.exit:null,win,label:`${x.side>0?'Long':'Short'} · ${win?'+':M}${Math.abs(x.R).toFixed(2)}R${x.open?' (open)':''}`})});
  const lv=[[S.bars[0][1],'9:30 Open']];const b10=S.bars.find(r=>r[0]===600);if(b10)lv.push([b10[1],'10:00 Open']);
- marks.sort((a,b)=>a.time-b.time);CHT.def=bars.length;CHT.set({bars,R:null,marks,boxes,levels:lv,intraday:true,label:'NQ1! · 5 · '+d});
+ marks.sort((a,b)=>a.time-b.time);CHT.def=bars.length;CHT.set({bars,R:null,marks,boxes,levels:lv,intraday:true,label:'NQ1! · 5 · '+d+(isLive?' · live':'')});
  const tot=S.trades.reduce((a,x)=>a+x.R,0);
  $('#ctrades').innerHTML=S.trades.length?`<div class="card" style="margin-top:14px"><div style="display:flex;justify-content:space-between;align-items:center"><h3>Trades on ${esc(d)}</h3><span class="chip ${tot>=0?'g':'r'}">${tot>=0?'+':M}${Math.abs(tot).toFixed(2)}R</span></div>
-  <table class="tt"><tr><th>Rule</th><th>Side</th><th>In</th><th>Out</th><th>Result</th></tr>${S.trades.map(x=>`<tr><td>${SN[x.strategy]||esc(x.strategy)}</td><td>${x.side>0?'long':'short'}</td><td>${hm(x.entry_min)}</td><td>${hm(x.exit_min)}</td><td class="${x.R>=0?'up':'dn'} num">${x.R>=0?'+':M}${Math.abs(x.R).toFixed(2)}R</td></tr>`).join('')}</table></div>`:'<p class="sub" style="margin-top:14px">No trades this day.</p>';
+  <table class="tt"><tr><th>Rule</th><th>Side</th><th>In</th><th>Out</th><th>Result</th></tr>${S.trades.map(x=>`<tr><td>${SN[x.strategy]||esc(x.strategy)}</td><td>${x.side>0?'long':'short'}</td><td>${hm(x.entry_min)}</td><td>${x.open?'open':hm(x.exit_min)}</td><td class="${x.R>=0?'up':'dn'} num">${x.R>=0?'+':M}${Math.abs(x.R).toFixed(2)}R</td></tr>`).join('')}</table></div>`:'<p class="sub" style="margin-top:14px">No trades this day.</p>';
+ if(isLive){$('#cnote').innerHTML=`Today, live: 5-minute candles from Yahoo Finance, about 10 minutes behind, as of ${esc((LVD.d.as_of||'').slice(11))}. Unofficial: the ledger books the real result after the close.${S.other?' '+S.other+' S&amp;P trade'+(S.other>1?'s are':' is')+' not shown on this Nasdaq chart.':''}`;return}
  $('#cnote').innerHTML='5-minute candles from Yahoo Finance, New York time, display only: markers sit within a few points of the engine’s real prices. Blue boxes are the winning part of a trade, grey boxes the risk to the stop. Chart by <a href="https://www.tradingview.com/">TradingView</a> Lightweight Charts™ (Apache-2.0).'}
 
 // ================= RESEARCH
@@ -792,7 +798,7 @@ function liveCard(){const V=LVD.d,nc=nextCall(),today=nc.nyDate;
    :`<p class="sub">${V.date===today?'No trades yet today. The rules can enter from 9:31 New York.':'No trades in the last session.'}</p>`}
   <p class="tnote" style="margin-top:8px">Unofficial view from delayed prices (about 10 minutes behind), updated every few minutes. The official record is booked in the ledger after the close.${(V.warnings||[]).length?' '+esc(V.warnings.join(' ')):''}</p></div>`}
 const px=(x,d=2)=>x==null?'–':Number(x).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
-function paintLive(){$$('.livecard').forEach(el=>{el.outerHTML=liveCard()})}
+function paintLive(){$$('.livecard').forEach(el=>{el.outerHTML=liveCard()});const sel=$('#dsel');if(sel&&C){const was=sel.value,o=sel.querySelector('option[value=live]');if(o)o.outerHTML=liveOpt();else if(liveSess())sel.insertAdjacentHTML('afterbegin',liveOpt());sel.value=was;if(cur==='chart'&&cmode==='day'&&sel.value==='live')cload()}}
 async function freshen(){const [F,V]=await Promise.all([fetch('desk_feed.json',{cache:'no-cache'}).then(r=>r.json()).catch(()=>null),fetch('data/live_view.json',{cache:'no-cache'}).then(r=>r.json()).catch(()=>null)]);
  if(V&&(!LVD.d||V.as_of!==LVD.d.as_of||V.date!==LVD.d.date)){LVD.d=V;paintLive()}
  const o=DATA.desk&&DATA.desk.daytype;if(F&&F.daytype&&(!o||F.daytype.date>o.date||(F.daytype.date===o.date&&F.daytype.made_at!==o.made_at))){DATA.desk.daytype=F.daytype;
