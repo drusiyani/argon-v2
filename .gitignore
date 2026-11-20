@@ -3,6 +3,7 @@ __pycache__/
 .DS_Store
 vendor/*
 !vendor/black-hole/
+!vendor/ai-orb/
 engine/fast.so
 
 # Raw market data from Databento (CME): its licence forbids republishing it, so it lives in the private repo drusiyani/argon-data.
