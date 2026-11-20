@@ -77,6 +77,19 @@ json.dump(docs, open(os.path.join(ROOT, 'docs', 'data', 'research.json'), 'w'), 
 
 cfg = P.get('config') or {}
 BOOK = J('docs', 'data', 'book.json', default=None)
+def _seats():
+    """Each seat's record from data/daytype.jsonl: its trend chance on each morning it was asked, and how often it answered."""
+    out = {}
+    try: rows = [json.loads(x) for x in open(os.path.join(ROOT, 'data', 'daytype.jsonl')) if x.strip()]
+    except Exception: return out
+    for r in rows:
+        for k, m in (((r.get('council') or {}).get('members')) or {}).items():
+            s = out.setdefault(k, dict(hist=[], asked=0, answered=0)); s['asked'] += 1
+            p = (m or {}).get('trend_probability')
+            if p is not None: s['answered'] += 1
+            s['hist'].append([r.get('date'), p])
+    for s in out.values(): s['hist'] = s['hist'][-20:]
+    return out
 DATA = dict(
     risk=cfg.get('risk_pct', 1.0), cost_cap=cfg.get('cost_cap_R', 0.10), live_start='2027-02-01', freeze='2027-01-31T23:59:00Z', killed=P.get('killed', False),
     eras=dict(recent=dict(label='2021–26', note='The backtest. Mostly in-sample: the settings were chosen on it.', book=A.get('book', {}), strategies=A.get('strategies', {})),
@@ -87,6 +100,7 @@ DATA = dict(
     book=BOOK, strategies=J('research', 'results', 'strategies.json', default=None),
     history=[dict(date=h.get('date'), at=h.get('made_at'), p=(h.get('ai') or {}).get('trend_probability'), s=h.get('ai_size_used'), rule=h.get('dumb_size')) for h in (F.get('daytype_history') or [])][-15:],
     equity=LG.get('equity') or [],
+    seats=_seats(),
     built=dt.datetime.now(dt.timezone.utc).strftime('%d %b %Y, %H:%M UTC'))
 tpl = open(os.path.join(ROOT, 'engine', 'site_template.html'), encoding='utf-8').read()
 page = tpl.replace('/*__DATA__*/null', json.dumps(DATA, separators=(',', ':')).replace('</', '<\\/'))
