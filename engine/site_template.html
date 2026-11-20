@@ -341,6 +341,16 @@ select{height:36px;border-radius:11px;border:0;background:var(--fill);padding:0 
 ::view-transition-old(root),::view-transition-new(root){animation-duration:.32s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
 ::view-transition-old(root){animation-name:vtout}::view-transition-new(root){animation-name:vtin}
 @keyframes vtout{to{opacity:0;transform:translateX(calc(var(--dir,1)*-18px))}}@keyframes vtin{from{opacity:0;transform:translateX(calc(var(--dir,1)*18px))}}
+.saw{margin-top:14px;padding:20px}.saw h3{margin:0}.saw .sub{margin:4px 0 0}
+.swg{display:grid;grid-template-columns:1fr 1fr;gap:22px 28px;margin-top:18px}@media (max-width:700px){.swg{grid-template-columns:1fr;gap:20px}}
+.swl{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.swl span{font-size:13px;color:var(--ink2);font-weight:550}.swl b{font-size:24px;font-weight:700;letter-spacing:-.03em}
+.sws{position:relative;height:6px;border-radius:6px;background:var(--fill2);margin:10px 0 0}.sws u{position:absolute;top:0;bottom:0;border-radius:6px;background:color-mix(in srgb,var(--gold) 22%,transparent)}
+.swm{position:absolute;top:50%;width:14px;height:14px;border-radius:50%;transform:translate(-50%,-50%);background:linear-gradient(180deg,var(--gold2),var(--gold));box-shadow:0 0 0 3px var(--bg),0 0 14px color-mix(in srgb,var(--gold2) 45%,transparent)}
+.swt{position:relative;height:16px;margin-top:6px;font-size:10.5px;color:var(--ink3)}.swt span{position:absolute;transform:translateX(-50%);white-space:nowrap}.swt span:first-child{transform:none}.swt span:last-child{transform:translateX(-100%)}
+.swr p{margin:4px 0 0;font-size:12.5px;line-height:1.45;color:var(--ink2)}
+.swc,.swn{margin-top:18px;padding-top:14px;border-top:1px solid var(--sep)}.swc{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.swc .lbl,.swn .lbl{font-size:12px;color:var(--ink3);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-right:4px}
+.swn .lbl{display:block;margin-bottom:6px}.swi{padding:8px 0;border-bottom:1px solid var(--sep)}.swi:last-child{border-bottom:0}.swi small{display:block;font-size:11px;color:var(--ink3);margin-bottom:2px}.swi span{font-size:13.5px;line-height:1.4}
+.rsn{margin:0 0 4px;padding:14px 16px;border-left:3px solid var(--gold);border-radius:0 12px 12px 0;background:color-mix(in srgb,var(--gold) 7%,transparent);font-size:15px;line-height:1.55}
 </style></head><body>
 <div class="amb" aria-hidden="true"><i></i><i></i><i></i></div><div class="space" aria-hidden="true"></div>
 <header class="nav" id="nav">
@@ -782,6 +792,21 @@ function dial(p,mem,nc){const A=v=>-135+2.7*v,P=(a,r)=>[100+r*Math.sin(a*Math.PI
  const n=ms.length;
  return `<div class="dial ${p==null?'idle':''}" style="--g:${p==null?12:Math.round(20+p*.35)}"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><linearGradient id="gold1" x1="0" x2="1"><stop offset="0" stop-color="#b07a1f"/><stop offset="1" stop-color="#f6cd86"/></linearGradient></defs>${tk}${lab}${nd}</svg>${mk}
   <div class="in">${p!=null?`<b>${Math.round(p)}<sup>%</sup></b><span>trend chance</span><em>${n} of 4 AIs</em>`:`<b id="mccd">${dur(nc.ms)}</b><span>until the call</span>`}</div></div>`}
+// what the AIs saw: each 8:45 reading on its own scale (with what "normal" looks like), the calendar, and the headlines they read
+function sawCard(dc,inp){const vx=inp.vix,vp=inp.vix_1y_percentile,on=inp.overnight_change_pct,rsi=inp.rsi5,rg=inp.range_ratio,cl=(v,a,b)=>Math.max(0,Math.min(100,(v-a)/(b-a)*100));
+ const row=(lb,val,cls,f,zone,ticks,note)=>`<div class="swr"><div class="swl"><span>${lb}</span><b class="num ${cls||''}">${val}</b></div>
+  <div class="sws">${zone}<i class="swm" style="left:${f.toFixed(1)}%"></i></div><div class="swt">${ticks.map(([x,t])=>`<span style="left:${x}%">${t}</span>`).join('')}</div><p>${note}</p></div>`;
+ const band=(a,b)=>`<u style="left:${a}%;width:${b-a}%"></u>`;
+ const R=[];
+ if(vx!=null)R.push(row('VIX · fear gauge',vx.toFixed(1),'',vp??50,band(25,75),[[0,'calm'],[50,'typical'],[100,'1-yr high']],vp!=null?(vp>=95?'At its highest in a year: big swings are expected.':vp>=75?`Higher than ${vp}% of the last year.`:vp<=25?'Quieter than most of the last year.':'Around its usual level.'):''));
+ if(on!=null)R.push(row('Overnight move',pct(on,2),on>=0?'up':'dn',cl(on,-3,3),band(cl(-.5,-3,3),cl(.5,-3,3)),[[0,'−3%'],[50,'0'],[100,'+3%']],Math.abs(on)>=1.5?`A big ${on<0?'drop':'jump'} since yesterday's close, so the open starts with a gap.`:Math.abs(on)>=.5?`A clear ${on<0?'dip':'rise'} before the open.`:'Little change before the open.'));
+ if(rsi!=null)R.push(row('RSI 5 · stretch',rsi.toFixed(0),'',rsi,band(30,70),[[0,'0'],[30,'30'],[70,'70'],[100,'100']],rsi<15?'Very stretched down after a run of selling. It can snap back or keep falling.':rsi<30?'Stretched down.':rsi>85?'Very stretched up after a run of buying.':rsi>70?'Stretched up.':'Not stretched either way.'));
+ if(rg!=null)R.push(row('Yesterday\'s range',rg.toFixed(2)+'×','',cl(rg,0,2),band(cl(.8,0,2),cl(1.2,0,2)),[[0,'0×'],[50,'1× normal'],[100,'2×']],rg>=1.3?'Yesterday moved much more than usual.':rg<=.7?'Yesterday was unusually quiet.':'A normal-sized day yesterday.'));
+ const cal=(inp.calendar||[]),hl=(dc.headlines||[]).slice(0,5).map(h=>{const m=/^\[([^,\]]+),\s*([^\]]+)\]\s*(.*)$/.exec(h);return m?{src:m[1],t:m[2],x:m[3]}:{src:'',t:'',x:h}});
+ return `<div class="card rv saw"><div class="swh"><div><h3>What the AIs saw</h3><p class="sub">Every AI got the same readings at ${esc(dc.made_at||'8:45')} New York on ${esc(dc.date)}. The shaded part of each bar is a normal day.</p></div></div>
+  <div class="swg">${R.join('')}</div>
+  ${cal.length?`<div class="swc"><span class="lbl">On the calendar</span>${cal.map(c=>`<span class="chip">${esc(c.replace(/^./,x=>x.toUpperCase()))}</span>`).join('')}</div>`:''}
+  ${hl.length?`<div class="swn"><span class="lbl">Headlines they read</span>${hl.map(h=>`<div class="swi"><small>${esc(h.src)}${h.t?' · '+esc(h.t):''}</small><span>${esc(h.x)}</span></div>`).join('')}</div>`:''}</div>`}
 function desk(){const v=$('#v-desk'),D=DATA.desk||{},dc=D.daytype,inp=(dc&&dc.inputs)||{},nc=nextCall(),SH=DATA.seats||{};
  const mem=(dc&&dc.council&&dc.council.members)||{},isToday=dc&&dc.date===nc.nyDate,council=isToday&&dc.council&&dc.council.counted?dc.council:null,p=council?council.trend_probability:null;
  const answered=isToday?SEATS.filter(k=>mem[k]).length:0,C=2*Math.PI*44,off=p==null?C*(nc.ms/864e5>1?0:nc.ms/864e5):C*(1-p/100);
@@ -800,12 +825,7 @@ function desk(){const v=$('#v-desk'),D=DATA.desk||{},dc=D.daytype,inp=(dc&&dc.in
    <div class="msay"><h2>${head}</h2><p>${say}</p><div class="trio2"><div class="y"><small>Used today</small><b>${isToday?esc(dc.ai_size_used):1}×</b></div><div><small>One-line rule</small><b>${isToday?esc(dc.dumb_size)+'×':'–'}</b></div><div><small>Random sizer</small><b>${isToday?esc(dc.random_size)+'×':'–'}</b></div></div></div></div>
   <div class="scards">${SEATS.map(card).join('')}</div></div>
  ${liveCard()}
- ${vx!=null?`<h2 class="rv">What the AIs saw</h2><p class="sub rv">The same inputs go to every AI at 8:45${dc?' (last: '+esc(dc.date)+')':''}.</p>
- <div class="grid g4">
-  <div class="card kpi ft4 rv"><div class="lb">VIX</div><div class="v num">${vx.toFixed(1)}</div><div class="ft">${vp!=null?vp+'th percentile, 1 year':''}</div>${gauge((vp??50)/100,'url(#gold1)')}</div>
-  <div class="card kpi rv"><div class="lb">Overnight</div><div class="v num ${on>=0?'up':'dn'}">${on!=null?pct(on,2):'–'}</div><div class="ft">Nasdaq since the close</div></div>
-  <div class="card kpi rv"><div class="lb">RSI 5</div><div class="v num">${rsi!=null?rsi.toFixed(0):'–'}</div><div class="ft">${rsi!=null?(rsi<30?'stretched down':rsi>70?'stretched up':'neutral'):''}</div></div>
-  <div class="card kpi ft4 rv"><div class="lb">Range</div><div class="v num">${rg!=null?rg.toFixed(2)+'×':'–'}</div><div class="ft">yesterday vs normal</div>${rg!=null?gauge(Math.min(rg,2)/2,'var(--blue)'):''}</div></div>`:''}
+ ${vx!=null?sawCard(dc,inp):''}
  <div class="card rv calls" style="margin-top:14px"><h3>Recent calls</h3><p class="sub">The AIs' trend chance and the size used, against the one-line rule. The record starts on 20 November 2026, when all four AIs took their seats.</p><div class="list">${(DATA.history||[]).slice().reverse().slice(0,8).map(h=>`<div class="li"><span class="k">${esc(h.date)}</span><span class="v">${h.p==null?'<span class="qq">no forecast</span>':`<span class="mb"><i style="width:${h.p}%"></i></span>${Math.round(h.p)}%`} · ${esc(h.s)}× <span class="qq">rule ${esc(h.rule)}×</span></span></div>`).join('')||'<p class="sub">No calls yet.</p>'}</div></div>`;
  reveal(v);
  const dl=$('.dial',v);if(dl)requestAnimationFrame(()=>requestAnimationFrame(()=>{dl.classList.add('go');const nd=$('.nd',dl);if(nd)nd.style.transform=`rotate(${nd.dataset.a}deg)`}));
@@ -813,7 +833,7 @@ function desk(){const v=$('#v-desk'),D=DATA.desk||{},dc=D.daytype,inp=(dc&&dc.in
  clearInterval(desk.t);desk.t=setInterval(()=>{if(cur!=='desk')return;const t=dur(nextCall().ms);['mccd','mccd2'].forEach(i=>{const e=$('#'+i);if(e)e.textContent=t})},20000);
  $('.scards',v).onclick=e=>{const b=e.target.closest('.sc');if(!b)return;const k=b.dataset.k,m=isToday?mem[k]:null,[n,co]=SEAT[k],h=SH[k]||{hist:[],asked:0,answered:0};
   sheet(`<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">${alogo(k)}<div><h2 style="margin:0">${n}</h2><p class="sub" style="margin:0">${co}${h.asked?' · answered '+h.answered+' of '+h.asked+' mornings':''}</p></div></div>
-   ${m?`<div class="grid g2" style="margin-bottom:12px"><div class="card kpi"><div class="lb">Trend chance</div><div class="v num">${Math.round(m.trend_probability)}%</div></div><div class="card kpi"><div class="lb">Size</div><div class="v num">${m.size}×</div></div></div><p>${esc(m.reason||'No reason given.')}</p>`
+   ${m?`<div class="grid" style="margin-bottom:14px;grid-template-columns:1fr 1fr"><div class="card kpi"><div class="lb">Trend chance</div><div class="v num">${Math.round(m.trend_probability)}%</div></div><div class="card kpi"><div class="lb">Size</div><div class="v num">${m.size}×</div></div></div><h3 style="margin:4px 0 8px">Its reason</h3><p class="rsn">${esc(m.reason||'No reason given.')}</p>`
     :`<p class="sub">${h.asked?'No answer today yet.':'Its record starts with today\'s call.'} When an AI misses the 9:25 cutoff the others decide; with fewer than 3 answers, the book runs at 1×.</p>`}
    ${h.hist.some(x=>x[1]!=null)?`<h3 style="margin-top:16px">Its calls</h3><div class="list">${h.hist.slice().reverse().filter(x=>x[1]!=null).slice(0,10).map(([d,p])=>`<div class="li"><span class="k">${esc(d)}</span><span class="v">${Math.round(p)}%</span></div>`).join('')}</div>`:''}`)}}
 // ================= IN THE MARKET: today's trades as they happen (unofficial live view: Yahoo bars, ~10 min delay; the nightly ledger is the record)

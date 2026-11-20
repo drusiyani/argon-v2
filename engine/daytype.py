@@ -166,7 +166,7 @@ def err_text(e):
     except Exception: return repr(e)[:400]
 def parse(t):
     j = json.loads(t[t.find('{'):t.rfind('}') + 1]); size = min(SIZES, key=lambda s: abs(s - float(j.get('size', 1))))
-    return dict(trend_probability=max(0, min(100, float(j.get('trend_probability', 50)))), size=size, veto=j.get('veto') if j.get('veto') in VETOS else None, reason=str(j.get('reason', ''))[:300])
+    return dict(trend_probability=max(0, min(100, float(j.get('trend_probability', 50)))), size=size, veto=j.get('veto') if j.get('veto') in VETOS else None, reason=str(j.get('reason', ''))[:1200])
 def post(url, body, headers):
     return json.loads(urllib.request.urlopen(urllib.request.Request(url, data=json.dumps(body).encode(), headers=dict({'content-type': 'application/json'}, **headers)), timeout=240).read())
 def ask_member(m, text, extra=''):
@@ -235,7 +235,7 @@ def ask(text, extra=''):
     j = json.loads(t[t.find('{'):t.rfind('}') + 1])
     size = min(SIZES, key=lambda s: abs(s - float(j.get('size', 1))))
     veto = j.get('veto') if j.get('veto') in VETOS else None
-    return dict(trend_probability=max(0, min(100, float(j.get('trend_probability', 50)))), size=size, veto=veto, reason=str(j.get('reason', ''))[:300])
+    return dict(trend_probability=max(0, min(100, float(j.get('trend_probability', 50)))), size=size, veto=veto, reason=str(j.get('reason', ''))[:1200])
 
 if __name__ == '__main__':
     now = dt.datetime.now(NY); today = now.date()

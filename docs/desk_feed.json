@@ -29,17 +29,17 @@
     "claude": {
      "trend_probability": 70.0,
      "size": 1.5,
-     "reason": "Peak VIX, a 1.59x range expansion and a deep multi-day selloff (RSI5 5.5) put dealers in short gamma, which favors sustained moves. I am holding size at 1.5x rather than 2x because of monthly-expiry pinning risk, the chance of violent\u2026"
+     "reason": "Peak VIX, a 1.59x range expansion and a deep multi-day selloff (RSI5 5.5) put dealers in short gamma, which favors sustained moves."
     },
     "gemini": {
      "trend_probability": 76.0,
      "size": 1.5,
-     "reason": "Peak 1-year VIX (31.23), a 1.59x range expansion, and a deeply oversold 5-day RSI (5.5) point to strong short-gamma conditions that favor large intraday moves. Size is kept at 1.5 rather than 2.0 because the large -2.12% overnight move is\u2026"
+     "reason": "Peak 1-year VIX (31.23), a 1.59x range expansion, and a deeply oversold 5-day RSI (5.5) point to strong short-gamma conditions that favor large intraday moves. Size is kept at 1.5 rather than 2.0 because the large -2.12% overnight move is already priced in and monthly options expiry can introduce midday reversals or strike pinning."
     },
     "gpt": {
      "trend_probability": 75.0,
      "size": 1.5,
-     "reason": "VIX at its one-year high, yesterday\u2019s 1.59x-average range, and the steep multi-day selloff favor sustained intraday movement, potentially amplified by short-gamma hedging. Monthly expiry and extreme oversold conditions increase\u2026"
+     "reason": "VIX at its one-year high, yesterday\u2019s 1.59x-average range, and the steep multi-day selloff favor sustained intraday movement, potentially amplified by short-gamma hedging. Monthly expiry and extreme oversold conditions increase pinning/reversal risk, while dealer gamma is unconfirmed, making elevated rather than maximum size appropriate."
     },
     "kimi": {
      "trend_probability": 78.0,
@@ -63,25 +63,25 @@
      "trend_probability": 64.0,
      "size": 1.5,
      "veto": null,
-     "reason": "Most of the checklist favors trend: VIX is 31 (1-year high), yesterday's range was 1.59x average, 5-day RSI is 5.5 after a 6.3% drop (dealers likely short gamma), and heavy AI and tech news is driving the tape. I'm holding at 1.5x rather\u2026"
+     "reason": "Most of the checklist favors trend: VIX is 31 (1-year high), yesterday's range was 1.59x average, 5-day RSI is 5.5 after a 6.3% drop (dealers likely short gamma), and heavy AI and tech news is driving the tape."
     },
     "gemini": {
      "trend_probability": 85.0,
      "size": 2.0,
      "veto": null,
-     "reason": "VIX is at its 1-year high (31.23) with yesterday's range at 1.59x the 20-day average, while a 5-day RSI of 5.5 and a -2.12% overnight drop put options dealers deep into short-gamma territory on monthly OPEX. These extreme volatility and\u2026"
+     "reason": "VIX is at its 1-year high (31.23) with yesterday's range at 1.59x the 20-day average, while a 5-day RSI of 5.5 and a -2.12% overnight drop put options dealers deep into short-gamma territory on monthly OPEX. These extreme volatility and dealer-hedging conditions strongly favor big one-way intraday momentum."
     },
     "gpt": {
      "trend_probability": 77.0,
      "size": 1.5,
      "veto": null,
-     "reason": "Extreme VIX, expanded ranges, and the sharp five-day selloff favor sustained intraday movement, with potential short-gamma amplification. Monthly expiry flows and reversal risk after the large overnight gap temper confidence, warranting\u2026"
+     "reason": "Extreme VIX, expanded ranges, and the sharp five-day selloff favor sustained intraday movement, with potential short-gamma amplification. Monthly expiry flows and reversal risk after the large overnight gap temper confidence, warranting elevated rather than maximum size."
     },
     "kimi": {
      "trend_probability": 82.0,
      "size": 2.0,
      "veto": null,
-     "reason": "A severe multi-day selloff, deeply oversold RSI, peak VIX, and elevated ranges indicate high-volatility, short-gamma conditions favorable for momentum. Continued overnight tech weakness supports follow-through, with monthly expiry adding\u2026"
+     "reason": "A severe multi-day selloff, deeply oversold RSI, peak VIX, and elevated ranges indicate high-volatility, short-gamma conditions favorable for momentum. Continued overnight tech weakness supports follow-through, with monthly expiry adding both trend potential and some pinning or reversal risk."
     }
    },
    "answered": 4,
@@ -339,7 +339,7 @@
       "trend_probability": 66.0,
       "size": 1.5,
       "veto": null,
-      "reason": "Conditions favor momentum: VIX is elevated (89th percentile), yesterday's range was 1.41x average, and a 5% five-day selloff (RSI5 25.8) likely leaves dealers short gamma, while Nvidia CEO headlines add tech-specific news flow. Sizing\u2026"
+      "reason": "Conditions favor momentum: VIX is elevated (89th percentile), yesterday's range was 1.41x average, and a 5% five-day selloff (RSI5 25.8) likely leaves dealers short gamma, while Nvidia CEO headlines add tech-specific news flow."
      },
      "gemini": null,
      "gpt": null,
@@ -395,7 +395,7 @@
       "trend_probability": 70.0,
       "size": 1.5,
       "veto": null,
-      "reason": "Several trend signals line up: a hot CPI print (a macro-release day the calendar missed) that headlines say seals a Fed hike, elevated VIX (83rd percentile), yesterday's range at 1.72x average, and a neutral RSI5 with no rally to fade. I'm\u2026"
+      "reason": "Several trend signals line up: a hot CPI print (a macro-release day the calendar missed) that headlines say seals a Fed hike, elevated VIX (83rd percentile), yesterday's range at 1.72x average, and a neutral RSI5 with no rally to fade."
      },
      "gemini": null,
      "gpt": null,
@@ -451,7 +451,7 @@
       "trend_probability": 52.0,
       "size": 1.0,
       "veto": null,
-      "reason": "Supportive signals are elevated VIX (66th percentile), a modest 5-day selloff (dealers possibly short gamma), and an AI-earnings catalyst behind a 1.9% gap. These are offset by compressed ranges (0.73 yesterday, 0.68 overnight), no\u2026"
+      "reason": "Supportive signals are elevated VIX (66th percentile), a modest 5-day selloff (dealers possibly short gamma), and an AI-earnings catalyst behind a 1.9% gap."
      },
      "gemini": null,
      "gpt": null,
@@ -507,7 +507,7 @@
       "trend_probability": 57.0,
       "size": 1.0,
       "veto": null,
-      "reason": "Several factors lean toward trend: VIX is elevated (73rd percentile), ranges are normal-to-wide, RSI5 is neutral rather than overbought, and Nvidia news is pushing Nasdaq futures down 1.27% overnight. But there is no scheduled catalyst\u2026"
+      "reason": "Several factors lean toward trend: VIX is elevated (73rd percentile), ranges are normal-to-wide, RSI5 is neutral rather than overbought, and Nvidia news is pushing Nasdaq futures down 1.27% overnight."
      },
      "gemini": null,
      "gpt": null,
@@ -563,7 +563,7 @@
       "trend_probability": 35.0,
       "size": 0.5,
       "veto": null,
-      "reason": "After a strong multi-day rally (RSI5 87.6, +6.1% over 5 days), dealers are likely long gamma, and with compressed ranges (0.78 yesterday, 0.45 overnight) and a middling VIX, moves are likely to fade. The PPI release comes before the open\u2026"
+      "reason": "After a strong multi-day rally (RSI5 87.6, +6.1% over 5 days), dealers are likely long gamma, and with compressed ranges (0.78 yesterday, 0.45 overnight) and a middling VIX, moves are likely to fade."
      },
      "gemini": null,
      "gpt": null,
@@ -810,17 +810,17 @@
      "claude": {
       "trend_probability": 70.0,
       "size": 1.5,
-      "reason": "Peak VIX, a 1.59x range expansion and a deep multi-day selloff (RSI5 5.5) put dealers in short gamma, which favors sustained moves. I am holding size at 1.5x rather than 2x because of monthly-expiry pinning risk, the chance of violent\u2026"
+      "reason": "Peak VIX, a 1.59x range expansion and a deep multi-day selloff (RSI5 5.5) put dealers in short gamma, which favors sustained moves."
      },
      "gemini": {
       "trend_probability": 76.0,
       "size": 1.5,
-      "reason": "Peak 1-year VIX (31.23), a 1.59x range expansion, and a deeply oversold 5-day RSI (5.5) point to strong short-gamma conditions that favor large intraday moves. Size is kept at 1.5 rather than 2.0 because the large -2.12% overnight move is\u2026"
+      "reason": "Peak 1-year VIX (31.23), a 1.59x range expansion, and a deeply oversold 5-day RSI (5.5) point to strong short-gamma conditions that favor large intraday moves. Size is kept at 1.5 rather than 2.0 because the large -2.12% overnight move is already priced in and monthly options expiry can introduce midday reversals or strike pinning."
      },
      "gpt": {
       "trend_probability": 75.0,
       "size": 1.5,
-      "reason": "VIX at its one-year high, yesterday\u2019s 1.59x-average range, and the steep multi-day selloff favor sustained intraday movement, potentially amplified by short-gamma hedging. Monthly expiry and extreme oversold conditions increase\u2026"
+      "reason": "VIX at its one-year high, yesterday\u2019s 1.59x-average range, and the steep multi-day selloff favor sustained intraday movement, potentially amplified by short-gamma hedging. Monthly expiry and extreme oversold conditions increase pinning/reversal risk, while dealer gamma is unconfirmed, making elevated rather than maximum size appropriate."
      },
      "kimi": {
       "trend_probability": 78.0,
@@ -844,25 +844,25 @@
       "trend_probability": 64.0,
       "size": 1.5,
       "veto": null,
-      "reason": "Most of the checklist favors trend: VIX is 31 (1-year high), yesterday's range was 1.59x average, 5-day RSI is 5.5 after a 6.3% drop (dealers likely short gamma), and heavy AI and tech news is driving the tape. I'm holding at 1.5x rather\u2026"
+      "reason": "Most of the checklist favors trend: VIX is 31 (1-year high), yesterday's range was 1.59x average, 5-day RSI is 5.5 after a 6.3% drop (dealers likely short gamma), and heavy AI and tech news is driving the tape."
      },
      "gemini": {
       "trend_probability": 85.0,
       "size": 2.0,
       "veto": null,
-      "reason": "VIX is at its 1-year high (31.23) with yesterday's range at 1.59x the 20-day average, while a 5-day RSI of 5.5 and a -2.12% overnight drop put options dealers deep into short-gamma territory on monthly OPEX. These extreme volatility and\u2026"
+      "reason": "VIX is at its 1-year high (31.23) with yesterday's range at 1.59x the 20-day average, while a 5-day RSI of 5.5 and a -2.12% overnight drop put options dealers deep into short-gamma territory on monthly OPEX. These extreme volatility and dealer-hedging conditions strongly favor big one-way intraday momentum."
      },
      "gpt": {
       "trend_probability": 77.0,
       "size": 1.5,
       "veto": null,
-      "reason": "Extreme VIX, expanded ranges, and the sharp five-day selloff favor sustained intraday movement, with potential short-gamma amplification. Monthly expiry flows and reversal risk after the large overnight gap temper confidence, warranting\u2026"
+      "reason": "Extreme VIX, expanded ranges, and the sharp five-day selloff favor sustained intraday movement, with potential short-gamma amplification. Monthly expiry flows and reversal risk after the large overnight gap temper confidence, warranting elevated rather than maximum size."
      },
      "kimi": {
       "trend_probability": 82.0,
       "size": 2.0,
       "veto": null,
-      "reason": "A severe multi-day selloff, deeply oversold RSI, peak VIX, and elevated ranges indicate high-volatility, short-gamma conditions favorable for momentum. Continued overnight tech weakness supports follow-through, with monthly expiry adding\u2026"
+      "reason": "A severe multi-day selloff, deeply oversold RSI, peak VIX, and elevated ranges indicate high-volatility, short-gamma conditions favorable for momentum. Continued overnight tech weakness supports follow-through, with monthly expiry adding both trend potential and some pinning or reversal risk."
      }
     },
     "answered": 4,
@@ -977,6 +977,6 @@
    "updated": "2026-11-20T20:44Z"
   }
  },
- "checked": "2026-11-20 20:45 UTC",
- "updated": "2026-11-20 20:45 UTC"
+ "checked": "2026-11-20 23:00 UTC",
+ "updated": "2026-11-20 23:11 UTC"
 }
