@@ -1,7 +1,14 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Argon v2: can an AI trade?</title><link rel="icon" type="image/png" href="favicon.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="description" content="A pre-registered paper-trading research project on Nasdaq futures: rules find trades, a model filters them, and an AI desk is tested honestly.">
+<meta name="description" content="Can an AI trade? A pre-registered paper-trading project on Nasdaq futures: four simple rules trade, four AIs (Claude, GPT, Gemini, Kimi) make a morning call, and every result goes in a hash-chained public ledger.">
+<link rel="canonical" href="https://drusiyani.github.io/argon-v2/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Argon v2"><meta property="og:url" content="https://drusiyani.github.io/argon-v2/">
+<meta property="og:title" content="Argon v2: can an AI trade?"><meta property="og:description" content="Can an AI trade? A pre-registered paper-trading project on Nasdaq futures: four simple rules trade, four AIs (Claude, GPT, Gemini, Kimi) make a morning call, and every result goes in a hash-chained public ledger.">
+<meta property="og:image" content="https://drusiyani.github.io/argon-v2/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Argon v2: Can an AI trade? Pre-registered paper trading on Nasdaq futures.">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Argon v2: can an AI trade?">
+<meta name="twitter:description" content="Can an AI trade? A pre-registered paper-trading project on Nasdaq futures: four simple rules trade, four AIs (Claude, GPT, Gemini, Kimi) make a morning call, and every result goes in a hash-chained public ledger."><meta name="twitter:image" content="https://drusiyani.github.io/argon-v2/og.png">
 <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <style>
 :root{--bg:#f2f2f7;--bg2:#fff;--card:#fff;--ink:#0a0a0c;--ink2:rgba(60,60,67,.74);--ink3:rgba(60,60,67,.46);--sep:rgba(60,60,67,.13);--fill:rgba(118,118,128,.1);--fill2:rgba(118,118,128,.18);
@@ -319,11 +326,16 @@ select{height:36px;border-radius:11px;border:0;background:var(--fill);padding:0 
  <a class="ib glass" href="https://github.com/drusiyani/argon-v2" aria-label="Code on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg></a>
 </header>
 <main id="main">
- <section class="view" id="v-home"></section>
- <section class="view" id="v-chart" hidden></section>
- <section class="view" id="v-research" hidden></section>
- <section class="view" id="v-brain" hidden></section>
- <section class="view" id="v-desk" hidden></section>
+ <section class="view" id="v-home"><div class="hero"><div class="eyebrow"><span class="chip y">Paper-trading research</span>Nasdaq futures · pre-registered</div>
+  <h1>Can an <em>AI</em> trade?</h1>
+  <p>Argon v2 is a pre-registered paper-trading research project on Nasdaq futures, run by Dru Siyani. Four simple rules find trades next to a Nasdaq holding. Every weekday at 8:45 New York, four AIs (Claude, GPT, Gemini and Kimi) say how likely a trend day is and how big the book should be. Every result goes in a hash-chained ledger that nobody can quietly change.</p></div>
+  <h2>The main book</h2><p>/*__STATIC_FACTS__*/</p>
+  <p>The rules freeze on 31 January 2027. Race 1 runs on paper from February to December 2027. Paper trading only, not financial advice. <a href="https://github.com/drusiyani/argon-v2/blob/main/PREREGISTRATION.md">Read the pre-registration</a>.</p>
+  <noscript><p>This page needs JavaScript for its charts and live data. Everything behind it is public in the <a href="https://github.com/drusiyani/argon-v2">GitHub repository</a>.</p></noscript></section>
+ <section class="view" id="v-chart" hidden><h1 class="title">Chart</h1><p class="lede">The Nasdaq 100 futures with the main book's backtest result each day, and every trade on 5-minute candles.</p></section>
+ <section class="view" id="v-research" hidden><h1 class="title">Research</h1><p class="lede">Every strategy Argon tested (about 299 trials over 34 pre-registered batches), with the pass marks written down before each test ran, including the ones that failed.</p></section>
+ <section class="view" id="v-brain" hidden><h1 class="title">Brain</h1><p class="lede">Argon's notes as a graph, a profit-and-loss calendar of every trading day, and the decisions behind each change.</p></section>
+ <section class="view" id="v-desk" hidden><h1 class="title">Desk</h1><p class="lede">The morning call: four AIs from Anthropic, OpenAI, Google and Moonshot AI each answer alone from the same frozen prompt. Until Race 1 it is a shadow test that never changes a real trade.</p></section>
 </main>
 <footer><span>© 2026 Dru Siyani · Argon v2 · <span id="built"></span></span><a href="https://github.com/drusiyani/argon-v2/commits/main">Changelog</a><a href="https://github.com/drusiyani/argon-v2/blob/main/PREREGISTRATION.md">Pre-registration</a><a href="https://github.com/drusiyani/argon-v2/tree/main/analysis">Research code</a><span>Paper trading only. Not financial advice.</span></footer>
 <nav class="tabbar" id="tabbar" aria-label="Sections"><span class="bubble" aria-hidden="true"><i><span class="clip"><span class="lens"><span class="row"></span></span></span><span class="rim"></span></i></span></nav>
@@ -437,7 +449,7 @@ function home(){const v=$('#v-home'),L=DATA.ledger||{},dc=(DATA.desk||{}).daytyp
  const answered=dc&&dc.council&&Object.values(dc.council.members||{}).some(Boolean);
  v.innerHTML=`<div class="hero"><div class="eyebrow"><span class="chip y">Paper-trading research</span>Nasdaq futures · pre-registered</div>
   <h1 aria-label="Can an AI trade?">${['Can','an','AI','trade?'].map((w,i)=>`<span class="w" aria-hidden="true" style="--i:${i}">${i===2?'<em>AI</em>':w}</span>`).join(' ')}</h1>
-  <p>Four simple rules find trades. A model throws out the weak ones. Then four AIs make a call every morning, and nobody gets to quietly change the result. This is the honest record.</p>
+  <p>Four simple rules find trades next to a Nasdaq holding. Four AIs make a call every morning, and nobody gets to quietly change the result. This is the honest record.</p>
   <div class="row"><a class="btn" href="#desk">This morning's call ${ic('arrow')}</a><a class="btn ghost" href="#research">See the research</a></div></div>
  <h2 class="rv">The main book</h2><p class="sub rv">The plain package: a Nasdaq holding plus every rules trade at 0.5% risk. Backtest, after costs.</p>
  <div class="toolbar rv"><div class="seg glassy" id="era"><span class="th"></span><button data-v="recent" class="on">2021–26</button><button data-v="sealed">2010–20</button></div>

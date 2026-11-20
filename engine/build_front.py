@@ -103,5 +103,13 @@ DATA = dict(
     seats=_seats(),
     built=dt.datetime.now(dt.timezone.utc).strftime('%d %b %Y, %H:%M UTC'))
 tpl = open(os.path.join(ROOT, 'engine', 'site_template.html'), encoding='utf-8').read()
+def _facts():
+    try:
+        e = (BOOK or {})['eras']; r, o = e['databento']['book'], e['lockbox2010']['book']
+        return (f"The plain package: a Nasdaq holding plus every rules trade at 0.5% risk. Backtest after costs, mostly in-sample: "
+                f"2021-26 {r['cagr_pct']:+.1f}% a year, worst drop {r['worst_drop_pct']:.1f}%; 2010-20 {o['cagr_pct']:+.1f}% a year, worst drop {o['worst_drop_pct']:.1f}%. "
+                f"Live results are expected to be well below these.")
+    except Exception: return 'The plain package: a Nasdaq holding plus every rules trade at 0.5% risk.'
+tpl = tpl.replace('/*__STATIC_FACTS__*/', _facts())
 page = tpl.replace('/*__DATA__*/null', json.dumps(DATA, separators=(',', ':')).replace('</', '<\\/'))
 open(os.path.join(ROOT, 'docs', 'index.html'), 'w', encoding='utf-8').write(page); print('built docs/index.html (site)', len(page))
