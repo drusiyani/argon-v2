@@ -1,0 +1,142 @@
+{
+ "A_deflated_sharpe": {
+  "databento": {
+   "N=299": {
+    "dsr": 0.7943,
+    "sharpe_annual": 1.76,
+    "luck_bar_annual": 1.45
+   },
+   "N=50": {
+    "dsr": 0.949,
+    "sharpe_annual": 1.76,
+    "luck_bar_annual": 1.14
+   },
+   "N=299, package family only": {
+    "trials_in_family": 162,
+    "dsr": 0.9995,
+    "luck_bar_annual": 0.51
+   },
+   "trials_seen": 194,
+   "var_sharpe_annual": 0.2503
+  },
+  "lockbox2010": {
+   "N=299": {
+    "dsr": 0.8083,
+    "sharpe_annual": 1.41,
+    "luck_bar_annual": 1.15
+   },
+   "N=50": {
+    "dsr": 0.9549,
+    "sharpe_annual": 1.41,
+    "luck_bar_annual": 0.91
+   },
+   "N=299, package family only": {
+    "trials_in_family": 172,
+    "dsr": 0.9957,
+    "luck_bar_annual": 0.63
+   },
+   "trials_seen": 190,
+   "var_sharpe_annual": 0.1583
+  }
+ },
+ "A_pass": false,
+ "B_gain_over_package": {
+  "databento": {
+   "days": 1447,
+   "extra_return_pct_a_year": 1.98,
+   "t_newey_west": 0.55,
+   "bootstrap_p": 0.2949,
+   "days_better": 0.256,
+   "days_worse": 0.154
+  },
+  "lockbox2010": {
+   "days": 2615,
+   "extra_return_pct_a_year": 5.7,
+   "t_newey_west": 2.4,
+   "bootstrap_p": 0.0069,
+   "days_better": 0.215,
+   "days_worse": 0.131
+  },
+  "pooled": {
+   "days": 4062,
+   "extra_return_pct_a_year": 4.37,
+   "t_newey_west": 2.2,
+   "bootstrap_p": 0.0131,
+   "days_better": 0.229,
+   "days_worse": 0.139
+  }
+ },
+ "B_bars": {
+  "best of 299": 3.59,
+  "best of 50": 3.09
+ },
+ "B_pass_299": false,
+ "B_pass_50": false,
+ "C_rules_before_after_publication": {
+  "atrband": {
+   "before May 2024": {
+    "trades": 486,
+    "mean_R": 0.084,
+    "t": 2.65,
+    "total_R": 40.9,
+    "best10_days_share": 0.59
+   },
+   "from May 2024": {
+    "trades": 351,
+    "mean_R": 0.038,
+    "t": 0.95,
+    "total_R": 13.4,
+    "best10_days_share": 1.99
+   }
+  },
+  "expiry": {
+   "before May 2024": {
+    "trades": 76,
+    "mean_R": 0.286,
+    "t": 2.45,
+    "total_R": 21.8,
+    "best10_days_share": 1.42
+   },
+   "from May 2024": {
+    "trades": 56,
+    "mean_R": 0.108,
+    "t": 0.78,
+    "total_R": 6.0,
+    "best10_days_share": 4.07
+   }
+  },
+  "noiseband": {
+   "before May 2024": {
+    "trades": 495,
+    "mean_R": 0.077,
+    "t": 1.63,
+    "total_R": 38.4,
+    "best10_days_share": 0.94
+   },
+   "from May 2024": {
+    "trades": 392,
+    "mean_R": 0.05,
+    "t": 0.78,
+    "total_R": 19.6,
+    "best10_days_share": 2.57
+   }
+  },
+  "quantlab": {
+   "before May 2024": {
+    "trades": 671,
+    "mean_R": 0.121,
+    "t": 1.44,
+    "total_R": 81.1,
+    "best10_days_share": 1.29
+   },
+   "from May 2024": {
+    "trades": 598,
+    "mean_R": 0.204,
+    "t": 1.79,
+    "total_R": 121.8,
+    "best10_days_share": 1.19
+   }
+  }
+ },
+ "C_flag_noiseband": true
+}
