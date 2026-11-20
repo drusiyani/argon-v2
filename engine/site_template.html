@@ -285,10 +285,8 @@ footer a{color:var(--ink2);text-decoration:none}
 .dial .lb{font-size:9px;fill:var(--ink3);font-weight:600;text-anchor:middle}
 .dial .nd{transform-origin:100px 100px;transform:rotate(-135deg);transition:transform 1.4s cubic-bezier(.2,.9,.25,1.05)}
 .dial .nd line{stroke:#e9b25a;stroke-width:3;stroke-linecap:round}.dial .nd circle{fill:#f6cd86;filter:drop-shadow(0 0 5px rgba(246,205,134,.9))}
-.dial .mk{opacity:0;transition:opacity .4s .9s}.dial.go .mk{opacity:1}
-.dial .mk circle{fill:var(--bg2);stroke:var(--sep);stroke-width:1}.dial .mk.on circle{stroke:color-mix(in srgb,var(--gold) 70%,transparent)}
-.dial .mk image{filter:brightness(0)}
-:root[data-theme=dark] .dial .mk image{filter:brightness(0) invert(1)}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .dial .mk image{filter:brightness(0) invert(1)}}
+.dial .mk2{position:absolute;transform:translate(-50%,-50%) scale(.6);opacity:0;transition:opacity .4s .9s,transform .5s .9s cubic-bezier(.2,.9,.3,1.3)}.dial.go .mk2{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.dial .mk2 .alogo{width:24px;height:24px;border-radius:50%;box-shadow:0 0 0 1.5px color-mix(in srgb,var(--gold) 70%,transparent),0 4px 12px rgba(0,0,0,.25)}.dial .mk2 .alogo img{width:14px;height:14px}
 .dial .in{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding-top:6px}
 .dial .in b{font-size:46px;font-weight:780;letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums;background:linear-gradient(180deg,var(--gold2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
 .dial .in b sup{font-size:.42em;letter-spacing:0;vertical-align:.95em;margin-left:1px}
@@ -301,16 +299,21 @@ footer a{color:var(--ink2);text-decoration:none}
 .trio2 small{display:block;font-size:11.5px;color:var(--ink3)}.trio2 b{font-size:19px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .trio2 .y{background:color-mix(in srgb,var(--gold2) 20%,transparent)}.trio2 .y b{color:var(--gold)}
 .scards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}@media (max-width:900px){.scards{grid-template-columns:1fr 1fr}}
-.sc{border-radius:18px;padding:13px;background:var(--fill);border:1px solid transparent;text-align:left;font:inherit;color:inherit;cursor:pointer;min-width:0;transition:transform .2s,background .2s,border-color .2s}
-.sc:hover{background:var(--fill2)}.sc:active{transform:scale(.98)}
-.sc.on{border-color:color-mix(in srgb,var(--gold) 55%,transparent);background:color-mix(in srgb,var(--gold2) 12%,var(--fill))}
-.sc .hd{display:flex;gap:10px;align-items:center}
 .alogo{width:32px;height:32px;border-radius:10px;flex:none;display:grid;place-items:center;overflow:hidden;background:var(--bg2);box-shadow:inset 0 0 0 1px var(--sep)}
 .alogo img{width:20px;height:20px;object-fit:contain;filter:brightness(0)}.alogo b{font-size:14px;font-weight:750;color:var(--ink)}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]) .alogo img{filter:brightness(0) invert(1)}}:root[data-theme=dark] .alogo img{filter:brightness(0) invert(1)}
-.sc .hd b{display:block;font-size:14.5px}.sc .hd small{display:block;font-size:11.5px;color:var(--ink3)}
-.sc svg.sp{display:block;width:100%;height:32px;margin-top:10px}
-.sc .now{display:flex;justify-content:space-between;align-items:baseline;margin-top:6px;font-size:12px;color:var(--ink3)}.sc .now b{font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}
+.sc{border-radius:20px;padding:14px;background:var(--fill);border:1px solid transparent;text-align:left;font:inherit;color:inherit;cursor:pointer;min-width:0;display:flex;flex-direction:column;gap:10px;transition:transform .2s,background .2s,border-color .2s}
+.sc:hover{background:var(--fill2)}.sc:active{transform:scale(.98)}
+.sc.on{border-color:color-mix(in srgb,var(--gold) 40%,transparent);background:linear-gradient(165deg,color-mix(in srgb,var(--gold2) 12%,var(--fill)),var(--fill) 70%)}
+.sc .hd{display:flex;gap:10px;align-items:center}.nm2{min-width:0;flex:1;overflow:hidden}.nm2 b{display:block;font-size:14.5px}.nm2 small{display:block;font-size:11.5px;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sz{flex:none;font-size:12.5px;font-weight:700;padding:4px 9px;border-radius:99px;background:color-mix(in srgb,var(--gold2) 20%,transparent);color:var(--gold);font-variant-numeric:tabular-nums}
+.pv2{display:flex;align-items:center;gap:8px}.pv2 b{font-size:30px;font-weight:760;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}.pv2 b sup{font-size:.45em;vertical-align:.9em}
+.pv2 span{font-size:12px;color:var(--ink3);white-space:nowrap}@media (max-width:520px){.pv2 .tc2{display:none}.sc{padding:12px}.sc .hd{gap:8px}}.pv2.off b{color:var(--ink3)}
+.bar2{position:relative;height:6px;border-radius:3px;background:var(--fill2)}.bar2 i{position:absolute;inset:0 auto 0 0;border-radius:3px;background:linear-gradient(90deg,#b07a1f,#f6cd86)}
+.bar2 s{position:absolute;top:-3px;width:2px;height:12px;border-radius:1px;background:var(--ink);opacity:.55;transform:translateX(-1px)}
+.why{margin:0;font-size:12.5px;line-height:1.45;color:var(--ink2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.sc svg.sp{display:block;width:100%;height:28px}
+.ft2{display:flex;justify-content:space-between;gap:8px;white-space:nowrap;font-size:11px;color:var(--ink3);margin-top:auto;padding-top:8px;border-top:.5px solid var(--sep)}
 .ft4{position:relative;overflow:hidden}.ft4 svg{position:absolute;right:12px;top:14px;width:40%;height:42%}
 .livecard{margin-top:14px}.livecard .chip.g{background:color-mix(in srgb,var(--green) 16%,transparent);color:var(--green)}
 .lsum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:2px 0 6px}.lsum div{padding:10px 12px;border-radius:14px;background:var(--fill)}
@@ -774,19 +777,22 @@ function dial(p,mem,nc){const A=v=>-135+2.7*v,P=(a,r)=>[100+r*Math.sin(a*Math.PI
  const lab=[[0,'0'],[50,'50'],[100,'100']].map(([v,t])=>{const [x,y]=P(A(v),60);return `<text class="lb" x="${f(x)}" y="${f(y+3)}">${t}</text>`}).join('');
  const ms=SEATS.map(k=>[k,mem[k]]).filter(([,m])=>m).sort((a,b)=>a[1].trend_probability-b[1].trend_probability);let last=-99,ring=0,mk='';
  ms.forEach(([k,m])=>{const a=A(m.trend_probability);ring=a-last<11?ring+1:0;last=a;const [x,y]=P(a,98+ring*21);
-  mk+=`<g class="mk on"><circle cx="${f(x)}" cy="${f(y)}" r="10"/><image href="logos/${k}.png" x="${f(x-6)}" y="${f(y-6)}" width="12" height="12"/></g>`});
+  mk+=`<span class="mk2" style="left:${f(x/2)}%;top:${f(y/2)}%" title="${SEAT[k][0]} ${Math.round(m.trend_probability)}%">${alogo(k)}</span>`});
  const nd=p!=null?`<g class="nd" data-a="${f(A(p))}"><line x1="100" y1="34" x2="100" y2="6"/><circle cx="100" cy="6" r="3.6"/><circle cx="100" cy="34" r="2"/></g>`:'';
  const n=ms.length;
- return `<div class="dial ${p==null?'idle':''}" style="--g:${p==null?12:Math.round(20+p*.35)}"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><linearGradient id="gold1" x1="0" x2="1"><stop offset="0" stop-color="#b07a1f"/><stop offset="1" stop-color="#f6cd86"/></linearGradient></defs>${tk}${lab}${nd}${mk}</svg>
+ return `<div class="dial ${p==null?'idle':''}" style="--g:${p==null?12:Math.round(20+p*.35)}"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><linearGradient id="gold1" x1="0" x2="1"><stop offset="0" stop-color="#b07a1f"/><stop offset="1" stop-color="#f6cd86"/></linearGradient></defs>${tk}${lab}${nd}</svg>${mk}
   <div class="in">${p!=null?`<b>${Math.round(p)}<sup>%</sup></b><span>trend chance</span><em>${n} of 4 AIs</em>`:`<b id="mccd">${dur(nc.ms)}</b><span>until the call</span>`}</div></div>`}
 function desk(){const v=$('#v-desk'),D=DATA.desk||{},dc=D.daytype,inp=(dc&&dc.inputs)||{},nc=nextCall(),SH=DATA.seats||{};
  const mem=(dc&&dc.council&&dc.council.members)||{},isToday=dc&&dc.date===nc.nyDate,council=isToday&&dc.council&&dc.council.counted?dc.council:null,p=council?council.trend_probability:null;
  const answered=isToday?SEATS.filter(k=>mem[k]).length:0,C=2*Math.PI*44,off=p==null?C*(nc.ms/864e5>1?0:nc.ms/864e5):C*(1-p/100);
  const head=p!=null?`Size ${council.size}× today`:isToday&&answered?`${answered} of 4 answered`:isToday?'No call today':'No call yet';
  const say=p!=null?`The AIs give a ${Math.round(p)}% chance of a trend day. Logged, not used, until Race 1 is scored.`:isToday?'Fewer than 3 AIs answered by 9:25, so the book runs at 1×.':`The next call is at 8:45 New York. Until then the book runs at 1×.`;
- const card=k=>{const m=isToday?mem[k]:null,[n,co]=SEAT[k],h=SH[k]||{hist:[],asked:0,answered:0};
-  return `<button class="sc ${m?'on':''}" data-k="${k}"><div class="hd">${alogo(k)}<span style="min-width:0"><b>${n}</b><small>${co}</small></span></div>${sparkP(h.hist.length?h.hist:[[0,null]])}
-   <div class="now"><span>${m?'Today':h.asked?`Answered ${h.answered}/${h.asked}`:'First call today'}</span><b>${m?Math.round(m.trend_probability)+'% · '+m.size+'×':'–'}</b></div></button>`};
+ const card=k=>{const m=isToday?mem[k]:null,[n,co]=SEAT[k],h=SH[k]||{hist:[],asked:0,answered:0},pp=m?Math.round(m.trend_probability):null,
+  why=m&&m.reason?String(m.reason).replace(/\s+/g,' ').trim():'';
+  return `<button class="sc ${m?'on':''}" data-k="${k}"><div class="hd">${alogo(k)}<span class="nm2"><b>${n}</b><small>${co}</small></span></div>
+   ${m?`<div class="pv2"><b>${pp}<sup>%</sup></b><span class="tc2">trend chance</span><span class="sz" style="margin-left:auto">${m.size}×</span></div><div class="bar2"><i style="width:${pp}%"></i><s style="left:${p!=null?Math.round(p):50}%"></s></div>
+   ${why?`<p class="why">${esc(why)}</p>`:''}`:`<div class="pv2 off"><b>–</b><span>${isToday?'no answer today':'waiting for 8:45'}</span></div>`}
+   ${h.hist.filter(x=>x[1]!=null).length>=3?sparkP(h.hist):''}<div class="ft2"><span>${h.asked?`${h.answered}/${h.asked} answered`:'First call today'}</span><span>Reason ›</span></div></button>`};
  const vx=inp.vix,vp=inp.vix_1y_percentile,on=inp.overnight_change_pct,rsi=inp.rsi5,rg=inp.range_ratio;
  v.innerHTML=`<h1 class="title">Desk</h1><p class="lede">Every weekday at 8:45 New York, four AIs each say how likely a trend day is and how big the book should be. Until Race 1 it is a shadow test: it never changes a real trade.</p>
  <div class="card mcard rv"><div class="mhead"><div><h3>Morning call</h3><small>${dc?'Last call '+esc(dc.date)+' · '+esc(dc.made_at)+' New York':'No calls yet'}</small></div><span class="gpill ${isToday?'live':''}"><i></i>${isToday?'Today':'Next in <span id="mccd2">'+dur(nc.ms)+'</span>'}</span></div>
