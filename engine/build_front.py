@@ -77,12 +77,14 @@ json.dump(docs, open(os.path.join(ROOT, 'docs', 'data', 'research.json'), 'w'), 
 
 cfg = P.get('config') or {}
 BOOK = J('docs', 'data', 'book.json', default=None)
+CALLS_FROM = '2026-11-20'     # the site shows calls from the four-seat council on; earlier calls stay in data/daytype.jsonl
 def _seats():
     """Each seat's record from data/daytype.jsonl: its trend chance on each morning it was asked, and how often it answered."""
     out = {}
     try: rows = [json.loads(x) for x in open(os.path.join(ROOT, 'data', 'daytype.jsonl')) if x.strip()]
     except Exception: return out
     for r in rows:
+        if (r.get('date') or '') < CALLS_FROM: continue
         for k, m in (((r.get('council') or {}).get('members')) or {}).items():
             s = out.setdefault(k, dict(hist=[], asked=0, answered=0)); s['asked'] += 1
             p = (m or {}).get('trend_probability')
@@ -98,14 +100,14 @@ DATA = dict(
     desk=dict(daytype=F.get('daytype'), score=F.get('daytype_score'), kronos=F.get('kronos'), checked=F.get('checked'), calls=(F.get('score') or {}).get('calls', 0)),
     ledger=LEDGER, live=LIVE,
     book=BOOK, strategies=J('research', 'results', 'strategies.json', default=None),
-    history=[dict(date=h.get('date'), at=h.get('made_at'), p=(h.get('ai') or {}).get('trend_probability'), s=h.get('ai_size_used'), rule=h.get('dumb_size')) for h in (F.get('daytype_history') or [])][-15:],
+    history=[dict(date=h.get('date'), at=h.get('made_at'), p=(h.get('ai') or {}).get('trend_probability'), s=h.get('ai_size_used'), rule=h.get('dumb_size')) for h in (F.get('daytype_history') or []) if (h.get('date') or '') >= CALLS_FROM][-15:],
     equity=LG.get('equity') or [],
     seats=_seats(),
     built=dt.datetime.now(dt.timezone.utc).strftime('%d %b %Y, %H:%M UTC'))
 tpl = open(os.path.join(ROOT, 'engine', 'site_template.html'), encoding='utf-8').read()
 def _facts():
     try:
-        e = (BOOK or {})['eras']; r, o = e['databento']['book'], e['lockbox2010']['book']
+        e = (BOOK or {})['eras']; r = next(v for v in e.values() if v['label'].startswith('2021'))['book']; o = next(v for v in e.values() if v['label'].startswith('2010'))['book']
         return (f"The plain package: a Nasdaq holding plus every rules trade at 0.5% risk. Backtest after costs, mostly in-sample: "
                 f"2021-26 {r['cagr_pct']:+.1f}% a year, worst drop {r['worst_drop_pct']:.1f}%; 2010-20 {o['cagr_pct']:+.1f}% a year, worst drop {o['worst_drop_pct']:.1f}%. "
                 f"Live results are expected to be well below these.")
