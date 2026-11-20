@@ -150,7 +150,7 @@ h3{font-size:17px;margin:0 0 4px;font-weight:650;letter-spacing:-.015em}
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--ink2)}.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:14px;height:3px;border-radius:2px;display:inline-block}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;position:relative}
 @media (max-width:900px){.steps{grid-template-columns:1fr}}
-.step .n{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-weight:750;font-size:15px;margin-bottom:12px;color:#fff;background:linear-gradient(145deg,var(--gold2),var(--gold));box-shadow:0 6px 16px color-mix(in srgb,var(--gold) 35%,transparent),inset 0 1px 0 rgba(255,255,255,.45)}
+.step .n{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-weight:750;font-size:15px;margin-bottom:12px;color:var(--gold);background:color-mix(in srgb,var(--gold2) 16%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--gold) 35%,transparent)}
 .step p{margin:6px 0 0;color:var(--ink2);font-size:14.5px}
 .list{display:flex;flex-direction:column}
 .li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:.5px solid var(--sep);font-size:15px}
@@ -166,7 +166,7 @@ h3{font-size:17px;margin:0 0 4px;font-weight:650;letter-spacing:-.015em}
 .tchecks{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}.tc{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:99px;background:var(--fill);font-size:12.5px;font-weight:550;color:var(--ink2)}
 .tc.good{background:color-mix(in srgb,var(--green) 12%,transparent);color:var(--green)}.tc svg{width:12px;height:12px}
 .tseats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:2px 0 10px}@media (max-width:420px){.tseats{grid-template-columns:repeat(2,1fr)}}
-.ts{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 6px;border-radius:16px;background:var(--fill);font-size:12.5px;font-weight:600;opacity:.6}.ts.on{opacity:1}
+.ts{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 6px;border-radius:16px;background:var(--fill);font-size:12.5px;font-weight:600;opacity:.6}.ts.on{opacity:1}
 .ts i{font-style:normal;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:750;filter:grayscale(.8)}.ts.on i{filter:none;box-shadow:0 0 18px currentColor}
 .ts em{font-style:normal;font-size:12px;color:var(--ink3);font-variant-numeric:tabular-nums}
 .tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}@media (max-width:420px){.tgrid{grid-template-columns:repeat(2,1fr)}}
@@ -490,7 +490,7 @@ function home(){const v=$('#v-home'),L=DATA.ledger||{},dc=(DATA.desk||{}).daytyp
    <div class="tchecks">${Object.entries(L.checks||{}).map(([k,v])=>`<span class="tc ${/ok|off|flat/.test(v)?'good':''}">${/ok|off|flat/.test(v)?ic('check',3):''}${{kill:'Kill switch off',chain:'Chain intact',replay:'Replay matches',positions:'Flat overnight'}[k]||esc(k)}</span>`).join('')}</div></div>
   <div class="card tcard rv"><div class="th"><span class="lbl">This morning's call</span><span class="chip">${dc?esc(dc.made_at)+' New York':'8:45 New York'}</span></div>
    <div class="tseats">${['claude','gpt','gemini','kimi'].map(k=>{const m=dc&&dc.council&&dc.council.members[k],n={claude:'Claude',gpt:'GPT',gemini:'Gemini',kimi:'Kimi'}[k]||k,c={claude:'#D97757',gpt:'#10A37F',gemini:'#4285F4',kimi:'#9aa3b2'}[k]||'#888';
-     return`<span class="ts ${m?'on':''}"><i style="background:${c}">${n[0]}</i>${n}<em>${m?Math.round(m.trend_probability)+'%':'–'}</em></span>`}).join('')}</div>
+     return`<span class="ts ${m?'on':''}">${alogo(k)}${n}<em>${m?Math.round(m.trend_probability)+'%':'–'}</em></span>`}).join('')}</div>
    <div class="tgrid">${dc?[['Council',dc.council&&dc.council.counted?dc.council.size+'×':'–'],['Size used',dc.ai_size_used+'×'],['One-line rule',dc.dumb_size+'×'],['Random',dc.random_size+'×']].map(([k,x])=>`<div><span>${k}</span><b>${esc(x)}</b></div>`).join(''):''}</div>
    ${dc&&!answered?`<p class="tnote">${ic('alert')} No AI answered today, so it counts as 1×.</p>`:''}
    <a class="tlink" href="#desk">Open the desk ${ic('arrow')}</a></div></div>
