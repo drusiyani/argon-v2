@@ -18,7 +18,7 @@ Same target, same inputs cutoff and same scoring as the four seats. Shadow arm o
 ## Models (two candidates, one chosen by the rule below)
 - **A, Kronos head:** Kronos-small (already in the repo, 24.7M parameters) kept frozen; its embedding of the overnight
   bars plus the daily context feeds a small trained classifier.
-- **B, tiny from scratch:** a ~1M-parameter transformer on the same overnight bars plus context.
+- **B, tiny from scratch:** a small transformer (about 60k parameters: 2 layers, width 48) on the same bars plus context.
 - About 3,900 trading days exist for 2011–2026, which is small for deep learning. Expect a modest edge at best; a
   plain logistic regression (the Amendment 9 market forecaster) is the bar both must clear.
 
@@ -33,7 +33,8 @@ Same target, same inputs cutoff and same scoring as the four seats. Shadow arm o
 ## Training on GitHub Actions
 - Runs in the private-data workflow pattern already used for booking (data pulled with `DATA_TOKEN`, never printed,
   never uploaded anywhere public). Standard Linux runner, CPU only.
-- Jobs are capped at 6 hours, so training is split into chained jobs that save a checkpoint and resume.
+- Each stage saves its output, so a failed or timed-out job resumes from the last finished stage. A full run is
+  expected to take well under an hour (the dry run on synthetic data: features 16 s and Kronos 40 s per 220 days).
 - Checkpoints and the final weights live in the private data repo (they are derived from licensed Databento data).
   Only the daily forecast is published.
 - Fixed seed, pinned library versions, and the sha256 of the frozen weights written into `FROZEN.txt`.

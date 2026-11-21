@@ -347,3 +347,30 @@ Main-book choice made by Claude at Dru's request ("up to you, as long as it's pr
   dropped, possible prompt-injection lines kept out and logged. The sources take turns so one outlet can't fill every slot.
 - If Finnhub fails or has no key, the call runs on the RSS feeds alone; "news loaded" is logged per source.
 - Frozen with the rest of the desk inputs on 31 January 2027.
+
+### Amendment 15 (21 November 2026, before the freeze): Argon-1, our own trained forecaster (shadow seat; test 3 starts early)
+- **Question:** can a small model trained only for this job, at no cost, match the frontier AIs at the 08:45 trend-day call?
+  This is "test 3" (an LLM vs a machine-learning model), run inside Race 1 so both are scored on the same days.
+- **Same target and scoring as the AI seats:** trend day = |close - open| >= 0.6 x (high - low), NQ 09:30-16:00; scored with
+  the Amendment 13 two-step test and the Amendment 9 bootstrap. **Shadow only:** it never sizes a real trade in Race 1.
+- **Inputs (all before 08:45 New York):** the last 256 five-minute bars of NQ and ES, plus daily inputs (overnight moves,
+  yesterday's range and shape, RSI 5, VIX close and its 1-year percentile, Fed day, options expiry, jobs Friday, weekday).
+  **No headlines**, so the comparison is "price data only" vs "AI that also reads the news". NQ and ES only, because the
+  2011-2020 data has nothing else.
+- **Two candidates, one chosen by a rule fixed now:** (A) Kronos-small kept frozen (pinned weights and code), its summary of
+  the bars squeezed to 32 numbers per market (fitted on training days only), plus a regularised logistic regression;
+  (B) a tiny transformer trained from scratch. Baseline: a logistic regression on VIX percentile and range ratio.
+- **Data split:** train Jan 2011 - Dec 2020; choose on Jan 2021 - Dec 2023 (lower log-loss of A and B, and it must beat the
+  baseline, otherwise it is chosen anyway and flagged as failing validation); **test once** on Jan 2024 - Oct 2026 (the code
+  refuses to open it twice; reported whatever it says, never used to change anything); then refit the choice on
+  Jan 2011 - Oct 2026 with the same settings and freeze it (sha256 of the weights in `research/results/argon1_frozen.json`
+  and `FROZEN.txt`). Note: the 2011-2020 data was opened in Amendment 3b and used since, so no backtest number here is
+  out-of-sample. Only Race 1's forward days are a real test.
+- **Size:** the market forecaster's rule (cut-offs at the 25th, 65th and 85th percentiles of the model's own in-sample
+  chances): 0.5x, 1x, 1.5x or 2x.
+- **Live:** runs in the 08:45 desk job (no API cost) on Yahoo's delayed 5-minute bars; checks the weights' fingerprint
+  before every call; a day with no call is MISSING, as for the AIs. Known gap: Yahoo's continuous contract does not mark
+  roll nights, so those mornings are flagged `roll_risk` and reported separately.
+- **After Race 1:** the same pipeline can be rerun with a later end date ("Argon-2") for test 3 proper, frozen again before
+  its own race. Argon-1 itself is never retrained during Race 1.
+- Code: `research/argon1/` (plan in `research/ARGON1_PLAN.md`), training workflow `.github/workflows/argon1.yml`.
