@@ -511,7 +511,7 @@ function home(){const v=$('#v-home'),L=DATA.ledger||{},dc=(DATA.desk||{}).daytyp
    <div class="tval num">${money(L.equity)}</div><div class="tdelta ${L.equity>=1e5?'up':'dn'}">${pct(L.equity?(L.equity/1e5-1)*100:null,2)} since $100,000${(()=>{const e=DATA.equity||[];if(e.length<1)return'';const a=e.length>1?e[e.length-2][1]:1e5,b=e[e.length-1][1];return` · last day <b class="${b>=a?'up':'dn'}">${money(b-a)}</b>`})()}</div>
    <div class="tspark">${spark([1e5,...(DATA.equity||[]).map(x=>x[1])],'var(--gold)')}</div>
    <div class="tchecks">${Object.entries(L.checks||{}).map(([k,v])=>`<span class="tc ${/ok|off|flat/.test(v)?'good':''}">${/ok|off|flat/.test(v)?ic('check',3):''}${{kill:'Kill switch off',chain:'Chain intact',replay:'Replay matches',positions:'Flat overnight'}[k]||esc(k)}</span>`).join('')}</div></div>
-  <div class="card tcard rv"><div class="th"><span class="lbl">This morning's call</span><span class="chip">${dc?esc(dc.made_at)+' New York':'8:45 New York'}</span></div>
+  <div class="card tcard rv"><div class="th"><span class="lbl">${dc&&dc.date===nextCall().nyDate?"This morning's call":'Last call'}</span><span class="chip">${dc?(dc.date===nextCall().nyDate?'':new Date(dc.date+'T12:00:00Z').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',timeZone:'UTC'})+' · ')+esc(dc.made_at)+' New York':'8:45 New York'}</span></div>
    <div class="tseats">${['claude','gpt','gemini','kimi'].map(k=>{const m=dc&&dc.council&&dc.council.members[k],n={claude:'Claude',gpt:'GPT',gemini:'Gemini',kimi:'Kimi'}[k]||k,c={claude:'#D97757',gpt:'#10A37F',gemini:'#4285F4',kimi:'#9aa3b2'}[k]||'#888';
      return`<span class="ts ${m?'on':''}">${alogo(k)}${n}<em>${m?Math.round(m.trend_probability)+'%':'–'}</em></span>`}).join('')}</div>
    <div class="tgrid">${dc?[['Council',dc.council&&dc.council.counted?dc.council.size+'×':'–'],['Size used',dc.ai_size_used+'×'],['One-line rule',dc.dumb_size+'×'],['Random',dc.random_size+'×']].map(([k,x])=>`<div><span>${k}</span><b>${esc(x)}</b></div>`).join(''):''}</div>
@@ -692,7 +692,7 @@ async function research(){const v=$('#v-research'),S=DATA.strategies||{rows:[]},
   const open=i=>{on=i;$$('#dl a').forEach(a=>a.classList.toggle('on',+a.dataset.i===i));if(innerWidth<900){sheet(`<article class="md">${body(i)}</article>`)}else{const r=$('#rd');r.innerHTML=body(i);r.animate([{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:300,easing:'ease-out'})}};
   $('#dl').onclick=e=>{const a=e.target.closest('a[data-i]');if(a)open(+a.dataset.i)};$('#dq').oninput=e=>list(e.target.value.trim().toLowerCase());list('');if(innerWidth>=900)open(0)}
  catch(e){$('#dl').innerHTML='<p class="sub" style="padding:10px">Documents could not load.</p>'}}
-function md(t){t=t.replace(/%%[\s\S]*?%%/g,'').replace(/^---\n[\s\S]*?\n---\n/,'').replace(/!?\[\[[^\]]+\.base(?:\|[^\]]*)?\]\]/g,'');
+function md(t){t=t.replace(/^>\s*\[![^\]]+\][+-]?[^\n]*\n/gm,'').replace(/%%[\s\S]*?%%/g,'').replace(/^---\n[\s\S]*?\n---\n/,'').replace(/!?\[\[[^\]]+\.base(?:\|[^\]]*)?\]\]/g,'');
  return marked.parse(t.replace(/\[\[([^\]|#]+)(?:#[^\]|]*)?(?:\|([^\]]+))?\]\]/g,(m,a,b)=>`<a class="wl" href="#brain" data-n="${esc(a.trim())}">${esc(b||a)}</a>`))}
 
 // ================= BRAIN
@@ -700,7 +700,8 @@ const COL={Trades:'#F2C35B',Days:'#E9E4D8',Months:'#8E95A3',Ideas:'#6FA8FF',Lab:
 let NOTES=null,NIDX=null;
 async function notes(){if(!NOTES){await need('marked');NOTES=await data('brain');NIDX={};NOTES.forEach((n,i)=>{NIDX[n.title.toLowerCase()]=NIDX[n.title.toLowerCase()]??i;NIDX[n.path.replace(/\.md$/,'').toLowerCase()]=i})}return NOTES}
 function noteHTML(i){const n=NOTES[i],back=NOTES.filter(m=>m!==n&&(m.text.includes('[['+n.title)||m.text.includes('[['+n.path.replace(/\.md$/,'')))).slice(0,40);
- return `<p class="src" style="margin:0 0 6px">${esc(n.folder)}</p><div class="md">${md(n.text)}</div>${back.length?`<h3 style="margin-top:24px">Linked from</h3><p class="md">${back.map(m=>`<a class="wl" href="#brain" data-n="${esc(m.path.replace(/\.md$/,''))}">${esc(m.title)}</a>`).join(' · ')}</p>`:''}`}
+ const v2=/^Days\/(\d{4}-\d{2}-\d{2})\.md$/.exec(n.path),v2k=v2&&NIDX['live/days/'+v2[1]]!=null?'Live/Days/'+v2[1]:null;
+ return `<p class="src" style="margin:0 0 6px">${esc(n.folder)}${v2?' · old v1 strategy log':''}</p>${v2k?`<p class="rsn" style="margin:0 0 14px;font-size:14px">This is the old v1 strategy's log, which doesn't trade. The v2 book's trades for this day are in <a class="wl" href="#brain" data-n="${v2k}">its day note</a>.</p>`:''}<div class="md">${md(n.text)}</div>${back.length?`<h3 style="margin-top:24px">Linked from</h3><p class="md">${back.map(m=>`<a class="wl" href="#brain" data-n="${esc(m.path.replace(/\.md$/,''))}">${esc(m.title)}</a>`).join(' · ')}</p>`:''}`}
 async function openNote(key){await notes();const i=typeof key==='number'?key:NIDX[String(key).toLowerCase()];if(i==null)return;sheet(noteHTML(i))}
 document.addEventListener('click',e=>{const a=e.target.closest('a.wl');if(!a)return;e.preventDefault();openNote(a.dataset.n)});
 async function brain(){const v=$('#v-brain');v.innerHTML=`<h1 class="title">Brain</h1><p class="lede">Argon's Obsidian vault. Every day, trade, lab run and decision becomes a note, and nothing is ever deleted.</p>
@@ -842,6 +843,13 @@ function nyMin(){const n=new Date(new Date().toLocaleString('en-US',{timeZone:'A
 // after 3:55pm New York (or on a later day) every rule is flat, even if the last delayed update still shows a trade open
 function liveDone(V){const nc=nextCall();return !!V&&(V.date<nc.nyDate||nyMin()>=955)}
 function liveCard(){const V=LVD.d,nc=nextCall(),today=nc.nyDate,done=liveDone(V);
+ const B=V&&LVD.b&&LVD.b[V.date];
+ if(B){// the night run has booked this day: show the official ledger, not the delayed estimate
+  const rows=B.t.map(t=>`<div class="lrow"><span class="lmk">${t[6]==='ES'?'MES':'MNQ'}</span><span class="lnm"><b>${SNM[t[0]]||esc(t[0])} <span class="lside ${t[1]>0?'up':'dn'}">${t[1]>0?'long':'short'}</span></b>
+   <small>in ${hm(t[2])} · out ${hm(t[3])}${t[5]?'':' · G3 would skip'}</small></span><span class="lpl"><b class="${t[7]>=0?'up':'dn'}">${money(t[7])}</b><small>booked · ${t[4]>=0?'+':M}${Math.abs(t[4]).toFixed(2)}R</small></span></div>`).join('');
+  return `<div class="card tcard livecard"><div class="th"><span class="lbl">${V.date===today?'Today in the market':'Last session'}</span><span class="chip g">Booked · ${new Date(V.date+'T12:00:00Z').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',timeZone:'UTC'})}</span></div>
+   <div class="lsum"><div><span>Trades</span><b>${B.t.length}</b></div><div><span>Day total</span><b class="${B.usd>=0?'up':'dn'}">${money(B.usd)}</b></div><div><span>Account</span><b>${money(B.eq)}</b></div></div><div class="lrows">${rows||'<p class="sub">No trades that day.</p>'}</div>
+   <p class="tnote" style="margin-top:8px">Official result from the nightly ledger (exact prices, all costs). The next session's trades show here live from 9:31 New York.</p></div>`}
  const head=`<div class="th"><span class="lbl">${done?'Today in the market':'In the market'}</span><span class="chip ${V&&V.date===today&&!done?'g':''}">${V?(done?(V.date===today?'Closed · all flat at 3:55':'Last session '+esc(V.date)):'Live · as of '+esc((V.as_of||'').slice(11))):'Loading…'}</span></div>`;
  if(!V)return `<div class="card tcard livecard">${head}<p class="sub">Checking today's trades…</p></div>`;
  const T=(V.trades||[]).map(t=>done&&t.state==='open'?{...t,state:'flat',exit_time:'15:55'}:t),open=T.filter(t=>t.state==='open'),usd=T.reduce((a,t)=>a+(t.usd_now||0),0),R=T.reduce((a,t)=>a+(t.R_now||0),0);
@@ -855,8 +863,9 @@ function liveCard(){const V=LVD.d,nc=nextCall(),today=nc.nyDate,done=liveDone(V)
   <p class="tnote" style="margin-top:8px">Unofficial view from delayed prices (about 10 minutes behind), updated every few minutes. The official record is booked in the ledger after the close.${(V.warnings||[]).length?' '+esc(V.warnings.join(' ')):''}</p></div>`}
 const px=(x,d=2)=>x==null?'–':Number(x).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
 function paintLive(){$$('.livecard').forEach(el=>{el.outerHTML=liveCard()});const sel=$('#dsel');if(sel&&C){const was=sel.value,o=sel.querySelector('option[value=live]');if(o)o.outerHTML=liveOpt();else if(liveSess())sel.insertAdjacentHTML('afterbegin',liveOpt());sel.value=was;if(cur==='chart'&&cmode==='day'&&sel.value==='live')cload()}}
-async function freshen(){const [F,V]=await Promise.all([fetch('desk_feed.json',{cache:'no-cache'}).then(r=>r.json()).catch(()=>null),fetch('data/live_view.json',{cache:'no-cache'}).then(r=>r.json()).catch(()=>null)]);
- if(V&&(!LVD.d||V.as_of!==LVD.d.as_of||V.date!==LVD.d.date)){LVD.d=V;paintLive()}
+async function freshen(){const [F,V,LD]=await Promise.all([fetch('desk_feed.json',{cache:'no-cache'}).then(r=>r.json()).catch(()=>null),fetch('data/live_view.json',{cache:'no-cache'}).then(r=>r.json()).catch(()=>null),fetch('data/live_days.json',{cache:'no-cache'}).then(r=>r.json()).catch(()=>null)]);
+ const nb=LD&&LD.days?Object.keys(LD.days).length:0,ob=LVD.b?Object.keys(LVD.b).length:0;if(LD&&LD.days)LVD.b=LD.days;
+ if(V&&(!LVD.d||V.as_of!==LVD.d.as_of||V.date!==LVD.d.date||nb!==ob)){LVD.d=V;paintLive()}
  const o=DATA.desk&&DATA.desk.daytype;if(F&&F.daytype&&(!o||F.daytype.date>o.date||(F.daytype.date===o.date&&F.daytype.made_at!==o.made_at))){DATA.desk.daytype=F.daytype;
   DATA.history=(F.daytype_history||[]).filter(h=>(h.date||'')>='2026-11-20').map(h=>({date:h.date,at:h.made_at,p:(h.ai||{}).trend_probability,s:h.ai_size_used,rule:h.dumb_size})).slice(-15);
   init.home=init.desk=0;if(cur==='home'){init.home=1;home()}else if(cur==='desk'){init.desk=1;desk()}}}
