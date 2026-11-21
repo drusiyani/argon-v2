@@ -1,0 +1,50 @@
+{
+ "made": "2026-11-21T16:11Z",
+ "rule": "lower validation log-loss of A and B; must beat the baseline, else chosen anyway and flagged",
+ "train": [
+  "2011-01-01",
+  "2020-12-31"
+ ],
+ "validate": [
+  "2021-01-01",
+  "2023-12-31"
+ ],
+ "n_train": 2427,
+ "n_val": 729,
+ "metrics": {
+  "baseline": {
+   "n": 729,
+   "base_rate": 0.4348,
+   "logloss": 0.70867,
+   "brier": 0.25665,
+   "auc": 0.5165
+  },
+  "A": {
+   "n": 729,
+   "base_rate": 0.4348,
+   "logloss": 0.71505,
+   "brier": 0.25906,
+   "auc": 0.5013
+  },
+  "B": {
+   "n": 729,
+   "base_rate": 0.4348,
+   "logloss": 0.68951,
+   "brier": 0.24778,
+   "auc": 0.5405
+  }
+ },
+ "chosen": "B",
+ "beat_baseline_on_validation": true,
+ "A_C": 0.003,
+ "B_epochs": 13,
+ "pca_k": 32,
+ "seed": 7,
+ "kronos": {
+  "model": "NeoQuasar/Kronos-small",
+  "model_rev": "901c26c1332695a2a8f243eb2f37243a37bea320",
+  "tokenizer": "NeoQuasar/Kronos-Tokenizer-base",
+  "tokenizer_rev": "0e0117387f39004a9016484a186a908917e22426",
+  "commit": "67b630e67f6a18c9e9be918d9b4337c960db1e9a"
+ }
+}
