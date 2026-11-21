@@ -339,3 +339,11 @@ Main-book choice made by Claude at Dru's request ("up to you, as long as it's pr
 - Planned (separate pre-registration before any data is bought): one frozen, no-changes run of the four rules on Russell
   2000 futures (RTY, CME data 2018-2026), rules only, no Nasdaq core.
 
+
+### Amendment 14 (21 November 2026, before the freeze): a second news source for the morning call
+- Headlines now come from the Yahoo Finance and MarketWatch RSS feeds **plus Finnhub's general market news** (free tier, key in
+  the `FINNHUB_API_KEY` secret). Each Finnhub story keeps its own outlet's name, e.g. "Reuters (Finnhub)".
+- Same rules as before: only stories published after the previous 4pm close and before the call, at most 12, duplicates
+  dropped, possible prompt-injection lines kept out and logged. The sources take turns so one outlet can't fill every slot.
+- If Finnhub fails or has no key, the call runs on the RSS feeds alone; "news loaded" is logged per source.
+- Frozen with the rest of the desk inputs on 31 January 2027.

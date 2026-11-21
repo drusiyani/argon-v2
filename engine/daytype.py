@@ -92,6 +92,7 @@ def headlines(today):
     from email.utils import parsedate_to_datetime
     prev = today - dt.timedelta(days=3 if today.weekday() == 0 else 1)
     since = dt.datetime.combine(prev, dt.time(16), NY); now = dt.datetime.now(NY); out, flags, seen = [], [], set()
+    raw = {}                                             # source -> [(when, title)], newest first
     for src, url in FEEDS:
         try: xml = get(url).decode('utf-8', 'ignore')
         except Exception: continue
@@ -101,13 +102,39 @@ def headlines(today):
             title = html.unescape(re.sub(r'<!\[CDATA\[|\]\]>', '', t.group(1))).strip()[:200]
             try: when = parsedate_to_datetime(pd.group(1).strip()).astimezone(NY) if pd else None
             except Exception: when = None
+            raw.setdefault(src, []).append((when, title))
+    for src, items in finnhub().items(): raw.setdefault(src, []).extend(items)
+    pick = {}
+    for src, items in raw.items():
+        keep = []
+        for when, title in sorted(items, key=lambda x: x[0] or now, reverse=True):
             if when and not (since <= when <= now): continue
             k = title.lower()[:80]
             if k in seen: continue
             seen.add(k)
-            if SUSPICIOUS.search(title): flags.append(title); continue          # possible prompt injection: kept out, logged
-            out.append(f"[{src}{', ' + when.strftime('%a %H:%M') if when else ''}] {title}")
-    return (out[:12] or ['(no headlines since the last close)']), flags
+            if SUSPICIOUS.search(title): flags.append(title); continue      # possible prompt injection: kept out, logged
+            keep.append(f"[{src}{', ' + when.strftime('%a %H:%M') if when else ''}] {title}")
+        if keep: pick[src] = keep
+    # take turns across sources so one outlet can't fill all 12 slots
+    while len(out) < 12 and any(pick.values()):
+        for src in list(pick):
+            if pick[src] and len(out) < 12: out.append(pick[src].pop(0))
+    return (out or ['(no headlines since the last close)']), flags
+
+def finnhub():
+    """Finnhub general market news (free tier; key in the FINNHUB_API_KEY secret). Each story keeps its own outlet's name,
+    e.g. "Reuters (Finnhub)". No key or a failed call returns nothing and the RSS feeds carry on alone."""
+    key = os.environ.get('FINNHUB_API_KEY')
+    if not key: return {}
+    try: rows = json.loads(get('https://finnhub.io/api/v1/news?category=general&token=' + key))
+    except Exception: return {}
+    out = {}
+    for r in rows if isinstance(rows, list) else []:
+        title = html.unescape(str(r.get('headline') or '')).strip()[:200]
+        if not title or not r.get('datetime'): continue
+        src = (str(r.get('source') or 'Finnhub').strip()[:30] or 'Finnhub') + ' (Finnhub)'
+        out.setdefault(src, []).append((dt.datetime.fromtimestamp(int(r['datetime']), dt.timezone.utc).astimezone(NY), title))
+    return out
 
 # --- memory: a short scorecard of each AI's own past calls (Amendment 8). Outcome = the market's trend label + the book's R that day.
 def memory(name):
