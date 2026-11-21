@@ -507,9 +507,10 @@ function home(){const v=$('#v-home'),L=DATA.ledger||{},dc=(DATA.desk||{}).daytyp
    .map(([n,c,h,p])=>`<div class="card step rv"><div class="n">${n}</div><h3>${h}</h3><p>${p}</p></div>`).join('')}</div>
  <h2 class="rv">Today</h2><p class="sub rv">The practice book runs the race code on paper every day; the AIs make their call before the open.</p>
  <div class="today">
-  <div class="card tcard rv"><div class="th"><span class="lbl">Practice book</span><span class="chip">Day ${esc(L.days||0)} · since ${esc((L.start||'2026-11-16').slice(8))} Nov</span></div>
+  <div class="card tcard rv"><div class="th"><span class="lbl">Practice book</span><span class="chip">Day ${esc(L.days||0)} · since ${+esc((L.start||'2026-11-20').slice(8))} Nov</span></div>
    <div class="tval num">${money(L.equity)}</div><div class="tdelta ${L.equity>=1e5?'up':'dn'}">${pct(L.equity?(L.equity/1e5-1)*100:null,2)} since $100,000${(()=>{const e=DATA.equity||[];if(e.length<1)return'';const a=e.length>1?e[e.length-2][1]:1e5,b=e[e.length-1][1];return` · last day <b class="${b>=a?'up':'dn'}">${money(b-a)}</b>`})()}</div>
    <div class="tspark">${spark([1e5,...(DATA.equity||[]).map(x=>x[1])],'var(--gold)')}</div>
+   ${L.warmup&&L.warmup.days?`<p class="tnote" style="margin:6px 0 0">Counted from $100,000 on 20 Nov, when all four AIs joined. The ${L.warmup.days} warm-up days before that (${money(L.warmup.usd)}) stay in the ledger untouched.</p>`:''}
    <div class="tchecks">${Object.entries(L.checks||{}).map(([k,v])=>`<span class="tc ${/ok|off|flat/.test(v)?'good':''}">${/ok|off|flat/.test(v)?ic('check',3):''}${{kill:'Kill switch off',chain:'Chain intact',replay:'Replay matches',positions:'Flat overnight'}[k]||esc(k)}</span>`).join('')}</div></div>
   <div class="card tcard rv"><div class="th"><span class="lbl">${dc&&dc.date===nextCall().nyDate?"This morning's call":'Last call'}</span><span class="chip">${dc?(dc.date===nextCall().nyDate?'':new Date(dc.date+'T12:00:00Z').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',timeZone:'UTC'})+' · ')+esc(dc.made_at)+' New York':'8:45 New York'}</span></div>
    <div class="tseats">${['claude','gpt','gemini','kimi'].map(k=>{const m=dc&&dc.council&&dc.council.members[k],n={claude:'Claude',gpt:'GPT',gemini:'Gemini',kimi:'Kimi'}[k]||k,c={claude:'#D97757',gpt:'#10A37F',gemini:'#4285F4',kimi:'#9aa3b2'}[k]||'#888';

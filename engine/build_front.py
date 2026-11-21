@@ -17,6 +17,20 @@ LV = J('docs', 'data', 'live_view.json', default={}) or {}
 st = LG.get('status') or {}
 LEDGER = dict(book=LG.get('book'), state=st.get('state'), equity=st.get('equity'), last=st.get('last_booked'), days=st.get('days', 0),
               checks=st.get('checks', {}), start=st.get('start') or '2026-11-16')
+# The site shows the practice book from 20 Nov 2026, the first day all four AIs made the morning call. The ledger itself is never
+# edited: 16-19 Nov stay in data/ledger_practice (hash chain, stamps) as a labelled warm-up. On the site the account is counted from
+# $100,000 on 20 Nov by adding the real dollar P&L since then (sizing those days used the real account, about $99.4k).
+SHOW_FROM = '2026-11-20'
+_eqs = sorted(LG.get('equity') or [])
+_base = next((e for d, e in reversed(_eqs) if d < SHOW_FROM), None) or 1e5
+_shift = 1e5 - _base
+_real = dict(_eqs)
+_warm = [d for d in (LG.get('days') or []) if d['date'] < SHOW_FROM]
+LG['equity'] = [[d, round(e + _shift, 2)] for d, e in _eqs if d >= SHOW_FROM]
+LG['days'] = [d for d in (LG.get('days') or []) if d['date'] >= SHOW_FROM]
+if LEDGER.get('equity') is not None: LEDGER['equity'] = round(LEDGER['equity'] + _shift, 2)
+LEDGER.update(start=SHOW_FROM, days=len(LG['days']), real_equity=st.get('equity'),
+              warmup=dict(days=len(_warm), usd=round(_base - 1e5, 2), dates=[d['date'] for d in _warm]))
 LIVE = dict(date=LV.get('date'), as_of=LV.get('as_of'), n=len(LV.get('trades', [])), open=sum(1 for t in LV.get('trades', []) if t.get('state') == 'open'),
             R=round(sum(t.get('R_now', 0) for t in LV.get('trades', [])), 2))
 
@@ -60,7 +74,7 @@ def _call(c):
                 errors=sorted((c.get('errors') or {}).keys()), heads=((c.get('inputs') or {}).get('headlines') or [])[:6])
 _live, _eq = {}, dict(LG.get('equity') or [])
 for d in sorted(LG.get('days') or [], key=lambda x: x['date']):
-    e1 = _eq.get(d['date']); e0 = (e1 - d.get('usd', 0)) if e1 else None
+    e1 = _eq.get(d['date']); r1 = _real.get(d['date']); e0 = (r1 - d.get('usd', 0)) if r1 else None
     _live[d['date']] = dict(r=round(100 * d.get('usd', 0) / e0, 3) if e0 else 0, usd=d.get('usd', 0), eq=e1, regime=(d.get('regime') or {}).get('label'),
                             t=[[t.get('strategy'), 1 if t.get('side') == 'long' else -1, t.get('entry_time'), t.get('exit_time'), round(t.get('R', 0), 2), 1, t.get('market'), round(t.get('usd', 0), 2)] for t in d.get('trades', [])],
                             skipped=d.get('skipped') or [], call=_call(_calls.get(d['date'])), note=f"Live/Days/{d['date']}")
