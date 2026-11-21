@@ -351,6 +351,18 @@ select{height:36px;border-radius:11px;border:0;background:var(--fill);padding:0 
 .swc,.swn{margin-top:18px;padding-top:14px;border-top:1px solid var(--sep)}.swc{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.swc .lbl,.swn .lbl{font-size:12px;color:var(--ink3);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-right:4px}
 .swn .lbl{display:block;margin-bottom:6px}.swi{padding:8px 0;border-bottom:1px solid var(--sep)}.swi:last-child{border-bottom:0}.swi small{display:block;font-size:11px;color:var(--ink3);margin-bottom:2px}.swi span{font-size:13.5px;line-height:1.4}
 .rsn{margin:0 0 4px;padding:14px 16px;border-left:3px solid var(--gold);border-radius:0 12px 12px 0;background:color-mix(in srgb,var(--gold) 7%,transparent);font-size:15px;line-height:1.55}
+.pick{margin-top:14px;padding:20px}.pick h3{margin:0}.pick .sub{margin:4px 0 0}.pick .sub a{color:var(--gold2)}
+.pick h4{margin:20px 0 8px;font-size:12px;color:var(--ink3);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.pkp{margin:0 0 8px;font-size:14px;line-height:1.55;color:var(--ink2)}
+.pkg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}@media (max-width:700px){.pkg{grid-template-columns:1fr 1fr}}
+.pks{padding:12px;border-radius:14px;background:var(--fill);display:flex;flex-direction:column;gap:6px}.pks b{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:12px;color:var(--gold2);border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);background:color-mix(in srgb,var(--gold) 10%,transparent)}
+.pks span{font-size:13px;line-height:1.35;color:var(--ink2)}.pks em{font-style:normal;color:var(--ink);font-weight:600}
+.pkc{display:flex;flex-direction:column;gap:12px}.pkr{display:grid;grid-template-columns:minmax(0,1.2fr) 1fr 30px;gap:10px;align-items:center}
+.pkl{display:flex;align-items:center;gap:10px;min-width:0}.pkl>span{display:flex;flex-direction:column;min-width:0}.pkl b{font-size:13.5px}.pkl small{font-size:11.5px;color:var(--ink3)}
+.pkx{width:28px;height:28px;border-radius:8px;background:var(--fill2);flex:none}
+.pkb{height:8px;border-radius:8px;background:var(--fill2);overflow:hidden}.pkb i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.pkv{text-align:right;font-size:15px}.pkr.off{opacity:.5}.pkr.off .pkb i{background:var(--ink3)}
+@media (max-width:700px){.pkr{grid-template-columns:1fr 30px}.pkb{grid-column:1/-1;grid-row:2}}
 </style></head><body>
 <div class="amb" aria-hidden="true"><i></i><i></i><i></i></div><div class="space" aria-hidden="true"></div>
 <header class="nav" id="nav">
@@ -809,6 +821,20 @@ function sawCard(dc,inp){const vx=inp.vix,vp=inp.vix_1y_percentile,on=inp.overni
   <div class="swg">${R.join('')}</div>
   ${cal.length?`<div class="swc"><span class="lbl">On the calendar</span>${cal.map(c=>`<span class="chip">${esc(c.replace(/^./,x=>x.toUpperCase()))}</span>`).join('')}</div>`:''}
   ${hl.length?`<div class="swn"><span class="lbl">Headlines they read</span>${hl.map(h=>`<div class="swi"><small>${esc(h.src)}${h.t?' · '+esc(h.t):''}</small><span>${esc(h.x)}</span></div>`).join('')}</div>`:''}</div>`}
+// how the four seats were chosen (Amendment 11): the rule, the index, and the reading it was based on
+function pickCard(){const R=[['claude','Claude Fable 5.2','Anthropic',65],['gpt','GPT-6.2 Astra','OpenAI',62],['gemini','Gemini 4 Neon','Google',61],[null,'Muse Wonder Full','Meta',50],['kimi','Kimi K3.1 Pro','Moonshot AI',46]];
+ const bars=R.map(([k,n,co,v])=>`<div class="pkr ${k?'':'off'}"><span class="pkl">${k?alogo(k):'<i class="pkx"></i>'}<span><b>${n}</b><small>${co}${k?'':' · no public API, so it can\'t take a seat'}</small></span></span>
+  <span class="pkb"><i style="width:${v}%"></i></span><b class="num pkv">${v}</b></div>`).join('');
+ return `<div class="card rv pick"><h3>How the AIs were chosen</h3>
+  <p class="sub">We didn't pick favourites. Each seat goes to whichever model scores highest on an independent ranking, the <a href="https://artificialanalysis.ai/" target="_blank" rel="noopener">Artificial Analysis Intelligence Index</a>.</p>
+  <div class="pkg"><div class="pks"><b>1</b><span>Best <em>Anthropic</em> model</span></div><div class="pks"><b>2</b><span>Best <em>OpenAI</em> model</span></div><div class="pks"><b>3</b><span>Best <em>Google</em> model</span></div><div class="pks"><b>4</b><span>Best model from <em>anyone else</em> with a public API</span></div></div>
+  <h4>What the index is</h4>
+  <p class="pkp">Artificial Analysis is an independent company that tests AI models. It runs every model through the same nine hard tests (coding, using a computer, science, general knowledge and reasoning) and combines them into one score out of 100. It runs the tests itself rather than trusting the companies' own numbers.</p>
+  <p class="pkp">It measures how capable a model is in general, not how good it is at trading. Nobody ranks trading skill. That is what Race 1 is for.</p>
+  <h4>The reading on 19 November 2026</h4><div class="pkc">${bars}</div>
+  <p class="tnote" style="margin-top:10px">Scores from Artificial Analysis Intelligence Index v5, rounded. Meta's best model scored higher than Kimi but has no public API, so seat 4 went to Kimi.</p>
+  <h4>Locked before the race</h4>
+  <p class="pkp">The final four are taken from one saved copy of the ranking on 2–4 January 2027 and then <b>pinned for all of Race 1</b>, with exact model versions and settings. A newer model released mid-race is logged but never swapped in. Until then the practice desk runs Claude Opus 5.5, GPT-6 Astra, Gemini 4 Argon and Kimi K3.1 Pro. If a seat's model misses the 9:25 cutoff on more than 1 in 10 January mornings, that seat drops to the same company's next-best model.</p></div>`}
 function desk(){const v=$('#v-desk'),D=DATA.desk||{},dc=D.daytype,inp=(dc&&dc.inputs)||{},nc=nextCall(),SH=DATA.seats||{};
  const mem=(dc&&dc.council&&dc.council.members)||{},isToday=dc&&dc.date===nc.nyDate,council=isToday&&dc.council&&dc.council.counted?dc.council:null,p=council?council.trend_probability:null;
  const answered=isToday?SEATS.filter(k=>mem[k]).length:0,C=2*Math.PI*44,off=p==null?C*(nc.ms/864e5>1?0:nc.ms/864e5):C*(1-p/100);
@@ -828,6 +854,7 @@ function desk(){const v=$('#v-desk'),D=DATA.desk||{},dc=D.daytype,inp=(dc&&dc.in
   <div class="scards">${SEATS.map(card).join('')}</div></div>
  ${liveCard()}
  ${vx!=null?sawCard(dc,inp):''}
+ ${pickCard()}
  <div class="card rv calls" style="margin-top:14px"><h3>Recent calls</h3><p class="sub">The AIs' trend chance and the size used, against the one-line rule. The record starts on 20 November 2026, when all four AIs took their seats.</p><div class="list">${(DATA.history||[]).slice().reverse().slice(0,8).map(h=>`<div class="li"><span class="k">${esc(h.date)}</span><span class="v">${h.p==null?'<span class="qq">no forecast</span>':`<span class="mb"><i style="width:${h.p}%"></i></span>${Math.round(h.p)}%`} · ${esc(h.s)}× <span class="qq">rule ${esc(h.rule)}×</span></span></div>`).join('')||'<p class="sub">No calls yet.</p>'}</div></div>`;
  reveal(v);
  const dl=$('.dial',v);if(dl)requestAnimationFrame(()=>requestAnimationFrame(()=>{dl.classList.add('go');const nd=$('.nd',dl);if(nd)nd.style.transform=`rotate(${nd.dataset.a}deg)`}));
