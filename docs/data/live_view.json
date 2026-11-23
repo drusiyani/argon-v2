@@ -1126,5 +1126,17 @@
    "id": "quantlab|NQ|2026-11-23|575|1",
    "reason": "cost rule"
   }
- ]
+ ],
+ "core": {
+  "contracts": 1,
+  "weight": 0.649,
+  "vxn": 36.48,
+  "vxn_date": "2026-11-19",
+  "note": "",
+  "since": "2026-11-20",
+  "from_price": 25142.0,
+  "price": 26919.5,
+  "points": 1777.5,
+  "usd": 3555.0
+ }
 }
