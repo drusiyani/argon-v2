@@ -1,7 +1,7 @@
 name: Alarm clock (starts the desk and nightly jobs on time)
 # GitHub's scheduler stopped firing for this repo after 21 Nov 2026, so the 23 Nov morning call never ran.
 # This is a chain that does not depend on it: each run sleeps until the next job in engine/alarm_plan.py (at most ~5h45m),
-# starts that job, then starts the next alarm run. Only one alarm is ever alive (newest wins).
+# starts that job, then starts the next alarm run. Only one alarm runs at a time; at most one more waits.
 # The schedule below only restarts the chain if it ever breaks and GitHub's scheduler is working again.
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ permissions:
   contents: read
 concurrency:
   group: alarm
-  cancel-in-progress: true
+  cancel-in-progress: false   # the next alarm waits for this one to finish (no red "cancelled" runs)
 jobs:
   alarm:
     runs-on: ubuntu-latest
