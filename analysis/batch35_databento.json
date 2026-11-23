@@ -1,0 +1,79 @@
+{
+ "era": "databento",
+ "period": [
+  "2021-01-27",
+  "2026-11-20"
+ ],
+ "variants": {
+  "current": {
+   "sharpe": 1.221,
+   "total_R": 340.8,
+   "worst_drop_pct": 19.77,
+   "opening_drive": {
+    "trades": 1317,
+    "avg_R": 0.148,
+    "total_R": 195.4
+   }
+  },
+  "widen k=0.02": {
+   "sharpe": 1.214,
+   "total_R": 337.4,
+   "worst_drop_pct": 19.77,
+   "opening_drive": {
+    "trades": 1316,
+    "avg_R": 0.146,
+    "total_R": 192.0
+   }
+  },
+  "widen k=0.04": {
+   "sharpe": 1.195,
+   "total_R": 330.9,
+   "worst_drop_pct": 21.75,
+   "opening_drive": {
+    "trades": 1332,
+    "avg_R": 0.139,
+    "total_R": 185.5
+   }
+  },
+  "widen k=0.06": {
+   "sharpe": 1.122,
+   "total_R": 304.3,
+   "worst_drop_pct": 21.03,
+   "opening_drive": {
+    "trades": 1338,
+    "avg_R": 0.119,
+    "total_R": 158.9
+   }
+  },
+  "skip k=0.02": {
+   "sharpe": 1.131,
+   "total_R": 311.4,
+   "worst_drop_pct": 23.95,
+   "opening_drive": {
+    "trades": 1318,
+    "avg_R": 0.126,
+    "total_R": 166.0
+   }
+  },
+  "skip k=0.04": {
+   "sharpe": 0.987,
+   "total_R": 258.5,
+   "worst_drop_pct": 27.16,
+   "opening_drive": {
+    "trades": 1300,
+    "avg_R": 0.087,
+    "total_R": 113.1
+   }
+  },
+  "skip k=0.06": {
+   "sharpe": 1.212,
+   "total_R": 314.8,
+   "worst_drop_pct": 25.7,
+   "opening_drive": {
+    "trades": 1270,
+    "avg_R": 0.133,
+    "total_R": 169.3
+   }
+  }
+ }
+}

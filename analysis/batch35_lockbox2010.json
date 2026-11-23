@@ -1,0 +1,79 @@
+{
+ "era": "lockbox2010",
+ "period": [
+  "2010-06-29",
+  "2020-12-31"
+ ],
+ "variants": {
+  "current": {
+   "sharpe": 0.104,
+   "total_R": 32.5,
+   "worst_drop_pct": 57.31,
+   "opening_drive": {
+    "trades": 753,
+    "avg_R": 0.053,
+    "total_R": 40.2
+   }
+  },
+  "widen k=0.02": {
+   "sharpe": 0.099,
+   "total_R": 31.0,
+   "worst_drop_pct": 58.1,
+   "opening_drive": {
+    "trades": 756,
+    "avg_R": 0.051,
+    "total_R": 38.6
+   }
+  },
+  "widen k=0.04": {
+   "sharpe": 0.078,
+   "total_R": 24.7,
+   "worst_drop_pct": 60.66,
+   "opening_drive": {
+    "trades": 842,
+    "avg_R": 0.038,
+    "total_R": 32.3
+   }
+  },
+  "widen k=0.06": {
+   "sharpe": 0.054,
+   "total_R": 16.9,
+   "worst_drop_pct": 62.7,
+   "opening_drive": {
+    "trades": 858,
+    "avg_R": 0.029,
+    "total_R": 24.5
+   }
+  },
+  "skip k=0.02": {
+   "sharpe": 0.102,
+   "total_R": 32.2,
+   "worst_drop_pct": 57.46,
+   "opening_drive": {
+    "trades": 786,
+    "avg_R": 0.051,
+    "total_R": 39.9
+   }
+  },
+  "skip k=0.04": {
+   "sharpe": 0.093,
+   "total_R": 29.1,
+   "worst_drop_pct": 59.27,
+   "opening_drive": {
+    "trades": 858,
+    "avg_R": 0.043,
+    "total_R": 36.8
+   }
+  },
+  "skip k=0.06": {
+   "sharpe": 0.01,
+   "total_R": 3.1,
+   "worst_drop_pct": 65.4,
+   "opening_drive": {
+    "trades": 962,
+    "avg_R": 0.011,
+    "total_R": 10.8
+   }
+  }
+ }
+}
