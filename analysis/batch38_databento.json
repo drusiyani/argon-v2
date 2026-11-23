@@ -1,0 +1,61 @@
+{
+ "era": "databento",
+ "variants": {
+  "current": {
+   "book": {
+    "cagr": 42.0,
+    "sharpe": 1.279,
+    "worst_drop": 20.5
+   },
+   "core": {
+    "cagr": 6.1,
+    "sharpe": 0.385,
+    "worst_drop": 29.9
+   },
+   "days_out_of_market": 0
+  },
+  "MA200": {
+   "book": {
+    "cagr": 44.0,
+    "sharpe": 1.427,
+    "worst_drop": 21.9
+   },
+   "core": {
+    "cagr": 7.8,
+    "sharpe": 0.555,
+    "worst_drop": 16.5
+   },
+   "days_out_of_market": 341
+  },
+  "MA100": {
+   "book": {
+    "cagr": 42.4,
+    "sharpe": 1.419,
+    "worst_drop": 21.0
+   },
+   "core": {
+    "cagr": 6.5,
+    "sharpe": 0.495,
+    "worst_drop": 14.8
+   },
+   "days_out_of_market": 455
+  },
+  "MA200-half": {
+   "book": {
+    "cagr": 43.4,
+    "sharpe": 1.387,
+    "worst_drop": 20.9
+   },
+   "core": {
+    "cagr": 7.2,
+    "sharpe": 0.489,
+    "worst_drop": 21.5
+   },
+   "days_out_of_market": 0
+  }
+ },
+ "period": [
+  "2022-01-14",
+  "2026-11-20"
+ ]
+}

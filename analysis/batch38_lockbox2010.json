@@ -1,0 +1,61 @@
+{
+ "era": "lockbox2010",
+ "variants": {
+  "current": {
+   "book": {
+    "cagr": 19.1,
+    "sharpe": 0.945,
+    "worst_drop": 23.4
+   },
+   "core": {
+    "cagr": 18.0,
+    "sharpe": 1.155,
+    "worst_drop": 17.5
+   },
+   "days_out_of_market": 0
+  },
+  "MA200": {
+   "book": {
+    "cagr": 14.0,
+    "sharpe": 0.768,
+    "worst_drop": 26.1
+   },
+   "core": {
+    "cagr": 13.1,
+    "sharpe": 0.966,
+    "worst_drop": 16.9
+   },
+   "days_out_of_market": 310
+  },
+  "MA100": {
+   "book": {
+    "cagr": 12.2,
+    "sharpe": 0.705,
+    "worst_drop": 22.7
+   },
+   "core": {
+    "cagr": 11.3,
+    "sharpe": 0.911,
+    "worst_drop": 14.5
+   },
+   "days_out_of_market": 478
+  },
+  "MA200-half": {
+   "book": {
+    "cagr": 16.6,
+    "sharpe": 0.872,
+    "worst_drop": 24.3
+   },
+   "core": {
+    "cagr": 15.6,
+    "sharpe": 1.097,
+    "worst_drop": 15.7
+   },
+   "days_out_of_market": 0
+  }
+ },
+ "period": [
+  "2011-06-17",
+  "2020-12-31"
+ ]
+}
