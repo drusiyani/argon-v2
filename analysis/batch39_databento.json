@@ -1,0 +1,65 @@
+{
+ "era": "databento",
+ "period": [
+  "2022-01-14",
+  "2026-11-20"
+ ],
+ "variants": {
+  "current": {
+   "book": {
+    "cagr": 42.0,
+    "sharpe": 1.279,
+    "worst_drop": 20.5
+   },
+   "core": {
+    "cagr": 6.1,
+    "sharpe": 0.385,
+    "worst_drop": 29.9
+   },
+   "stop_fired": 0,
+   "closed_above_stop_after": 0
+  },
+  "stop 1.5%": {
+   "book": {
+    "cagr": 35.0,
+    "sharpe": 1.113,
+    "worst_drop": 22.4
+   },
+   "core": {
+    "cagr": 1.2,
+    "sharpe": 0.16,
+    "worst_drop": 31.7
+   },
+   "stop_fired": 314,
+   "closed_above_stop_after": 163
+  },
+  "stop 2%": {
+   "book": {
+    "cagr": 37.5,
+    "sharpe": 1.177,
+    "worst_drop": 21.9
+   },
+   "core": {
+    "cagr": 3.0,
+    "sharpe": 0.246,
+    "worst_drop": 28.1
+   },
+   "stop_fired": 191,
+   "closed_above_stop_after": 100
+  },
+  "stop 3%": {
+   "book": {
+    "cagr": 39.6,
+    "sharpe": 1.223,
+    "worst_drop": 23.9
+   },
+   "core": {
+    "cagr": 4.4,
+    "sharpe": 0.31,
+    "worst_drop": 34.1
+   },
+   "stop_fired": 66,
+   "closed_above_stop_after": 36
+  }
+ }
+}

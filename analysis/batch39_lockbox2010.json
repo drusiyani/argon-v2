@@ -1,0 +1,65 @@
+{
+ "era": "lockbox2010",
+ "period": [
+  "2011-06-17",
+  "2020-12-31"
+ ],
+ "variants": {
+  "current": {
+   "book": {
+    "cagr": 19.1,
+    "sharpe": 0.945,
+    "worst_drop": 23.4
+   },
+   "core": {
+    "cagr": 18.0,
+    "sharpe": 1.155,
+    "worst_drop": 17.5
+   },
+   "stop_fired": 0,
+   "closed_above_stop_after": 0
+  },
+  "stop 1.5%": {
+   "book": {
+    "cagr": 15.6,
+    "sharpe": 0.793,
+    "worst_drop": 27.2
+   },
+   "core": {
+    "cagr": 14.8,
+    "sharpe": 1.032,
+    "worst_drop": 16.2
+   },
+   "stop_fired": 366,
+   "closed_above_stop_after": 179
+  },
+  "stop 2%": {
+   "book": {
+    "cagr": 15.2,
+    "sharpe": 0.778,
+    "worst_drop": 26.9
+   },
+   "core": {
+    "cagr": 14.3,
+    "sharpe": 0.974,
+    "worst_drop": 19.3
+   },
+   "stop_fired": 224,
+   "closed_above_stop_after": 115
+  },
+  "stop 3%": {
+   "book": {
+    "cagr": 15.7,
+    "sharpe": 0.804,
+    "worst_drop": 28.7
+   },
+   "core": {
+    "cagr": 14.8,
+    "sharpe": 0.981,
+    "worst_drop": 22.2
+   },
+   "stop_fired": 85,
+   "closed_above_stop_after": 38
+  }
+ }
+}
