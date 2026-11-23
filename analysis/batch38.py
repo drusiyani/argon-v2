@@ -54,4 +54,4 @@ def main():
     out['period'] = [dl[260], dl[-1]]
     json.dump(out, open(f'{A}/batch38_{ERA}.json', 'w'), indent=1)
 
-main()
+if __name__ == '__main__': main()
