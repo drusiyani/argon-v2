@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-23",
- "as_of": "2026-11-23 15:50 NY",
- "last_bar": "2026-11-23 15:40",
+ "as_of": "2026-11-23 15:56 NY",
+ "last_bar": "2026-11-23 15:46",
  "equity_used": 102959.23,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-20 16:59",
-   "yahoo_bars": 1279,
-   "last_real": "2026-11-23 15:40",
-   "last_price": 26911.75,
+   "yahoo_bars": 1285,
+   "last_real": "2026-11-23 15:46",
+   "last_price": 26881.0,
    "gap_pct": 0.84
   },
   "ES": {
    "databento_last": "2026-11-20 16:59",
-   "yahoo_bars": 1279,
-   "last_real": "2026-11-23 15:40",
-   "last_price": 7276.25,
+   "yahoo_bars": 1285,
+   "last_real": "2026-11-23 15:46",
+   "last_price": 7269.25,
    "gap_pct": 0.46
   },
   "YM": {
    "databento_last": "2026-11-20 16:59",
-   "yahoo_bars": 1277,
-   "last_real": "2026-11-23 15:40",
-   "last_price": 49765.0,
+   "yahoo_bars": 1283,
+   "last_real": "2026-11-23 15:46",
+   "last_price": 49718.0,
    "gap_pct": 0.21
   },
   "RTY": {
    "databento_last": "2026-11-20 16:59",
-   "yahoo_bars": 1279,
-   "last_real": "2026-11-23 15:40",
-   "last_price": 2674.5,
+   "yahoo_bars": 1285,
+   "last_real": "2026-11-23 15:46",
+   "last_price": 2671.39990234375,
    "gap_pct": 0.37
   }
  },
@@ -560,10 +560,17 @@
    ],
    [
     940,
-    26901.75,
-    26935.0,
+    26896.5,
+    26948.0,
     26881.0,
-    26911.75
+    26915.0
+   ],
+   [
+    945,
+    26916.0,
+    26921.0,
+    26875.75,
+    26881.0
    ]
   ],
   "ES": [
@@ -1088,11 +1095,30 @@
    [
     940,
     7274.25,
-    7280.25,
+    7284.25,
     7269.75,
-    7276.25
+    7275.75
+   ],
+   [
+    945,
+    7276.0,
+    7277.25,
+    7268.25,
+    7269.25
    ]
   ]
+ },
+ "core": {
+  "contracts": 1,
+  "weight": 0.649,
+  "vxn": 36.48,
+  "vxn_date": "2026-11-19",
+  "note": "",
+  "since": "2026-11-20",
+  "from_price": 25142.0,
+  "price": 26881.0,
+  "points": 1739.0,
+  "usd": 3478.0
  },
  "trades": [],
  "skipped": [
