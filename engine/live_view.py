@@ -14,11 +14,11 @@ from zoneinfo import ZoneInfo
 NY = ZoneInfo('America/New_York'); UTC = dt.timezone.utc
 YAHOO = {'NQ': 'NQ%3DF', 'ES': 'ES%3DF', 'YM': 'YM%3DF', 'RTY': 'RTY%3DF'}
 OUT = os.path.join(ROOT, 'docs', 'data', 'live_view.json')
-BARS = {}
+BARS = {}; RAWY = {}
 HEAD = 'ts_event,rtype,publisher_id,instrument_id,open,high,low,close,volume,symbol\n'
 
 def yahoo_1m(sym):
-    url = f'https://query1.finance.yahoo.com/v8/finance/chart/{YAHOO[sym]}?interval=1m&range=2d'
+    url = f'https://query1.finance.yahoo.com/v8/finance/chart/{YAHOO[sym]}?interval=1m&range=5d'
     r = json.loads(urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'}), timeout=30).read())['chart']['result'][0]
     q = r['indicators']['quote'][0]
     return [(t, o, h, l, c, v or 0) for t, o, h, l, c, v in zip(r['timestamp'], q['open'], q['high'], q['low'], q['close'], q['volume']) if None not in (o, h, l, c)]
@@ -47,7 +47,7 @@ def make_root(today):
         for f in glob.glob(os.path.join(ROOT, 'data', 'databento', f'{sym}_*.csv.gz')):
             tag = os.path.basename(f)[len(sym) + 1:-7]
             if tag.startswith('d') or tag[:4].isdigit() and int(tag[:4]) >= y - 1: os.symlink(f, os.path.join(tmp, 'data', 'databento', os.path.basename(f)))
-        t0, iid, c0 = tail(sym); bars = [b for b in yahoo_1m(sym) if b[0] > t0]
+        t0, iid, c0 = tail(sym); RAWY[sym] = yahoo_1m(sym); bars = [b for b in RAWY[sym] if b[0] > t0]
         sess_end = int(dt.datetime.combine(today, dt.time(15, 59), NY).timestamp())
         real = [b for b in bars if b[0] <= sess_end]; last = real[-1] if real else None
         rows = [(t, o, h, l, c, v) for t, o, h, l, c, v in real]
@@ -92,6 +92,25 @@ def child(today, last_min, equity):
     skipped = [dict(id=live.tid(t), reason='cost rule') for t in sk if t['date'] == d and t['entry_min'] <= last_min]
     print('@@' + json.dumps(dict(trades=out, skipped=skipped)))
 
+def core_now(today, equity):
+    """Estimate of the Nasdaq core (Amendment 13) for today: held from the previous session's close, sized exactly as
+    engine/core.py will size it tonight (same VXN/T-bill files). Prices from Yahoo, so only an estimate."""
+    sys.path.insert(0, os.path.join(ROOT, 'engine')); import core
+    rows = [(dt.datetime.fromtimestamp(t, NY), c) for t, o, h, l, c, v in RAWY.get('NQ', [])]
+    prev = [(x, c) for x, c in rows if x.date() < today and x.time() < dt.time(16, 0) and x.weekday() < 5]
+    now = [(x, c) for x, c in rows if x.date() == today and x.time() < dt.time(16, 0)]
+    if not prev or not now: return None
+    p_day = prev[-1][0].date(); p_close = prev[-1][1]; price = now[-1][1]
+    inp = core.inputs(today.isoformat(), p_day.isoformat())
+    n = core.nearest(equity * inp['w'] / (p_close * core.PPT))
+    return dict(contracts=n, weight=round(inp['w'], 3), vxn=inp['vxn'], vxn_date=inp['vxn_date'], note=inp['note'],
+                since=p_day.isoformat(), from_price=round(p_close, 2), price=round(price, 2), points=round(price - p_close, 2),
+                usd=round(n * core.PPT * (price - p_close), 2))
+
+def core_safe(today, equity):
+    try: return core_now(today, equity)
+    except Exception as e: print('core estimate skipped:', e); return None
+
 def main(force=False):
     now = dt.datetime.now(NY); today = now.date()
     if not force and (now.weekday() >= 5 or not dt.time(9, 30) <= now.time() <= dt.time(16, 30)):
@@ -115,7 +134,7 @@ def main(force=False):
         warn = [f"{s}: Yahoo's first bar is {v['gap_pct']}% away from Databento's last close (a different contract month?)" for s, v in info.items() if v['gap_pct'] is not None and abs(v['gap_pct']) > 0.6]
         out = dict(unofficial=True, label='UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.', date=today.isoformat(),
                    as_of=now.strftime('%Y-%m-%d %H:%M NY'), last_bar=info['NQ']['last_real'], equity_used=equity, markets=info, warnings=warn,
-                   bars={k: v for k, v in BARS.items() if k in ('NQ', 'ES')}, **res)
+                   bars={k: v for k, v in BARS.items() if k in ('NQ', 'ES')}, core=core_safe(today, equity), **res)
         os.makedirs(os.path.dirname(OUT), exist_ok=True); json.dump(out, open(OUT, 'w'), indent=1)
         print('live view:', len(res['trades']), 'trades,', sum(t['state'] == 'open' for t in res['trades']), 'open', warn or '')
     finally: shutil.rmtree(tmp, ignore_errors=True)
