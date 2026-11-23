@@ -17,7 +17,7 @@ def calls():
     out = {}
     for r in read(os.path.join(ROOT, 'data', 'daytype.jsonl')): out[r['date']] = r
     return out
-def sz(x): return '?' if x is None else ('veto' if x == 0 else f'{x:g}x')
+def sz(x): return '?' if x is None else ('skip' if x == 0 else f'{x:g}x')
 def call_line(name, v):
     if not v: return f'| {name} | no answer | | |'
     return f"| {name} | {v.get('trend_probability', 0):.0f}% | {sz(v.get('size'))} | {(v.get('reason') or '').replace('|', '/')[:160]} |"

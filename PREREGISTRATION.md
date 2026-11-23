@@ -374,3 +374,13 @@ Main-book choice made by Claude at Dru's request ("up to you, as long as it's pr
 - **After Race 1:** the same pipeline can be rerun with a later end date ("Argon-2") for test 3 proper, frozen again before
   its own race. Argon-1 itself is never retrained during Race 1.
 - Code: `research/argon1/` (plan in `research/ARGON1_PLAN.md`), training workflow `.github/workflows/argon1.yml`.
+
+### Amendment 16 (23 November 2026, before the freeze): the morning call can skip the day
+- The AI seats (and the council) may now answer size **0 = skip**: the whole book sits the day out. The menu is
+  0 / 0.5 / 1 / 1.5 / 2. The prompt says skipping also skips the winning days, so 0 is for days the AI judges clearly worse
+  than normal. The restricted VETO (breaking unscheduled event, market halt, broken data) stays as it was.
+- The random sizer ("luck" arm) draws from the same five sizes, so it can skip too, keeping the comparison fair.
+- Scoring is unchanged: a skipped day scores 0R for that arm. The comparisons that matter are against the one-line rule,
+  the random sizer and a constant size matched to the arm's own average size (to be added before the freeze).
+- Why: 23 Nov 2026 (no call that day) was a whipsaw after huge news, the kind of day a skip could help on. Whether the
+  AIs skip the right days is part of what Race 1 tests; one anecdote is not evidence.
