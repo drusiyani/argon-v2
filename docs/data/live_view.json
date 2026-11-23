@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-23",
- "as_of": "2026-11-23 13:55 NY",
- "last_bar": "2026-11-23 13:45",
+ "as_of": "2026-11-23 14:02 NY",
+ "last_bar": "2026-11-23 13:52",
  "equity_used": 102959.23,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-20 16:59",
-   "yahoo_bars": 1164,
-   "last_real": "2026-11-23 13:45",
-   "last_price": 26764.5,
+   "yahoo_bars": 1171,
+   "last_real": "2026-11-23 13:52",
+   "last_price": 26764.25,
    "gap_pct": 0.87
   },
   "ES": {
    "databento_last": "2026-11-20 16:59",
-   "yahoo_bars": 1164,
-   "last_real": "2026-11-23 13:45",
-   "last_price": 7250.5,
+   "yahoo_bars": 1171,
+   "last_real": "2026-11-23 13:52",
+   "last_price": 7250.0,
    "gap_pct": 0.44
   },
   "YM": {
    "databento_last": "2026-11-20 16:59",
-   "yahoo_bars": 1162,
-   "last_real": "2026-11-23 13:45",
-   "last_price": 49659.0,
+   "yahoo_bars": 1169,
+   "last_real": "2026-11-23 13:52",
+   "last_price": 49679.0,
    "gap_pct": 0.21
   },
   "RTY": {
    "databento_last": "2026-11-20 16:59",
-   "yahoo_bars": 1164,
-   "last_real": "2026-11-23 13:45",
-   "last_price": 2667.39990234375,
+   "yahoo_bars": 1171,
+   "last_real": "2026-11-23 13:52",
+   "last_price": 2667.199951171875,
    "gap_pct": 0.37
   }
  },
@@ -399,10 +399,17 @@
    ],
    [
     825,
-    26767.25,
-    26773.0,
-    26759.75,
-    26764.5
+    26765.5,
+    26796.0,
+    26754.75,
+    26783.5
+   ],
+   [
+    830,
+    26782.0,
+    26785.5,
+    26743.75,
+    26764.25
    ]
   ],
   "ES": [
@@ -765,10 +772,17 @@
    ],
    [
     825,
-    7250.75,
-    7252.75,
-    7249.25,
-    7250.5
+    7250.5,
+    7256.75,
+    7247.5,
+    7253.75
+   ],
+   [
+    830,
+    7253.75,
+    7254.25,
+    7246.0,
+    7250.0
    ]
   ]
  },
@@ -785,7 +799,7 @@
    "stop": 26708.75,
    "exit_time": "09:35",
    "exit": 26708.0,
-   "last": 26764.5,
+   "last": 26764.25,
    "state": "closed",
    "R_now": -1.194,
    "usd_now": -1221.0
