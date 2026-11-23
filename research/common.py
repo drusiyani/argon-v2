@@ -135,7 +135,8 @@ def ql_variants(chands=(2, 3), stops=('candle', 'atr')):
     return [(st, tr) for st in stops for tr in ('ema',) + tuple(f'ch{k}' for k in chands)]
 
 def quantlab(s='NQ', ema=12, chands=(2, 3), stops=('candle', 'atr'), stop_atr=0.10, delay=0, pullback=None, concretum=False,
-             te=None, partial=None, be=None, confirm=1, first=5, skip_fomc=False, flat=955, limit_ticks=None, gap_atr=None):
+             te=None, partial=None, be=None, confirm=1, first=5, skip_fomc=False, flat=955, limit_ticks=None, gap_atr=None,
+             min_stop_atr=None, min_stop_mode='widen'):
     P = prep(s); T, O, H, L, C, n, mins, days, wd = P; b5, EMA, atr5, datr = bars5(s, ema); TK = SL[s]
     V = ql_variants(chands, stops); out = []; R = roll(s)
     first_bars = [j for j, b in enumerate(b5) if mins[b[1]] == 570]
@@ -184,6 +185,9 @@ def quantlab(s='NQ', ema=12, chands=(2, 3), stops=('candle', 'atr'), stop_atr=0.
             stop = (lo if side == 1 else hi) if stk == 'candle' else entry - side * stop_atr * datr[d]
             risk = (entry - stop) * side
             if risk <= 0: continue
+            if min_stop_atr and risk < min_stop_atr * datr[d]:      # batch 35: stop too close to the entry
+                if min_stop_mode == 'skip': continue
+                stop = entry - side * min_stop_atr * datr[d]; risk = (entry - stop) * side
             stp = stop; best = entry; res = None; xm = None; got = None; across = 0
             for jj in range(start_j, len(b5)):
                 bb = b5[jj]
