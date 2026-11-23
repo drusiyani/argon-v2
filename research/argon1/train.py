@@ -109,6 +109,19 @@ def test():
          metrics=m, note='Fitted on 2011-2020 with the validation settings; reported whatever it says. Not used to change anything.'))
 
 
+def valpreds():
+    """Daily trend chances and sizes for the validation years (2021-2023) from the chosen model fitted on 2011-2020,
+    for comparing books (plain / G3 / Argon-1 sizing). Never touches the test years."""
+    sel = json.load(open(priv('select.json'))); F = load(); tr = mask(F, *TRAIN)
+    va = (F['dates'] >= VAL[0]) & (F['dates'] <= VAL[1])          # every day, labelled or not (it trades every day)
+    res = fit_all(F, tr, np.concatenate([np.where(tr)[0], np.where(va)[0]]), C=sel['A_C'], epochs=sel['B_epochs'])
+    p = res[sel['chosen']]['p']; ptr, pva = p[:tr.sum()], p[tr.sum():]
+    q = np.quantile(ptr, [0.25, 0.65, 0.85])
+    size = lambda x: 2.0 if x >= q[2] else 1.5 if x >= q[1] else 0.5 if x < q[0] else 1.0
+    wpub('argon1_val_preds.json', dict(made=now(), model=sel['chosen'], fitted_on=TRAIN, cutoffs=[round(float(v), 4) for v in q],
+         days={str(d): [round(float(x), 4), size(x)] for d, x in zip(F['dates'][va], pva)}))
+
+
 def refit(version, end):
     sel = json.load(open(priv('select.json'))); F = load(); al = mask(F, TRAIN[0], end)
     res = fit_all(F, al, al, C=sel['A_C'], epochs=sel['B_epochs'])
@@ -136,4 +149,4 @@ def refit(version, end):
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(); ap.add_argument('stage'); ap.add_argument('--version', default='argon1'); ap.add_argument('--end', default=TEST[1])
     a = ap.parse_args()
-    dict(features=features, embed=embed, select=select, test=test)[a.stage]() if a.stage != 'refit' else refit(a.version, a.end)
+    dict(features=features, embed=embed, select=select, test=test, valpreds=valpreds)[a.stage]() if a.stage != 'refit' else refit(a.version, a.end)
