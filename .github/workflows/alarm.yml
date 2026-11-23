@@ -1,0 +1,29 @@
+name: Alarm clock (starts the desk and nightly jobs on time)
+# GitHub's scheduler stopped firing for this repo after 21 Nov 2026, so the 23 Nov morning call never ran.
+# This is a chain that does not depend on it: each run sleeps until the next job in engine/alarm_plan.py (at most ~5h45m),
+# starts that job, then starts the next alarm run. Only one alarm is ever alive (newest wins).
+# The schedule below only restarts the chain if it ever breaks and GitHub's scheduler is working again.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+permissions:
+  actions: write
+  contents: read
+concurrency:
+  group: alarm
+  cancel-in-progress: true
+jobs:
+  alarm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sleep until the next job, start it, pass the baton
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          read WAIT WF < <(python3 engine/alarm_plan.py)
+          echo "next: $WF in $WAIT s"; sleep "$WAIT"
+          if [ "$WF" != "-" ]; then gh workflow run "$WF" --repo "$GITHUB_REPOSITORY" --ref main && echo "started $WF"; sleep 20; fi
+          gh workflow run alarm.yml --repo "$GITHUB_REPOSITORY" --ref main && echo "baton passed"
