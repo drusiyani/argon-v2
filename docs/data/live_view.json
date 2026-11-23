@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-23",
- "as_of": "2026-11-23 12:20 NY",
- "last_bar": "2026-11-23 12:10",
+ "as_of": "2026-11-23 12:26 NY",
+ "last_bar": "2026-11-23 12:16",
  "equity_used": 102959.23,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-20 16:59",
-   "yahoo_bars": 1069,
-   "last_real": "2026-11-23 12:10",
-   "last_price": 26835.75,
+   "yahoo_bars": 1075,
+   "last_real": "2026-11-23 12:16",
+   "last_price": 26884.75,
    "gap_pct": 0.87
   },
   "ES": {
    "databento_last": "2026-11-20 16:59",
-   "yahoo_bars": 1069,
-   "last_real": "2026-11-23 12:10",
-   "last_price": 7259.25,
+   "yahoo_bars": 1075,
+   "last_real": "2026-11-23 12:16",
+   "last_price": 7272.0,
    "gap_pct": 0.44
   },
   "YM": {
    "databento_last": "2026-11-20 16:59",
-   "yahoo_bars": 1067,
-   "last_real": "2026-11-23 12:10",
-   "last_price": 49656.0,
+   "yahoo_bars": 1073,
+   "last_real": "2026-11-23 12:16",
+   "last_price": 49756.0,
    "gap_pct": 0.21
   },
   "RTY": {
    "databento_last": "2026-11-20 16:59",
-   "yahoo_bars": 1069,
-   "last_real": "2026-11-23 12:10",
-   "last_price": 2664.39990234375,
+   "yahoo_bars": 1075,
+   "last_real": "2026-11-23 12:16",
+   "last_price": 2669.300048828125,
    "gap_pct": 0.37
   }
  },
@@ -266,10 +266,17 @@
    ],
    [
     730,
-    26833.25,
-    26859.0,
-    26825.0,
-    26835.75
+    26833.0,
+    26902.0,
+    26823.0,
+    26895.75
+   ],
+   [
+    735,
+    26895.5,
+    26910.75,
+    26872.75,
+    26884.75
    ]
   ],
   "ES": [
@@ -500,9 +507,16 @@
    [
     730,
     7258.5,
-    7264.0,
+    7273.5,
     7257.0,
-    7259.25
+    7272.5
+   ],
+   [
+    735,
+    7272.25,
+    7276.75,
+    7268.75,
+    7272.0
    ]
   ]
  },
@@ -519,7 +533,7 @@
    "stop": 26708.75,
    "exit_time": "09:35",
    "exit": 26708.0,
-   "last": 26835.75,
+   "last": 26884.75,
    "state": "closed",
    "R_now": -1.194,
    "usd_now": -1221.0
