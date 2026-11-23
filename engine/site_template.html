@@ -521,6 +521,7 @@ function home(){const v=$('#v-home'),L=DATA.ledger||{},dc=(DATA.desk||{}).daytyp
  <div class="today">
   <div class="card tcard rv"><div class="th"><span class="lbl">Practice book</span><span class="chip">Day ${esc(L.days||0)} · since ${+esc((L.start||'2026-11-20').slice(8))} Nov</span></div>
    <div class="tval num">${money(L.equity)}</div><div class="tdelta ${L.equity>=1e5?'up':'dn'}">${pct(L.equity?(L.equity/1e5-1)*100:null,2)} since $100,000${(()=>{const e=DATA.equity||[];if(e.length<1)return'';const a=e.length>1?e[e.length-2][1]:1e5,b=e[e.length-1][1];return` · last day <b class="${b>=a?'up':'dn'}">${money(b-a)}</b>`})()}</div>
+   <div id="pblive">${pbLive()}</div>
    <div class="tspark">${spark([1e5,...(DATA.equity||[]).map(x=>x[1])],'var(--gold)')}</div>
    ${L.warmup&&L.warmup.days?`<p class="tnote" style="margin:6px 0 0">Counted from $100,000 on 20 Nov, when all four AIs joined. The ${L.warmup.days} warm-up days before that (${money(L.warmup.usd)}) stay in the ledger untouched.</p>`:''}
    <div class="tchecks">${Object.entries(L.checks||{}).map(([k,v])=>`<span class="tc ${/ok|off|flat/.test(v)?'good':''}">${/ok|off|flat/.test(v)?ic('check',3):''}${{kill:'Kill switch off',chain:'Chain intact',replay:'Replay matches',positions:'Rules flat overnight'}[k]||esc(k)}</span>`).join('')}</div></div>
@@ -871,6 +872,11 @@ const LVD={d:null};const SNM=RULES;
 function nyMin(){const n=new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'}));return n.getHours()*60+n.getMinutes()}
 // after 3:55pm New York (or on a later day) every rule is flat, even if the last delayed update still shows a trade open
 function liveDone(V){const nc=nextCall();return !!V&&(V.date<nc.nyDate||nyMin()>=955)}
+// practice book: today's unofficial estimate from the live view until the nightly booking replaces it
+function pbLive(){const V=LVD.d,L=DATA.ledger||{};if(!V||!V.date||(LVD.b&&LVD.b[V.date])||V.date<=(L.last||''))return'';
+ const T=V.trades||[],K=V.core&&V.core.contracts>0?V.core:null;if(!T.length&&!K)return'';
+ const u=T.reduce((a,t)=>a+(t.usd_now||0),0)+(K?K.usd:0),e=(L.equity||1e5)+u;
+ return `<div style="display:block;margin:10px 0 0;font-size:13.5px;line-height:1.45;color:var(--ink2)">Live estimate ${V.date===nextCall().nyDate?'today':esc(V.date)}: <b class="${u>=0?'up':'dn'}">${u>=0?'+':''}${money(u)}</b> → about <b>${money(e)}</b>. Unofficial until tonight's booking.</div>`}
 function liveCard(){const V=LVD.d,nc=nextCall(),today=nc.nyDate,done=liveDone(V);
  const B=V&&LVD.b&&LVD.b[V.date];
  if(B){// the night run has booked this day: show the official ledger, not the delayed estimate
@@ -894,7 +900,7 @@ function liveCard(){const V=LVD.d,nc=nextCall(),today=nc.nyDate,done=liveDone(V)
    :`<p class="sub">${V.date===today?'No trades yet today. The rules can enter from 9:31 New York.':'No trades in the last session.'}</p>`}
   <p class="tnote" style="margin-top:8px">Unofficial view from delayed prices (about 10 minutes behind), updated every few minutes. The official record is booked in the ledger after the close.${(V.warnings||[]).length?' '+esc(V.warnings.join(' ')):''}</p></div>`}
 const px=(x,d=2)=>x==null?'–':Number(x).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
-function paintLive(){$$('.livecard').forEach(el=>{el.outerHTML=liveCard()});const sel=$('#dsel');if(sel&&C){const was=sel.value,o=sel.querySelector('option[value=live]');if(o)o.outerHTML=liveOpt();else if(liveSess())sel.insertAdjacentHTML('afterbegin',liveOpt());sel.value=was;if(cur==='chart'&&cmode==='day'&&sel.value==='live')cload()}}
+function paintLive(){$$('.livecard').forEach(el=>{el.outerHTML=liveCard()});$$('#pblive').forEach(el=>{el.innerHTML=pbLive()});const sel=$('#dsel');if(sel&&C){const was=sel.value,o=sel.querySelector('option[value=live]');if(o)o.outerHTML=liveOpt();else if(liveSess())sel.insertAdjacentHTML('afterbegin',liveOpt());sel.value=was;if(cur==='chart'&&cmode==='day'&&sel.value==='live')cload()}}
 async function freshen(){const [F,V,LD]=await Promise.all([fetch('desk_feed.json',{cache:'no-cache'}).then(r=>r.json()).catch(()=>null),fetch('data/live_view.json',{cache:'no-cache'}).then(r=>r.json()).catch(()=>null),fetch('data/live_days.json',{cache:'no-cache'}).then(r=>r.json()).catch(()=>null)]);
  const nb=LD&&LD.days?Object.keys(LD.days).length:0,ob=LVD.b?Object.keys(LVD.b).length:0;if(LD&&LD.days)LVD.b=LD.days;
  if(V&&(!LVD.d||V.as_of!==LVD.d.as_of||V.date!==LVD.d.date||nb!==ob)){LVD.d=V;paintLive()}
