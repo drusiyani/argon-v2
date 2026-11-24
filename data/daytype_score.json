@@ -64,35 +64,35 @@
  },
  "label": "trend day = |close-open| >= 0.6 x (high-low), NQ 9:30-16:00",
  "latest_call": {
-  "date": "2026-11-20",
-  "made_at": "08:49",
+  "date": "2026-11-24",
+  "made_at": "08:46",
   "late": false,
   "inputs": {
-   "yesterday_range_pts": 1402.0,
-   "avg20_range_pts": 883.5,
-   "range_ratio": 1.59,
-   "rsi5": 5.5,
-   "last_5_closes_change_pct": -6.29,
-   "overnight_change_pct": -2.12,
-   "overnight_range_vs_avg20": 0.68,
-   "vix": 31.23,
-   "vix_1y_percentile": 100,
+   "yesterday_range_pts": 1710.2,
+   "avg20_range_pts": 1006.0,
+   "range_ratio": 1.7,
+   "rsi5": 44.1,
+   "last_5_closes_change_pct": -1.75,
+   "overnight_change_pct": -2.3,
+   "overnight_range_vs_avg20": 0.89,
+   "vix": 29.56,
+   "vix_1y_percentile": 99,
    "calendar": [
-    "monthly options expiry (third Friday)"
+    "nothing scheduled that Argon tracks"
    ],
    "headlines": [
-    "[Yahoo Finance, Fri 08:10] US Stock Market Today: S&P 500 Futures Slip As Hawkish Fed And Strong Dollar Bite",
-    "[Yahoo Finance, Fri 08:06] No bear in sight: Major Wall St banks set 2027 S&P 500 targets",
-    "[Yahoo Finance, Fri 07:57] The S&P 500 Just Had Its Biggest Reversal Since March 2020",
-    "[Yahoo Finance, Fri 07:53] Equity Futures Drop as AI Concerns Remain Despite Anthropic's Record Market Debut",
-    "[Yahoo Finance, Fri 07:20] Nasdaq Futures Slide, Anthropic Shares Reverse IPO Gains \u2014 LITE, IREN, SNDK, NVDA In Focus",
-    "[Yahoo Finance, Fri 07:18] 'Miserable 7' Stocks Shed Whopping $4 Trillion In Value Overnight",
-    "[Yahoo Finance, Fri 08:25] Stock Market Today: Tech Futures Sell Off As Anthropic Plunges 10% After IPO (Live Coverage)",
-    "[Yahoo Finance, Fri 08:14] Why Did Nvidia Stock Fall 39%?",
-    "[Yahoo Finance, Fri 07:51] Amazon, Nvidia Fell As Anthropic Gained $185 Billion",
-    "[Yahoo Finance, Fri 07:28] Has Vertex Stock Become A Different Bet?",
-    "[Yahoo Finance, Fri 07:15] Here\u2019s How The Bulls Expect Apple to Hit $460 Per Share in 2027",
-    "[Yahoo Finance, Fri 07:15] Why Is Veeva Stock Falling?"
+    "[Yahoo Finance, Tue 08:34] The S&P 500 Stock Market Index Entered Correction Territory Last Friday. Here's What Could Happen Next.",
+    "[MarketWatch, Tue 08:41] I\u2019ve paid for long-term-care insurance for 20 years. Is it still worth it?",
+    "[Reuters (Finnhub), Tue 08:22] Iraqi PM orders ministry to manage oilfields in areas under Kurdish control, Kurds reject move - Reuters",
+    "[CNBC (Finnhub), Tue 08:05] Property Play: Commercial real estate activity falls 14% in October, as interest rates rise",
+    "[Yahoo Finance, Tue 08:28] Nasdaq Futures Fall as Questions Linger Over AI Trade",
+    "[MarketWatch, Tue 08:40] I\u2019m in my 70s and buying a new BMW X1. Should I put my only son on the title?",
+    "[Reuters (Finnhub), Tue 05:37] US envoy 'not certain' military aid to Israel will end this year as Trump promised - Reuters",
+    "[CNBC (Finnhub), Tue 07:10] Does the Nvidia-led rip mark the market bottom? Maybe not",
+    "[Yahoo Finance, Tue 08:22] I Own SCHD. Here\u2019s Why I Also Own This 7%-Yielding Income ETF.",
+    "[MarketWatch, Tue 07:56] Sunday\u2019s pot roast now costs more than a Thanksgiving feast. Why beef won\u2019t get cheaper for years.",
+    "[Reuters (Finnhub), Tue 04:05] China, India set for record Russian oil imports in 2026, but demand seen peaking - Reuters",
+    "[CNBC (Finnhub), Tue 07:00] Some U.S. food banks see demand top pandemic levels"
    ],
    "headline_flags": []
   },
@@ -100,26 +100,26 @@
    "size": 1.5,
    "trend_probability": 64.0,
    "veto": null,
-   "reason": "Most of the checklist favors trend: VIX is 31 (1-year high), yesterday's range was 1.59x average, 5-day RSI is 5.5 after a 6.3% drop (dealers likely short gamma), and heavy AI and tech news is driving the tape. I'm holding at 1.5x rather than 2x because monthly options expiry can pin prices and my r"
+   "reason": "Volatility is extreme (VIX 29.6, 99th percentile; yesterday's range 1.7x average), the 5-day trend is down with RSI5 at 44, and a -2.3% overnight gap points to short-gamma conditions that favor momentum. My track record is near coin-flip and nothing is scheduled to drive the day, so I'm sizing up one step rather than to 2x."
   },
   "ai_runs": [
    {
-    "trend_probability": 64.0,
+    "trend_probability": 66.0,
     "size": 1.5,
     "veto": null,
-    "reason": "Nearly every research factor points to a trend day: VIX 31 at its 1-year high, yesterday's range 1.59x average, and a deeply oversold RSI5 of 5.5 after a -6.3% week, which means dealers are likely short gamma, plus a heavy tech-selloff news flow. I'm holding at 1.5x rather than 2x because monthly-ex"
+    "reason": "Volatility is very high (VIX 29.6, 99th percentile; yesterday's range 1.7x average), futures are down 2.3% overnight after a multi-day selloff, and RSI5 of 44 is not overbought, so dealers are likely short gamma and conditions favor momentum. With no scheduled catalyst and my own calls so far no better than a coin flip, I'm sizing 1.5x rather than 2x."
    },
    {
     "trend_probability": 64.0,
     "size": 1.5,
     "veto": null,
-    "reason": "Most of the checklist favors trend: VIX is 31 (1-year high), yesterday's range was 1.59x average, 5-day RSI is 5.5 after a 6.3% drop (dealers likely short gamma), and heavy AI and tech news is driving the tape. I'm holding at 1.5x rather than 2x because monthly options expiry can pin prices and my r"
+    "reason": "Volatility is extreme (VIX 29.6, 99th percentile; yesterday's range 1.7x average), the 5-day trend is down with RSI5 at 44, and a -2.3% overnight gap points to short-gamma conditions that favor momentum. My track record is near coin-flip and nothing is scheduled to drive the day, so I'm sizing up one step rather than to 2x."
    },
    {
-    "trend_probability": 62.0,
+    "trend_probability": 64.0,
     "size": 1.5,
     "veto": null,
-    "reason": "Several checklist items favor momentum: VIX is 31 (100th percentile), yesterday's range was 1.59x average, and a -6.3% five-day selloff with RSI5 at 5.5 points to dealers being short gamma. I'm capping at 1.5x rather than 2x because monthly opex can pin prices, the overnight range was modest (0.68x "
+    "reason": "VIX is at its 99th 1-year percentile, yesterday's range was 1.7x average and RSI5 is 44 after a 1.75% five-day drop with a 2.3% overnight gap down, so dealers are likely short gamma, which favors follow-through. I'm sizing up but not to 2x because nothing is scheduled to drive the day, a big gap can retrace, and my track record is only 50% right on trend-vs-chop."
    }
   ],
   "council": {
@@ -128,58 +128,15 @@
      "size": 1.5,
      "trend_probability": 64.0,
      "veto": null,
-     "reason": "Most of the checklist favors trend: VIX is 31 (1-year high), yesterday's range was 1.59x average, 5-day RSI is 5.5 after a 6.3% drop (dealers likely short gamma), and heavy AI and tech news is driving the tape. I'm holding at 1.5x rather than 2x because monthly options expiry can pin prices and my r",
+     "reason": "Volatility is extreme (VIX 29.6, 99th percentile; yesterday's range 1.7x average), the 5-day trend is down with RSI5 at 44, and a -2.3% overnight gap points to short-gamma conditions that favor momentum. My track record is near coin-flip and nothing is scheduled to drive the day, so I'm sizing up one step rather than to 2x.",
      "model_reported": "claude-opus-5-5"
     },
     "gemini": {
-     "trend_probability": 85.0,
-     "size": 2.0,
-     "veto": null,
-     "reason": "VIX is at its 1-year high (31.23) with yesterday's range at 1.59x the 20-day average, while a 5-day RSI of 5.5 and a -2.12% overnight drop put options dealers deep into short-gamma territory on monthly OPEX. These extreme volatility and dealer-hedging conditions strongly favor big one-way intraday m",
-     "raw": "{\"trend_probability\": 85, \"size\": 2, \"veto\": null, \"reason\": \"VIX is at its 1-year high (31.23) with yesterday's range at 1.59x the 20-day average, while a 5-day RSI of 5.5 and a -2.12% overnight drop put options dealers deep into short-gamma territory on monthly OPEX. These extreme volatility and dealer-hedging conditions strongly favor big one-way intraday momentum.\"}",
-     "model_reported": "google/gemini-4-argon",
-     "provider": "Google"
-    },
-    "gpt": {
-     "trend_probability": 77.0,
+     "trend_probability": 78.0,
      "size": 1.5,
      "veto": null,
-     "reason": "Extreme VIX, expanded ranges, and the sharp five-day selloff favor sustained intraday movement, with potential short-gamma amplification. Monthly expiry flows and reversal risk after the large overnight gap temper confidence, warranting elevated rather than maximum size.",
-     "raw": "{\"trend_probability\":77,\"size\":1.5,\"veto\":null,\"reason\":\"Extreme VIX, expanded ranges, and the sharp five-day selloff favor sustained intraday movement, with potential short-gamma amplification. Monthly expiry flows and reversal risk after the large overnight gap temper confidence, warranting elevated rather than maximum size.\"}",
-     "model_reported": "openai/gpt-6-astra",
-     "provider": "OpenAI"
-    },
-    "kimi": {
-     "trend_probability": 82.0,
-     "size": 2.0,
-     "veto": null,
-     "reason": "A severe multi-day selloff, deeply oversold RSI, peak VIX, and elevated ranges indicate high-volatility, short-gamma conditions favorable for momentum. Continued overnight tech weakness supports follow-through, with monthly expiry adding both trend potential and some pinning or reversal risk.",
-     "raw": "{\"trend_probability\":82,\"size\":2,\"veto\":null,\"reason\":\"A severe multi-day selloff, deeply oversold RSI, peak VIX, and elevated ranges indicate high-volatility, short-gamma conditions favorable for momentum. Continued overnight tech weakness supports follow-through, with monthly expiry adding both trend potential and some pinning or reversal risk.\"}",
-     "model_reported": "moonshotai/kimi-k3.1-pro",
-     "provider": "Modal"
-    }
-   },
-   "answered": 4,
-   "counted": true,
-   "trend_probability": 77.0,
-   "size": 1.75
-  },
-  "asked_at_utc": "2026-11-20T13:49:25+00:00",
-  "dumb_size": 1.5,
-  "council_r2": {
-   "members": {
-    "claude": {
-     "trend_probability": 70.0,
-     "size": 1.5,
-     "veto": null,
-     "reason": "Peak VIX, a 1.59x range expansion and a deep multi-day selloff (RSI5 5.5) put dealers in short gamma, which favors sustained moves. I am holding size at 1.5x rather than 2x because of monthly-expiry pinning risk, the chance of violent two-way capitulation trade, and my own poor recent calibration on"
-    },
-    "gemini": {
-     "trend_probability": 76.0,
-     "size": 1.5,
-     "veto": null,
-     "reason": "Peak 1-year VIX (31.23), a 1.59x range expansion, and a deeply oversold 5-day RSI (5.5) point to strong short-gamma conditions that favor large intraday moves. Size is kept at 1.5 rather than 2.0 because the large -2.12% overnight move is already priced in and monthly options expiry can introduce mi",
-     "raw": "{\"trend_probability\": 76, \"size\": 1.5, \"veto\": null, \"reason\": \"Peak 1-year VIX (31.23), a 1.59x range expansion, and a deeply oversold 5-day RSI (5.5) point to strong short-gamma conditions that favor large intraday moves. Size is kept at 1.5 rather than 2.0 because the large -2.12% overnight move is already priced in and monthly options expiry can introduce midday reversals or strike pinning.\"}",
+     "reason": "VIX at the 99th percentile (29.56), a 1.7x range ratio, and a sharp -2.3% overnight selloff put dealers firmly in short-gamma territory, creating strong conditions for large directional flows after the open. Size is set to 1.5x rather than 2x because there is no scheduled macro catalyst and the overnight session has already consumed 89% of the average daily range.",
+     "raw": "{\"trend_probability\": 78, \"size\": 1.5, \"veto\": null, \"reason\": \"VIX at the 99th percentile (29.56), a 1.7x range ratio, and a sharp -2.3% overnight selloff put dealers firmly in short-gamma territory, creating strong conditions for large directional flows after the open. Size is set to 1.5x rather than 2x because there is no scheduled macro catalyst and the overnight session has already consumed 89% of the average daily range.\"}",
      "model_reported": "google/gemini-4-argon",
      "provider": "Google"
     },
@@ -187,40 +144,83 @@
      "trend_probability": 75.0,
      "size": 1.5,
      "veto": null,
-     "reason": "VIX at its one-year high, yesterday\u2019s 1.59x-average range, and the steep multi-day selloff favor sustained intraday movement, potentially amplified by short-gamma hedging. Monthly expiry and extreme oversold conditions increase pinning/reversal risk, while dealer gamma is unconfirmed, making elevate",
-     "raw": "{\"trend_probability\":75,\"size\":1.5,\"veto\":null,\"reason\":\"VIX at its one-year high, yesterday\u2019s 1.59x-average range, and the steep multi-day selloff favor sustained intraday movement, potentially amplified by short-gamma hedging. Monthly expiry and extreme oversold conditions increase pinning/reversal risk, while dealer gamma is unconfirmed, making elevated rather than maximum size appropriate.\"}",
+     "reason": "VIX at the 99th percentile, yesterday\u2019s 1.7x-normal range, and recent selling favor sustained intraday movement rather than calm mean reversion. The large overnight gap could still reverse, and no tracked scheduled catalyst supports maximum sizing; one successful prior call provides little additional confidence.",
+     "raw": "{\"trend_probability\":75,\"size\":1.5,\"veto\":null,\"reason\":\"VIX at the 99th percentile, yesterday\u2019s 1.7x-normal range, and recent selling favor sustained intraday movement rather than calm mean reversion. The large overnight gap could still reverse, and no tracked scheduled catalyst supports maximum sizing; one successful prior call provides little additional confidence.\"}",
      "model_reported": "openai/gpt-6-astra",
      "provider": "OpenAI"
     },
     "kimi": {
-     "trend_probability": 78.0,
-     "size": 1.5,
+     "trend_probability": 84.0,
+     "size": 2.0,
      "veto": null,
-     "reason": "Extreme VIX, expanded ranges, and deeply oversold post-selloff conditions favor short-gamma trend continuation. The large overnight drop and monthly expiry's pinning or reversal risk warrant elevated rather than maximum size.",
-     "raw": "{\"trend_probability\":78,\"size\":1.5,\"veto\":null,\"reason\":\"Extreme VIX, expanded ranges, and deeply oversold post-selloff conditions favor short-gamma trend continuation. The large overnight drop and monthly expiry's pinning or reversal risk warrant elevated rather than maximum size.\"}",
+     "reason": "Extreme VIX, expanded ranges, and a multi-day selloff favor short-gamma momentum continuation, with no overbought-RSI warning. The large overnight drop slightly tempers conviction because part of the move may already be priced in.",
+     "raw": "{\"trend_probability\":84,\"size\":2,\"veto\":null,\"reason\":\"Extreme VIX, expanded ranges, and a multi-day selloff favor short-gamma momentum continuation, with no overbought-RSI warning. The large overnight drop slightly tempers conviction because part of the move may already be priced in.\"}",
      "model_reported": "moonshotai/kimi-k3.1-pro",
-     "provider": "Decart"
+     "provider": "Nebius"
     }
    },
    "answered": 4,
    "counted": true,
-   "trend_probability": 74.8,
+   "trend_probability": 75.2,
    "size": 1.5
   },
-  "random_size": 2.0,
+  "asked_at_utc": "2026-11-24T13:46:06+00:00",
+  "dumb_size": 2.0,
+  "council_r2": {
+   "members": {
+    "claude": {
+     "trend_probability": 71.0,
+     "size": 1.5,
+     "veto": null,
+     "reason": "Several trend signals line up: VIX is in its 99th percentile, yesterday's range was 1.7x normal, and a multi-day selloff with a neutral RSI5 suggests dealers are short gamma. I am holding at 1.5x rather than 2x because nothing is scheduled, the -2.3% overnight gap could partly reverse, and my own record shows my 70%-level calls have been overconfident."
+    },
+    "gemini": {
+     "trend_probability": 75.0,
+     "size": 1.5,
+     "veto": null,
+     "reason": "VIX at the 99th percentile (29.56), yesterday's 1.7x range expansion, and a -2.3% overnight drop into a multi-day selloff point to short-gamma conditions that strongly favor intraday momentum. Because there is no scheduled macro catalyst and a large overnight range (0.89x average) is already priced in before the open, 1.5x is preferred over maximum 2x sizing.",
+     "raw": "{\"trend_probability\": 75, \"size\": 1.5, \"veto\": null, \"reason\": \"VIX at the 99th percentile (29.56), yesterday's 1.7x range expansion, and a -2.3% overnight drop into a multi-day selloff point to short-gamma conditions that strongly favor intraday momentum. Because there is no scheduled macro catalyst and a large overnight range (0.89x average) is already priced in before the open, 1.5x is preferred over maximum 2x sizing.\"}",
+     "model_reported": "google/gemini-4-argon",
+     "provider": "Google"
+    },
+    "gpt": {
+     "trend_probability": 75.0,
+     "size": 1.5,
+     "veto": null,
+     "reason": "VIX at the 99th percentile, a 1.7x prior-day range, and recent selling favor intraday momentum, although short dealer gamma is only inferred. The large overnight drop could reverse or consolidate after the open, and no scheduled catalyst supports raising conviction to 2x.",
+     "raw": "{\"trend_probability\":75,\"size\":1.5,\"veto\":null,\"reason\":\"VIX at the 99th percentile, a 1.7x prior-day range, and recent selling favor intraday momentum, although short dealer gamma is only inferred. The large overnight drop could reverse or consolidate after the open, and no scheduled catalyst supports raising conviction to 2x.\"}",
+     "model_reported": "openai/gpt-6-astra",
+     "provider": "OpenAI"
+    },
+    "kimi": {
+     "trend_probability": 75.0,
+     "size": 1.5,
+     "veto": null,
+     "reason": "Extreme volatility, a 1.7x-normal prior range, and recent selling favor short-gamma momentum conditions. The large overnight selloff may already be partly priced in and no scheduled catalyst is present, so moderate oversizing is preferable to 2x.",
+     "raw": "{\"trend_probability\":75,\"size\":1.5,\"veto\":null,\"reason\":\"Extreme volatility, a 1.7x-normal prior range, and recent selling favor short-gamma momentum conditions. The large overnight selloff may already be partly priced in and no scheduled catalyst is present, so moderate oversizing is preferable to 2x.\"}",
+     "model_reported": "moonshotai/kimi-k3.1-pro",
+     "provider": "InferenceNet"
+    }
+   },
+   "answered": 4,
+   "counted": true,
+   "trend_probability": 74.0,
+   "size": 1.5
+  },
+  "random_size": 1.5,
   "market": {
-   "trend_probability": 39.1,
-   "size": 1.5
+   "trend_probability": 38.8,
+   "size": 1.0
   },
-  "cost_usd": 0.1651,
+  "cost_usd": 0.162,
   "usage": [
    {
     "who": "claude",
-    "usd": 0.01906,
+    "usd": 0.0137,
     "tokens": {
-     "prompt_tokens": 1776,
-     "completion_tokens": 598,
-     "total_tokens": 2374,
+     "prompt_tokens": 1901,
+     "completion_tokens": 305,
+     "total_tokens": 2206,
      "is_byok": false,
      "prompt_tokens_details": {
       "cached_tokens": 0,
@@ -229,12 +229,12 @@
       "video_tokens": 0
      },
      "cost_details": {
-      "upstream_inference_cost": 0.019064,
-      "upstream_inference_prompt_cost": 0.007104,
-      "upstream_inference_completions_cost": 0.01196
+      "upstream_inference_cost": 0.013704,
+      "upstream_inference_prompt_cost": 0.007604,
+      "upstream_inference_completions_cost": 0.0061
      },
      "completion_tokens_details": {
-      "reasoning_tokens": 382,
+      "reasoning_tokens": 133,
       "image_tokens": 0,
       "audio_tokens": 0
      }
@@ -242,11 +242,11 @@
    },
    {
     "who": "claude",
-    "usd": 0.0163,
+    "usd": 0.01522,
     "tokens": {
-     "prompt_tokens": 1776,
-     "completion_tokens": 460,
-     "total_tokens": 2236,
+     "prompt_tokens": 1901,
+     "completion_tokens": 381,
+     "total_tokens": 2282,
      "is_byok": false,
      "prompt_tokens_details": {
       "cached_tokens": 0,
@@ -255,12 +255,12 @@
       "video_tokens": 0
      },
      "cost_details": {
-      "upstream_inference_cost": 0.016304,
-      "upstream_inference_prompt_cost": 0.007104,
-      "upstream_inference_completions_cost": 0.0092
+      "upstream_inference_cost": 0.015224,
+      "upstream_inference_prompt_cost": 0.007604,
+      "upstream_inference_completions_cost": 0.00762
      },
      "completion_tokens_details": {
-      "reasoning_tokens": 293,
+      "reasoning_tokens": 220,
       "image_tokens": 0,
       "audio_tokens": 0
      }
@@ -268,11 +268,11 @@
    },
    {
     "who": "claude",
-    "usd": 0.0171,
+    "usd": 0.01566,
     "tokens": {
-     "prompt_tokens": 1776,
-     "completion_tokens": 500,
-     "total_tokens": 2276,
+     "prompt_tokens": 1901,
+     "completion_tokens": 403,
+     "total_tokens": 2304,
      "is_byok": false,
      "prompt_tokens_details": {
       "cached_tokens": 0,
@@ -281,12 +281,12 @@
       "video_tokens": 0
      },
      "cost_details": {
-      "upstream_inference_cost": 0.017104,
-      "upstream_inference_prompt_cost": 0.007104,
-      "upstream_inference_completions_cost": 0.01
+      "upstream_inference_cost": 0.015664,
+      "upstream_inference_prompt_cost": 0.007604,
+      "upstream_inference_completions_cost": 0.00806
      },
      "completion_tokens_details": {
-      "reasoning_tokens": 332,
+      "reasoning_tokens": 227,
       "image_tokens": 0,
       "audio_tokens": 0
      }
@@ -294,25 +294,25 @@
    },
    {
     "who": "kimi",
-    "usd": 0.00563,
+    "usd": 0.00571,
     "tokens": {
-     "prompt_tokens": 1014,
-     "completion_tokens": 372,
-     "total_tokens": 1386,
+     "prompt_tokens": 1196,
+     "completion_tokens": 332,
+     "total_tokens": 1528,
      "is_byok": false,
      "prompt_tokens_details": {
-      "cached_tokens": 64,
+      "cached_tokens": 0,
       "cache_write_tokens": 0,
       "audio_tokens": 0,
       "video_tokens": 0
      },
      "cost_details": {
-      "upstream_inference_cost": 0.0056328,
-      "upstream_inference_prompt_cost": 0.0019128,
-      "upstream_inference_completions_cost": 0.00372
+      "upstream_inference_cost": 0.005712,
+      "upstream_inference_prompt_cost": 0.002392,
+      "upstream_inference_completions_cost": 0.00332
      },
      "completion_tokens_details": {
-      "reasoning_tokens": 287,
+      "reasoning_tokens": 250,
       "image_tokens": 0,
       "audio_tokens": 0
      }
@@ -320,25 +320,25 @@
    },
    {
     "who": "gpt",
-    "usd": 0.02871,
+    "usd": 0.02538,
     "tokens": {
-     "prompt_tokens": 911,
-     "completion_tokens": 392,
-     "total_tokens": 1303,
+     "prompt_tokens": 1095,
+     "completion_tokens": 234,
+     "total_tokens": 1329,
      "is_byok": false,
      "prompt_tokens_details": {
       "cached_tokens": 0,
-      "cache_write_tokens": 0,
+      "cache_write_tokens": 1092,
       "audio_tokens": 0,
       "video_tokens": 0
      },
      "cost_details": {
-      "upstream_inference_cost": 0.02871,
-      "upstream_inference_prompt_cost": 0.00911,
-      "upstream_inference_completions_cost": 0.0196
+      "upstream_inference_cost": 0.02538,
+      "upstream_inference_prompt_cost": 0.01368,
+      "upstream_inference_completions_cost": 0.0117
      },
      "completion_tokens_details": {
-      "reasoning_tokens": 317,
+      "reasoning_tokens": 148,
       "image_tokens": 0,
       "audio_tokens": 0
      }
@@ -346,11 +346,11 @@
    },
    {
     "who": "gemini",
-    "usd": 0.01015,
+    "usd": 0.01407,
     "tokens": {
-     "prompt_tokens": 1059,
-     "completion_tokens": 803,
-     "total_tokens": 1862,
+     "prompt_tokens": 1269,
+     "completion_tokens": 1153,
+     "total_tokens": 2422,
      "is_byok": false,
      "prompt_tokens_details": {
       "cached_tokens": 0,
@@ -359,12 +359,12 @@
       "video_tokens": 0
      },
      "cost_details": {
-      "upstream_inference_cost": 0.010148,
-      "upstream_inference_prompt_cost": 0.002118,
-      "upstream_inference_completions_cost": 0.00803
+      "upstream_inference_cost": 0.014068,
+      "upstream_inference_prompt_cost": 0.002538,
+      "upstream_inference_completions_cost": 0.01153
      },
      "completion_tokens_details": {
-      "reasoning_tokens": 683,
+      "reasoning_tokens": 1028,
       "image_tokens": 0,
       "audio_tokens": 0
      }
@@ -372,11 +372,11 @@
    },
    {
     "who": "kimi",
-    "usd": 0.00304,
+    "usd": 0.00809,
     "tokens": {
-     "prompt_tokens": 1321,
-     "completion_tokens": 243,
-     "total_tokens": 1564,
+     "prompt_tokens": 1501,
+     "completion_tokens": 299,
+     "total_tokens": 1800,
      "is_byok": false,
      "prompt_tokens_details": {
       "cached_tokens": 0,
@@ -385,12 +385,12 @@
       "video_tokens": 0
      },
      "cost_details": {
-      "upstream_inference_cost": 0.0030432,
-      "upstream_inference_prompt_cost": 0.0015852,
-      "upstream_inference_completions_cost": 0.001458
+      "upstream_inference_cost": 0.0080892,
+      "upstream_inference_prompt_cost": 0.0040527,
+      "upstream_inference_completions_cost": 0.0040365
      },
      "completion_tokens_details": {
-      "reasoning_tokens": 166,
+      "reasoning_tokens": 215,
       "image_tokens": 0,
       "audio_tokens": 0
      }
@@ -398,11 +398,11 @@
    },
    {
     "who": "claude",
-    "usd": 0.01723,
+    "usd": 0.01569,
     "tokens": {
-     "prompt_tokens": 2212,
-     "completion_tokens": 419,
-     "total_tokens": 2631,
+     "prompt_tokens": 2312,
+     "completion_tokens": 322,
+     "total_tokens": 2634,
      "is_byok": false,
      "prompt_tokens_details": {
       "cached_tokens": 0,
@@ -411,12 +411,12 @@
       "video_tokens": 0
      },
      "cost_details": {
-      "upstream_inference_cost": 0.017228,
-      "upstream_inference_prompt_cost": 0.008848,
-      "upstream_inference_completions_cost": 0.00838
+      "upstream_inference_cost": 0.015688,
+      "upstream_inference_prompt_cost": 0.009248,
+      "upstream_inference_completions_cost": 0.00644
      },
      "completion_tokens_details": {
-      "reasoning_tokens": 263,
+      "reasoning_tokens": 156,
       "image_tokens": 0,
       "audio_tokens": 0
      }
@@ -424,25 +424,25 @@
    },
    {
     "who": "gpt",
-    "usd": 0.03365,
+    "usd": 0.03694,
     "tokens": {
-     "prompt_tokens": 1221,
-     "completion_tokens": 368,
-     "total_tokens": 1589,
+     "prompt_tokens": 1392,
+     "completion_tokens": 391,
+     "total_tokens": 1783,
      "is_byok": false,
      "prompt_tokens_details": {
       "cached_tokens": 0,
-      "cache_write_tokens": 1218,
+      "cache_write_tokens": 1389,
       "audio_tokens": 0,
       "video_tokens": 0
      },
      "cost_details": {
-      "upstream_inference_cost": 0.033655,
-      "upstream_inference_prompt_cost": 0.015255,
-      "upstream_inference_completions_cost": 0.0184
+      "upstream_inference_cost": 0.0369425,
+      "upstream_inference_prompt_cost": 0.0173925,
+      "upstream_inference_completions_cost": 0.01955
      },
      "completion_tokens_details": {
-      "reasoning_tokens": 273,
+      "reasoning_tokens": 306,
       "image_tokens": 0,
       "audio_tokens": 0
      }
@@ -450,11 +450,11 @@
    },
    {
     "who": "gemini",
-    "usd": 0.01418,
+    "usd": 0.01156,
     "tokens": {
-     "prompt_tokens": 1349,
-     "completion_tokens": 1148,
-     "total_tokens": 2497,
+     "prompt_tokens": 1558,
+     "completion_tokens": 844,
+     "total_tokens": 2402,
      "is_byok": false,
      "prompt_tokens_details": {
       "cached_tokens": 0,
@@ -463,12 +463,12 @@
       "video_tokens": 0
      },
      "cost_details": {
-      "upstream_inference_cost": 0.014178,
-      "upstream_inference_prompt_cost": 0.002698,
-      "upstream_inference_completions_cost": 0.01148
+      "upstream_inference_cost": 0.011556,
+      "upstream_inference_prompt_cost": 0.003116,
+      "upstream_inference_completions_cost": 0.00844
      },
      "completion_tokens_details": {
-      "reasoning_tokens": 1024,
+      "reasoning_tokens": 716,
       "image_tokens": 0,
       "audio_tokens": 0
      }
@@ -479,8 +479,8 @@
   "errors": {},
   "ai_size_used": 1.5,
   "model": "claude-opus-5-5",
-  "prompt_hash": "683d73102ca25a20",
+  "prompt_hash": "a0e10beb88cb9953",
   "shadow": true
  },
- "updated": "2026-11-24 13:39 UTC"
+ "updated": "2026-11-24 13:46 UTC"
 }

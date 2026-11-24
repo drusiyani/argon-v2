@@ -9,53 +9,53 @@
  },
  "calls": [],
  "daytype": {
-  "date": "2026-11-20",
-  "made_at": "08:49",
+  "date": "2026-11-24",
+  "made_at": "08:46",
   "late": false,
   "ai": {
    "size": 1.5,
    "trend_probability": 64.0,
    "veto": null,
-   "reason": "Most of the checklist favors trend: VIX is 31 (1-year high), yesterday's range was 1.59x average, 5-day RSI is 5.5 after a 6.3% drop (dealers likely short gamma), and heavy AI and tech news is driving the tape. I'm holding at 1.5x rather than 2x because monthly options expiry can pin prices and my r"
+   "reason": "Volatility is extreme (VIX 29.6, 99th percentile; yesterday's range 1.7x average), the 5-day trend is down with RSI5 at 44, and a -2.3% overnight gap points to short-gamma conditions that favor momentum. My track record is near coin-flip and nothing is scheduled to drive the day, so I'm sizing up one step rather than to 2x."
   },
-  "dumb_size": 1.5,
+  "dumb_size": 2.0,
   "ai_size_used": 1.5,
   "shadow": true,
   "council_r2": {
    "counted": true,
-   "trend_probability": 74.8,
+   "trend_probability": 74.0,
    "size": 1.5,
    "members": {
     "claude": {
-     "trend_probability": 70.0,
+     "trend_probability": 71.0,
      "size": 1.5,
-     "reason": "Peak VIX, a 1.59x range expansion and a deep multi-day selloff (RSI5 5.5) put dealers in short gamma, which favors sustained moves."
+     "reason": "Several trend signals line up: VIX is in its 99th percentile, yesterday's range was 1.7x normal, and a multi-day selloff with a neutral RSI5 suggests dealers are short gamma. I am holding at 1.5x rather than 2x because nothing is scheduled, the -2.3% overnight gap could partly reverse, and my own record shows my 70%-level calls have been overconfident."
     },
     "gemini": {
-     "trend_probability": 76.0,
+     "trend_probability": 75.0,
      "size": 1.5,
-     "reason": "Peak 1-year VIX (31.23), a 1.59x range expansion, and a deeply oversold 5-day RSI (5.5) point to strong short-gamma conditions that favor large intraday moves. Size is kept at 1.5 rather than 2.0 because the large -2.12% overnight move is already priced in and monthly options expiry can introduce midday reversals or strike pinning."
+     "reason": "VIX at the 99th percentile (29.56), yesterday's 1.7x range expansion, and a -2.3% overnight drop into a multi-day selloff point to short-gamma conditions that strongly favor intraday momentum. Because there is no scheduled macro catalyst and a large overnight range (0.89x average) is already priced in before the open, 1.5x is preferred over maximum 2x sizing."
     },
     "gpt": {
      "trend_probability": 75.0,
      "size": 1.5,
-     "reason": "VIX at its one-year high, yesterday\u2019s 1.59x-average range, and the steep multi-day selloff favor sustained intraday movement, potentially amplified by short-gamma hedging. Monthly expiry and extreme oversold conditions increase pinning/reversal risk, while dealer gamma is unconfirmed, making elevated rather than maximum size appropriate."
+     "reason": "VIX at the 99th percentile, a 1.7x prior-day range, and recent selling favor intraday momentum, although short dealer gamma is only inferred. The large overnight drop could reverse or consolidate after the open, and no scheduled catalyst supports raising conviction to 2x."
     },
     "kimi": {
-     "trend_probability": 78.0,
+     "trend_probability": 75.0,
      "size": 1.5,
-     "reason": "Extreme VIX, expanded ranges, and deeply oversold post-selloff conditions favor short-gamma trend continuation. The large overnight drop and monthly expiry's pinning or reversal risk warrant elevated rather than maximum size."
+     "reason": "Extreme volatility, a 1.7x-normal prior range, and recent selling favor short-gamma momentum conditions. The large overnight selloff may already be partly priced in and no scheduled catalyst is present, so moderate oversizing is preferable to 2x."
     }
    }
   },
-  "random_size": 2.0,
+  "random_size": 1.5,
   "headlines": [
-   "[Yahoo Finance, Fri 08:10] US Stock Market Today: S&P 500 Futures Slip As Hawkish Fed And Strong Dollar Bite",
-   "[Yahoo Finance, Fri 08:06] No bear in sight: Major Wall St banks set 2027 S&P 500 targets",
-   "[Yahoo Finance, Fri 07:57] The S&P 500 Just Had Its Biggest Reversal Since March 2020",
-   "[Yahoo Finance, Fri 07:53] Equity Futures Drop as AI Concerns Remain Despite Anthropic's Record Market Debut",
-   "[Yahoo Finance, Fri 07:20] Nasdaq Futures Slide, Anthropic Shares Reverse IPO Gains \u2014 LITE, IREN, SNDK, NVDA In Focus",
-   "[Yahoo Finance, Fri 07:18] 'Miserable 7' Stocks Shed Whopping $4 Trillion In Value Overnight"
+   "[Yahoo Finance, Tue 08:34] The S&P 500 Stock Market Index Entered Correction Territory Last Friday. Here's What Could Happen Next.",
+   "[MarketWatch, Tue 08:41] I\u2019ve paid for long-term-care insurance for 20 years. Is it still worth it?",
+   "[Reuters (Finnhub), Tue 08:22] Iraqi PM orders ministry to manage oilfields in areas under Kurdish control, Kurds reject move - Reuters",
+   "[CNBC (Finnhub), Tue 08:05] Property Play: Commercial real estate activity falls 14% in October, as interest rates rise",
+   "[Yahoo Finance, Tue 08:28] Nasdaq Futures Fall as Questions Linger Over AI Trade",
+   "[MarketWatch, Tue 08:40] I\u2019m in my 70s and buying a new BMW X1. Should I put my only son on the title?"
   ],
   "council": {
    "members": {
@@ -63,40 +63,40 @@
      "trend_probability": 64.0,
      "size": 1.5,
      "veto": null,
-     "reason": "Most of the checklist favors trend: VIX is 31 (1-year high), yesterday's range was 1.59x average, 5-day RSI is 5.5 after a 6.3% drop (dealers likely short gamma), and heavy AI and tech news is driving the tape."
+     "reason": "Volatility is extreme (VIX 29.6, 99th percentile; yesterday's range 1.7x average), the 5-day trend is down with RSI5 at 44, and a -2.3% overnight gap points to short-gamma conditions that favor momentum. My track record is near coin-flip and nothing is scheduled to drive the day, so I'm sizing up one step rather than to 2x."
     },
     "gemini": {
-     "trend_probability": 85.0,
-     "size": 2.0,
-     "veto": null,
-     "reason": "VIX is at its 1-year high (31.23) with yesterday's range at 1.59x the 20-day average, while a 5-day RSI of 5.5 and a -2.12% overnight drop put options dealers deep into short-gamma territory on monthly OPEX. These extreme volatility and dealer-hedging conditions strongly favor big one-way intraday momentum."
-    },
-    "gpt": {
-     "trend_probability": 77.0,
+     "trend_probability": 78.0,
      "size": 1.5,
      "veto": null,
-     "reason": "Extreme VIX, expanded ranges, and the sharp five-day selloff favor sustained intraday movement, with potential short-gamma amplification. Monthly expiry flows and reversal risk after the large overnight gap temper confidence, warranting elevated rather than maximum size."
+     "reason": "VIX at the 99th percentile (29.56), a 1.7x range ratio, and a sharp -2.3% overnight selloff put dealers firmly in short-gamma territory, creating strong conditions for large directional flows after the open. Size is set to 1.5x rather than 2x because there is no scheduled macro catalyst and the overnight session has already consumed 89% of the average daily range."
+    },
+    "gpt": {
+     "trend_probability": 75.0,
+     "size": 1.5,
+     "veto": null,
+     "reason": "VIX at the 99th percentile, yesterday\u2019s 1.7x-normal range, and recent selling favor sustained intraday movement rather than calm mean reversion. The large overnight gap could still reverse, and no tracked scheduled catalyst supports maximum sizing; one successful prior call provides little additional confidence."
     },
     "kimi": {
-     "trend_probability": 82.0,
+     "trend_probability": 84.0,
      "size": 2.0,
      "veto": null,
-     "reason": "A severe multi-day selloff, deeply oversold RSI, peak VIX, and elevated ranges indicate high-volatility, short-gamma conditions favorable for momentum. Continued overnight tech weakness supports follow-through, with monthly expiry adding both trend potential and some pinning or reversal risk."
+     "reason": "Extreme VIX, expanded ranges, and a multi-day selloff favor short-gamma momentum continuation, with no overbought-RSI warning. The large overnight drop slightly tempers conviction because part of the move may already be priced in."
     }
    },
    "answered": 4,
    "counted": true,
-   "trend_probability": 77.0,
-   "size": 1.75
+   "trend_probability": 75.2,
+   "size": 1.5
   },
   "inputs": {
-   "vix": 31.23,
-   "vix_1y_percentile": 100,
-   "range_ratio": 1.59,
-   "rsi5": 5.5,
-   "overnight_change_pct": -2.12,
+   "vix": 29.56,
+   "vix_1y_percentile": 99,
+   "range_ratio": 1.7,
+   "rsi5": 44.1,
+   "overnight_change_pct": -2.3,
    "calendar": [
-    "monthly options expiry (third Friday)"
+    "nothing scheduled that Argon tracks"
    ]
   }
  },
@@ -880,6 +880,98 @@
      "monthly options expiry (third Friday)"
     ]
    }
+  },
+  {
+   "date": "2026-11-24",
+   "made_at": "08:46",
+   "late": false,
+   "ai": {
+    "size": 1.5,
+    "trend_probability": 64.0,
+    "veto": null,
+    "reason": "Volatility is extreme (VIX 29.6, 99th percentile; yesterday's range 1.7x average), the 5-day trend is down with RSI5 at 44, and a -2.3% overnight gap points to short-gamma conditions that favor momentum. My track record is near coin-flip and nothing is scheduled to drive the day, so I'm sizing up one step rather than to 2x."
+   },
+   "dumb_size": 2.0,
+   "ai_size_used": 1.5,
+   "shadow": true,
+   "council_r2": {
+    "counted": true,
+    "trend_probability": 74.0,
+    "size": 1.5,
+    "members": {
+     "claude": {
+      "trend_probability": 71.0,
+      "size": 1.5,
+      "reason": "Several trend signals line up: VIX is in its 99th percentile, yesterday's range was 1.7x normal, and a multi-day selloff with a neutral RSI5 suggests dealers are short gamma. I am holding at 1.5x rather than 2x because nothing is scheduled, the -2.3% overnight gap could partly reverse, and my own record shows my 70%-level calls have been overconfident."
+     },
+     "gemini": {
+      "trend_probability": 75.0,
+      "size": 1.5,
+      "reason": "VIX at the 99th percentile (29.56), yesterday's 1.7x range expansion, and a -2.3% overnight drop into a multi-day selloff point to short-gamma conditions that strongly favor intraday momentum. Because there is no scheduled macro catalyst and a large overnight range (0.89x average) is already priced in before the open, 1.5x is preferred over maximum 2x sizing."
+     },
+     "gpt": {
+      "trend_probability": 75.0,
+      "size": 1.5,
+      "reason": "VIX at the 99th percentile, a 1.7x prior-day range, and recent selling favor intraday momentum, although short dealer gamma is only inferred. The large overnight drop could reverse or consolidate after the open, and no scheduled catalyst supports raising conviction to 2x."
+     },
+     "kimi": {
+      "trend_probability": 75.0,
+      "size": 1.5,
+      "reason": "Extreme volatility, a 1.7x-normal prior range, and recent selling favor short-gamma momentum conditions. The large overnight selloff may already be partly priced in and no scheduled catalyst is present, so moderate oversizing is preferable to 2x."
+     }
+    }
+   },
+   "random_size": 1.5,
+   "headlines": [
+    "[Yahoo Finance, Tue 08:34] The S&P 500 Stock Market Index Entered Correction Territory Last Friday. Here's What Could Happen Next.",
+    "[MarketWatch, Tue 08:41] I\u2019ve paid for long-term-care insurance for 20 years. Is it still worth it?",
+    "[Reuters (Finnhub), Tue 08:22] Iraqi PM orders ministry to manage oilfields in areas under Kurdish control, Kurds reject move - Reuters",
+    "[CNBC (Finnhub), Tue 08:05] Property Play: Commercial real estate activity falls 14% in October, as interest rates rise",
+    "[Yahoo Finance, Tue 08:28] Nasdaq Futures Fall as Questions Linger Over AI Trade",
+    "[MarketWatch, Tue 08:40] I\u2019m in my 70s and buying a new BMW X1. Should I put my only son on the title?"
+   ],
+   "council": {
+    "members": {
+     "claude": {
+      "trend_probability": 64.0,
+      "size": 1.5,
+      "veto": null,
+      "reason": "Volatility is extreme (VIX 29.6, 99th percentile; yesterday's range 1.7x average), the 5-day trend is down with RSI5 at 44, and a -2.3% overnight gap points to short-gamma conditions that favor momentum. My track record is near coin-flip and nothing is scheduled to drive the day, so I'm sizing up one step rather than to 2x."
+     },
+     "gemini": {
+      "trend_probability": 78.0,
+      "size": 1.5,
+      "veto": null,
+      "reason": "VIX at the 99th percentile (29.56), a 1.7x range ratio, and a sharp -2.3% overnight selloff put dealers firmly in short-gamma territory, creating strong conditions for large directional flows after the open. Size is set to 1.5x rather than 2x because there is no scheduled macro catalyst and the overnight session has already consumed 89% of the average daily range."
+     },
+     "gpt": {
+      "trend_probability": 75.0,
+      "size": 1.5,
+      "veto": null,
+      "reason": "VIX at the 99th percentile, yesterday\u2019s 1.7x-normal range, and recent selling favor sustained intraday movement rather than calm mean reversion. The large overnight gap could still reverse, and no tracked scheduled catalyst supports maximum sizing; one successful prior call provides little additional confidence."
+     },
+     "kimi": {
+      "trend_probability": 84.0,
+      "size": 2.0,
+      "veto": null,
+      "reason": "Extreme VIX, expanded ranges, and a multi-day selloff favor short-gamma momentum continuation, with no overbought-RSI warning. The large overnight drop slightly tempers conviction because part of the move may already be priced in."
+     }
+    },
+    "answered": 4,
+    "counted": true,
+    "trend_probability": 75.2,
+    "size": 1.5
+   },
+   "inputs": {
+    "vix": 29.56,
+    "vix_1y_percentile": 99,
+    "range_ratio": 1.7,
+    "rsi5": 44.1,
+    "overnight_change_pct": -2.3,
+    "calendar": [
+     "nothing scheduled that Argon tracks"
+    ]
+   }
   }
  ],
  "daytype_score": {
@@ -953,30 +1045,30 @@
  },
  "kronos": {
   "NQ": {
-   "direction": "down",
-   "confidence": 0.8,
+   "direction": "up",
+   "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-24T13:28Z"
+   "updated": "2026-11-24T13:44Z"
   },
   "ES": {
    "direction": "down",
    "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-24T13:28Z"
+   "updated": "2026-11-24T13:44Z"
   },
   "YM": {
    "direction": "down",
-   "confidence": 0.8,
+   "confidence": 0.6,
    "horizon": "1h",
-   "updated": "2026-11-24T13:28Z"
+   "updated": "2026-11-24T13:45Z"
   },
   "RTY": {
    "direction": "down",
-   "confidence": 0.6,
+   "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-24T13:28Z"
+   "updated": "2026-11-24T13:45Z"
   }
  },
- "checked": "2026-11-24 13:30 UTC",
- "updated": "2026-11-24 13:34 UTC"
+ "checked": "2026-11-24 13:45 UTC",
+ "updated": "2026-11-24 13:46 UTC"
 }
