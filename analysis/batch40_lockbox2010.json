@@ -1,251 +1,64 @@
 {
  "era": "lockbox2010",
- "last_day": "2024-12-31",
- "sims": 1000,
- "markets": {
-  "NQ": {
-   "candle_momentum_ema12": {
-    "n": 2573,
-    "win_pct": 47.2,
-    "mean_R": 0.0342,
-    "net_pts_per_trade": 2.14,
-    "total_R": 88.0,
-    "half1_R": -0.0155,
-    "half2_R": 0.0838,
-    "random_mean_R": -0.0311,
-    "beats_random_pct": 100.0,
-    "baseline": "coin"
-   },
-   "first_candle_direction": {
-    "n": 2527,
-    "win_pct": 47.5,
-    "mean_R": 0.0361,
-    "net_pts_per_trade": 1.47,
-    "total_R": 91.2,
-    "half1_R": 0.0249,
-    "half2_R": 0.0472,
-    "random_mean_R": -0.0308,
-    "beats_random_pct": 100.0,
-    "baseline": "coin"
-   },
-   "always_long": {
-    "n": 2573,
-    "win_pct": 48.1,
-    "mean_R": -0.0099,
-    "net_pts_per_trade": 0.27,
-    "total_R": -25.5,
-    "half1_R": -0.0366,
-    "half2_R": 0.0167
-   },
-   "always_short": {
-    "n": 2573,
-    "win_pct": 40.5,
-    "mean_R": -0.0528,
-    "net_pts_per_trade": -2.05,
-    "total_R": -135.9,
-    "half1_R": -0.0536,
-    "half2_R": -0.052
-   },
-   "larry_williams_break": {
-    "n": 1944,
-    "win_pct": 44.4,
-    "mean_R": 0.025,
-    "net_pts_per_trade": 0.44,
-    "total_R": 48.5,
-    "half1_R": -0.0228,
-    "half2_R": 0.0727,
-    "random_mean_R": -0.0324,
-    "beats_random_pct": 94.4,
-    "baseline": "time"
-   },
-   "ema_cross": {
-    "n": 1154,
-    "win_pct": 40.2,
-    "mean_R": -0.0358,
-    "net_pts_per_trade": -0.86,
-    "total_R": -41.3,
-    "half1_R": -0.0208,
-    "half2_R": -0.0508,
-    "random_mean_R": -0.0532,
-    "beats_random_pct": 72.4,
-    "baseline": "time"
-   },
-   "macd_cross": {
-    "n": 4680,
-    "win_pct": 40.4,
-    "mean_R": -0.0386,
-    "net_pts_per_trade": -0.61,
-    "total_R": -180.7,
-    "half1_R": -0.0963,
-    "half2_R": 0.0191,
-    "random_mean_R": -0.0575,
-    "beats_random_pct": 88.5,
-    "baseline": "time"
-   },
-   "supertrend": {
-    "n": 2210,
-    "win_pct": 37.1,
-    "mean_R": -0.0668,
-    "net_pts_per_trade": -0.31,
-    "total_R": -147.6,
-    "half1_R": -0.1512,
-    "half2_R": 0.0177,
-    "random_mean_R": -0.0589,
-    "beats_random_pct": 39.1,
-    "baseline": "time"
-   },
-   "bb_squeeze": {
-    "n": 1887,
-    "win_pct": 39.5,
-    "mean_R": -0.0728,
-    "net_pts_per_trade": -0.44,
-    "total_R": -137.3,
-    "half1_R": -0.1226,
-    "half2_R": -0.023,
-    "random_mean_R": -0.0613,
-    "beats_random_pct": 32.0,
-    "baseline": "time"
-   },
-   "fair_value_gap": {
-    "n": 4764,
-    "win_pct": 31.0,
-    "mean_R": -0.1973,
-    "net_pts_per_trade": -2.32,
-    "total_R": -940.2,
-    "half1_R": -0.2332,
-    "half2_R": -0.1615,
-    "random_mean_R": -0.2093,
-    "beats_random_pct": 73.2,
-    "baseline": "time"
-   },
-   "fed_day_drift": {
-    "n": 85,
-    "mean_pct": 0.164,
-    "all_days_mean_pct": 0.083,
-    "win_pct": 55.3,
-    "beats_random_pct": 72.7
-   },
-   "power_of_three": {
-    "days": 2311,
-    "dip_rate_pct": 97.9,
-    "close_up_after_dip_pct": 55.4,
-    "close_up_all_days_pct": 55.4
+ "period": [
+  "2011-06-17",
+  "2020-12-31"
+ ],
+ "book": {
+  "cagr": 18.3,
+  "sharpe": 0.915,
+  "worst_drop": 23.4
+ },
+ "ideas": {
+  "last half-hour momentum": {
+   "own_sharpe": -0.932,
+   "active_days": 2266,
+   "corr_with_book": 0.033,
+   "book_with_it": {
+    "cagr": 12.4,
+    "sharpe": 0.651,
+    "worst_drop": 31.6
    }
   },
-  "ES": {
-   "candle_momentum_ema12": {
-    "n": 2573,
-    "win_pct": 46.6,
-    "mean_R": 0.0204,
-    "net_pts_per_trade": 0.53,
-    "total_R": 52.6,
-    "half1_R": -0.001,
-    "half2_R": 0.0418,
-    "random_mean_R": -0.0478,
-    "beats_random_pct": 100.0,
-    "baseline": "coin"
-   },
-   "first_candle_direction": {
-    "n": 2454,
-    "win_pct": 45.2,
-    "mean_R": 0.0055,
-    "net_pts_per_trade": 0.23,
-    "total_R": 13.5,
-    "half1_R": -0.0149,
-    "half2_R": 0.0258,
-    "random_mean_R": -0.0481,
-    "beats_random_pct": 99.6,
-    "baseline": "coin"
-   },
-   "always_long": {
-    "n": 2573,
-    "win_pct": 47.4,
-    "mean_R": -0.0254,
-    "net_pts_per_trade": -0.12,
-    "total_R": -65.4,
-    "half1_R": -0.0421,
-    "half2_R": -0.0088
-   },
-   "always_short": {
-    "n": 2573,
-    "win_pct": 39.1,
-    "mean_R": -0.0716,
-    "net_pts_per_trade": -0.78,
-    "total_R": -184.3,
-    "half1_R": -0.0798,
-    "half2_R": -0.0635
-   },
-   "larry_williams_break": {
-    "n": 1943,
-    "win_pct": 42.9,
-    "mean_R": -0.0308,
-    "net_pts_per_trade": -0.21,
-    "total_R": -59.8,
-    "half1_R": -0.0762,
-    "half2_R": 0.0146,
-    "random_mean_R": -0.0734,
-    "beats_random_pct": 89.7,
-    "baseline": "time"
-   },
-   "ema_cross": {
-    "n": 1223,
-    "win_pct": 37.9,
-    "mean_R": -0.1193,
-    "net_pts_per_trade": -0.71,
-    "total_R": -145.9,
-    "half1_R": -0.1145,
-    "half2_R": -0.124,
-    "random_mean_R": -0.0905,
-    "beats_random_pct": 14.1,
-    "baseline": "time"
-   },
-   "macd_cross": {
-    "n": 4786,
-    "win_pct": 39.9,
-    "mean_R": -0.0776,
-    "net_pts_per_trade": -0.49,
-    "total_R": -371.2,
-    "half1_R": -0.1033,
-    "half2_R": -0.0518,
-    "random_mean_R": -0.0948,
-    "beats_random_pct": 89.1,
-    "baseline": "time"
-   },
-   "supertrend": {
-    "n": 2005,
-    "win_pct": 38.1,
-    "mean_R": -0.0936,
-    "net_pts_per_trade": -0.29,
-    "total_R": -187.6,
-    "half1_R": -0.1418,
-    "half2_R": -0.0454,
-    "random_mean_R": -0.1,
-    "beats_random_pct": 60.6,
-    "baseline": "time"
-   },
-   "bb_squeeze": {
-    "n": 1833,
-    "win_pct": 38.7,
-    "mean_R": -0.1434,
-    "net_pts_per_trade": -0.52,
-    "total_R": -262.8,
-    "half1_R": -0.1754,
-    "half2_R": -0.1113,
-    "random_mean_R": -0.1004,
-    "beats_random_pct": 2.1,
-    "baseline": "time"
-   },
-   "fair_value_gap": {
-    "n": 4620,
-    "win_pct": 31.6,
-    "mean_R": -0.2613,
-    "net_pts_per_trade": -0.87,
-    "total_R": -1207.1,
-    "half1_R": -0.2903,
-    "half2_R": -0.2323,
-    "random_mean_R": -0.282,
-    "beats_random_pct": 85.1,
-    "baseline": "time"
+  "NQ-ES spread reversion": {
+   "own_sharpe": -1.731,
+   "active_days": 367,
+   "corr_with_book": -0.165,
+   "book_with_it": {
+    "cagr": 14.3,
+    "sharpe": 0.755,
+    "worst_drop": 26.1
+   }
+  },
+  "turn of the month": {
+   "own_sharpe": 0.636,
+   "active_days": 454,
+   "corr_with_book": 0.331,
+   "book_with_it": {
+    "cagr": 23.8,
+    "sharpe": 0.98,
+    "worst_drop": 28.5
+   }
+  },
+  "pre-holiday": {
+   "own_sharpe": -0.061,
+   "active_days": 89,
+   "corr_with_book": 0.12,
+   "book_with_it": {
+    "cagr": 18.0,
+    "sharpe": 0.882,
+    "worst_drop": 27.2
+   }
+  },
+  "overnight-only core": {
+   "own_sharpe": 1.285,
+   "current_core_sharpe": 1.116,
+   "active_days": 2373,
+   "corr_with_book": 0.453,
+   "book_with_it": {
+    "cagr": 12.5,
+    "sharpe": 0.749,
+    "worst_drop": 23.3
    }
   }
  }
