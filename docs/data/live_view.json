@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-24",
- "as_of": "2026-11-24 09:40 NY",
- "last_bar": "2026-11-24 09:30",
+ "as_of": "2026-11-24 09:46 NY",
+ "last_bar": "2026-11-24 09:36",
  "equity_used": 105729.06,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-23 16:57",
-   "yahoo_bars": 924,
-   "last_real": "2026-11-24 09:30",
-   "last_price": 26413.5,
+   "yahoo_bars": 930,
+   "last_real": "2026-11-24 09:36",
+   "last_price": 26276.0,
    "gap_pct": -0.0
   },
   "ES": {
    "databento_last": "2026-11-23 16:57",
-   "yahoo_bars": 924,
-   "last_real": "2026-11-24 09:30",
-   "last_price": 7181.0,
+   "yahoo_bars": 930,
+   "last_real": "2026-11-24 09:36",
+   "last_price": 7171.5,
    "gap_pct": 0.0
   },
   "YM": {
    "databento_last": "2026-11-23 16:57",
-   "yahoo_bars": 931,
-   "last_real": "2026-11-24 09:30",
-   "last_price": 49443.0,
+   "yahoo_bars": 937,
+   "last_real": "2026-11-24 09:36",
+   "last_price": 49555.0,
    "gap_pct": 0.01
   },
   "RTY": {
    "databento_last": "2026-11-23 16:57",
-   "yahoo_bars": 917,
-   "last_real": "2026-11-24 09:30",
-   "last_price": 2666.60009765625,
+   "yahoo_bars": 923,
+   "last_real": "2026-11-24 09:36",
+   "last_price": 2676.300048828125,
    "gap_pct": 0.0
   }
  },
@@ -42,17 +42,31 @@
     570,
     26362.25,
     26417.25,
-    26339.75,
-    26413.5
+    26224.0,
+    26329.25
+   ],
+   [
+    575,
+    26325.75,
+    26330.0,
+    26227.5,
+    26276.0
    ]
   ],
   "ES": [
    [
     570,
-    7183.0,
+    7182.75,
     7187.0,
-    7170.25,
-    7181.0
+    7152.25,
+    7173.5
+   ],
+   [
+    575,
+    7173.25,
+    7174.75,
+    7162.0,
+    7171.5
    ]
   ]
  },
@@ -64,10 +78,28 @@
   "note": "",
   "since": "2026-11-23",
   "from_price": 26816.5,
-  "price": 26413.5,
-  "points": -403.0,
-  "usd": -806.0
+  "price": 26276.0,
+  "points": -540.5,
+  "usd": -1081.0
  },
- "trades": [],
+ "trades": [
+  {
+   "id": "quantlab|NQ|2026-11-24|575|1",
+   "strategy": "quantlab",
+   "market": "NQ",
+   "contract": "MNQ",
+   "contracts": 5,
+   "side": "long",
+   "entry_time": "09:35",
+   "entry": 26326.25,
+   "stop": 26224.0,
+   "exit_time": null,
+   "exit": null,
+   "last": 26276.0,
+   "state": "open",
+   "R_now": -0.499,
+   "usd_now": -510.0
+  }
+ ],
  "skipped": []
 }
