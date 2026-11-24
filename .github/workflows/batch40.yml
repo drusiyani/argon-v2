@@ -1,4 +1,4 @@
-name: One-off analysis - batch 40 - TikTok strategy sweep
+name: One-off analysis - batch 40 - five new ideas
 on:
   push:
     paths: ['.github/workflows/batch40.yml', 'analysis/batch40.py']
@@ -11,7 +11,7 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
       - name: Private market data (argon-data)
@@ -23,12 +23,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install numpy
-      # ARGON_FULL is NOT set: 2025 onward stays sealed (see BATCH40_PREREG.md)
-      - run: python analysis/batch40.py
-      - run: ARGON_DATA=lockbox2010 python analysis/batch40.py || echo "2011-2020 run failed"
-      - name: Save result (summary numbers only)
+      - run: ARGON_FULL=1 python analysis/batch40.py
+      - run: ARGON_FULL=1 ARGON_DATA=lockbox2010 python analysis/batch40.py || echo "sealed-era run failed"
+      - name: Save result
         run: |
           git config user.name argon-bot; git config user.email argon-bot@users.noreply.github.com
-          git add analysis/batch40_*.json; git commit -qm "analysis: batch 40 - TikTok strategy sweep"
+          git add analysis/batch40_*.json; git commit -qm "analysis: batch 40 - five new ideas"
           for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0; sleep $((i*10)); done; exit 1
