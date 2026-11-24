@@ -79,6 +79,11 @@ def main():
         while nd.weekday() >= 5: nd += dt.timedelta(days=1)
         pre = nxt is not None and nd.isoformat() not in tradeset and nd.isoformat() < dl[-1]
         rows['pre-holiday'].append(cc - COST['NQ'] / D[p]['c'] if pre else 0.0)
+    FROM = os.environ.get('B40_FROM')
+    if FROM:                                   # descriptive look at one period only (e.g. 2026); changes no decision
+        keep = [i for i, d in enumerate(days_used) if d >= FROM]
+        days_used = [days_used[i] for i in keep]; core_cc = [core_cc[i] for i in keep]; core_on = [core_on[i] for i in keep]
+        for kk in list(rows): rows[kk] = [rows[kk][i] for i in keep]
     rules = [rd.get(d, 0.0) for d in days_used]
     book = [a + b for a, b in zip(rules, core_cc)]
     out = dict(era=ERA, period=[days_used[0], days_used[-1]], book=dict(**stats(book)), ideas={})
@@ -91,6 +96,6 @@ def main():
     on_book = [a + b for a, b in zip(rules, core_on)]
     out['ideas']['overnight-only core'] = dict(own_sharpe=sr(core_on), current_core_sharpe=sr(core_cc), active_days=len(core_on),
                                                corr_with_book=corr(core_on, book), book_with_it=stats(on_book))
-    json.dump(out, open(f'{A}/batch40_{ERA}.json', 'w'), indent=1); print(json.dumps(out, indent=1))
+    json.dump(out, open(f"{A}/batch40_{ERA}{'_' + FROM[:4] if FROM else ''}.json", 'w'), indent=1); print(json.dumps(out, indent=1))
 
 if __name__ == '__main__': main()
