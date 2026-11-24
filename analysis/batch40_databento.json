@@ -1,0 +1,252 @@
+{
+ "era": "databento",
+ "last_day": "2024-12-31",
+ "sims": 1000,
+ "markets": {
+  "NQ": {
+   "candle_momentum_ema12": {
+    "n": 968,
+    "win_pct": 46.2,
+    "mean_R": 0.0302,
+    "net_pts_per_trade": 3.69,
+    "total_R": 29.2,
+    "half1_R": 0.0174,
+    "half2_R": 0.0429,
+    "random_mean_R": 0.016,
+    "beats_random_pct": 66.7,
+    "baseline": "coin"
+   },
+   "first_candle_direction": {
+    "n": 965,
+    "win_pct": 45.4,
+    "mean_R": 0.0061,
+    "net_pts_per_trade": 0.51,
+    "total_R": 5.8,
+    "half1_R": 0.0011,
+    "half2_R": 0.011,
+    "random_mean_R": 0.0165,
+    "beats_random_pct": 36.2,
+    "baseline": "coin"
+   },
+   "always_long": {
+    "n": 968,
+    "win_pct": 49.0,
+    "mean_R": 0.0407,
+    "net_pts_per_trade": 5.25,
+    "total_R": 39.4,
+    "half1_R": 0.021,
+    "half2_R": 0.0604
+   },
+   "always_short": {
+    "n": 968,
+    "win_pct": 42.5,
+    "mean_R": -0.0089,
+    "net_pts_per_trade": -1.12,
+    "total_R": -8.6,
+    "half1_R": 0.0113,
+    "half2_R": -0.029
+   },
+   "larry_williams_break": {
+    "n": 731,
+    "win_pct": 52.1,
+    "mean_R": 0.1363,
+    "net_pts_per_trade": 12.25,
+    "total_R": 99.6,
+    "half1_R": 0.1302,
+    "half2_R": 0.1424,
+    "random_mean_R": 0.0196,
+    "beats_random_pct": 99.6,
+    "baseline": "time"
+   },
+   "ema_cross": {
+    "n": 410,
+    "win_pct": 49.0,
+    "mean_R": 0.1209,
+    "net_pts_per_trade": 9.26,
+    "total_R": 49.6,
+    "half1_R": 0.1571,
+    "half2_R": 0.0847,
+    "random_mean_R": 0.0035,
+    "beats_random_pct": 99.0,
+    "baseline": "time"
+   },
+   "macd_cross": {
+    "n": 1700,
+    "win_pct": 45.8,
+    "mean_R": 0.0429,
+    "net_pts_per_trade": 2.79,
+    "total_R": 72.9,
+    "half1_R": 0.0125,
+    "half2_R": 0.0733,
+    "random_mean_R": 0.0031,
+    "beats_random_pct": 92.3,
+    "baseline": "time"
+   },
+   "supertrend": {
+    "n": 774,
+    "win_pct": 42.1,
+    "mean_R": 0.0818,
+    "net_pts_per_trade": 3.87,
+    "total_R": 63.3,
+    "half1_R": 0.1527,
+    "half2_R": 0.011,
+    "random_mean_R": 0.0124,
+    "beats_random_pct": 91.8,
+    "baseline": "time"
+   },
+   "bb_squeeze": {
+    "n": 727,
+    "win_pct": 45.3,
+    "mean_R": 0.0915,
+    "net_pts_per_trade": 4.13,
+    "total_R": 66.5,
+    "half1_R": 0.1239,
+    "half2_R": 0.0591,
+    "random_mean_R": 0.0015,
+    "beats_random_pct": 98.9,
+    "baseline": "time"
+   },
+   "fair_value_gap": {
+    "n": 1628,
+    "win_pct": 32.8,
+    "mean_R": -0.0488,
+    "net_pts_per_trade": -0.46,
+    "total_R": -79.5,
+    "half1_R": -0.0244,
+    "half2_R": -0.0732,
+    "random_mean_R": -0.0731,
+    "beats_random_pct": 76.6,
+    "baseline": "time"
+   },
+   "fed_day_drift": {
+    "n": 32,
+    "mean_pct": 0.503,
+    "all_days_mean_pct": 0.062,
+    "win_pct": 59.4,
+    "beats_random_pct": 96.6
+   },
+   "power_of_three": {
+    "days": 998,
+    "dip_rate_pct": 99.0,
+    "close_up_after_dip_pct": 53.0,
+    "close_up_all_days_pct": 53.0
+   }
+  },
+  "ES": {
+   "candle_momentum_ema12": {
+    "n": 968,
+    "win_pct": 45.2,
+    "mean_R": 0.0023,
+    "net_pts_per_trade": 0.32,
+    "total_R": 2.2,
+    "half1_R": 0.0139,
+    "half2_R": -0.0093,
+    "random_mean_R": -0.0046,
+    "beats_random_pct": 60.7,
+    "baseline": "coin"
+   },
+   "first_candle_direction": {
+    "n": 956,
+    "win_pct": 43.0,
+    "mean_R": -0.0316,
+    "net_pts_per_trade": -0.92,
+    "total_R": -30.2,
+    "half1_R": -0.0185,
+    "half2_R": -0.0447,
+    "random_mean_R": -0.0026,
+    "beats_random_pct": 17.9,
+    "baseline": "coin"
+   },
+   "always_long": {
+    "n": 968,
+    "win_pct": 47.1,
+    "mean_R": 0.0199,
+    "net_pts_per_trade": 0.82,
+    "total_R": 19.2,
+    "half1_R": 0.0134,
+    "half2_R": 0.0264
+   },
+   "always_short": {
+    "n": 968,
+    "win_pct": 42.9,
+    "mean_R": -0.0268,
+    "net_pts_per_trade": -1.11,
+    "total_R": -25.9,
+    "half1_R": -0.0117,
+    "half2_R": -0.0419
+   },
+   "larry_williams_break": {
+    "n": 724,
+    "win_pct": 50.0,
+    "mean_R": 0.0978,
+    "net_pts_per_trade": 2.08,
+    "total_R": 70.8,
+    "half1_R": 0.103,
+    "half2_R": 0.0926,
+    "random_mean_R": -0.0024,
+    "beats_random_pct": 98.5,
+    "baseline": "time"
+   },
+   "ema_cross": {
+    "n": 423,
+    "win_pct": 46.3,
+    "mean_R": 0.0062,
+    "net_pts_per_trade": 0.77,
+    "total_R": 2.6,
+    "half1_R": 0.099,
+    "half2_R": -0.0862,
+    "random_mean_R": -0.0259,
+    "beats_random_pct": 73.7,
+    "baseline": "time"
+   },
+   "macd_cross": {
+    "n": 1726,
+    "win_pct": 44.4,
+    "mean_R": -0.0023,
+    "net_pts_per_trade": -0.29,
+    "total_R": -3.9,
+    "half1_R": 0.0019,
+    "half2_R": -0.0065,
+    "random_mean_R": -0.031,
+    "beats_random_pct": 86.6,
+    "baseline": "time"
+   },
+   "supertrend": {
+    "n": 727,
+    "win_pct": 41.8,
+    "mean_R": 0.0389,
+    "net_pts_per_trade": 0.33,
+    "total_R": 28.3,
+    "half1_R": 0.1147,
+    "half2_R": -0.0367,
+    "random_mean_R": -0.0275,
+    "beats_random_pct": 93.4,
+    "baseline": "time"
+   },
+   "bb_squeeze": {
+    "n": 733,
+    "win_pct": 41.5,
+    "mean_R": 0.0161,
+    "net_pts_per_trade": -0.12,
+    "total_R": 11.8,
+    "half1_R": 0.027,
+    "half2_R": 0.0053,
+    "random_mean_R": -0.036,
+    "beats_random_pct": 92.1,
+    "baseline": "time"
+   },
+   "fair_value_gap": {
+    "n": 1668,
+    "win_pct": 32.4,
+    "mean_R": -0.1023,
+    "net_pts_per_trade": -0.75,
+    "total_R": -170.6,
+    "half1_R": -0.0884,
+    "half2_R": -0.1162,
+    "random_mean_R": -0.123,
+    "beats_random_pct": 74.1,
+    "baseline": "time"
+   }
+  }
+ }
+}
