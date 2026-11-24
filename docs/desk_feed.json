@@ -932,8 +932,8 @@
   "brier": null
  },
  "book": {
-  "final": 1411903,
-  "a_year": 63.0,
+  "final": 1397322,
+  "a_year": 62.7,
   "sharpe": 1.22,
   "worst_drop": -32.2,
   "risk_pct": 1.0,
@@ -978,5 +978,5 @@
   }
  },
  "checked": "2026-11-24 06:15 UTC",
- "updated": "2026-11-24 06:15 UTC"
+ "updated": "2026-11-24 06:26 UTC"
 }
