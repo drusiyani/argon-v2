@@ -1,0 +1,65 @@
+{
+ "era": "databento",
+ "period": [
+  "2026-01-02",
+  "2026-11-23"
+ ],
+ "book": {
+  "cagr": 7.8,
+  "sharpe": 0.396,
+  "worst_drop": 19.9
+ },
+ "ideas": {
+  "last half-hour momentum": {
+   "own_sharpe": -1.752,
+   "active_days": 219,
+   "corr_with_book": -0.048,
+   "book_with_it": {
+    "cagr": 1.1,
+    "sharpe": 0.186,
+    "worst_drop": 21.0
+   }
+  },
+  "NQ-ES spread reversion": {
+   "own_sharpe": 0.398,
+   "active_days": 38,
+   "corr_with_book": -0.141,
+   "book_with_it": {
+    "cagr": 8.7,
+    "sharpe": 0.424,
+    "worst_drop": 20.0
+   }
+  },
+  "turn of the month": {
+   "own_sharpe": 1.293,
+   "active_days": 43,
+   "corr_with_book": 0.313,
+   "book_with_it": {
+    "cagr": 19.8,
+    "sharpe": 0.693,
+    "worst_drop": 20.1
+   }
+  },
+  "pre-holiday": {
+   "own_sharpe": -0.515,
+   "active_days": 7,
+   "corr_with_book": 0.043,
+   "book_with_it": {
+    "cagr": 6.7,
+    "sharpe": 0.361,
+    "worst_drop": 21.0
+   }
+  },
+  "overnight-only core": {
+   "own_sharpe": 0.425,
+   "current_core_sharpe": -0.113,
+   "active_days": 225,
+   "corr_with_book": 0.528,
+   "book_with_it": {
+    "cagr": 17.3,
+    "sharpe": 0.701,
+    "worst_drop": 16.6
+   }
+  }
+ }
+}
