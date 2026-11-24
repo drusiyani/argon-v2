@@ -1,0 +1,62 @@
+{
+ "era": "databento",
+ "period": [
+  "2021-01-05",
+  "2026-11-23"
+ ],
+ "rules_only": {
+  "cagr": 31.0,
+  "sharpe": 1.254,
+  "worst_drop": 18.2
+ },
+ "strategies": {
+  "SMC break + FVG": {
+   "trades": 837,
+   "win_rate": 0.411,
+   "avg_R": -0.038,
+   "total_R": -32.0,
+   "own_sharpe": -0.393,
+   "rules_with_it": {
+    "cagr": 26.9,
+    "sharpe": 1.071,
+    "worst_drop": 24.9
+   }
+  },
+  "prior-day VWAP rejection": {
+   "trades": 257,
+   "win_rate": 0.335,
+   "avg_R": -0.042,
+   "total_R": -10.8,
+   "own_sharpe": -0.199,
+   "rules_with_it": {
+    "cagr": 29.5,
+    "sharpe": 1.177,
+    "worst_drop": 20.4
+   }
+  },
+  "4H sweep (ATR 5m)": {
+   "trades": 169,
+   "win_rate": 0.645,
+   "avg_R": 0.038,
+   "total_R": 6.4,
+   "own_sharpe": 0.338,
+   "rules_with_it": {
+    "cagr": 31.7,
+    "sharpe": 1.275,
+    "worst_drop": 16.5
+   }
+  },
+  "4H sweep (ATR 1h)": {
+   "trades": 169,
+   "win_rate": 0.568,
+   "avg_R": 0.009,
+   "total_R": 1.6,
+   "own_sharpe": 0.101,
+   "rules_with_it": {
+    "cagr": 31.2,
+    "sharpe": 1.258,
+    "worst_drop": 16.8
+   }
+  }
+ }
+}
