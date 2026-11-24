@@ -2,7 +2,7 @@
 type: lab-run
 week: 2026-W42
 versions_tried: 1305
-passed: 0
+passed: 2
 ---
 # Strategy lab — 13 Oct 2026
 
@@ -11,18 +11,18 @@ passed: 0
 
 ## Result
 
-1,305 versions tried → 11 made money in both practice halves → 5 best picked → 0 passed the exam. So Rulebook v1.0 keeps the same rules, plus the risk rules from Argon v1.
+1,305 versions tried → 11 made money in both practice halves → 5 best picked → 2 passed the exam. So Rulebook v1.0 keeps the same rules, plus the risk rules from Argon v1.
 
 ## The five best
 
 | settings | practice | exam | worst drop | result |
 |---|---|---|---|---|
-| entry ob_first, windows both, bias pd, smt optional, pool any, markets all, target pool | +19.68R (26 trades) | -7.53R (42) | -7.35R | failed |
-| entry ob_only, windows both, bias pd, smt optional, pool any, markets all, target pool | +19.68R (26 trades) | -7.53R (42) | -7.35R | failed |
-| entry ob_first, windows both, bias pd, smt optional, pool any, markets all, target 3R | +13.92R (23 trades) | -0.88R (44) | -7.35R | failed |
-| entry ob_only, windows both, bias pd, smt optional, pool any, markets all, target 3R | +13.92R (23 trades) | -0.88R (44) | -7.35R | failed |
-| entry fvg_first, windows both, bias pd, smt optional, pool any, markets all, target pool | +14.64R (26 trades) | -8.21R (43) | -8.4R | failed |
-| old rules (v0.2) | +0.61R (14) | -7.49R (29) | – | for comparison |
+| entry ob_first, windows both, bias pd, smt optional, pool any, markets all, target pool | +19.65R (26 trades) | -2.11R (43) | -7.35R | failed |
+| entry ob_only, windows both, bias pd, smt optional, pool any, markets all, target pool | +19.65R (26 trades) | -4.14R (42) | -7.35R | failed |
+| entry ob_first, windows both, bias pd, smt optional, pool any, markets all, target 3R | +13.89R (23 trades) | +3.60R (45) | -7.35R | passed |
+| entry ob_only, windows both, bias pd, smt optional, pool any, markets all, target 3R | +13.89R (23 trades) | +2.52R (44) | -7.35R | passed |
+| entry fvg_first, windows both, bias pd, smt optional, pool any, markets all, target pool | +14.64R (26 trades) | -2.80R (44) | -8.4R | failed |
+| old rules (v0.2) | +0.61R (14) | -4.23R (28) | – | for comparison |
 
 Why, in plain English: [[Lessons]]. Current rules: [[Rulebook v1.0]].
 
