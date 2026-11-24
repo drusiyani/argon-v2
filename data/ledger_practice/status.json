@@ -1,23 +1,21 @@
 {
  "book": "practice",
  "start": "2026-11-16",
- "run_at": "2026-11-24T00:59:35-05:00",
- "code": "828321144e5d",
+ "run_at": "2026-11-24T17:21:48-05:00",
+ "code": "26142ad266bc",
  "checks": {
   "kill": "off",
   "chain": "ok",
-  "replay": "ok (5 days re-derived)",
+  "replay": "ok (6 days re-derived)",
   "positions": "flat (ledger and engine agree: no open trades)"
  },
  "data_last_bar_utc": {
-  "NQ": "2026-11-23 21:57",
-  "ES": "2026-11-23 21:57",
-  "YM": "2026-11-23 21:57",
-  "RTY": "2026-11-23 21:57"
+  "NQ": "2026-11-24 14:19",
+  "ES": "2026-11-24 14:19",
+  "YM": "2026-11-24 14:19",
+  "RTY": "2026-11-24 14:19"
  },
- "booked_now": [
-  "2026-11-23"
- ],
+ "booked_now": [],
  "last_booked": "2026-11-23",
  "equity": 105729.06,
  "equity_2x": 105630.05,
@@ -33,15 +31,7 @@
   "verdict": "no full month yet",
   "band": null
  },
- "missed_morning_calls": [
-  "2026-11-23"
- ],
+ "missed_morning_calls": [],
  "state": "ok",
- "alerts": [
-  [
-   "Argon: missed morning call",
-   "no morning call was saved for 2026-11-23",
-   "default"
-  ]
- ]
+ "alerts": []
 }
