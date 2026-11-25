@@ -1,38 +1,39 @@
 {
  "book": "practice",
  "start": "2026-11-16",
- "run_at": "2026-11-24T23:55:05-05:00",
- "code": "be66c56c508c",
+ "run_at": "2026-11-25T17:22:19-05:00",
+ "code": "a49591b6fe29",
  "checks": {
   "kill": "off",
   "chain": "ok",
   "replay": "ok (6 days re-derived)",
   "positions": "flat (ledger and engine agree: no open trades)"
  },
- "waiting_for": "2026-11-24",
  "data_last_bar_utc": {
-  "NQ": "2026-11-24 20:51",
-  "ES": "2026-11-24 20:51",
-  "YM": "2026-11-24 20:51",
-  "RTY": "2026-11-24 20:51"
+  "NQ": "2026-11-25 14:19",
+  "ES": "2026-11-25 14:19",
+  "YM": "2026-11-25 14:19",
+  "RTY": "2026-11-25 14:19"
  },
- "booked_now": [],
- "last_booked": "2026-11-23",
- "equity": 105729.06,
- "equity_2x": 105630.05,
- "days": 6,
- "trades": 20,
+ "booked_now": [
+  "2026-11-24"
+ ],
+ "last_booked": "2026-11-24",
+ "equity": 104258.97,
+ "equity_2x": 104156.95,
+ "days": 7,
+ "trades": 21,
  "band": {
   "rule": "after k finished live months, live rule-R so far must sit inside the backtest's 5th-95th percentile of rolling k-month sums",
   "months_done": 0,
   "R_done": 0,
   "month_R": {
-   "2026-11": 4.03
+   "2026-11": 3.01
   },
   "verdict": "no full month yet",
   "band": null
  },
  "missed_morning_calls": [],
- "state": "ok (waiting for data)",
+ "state": "ok",
  "alerts": []
 }
