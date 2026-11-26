@@ -271,6 +271,8 @@ if __name__ == '__main__':
     now = dt.datetime.now(NY); today = now.date()
     force = '--force' in sys.argv
     if not force and (today.weekday() >= 5 or not (dt.time(8, 45) <= now.time() <= dt.time(9, 25))): print('daytype: outside 8:45-9:25 NY'); sys.exit(0)
+    from calendar_us import HOLIDAYS
+    if not force and today.isoformat() in HOLIDAYS: print('daytype: US market holiday, no call'); sys.exit(0)
     done = set()
     if os.path.exists(OUT):
         for ln in open(OUT):

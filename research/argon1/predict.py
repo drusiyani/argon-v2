@@ -36,6 +36,8 @@ def size_of(p, cut):
 def run(force=False):
     now = dt.datetime.now(NY); today = now.date().isoformat()
     if not force and not (now.weekday() < 5 and dt.time(8, 45) <= now.time() <= dt.time(9, 25)): return print('argon1: outside 08:45-09:25')
+    sys.path.insert(0, os.path.join(ROOT, 'engine')); from calendar_us import HOLIDAYS
+    if not force and today in HOLIDAYS: return print('argon1: US market holiday')
     if os.path.exists(LOG) and any(json.loads(l).get('date') == today for l in open(LOG)): return print('argon1: already called today')
     md = os.environ.get('ARGON1_MODEL_DIR', os.path.join(ROOT, 'data', 'argon1', 'argon1'))
     meta = json.load(open(os.path.join(md, 'meta.json')))
