@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26 04:18 UTC",
+ "generated": "2026-11-26 22:38 UTC",
  "config": {
   "risk_pct": 1.0,
   "start_usd": 100000,
@@ -30,9 +30,9 @@
  ],
  "main": {
   "sharpe": 1.22,
-  "R": 329.3,
-  "final": 1384810,
-  "a_year": 62.4,
+  "R": 329.7,
+  "final": 1390550,
+  "a_year": 62.6,
   "worst_drop": -32.2,
   "losing_months": 27,
   "months": 65,
@@ -58,8 +58,8 @@
     "usd": 398801
    },
    "2026": {
-    "pct": 9.4,
-    "usd": 118814
+    "pct": 9.8,
+    "usd": 124554
    }
   },
   "equity": [
@@ -321,7 +321,7 @@
    ],
    [
     "2026-11",
-    1384810
+    1390550
    ]
   ],
   "monthly_R": [
@@ -389,21 +389,21 @@
    -4.0,
    13.43,
    3.68,
-   12.24
+   12.71
   ]
  },
  "double_costs": {
   "sharpe": 1.06,
-  "R": 279.3,
-  "final": 876138,
-  "a_year": 49.3,
+  "R": 279.7,
+  "final": 879719,
+  "a_year": 49.4,
   "worst_drop": -34.4
  },
  "shadow": {
   "sharpe": 1.4,
-  "R": 231.7,
-  "final": 773466,
-  "a_year": 45.9,
+  "R": 232.3,
+  "final": 777823,
+  "a_year": 46.0,
   "worst_drop": -22.6,
   "equity": [
    [
@@ -664,7 +664,7 @@
    ],
    [
     "2026-11",
-    773466
+    777823
    ]
   ],
   "years": {
@@ -689,8 +689,8 @@
     "usd": 155864
    },
    "2026": {
-    "pct": 16.7,
-    "usd": 110690
+    "pct": 17.4,
+    "usd": 115047
    }
   }
  },
@@ -701,12 +701,39 @@
   "expiry": 1.6369287528537726
  },
  "trades_by_strategy": {
-  "quantlab": 1319,
-  "atrband": 780,
+  "quantlab": 1320,
+  "atrband": 781,
   "expiry": 124,
-  "noiseband": 901
+  "noiseband": 902
  },
  "recent_trades": [
+  {
+   "date": "2026-11-25",
+   "strategy": "atrband",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "13:30",
+   "exit": "15:55",
+   "R": 0.41
+  },
+  {
+   "date": "2026-11-25",
+   "strategy": "noiseband",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "10:30",
+   "exit": "10:59",
+   "R": 0.02
+  },
+  {
+   "date": "2026-11-25",
+   "strategy": "quantlab",
+   "symbol": "NQ",
+   "side": "short",
+   "entry": "09:35",
+   "exit": "09:48",
+   "R": 0.04
+  },
   {
    "date": "2026-11-24",
    "strategy": "quantlab",
@@ -1039,33 +1066,6 @@
    "entry": "10:00",
    "exit": "15:55",
    "R": 0.58
-  },
-  {
-   "date": "2026-11-09",
-   "strategy": "quantlab",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "09:35",
-   "exit": "11:14",
-   "R": 3.09
-  },
-  {
-   "date": "2026-11-06",
-   "strategy": "quantlab",
-   "symbol": "NQ",
-   "side": "short",
-   "entry": "09:35",
-   "exit": "09:37",
-   "R": -1.01
-  },
-  {
-   "date": "2026-11-05",
-   "strategy": "noiseband",
-   "symbol": "NQ",
-   "side": "short",
-   "entry": "10:30",
-   "exit": "15:55",
-   "R": 3.08
   }
  ],
  "daily_R": {
@@ -9404,10 +9404,10 @@
    0
   ],
   "2026-11-25": [
-   0.0,
-   0.0,
-   0,
-   0
+   0.4652,
+   0.473,
+   3,
+   1
   ]
  },
  "honesty": [
