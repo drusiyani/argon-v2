@@ -9,92 +9,92 @@
  },
  "calls": [],
  "daytype": {
-  "date": "2026-11-25",
-  "made_at": "08:48",
+  "date": "2026-11-26",
+  "made_at": "08:51",
   "late": false,
   "ai": {
-   "size": 1.5,
-   "trend_probability": 62.0,
+   "size": 0.5,
+   "trend_probability": 40.0,
    "veto": null,
-   "reason": "The checklist favors momentum: VIX is 31 (top of its 1-year range), Nasdaq futures are down 3% overnight on an AI selloff, dealers are likely short gamma after the selloff, and a hot PCE print is driving Fed-hike fears. I'm keeping the probability modest because it's the low-volume pre-Thanksgiving session, big gaps can reverse, and my own track record shows overconfidence."
+   "reason": "High VIX, a -4% week and RSI5 near 38 point to short-gamma conditions that favor momentum, but today looks like the post-Thanksgiving Black Friday half-session, with thin liquidity, a shortened day and a quiet overnight range (0.41x) despite the +1.1% gap. My recent trend calls have been overconfident (3/8 right), so I'm sizing down."
   },
-  "dumb_size": 1.0,
-  "ai_size_used": 1.5,
+  "dumb_size": 1.5,
+  "ai_size_used": 0.5,
   "shadow": true,
   "council_r2": {
    "counted": true,
-   "trend_probability": 66.2,
-   "size": 1.5,
+   "trend_probability": 51.5,
+   "size": 1.0,
    "members": {
     "claude": {
-     "trend_probability": 62.0,
-     "size": 1.5,
-     "reason": "VIX is at its 1-year high, a multi-day AI selloff likely leaves dealers short gamma, and the hot PCE release adds macro fuel, all of which favor continuation. I trimmed probability below the council because the -3.1% gap already prices in much of the news, pre-Thanksgiving liquidity may be thin, and my past calls around 70% have trended only about half the time."
+     "trend_probability": 45.0,
+     "size": 0.5,
+     "reason": "High VIX (96th percentile), expanded ranges and short-gamma conditions after a 4% selloff favor momentum, and the Iran tanker-mine news adds some live risk. But Black Friday is a thin, shortened session with no scheduled catalyst, and my record shows chop on 6 of the last 8 days with overconfident trend calls, so I am trimming size."
     },
     "gemini": {
-     "trend_probability": 68.0,
-     "size": 1.5,
-     "reason": "VIX at its 1-year high (31.17), a multi-day selloff, and a -3.14% overnight drop following a hot PCE inflation print point to short-gamma conditions that favor intraday momentum. However, because nearly a full average day's range has already occurred overnight ahead of the Thanksgiving holiday, I am keeping trend probability calibrated at 68% and size at 1.5x rather than maxing out."
+     "trend_probability": 54.0,
+     "size": 1.0,
+     "reason": "High VIX (96th percentile), wider recent ranges, and a -4% five-day selloff (RSI5 37.8) create a short-gamma backdrop favorable to momentum, but the shortened Black Friday session, quiet 0.41x overnight range, and recent pre-holiday chop days temper conviction to normal 1x sizing."
     },
     "gpt": {
-     "trend_probability": 68.0,
-     "size": 1.5,
-     "reason": "VIX at its one-year high, recent selling, and inflation-related headlines favor intraday momentum, with potentially short-gamma dealer positioning. However, substantial overnight repricing could give way to reversals, and my limited calibration record supports elevated rather than maximum size."
+     "trend_probability": 55.0,
+     "size": 1.0,
+     "reason": "High VIX, expanded ranges and the recent selloff favor momentum, but possible holiday-thinned participation and no scheduled catalyst weaken confidence in post-open follow-through. The overnight rebound alone does not establish a trend day, and recent overconfident calls argue against oversized exposure."
     },
     "kimi": {
-     "trend_probability": 67.0,
-     "size": 1.5,
-     "reason": "VIX at a one-year high and the AI-led selloff favor short-gamma momentum conditions, but the large overnight decline is partly priced in and creates substantial reversal risk. Elevated trend odds support 1.5x rather than maximum size."
+     "trend_probability": 52.0,
+     "size": 1.0,
+     "reason": "High VIX, expanded ranges and the recent selloff favor momentum, but the holiday-thinned shortened session, quiet overnight range and lack of scheduled catalysts limit conviction. Recent overconfident trend calls argue for normal sizing rather than another aggressive position."
     }
    }
   },
-  "random_size": 1.0,
+  "random_size": 0.0,
   "headlines": [
-   "[Yahoo Finance, Wed 08:36] PCE Inflation Overshoots As Fed Fears Worsen AI-Stock Volatility (Live Coverage)",
-   "[MarketWatch, Wed 08:41] Third-quarter GDP already looked great. Now it looks even better.",
-   "[Reuters (Finnhub), Wed 08:25] Iraq's top court says Baghdad can deploy troops to secure borders in Kurdistan region - Reuters",
-   "[CNBC (Finnhub), Wed 07:26] Liesman: Nvidia whiplash tests Kevin Warsh\u2019s push to read market signals",
-   "[Yahoo Finance, Wed 08:30] SharkNinja Set to Join the S&P 500 Index",
-   "[MarketWatch, Wed 08:34] Inflation gets worse. Now the Fed no choice but to raise U.S. interest rates."
+   "[Yahoo Finance, Thu 08:47] Dow Jones Futures Rise With U.S. Markets Shut; Look For This Bullish Signal",
+   "[MarketWatch, Thu 08:41] Futures point to Black Friday gains for Wall Street as global markets welcome U.S. resilience.",
+   "[Reuters (Finnhub), Thu 07:33] Israel kills nine in Gaza, including a Hamas-appointed minister, officials say - Reuters",
+   "[CNBC (Finnhub), Thu 07:00] Microdrama apps chase profits as Hollywood moves into short-form, vertical video",
+   "[Yahoo Finance, Thu 08:23] Is Anthropic Joining the S&P 500? Here's What Investors Need to Know.",
+   "[MarketWatch, Thu 08:24] Roth IRA conversions aren\u2019t free money. Watch out for these 5 costly mistakes."
   ],
   "council": {
    "members": {
     "claude": {
-     "trend_probability": 62.0,
-     "size": 1.5,
+     "trend_probability": 40.0,
+     "size": 0.5,
      "veto": null,
-     "reason": "The checklist favors momentum: VIX is 31 (top of its 1-year range), Nasdaq futures are down 3% overnight on an AI selloff, dealers are likely short gamma after the selloff, and a hot PCE print is driving Fed-hike fears. I'm keeping the probability modest because it's the low-volume pre-Thanksgiving session, big gaps can reverse, and my own track record shows overconfidence."
+     "reason": "High VIX, a -4% week and RSI5 near 38 point to short-gamma conditions that favor momentum, but today looks like the post-Thanksgiving Black Friday half-session, with thin liquidity, a shortened day and a quiet overnight range (0.41x) despite the +1.1% gap. My recent trend calls have been overconfident (3/8 right), so I'm sizing down."
     },
     "gemini": {
-     "trend_probability": 70.0,
-     "size": 1.5,
+     "trend_probability": 52.0,
+     "size": 1.0,
      "veto": null,
-     "reason": "VIX is at a 1-year high of 31.17 and dealers are short gamma following a multi-day selloff and a -3.14% pre-market drop on hot PCE inflation data, creating strong conditions for intraday momentum. Size is capped at 1.5x rather than 2x because the overnight move has already consumed 89% of the 20-day average range."
+     "reason": "High VIX (26.93, 96th percentile) and short-gamma conditions after a 4.0% five-day selloff (RSI5 37.8) support momentum, but the holiday-thinned Black Friday session lacks scheduled catalysts and a 1.11% overnight bounce is already priced in. Given two consecutive chop days in this regime, I am moderating confidence and sizing down from 1.5x to a normal 1x."
     },
     "gpt": {
-     "trend_probability": 68.0,
-     "size": 1.5,
+     "trend_probability": 58.0,
+     "size": 1.0,
      "veto": null,
-     "reason": "VIX at its yearly high, the recent selloff, and inflation/AI news favor sustained intraday movement, with potentially short-gamma conditions amplifying moves. However, much of the news may already be priced into the large overnight decline; reversal risk and my limited, mixed track record argue against maximum size."
+     "reason": "Elevated VIX, above-average ranges and the recent selloff support trend potential, but modest overnight movement, no tracked scheduled catalysts and holiday-session uncertainty temper confidence in sustained follow-through. Recent overconfident trend calls favor normal sizing rather than another aggressive allocation."
     },
     "kimi": {
-     "trend_probability": 78.0,
-     "size": 1.5,
+     "trend_probability": 58.0,
+     "size": 1.0,
      "veto": null,
-     "reason": "Peak VIX, a deepening AI-led selloff, and recent weakness favor short-gamma continuation after the hot inflation data. The large overnight drop may already be substantially priced in, so conviction supports elevated but not maximum size."
+     "reason": "High VIX, expanded ranges and the recent selloff favor trend continuation, but the overnight rebound is largely priced in and holiday-thin trading with no scheduled catalyst tempers conviction. Recent overconfident calls also argue for normal rather than oversized risk."
     }
    },
    "answered": 4,
    "counted": true,
-   "trend_probability": 69.5,
-   "size": 1.5
+   "trend_probability": 52.0,
+   "size": 1.0
   },
   "inputs": {
-   "vix": 31.17,
-   "vix_1y_percentile": 100,
-   "range_ratio": 1.01,
-   "rsi5": 40.9,
-   "overnight_change_pct": -3.14,
+   "vix": 26.93,
+   "vix_1y_percentile": 96,
+   "range_ratio": 1.24,
+   "rsi5": 37.8,
+   "overnight_change_pct": 1.11,
    "calendar": [
     "nothing scheduled that Argon tracks"
    ]
@@ -1064,6 +1064,98 @@
      "nothing scheduled that Argon tracks"
     ]
    }
+  },
+  {
+   "date": "2026-11-26",
+   "made_at": "08:51",
+   "late": false,
+   "ai": {
+    "size": 0.5,
+    "trend_probability": 40.0,
+    "veto": null,
+    "reason": "High VIX, a -4% week and RSI5 near 38 point to short-gamma conditions that favor momentum, but today looks like the post-Thanksgiving Black Friday half-session, with thin liquidity, a shortened day and a quiet overnight range (0.41x) despite the +1.1% gap. My recent trend calls have been overconfident (3/8 right), so I'm sizing down."
+   },
+   "dumb_size": 1.5,
+   "ai_size_used": 0.5,
+   "shadow": true,
+   "council_r2": {
+    "counted": true,
+    "trend_probability": 51.5,
+    "size": 1.0,
+    "members": {
+     "claude": {
+      "trend_probability": 45.0,
+      "size": 0.5,
+      "reason": "High VIX (96th percentile), expanded ranges and short-gamma conditions after a 4% selloff favor momentum, and the Iran tanker-mine news adds some live risk. But Black Friday is a thin, shortened session with no scheduled catalyst, and my record shows chop on 6 of the last 8 days with overconfident trend calls, so I am trimming size."
+     },
+     "gemini": {
+      "trend_probability": 54.0,
+      "size": 1.0,
+      "reason": "High VIX (96th percentile), wider recent ranges, and a -4% five-day selloff (RSI5 37.8) create a short-gamma backdrop favorable to momentum, but the shortened Black Friday session, quiet 0.41x overnight range, and recent pre-holiday chop days temper conviction to normal 1x sizing."
+     },
+     "gpt": {
+      "trend_probability": 55.0,
+      "size": 1.0,
+      "reason": "High VIX, expanded ranges and the recent selloff favor momentum, but possible holiday-thinned participation and no scheduled catalyst weaken confidence in post-open follow-through. The overnight rebound alone does not establish a trend day, and recent overconfident calls argue against oversized exposure."
+     },
+     "kimi": {
+      "trend_probability": 52.0,
+      "size": 1.0,
+      "reason": "High VIX, expanded ranges and the recent selloff favor momentum, but the holiday-thinned shortened session, quiet overnight range and lack of scheduled catalysts limit conviction. Recent overconfident trend calls argue for normal sizing rather than another aggressive position."
+     }
+    }
+   },
+   "random_size": 0.0,
+   "headlines": [
+    "[Yahoo Finance, Thu 08:47] Dow Jones Futures Rise With U.S. Markets Shut; Look For This Bullish Signal",
+    "[MarketWatch, Thu 08:41] Futures point to Black Friday gains for Wall Street as global markets welcome U.S. resilience.",
+    "[Reuters (Finnhub), Thu 07:33] Israel kills nine in Gaza, including a Hamas-appointed minister, officials say - Reuters",
+    "[CNBC (Finnhub), Thu 07:00] Microdrama apps chase profits as Hollywood moves into short-form, vertical video",
+    "[Yahoo Finance, Thu 08:23] Is Anthropic Joining the S&P 500? Here's What Investors Need to Know.",
+    "[MarketWatch, Thu 08:24] Roth IRA conversions aren\u2019t free money. Watch out for these 5 costly mistakes."
+   ],
+   "council": {
+    "members": {
+     "claude": {
+      "trend_probability": 40.0,
+      "size": 0.5,
+      "veto": null,
+      "reason": "High VIX, a -4% week and RSI5 near 38 point to short-gamma conditions that favor momentum, but today looks like the post-Thanksgiving Black Friday half-session, with thin liquidity, a shortened day and a quiet overnight range (0.41x) despite the +1.1% gap. My recent trend calls have been overconfident (3/8 right), so I'm sizing down."
+     },
+     "gemini": {
+      "trend_probability": 52.0,
+      "size": 1.0,
+      "veto": null,
+      "reason": "High VIX (26.93, 96th percentile) and short-gamma conditions after a 4.0% five-day selloff (RSI5 37.8) support momentum, but the holiday-thinned Black Friday session lacks scheduled catalysts and a 1.11% overnight bounce is already priced in. Given two consecutive chop days in this regime, I am moderating confidence and sizing down from 1.5x to a normal 1x."
+     },
+     "gpt": {
+      "trend_probability": 58.0,
+      "size": 1.0,
+      "veto": null,
+      "reason": "Elevated VIX, above-average ranges and the recent selloff support trend potential, but modest overnight movement, no tracked scheduled catalysts and holiday-session uncertainty temper confidence in sustained follow-through. Recent overconfident trend calls favor normal sizing rather than another aggressive allocation."
+     },
+     "kimi": {
+      "trend_probability": 58.0,
+      "size": 1.0,
+      "veto": null,
+      "reason": "High VIX, expanded ranges and the recent selloff favor trend continuation, but the overnight rebound is largely priced in and holiday-thin trading with no scheduled catalyst tempers conviction. Recent overconfident calls also argue for normal rather than oversized risk."
+     }
+    },
+    "answered": 4,
+    "counted": true,
+    "trend_probability": 52.0,
+    "size": 1.0
+   },
+   "inputs": {
+    "vix": 26.93,
+    "vix_1y_percentile": 96,
+    "range_ratio": 1.24,
+    "rsi5": 37.8,
+    "overnight_change_pct": 1.11,
+    "calendar": [
+     "nothing scheduled that Argon tracks"
+    ]
+   }
   }
  ],
  "daytype_score": {
@@ -1161,6 +1253,6 @@
    "updated": "2026-11-26T13:39Z"
   }
  },
- "checked": "2026-11-26 13:30 UTC",
- "updated": "2026-11-26 13:39 UTC"
+ "checked": "2026-11-26 13:45 UTC",
+ "updated": "2026-11-26 13:51 UTC"
 }
