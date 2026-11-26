@@ -5,3 +5,4 @@
 {"at": "2026-11-24T12:48:54+00:00", "title": "Argon - nightly book run failed", "msg": "Run 45396708108 failed or halted. Check data/ledger*/status.json.", "priority": "high"}
 {"at": "2026-11-25T04:58:20+00:00", "title": "Argon: price mismatch", "msg": "Databento and Yahoo disagree by over 1% on 2026-11-24. Check the data before trusting those days.", "priority": "high"}
 {"at": "2026-11-25T11:33:23+00:00", "title": "Argon - nightly book run failed", "msg": "Run 45605329847 failed or halted. Check data/ledger*/status.json.", "priority": "high"}
+{"at": "2026-11-26T04:14:28+00:00", "title": "Argon: price mismatch", "msg": "Databento and Yahoo disagree by over 1% on 2026-11-25. Check the data before trusting those days.", "priority": "high"}
