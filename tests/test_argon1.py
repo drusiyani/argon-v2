@@ -64,3 +64,10 @@ def test_roll_is_not_a_move():
     c = A.chain(m[['ts', 'open', 'high', 'low', 'close', 'volume', 'instrument_id']])
     r = np.abs(np.log(c['close'] / c['close'].shift()).dropna())
     assert r.max() < 0.005          # the raw 1% jump at the switch is gone
+
+
+def test_chart_uses_ledger_trades_for_booked_days():
+    """26 Nov 2026: the chart showed 'No trades' for a booked day. Booked days must take the ledger's trades."""
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    s = open(os.path.join(root, 'engine', 'site_template.html')).read()
+    assert "data('live_days')" in s and 'S.trades=v.t' in s

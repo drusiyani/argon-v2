@@ -84,6 +84,10 @@ jobs:
           python engine/alert.py "Argon - nightly book run failed" "Run ${{ github.run_id }} failed or halted. Check data/ledger*/status.json." high
       - name: Rebuild the site with the new day
         run: python engine/build_front.py || echo "site rebuild skipped"
+      - name: Check the site agrees with the ledger
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python engine/site_check.py
       - name: Commit (always, so a halt is published too)
         if: always()
         run: |
