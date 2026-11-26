@@ -28,5 +28,10 @@
   "text": "Note that the facts don't line up: the day's total is -$1,470.09, but the only trade listed lost $431.00. I'll stick to what's given and flag that.\n\nThis is paper trading, so no real money was used. On November 24, 2026, the practice account lost $1,470.09 and ended at $104,258.97, though the only trade listed was a $431 loss, so the numbers don't fully match up from what I was given. That trade was a 2-contract long on MNQ using the Opening Drive strategy, and it lasted from 9:35 to 9:38 before it closed at a loss. The market was choppy, the morning call (which only watches and doesn't change any trades) suggested a 64% trend chance, and all safety checks were fine with no open trades left.",
   "by": "Claude",
   "made": "2026-11-25 22:27 UTC"
+ },
+ "2026-11-25": {
+  "text": "This was a paper-trading day (practice money, not real), and it ended down $316.04, leaving the practice account at $103,942.93. The two trades that were made were both small winners: a short on Noise Breakout made $10.00 and a short on Opening Drive made $16.71, each using 1 MNQ contract. The numbers don't add up to a win for the day, though, so something else must have caused the loss that these facts don't explain. One other trade idea was skipped because the safe size for it rounded down to zero contracts. The morning call (a 62% trend chance, size 1.5) was shadow only, so it did not change any trades.",
+  "by": "Claude",
+  "made": "2026-11-26 11:23 UTC"
  }
 }

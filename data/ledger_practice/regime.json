@@ -47,5 +47,12 @@
   "vix": 26.360000610351562,
   "vix_pct": 95,
   "trend_day": 0
+ },
+ "2026-11-25": {
+  "label": "trending",
+  "range_ratio": 1.66,
+  "vix": 28.290000915527344,
+  "vix_pct": 98,
+  "trend_day": 1
  }
 }
