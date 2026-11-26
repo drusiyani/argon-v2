@@ -1,7 +1,7 @@
 name: Tests
 on:
   push:
-    paths: ["engine/**", "research/*.py", "tests/**", ".github/workflows/tests.yml"]
+    paths: ["engine/**", "research/**", "analysis/*.py", "tests/**", ".github/workflows/tests.yml"]
   workflow_dispatch:
 concurrency:
   group: argon-v2-tests
@@ -25,3 +25,9 @@ jobs:
           python-version: "3.12"
       - run: pip install --quiet pytest numpy pandas   # numpy/pandas for the Argon-1 data tests (added 21 Nov 2026)
       - run: pytest -q tests/
+      - name: Push an alert if the tests fail
+        if: failure()
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          [ -n "$NTFY_TOPIC" ] && curl -s -H "Title: Argon" -H "Priority: high" -d "Argon tests FAILED on ${GITHUB_SHA::7}: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" "https://ntfy.sh/$NTFY_TOPIC" || true
