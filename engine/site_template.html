@@ -641,7 +641,12 @@ async function chartTab(){const v=$('#v-chart');const narrow=innerWidth<600;
   <span id="dayrow" hidden><button class="tvbtn" id="prev" aria-label="Earlier day">‹</button><select id="dsel" aria-label="Day"></select><button class="tvbtn" id="next" aria-label="Later day">›</button></span>
   <span class="tvsp"></span><span class="tvtz tvhide" id="ctz">Daily · delayed</span><span class="tvsep tvhide"></span><button class="tvbtn" id="clog" aria-pressed="false">log</button></div></div>
  <div id="ctrades" class="scrollx"></div><p class="src" id="cnote" style="margin:12px 2px 0"></p>`;
- try{const [a,b]=await Promise.all([data('chart'),data('book_daily').catch(()=>({})),need('lwc')]);C=a;C.bd=b}catch(e){$('#chartbox').innerHTML='<p class="sub" style="padding:16px">The chart could not load. Try again later.</p>';return}
+ try{const [a,b,lv]=await Promise.all([data('chart'),data('book_daily').catch(()=>({})),data('live_days').catch(()=>null),need('lwc')]);C=a;C.bd=b;
+  // booked practice days: show the ledger's own trades (the official record), not the backtest's
+  const mm=x=>{const [h,m]=String(x).split(':');return +h*60+ +m};
+  Object.entries((lv&&lv.days)||{}).forEach(([d,v])=>{const S=C.sessions&&C.sessions[d];if(!S||!v.t)return;const at=Object.fromEntries(S.bars.map(r=>[r[0],r]));
+   S.trades=v.t.filter(t=>t[6]!=='ES').map(t=>{const e=at[Math.floor(mm(t[2])/5)*5],x=at[Math.floor(mm(t[3])/5)*5];return e&&x?{strategy:t[0],side:t[1],entry_min:mm(t[2]),exit_min:mm(t[3]),entry:e[1],exit:x[4],R:t[4]}:null}).filter(Boolean);
+   S.other=v.t.filter(t=>t[6]==='ES').length;S.booked=true})}catch(e){$('#chartbox').innerHTML='<p class="sub" style="padding:16px">The chart could not load. Try again later.</p>';return}
  CST.def=narrow?63:252;
  if(!LVD.d)LVD.d=await fetch('data/live_view.json',{cache:'no-cache'}).then(r=>r.json()).catch(()=>null);
  const ds=Object.keys(C.sessions||{}),sel=$('#dsel');sel.innerHTML=liveOpt()+ds.slice().reverse().filter(d=>!(liveSess()&&d===LVD.d.date)).map(d=>{const k=C.sessions[d].trades.length;return`<option value="${d}">${d}${k?' · '+k+' trade'+(k>1?'s':''):''}</option>`}).join('');
