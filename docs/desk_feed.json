@@ -9,92 +9,92 @@
  },
  "calls": [],
  "daytype": {
-  "date": "2026-11-26",
-  "made_at": "08:51",
+  "date": "2026-11-27",
+  "made_at": "08:46",
   "late": false,
   "ai": {
-   "size": 0.5,
-   "trend_probability": 40.0,
+   "size": 1.0,
+   "trend_probability": 48.0,
    "veto": null,
-   "reason": "High VIX, a -4% week and RSI5 near 38 point to short-gamma conditions that favor momentum, but today looks like the post-Thanksgiving Black Friday half-session, with thin liquidity, a shortened day and a quiet overnight range (0.41x) despite the +1.1% gap. My recent trend calls have been overconfident (3/8 right), so I'm sizing down."
+   "reason": "High volatility (VIX 25, 92nd percentile), an expanded range and a weak 5-day tape point to dealers being short gamma, which favors momentum. Against that, today is the thin, early-close Black Friday session with nothing scheduled, and my own calls have been coin-flip accurate, so I stay at normal size."
   },
   "dumb_size": 1.5,
-  "ai_size_used": 0.5,
+  "ai_size_used": 1.0,
   "shadow": true,
   "council_r2": {
    "counted": true,
-   "trend_probability": 51.5,
-   "size": 1.0,
+   "trend_probability": 60.5,
+   "size": 1.5,
    "members": {
     "claude": {
-     "trend_probability": 45.0,
-     "size": 0.5,
-     "reason": "High VIX (96th percentile), expanded ranges and short-gamma conditions after a 4% selloff favor momentum, and the Iran tanker-mine news adds some live risk. But Black Friday is a thin, shortened session with no scheduled catalyst, and my record shows chop on 6 of the last 8 days with overconfident trend calls, so I am trimming size."
-    },
-    "gemini": {
-     "trend_probability": 54.0,
-     "size": 1.0,
-     "reason": "High VIX (96th percentile), wider recent ranges, and a -4% five-day selloff (RSI5 37.8) create a short-gamma backdrop favorable to momentum, but the shortened Black Friday session, quiet 0.41x overnight range, and recent pre-holiday chop days temper conviction to normal 1x sizing."
-    },
-    "gpt": {
-     "trend_probability": 55.0,
-     "size": 1.0,
-     "reason": "High VIX, expanded ranges and the recent selloff favor momentum, but possible holiday-thinned participation and no scheduled catalyst weaken confidence in post-open follow-through. The overnight rebound alone does not establish a trend day, and recent overconfident calls argue against oversized exposure."
-    },
-    "kimi": {
      "trend_probability": 52.0,
      "size": 1.0,
-     "reason": "High VIX, expanded ranges and the recent selloff favor momentum, but the holiday-thinned shortened session, quiet overnight range and lack of scheduled catalysts limit conviction. Recent overconfident trend calls argue for normal sizing rather than another aggressive position."
+     "reason": "High VIX (92nd percentile), an expanded range and a 4% five-day selloff favor momentum under short-gamma conditions. But this is a thin, early-close Black Friday session with no catalyst, and my coin-flip track record on 70%-type calls argues against oversizing, so I size at 1x rather than following the council's 1.5x."
+    },
+    "gemini": {
+     "trend_probability": 64.0,
+     "size": 1.5,
+     "reason": "High volatility (VIX at the 92nd percentile, 1.24x range ratio) and likely short-gamma dealer positioning after a 4% five-day selloff strongly favor intraday momentum. However, the lack of a scheduled catalyst and thin Black Friday holiday trading temper conviction, supporting 1.5x rather than maximum size."
+    },
+    "gpt": {
+     "trend_probability": 63.0,
+     "size": 1.5,
+     "reason": "Elevated VIX, a 1.24x prior-day range and a 4% five-day selloff favor momentum, although short dealer gamma is only inferred. Holiday-thinned trading, no tracked scheduled catalyst and limited calibration from three past calls temper confidence and argue against maximum size."
+    },
+    "kimi": {
+     "trend_probability": 63.0,
+     "size": 1.5,
+     "reason": "High VIX, expanded ranges, and a 4% five-day selloff favor short-gamma momentum. The thin early-close Black Friday session and empty catalyst calendar temper confidence, so moderate oversizing is preferable to maximum size."
     }
    }
   },
-  "random_size": 0.0,
+  "random_size": 0.5,
   "headlines": [
-   "[Yahoo Finance, Thu 08:47] Dow Jones Futures Rise With U.S. Markets Shut; Look For This Bullish Signal",
-   "[MarketWatch, Thu 08:41] Futures point to Black Friday gains for Wall Street as global markets welcome U.S. resilience.",
-   "[Reuters (Finnhub), Thu 07:33] Israel kills nine in Gaza, including a Hamas-appointed minister, officials say - Reuters",
-   "[CNBC (Finnhub), Thu 07:00] Microdrama apps chase profits as Hollywood moves into short-form, vertical video",
-   "[Yahoo Finance, Thu 08:23] Is Anthropic Joining the S&P 500? Here's What Investors Need to Know.",
-   "[MarketWatch, Thu 08:24] Roth IRA conversions aren\u2019t free money. Watch out for these 5 costly mistakes."
+   "[Yahoo Finance, Fri 08:30] Vera Therapeutics (VERA) Stock Jumps 16.4% Premarket: No Company News",
+   "[MarketWatch, Fri 08:30] Renters are now a national political constituency that can influence elections",
+   "[CNBC (Finnhub), Fri 08:05] It\u2019s not just you: Durable goods are getting less reliable, from sputtering cars to glitching smart TVs",
+   "[Reuters (Finnhub), Fri 01:02] EXCLUSIVE: US pushed Venezuela, Iraq to consider leaving OPEC, sources say - Reuters",
+   "[Yahoo Finance, Fri 08:15] Inter (INTR) Stock Jumps 14.5% Premarket: Latin American Stocks Rally",
+   "[MarketWatch, Fri 08:22] New-home sales just hit a 2026 high as builders dangle low mortgages and Black Friday deals"
   ],
   "council": {
    "members": {
     "claude": {
-     "trend_probability": 40.0,
-     "size": 0.5,
+     "trend_probability": 48.0,
+     "size": 1.0,
      "veto": null,
-     "reason": "High VIX, a -4% week and RSI5 near 38 point to short-gamma conditions that favor momentum, but today looks like the post-Thanksgiving Black Friday half-session, with thin liquidity, a shortened day and a quiet overnight range (0.41x) despite the +1.1% gap. My recent trend calls have been overconfident (3/8 right), so I'm sizing down."
+     "reason": "High volatility (VIX 25, 92nd percentile), an expanded range and a weak 5-day tape point to dealers being short gamma, which favors momentum. Against that, today is the thin, early-close Black Friday session with nothing scheduled, and my own calls have been coin-flip accurate, so I stay at normal size."
     },
     "gemini": {
-     "trend_probability": 52.0,
-     "size": 1.0,
+     "trend_probability": 64.0,
+     "size": 1.5,
      "veto": null,
-     "reason": "High VIX (26.93, 96th percentile) and short-gamma conditions after a 4.0% five-day selloff (RSI5 37.8) support momentum, but the holiday-thinned Black Friday session lacks scheduled catalysts and a 1.11% overnight bounce is already priced in. Given two consecutive chop days in this regime, I am moderating confidence and sizing down from 1.5x to a normal 1x."
+     "reason": "Elevated volatility (VIX 25.39, 92nd percentile), above-average ranges (1.24x), and a 5-day selloff (-4.0%, RSI 37.8) indicate a short-gamma environment favorable for momentum, though an empty macro calendar and holiday-week wind-down cap sizing at 1.5x."
     },
     "gpt": {
-     "trend_probability": 58.0,
-     "size": 1.0,
+     "trend_probability": 65.0,
+     "size": 1.5,
      "veto": null,
-     "reason": "Elevated VIX, above-average ranges and the recent selloff support trend potential, but modest overnight movement, no tracked scheduled catalysts and holiday-session uncertainty temper confidence in sustained follow-through. Recent overconfident trend calls favor normal sizing rather than another aggressive allocation."
+     "reason": "VIX at the 92nd percentile, above-average ranges and a 4% five-day selloff favor momentum continuation over calm-market fading. Holiday-week conditions, no tracked scheduled catalyst and a limited forecasting record temper confidence, supporting moderate rather than maximum sizing."
     },
     "kimi": {
-     "trend_probability": 58.0,
-     "size": 1.0,
+     "trend_probability": 72.0,
+     "size": 1.5,
      "veto": null,
-     "reason": "High VIX, expanded ranges and the recent selloff favor trend continuation, but the overnight rebound is largely priced in and holiday-thin trading with no scheduled catalyst tempers conviction. Recent overconfident calls also argue for normal rather than oversized risk."
+     "reason": "High VIX, an expanded prior-day range, and a 4% five-day selloff favor continued momentum and short-gamma conditions. No scheduled catalyst and holiday-thinned trading temper conviction, so 1.5x rather than maximum size."
     }
    },
    "answered": 4,
    "counted": true,
-   "trend_probability": 52.0,
-   "size": 1.0
+   "trend_probability": 62.2,
+   "size": 1.5
   },
   "inputs": {
-   "vix": 26.93,
-   "vix_1y_percentile": 96,
+   "vix": 25.39,
+   "vix_1y_percentile": 92,
    "range_ratio": 1.24,
    "rsi5": 37.8,
-   "overnight_change_pct": 1.11,
+   "overnight_change_pct": null,
    "calendar": [
     "nothing scheduled that Argon tracks"
    ]
@@ -1156,6 +1156,98 @@
      "nothing scheduled that Argon tracks"
     ]
    }
+  },
+  {
+   "date": "2026-11-27",
+   "made_at": "08:46",
+   "late": false,
+   "ai": {
+    "size": 1.0,
+    "trend_probability": 48.0,
+    "veto": null,
+    "reason": "High volatility (VIX 25, 92nd percentile), an expanded range and a weak 5-day tape point to dealers being short gamma, which favors momentum. Against that, today is the thin, early-close Black Friday session with nothing scheduled, and my own calls have been coin-flip accurate, so I stay at normal size."
+   },
+   "dumb_size": 1.5,
+   "ai_size_used": 1.0,
+   "shadow": true,
+   "council_r2": {
+    "counted": true,
+    "trend_probability": 60.5,
+    "size": 1.5,
+    "members": {
+     "claude": {
+      "trend_probability": 52.0,
+      "size": 1.0,
+      "reason": "High VIX (92nd percentile), an expanded range and a 4% five-day selloff favor momentum under short-gamma conditions. But this is a thin, early-close Black Friday session with no catalyst, and my coin-flip track record on 70%-type calls argues against oversizing, so I size at 1x rather than following the council's 1.5x."
+     },
+     "gemini": {
+      "trend_probability": 64.0,
+      "size": 1.5,
+      "reason": "High volatility (VIX at the 92nd percentile, 1.24x range ratio) and likely short-gamma dealer positioning after a 4% five-day selloff strongly favor intraday momentum. However, the lack of a scheduled catalyst and thin Black Friday holiday trading temper conviction, supporting 1.5x rather than maximum size."
+     },
+     "gpt": {
+      "trend_probability": 63.0,
+      "size": 1.5,
+      "reason": "Elevated VIX, a 1.24x prior-day range and a 4% five-day selloff favor momentum, although short dealer gamma is only inferred. Holiday-thinned trading, no tracked scheduled catalyst and limited calibration from three past calls temper confidence and argue against maximum size."
+     },
+     "kimi": {
+      "trend_probability": 63.0,
+      "size": 1.5,
+      "reason": "High VIX, expanded ranges, and a 4% five-day selloff favor short-gamma momentum. The thin early-close Black Friday session and empty catalyst calendar temper confidence, so moderate oversizing is preferable to maximum size."
+     }
+    }
+   },
+   "random_size": 0.5,
+   "headlines": [
+    "[Yahoo Finance, Fri 08:30] Vera Therapeutics (VERA) Stock Jumps 16.4% Premarket: No Company News",
+    "[MarketWatch, Fri 08:30] Renters are now a national political constituency that can influence elections",
+    "[CNBC (Finnhub), Fri 08:05] It\u2019s not just you: Durable goods are getting less reliable, from sputtering cars to glitching smart TVs",
+    "[Reuters (Finnhub), Fri 01:02] EXCLUSIVE: US pushed Venezuela, Iraq to consider leaving OPEC, sources say - Reuters",
+    "[Yahoo Finance, Fri 08:15] Inter (INTR) Stock Jumps 14.5% Premarket: Latin American Stocks Rally",
+    "[MarketWatch, Fri 08:22] New-home sales just hit a 2026 high as builders dangle low mortgages and Black Friday deals"
+   ],
+   "council": {
+    "members": {
+     "claude": {
+      "trend_probability": 48.0,
+      "size": 1.0,
+      "veto": null,
+      "reason": "High volatility (VIX 25, 92nd percentile), an expanded range and a weak 5-day tape point to dealers being short gamma, which favors momentum. Against that, today is the thin, early-close Black Friday session with nothing scheduled, and my own calls have been coin-flip accurate, so I stay at normal size."
+     },
+     "gemini": {
+      "trend_probability": 64.0,
+      "size": 1.5,
+      "veto": null,
+      "reason": "Elevated volatility (VIX 25.39, 92nd percentile), above-average ranges (1.24x), and a 5-day selloff (-4.0%, RSI 37.8) indicate a short-gamma environment favorable for momentum, though an empty macro calendar and holiday-week wind-down cap sizing at 1.5x."
+     },
+     "gpt": {
+      "trend_probability": 65.0,
+      "size": 1.5,
+      "veto": null,
+      "reason": "VIX at the 92nd percentile, above-average ranges and a 4% five-day selloff favor momentum continuation over calm-market fading. Holiday-week conditions, no tracked scheduled catalyst and a limited forecasting record temper confidence, supporting moderate rather than maximum sizing."
+     },
+     "kimi": {
+      "trend_probability": 72.0,
+      "size": 1.5,
+      "veto": null,
+      "reason": "High VIX, an expanded prior-day range, and a 4% five-day selloff favor continued momentum and short-gamma conditions. No scheduled catalyst and holiday-thinned trading temper conviction, so 1.5x rather than maximum size."
+     }
+    },
+    "answered": 4,
+    "counted": true,
+    "trend_probability": 62.2,
+    "size": 1.5
+   },
+   "inputs": {
+    "vix": 25.39,
+    "vix_1y_percentile": 92,
+    "range_ratio": 1.24,
+    "rsi5": 37.8,
+    "overnight_change_pct": null,
+    "calendar": [
+     "nothing scheduled that Argon tracks"
+    ]
+   }
   }
  ],
  "daytype_score": {
@@ -1253,6 +1345,6 @@
    "updated": "2026-11-27T13:40Z"
   }
  },
- "checked": "2026-11-27 13:30 UTC",
- "updated": "2026-11-27 13:40 UTC"
+ "checked": "2026-11-27 13:45 UTC",
+ "updated": "2026-11-27 13:46 UTC"
 }
