@@ -17,7 +17,7 @@ Anything you write under the line at the bottom of a note is yours and is never 
 - Markets: [[Nasdaq]] · [[S&P 500]] (the Dow and Russell 2000 only have recent data so far)
 - Sessions: [[London (session)]] · [[New York (session)]]
 - History: [[2021]] · [[2022]] · [[2023]] · [[2024]] · [[2025]] · [[2026]]
-- Latest day: [[2026-11-26]] · Latest lab run: [[Lab run 2026-11-27]]
+- Latest day: [[2026-11-27]] · Latest lab run: [[Lab run 2026-11-27]]
 
 ## How big the brain is
 
@@ -52,7 +52,7 @@ Anything you write under the line at the bottom of a note is yours and is never 
 | 2026-11-24 | 420 | 166,703 | 0 |
 | 2026-11-25 | 423 | 168,930 | 0 |
 | 2026-11-26 | 426 | 170,487 | 0 |
-| 2026-11-27 | 428 | 170,800 | 1 |
+| 2026-11-27 | 431 | 172,189 | 1 |
 
 %% my notes below. Argon never changes anything under this line %%
 ## My notes
