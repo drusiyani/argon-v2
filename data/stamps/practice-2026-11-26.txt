@@ -1,0 +1,4 @@
+Argon v2 practice ledger
+last booked day: 2026-11-26
+head hash: 64b64d47b887327030d067b86d1a6126009c1c15f3c404cf40a390f756ac15b6
+stamped: 2026-11-27T11:14:04+00:00
