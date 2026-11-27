@@ -2,45 +2,76 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-27",
- "as_of": "2026-11-27 09:35 NY",
- "last_bar": null,
+ "as_of": "2026-11-27 09:40 NY",
+ "last_bar": "2026-11-27 09:30",
  "equity_used": 103942.93,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-26 12:59",
-   "yahoo_bars": 0,
-   "last_real": null,
-   "last_price": null,
-   "gap_pct": null
+   "yahoo_bars": 2,
+   "last_real": "2026-11-27 09:30",
+   "last_price": 26495.0,
+   "gap_pct": 1.37
   },
   "ES": {
    "databento_last": "2026-11-26 12:59",
-   "yahoo_bars": 0,
-   "last_real": null,
-   "last_price": null,
-   "gap_pct": null
+   "yahoo_bars": 2,
+   "last_real": "2026-11-27 09:30",
+   "last_price": 7277.0,
+   "gap_pct": 0.71
   },
   "YM": {
    "databento_last": "2026-11-26 12:59",
-   "yahoo_bars": 0,
-   "last_real": null,
-   "last_price": null,
-   "gap_pct": null
+   "yahoo_bars": 2,
+   "last_real": "2026-11-27 09:30",
+   "last_price": 50728.0,
+   "gap_pct": 0.63
   },
   "RTY": {
    "databento_last": "2026-11-26 12:59",
-   "yahoo_bars": 0,
-   "last_real": null,
-   "last_price": null,
-   "gap_pct": null
+   "yahoo_bars": 2,
+   "last_real": "2026-11-27 09:30",
+   "last_price": 2737.0,
+   "gap_pct": 0.51
   }
  },
- "warnings": [],
+ "warnings": [
+  "NQ: Yahoo's first bar is 1.37% away from Databento's last close (a different contract month?)",
+  "ES: Yahoo's first bar is 0.71% away from Databento's last close (a different contract month?)",
+  "YM: Yahoo's first bar is 0.63% away from Databento's last close (a different contract month?)"
+ ],
  "bars": {
-  "NQ": [],
-  "ES": []
+  "NQ": [
+   [
+    570,
+    26579.75,
+    26589.25,
+    26485.25,
+    26495.0
+   ]
+  ],
+  "ES": [
+   [
+    570,
+    7286.0,
+    7288.5,
+    7274.25,
+    7277.0
+   ]
+  ]
  },
- "core": null,
+ "core": {
+  "contracts": 1,
+  "weight": 0.65,
+  "vxn": 36.42,
+  "vxn_date": "2026-11-24",
+  "note": "",
+  "since": "2026-11-25",
+  "from_price": 26104.75,
+  "price": 26495.0,
+  "points": 390.25,
+  "usd": 780.5
+ },
  "trades": [],
  "skipped": []
 }
