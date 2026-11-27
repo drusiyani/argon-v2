@@ -1232,27 +1232,27 @@
    "direction": "down",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-27T09:02Z"
+   "updated": "2026-11-27T09:18Z"
   },
   "ES": {
    "direction": "down",
-   "confidence": 0.6,
+   "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-27T09:02Z"
+   "updated": "2026-11-27T09:18Z"
   },
   "YM": {
    "direction": "down",
    "confidence": 0.8,
    "horizon": "1h",
-   "updated": "2026-11-27T09:02Z"
+   "updated": "2026-11-27T09:19Z"
   },
   "RTY": {
    "direction": "down",
    "confidence": 1.0,
    "horizon": "1h",
-   "updated": "2026-11-27T09:02Z"
+   "updated": "2026-11-27T09:19Z"
   }
  },
- "checked": "2026-11-27 09:00 UTC",
- "updated": "2026-11-27 09:02 UTC"
+ "checked": "2026-11-27 09:15 UTC",
+ "updated": "2026-11-27 09:19 UTC"
 }
