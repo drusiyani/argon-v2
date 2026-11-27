@@ -1,7 +1,5 @@
 name: Lab - Gemini idea
 on:
-  schedule:
-    - cron: '25 6 * * *'
   workflow_dispatch:
 permissions:
   contents: read
