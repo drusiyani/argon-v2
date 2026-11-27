@@ -10,4 +10,5 @@ Rules for every idea:
 - Must be testable with the data we have (1-minute NQ/ES prices, daily VIX/VXN, calendar).
 - Each test adds one to the trial count, which raises the bar for everything.
 
-Gemini reviews and proposes ideas as GitHub issues titled `Gemini idea:` or `Gemini review:`.
+Gemini drafts one idea each morning (Gemini app scheduled action). If it's good, Dru opens it as a GitHub issue titled
+`Gemini idea: <name>`. Every night Claude runs `NIGHTLY.md`: tests the oldest open idea, or proposes its own if there is none.
