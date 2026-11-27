@@ -1,0 +1,32 @@
+name: Lab - Gemini idea
+on:
+  schedule:
+    - cron: '25 6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: lab-gemini
+  cancel-in-progress: false
+jobs:
+  idea:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ask Gemini for one idea (or none)
+        id: g
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 lab/gemini_idea.py
+      - name: Phone alert
+        if: always()
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          URL: ${{ steps.g.outputs.url }}
+          T: ${{ steps.g.outputs.title }}
+          S: ${{ job.status }}
+        run: |
+          [ -n "$NTFY_TOPIC" ] && curl -s -H "Title: Argon lab" -d "Gemini idea ($S): ${T:-failed} ${URL}" "https://ntfy.sh/$NTFY_TOPIC" || true
