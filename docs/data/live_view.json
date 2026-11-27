@@ -2,36 +2,36 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-27",
- "as_of": "2026-11-27 12:05 NY",
- "last_bar": "2026-11-27 11:55",
+ "as_of": "2026-11-27 12:11 NY",
+ "last_bar": "2026-11-27 12:01",
  "equity_used": 103942.93,
  "markets": {
   "NQ": {
    "databento_last": "2026-11-26 22:22",
-   "yahoo_bars": 147,
-   "last_real": "2026-11-27 11:55",
-   "last_price": 26678.75,
+   "yahoo_bars": 153,
+   "last_real": "2026-11-27 12:01",
+   "last_price": 26623.5,
    "gap_pct": -0.31
   },
   "ES": {
    "databento_last": "2026-11-26 22:22",
-   "yahoo_bars": 147,
-   "last_real": "2026-11-27 11:55",
-   "last_price": 7304.5,
+   "yahoo_bars": 153,
+   "last_real": "2026-11-27 12:01",
+   "last_price": 7295.25,
    "gap_pct": -0.15
   },
   "YM": {
    "databento_last": "2026-11-26 22:22",
-   "yahoo_bars": 147,
-   "last_real": "2026-11-27 11:55",
-   "last_price": 50848.0,
+   "yahoo_bars": 153,
+   "last_real": "2026-11-27 12:01",
+   "last_price": 50788.0,
    "gap_pct": 0.25
   },
   "RTY": {
    "databento_last": "2026-11-26 22:22",
-   "yahoo_bars": 147,
-   "last_real": "2026-11-27 11:55",
-   "last_price": 2752.60009765625,
+   "yahoo_bars": 153,
+   "last_real": "2026-11-27 12:01",
+   "last_price": 2748.89990234375,
    "gap_pct": 0.05
   }
  },
@@ -243,10 +243,17 @@
    ],
    [
     715,
-    26679.75,
+    26680.75,
     26681.25,
-    26648.25,
-    26678.75
+    26604.75,
+    26606.0
+   ],
+   [
+    720,
+    26606.5,
+    26633.25,
+    26598.75,
+    26623.5
    ]
   ],
   "ES": [
@@ -455,10 +462,17 @@
    ],
    [
     715,
-    7305.0,
+    7305.25,
     7305.75,
-    7298.75,
-    7304.5
+    7291.75,
+    7291.75
+   ],
+   [
+    720,
+    7291.75,
+    7297.5,
+    7290.0,
+    7295.25
    ]
   ]
  },
@@ -470,9 +484,9 @@
   "note": "",
   "since": "2026-11-25",
   "from_price": 26104.75,
-  "price": 26678.75,
-  "points": 574.0,
-  "usd": 1148.0
+  "price": 26623.5,
+  "points": 518.75,
+  "usd": 1037.5
  },
  "trades": [
   {
@@ -487,7 +501,7 @@
    "stop": 26589.25,
    "exit_time": "10:13",
    "exit": 26370.18,
-   "last": 26678.75,
+   "last": 26623.5,
    "state": "closed",
    "R_now": 0.023,
    "usd_now": 19.29
