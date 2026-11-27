@@ -2,44 +2,40 @@
  "unofficial": true,
  "label": "UNOFFICIAL live view (Yahoo, delayed ~10 min). The nightly ledger is the record.",
  "date": "2026-11-27",
- "as_of": "2026-11-27 11:19 NY",
- "last_bar": "2026-11-27 11:09",
+ "as_of": "2026-11-27 11:26 NY",
+ "last_bar": "2026-11-27 11:16",
  "equity_used": 103942.93,
  "markets": {
   "NQ": {
-   "databento_last": "2026-11-26 12:59",
-   "yahoo_bars": 101,
-   "last_real": "2026-11-27 11:09",
-   "last_price": 26570.0,
-   "gap_pct": 1.37
+   "databento_last": "2026-11-26 22:22",
+   "yahoo_bars": 108,
+   "last_real": "2026-11-27 11:16",
+   "last_price": 26534.0,
+   "gap_pct": -0.31
   },
   "ES": {
-   "databento_last": "2026-11-26 12:59",
-   "yahoo_bars": 101,
-   "last_real": "2026-11-27 11:09",
-   "last_price": 7280.25,
-   "gap_pct": 0.72
+   "databento_last": "2026-11-26 22:22",
+   "yahoo_bars": 108,
+   "last_real": "2026-11-27 11:16",
+   "last_price": 7274.5,
+   "gap_pct": -0.15
   },
   "YM": {
-   "databento_last": "2026-11-26 12:59",
-   "yahoo_bars": 101,
-   "last_real": "2026-11-27 11:09",
-   "last_price": 50705.0,
-   "gap_pct": 0.64
+   "databento_last": "2026-11-26 22:22",
+   "yahoo_bars": 108,
+   "last_real": "2026-11-27 11:16",
+   "last_price": 50698.0,
+   "gap_pct": 0.25
   },
   "RTY": {
-   "databento_last": "2026-11-26 12:59",
-   "yahoo_bars": 101,
-   "last_real": "2026-11-27 11:09",
-   "last_price": 2740.89990234375,
-   "gap_pct": 0.51
+   "databento_last": "2026-11-26 22:22",
+   "yahoo_bars": 108,
+   "last_real": "2026-11-27 11:16",
+   "last_price": 2742.199951171875,
+   "gap_pct": 0.05
   }
  },
- "warnings": [
-  "NQ: Yahoo's first bar is 1.37% away from Databento's last close (a different contract month?)",
-  "ES: Yahoo's first bar is 0.72% away from Databento's last close (a different contract month?)",
-  "YM: Yahoo's first bar is 0.64% away from Databento's last close (a different contract month?)"
- ],
+ "warnings": [],
  "bars": {
   "NQ": [
    [
@@ -180,7 +176,21 @@
     26561.25,
     26580.75,
     26541.25,
-    26570.0
+    26554.75
+   ],
+   [
+    670,
+    26553.0,
+    26558.25,
+    26513.25,
+    26520.75
+   ],
+   [
+    675,
+    26522.5,
+    26537.5,
+    26504.5,
+    26534.0
    ]
   ],
   "ES": [
@@ -322,7 +332,21 @@
     7282.5,
     7283.25,
     7275.75,
-    7280.25
+    7278.25
+   ],
+   [
+    670,
+    7277.75,
+    7278.5,
+    7268.25,
+    7271.25
+   ],
+   [
+    675,
+    7271.25,
+    7274.75,
+    7268.0,
+    7274.5
    ]
   ]
  },
@@ -334,9 +358,9 @@
   "note": "",
   "since": "2026-11-25",
   "from_price": 26104.75,
-  "price": 26570.0,
-  "points": 465.25,
-  "usd": 930.5
+  "price": 26534.0,
+  "points": 429.25,
+  "usd": 858.5
  },
  "trades": [
   {
@@ -344,17 +368,17 @@
    "strategy": "quantlab",
    "market": "NQ",
    "contract": "MNQ",
-   "contracts": 17,
-   "side": "long",
+   "contracts": 2,
+   "side": "short",
    "entry_time": "09:35",
-   "entry": 26376.75,
-   "stop": 26347.75,
-   "exit_time": "09:35",
-   "exit": 26347.0,
-   "last": 26570.0,
+   "entry": 26375.75,
+   "stop": 26589.25,
+   "exit_time": "10:13",
+   "exit": 26370.18,
+   "last": 26534.0,
    "state": "closed",
-   "R_now": -1.052,
-   "usd_now": -1037.0
+   "R_now": 0.023,
+   "usd_now": 19.29
   }
  ],
  "skipped": []
