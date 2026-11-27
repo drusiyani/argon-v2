@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26 22:38 UTC",
+ "generated": "2026-11-27 04:24 UTC",
  "config": {
   "risk_pct": 1.0,
   "start_usd": 100000,
@@ -30,9 +30,9 @@
  ],
  "main": {
   "sharpe": 1.22,
-  "R": 329.7,
-  "final": 1390550,
-  "a_year": 62.6,
+  "R": 329.0,
+  "final": 1381756,
+  "a_year": 62.4,
   "worst_drop": -32.2,
   "losing_months": 27,
   "months": 65,
@@ -58,8 +58,8 @@
     "usd": 398801
    },
    "2026": {
-    "pct": 9.8,
-    "usd": 124554
+    "pct": 9.1,
+    "usd": 115760
    }
   },
   "equity": [
@@ -321,7 +321,7 @@
    ],
    [
     "2026-11",
-    1390550
+    1381756
    ]
   ],
   "monthly_R": [
@@ -389,20 +389,20 @@
    -4.0,
    13.43,
    3.68,
-   12.71
+   12.0
   ]
  },
  "double_costs": {
   "sharpe": 1.06,
-  "R": 279.7,
-  "final": 879719,
-  "a_year": 49.4,
+  "R": 279.0,
+  "final": 874056,
+  "a_year": 49.2,
   "worst_drop": -34.4
  },
  "shadow": {
   "sharpe": 1.4,
-  "R": 232.3,
-  "final": 777823,
+  "R": 232.1,
+  "final": 776492,
   "a_year": 46.0,
   "worst_drop": -22.6,
   "equity": [
@@ -664,7 +664,7 @@
    ],
    [
     "2026-11",
-    777823
+    776492
    ]
   ],
   "years": {
@@ -689,8 +689,8 @@
     "usd": 155864
    },
    "2026": {
-    "pct": 17.4,
-    "usd": 115047
+    "pct": 17.2,
+    "usd": 113716
    }
   }
  },
@@ -701,12 +701,21 @@
   "expiry": 1.6369287528537726
  },
  "trades_by_strategy": {
-  "quantlab": 1320,
+  "quantlab": 1321,
   "atrband": 781,
   "expiry": 124,
   "noiseband": 902
  },
  "recent_trades": [
+  {
+   "date": "2026-11-26",
+   "strategy": "quantlab",
+   "symbol": "NQ",
+   "side": "long",
+   "entry": "09:35",
+   "exit": "09:48",
+   "R": -0.71
+  },
   {
    "date": "2026-11-25",
    "strategy": "atrband",
@@ -1057,15 +1066,6 @@
    "entry": "10:30",
    "exit": "15:55",
    "R": 1.17
-  },
-  {
-   "date": "2026-11-09",
-   "strategy": "atrband",
-   "symbol": "NQ",
-   "side": "long",
-   "entry": "10:00",
-   "exit": "15:55",
-   "R": 0.58
   }
  ],
  "daily_R": {
@@ -9408,6 +9408,12 @@
    0.473,
    3,
    1
+  ],
+  "2026-11-26": [
+   -0.7128,
+   -0.7022,
+   1,
+   null
   ]
  },
  "honesty": [
