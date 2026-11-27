@@ -45,7 +45,8 @@ def main():
             bad.append(f'site equity {real} differs from the ledger {st.get("equity")}')
     try:
         ch = json.load(open(P('docs', 'data', 'chart.json')))['sessions']
-        if last not in ch: bad.append(f'chart has no 5-minute bars for {last}')
+        traded = bool(L.get('trades')) or bool(L.get('core'))   # holidays / no-trading days have nothing to chart
+        if traded and last not in ch: bad.append(f'chart has no 5-minute bars for {last}')
     except Exception as e: bad.append(f'chart.json unreadable: {e}')
     if '/*__STATIC_FACTS__*/' in html and 'DATA=' not in html: bad.append('index.html looks unbuilt')
     js = re.findall(r'<script[^>]*>(.*?)</script>', html, re.S)
