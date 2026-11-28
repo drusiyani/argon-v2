@@ -25,7 +25,7 @@ your earlier ideas (GitHub issues).
 STEP 1 - Come up with 5 candidate ideas privately, then kill the weak ones. Throw out any idea that:
 - repeats or is a close variant of anything in TRIED.md, the log, or an earlier issue
 - needs data we don't have (no volume, order book or options data before 2021; only 1-minute NQ/ES prices, daily VIX/VXN,
-  T-bills, macro/FOMC calendar)
+  T-bills, macro/FOMC calendar, and daily gold (GC) + 10-year Treasury (ZN) futures from Jun 2010)
 - trades often for a small edge (cost is about 1 NQ point per round trip; it must clear that by a wide margin)
 - is basically another long-Nasdaq bet (it stacks on the core and fails)
 - has no clear reason to work: say WHO is on the other side and WHY they keep losing (forced flows, hedging, rebalancing,

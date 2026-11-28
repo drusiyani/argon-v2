@@ -30,7 +30,8 @@ minimum stop (b35); noise-band gate on QuantLab (b6).
 **Models:** meta-labelling variants, recalibration, recency weighting, sibling labels, 4 alternative models,
 two-stage model, growing ridge, faster skip line, overconfidence fixes (b13-b33). G3 itself was not proven after
 counting trials (b34).
-**Other markets:** S&P rules (friction kills it), other futures (round 1).
+**Other markets:** S&P rules (friction kills it), other futures (round 1); the four intraday rules on gold, Oct 2023-Sep 2026
+(research/gold_test.py: book Sharpe -1.21, lost even before costs). NOT yet tested: a slow daily trend sleeve (issue #2).
 **Social-media setups:** SMC + fair value gap, two-candle 4H sweep (64% wins, ~0R) (b41).
 **Other:** European-session noise band (b9); front-running the noise band's clock (b29); news-candle trades (b29);
 dealer gamma regime (b18).

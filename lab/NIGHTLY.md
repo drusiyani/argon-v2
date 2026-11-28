@@ -1,12 +1,13 @@
 # Nightly lab run (Claude) — the procedure
 
-Run by a scheduled Claude session every night. One idea per night, at most. Nothing here may touch the live book,
+Run by a scheduled Claude session every night. Up to THREE ideas per night (each its own batch, pre-registration and
+results file). Fewer is fine: never pad the night with weak ideas, since every trial raises the bar. Nothing here may touch the live book,
 PREREGISTRATION.md, the engine, the desk or the site.
 
 ## 1. Pick the idea
-1. Open GitHub issues titled `Gemini idea: ...` (Dru opens these from Gemini's morning draft) or labelled `lab`,
-   oldest first, that are still open and not marked "none tonight". Take the oldest.
-2. If there are none, propose ONE idea yourself using exactly the Gemini filters in `lab/gemini_idea.py` (PROMPT):
+1. Queue, in this order: open issues labelled `lab` (oldest first), then open `Gemini idea: ...` issues (oldest
+   first), skipping any marked "none tonight". Take up to three from the queue.
+2. If the queue gives fewer than three, you may propose up to the rest yourself (at most TWO of your own a night) using exactly the Gemini filters in `lab/gemini_idea.py` (PROMPT):
    read `lab/TRIED.md` and `lab/LOG.md`, generate 5 candidates, kill the weak ones. If none survive, add a line to
    `lab/LOG.md` ("none tonight: <why>"), push, and stop. Do NOT burn a trial on a weak idea.
 3. Sanity-check the chosen idea against `lab/TRIED.md` and every `analysis/BATCH*_PREREG.md`. If it is a repeat or
@@ -17,7 +18,18 @@ PREREGISTRATION.md, the engine, the desk or the site.
 - Write `analysis/BATCHNN_PREREG.md`: source (issue link), exact rules, costs (real ticks, same as batch 40/41),
   pass bar, and "not allowed after seeing results". Pass bar (fixed): the rules book's Sharpe with the idea added must
   beat the book alone in BOTH eras (lockbox2010 = 2011-2020 and databento = 2021/22-2026), after costs.
+- Ideas that add a NEW market or sleeve (e.g. issue #2, trend sleeve) are compared on the FULL book (core + four rules
+  + idea vs core + four rules), because their point is to diversify the core, not the rules.
+- Luck check (reported for every idea, not part of the pass bar): paired block bootstrap of the Sharpe gain, 21-day
+  blocks, 2000 draws, both eras. Report the share of draws where the gain is <= 0, and the trial count. A PASS whose
+  era-2 luck share is above 0.10 is labelled "PASS (weak, could be luck)".
 - Commit and push it on its own first.
+
+## Extra data (daily, both eras)
+- `data/extra/GC_daily.csv.gz` (gold) and `data/extra/ZN_daily.csv.gz` (10-year Treasury): Databento ohlcv-1d,
+  continuous front month, Jun 2010 - Oct 2026. They load into `data/extra/` with the other private files. Read them
+  directly (not via ARGON_DATA) in both eras. Merge Sunday-evening bars into the next weekday. Prices are not
+  back-adjusted: on an `instrument_id` change, set that day's return to 0 and charge 1 tick of roll cost.
 
 ## 3. Code and run
 - `analysis/batchNN.py`, modelled on `analysis/batch40.py` / `batch41.py` (use `research/common.py` helpers and
