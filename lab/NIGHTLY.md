@@ -1,13 +1,14 @@
 # Nightly lab run (Claude) — the procedure
 
-Run by a scheduled Claude session every night. Up to THREE ideas per night (each its own batch, pre-registration and
+Run by a scheduled Claude session every night. Up to FIVE strong ideas per night (each its own batch, pre-registration and
 results file). Fewer is fine: never pad the night with weak ideas, since every trial raises the bar. Nothing here may touch the live book,
 PREREGISTRATION.md, the engine, the desk or the site.
 
 ## 1. Pick the idea
 1. Queue, in this order: open issues labelled `lab` (oldest first), then open `Gemini idea: ...` issues (oldest
-   first), skipping any marked "none tonight". Take up to three from the queue.
-2. If the queue gives fewer than three, you may propose up to the rest yourself (at most TWO of your own a night) using exactly the Gemini filters in `lab/gemini_idea.py` (PROMPT):
+   first), skipping any marked "none tonight". Take up to five from the queue.
+2. If the queue gives fewer than five, you may propose up to the rest yourself (only ideas that survive every filter;
+   zero is a fine answer) using exactly the Gemini filters in `lab/gemini_idea.py` (PROMPT):
    read `lab/TRIED.md` and `lab/LOG.md`, generate 5 candidates, kill the weak ones. If none survive, add a line to
    `lab/LOG.md` ("none tonight: <why>"), push, and stop. Do NOT burn a trial on a weak idea.
 3. Sanity-check the chosen idea against `lab/TRIED.md` and every `analysis/BATCH*_PREREG.md`. If it is a repeat or
