@@ -1,0 +1,74 @@
+{
+ "era": "lockbox2010",
+ "period": [
+  "2011-06-17",
+  "2020-12-31"
+ ],
+ "sessions": 2373,
+ "book": {
+  "cagr": 19.1,
+  "sharpe": 0.945,
+  "worst_drop": 23.4
+ },
+ "book_with_sleeve": {
+  "cagr": 22.4,
+  "sharpe": 1.034,
+  "worst_drop": 23.4
+ },
+ "sharpe_gain": 0.089,
+ "passes_this_era": true,
+ "sleeve": {
+  "own_sharpe": 0.349,
+  "gc_sharpe": 0.142,
+  "zn_sharpe": 0.393,
+  "ann_vol_pct": 8.57,
+  "corr_with_core": -0.11,
+  "corr_with_book": -0.075,
+  "rebalances_with_change": {
+   "GC": 184,
+   "ZN": 184
+  },
+  "ret_2022_pct": 0.0,
+  "book_2022_pct": 0.0,
+  "book_with_2022_pct": 0.0,
+  "yearly_pct": {
+   "2011": 13.32,
+   "2012": -1.91,
+   "2013": 12.17,
+   "2014": -1.56,
+   "2015": 7.02,
+   "2016": -9.72,
+   "2017": 0.25,
+   "2018": -8.33,
+   "2019": 1.94,
+   "2020": 15.2
+  }
+ },
+ "luck": {
+  "share_gain_le_0": 0.27,
+  "gain_p05": -0.145,
+  "gain_p50": 0.081,
+  "draws": 2000,
+  "block_days": 21,
+  "seed": 42
+ },
+ "info_only": {
+  "whole_contract": {
+   "own_sharpe": 0.42,
+   "book_with_it": {
+    "cagr": 23.4,
+    "sharpe": 1.074,
+    "worst_drop": 21.7
+   }
+  },
+  "roll_cost_2_ticks": {
+   "own_sharpe": 0.34,
+   "book_with_it": {
+    "cagr": 22.3,
+    "sharpe": 1.031,
+    "worst_drop": 23.4
+   }
+  }
+ },
+ "trial_count_approx": 331
+}

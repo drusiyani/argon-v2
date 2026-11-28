@@ -1,0 +1,69 @@
+{
+ "era": "databento",
+ "period": [
+  "2022-01-14",
+  "2026-11-25"
+ ],
+ "sessions": 1212,
+ "book": {
+  "cagr": 42.4,
+  "sharpe": 1.288,
+  "worst_drop": 20.5
+ },
+ "book_with_sleeve": {
+  "cagr": 47.9,
+  "sharpe": 1.376,
+  "worst_drop": 19.1
+ },
+ "sharpe_gain": 0.088,
+ "passes_this_era": true,
+ "sleeve": {
+  "own_sharpe": 0.514,
+  "gc_sharpe": 0.423,
+  "zn_sharpe": 0.296,
+  "ann_vol_pct": 7.94,
+  "corr_with_core": -0.06,
+  "corr_with_book": -0.003,
+  "rebalances_with_change": {
+   "GC": 184,
+   "ZN": 184
+  },
+  "ret_2022_pct": 8.47,
+  "book_2022_pct": -5.14,
+  "book_with_2022_pct": 3.61,
+  "yearly_pct": {
+   "2022": 8.47,
+   "2023": -7.27,
+   "2024": 6.28,
+   "2025": 8.56,
+   "2026": 3.28
+  }
+ },
+ "luck": {
+  "share_gain_le_0": 0.2545,
+  "gain_p05": -0.119,
+  "gain_p50": 0.078,
+  "draws": 2000,
+  "block_days": 21,
+  "seed": 42
+ },
+ "info_only": {
+  "whole_contract": {
+   "own_sharpe": 0.505,
+   "book_with_it": {
+    "cagr": 48.9,
+    "sharpe": 1.399,
+    "worst_drop": 17.8
+   }
+  },
+  "roll_cost_2_ticks": {
+   "own_sharpe": 0.506,
+   "book_with_it": {
+    "cagr": 47.8,
+    "sharpe": 1.374,
+    "worst_drop": 19.1
+   }
+  }
+ },
+ "trial_count_approx": 331
+}
