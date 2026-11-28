@@ -1,5 +1,10 @@
-name: Download daily gold (GC) + 10y Treasury (ZN) 2010-now
-on: workflow_dispatch
+name: Download daily futures bars 2010-now (gc_zn or fx)
+on:
+  workflow_dispatch:
+    inputs:
+      set:
+        description: gc_zn or fx
+        default: gc_zn
 permissions:
   contents: write
 concurrency:
@@ -22,17 +27,18 @@ jobs:
           python-version: "3.12"
       - run: python engine/fetch_daily.py
         env:
+          DAILY_SET: ${{ inputs.set }}
           DATABENTO_API_KEY: ${{ secrets.DATABENTO_API_KEY }}
       - name: Save raw files to the private repo (Databento licence forbids republishing)
         if: always()
         run: |
           mkdir -p /tmp/argon-data/extra && cp -n data/extra/*_daily.csv.gz /tmp/argon-data/extra/ 2>/dev/null || true
           cd /tmp/argon-data && git config user.name argon-bot && git config user.email argon-bot@users.noreply.github.com
-          git add -A && (git diff --cached --quiet || (git commit -qm "extra: daily GC + ZN 2010-now" && git push -q))
+          git add -A && (git diff --cached --quiet || (git commit -qm "extra: daily ${{ inputs.set }} 2010-now" && git push -q))
       - name: Save the public manifest
         if: always()
         run: |
           git config user.name "argon-bot"; git config user.email "argon-bot@users.noreply.github.com"
           git add data/extra/MANIFEST.json; git diff --cached --quiet && exit 0
-          git commit -m "data: daily GC + ZN manifest"
+          git commit -m "data: daily ${{ inputs.set }} manifest"
           for i in 1 2 3 4 5; do git pull --rebase -X theirs origin main && git push origin HEAD:main && exit 0; sleep $((i*10)); done; exit 1

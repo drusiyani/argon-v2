@@ -1,4 +1,5 @@
-"""Download DAILY bars for gold (GC) and 10-year Treasury (ZN) futures, front month by volume, June 2010 to end of
+"""Download DAILY bars (DAILY_SET=gc_zn: gold + 10y Treasury, front by volume; DAILY_SET=fx: five CME currency futures,
+front by volume plus nearest/next by calendar for the carry basis), June 2010 to end of
 last month, into data/extra/ (not read by the book or farm). For the trend-sleeve lab idea.
 Quote first, stop above DAILY_MAX_USD (default $1; quoted $0.10 on 28 Nov 2026). Each file checked (symbol, no
 duplicate days, enough rows) before saving; never downloaded twice (data/extra/MANIFEST.json)."""
@@ -8,7 +9,10 @@ import fetch_databento as fd
 OUT=os.path.join(fd.ROOT,'data','extra'); os.makedirs(OUT,exist_ok=True); MAN=os.path.join(OUT,'MANIFEST.json')
 MAX=float(os.environ.get('DAILY_MAX_USD','1'))
 A='2010-06-07'; B=dt.date.today().replace(day=1).isoformat()
-JOBS=[('GC','GC.v.0','GC_daily.csv.gz'),('ZN','ZN.v.0','ZN_daily.csv.gz')]
+FX=('6E','6J','6B','6A','6C')   # euro, yen, pound, Aussie, Canadian dollar vs USD (CME currency futures)
+SETS={'gc_zn':[('GC','GC.v.0','GC_daily.csv.gz'),('ZN','ZN.v.0','ZN_daily.csv.gz')],
+      'fx':[(m,f'{m}.v.0',f'{m}_daily.csv.gz') for m in FX]+[(m,f'{m}.c.{i}',f'{m}_c{i}_daily.csv.gz') for m in FX for i in (0,1)]}
+JOBS=SETS[os.environ.get('DAILY_SET','gc_zn')]
 sha=lambda p:hashlib.sha256(open(p,'rb').read()).hexdigest()
 P=lambda sym:dict(fd.params(sym,A,B),schema='ohlcv-1d')
 def check(raw,sym):
