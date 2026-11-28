@@ -23,7 +23,22 @@
    "first": "2026-01-01T23:00",
    "last": "2026-09-30T23:59",
    "sha256": "23ba2b9fad4d2c4936fc22afdfb7b6460b360feef0249e33d6478307efa72dcf"
+  },
+  "GC_daily.csv.gz": {
+   "rows": 5091,
+   "first": "2010-06-07",
+   "last": "2026-10-30",
+   "schema": "ohlcv-1d",
+   "sha256": "e7c1d26f567c28acf1a1fbb5aab28315a4780e074f57232013ee57b8ba17df79"
+  },
+  "ZN_daily.csv.gz": {
+   "rows": 5094,
+   "first": "2010-06-07",
+   "last": "2026-10-30",
+   "schema": "ohlcv-1d",
+   "sha256": "494217f096e4f497746fe585f5c76af2258447aa85ef2656140c8ba78a381632"
   }
  },
- "quote_usd": 3.84
+ "quote_usd": 3.84,
+ "daily_quote_usd": 0.1009
 }
