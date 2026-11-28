@@ -1,6 +1,6 @@
 # Everything Argon has already tested (read this before proposing anything)
 
-About 330 trials so far (multiple-testing count from batch 34 plus later batches). Every new idea raises the bar.
+About 332 trials so far (multiple-testing count from batch 34 plus later batches). Every new idea raises the bar.
 Data: NQ and ES futures, 1-minute prices (2010-2020 has NO volume, NO order book, NO options data), daily VIX/VXN,
 T-bills, FOMC/macro calendar. Test eras: 2011-2020 (discover) and 2021/22-2026 (confirm once). Costs are real ticks.
 
@@ -9,6 +9,10 @@ T-bills, FOMC/macro calendar. Test eras: 2011-2020 (discover) and 2021/22-2026 (
 - Four intraday rules at 0.5% risk: QuantLab/Opening Drive (09:30-09:35 breakout), noise band (Zarattini 2024),
   ATR band, options-expiry rule. Fed-day skip. Cost cap 0.1R.
 - AI desk sizes the rules 0-2x in a shadow book. Argon-1 (small transformer) is a shadow forecaster.
+
+## Passed, waiting for Dru (do NOT propose close variants either)
+- GC + ZN trend sleeve, 12-month sign, 5% vol each, monthly (b42, issue #2): full-book Sharpe +0.09 in both eras,
+  but PASS (weak, could be luck): bootstrap share of gain <= 0 is 0.27 / 0.25. Not in the live book.
 
 ## Rejected (do NOT propose these or close variants)
 **Pairs / spreads:** NQ-ES spread reversion (b8, b40).
@@ -26,12 +30,14 @@ minimum stop (b35); noise-band gate on QuantLab (b6).
 **Stops / exits:** every stop rule tried (b28); intraday stop on the core (b39).
 **Core changes:** downside-vol core, recovery floor (b6); trend/200-day filter on core (b38); overnight-only core
 (b40); day vs night split (b29); pre-settlement overnight leg (b31).
-**Calendar:** turn of month (b40, nearest miss); pre-holiday (b40); plumbing calendar flags (b29).
+**Calendar:** turn of month (b40, nearest miss); pre-holiday (b40); plumbing calendar flags (b29); month-end
+stock-bond rebalancing trade, short NQ after stocks beat bonds / long after bonds won, last 5 sessions (b43: +0.17 in
+2011-20, -0.15 in 2022-26).
 **Models:** meta-labelling variants, recalibration, recency weighting, sibling labels, 4 alternative models,
 two-stage model, growing ridge, faster skip line, overconfidence fixes (b13-b33). G3 itself was not proven after
 counting trials (b34).
 **Other markets:** S&P rules (friction kills it), other futures (round 1); the four intraday rules on gold, Oct 2023-Sep 2026
-(research/gold_test.py: book Sharpe -1.21, lost even before costs). NOT yet tested: a slow daily trend sleeve (issue #2).
+(research/gold_test.py: book Sharpe -1.21, lost even before costs).
 **Social-media setups:** SMC + fair value gap, two-candle 4H sweep (64% wins, ~0R) (b41).
 **Other:** European-session noise band (b9); front-running the noise band's clock (b29); news-candle trades (b29);
 dealer gamma regime (b18).
