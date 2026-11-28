@@ -1,0 +1,22 @@
+{
+ "checked": "2026-11-28 00:27 UTC",
+ "schema": "ohlcv-1d",
+ "dataset": "GLBX.MDP3",
+ "total_usd": 0.1009,
+ "rows": [
+  {
+   "market": "GC",
+   "symbol": "GC.v.0",
+   "start": "2010-06-07",
+   "end": "2026-11-01",
+   "usd": 0.050448104739
+  },
+  {
+   "market": "ZN",
+   "symbol": "ZN.v.0",
+   "start": "2010-06-07",
+   "end": "2026-11-01",
+   "usd": 0.050477832556
+  }
+ ]
+}
