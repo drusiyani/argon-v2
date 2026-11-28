@@ -1,0 +1,38 @@
+name: Download daily gold (GC) + 10y Treasury (ZN) 2010-now
+on: workflow_dispatch
+permissions:
+  contents: write
+concurrency:
+  group: argon-v2-writer
+  cancel-in-progress: false
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Private market data (argon-data)
+        env:
+          DATA_TOKEN: ${{ secrets.DATA_TOKEN }}
+        run: |
+          git clone -q --depth 1 "https://x-access-token:${DATA_TOKEN}@github.com/drusiyani/argon-data.git" /tmp/argon-data
+          if [ -d /tmp/argon-data/extra ]; then mkdir -p data/extra && cp -n /tmp/argon-data/extra/* data/extra/; fi
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python engine/fetch_daily.py
+        env:
+          DATABENTO_API_KEY: ${{ secrets.DATABENTO_API_KEY }}
+      - name: Save raw files to the private repo (Databento licence forbids republishing)
+        if: always()
+        run: |
+          mkdir -p /tmp/argon-data/extra && cp -n data/extra/*_daily.csv.gz /tmp/argon-data/extra/ 2>/dev/null || true
+          cd /tmp/argon-data && git config user.name argon-bot && git config user.email argon-bot@users.noreply.github.com
+          git add -A && (git diff --cached --quiet || (git commit -qm "extra: daily GC + ZN 2010-now" && git push -q))
+      - name: Save the public manifest
+        if: always()
+        run: |
+          git config user.name "argon-bot"; git config user.email "argon-bot@users.noreply.github.com"
+          git add data/extra/MANIFEST.json; git diff --cached --quiet && exit 0
+          git commit -m "data: daily GC + ZN manifest"
+          for i in 1 2 3 4 5; do git pull --rebase -X theirs origin main && git push origin HEAD:main && exit 0; sleep $((i*10)); done; exit 1
